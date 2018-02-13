@@ -1,0 +1,67 @@
+/* footer */
+.wy-nav-content {
+  position: relative;
+  background-image: url("../images/footer.svg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 75%;
+  min-height: 100vh;
+}
+
+.document {
+  min-height: 500px;
+  margin-bottom: 8rem;
+}
+
+footer {
+  position: absolute;
+  bottom:0;
+  left: 0;
+  right: 0;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-size: 80%;
+  color: #222222;
+}
+
+/* navigation */
+.wy-side-nav-search {
+  padding-top: 170px;
+  background-image: url("../images/rocket.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-color: #222222;
+}
+
+.wy-menu-vertical a:active {
+  background-color: #e2001a;
+  cursor: pointer;
+  color: #fff;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption :first-child::before {
+  content: url("../images/icn-rocket.svg");
+  margin-left: -.1618em;
+  width: 30px;
+  float: left;
+  padding: .1618em;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption {
+  margin-top: .809em;
+  color:  #999999;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical ul.toctree-l1 {
+  margin-top: .809em;
+  color:  #999999;
+}
+
+nav li {
+  padding-left: 10px;
+}
+
+/* search box */
+.wy-side-nav-search input[type=text] {
+  border-color: #84000f;
+}

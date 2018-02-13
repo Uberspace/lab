@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.Thumbs.db
+
+# virtualenv
+venv
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# ansible
+*.retry
+
+# Sphinx
+build
+
+# CI
+.sshkey

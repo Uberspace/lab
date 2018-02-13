@@ -1,0 +1,53 @@
+---
+image: uberspace/ansible:2.4
+
+
+variables:
+  DEPLOYMENT_SSH_KEY_PATH: /tmp/.deployment-ssh-key
+
+
+stages:
+  - build
+  - deploy
+
+
+before_script:
+  # GitLab inserts a \r for each newline into our private key. This confuses the ssh client.
+  - umask 077; echo "$SSH_KEY" | tr -d '\r' > $DEPLOYMENT_SSH_KEY_PATH
+  # Dependencies
+  - pip install --quiet -r requirements.txt
+
+
+Build HTML:
+  stage: build
+  script:
+    - make html
+  artifacts:
+    paths:
+      - build
+
+
+Deploy to staging:
+  stage: deploy
+  except:
+    - stable
+  script:
+    - ansible-playbook deploy.yml --private-key=$DEPLOYMENT_SSH_KEY_PATH
+  variables:
+    DOMAIN: $CI_BUILD_REF_SLUG.lab.corona.uberspace.de
+  environment:
+    name: staging/$CI_BUILD_REF_SLUG
+    url: http://$CI_BUILD_REF_SLUG.lab.corona.uberspace.de
+
+
+Deploy to production:
+  stage: deploy
+  only:
+    - stable
+  script:
+    - ansible-playbook deploy.yml --private-key=$DEPLOYMENT_SSH_KEY_PATH
+  variables:
+    DOMAIN: lab.uberspace.de
+  environment:
+    name: production
+    url: https://lab.uberspace.de
