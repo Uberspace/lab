@@ -1,25 +1,83 @@
+.. sidebar:: Logo
+  
+  .. image:: _static/images/ghost.png 
+      :align: center
+
 #####
 Ghost
 #####
 
-Install ``ghost-cli``
-=====================
+Ghost_ is a open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.
 
-Use ``npm`` to install ``ghost-cli``
+The concept of the Ghost platform was first floated publicly in November 2012 in a blog post by project founder John O'Nolan, which generated enough response to justify coding a prototype version with collaborator Hannah Wolfe.
 
-.. code-block:: bash
+.. note:: For this guide you should be familiar with the basic concepts of 
 
- [isabell@philae ~]$ npm i -g ghost-cli
+  * Node.js_ and its package manager npm_ 
+  * MySQL_ 
+  * supervisord_
+  * domains_
 
-Install Ghost
+Prerequisites
 =============
 
-Create a ``ghost`` directory in your home, ``cd`` to it and then run the installer. Enter your URL and your MySQL username, password, and database name. You can find these in your ``~/.my.cnf``. Do not start Ghost yet.
+We're using Node.js_ in the stable version 8:
 
-.. code-block:: bash
+.. code-block:: none
 
- [isabell@philae ~]$ mkdir ~/ghost && cd ~/ghost
- [isabell@philae ~]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
+ [moritz@stardust ~]$ uberspace tools version show node
+ Using 'Node.js' version: '8'
+ [moritz@stardust ~]$ 
+
+You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
+
+.. code-block:: none
+
+ [moritz@stardust ghost]$ my_print_defaults client
+ --default-character-set=utf8mb4
+ --user=moritz
+ --password=MySuperSecretPassword
+ [moritz@stardust ghost]$ 
+
+Installation
+============
+
+Install ghost-cli
+-----------------
+
+Use ``npm`` to install ``ghost-cli`` globally:
+
+.. code-block:: none
+
+ [moritz@stardust ~]$ npm i -g ghost-cli
+ [...]
+ + ghost-cli@1.5.2
+ added 470 packages in 16.495s
+ [moritz@stardust ~]$ 
+
+Install Ghost
+-------------
+
+Create a ``ghost`` directory in your home, ``cd`` to it and then run the installer. Since the installer expects to be run with root privileges, we need to adjust some settings_:
+
+  * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
+  * ``-no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
+  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use supervisord_ later instead.
+  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a htaccess_ file for apache_ later instead.
+  * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
+
+You will need to enter the following information:
+
+  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://moritz.uber.space
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
+  * your Ghost database name: we suggest you use a additional_ database. For example: moritz_ghost
+  * Do you want to start Ghost?: Answer No.
+
+.. code-block:: none
+
+ [moritz@stardust ~]$ mkdir ~/ghost
+ [moritz@stardust ~]$ cd ~/ghost
+ [moritz@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
  ✔ Checking system Node.js version
  ✔ Checking current folder permissions
  ℹ Checking operating system compatibility [skipped]
@@ -42,99 +100,109 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
+ [moritz@stardust ghost]$ 
 
-Change Ghost port
-=================
+Setup
+=====
 
-Find a free port and write it to the ``$GHOSTPORT`` variable:
+Configure port
+--------------
 
-.. code-block:: bash
+Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
 
- [isabell@philae ~]$ GHOSTPORT=$(( $RANDOM % 4535 + 61000)); netstat -tulpen | grep $GHOSTPORT && echo "try again" || echo $GHOSTPORT
- 62841
+.. code-block:: none
 
-If successful, this will output your Ghost port. If not, try again.
+ [moritz@stardust ghost]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
+ 9000
+ [moritz@stardust ghost]$ 
 
-Set the new port in the config file:
+Write the port down. In our example it is 9000. In reality you'll get a free port between 61000 and 65535.
 
-.. code-block:: bash
+Change the configuration
+------------------------
 
- [isabell@philae ~]$ sed -i "s/2369,/${GHOSTPORT},/" ~/ghost/config.production.json
+You need to adjust your ``~/ghost/config.production.json`` with the new port. Find the following code block and change port 2369 to your own port:
+
+.. code-block:: json
+
+ "server": {
+   "port": 2369,
+   "host": "127.0.0.1"
+ },
+
+In our example this would be:
+
+.. code-block:: json
+
+ "server": {
+   "port": 9000,
+   "host": "127.0.0.1"
+ },
+
+Setup .htaccess
+---------------
+
+Create a ``~/html/.htaccess`` file with the following content:
+
+.. warning:: Replace ``<yourport>`` with your port!
+
+.. code-block:: none
+
+ DirectoryIndex disabled
+ 
+ RewriteEngine On
+ RewriteRule ^(.*) http://localhost:<yourport>/$1 [P]
+
+In our example this would be:
+
+.. code-block:: none
+
+ DirectoryIndex disabled
+ 
+ RewriteEngine On
+ RewriteRule ^(.*) http://localhost:9000/$1 [P]
 
 Set up ``supervisord``
 ======================
 
-Create ``~/etc/services.d/ghost.ini``:
+Create ``~/etc/services.d/ghost.ini`` with the following content:
 
-.. code-block:: bash
+.. warning:: Replace ``<username>`` with your username!
 
- [isabell@philae ~]$ cat > ${HOME}/etc/services.d/ghost.ini <<__EOF__
+.. code-block:: ini
+
  [program:ghost]
- directory=${HOME}/ghost
+ directory=/home/<username>/ghost
  command=env NODE_ENV=production /bin/node current/index.js
- __EOF__
 
-.. note:: The above is one multi-line command.
 
 Let ``supervisord`` re-read its configuration and start the Ghost service:
 
 .. code-block:: bash
 
- [isabell@philae ~]$ supervisorctl reread
+ [moritz@stardust ghost]$ supervisorctl reread
  ghost: available
- [isabell@philae ~]$ supervisorctl update
+ [moritz@stardust ghost]$ supervisorctl update
  ghost: added process group
+ [moritz@stardust ~]$ supervisorctl status
+ ghost                            RUNNING   pid 26020, uptime 0:03:14
+ [moritz@stardust ~]$ 
 
-Now check the log file to be sure that Ghost is running:
+If it's not in state RUNNING, check your configuration.
 
-.. code-block:: bash
+Finishing installation
+======================
 
- [isabell@philae ~]$ supervisorctl tail ghost
- [2018-02-09 11:37:44] WARN Theme's file locales/en.json not found.
- [2018-02-09 11:37:45] INFO Ghost is running in production...
- [2018-02-09 11:37:45] INFO Your blog is now available on https://isabell.uber.space/
- [2018-02-09 11:37:45] INFO Ctrl+C to shut down
- [2018-02-09 11:37:45] INFO Ghost boot 1.556s
+Point your browser to your blog URL and create a user account.
 
-Create an ``.htaccess`` file to connect Ghost to the Apache web server:
-
-.. code-block:: bash
-
- [isabell@philae ~]$ cat > /var/www/virtual/${USER}/html/.htaccess <<__EOF__
- DirectoryIndex disabled
- 
- RewriteEngine On
- RewriteRule ^(.*) http://localhost:${GHOSTPORT}/\$1 [P]
- __EOF__
-
-Create a user account
-=====================
-
-Point your browser to ``https://<user>.uber.space/ghost`` and create a user account in Ghost.
-
-Updating
-========
-
-Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases>`_ for a new version and copy the link to the ``.zip`` archive. Replace the version number in the following snippet with the newest version:
-
-.. code-block:: bash
-
- [isabell@philae ~]$ cd ~/ghost/versions/
- [isabell@philae versions]$ wget https://github.com/TryGhost/Ghost/releases/download/1.21.2/Ghost-1.21.2.zip
- [isabell@philae versions]$ unzip Ghost-1.21.2.zip -d 1.21.2
-
-Install the required ``node`` modules:
-
-.. code-block:: bash
-
- [isabell@philae ~]$ cd ~/ghost/versions/1.21.2/content
- [isabell@philae content]$ npm install --production
-
-Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
-
-.. code-block:: bash
-
- [isabell@philae ~]$ rm ~/ghost/current
- [isabell@philae ~]$ ln -s $HOME/ghost/versions/1.21.2 $HOME/ghost/current
- [isabell@philae ~]$ supervisorctl restart ghost
-
+.. _Ghost: https://ghost.org
+.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
+.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
+.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
+.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
+.. _settings: https://docs.ghost.org/v1/docs/cli-install
+.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+.. _htaccess: https://manual.uberspace.de/en/web-documentroot.html#own-configuration
+.. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
+.. _domains: https://manual.uberspace.de/en/web-domains.html
+.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
