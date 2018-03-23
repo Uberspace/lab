@@ -194,7 +194,44 @@ Point your browser to your blog URL and create a user account.
 Updates
 =======
 
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+
+.. code-block:: console
+ :emphasize-lines: 2,3
+
+ [ghost@stardust ~]$ cd ~/ghost/versions/
+ [ghost@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
+ [ghost@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
+ [ghost@stardust versions]$
+
+Install the required ``node`` modules:
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [ghost@stardust ~]$ cd ~/ghost/versions/23.42.1/content
+ [ghost@stardust content]$ npm install --production
+ [...]
+ added 91 packages, removed 134 packages and updated 544 packages in 27.303s
+ [ghost@stardust content]$ 
+
+Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
+
+.. code-block:: console
+ :emphasize-lines: 2
+
+ [ghost@stardust ~]$ rm ~/ghost/current
+ [ghost@stardust ~]$ ln -s $HOME/ghost/versions/23.42.1 $HOME/ghost/current
+ [ghost@stardust ~]$ supervisorctl restart ghost
+ ghost: stopped
+ ghost: started
+ [ghost@stardust ~]$ supervisorctl status
+ ghost                            RUNNING   pid 26020, uptime 0:03:14
+ [ghost@stardust ~]$ 
+
+If it's not in state RUNNING, check your configuration.
 
 .. _Ghost: https://ghost.org
 .. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
@@ -207,3 +244,4 @@ Updates
 .. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
+.. _feed: https://github.com/TryGhost/Ghost/releases.atom
