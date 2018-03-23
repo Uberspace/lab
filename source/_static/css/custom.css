@@ -31,6 +31,7 @@ footer {
   background-position: top;
   background-repeat: no-repeat;
   background-color: #222222;
+  background-position-x: 1.8em;
 }
 
 .wy-menu-vertical a:active {
