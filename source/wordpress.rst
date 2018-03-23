@@ -68,7 +68,6 @@ Now point your browser to your blog URL and follow the instructions.
 
 You will need to enter the following information:
 
-  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://wordpress.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your WordPress database name: we suggest you use an additional_ database. For example: wordpress_wordpress
 
