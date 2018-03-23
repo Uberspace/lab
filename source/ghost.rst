@@ -1,3 +1,5 @@
+.. highlight:: console
+
 .. sidebar:: Logo
   
   .. image:: _static/images/ghost.png 
@@ -11,6 +13,8 @@ Ghost_ is a open source blogging platform written in JavaScript and distributed 
 
 The concept of the Ghost platform was first floated publicly in November 2012 in a blog post by project founder John O'Nolan, which generated enough response to justify coding a prototype version with collaborator Hannah Wolfe.
 
+----
+
 .. note:: For this guide you should be familiar with the basic concepts of 
 
   * Node.js_ and its package manager npm_ 
@@ -23,21 +27,29 @@ Prerequisites
 
 We're using Node.js_ in the stable version 8:
 
-.. code-block:: none
+::
 
- [moritz@stardust ~]$ uberspace tools version show node
+ [ghost@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
- [moritz@stardust ~]$ 
+ [ghost@stardust ~]$ 
 
 You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
 
-.. code-block:: none
+::
 
- [moritz@stardust ghost]$ my_print_defaults client
+ [ghost@stardust ghost]$ my_print_defaults client
  --default-character-set=utf8mb4
- --user=moritz
+ --user=ghost
  --password=MySuperSecretPassword
- [moritz@stardust ghost]$ 
+ [ghost@stardust ghost]$ 
+
+Your blog URL needs to be setup:
+
+::
+
+ [ghost@stardust ~]$ uberspace web domain list
+ ghost.uber.space
+ [ghost@stardust ~]$ 
 
 Installation
 ============
@@ -47,13 +59,13 @@ Install ghost-cli
 
 Use ``npm`` to install ``ghost-cli`` globally:
 
-.. code-block:: none
+::
 
- [moritz@stardust ~]$ npm i -g ghost-cli
+ [ghost@stardust ~]$ npm i -g ghost-cli
  [...]
  + ghost-cli@1.5.2
  added 470 packages in 16.495s
- [moritz@stardust ~]$ 
+ [ghost@stardust ~]$ 
 
 Install Ghost
 -------------
@@ -68,16 +80,17 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
 You will need to enter the following information:
 
-  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://moritz.uber.space
+  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://ghost.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Ghost database name: we suggest you use a additional_ database. For example: moritz_ghost
+  * your Ghost database name: we suggest you use a additional_ database. For example: ghost_ghost
   * Do you want to start Ghost?: Answer No.
 
-.. code-block:: none
+.. code-block:: console
+ :emphasize-lines: 1,2,3,12,13,14,15,16,25
 
- [moritz@stardust ~]$ mkdir ~/ghost
- [moritz@stardust ~]$ cd ~/ghost
- [moritz@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
+ [ghost@stardust ~]$ mkdir ~/ghost
+ [ghost@stardust ~]$ cd ~/ghost
+ [ghost@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
  ✔ Checking system Node.js version
  ✔ Checking current folder permissions
  ℹ Checking operating system compatibility [skipped]
@@ -86,7 +99,7 @@ You will need to enter the following information:
  ✔ Setting up install directory
  ✔ Downloading and installing Ghost v1.21.2
  ✔ Finishing install process
- ? Enter your blog URL: https://isabell.uber.space
+ ? Enter your blog URL: https://ghost.uber.space
  ? Enter your MySQL hostname: localhost
  ? Enter your MySQL username: isabell
  ? Enter your MySQL password: [hidden]
@@ -100,30 +113,24 @@ You will need to enter the following information:
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
- [moritz@stardust ghost]$ 
+ [ghost@stardust ghost]$ 
 
-Setup
-=====
+Configuration
+=============
 
 Configure port
 --------------
 
 Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
 
-.. code-block:: none
-
- [moritz@stardust ghost]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
- 9000
- [moritz@stardust ghost]$ 
-
-Write the port down. In our example it is 9000. In reality you'll get a free port between 61000 and 65535.
+.. include:: includes/generate-port.rst
 
 Change the configuration
 ------------------------
 
 You need to adjust your ``~/ghost/config.production.json`` with the new port. Find the following code block and change port 2369 to your own port:
 
-.. code-block:: json
+::
 
  "server": {
    "port": 2369,
@@ -132,7 +139,7 @@ You need to adjust your ``~/ghost/config.production.json`` with the new port. Fi
 
 In our example this would be:
 
-.. code-block:: json
+::
 
  "server": {
    "port": 9000,
@@ -142,28 +149,10 @@ In our example this would be:
 Setup .htaccess
 ---------------
 
-Create a ``~/html/.htaccess`` file with the following content:
+.. include:: includes/proxy-rewrite.rst
 
-.. warning:: Replace ``<yourport>`` with your port!
-
-.. code-block:: none
-
- DirectoryIndex disabled
- 
- RewriteEngine On
- RewriteRule ^(.*) http://localhost:<yourport>/$1 [P]
-
-In our example this would be:
-
-.. code-block:: none
-
- DirectoryIndex disabled
- 
- RewriteEngine On
- RewriteRule ^(.*) http://localhost:9000/$1 [P]
-
-Set up ``supervisord``
-======================
+Setup daemon
+------------
 
 Create ``~/etc/services.d/ghost.ini`` with the following content:
 
@@ -175,18 +164,25 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
  directory=/home/<username>/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
+In our example this would be:
 
-Let ``supervisord`` re-read its configuration and start the Ghost service:
+.. code-block:: ini
 
-.. code-block:: bash
+ [program:ghost]
+ directory=/home/ghost/ghost
+ command=env NODE_ENV=production /bin/node current/index.js
 
- [moritz@stardust ghost]$ supervisorctl reread
+Tell ``supervisord`` to refresh its configuration and start the service:
+
+::
+
+ [ghost@stardust ghost]$ supervisorctl reread
  ghost: available
- [moritz@stardust ghost]$ supervisorctl update
+ [ghost@stardust ghost]$ supervisorctl update
  ghost: added process group
- [moritz@stardust ~]$ supervisorctl status
+ [ghost@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:03:14
- [moritz@stardust ~]$ 
+ [ghost@stardust ~]$ 
 
 If it's not in state RUNNING, check your configuration.
 
@@ -194,6 +190,11 @@ Finishing installation
 ======================
 
 Point your browser to your blog URL and create a user account.
+
+Updates
+=======
+
+
 
 .. _Ghost: https://ghost.org
 .. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
