@@ -93,7 +93,7 @@ html_context = {
   'github_user': 'Uberspace', 
   'github_repo': 'lab', 
   'github_version': 'master',
-  'conf_py_path": '/source/'
+  'conf_py_path': '/source/'
 }
 html_show_copyright = False
 html_favicon = '_static/favicon.ico'
