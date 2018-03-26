@@ -34,10 +34,10 @@ Deploy to staging:
   script:
     - ansible-playbook deploy.yml --private-key=$DEPLOYMENT_SSH_KEY_PATH
   variables:
-    DOMAIN: $CI_BUILD_REF_SLUG.lab.corona.uberspace.de
+    DOMAIN: $CI_BUILD_REF_SLUG.lab.uberspace.de
   environment:
     name: staging/$CI_BUILD_REF_SLUG
-    url: http://$CI_BUILD_REF_SLUG.lab.corona.uberspace.de
+    url: http://$CI_BUILD_REF_SLUG.lab.uberspace.de
 
 
 Deploy to production:
