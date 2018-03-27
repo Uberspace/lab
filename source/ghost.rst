@@ -101,9 +101,9 @@ You will need to enter the following information:
  ✔ Finishing install process
  ? Enter your blog URL: https://ghost.uber.space
  ? Enter your MySQL hostname: localhost
- ? Enter your MySQL username: isabell
+ ? Enter your MySQL username: ghost
  ? Enter your MySQL password: [hidden]
- ? Enter your Ghost database name: isabell_ghost
+ ? Enter your Ghost database name: ghost_ghost
  ✔ Configuring Ghost
  ✔ Setting up instance
  ℹ Setting up "ghost" mysql user [skipped]
