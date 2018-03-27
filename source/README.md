@@ -64,9 +64,31 @@ Since the installer expects to be run with root privileges, we need to adjust so
 
  * Try to find a RSS feed for updates and document it.
  * If there are any standard passwords, tell the user to change them *immediately*.
+ * If there are files to edit, don't do stuff like `cat > ~/.npmrc <<__EOF__`, just tell the user to _edit_ the file. Don't mention an editor like `vi` or `nano`. Example:
+
+```
+Create ``~/etc/services.d/ghost.ini`` with the following content:
+
+.. warning:: Replace ``<username>`` with your username!
+
+.. code-block:: ini
+
+ [program:ghost]
+ directory=/home/<username>/ghost
+ command=env NODE_ENV=production /bin/node current/index.js
+
+In our example this would be:
+
+.. code-block:: ini
+
+ [program:ghost]
+ directory=/home/ghost/ghost
+ command=env NODE_ENV=production /bin/node current/index.js
+```
 
 Please use the following structure. Only document applicable steps, leave out headlines you don't need.
 
+ * Short description
  * Prerequisites
  * Installation
  * Configuration
