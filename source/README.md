@@ -1,7 +1,10 @@
 ## Rules for guides
 
-You're welcome to add your own guides to this repository. Please follow our rules to keep the guides maintainable and consistent.
+You're welcome to add your own guides to this repository. 
 
+Please follow our rules to keep the guides maintainable and consistent.
+
+ * Guides have to be written in [reST](http://www.sphinx-doc.org/en/stable/rest.html).
  * Use English language. You don't have to be a native speaker or a poet.
  * Upload a logo to `_static/images/`, find or create a PNG file with transparent background.
  * Don't use URLs with actual versions. Change the version to something like 42.23.1 and tell where to find the actual version instead.
