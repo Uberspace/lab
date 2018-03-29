@@ -10,8 +10,8 @@ Gitea
 #####
 
 Gitea_ is a painless self-hosted Git service written in Go and distributed under the MIT License, designed to provide
-similar core functionality as GitLab or GitHub, but at a much small resource footprint. The project started as a fork
-of the then-popular Gogs_, but quickly behave more active and bigger than the original.
+similar core functionality as GitLab or GitHub, but at a much smaller resource footprint. The project started as a fork
+of the then-popular Gogs_, but quickly became more active and bigger than the original.
 
 ----
 
@@ -52,7 +52,7 @@ make sure that the file can be executed.
 ::
 
   [gitea@stardust ~]$ mkdir ~/gitea
-  [gitea@stardust ~]$ wget -O gitea/gitea https://dl.gitea.io/gitea/1.3.2/gitea-1.3.2-linux-amd64
+  [gitea@stardust ~]$ wget -O gitea/gitea https://dl.gitea.io/gitea/42.23.11/gitea-42.23.11-linux-amd64
   Resolving dl.gitea.io (dl.gitea.io)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (dl.gitea.io)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -144,8 +144,8 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If there is newer
-versions is available, repeat the "Installation" step followed by a restart using ``supervisorctl restart gitea``.
+Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If a newer
+Version is available, repeat the "Installation" step followed by ``supervisorctl restart gitea`` to restart gitea.
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
