@@ -8,25 +8,21 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Use English language. You don't have to be a native speaker or a poet.
  * Upload a logo to `_static/images/`, find or create a PNG file with transparent background.
  * Don't use URLs with actual versions. Change the version to something like 42.23.1 and tell where to find the actual version instead.
+ * Always use the same username `isabell`.
+ * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * If any applications need to bind to a port (like Node.js apps), use port 9000 in your examples, which is never free on our servers. Use the following snippet to force the user to generate and use their own free port, replace `guide` with the name of your guide: 
-
-```
-[guide@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
-9000
-[guide@stardust ~]$
-```
-
+ * If any applications need to bind to a port (like Node.js apps), use port 9000 in your examples, which is never free on our servers. 
+ * Use the templates in `source/includes/` where appropriate.
  * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
 
 ```
 .. code-block:: console
  :emphasize-lines: 1,2,3,12,13,14,15,16,25
 
- [ghost@stardust ~]$ mkdir ~/ghost
- [ghost@stardust ~]$ cd ~/ghost
- [ghost@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
+ [isabell@stardust ~]$ mkdir ~/ghost
+ [isabell@stardust ~]$ cd ~/ghost
+ [isabell@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
  ✔ Checking system Node.js version
  ✔ Checking current folder permissions
  ℹ Checking operating system compatibility [skipped]
@@ -49,10 +45,10 @@ Please follow our rules to keep the guides maintainable and consistent.
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
- [ghost@stardust ghost]$ 
- ```
+ [isabell@stardust ghost]$ 
+```
 
- * Always end your console code blocks with `[guide@stardust ~]$`, replace `guide` with the name of your guide.
+ * Always end your console code blocks with `[isabell@stardust ~]$`.
  * If you use flags, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
 
 ```
@@ -65,7 +61,7 @@ Since the installer expects to be run with root privileges, we need to adjust so
   * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
 ```
 
- * Try to find a RSS feed for updates and document it.
+ * Try to find an RSS feed for updates and document it.
  * If there are any standard passwords, tell the user to change them *immediately*.
  * If there are files to edit, don't do stuff like `cat > ~/.npmrc <<__EOF__`, just tell the user to _edit_ the file. Don't mention an editor like `vi` or `nano`. Example:
 
@@ -136,27 +132,27 @@ We're using Node.js_ in the stable version 8:
 
 ::
 
- [loremipsum@stardust ~]$ uberspace tools version show node
+ [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
- [loremipsum@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
 
 ::
 
- [loremipsum@stardust ~]$ my_print_defaults client
+ [isabell@stardust ~]$ my_print_defaults client
  --default-character-set=utf8mb4
  --user=ghost
  --password=MySuperSecretPassword
- [loremipsum@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 Your blog URL needs to be setup:
 
 ::
 
- [loremipsum@stardust ~]$ uberspace web domain list
+ [isabell@stardust ~]$ uberspace web domain list
  loremipsum.uber.space
- [loremipsum@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 Installation
 ============
