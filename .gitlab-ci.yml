@@ -30,7 +30,7 @@ Build HTML:
 Deploy to staging:
   stage: deploy
   except:
-    - stable
+    - master
   script:
     - ansible-playbook deploy.yml --private-key=$DEPLOYMENT_SSH_KEY_PATH
   variables:
@@ -43,7 +43,7 @@ Deploy to staging:
 Deploy to production:
   stage: deploy
   only:
-    - stable
+    - master
   script:
     - ansible-playbook deploy.yml --private-key=$DEPLOYMENT_SSH_KEY_PATH
   variables:
