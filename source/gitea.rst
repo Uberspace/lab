@@ -145,7 +145,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If a newer
-Version is available, repeat the "Installation" step followed by ``supervisorctl restart gitea`` to restart gitea.
+version is available, repeat the "Installation" step followed by ``supervisorctl restart gitea`` to restart gitea.
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
