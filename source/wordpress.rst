@@ -28,27 +28,15 @@ We're using PHP_ in the stable version 7.1:
 
 ::
 
- [wordpress@stardust ~]$ uberspace tools version show php
+ [isabell@stardust ~]$ uberspace tools version show php
  Using 'PHP' version: '7.1'
- [wordpress@stardust ~]$
+ [isabell@stardust ~]$
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
-
-::
-
- [wordpress@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=wordpress
- --password=MySuperSecretPassword
- [wordpress@stardust ~]$ 
+.. include:: includes/my-print-defaults.rst
 
 Your blog domain needs to be setup:
 
-::
-
- [wordpress@stardust ~]$ uberspace web domain list
- wordpress.uber.space
- [wordpress@stardust ~]$
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
@@ -57,19 +45,19 @@ Installation
 
 ::
 
- [wordpress@stardust ~]$ cd /var/www/virtual/$USER/html/
- [wordpress@stardust html]$ curl https://wordpress.org/latest.tar.gz | tar -xzf - --strip-components=1
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ curl https://wordpress.org/latest.tar.gz | tar -xzf - --strip-components=1
    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                   Dload  Upload   Total   Spent    Left  Speed
  100 8364k  100 8364k    0     0  4448k      0  0:00:01  0:00:01 --:--:-- 4449k
- [wordpress@stardust html]$
+ [isabell@stardust html]$
 
 Now point your browser to your blog URL and follow the instructions.
 
 You will need to enter the following information:
 
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your WordPress database name: we suggest you use an additional_ database. For example: wordpress_wordpress
+  * your WordPress database name: we suggest you use an additional_ database. For example: isabell_wordpress
 
 
 Updates

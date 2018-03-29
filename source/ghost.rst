@@ -29,27 +29,15 @@ We're using Node.js_ in the stable version 8:
 
 ::
 
- [ghost@stardust ~]$ uberspace tools version show node
+ [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
- [ghost@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
-
-::
-
- [ghost@stardust ghost]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=ghost
- --password=MySuperSecretPassword
- [ghost@stardust ghost]$ 
+.. include:: includes/my-print-defaults.rst
 
 Your blog URL needs to be setup:
 
-::
-
- [ghost@stardust ~]$ uberspace web domain list
- ghost.uber.space
- [ghost@stardust ~]$ 
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
@@ -61,11 +49,11 @@ Use ``npm`` to install ``ghost-cli`` globally:
 
 ::
 
- [ghost@stardust ~]$ npm i -g ghost-cli
+ [isabell@stardust ~]$ npm i -g ghost-cli
  [...]
  + ghost-cli@1.5.2
  added 470 packages in 16.495s
- [ghost@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 Install Ghost
 -------------
@@ -80,17 +68,17 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
 You will need to enter the following information:
 
-  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://ghost.uber.space
+  * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Ghost database name: we suggest you use a additional_ database. For example: ghost_ghost
+  * your Ghost database name: we suggest you use a additional_ database. For example: isabell_ghost
   * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,12,13,14,15,16,25
 
- [ghost@stardust ~]$ mkdir ~/ghost
- [ghost@stardust ~]$ cd ~/ghost
- [ghost@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
+ [isabell@stardust ~]$ mkdir ~/ghost
+ [isabell@stardust ~]$ cd ~/ghost
+ [isabell@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
  ✔ Checking system Node.js version
  ✔ Checking current folder permissions
  ℹ Checking operating system compatibility [skipped]
@@ -113,7 +101,7 @@ You will need to enter the following information:
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
- [ghost@stardust ghost]$ 
+ [isabell@stardust ghost]$ 
 
 Configuration
 =============
@@ -176,13 +164,13 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
- [ghost@stardust ghost]$ supervisorctl reread
+ [isabell@stardust ghost]$ supervisorctl reread
  ghost: available
- [ghost@stardust ghost]$ supervisorctl update
+ [isabell@stardust ghost]$ supervisorctl update
  ghost: added process group
- [ghost@stardust ~]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:03:14
- [ghost@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 If it's not in state RUNNING, check your configuration.
 
@@ -201,35 +189,35 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
 .. code-block:: console
  :emphasize-lines: 2,3
 
- [ghost@stardust ~]$ cd ~/ghost/versions/
- [ghost@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
- [ghost@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
- [ghost@stardust versions]$
+ [isabell@stardust ~]$ cd ~/ghost/versions/
+ [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
+ [isabell@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
+ [isabell@stardust versions]$
 
 Install the required ``node`` modules:
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [ghost@stardust ~]$ cd ~/ghost/versions/23.42.1/content
- [ghost@stardust content]$ npm install --production
+ [isabell@stardust ~]$ cd ~/ghost/versions/23.42.1/content
+ [isabell@stardust content]$ npm install --production
  [...]
  added 91 packages, removed 134 packages and updated 544 packages in 27.303s
- [ghost@stardust content]$ 
+ [isabell@stardust content]$ 
 
 Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [ghost@stardust ~]$ rm ~/ghost/current
- [ghost@stardust ~]$ ln -s $HOME/ghost/versions/23.42.1 $HOME/ghost/current
- [ghost@stardust ~]$ supervisorctl restart ghost
+ [isabell@stardust ~]$ rm ~/ghost/current
+ [isabell@stardust ~]$ ln -s $HOME/ghost/versions/23.42.1 $HOME/ghost/current
+ [isabell@stardust ~]$ supervisorctl restart ghost
  ghost: stopped
  ghost: started
- [ghost@stardust ~]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:03:14
- [ghost@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 If it's not in state RUNNING, check your configuration.
 
