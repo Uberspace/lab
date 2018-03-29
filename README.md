@@ -25,3 +25,8 @@ $ make html
 ```
 
 The HTML views are now present in `build/html`. 
+
+## License
+
+All text and code in this repository is licensed under [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+All project logos are property of the respective project.
