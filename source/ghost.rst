@@ -87,11 +87,11 @@ You will need to enter the following information:
  ✔ Setting up install directory
  ✔ Downloading and installing Ghost v1.21.2
  ✔ Finishing install process
- ? Enter your blog URL: https://ghost.uber.space
+ ? Enter your blog URL: https://isabell.uber.space
  ? Enter your MySQL hostname: localhost
- ? Enter your MySQL username: ghost
+ ? Enter your MySQL username: isabell
  ? Enter your MySQL password: [hidden]
- ? Enter your Ghost database name: ghost_ghost
+ ? Enter your Ghost database name: isabell_ghost
  ✔ Configuring Ghost
  ✔ Setting up instance
  ℹ Setting up "ghost" mysql user [skipped]
@@ -157,7 +157,7 @@ In our example this would be:
 .. code-block:: ini
 
  [program:ghost]
- directory=/home/ghost/ghost
+ directory=/home/isabell/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
 Tell ``supervisord`` to refresh its configuration and start the service:
