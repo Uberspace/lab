@@ -47,7 +47,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Uberspace 7 Lab'
+project = 'UberLab'
 copyright = '2018, uberspace.de'
 author = 'uberspace.de'
 
