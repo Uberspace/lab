@@ -24,23 +24,11 @@ of the then-popular Gogs_, but quickly became more active and bigger than the or
 Prerequisites
 =============
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
-
-::
-
- [gitea@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=gitea
- --password=MySuperSecretPassword
- [gitea@stardust ~]$ 
+.. include:: includes/my-print-defaults.rst
 
 Your gitea URL needs to be setup:
 
-::
-
- [gitea@stardust ~]$ uberspace web domain list
- ghost.uber.space
- [gitea@stardust ~]$ 
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
@@ -51,8 +39,8 @@ make sure that the file can be executed.
 
 ::
 
-  [gitea@stardust ~]$ mkdir ~/gitea
-  [gitea@stardust ~]$ wget -O gitea/gitea https://dl.gitea.io/gitea/42.23.11/gitea-42.23.11-linux-amd64
+  [isabell@stardust ~]$ mkdir ~/gitea
+  [isabell@stardust ~]$ wget -O gitea/gitea https://dl.gitea.io/gitea/42.23.11/gitea-42.23.11-linux-amd64
   Resolving dl.gitea.io (dl.gitea.io)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (dl.gitea.io)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -62,10 +50,10 @@ make sure that the file can be executed.
   100%[=======================================================>] 52,960,072  9.99MB/s   in 5.8s   
 
   2018-03-25 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [52960072/52960072]
-  [gitea@stardust ~]$ sha256sum gitea/gitea
+  [isabell@stardust ~]$ sha256sum gitea/gitea
   6914f61121847bf7aad66ec63079fbf84c3be91ac9b0aade16e92f657155cd39  bin/gitea
-  [gitea@stardust ~]$ chmod +x gitea/gitea
-  [gitea@stardust ~]$
+  [isabell@stardust ~]$ chmod +x gitea/gitea
+  [isabell@stardust ~]$
 
 Configuration
 =============
@@ -87,7 +75,7 @@ desired port, domain and disable public registration:
 
   [server]
   HTTP_PORT = 9000
-  DOMAIN = gitea.uber.space
+  DOMAIN = isabell.uber.space
   ROOT_URL = https://%(DOMAIN)s
 
   [service]
@@ -118,19 +106,19 @@ In our example this would be:
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/gitea/gitea/gitea web
+  command=/home/isabell/gitea/gitea web
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
- [gitea@stardust ~]$ supervisorctl reread
+ [isabell@stardust ~]$ supervisorctl reread
  gitea: available
  [ghost@stardust ~]$ supervisorctl update
  gitea: added process group
- [gitea@stardust ~]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  gitea                            RUNNING   pid 26020, uptime 0:03:14
- [gitea@stardust ~]$ 
+ [isabell@stardust ~]$ 
 
 If it's not in state RUNNING, check your configuration.
 
