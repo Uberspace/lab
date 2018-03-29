@@ -5,11 +5,6 @@ Uberspace 7 Lab
 .. toctree::
    :hidden:
    :maxdepth: 1
+   :glob:
 
-   ghost
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   wordpress
+   guide_*
