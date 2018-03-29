@@ -20,11 +20,6 @@ Thank you and have fun experimenting!
 .. toctree::
    :hidden:
    :maxdepth: 1
+   :glob:
 
-   ghost
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   wordpress
+   guide_*
