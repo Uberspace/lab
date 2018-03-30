@@ -26,6 +26,22 @@ Prerequisites
 
 .. include:: includes/my-print-defaults.rst
 
+You need a database for gitea:
+
+.. warning:: Replace ``<username>`` with your username!
+
+.. code-block:: ini
+
+  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_gitea"
+  [isabell@stardust ~]$
+
+In our example this would be:
+
+.. code-block:: ini
+
+  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_gitea"
+  [isabell@stardust ~]$
+
 Your gitea URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
