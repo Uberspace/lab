@@ -68,7 +68,15 @@ Since Gitea uses its own webserver, you need to find a free port and bind your a
 Change the configuration
 ------------------------
 
-You need to create a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
+You need to create a custom diretory
+
+::
+
+  [isabell@stardust ~]$ mdkir -p ~/gitea/custom/conf/
+  [isabell@stardust ~]$
+
+
+and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
 desired port, domain and disable public registration:
 
 ::
