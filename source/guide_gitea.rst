@@ -114,7 +114,7 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 
  [isabell@stardust ~]$ supervisorctl reread
  gitea: available
- [ghost@stardust ~]$ supervisorctl update
+ [isabell@stardust ~]$ supervisorctl update
  gitea: added process group
  [isabell@stardust ~]$ supervisorctl status
  gitea                            RUNNING   pid 26020, uptime 0:03:14
