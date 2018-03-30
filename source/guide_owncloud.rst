@@ -9,7 +9,7 @@
 ownCloud
 #########
 
-ownCloud_ is an open source cloud solution written in PHP and distributed unter the GAPLv3 licence.
+ownCloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence.
 
 ownCloud was initially released in 2010 and is maintained by the ownCloud GmbH.
 
@@ -42,7 +42,9 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
-``cd`` to your `document root`_, then download and the latest release of the ownCloud and extract it:
+``cd`` to your `document root`_, then download the latest release of the ownCloud and extract it:
+
+.. note:: The link to the lastest version can be found at ownCloud's `download page <https://owncloud.org/download/>`_.
 
 ::
 
@@ -67,22 +69,35 @@ If you want to use MySQL insert of SQLite you also need:
 Tuning
 ======
 
-To get the best performance ownCloud suggests to add a local cronjob.
+cronjob
+-------
 
-Add the following cronjob to your cronjobs_ configuration:
+To get a better performance ownCloud suggests to add a local cronjob.
+
+Add the following cronjob to your crontab_:
 
 .. warning:: Replace ``<username>`` with your username!
 
 ::
 
- *  *  *  *  * /usr/bin/php71 -f var/www/virtual/<username>/html/cron.php
+ *  *  *  *  * /usr/bin/php -f /var/www/virtual/<username>/html/cron.php
+
+Memcaching
+----------
+
+Another thing you can configure to get a better performance is enabling Memcaching.
+
+To enable Memcaching (APCu) you only need to add the following line to your /var/www/virtual/$USER/html/config/config.php:
+
+::
+
+ 'memcache.local' => '\OC\Memcache\APCu',
+
 
 Updates
 =======
 
-There are many different ways to update your ownCloud installation. 
-
-The easiest one is to use the web updater provided in the admin section of the online panel.
+The easiest way to update ownCloud is to use the web updater provided in the admin section of the Web Interface.
 
 .. note:: Check the `changelog <https://owncloud.org/changelog/server/>`_ regularly to stay informed about new updates and releases.
 
@@ -95,3 +110,4 @@ The easiest one is to use the web updater provided in the admin section of the o
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html
+.. _crontab: https://manual.uberspace.de/en/daemons-cron.html
