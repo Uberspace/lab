@@ -72,7 +72,7 @@ You need to create a custom diretory
 
 ::
 
-  [isabell@stardust ~]$ mdkir -p ~/gitea/custom/conf/
+  [isabell@stardust ~]$ mkdir -p ~/gitea/custom/conf/
   [isabell@stardust ~]$
 
 
