@@ -40,7 +40,7 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v42.0.0/gitea-42.0.0-linux-amd64.sha256
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v42.0.0/gitea-42.0.0-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
