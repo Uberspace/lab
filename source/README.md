@@ -106,8 +106,6 @@ Please use the following structure. Only document applicable steps, leave out he
   .. image:: _static/images/loremipsum.png 
       :align: center
 
-  This guide has been tested with Uberspace 7.1.1 and Loremipsum 0.9
-
 ##########
 Loremipsum
 ##########
@@ -206,6 +204,10 @@ Updates
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/lorem/ipsum/releases.atom
+
+----
+
+Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 ```
 
