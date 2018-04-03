@@ -209,7 +209,7 @@ Be sure to set any random signs for the option ``secret`` within the ``config.ya
 Updates
 =======
 
-.. note:: Check the Github_ repository regularly to stay informed about the newest version.
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
 If there is a new version available, you can get the code using Git:
@@ -254,3 +254,4 @@ In the end you need to restart the service daemon, so the new code is used by th
 .. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
+.. _feed: https://github.com/claudioc/jingo/releases.atom
