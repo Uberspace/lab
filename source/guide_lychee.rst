@@ -39,19 +39,21 @@ Also, the domain you want to use for Lychee must be set up as well:
 Installation
 ============
 
-``cd`` to your `document root`_, then clone the latest release of the Lychee installer and move the files to the document root:
+``cd`` to your `document root`_, then clone the latest release of the Lychee installer (check their GitHub_ for the most recent version), move the files to the document root and remove the original folder:
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ git clone https://github.com/electerious/Lychee.git
+ [isabell@stardust html]$ git clone --branch v42.13.2 https://github.com/electerious/Lychee
  Cloning into 'Lychee'...
  remote: Counting objects: 10458, done.
  remote: Compressing objects: 100% (8/8), done.
  remote: Total 10458 (delta 3), reused 7 (delta 2), pack-reused 10448
  Receiving objects: 100% (10458/10458), 5.74 MiB | 8.85 MiB/s, done.
  Resolving deltas: 100% (7144/7144), done.
- [isabell@stardust html]$ mv Lychee/* Lychee/.[!.]* . && rmdir Lychee
+ [isabell@stardust html]$ mv Lychee/* .
+ [isabell@stardust html]$ mv Lychee/.* .
+ [isabell@stardust html]$ rmdir Lychee
  [isabell@stardust html]$
 
 Now point your browser to your Lychee URL and follow the instructions.
@@ -66,23 +68,28 @@ For the last step you have to enter the username/password you want to use for th
 Updates
 =======
 
-You can regularly check the release section of Lychees GitHub_ for any new releases. 
+You can regularly check their GitHub's Atom Feed_ for any new Lychee releases. 
 
-If a new version is available, ``cd`` to your `document root` and do a simple ``git pull``:
+If a new version is available, ``cd`` to your `document root` and do a simple ``git pull origin v66.6.6``. Replace the version number accordingly:
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ git pull
+ [isabell@stardust html]$ git pull origin v66.6.6
  Already up to date.
  [isabell@stardust html]$
 
 
 .. _Lychee: https://lychee.electerious.com/
 .. _GitHub: https://github.com/electerious/Lychee/releases
+.. _Feed: https://github.com/electerious/Lychee/releases.atom
 .. _PHP: http://www.php.net/
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
+
+----
+
+Tested with Lychee 3.1.6, Uberspace 7.1.1
