@@ -233,3 +233,7 @@ If it's not in state RUNNING, check your configuration.
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _feed: https://github.com/TryGhost/Ghost/releases.atom
+
+----
+
+Tested with Ghost 1.22.1, Uberspace 7.1.1
