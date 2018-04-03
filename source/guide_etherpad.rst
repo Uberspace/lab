@@ -1,9 +1,5 @@
 .. highlight:: console
 
-.. sidebar:: About
-
-  This guide has been tested with Uberspace 7.1.1 and Etherpad Lite 1.6.3
-
 #############
 Etherpad Lite
 #############
@@ -222,3 +218,7 @@ Then you need to restart the service daemon, so the new code is used by the webs
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
+
+----
+
+Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1 
