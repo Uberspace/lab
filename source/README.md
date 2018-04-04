@@ -12,7 +12,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * If any applications need to bind to a port (like Node.js apps), use port 9000 in your examples, which is never free on our servers. 
+ * If any applications need to bind to one or more ports (like Node.js apps), use port 9000 - 9010 in your examples, which are never free on our servers. 
  * Use the templates in `source/includes/` where appropriate.
  * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
 
