@@ -1,9 +1,5 @@
 .. highlight:: console
 
-.. sidebar:: About
-
-  This guide has been tested with Uberspace 7.1.1 and Jingo 1.8.5
-
 #####
 Jingo
 #####
@@ -255,3 +251,7 @@ In the end you need to restart the service daemon, so the new code is used by th
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/claudioc/jingo/releases.atom
+
+----
+
+Tested with Jingo 1.8.5, Uberspace 7.1.1
