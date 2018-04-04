@@ -129,10 +129,10 @@ For the initial config here, the most simple way is to set up a local account th
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/jingo/jingo --hash-string MySuperSecretPassword
-  1531379b51fd883c2eee31a7fa95ae9a94e0e1bf
+  7dfd2a21e27be76896430ee382e268b362d812d7
   [isabell@stardust ~]$
 
-Save the returned hash (here ``1531379b51fd883c2eee31a7fa95ae9a94e0e1bf``) together with your account name within the config file ``~/jingo/config.yaml`` and be sure to set ``enabled`` to ``true``:
+Save the returned hash (here ``7dfd2a21e27be76896430ee382e268b362d812d7``) together with your account name within the config file ``~/jingo/config.yaml`` and be sure to set ``enabled`` to ``true``:
 
 .. code-block:: yaml
   :emphasize-lines: 6,8,9,10
@@ -145,7 +145,7 @@ Save the returned hash (here ``1531379b51fd883c2eee31a7fa95ae9a94e0e1bf``) toget
       enabled: true
       accounts:
         - username: 'isabell'
-          passwordHash: '1531379b51fd883c2eee31a7fa95ae9a94e0e1bf'
+          passwordHash: '7dfd2a21e27be76896430ee382e268b362d812d7'
           email: 'jingo@isabell.uber.space'
 
 .. warning:: Of course you have to change the string ``MySuperSecretPassword`` to your personal password and use the corresponding hash!
