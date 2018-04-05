@@ -2,7 +2,8 @@ Create a ``~/html/.htaccess`` file with the following content:
 
 .. warning:: Replace ``<yourport>`` with your port!
 
-::
+.. code-block:: none
+ :emphasize-lines: 4
 
  DirectoryIndex disabled
  
@@ -11,7 +12,7 @@ Create a ``~/html/.htaccess`` file with the following content:
 
 In our example this would be:
 
-::
+.. code-block:: none
 
  DirectoryIndex disabled
  
