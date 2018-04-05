@@ -48,13 +48,10 @@ Installation
 Download minim system
 ---------------------
 
-Use `wget` to download.
+Use `wget` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version.
 
-Latest version available at: https://minim.one/downloads/
-
-Copy the path to the ``.zip`` archive to your wget command.
-
-::
+.. code-block:: console
+ :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
@@ -90,7 +87,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check minim's `releases <https://minim.one/rss/>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+Check minim's feed_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
  :emphasize-lines: 2,4
@@ -117,7 +114,7 @@ Copy your config, entries, sites and themes to the updated version.
 .. _PHP: https://manual.uberspace.de/en/lang-php.html#show-available-versions
 .. _configuration: https://minim.one/docs/
 .. _feed: https://minim.one/rss/
-.. _releases: https://minim.one/downloads/
+.. _release: https://minim.one/downloads/
 
 ----
 
