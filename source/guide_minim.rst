@@ -19,7 +19,7 @@ The minim - Wiki can be used for wiki and also for other online projects.
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * tools_
+  * PHP_
   * domains_
 
 Prerequisites
@@ -68,7 +68,7 @@ Configuration
 Customization
 -------------
 
-You can leave the _configuration in ``config/config.php`` or do changes as you want to.
+You can leave the configuration_ in ``config/config.php`` or do changes as you want to.
 
 Create your own theme in ``themes``. Just copy the default theme or create one from scratch.
 
@@ -113,7 +113,6 @@ Copy your config, entries, sites and themes to the updated version.
  [isabell@stardust html]$
 
 .. _minim: https://minim.one/
-.. _tools: https://manual.uberspace.de/en/lang-php.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _PHP: https://manual.uberspace.de/en/lang-php.html#show-available-versions
 .. _configuration: https://minim.one/docs/
