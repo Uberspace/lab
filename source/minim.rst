@@ -1,0 +1,117 @@
+.. highlight:: console
+
+.. sidebar:: Logo
+  
+  .. image:: _static/images/minim.png 
+      :align: center
+
+#####
+minim
+#####
+
+minim_ offers super simple PHP Content Management Systems. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
+
+The minim - Blog is ideal for simple travel blogs or publishing news. It has an easy administration interface and a automatic generated RSS feed. Themes and other modifications are fully customisable.
+
+The minim - Wiki can be used for wiki and also for other online projects.
+
+----
+
+.. note:: For this guide you should be familiar with the basic concepts of 
+
+  * tools_
+  * domains_
+
+Prerequisites
+=============
+
+We're using PHP_ in the stable version 7.2:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version use php 7.2
+ Selected PHP version 7.2
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '7.2'
+ [isabell@stardust ~]$
+
+.. include:: includes/my-print-defaults.rst
+
+Your URL needs to be setup:
+
+.. include:: includes/web-domain-list.rst
+
+Installation
+============
+
+Download minim system
+---------------------
+
+Use `wget` to download.
+
+Latest version available at: https://minim.one/downloads/
+
+Copy the path to the ``.zip`` archive to your wget command.
+
+::
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
+ [isabell@stardust html]$ unzip minim-*
+ [isabell@stardust html]$ rm minim-*
+ [isabell@stardust html]$
+
+Configuration
+=============
+
+Customization
+-------------
+
+Change what you want to in ``config``.
+
+Create your own theme in ``themes``.
+
+Finishing installation
+======================
+
+Point your browser to URL.
+
+Best practices
+==============
+
+Security
+--------
+
+Change all default passwords. Look at folder permissions. Don't get hacked!
+
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+Check minim's `releases <https://minim.one/rss/>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+
+.. code-block:: console
+ :emphasize-lines: 2,4
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
+ [isabell@stardust html]$ cp minim minim-backup
+ [isabell@stardust html]$ unzip minim-system-23.42.1.zip
+ [isabell@stardust html]$
+
+Copy your config, entries, sites and themes to the updated version.
+
+::
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ cp minim-backup/config/* minim/config/
+ [isabell@stardust html]$ cp minim-backup/entries/* minim/entries/
+ [isabell@stardust html]$ cp minim-backup/sites/* minim/sites/
+ [isabell@stardust html]$ cp minim-backup/themes/your-theme minim/themes/
+ [isabell@stardust html]$
+
+----
+
+Tested with minim - Blog 0.5.0.0 and minim - Wiki 0.1.0.0, Uberspace 7.1.1
