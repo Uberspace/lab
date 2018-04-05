@@ -78,12 +78,12 @@ Updates
 
 You can regularly check their GitHub's Atom Feed_ for any new Lychee releases. 
 
-If a new version is available, ``cd`` to your `document root` and do a simple ``git pull origin v66.6.6``. Replace the version number accordingly:
+If a new version is available, ``cd`` to your Lychee folder and do a simple ``git pull origin master``:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ git pull origin v66.6.6
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust html]$ git pull origin master
  Already up to date.
  [isabell@stardust html]$
 
