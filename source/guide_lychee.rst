@@ -61,6 +61,18 @@ You will need to enter the following information:
 
 For the last step you have to enter the username/password you want to use for the Lychee user.
 
+Best practices
+==============
+
+Security
+--------
+
+To make the ``.git`` folders inaccessible from the web, add the following line to the end of the ``~/html/.htaccess`` file:
+
+::
+
+  RedirectMatch 404 /\.git
+
 Updates
 =======
 
