@@ -68,9 +68,9 @@ Configuration
 Customization
 -------------
 
-Change what you want to in ``config``.
+You can leave the _configuration in ``config/config.php`` or do changes as you want to.
 
-Create your own theme in ``themes``.
+Create your own theme in ``themes``. Just copy the default theme or create one from scratch.
 
 Finishing installation
 ======================
@@ -83,7 +83,7 @@ Best practices
 Security
 --------
 
-Change all default passwords. Look at folder permissions. Don't get hacked!
+The admin interface in the blog system is disabled by default. If you enable it, you should change the standard password.
 
 Updates
 =======
@@ -111,6 +111,14 @@ Copy your config, entries, sites and themes to the updated version.
  [isabell@stardust html]$ cp minim-backup/sites/* minim/sites/
  [isabell@stardust html]$ cp minim-backup/themes/your-theme minim/themes/
  [isabell@stardust html]$
+
+.. _minim: https://minim.one/
+.. _tools: https://manual.uberspace.de/en/lang-php.html
+.. _domains: https://manual.uberspace.de/en/web-domains.html
+.. _PHP: https://manual.uberspace.de/en/lang-php.html#show-available-versions
+.. _configuration: https://minim.one/docs/
+.. _feed: https://minim.one/rss/
+.. _releases: https://minim.one/downloads/
 
 ----
 
