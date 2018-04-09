@@ -4,7 +4,7 @@
 Wallabag
 ########
 
-Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize articles between devices and make them offline available. This is the server-side application, it will fetch articles and save the content and images on the server when a link is provided. There is also client software for browsers and mobile devices available which can be used to download the fetched articles and add new articles to the server.
+Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize articles between devices and make them available offline. This is the server-side application, it will fetch articles and save the content and images on the server when a link is provided. There is also client software for browsers and mobile devices available which can be used to download and read the fetched articles and add new articles to the server.
 
 ----
 
@@ -47,16 +47,16 @@ First get the Wallabag source code from GitHub_:
   Resolving deltas: 100% (26623/26623), done.
   [isabell@stardust ~]$
 
-Change to that folder and run ``make install``. During the installation process, you will be asked for quite a lot configuration settings. Bu you only need to set up the following informations:
+Change to that folder and run ``make install``. During the installation process, you will be asked for a lot of configuration settings. But you only need to set up the following information:
 
 * ``database_name:`` <username>_wallabag - *replace <username> with the MySQL username*
 * ``database_user:`` put in the MySQL username that you looked up in the prerequisites
 * ``database_password:`` that is the MySQL password that you looked up in the prerequisites
 * ``domain_name:`` put in here your domain or subdomain like https://yourdomain
 * ``secret:`` type in any random string here, do not keep the defaul string!
-* ``twofactor_sender:`` choose a mailaddress that fits as sender
+* ``twofactor_sender:`` choose an email address to be used as sender
 * ``fosuser_registration:`` set this to false, otherwise anyone can register at your wallabag instance
-* ``from_email:`` choose a mailaddress that fits as sender (can be same as before)
+* ``from_email:`` choose an email address to be used as sender (can be the same as above)
 
 * ``Would you like to create a new admin user (recommended)?:`` yes
 * ``Username:`` admin *- or you can also choose any other name, that could increase security*
