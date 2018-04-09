@@ -1,6 +1,6 @@
 .. sectionauthor:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
-
+.. tags:: nodejs, blog
 .. sidebar:: Logo
   
   .. image:: _static/images/ghost.png 
