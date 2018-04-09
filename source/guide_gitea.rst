@@ -1,4 +1,4 @@
-.. sectionauthor:: luto <m@luto.at>
+.. sectionauthor:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
