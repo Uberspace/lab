@@ -1,3 +1,4 @@
+.. sectionauthor:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo

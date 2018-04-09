@@ -1,3 +1,4 @@
+.. sectionauthor:: luto <m@luto.at>
 .. highlight:: console
 
 .. sidebar:: Logo

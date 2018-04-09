@@ -1,3 +1,4 @@
+.. sectionauthor:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
 #####
