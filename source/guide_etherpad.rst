@@ -1,5 +1,4 @@
 .. sectionauthor:: ezzra <ezra@posteo.de>
-.. tags:: nodejs, text
 .. highlight:: console
 
 #############
