@@ -42,32 +42,44 @@ Your blog domain needs to be setup:
 Installation
 ============
 
-``cd`` to your `document root`_, then download and extract the latest release of the WordPress installer:
-
-::
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ curl https://wordpress.org/latest.tar.gz | tar -xzf - --strip-components=1
-   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                  Dload  Upload   Total   Spent    Left  Speed
- 100 8364k  100 8364k    0     0  4448k      0  0:00:01  0:00:01 --:--:-- 4449k
- [isabell@stardust html]$
-
-Now point your browser to your blog URL and follow the instructions.
+``cd`` to your `document root`_, then download and configure WordPress with ``wp-cli``:
 
 You will need to enter the following information:
 
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
+  * your blog URL: The URL for your blog. For example: isabell.uber.space
+  * your MySQL username and password: you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your WordPress database name: we suggest you use an additional_ database. For example: isabell_wordpress
+  * Admin User: The name and the email address of the admin user.
 
+.. code-block:: console
+ :emphasize-lines: 1,6,10
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ wp core download 
+ Downloading WordPress 23.42.1 (en_US)...
+ md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
+ Success: WordPress downloaded.
+ [isabell@stardust html]$ wp config create --dbname=isabell_wordpress --dbuser=isabell --dbpass=MySuperSecretPassword
+ Success: Generated 'wp-config.php' file.
+ [isabell@stardust html]$ wp db create 
+ Success: Database created.
+ [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress> 
+ Admin password: SuperSecretSecurePassword
+ Success: WordPress installed successfully.
+ [isabell@stardust html]$ 
+
+WordPress will generate a secure password for the admin user.
 
 Updates
 =======
 
-By default, WordPress `automatically updates`_ itself to the latest stable minor version. 
+By default, WordPress `automatically updates`_ itself to the latest stable minor version. Use ``wp-cli`` to update all plugins:
 
-.. warning:: Plugins and themes are **not** updated automatically, so make sure to regularly check the updates section in your WordPress installation's settings. Unpatched plugins or themes are a commonly abused to gain control of WordPress installations, e.g. to send spam mails.
+::
 
+ [isabell@stardust ~]$ wp plugin update --all --path=/var/www/virtual/$USER/html/
+ Success: Plugin already updated.
+ [isabell@stardust ~]$ 
 
 .. _Wordpress: https://wordpress.org
 .. _PHP: http://www.php.net/
@@ -78,3 +90,6 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _automatically updates: https://codex.wordpress.org/Configuring_Automatic_Background_Updates
 
+----
+
+Tested with WordPress 4.9.5, Uberspace 7.1.2
