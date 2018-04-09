@@ -36,8 +36,6 @@ We're using PHP_ in the stable version 7.2:
  Using 'PHP' version: '7.2'
  [isabell@stardust ~]$
 
-.. include:: includes/my-print-defaults.rst
-
 Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
@@ -48,15 +46,15 @@ Installation
 Download minim system
 ---------------------
 
-Use `wget` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version.
+Use ``wget`` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version. The ``minim-system`` is ether ``minim-blog`` or ``minim-wiki``.
 
 .. code-block:: console
- :emphasize-lines: 2
+ :emphasize-lines: 2,3,4
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
- [isabell@stardust html]$ unzip minim-*
- [isabell@stardust html]$ rm minim-*
+ [isabell@stardust html]$ unzip minim-system-23.42.1
+ [isabell@stardust html]$ rm minim-system-23.42.1
  [isabell@stardust html]$
 
 Configuration
@@ -90,24 +88,19 @@ Updates
 Check minim's feed_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
- :emphasize-lines: 2,4
+ :emphasize-lines: 2,4,5,6,7
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
- [isabell@stardust html]$ cp minim minim-backup
- [isabell@stardust html]$ unzip minim-system-23.42.1.zip
+ [isabell@stardust html]$ cp -r minim minim-backup
+ [isabell@stardust html]$ unzip minim-system-23.42.1.zip -d minim-system-23.42.1
+ [isabell@stardust html]$ mv minim-system-23.42.1/minim/config minim-system-23.42.1/minim/config-new
+ [isabell@stardust html]$ cp -r minim-system-23.42.1/minim ./
+ [isabell@stardust html]$ rm -rf minim-system-23.42.1*
  [isabell@stardust html]$
 
-Copy your config, entries, sites and themes to the updated version.
-
-::
-
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ cp minim-backup/config/* minim/config/
- [isabell@stardust html]$ cp minim-backup/entries/* minim/entries/
- [isabell@stardust html]$ cp minim-backup/sites/* minim/sites/
- [isabell@stardust html]$ cp minim-backup/themes/your-theme minim/themes/
- [isabell@stardust html]$
+Check if the configuration_ changed in ``config-new/config.php`` and your ``config/config.php`` (happens very rarely).
+If everything works alright you can delete your ``minim-backup`` and the ``config-new`` directories.
 
 .. _minim: https://minim.one/
 .. _domains: https://manual.uberspace.de/en/web-domains.html
@@ -118,4 +111,4 @@ Copy your config, entries, sites and themes to the updated version.
 
 ----
 
-Tested with minim - Blog 0.5.0.0 and minim - Wiki 0.1.0.0, Uberspace 7.1.1
+Tested with minim - Blog 0.5.0.1 and minim - Wiki 0.1.0.1, Uberspace 7.1.1
