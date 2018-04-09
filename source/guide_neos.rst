@@ -9,7 +9,9 @@
 Neos
 #########
 
-Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence.
+Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence. 
+
+The system is best known for it's intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences. 
 
 Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos-Team and Contributors.
 
@@ -40,26 +42,12 @@ Your website domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-You need to install the dependency manager Composer (if you don’t have it already) to create your Neos project:
-
-::
-
- [isabell@stardust ~]$ curl -sS https://getcomposer.org/installer | php
- All settings correct for using Composer
- Downloading...
-
- Composer (version 42.23.1) successfully installed to: /home/isabell/composer.phar
- Use it: php composer.phar
-
- [isabell@stardust ~]$ mv composer.phar ~/bin/composer
- [isabell@stardust ~]$
-
 Installation
 ============
 
 Since Neos uses the subdirectory Web/ as web root you should not install Neos in your `document root`_. Instead we install it next to that and then use a symlink to make it accessible.
 
-``cd`` to one level above your `document root`_, then use Composer to create a new project based on the Neos base distribution:
+``cd`` to one level above your `document root`_, then use the dependency manager Composer to create a new project based on the Neos base distribution:
 
 .. note:: Composer will install all neccessary dependencies Neos needs to run. This can take some time.
 
