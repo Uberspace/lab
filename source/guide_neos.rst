@@ -77,7 +77,7 @@ Remove your unused `document root`_ and create a new symbolic link to the Neos/W
 Configuration
 ============
 
-Point your browser to your website URL and append /setup (i.e. isabell.uber.space/setup) to use the web based installer.
+Point your browser to your website URL and append /setup (e.g. isabell.uber.space/setup) to use the web based installer.
 
 After setting some things up automatically, the setup will ask you for a setup password. You need to get this from a file in your Neos installation first: 
 
