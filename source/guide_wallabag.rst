@@ -52,6 +52,9 @@ Change to that folder and run ``make install``. During the installation process,
 * ``database_name:`` <username>_wallabag - *replace <username> with the MySQL username*
 * ``database_user:`` put in the MySQL username that you looked up in the prerequisites
 * ``database_password:`` that is the MySQL password that you looked up in the prerequisites
+* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special `smtp port`_ here*
+* ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
+* ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
 * ``domain_name:`` put in here your domain or subdomain like https://yourdomain
 * ``secret:`` type in any random string here, do not keep the defaul string!
 * ``twofactor_sender:`` choose an email address to be used as sender
@@ -84,9 +87,9 @@ Change to that folder and run ``make install``. During the installation process,
   database_charset (utf8mb4):  
   domain_name ('https://your-wallabag-url-instance.com'): https://isabell.uber.space
   mailer_transport (smtp): 
-  mailer_host (127.0.0.1): 
-  mailer_user (null): 
-  mailer_password (null): 
+  mailer_host (127.0.0.1): 127.0.0.1:587
+  mailer_user (null): isabell@uber.space
+  mailer_password (null): MySuperSecretPassword
   locale (en):  
   secret (ovmpmAWXRCabNlMgzlzFXDYmCFfzGv): *!!set.random.string!!*
   twofactor_auth (true):
@@ -141,6 +144,7 @@ If there is a new version available, you can get the code using git:
 .. _GitHub: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _`Firefox Pocket`: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
+.. _`smtp port`: https://manual.uberspace.de/en/mail-access.html#smtp
 
 ----
 
