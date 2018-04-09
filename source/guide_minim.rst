@@ -1,3 +1,4 @@
+.. sectionauthor:: minim <38093214+minim-one@users.noreply.github.com>
 .. highlight:: console
 
 .. sidebar:: Logo

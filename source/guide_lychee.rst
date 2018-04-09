@@ -1,3 +1,4 @@
+.. sectionauthor:: TheForcer <25257144+TheForcer@users.noreply.github.com>
 .. highlight:: console
 
 .. sidebar:: Logo
