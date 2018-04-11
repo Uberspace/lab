@@ -166,3 +166,4 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
+.. _domains: https://manual.uberspace.de/en/web-domains.html
