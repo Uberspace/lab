@@ -143,8 +143,8 @@ If there is a new version available, you can get the code using git:
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _GitHub: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
-.. _`Firefox Pocket`: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
-.. _`smtp port`: https://manual.uberspace.de/en/mail-access.html#smtp
+.. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
+.. _smtp port: https://manual.uberspace.de/en/mail-access.html#smtp
 
 ----
 
