@@ -52,7 +52,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``database_name:`` <username>_wallabag - *replace <username> with the MySQL username*
 * ``database_user:`` put in the MySQL username that you looked up in the prerequisites
 * ``database_password:`` that is the MySQL password that you looked up in the prerequisites
-* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special `smtp port`_ here*
+* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special* |smtpport|_ *here*
 * ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
 * ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
 * ``domain_name:`` put in here your domain or subdomain like https://yourdomain
@@ -144,7 +144,8 @@ If there is a new version available, you can get the code using git:
 .. _GitHub: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
-.. _smtp port: https://manual.uberspace.de/en/mail-access.html#smtp
+.. _smtpport: https://manual.uberspace.de/en/mail-access.html#smtp
+.. |smtpport| replace:: *smtp port*
 
 ----
 
