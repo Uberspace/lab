@@ -152,6 +152,9 @@ Finishing installation
 
 Point your browser to your gitea URL and finish the installation.
 
+.. note:: Gitea prevents you from logging in with private keys if you
+ don't use the built-in ssh server. Login via password still works as expected.
+
 Updates
 =======
 
