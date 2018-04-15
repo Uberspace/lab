@@ -2,16 +2,16 @@
 
 .. sidebar:: Logo
   
-  .. image:: _static/images/owncloud.png 
+  .. image:: _static/images/nextcloud.png 
       :align: center
 
 #########
-ownCloud
+Nextcloud
 #########
 
-ownCloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence.
+Nextcloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence.
 
-ownCloud was initially released in 2010 and is maintained by the ownCloud GmbH.
+Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by the Nextcloud GmbH.
 
 ----
 
@@ -42,14 +42,14 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of the ownCloud and extract it:
+``cd`` to your `document root`_, then download the latest release of the Nextcloud and extract it:
 
-.. note:: The link to the lastest version can be found at ownCloud's `download page <https://owncloud.org/download/>`_.
+.. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ curl https://download.owncloud.org/community/owncloud-42.23.1.tar.bz2 | tar -xjf - --strip-components=1
+ [isabell@stardust html]$ curl https://download.nextcloud.com/server/releases/nextcloud-42.23.1.tar.bz2 | tar -xjf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 37.5M  100 37.5M    0     0  5274k      0  0:00:07  0:00:07 --:--:-- 6062k
@@ -64,7 +64,7 @@ You will need to enter the following information:
 If you want to use MySQL insert of SQLite you also need:
 
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your ownCloud database name: we suggest you use an additional_ database. For example: isabell_owncloud
+  * your Nextcloud database name: we suggest you use an additional_ database. For example: isabell_nextcloud
 
 Tuning
 ======
@@ -72,7 +72,7 @@ Tuning
 cronjob
 -------
 
-To get a better performance ownCloud suggests to add a local cronjob.
+To get a better performance Nextcloud suggests to add a local cronjob.
 
 Add the following cronjob to your crontab_:
 
@@ -97,12 +97,13 @@ To enable Memcaching (APCu) you only need to add the following line to your /var
 Updates
 =======
 
-The easiest way to update ownCloud is to use the web updater provided in the admin section of the Web Interface.
+The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
-.. note:: Check the `changelog <https://owncloud.org/changelog/server/>`_ regularly to stay informed about new updates and releases.
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
 
 .. _ownCloud: https://owncloud.org
+.. _Nextcloud: https://nextcloud.com
 .. _PHP: http://www.php.net/
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
