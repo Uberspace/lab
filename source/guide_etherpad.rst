@@ -149,6 +149,7 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
  [program:etherpad]
  command=/home/<username>/etherpad/bin/run.sh
+ environment=NODE_ENV="production"
 
 In our example this would be:
 
@@ -156,6 +157,7 @@ In our example this would be:
 
  [program:etherpad]
  command=/home/isabell/etherpad/bin/run.sh
+ environment=NODE_ENV="production"
 
 Tell supervisord_ to refresh its configuration and start the service:
 
