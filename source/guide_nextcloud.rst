@@ -11,7 +11,7 @@ Nextcloud
 
 Nextcloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence.
 
-Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by the Nextcloud GmbH.
+Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by Nextcloud GmbH.
 
 ----
 
@@ -59,7 +59,7 @@ Now point your browser to your uberspace URL and follow the instructions.
 
 You will need to enter the following information:
   
-  * admin username and password, here you can insert the credentials you want to use for the admin user
+  * Administrator username and password: Insert the credentials you want to use for the admin user
 
 If you want to use MySQL insert of SQLite you also need:
 
@@ -72,22 +72,20 @@ Tuning
 cronjob
 -------
 
-To get a better performance Nextcloud suggests to add a local cronjob.
+For better performance, Nextcloud suggests to add a local cronjob.
 
 Add the following cronjob to your crontab_:
 
-.. warning:: Replace ``<username>`` with your username!
-
 ::
 
- *  *  *  *  * /usr/bin/php -f /var/www/virtual/<username>/html/cron.php
+ *  *  *  *  * /usr/bin/php -f $USER/html/cron.php
 
 Memcaching
 ----------
 
-Another thing you can configure to get a better performance is enabling Memcaching.
+To further enhance perfomance, enable Memcaching.
 
-To enable Memcaching (APCu) you only need to add the following line to your /var/www/virtual/$USER/html/config/config.php:
+To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
 
 ::
 
