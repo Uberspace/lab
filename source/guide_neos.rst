@@ -100,9 +100,7 @@ Step 2: To configure your database, you need to enter the following information:
 
   * your preffered database driver. You can use the preselected ``MySQL/MariaDB via PDO``.
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Neos database name: we suggest you use an additional_ database. For example: isabell_neos
-
-.. warning:: Uberspace 7 databases are using the character set utf8mb4 by default. Unfortunately Neos is still using the utf8 character set and the utf8_unicode_ci collation by default. If you want to avoid mixed character sets you need to change this for your database manually. The setup tool won't do this for you. 
+  * your Neos database name: we suggest you use an additional_ database. For example: isabell_neos. The installer will create this database for you if you select ``[New Database]`` and enter the name for the new database.
 
 Step 3: Create an administrator account. Please don't use ``admin`` as your username and set yourself a strong password.
 
