@@ -1,4 +1,4 @@
-.. sectionauthor:: Uberspace <hallo@uberspace.de>
+.. author:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -238,3 +238,5 @@ If it's not in state RUNNING, check your configuration.
 ----
 
 Tested with Ghost 1.22.1, Uberspace 7.1.1
+
+.. authors::

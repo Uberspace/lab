@@ -1,4 +1,4 @@
-.. sectionauthor:: TheForcer <25257144+TheForcer@users.noreply.github.com>
+.. author:: TheForcer <25257144+TheForcer@users.noreply.github.com>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -90,3 +90,5 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 ----
 
 Tested with Lychee 3.1.6, Uberspace 7.1.1
+
+.. authors::
