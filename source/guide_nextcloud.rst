@@ -78,7 +78,7 @@ Add the following cronjob to your crontab_:
 
 ::
 
- *  *  *  *  * /usr/bin/php -f $USER/html/cron.php
+ *  *  *  *  * /usr/bin/php -f $HOME/html/cron.php
 
 Memcaching
 ----------
