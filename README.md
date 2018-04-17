@@ -12,7 +12,7 @@ be built locally.
 ### Initial Setup
 
 ```
-$ virtualenv venv --python=python2.7
+$ virtualenv venv --python=python3.6
 $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
