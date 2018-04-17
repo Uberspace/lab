@@ -150,3 +150,5 @@ If there is a new version available, you can get the code using git:
 ----
 
 Tested with Wallabag 2.3.2 and Uberspace 7.1.2
+
+.. authors::

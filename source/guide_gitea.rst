@@ -1,4 +1,4 @@
-.. sectionauthor:: Uberspace <hallo@uberspace.de>
+.. author:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -167,3 +167,5 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
 .. _domains: https://manual.uberspace.de/en/web-domains.html
+
+.. authors::

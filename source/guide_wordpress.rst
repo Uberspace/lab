@@ -1,4 +1,4 @@
-.. sectionauthor:: Uberspace <hallo@uberspace.de>
+.. author:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -93,3 +93,5 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 ----
 
 Tested with WordPress 4.9.5, Uberspace 7.1.2
+
+.. authors::

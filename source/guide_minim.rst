@@ -1,4 +1,4 @@
-.. sectionauthor:: minim <38093214+minim-one@users.noreply.github.com>
+.. author:: minim <38093214+minim-one@users.noreply.github.com>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -113,3 +113,5 @@ If everything works alright you can delete your ``minim-backup`` and the ``confi
 ----
 
 Tested with minim - Blog 0.5.0.1 and minim - Wiki 0.1.0.1, Uberspace 7.1.1
+
+.. authors::
