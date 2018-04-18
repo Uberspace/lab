@@ -5,11 +5,15 @@ from sphinx.util.docutils import SphinxDirective
 from docutils.parsers.rst import directives
 
 
-def generate_author_list(authors):
-    return [
-        nodes.Text(a, a)
-        for a in authors
-    ]
+def bullet_list(items):
+    lst = nodes.bullet_list()
+
+    for item in items:
+        lst_item = nodes.list_item()
+        lst += lst_item
+        lst_item += nodes.paragraph(text=item)
+
+    return lst
 
 
 class Author(SphinxDirective):
@@ -67,7 +71,7 @@ def process_authorlists(app, doctree, fromdocname):
     authors = set(itertools.chain(*[authors for authors in env.authors.values()]))
 
     for node in doctree.traverse(allauthors):
-        node.replace_self(generate_author_list(authors))
+        node.replace_self([bullet_list(authors)])
 
 
 def setup(app):
