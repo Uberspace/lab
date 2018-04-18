@@ -76,3 +76,7 @@ nav li {
 .toctree-l1:last-child {
   margin-top: 10px;
 }
+
+.sidebar img {
+  max-height: 150px;
+}
