@@ -12,9 +12,9 @@ Neos
 
 Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence. 
 
-The system is best known for it's intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences. 
+The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences. 
 
-Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos-Team and Contributors.
+Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
 
 
 
@@ -39,7 +39,7 @@ We're using PHP_ in the stable version 7.1:
 
 .. include:: includes/my-print-defaults.rst
 
-Your website domain needs to be setup:
+Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
@@ -94,11 +94,11 @@ After setting some things up automatically, the setup will ask you for a setup p
  After you successfully logged in, this file is automatically deleted for security reasons.
  Make sure to save the setup password for later use.
 
-Step 1: After you logged in using your setup password Neos will check for supported image manipulation libraries. Fortunately on Uberspace 7 there are multiple libraries preinstalled. Neos will use "imagick" as standard. You can change that later manually.
+Step 1: After you logged in using your setup password, Neos will check for supported image manipulation libraries. Fortunately, multiple libraries are pre-installed on Uberspace 7. Neos will use "imagick" as standard. You can change that later manually.
 
 Step 2: To configure your database, you need to enter the following information:
 
-  * your preffered database driver. You can use the preselected ``MySQL/MariaDB via PDO``.
+  * your preferred database driver. You can use the preselected ``MySQL/MariaDB via PDO``.
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your Neos database name: we suggest you use an additional_ database. For example: isabell_neos. The installer will create this database for you if you select ``[New Database]`` and enter the name for the new database.
 
