@@ -71,3 +71,7 @@ nav li {
 .sidebar + .section > .section:first-of-type > div {
   max-width: 55%;
 }
+
+.sidebar img {
+  max-height: 150px;
+}
