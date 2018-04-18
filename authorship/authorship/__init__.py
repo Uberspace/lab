@@ -28,8 +28,18 @@ class Author(SphinxDirective):
 class Authors(SphinxDirective):
     def run(self):
         env = self.state.document.settings.env
-        return generate_author_list(env.authors.get(env.docname, []))
+        authors = env.authors.get(env.docname, [])
 
+        if not authors:
+            return []
+
+        author_elems = []
+
+        for author in authors:
+            author_elems.append(nodes.Text(author))
+            author_elems.append(nodes.Text(', '))
+
+        return [nodes.Text('Written by: ')] + author_elems[:-1]
 
 # maker node later to be replaced by list of all authors
 class allauthors(nodes.General, nodes.Element):
