@@ -26,5 +26,5 @@ Thank you and have fun experimenting!
    :maxdepth: 1
    :glob:
 
-   contributors
    guide_*
+   hall_of_fame

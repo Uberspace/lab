@@ -71,3 +71,8 @@ nav li {
 .sidebar + .section > .section:first-of-type > div {
   max-width: 55%;
 }
+
+/* separator before hall of fame */
+.toctree-l1:last-child {
+  margin-top: 10px;
+}
