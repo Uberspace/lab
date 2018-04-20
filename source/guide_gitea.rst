@@ -170,3 +170,7 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Dashboard: https://uberspace.de/dashboard/authentication
+
+----
+
+Tested with Gitea 1.4.0, Uberspace 7.1.3
