@@ -174,4 +174,11 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 .. authors::
 =======
 .. _Dashboard: https://uberspace.de/dashboard/authentication
+<<<<<<< HEAD
 >>>>>>> Add notice to Gitea about pubkey ssh login. (#76)
+=======
+
+----
+
+Tested with Gitea 1.4.0, Uberspace 7.1.3
+>>>>>>> add tested versions to gitea
