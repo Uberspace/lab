@@ -3,7 +3,7 @@
 
 .. sidebar:: Logo
   
-  .. image:: _static/images/wallabag.svg
+  .. image:: _static/images/wallabag.png
       :align: center
 
 ########
