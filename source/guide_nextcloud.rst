@@ -97,7 +97,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 opcache
 -------
 
-Another thin you can do to optimise the perfomance is, to enable opcache.
+Enable opcache to further optimise perfomance.
 
 To do that, add the following lines to $HOME/etc/php.d/opcache.ini
 
@@ -122,7 +122,7 @@ After that you need to reload your PHP configuration:
 HSTS
 ----
 
-In the admin interface you can find a note about a wrong HSTS.
+NextCloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the `manual <https://manual.uberspace.de/en/web-security.html>`_.
 
