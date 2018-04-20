@@ -152,8 +152,7 @@ Finishing installation
 
 Point your browser to your gitea URL and finish the installation.
 
-.. note:: Gitea prevents you from logging in with private keys if you
- don't use the built-in ssh server. Login via password still works as expected.
+.. note:: Using the same public key for Gitea and your Uberspace will prevent you from logging in with this key via SSH. Login via password still works as expected, you can use the Dashboard_ to manage your keys.
 
 Updates
 =======
@@ -170,3 +169,4 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
 .. _domains: https://manual.uberspace.de/en/web-domains.html
+.. _Dashboard: https://uberspace.de/dashboard/authentication
