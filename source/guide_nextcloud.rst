@@ -9,7 +9,7 @@
 Nextcloud
 #########
 
-Nextcloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence.
+Nextcloud_ is an open source cloud solution written in PHP and distributed unter the AGPLv3 licence. You can find further infromation on how to secure and optimise your setup at the offical `docs page <https://docs.nextcloud.com>`_.
 
 Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by Nextcloud GmbH.
 
@@ -122,7 +122,7 @@ After that you need to reload your PHP configuration:
 HSTS
 ----
 
-NextCloud will complain about your HSTS settings in the admin interface.
+Nextcloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the `manual <https://manual.uberspace.de/en/web-security.html>`_.
 
