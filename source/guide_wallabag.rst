@@ -1,6 +1,11 @@
 .. sectionauthor:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
+.. sidebar:: Logo
+  
+  .. image:: _static/images/wallabag.png
+      :align: center
+
 ########
 Wallabag
 ########
