@@ -75,3 +75,8 @@ nav li {
 .sidebar img {
   max-height: 150px;
 }
+
+.rst-footer-buttons {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
