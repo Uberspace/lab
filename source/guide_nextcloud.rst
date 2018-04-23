@@ -1,6 +1,9 @@
 .. highlight:: console
 .. sectionauthor:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 
+.. tag:: php
+.. tag:: collaborative
+
 .. sidebar:: Logo
   
   .. image:: _static/images/nextcloud.png 

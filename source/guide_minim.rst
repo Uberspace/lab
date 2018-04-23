@@ -1,6 +1,9 @@
 .. author:: minim <38093214+minim-one@users.noreply.github.com>
 .. highlight:: console
 
+.. tag:: php
+.. tag:: cms
+
 .. sidebar:: Logo
   
   .. image:: _static/images/minim.png 

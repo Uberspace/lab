@@ -1,6 +1,9 @@
 .. author:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
+.. tag:: nodejs
+.. tag:: wiki
+
 #####
 Jingo
 #####

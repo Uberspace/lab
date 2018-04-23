@@ -1,6 +1,9 @@
 .. sectionauthor:: Daniel Kratz <uberlab@danielkratz.com>
 .. highlight:: console
 
+.. tag:: php
+.. tag:: cms
+
 .. sidebar:: Logo
   
   .. image:: _static/images/neos.png 

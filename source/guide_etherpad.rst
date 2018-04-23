@@ -1,4 +1,8 @@
 .. author:: ezzra <ezra@posteo.de>
+
+.. tag:: nodejs
+.. tag:: collaborative
+
 .. highlight:: console
 
 #############

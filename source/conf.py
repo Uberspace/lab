@@ -34,6 +34,7 @@ import sphinx_rtd_theme
 # ones.
 extensions = [
   'authorship',
+  'tags',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

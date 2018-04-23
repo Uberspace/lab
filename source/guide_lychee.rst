@@ -1,6 +1,9 @@
 .. author:: TheForcer <25257144+TheForcer@users.noreply.github.com>
 .. highlight:: console
 
+.. tag:: php
+.. tag:: gallery
+
 .. sidebar:: Logo
   
   .. image:: _static/images/lychee.png 

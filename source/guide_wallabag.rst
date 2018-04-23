@@ -1,6 +1,9 @@
 .. sectionauthor:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
+.. tag:: php
+.. tag:: reader
+
 .. sidebar:: Logo
   
   .. image:: _static/images/wallabag.png

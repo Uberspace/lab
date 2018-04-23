@@ -1,6 +1,10 @@
 .. author:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
+.. tag:: php
+.. tag:: blog
+.. tag:: cms
+
 .. sidebar:: Logo
   
   .. image:: _static/images/wordpress.png 

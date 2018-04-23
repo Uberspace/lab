@@ -28,3 +28,4 @@ Thank you and have fun experimenting!
 
    guide_*
    hall_of_fame
+   tags
