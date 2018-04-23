@@ -3,7 +3,7 @@
 
 .. sidebar:: Logo
   
-  .. image:: _static/images/ghost.png 
+  .. image:: _static/images/ghost.svg 
       :align: center
 
 #####
