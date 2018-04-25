@@ -80,3 +80,13 @@ nav li {
 .toctree-l1:last-child {
   margin-top: 10px;
 }
+
+/* Main Page - Atomium */
+.rst-content .document img[src='_images/atom.svg'] {
+    float: right;
+    width: 50%;
+    height: 50%;
+    shape-outside: url(/_images/atom.svg);
+    shape-margin: 1em;
+}
+

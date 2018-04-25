@@ -2,6 +2,7 @@
 Uberlab
 #######
 
+
 Uberlab is a collection of how-to guides for Uberspace 7. It is meant as an addition to the Manual_, providing hands-on
 guides on how to get popular (or even niche) software running on our platform. 
 
@@ -11,6 +12,8 @@ We keep the guides as simple as possible, all articles are tested on a fresh acc
 
 Participation
 =============
+
+.. image:: _static/images/atom.svg
 
 Everybody is welcome to contribute new guides, changes to existing ones, or even just a small issue to draw our attention to problems or missing guides. You can do so in the `GitHub repository`_ or by just clicking on `Edit on GitHub`_ on each page.
 
