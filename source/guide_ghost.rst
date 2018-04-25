@@ -1,4 +1,4 @@
-.. author:: Uberspace <hallo@uberspace.de>
+.. author:: nichtmax <github@moritz.in>
 .. highlight:: console
 
 .. sidebar:: Logo
