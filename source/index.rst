@@ -21,10 +21,20 @@ Thank you and have fun experimenting!
 .. _GitHub repository: https://github.com/Uberspace/lab/
 .. _support: https://uberspace.de/support
 
-.. toctree::
+.. toctree:: 
+   :caption: Guides
    :hidden:
    :maxdepth: 1
    :glob:
 
    guide_*
+
+.. toctree:: 
+   :caption: Meta
+   :hidden:
+   :maxdepth: 1
+   :glob:
+
    hall_of_fame
+   Repository <https://github.com/Uberspace/lab>
+   Changelog <https://github.com/Uberspace/lab/commits/master>
