@@ -1,5 +1,5 @@
 .. highlight:: console
-.. sectionauthor:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
+.. author:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 
 .. sidebar:: Logo
   
