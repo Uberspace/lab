@@ -1,4 +1,4 @@
-.. sectionauthor:: Uberspace <hallo@uberspace.de>
+.. author:: Uberspace <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -174,3 +174,5 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 ----
 
 Tested with Gitea 1.4.0, Uberspace 7.1.3
+
+.. authors::

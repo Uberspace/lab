@@ -75,3 +75,8 @@ nav li {
 .sidebar img {
   max-height: 150px;
 }
+
+/* separator before hall of fame */
+.toctree-l1:last-child {
+  margin-top: 10px;
+}

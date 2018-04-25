@@ -14,13 +14,13 @@ stages:
 before_script:
   # GitLab inserts a \r for each newline into our private key. This confuses the ssh client.
   - umask 077; echo "$SSH_KEY" | tr -d '\r' > $DEPLOYMENT_SSH_KEY_PATH
-  # Dependencies
-  - pip install --quiet -r requirements.txt
 
 
 Build HTML:
   stage: build
+  image: python:3.6
   script:
+    - pip install --quiet -r requirements.txt
     - make html
   artifacts:
     paths:

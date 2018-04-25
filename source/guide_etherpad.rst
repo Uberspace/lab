@@ -1,4 +1,4 @@
-.. sectionauthor:: ezzra <ezra@posteo.de>
+.. author:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
 #############
@@ -225,3 +225,5 @@ Then you need to restart the service daemon, so the new code is used by the webs
 ----
 
 Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1 
+
+.. authors::

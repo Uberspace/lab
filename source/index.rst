@@ -27,3 +27,4 @@ Thank you and have fun experimenting!
    :glob:
 
    guide_*
+   hall_of_fame
