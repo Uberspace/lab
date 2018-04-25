@@ -78,7 +78,7 @@ Remove your unused `document root`_ and create a new symbolic link to the Neos/W
  [isabell@stardust isabell]$
 
 Configuration
-============
+=============
 
 Point your browser to your website URL and append /setup (e.g. isabell.uber.space/setup) to use the web based installer.
 
