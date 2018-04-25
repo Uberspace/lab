@@ -79,8 +79,8 @@ nav li {
 /* Main Page - Atomium */
 .rst-content .document img[src='_images/atom.svg'] {
     float: right;
-    width: 50%;
-    height: 50%;
+    width: 30%;
+    height: 30%;
     shape-outside: url(/_images/atom.svg);
     shape-margin: 1em;
 }
