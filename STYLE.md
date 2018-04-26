@@ -101,6 +101,8 @@ Please use the following structure. Only document applicable steps, leave out he
 ```
 .. highlight:: console
 
+.. author:: YourName <YourURL/YourMail>
+
 .. sidebar:: About
   
   .. image:: _static/images/loremipsum.png 
