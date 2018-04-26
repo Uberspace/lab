@@ -92,8 +92,8 @@ html_last_updated_fmt = '%b %d, %Y'
 html_context = {
   'css_files': ['_static/css/custom.css'],
   'display_github': True,
-  'github_user': 'Uberspace', 
-  'github_repo': 'lab', 
+  'github_user': 'Uberspace',
+  'github_repo': 'lab',
   'github_version': 'master',
   'conf_py_path': '/source/'
 }
@@ -129,3 +129,7 @@ html_sidebars = {
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Uberspace7labdoc'
+
+
+def setup(app):
+    app.add_javascript('js/custom.js')
