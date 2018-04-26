@@ -11,7 +11,7 @@ be built locally.
 
 ### Initial Setup
 
-```
+```shell
 $ virtualenv venv --python=python3.6
 $ source venv/bin/activate
 $ pip install -r requirements.txt
@@ -19,14 +19,16 @@ $ pip install -r requirements.txt
 
 ### Building
 
-```
+```shell
 $ source venv/bin/activate
 $ make html
 ```
 
-The HTML views are now present in `build/html`. 
+The HTML views are now present in `build/html`.
 
 ## License
 
-All text and code in this repository is licensed under [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+All text and code in this repository is licensed under [CC-BY-NC-SA 4.0][].
 All project logos are property of the respective project.
+
+[CC-BY-NC-SA 4.0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
