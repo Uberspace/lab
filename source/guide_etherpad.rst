@@ -1,6 +1,11 @@
 .. author:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
+.. sidebar:: Logo
+  
+  .. image:: _static/images/etherpad.svg
+      :align: center
+
 #############
 Etherpad Lite
 #############
