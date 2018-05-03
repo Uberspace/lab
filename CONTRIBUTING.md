@@ -7,7 +7,7 @@ You're very welcome to add your own guides to this repository. Also whenever you
 Before you begin writing:
 
  - To signify intent and prevent duplicate work, please create an issue **before** working on your pull request.
- - Check out our [style guide](https://github.com/Uberspace/lab/blob/guidelines/STYLE.md).
+ - Check out our [style guide](https://github.com/Uberspace/lab/blob/master/STYLE.md).
 
 ## Our Standards
 
