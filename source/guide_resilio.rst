@@ -109,9 +109,10 @@ The webinterface will notify you when a new version of Resilio Sync is available
 
  [isabell@stardust ~]$ cd ~/bin
  [isabell@stardust ~]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
+ [isabell@stardust ~]$ supervisorctl stop resilio-sync
  [isabell@stardust ~]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
  [isabell@stardust ~]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ supervisorctl restart resilio-sync
+ [isabell@stardust ~]$ supervisorctl start resilio-sync
  [isabell@stardust ~]$ 
 
 .. _Resilio Sync: https://www.resilio.com
