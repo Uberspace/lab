@@ -15,6 +15,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  * If any applications need to bind to one or more ports (like Node.js apps), use port 9000 - 9010 in your examples, which are never free on our servers. 
  * Use the templates in `source/includes/` where appropriate.
  * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
+ * When there is a license needed for the software mention it.
  * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
 
 ```
