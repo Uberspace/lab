@@ -11,7 +11,7 @@
 Resilio Sync
 ############
 
-Resilio Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
+Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of 
@@ -116,7 +116,7 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust ~]$ supervisorctl start resilio-sync
  [isabell@stardust ~]$ 
 
-.. _Resilio Sync: https://www.resilio.com
+.. _Resilio: https://www.resilio.com
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 
