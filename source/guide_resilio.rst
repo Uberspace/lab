@@ -11,7 +11,7 @@
 Resilio Sync
 ############
 
-Resilio-Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio-Sync, uses a freemium business model with a free tier called "Sync Home".
+Resilio Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of 
@@ -22,21 +22,21 @@ Resilio-Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service s
 Prerequisites
 =============
 
-We need to set up a directories in order to make it work. ``~/.sync`` is where Resilio-Sync wants to store all config and index files.
+We need to set up a directories in order to make it work. ``~/.sync`` is where Resilio Sync wants to store all config and index files.
 
 ::
 
  [isabell@stardust ~]$ mkdir ~/.sync
  [isabell@stardust ~]$ 
 
-Furthermore, we need a free port that Resilio-Sync can listen to. To generate a currently unoccupied port run:
+Furthermore, we need a free port that Resilio Sync can listen to. To generate a currently unoccupied port run:
 
 .. include:: includes/generate-port.rst
 
 Installation
 ============
 
-Change into the ``~/bin`` directory, download and extract the latest version of Resilio-Sync:
+Change into the ``~/bin`` directory, download and extract the latest version of Resilio Sync:
 
 ::
 
@@ -100,10 +100,10 @@ Now you need to load the changes and start your service:
 
 Now go to ``https://isabell.uber.space`` and see if it works. Enjoy!
 
-Update Resilio-Sync
+Update Resilio Sync
 ===================
 
-The webinterface will notify you when a new version of Resilio-Sync is available. To install the update, download the latest binaries, extract them and update the service:
+The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them and update the service:
 
 ::
 
@@ -116,10 +116,10 @@ The webinterface will notify you when a new version of Resilio-Sync is available
  [isabell@stardust ~]$ supervisorctl update
  [isabell@stardust ~]$ 
 
-.. _Resilio-Sync: https://www.resilio.com
+.. _Resilio Sync: https://www.resilio.com
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 
-Tested with Resilio-Sync 2.5.12, Uberspace 7.1.4.0
+Tested with Resilio Sync 2.5.12, Uberspace 7.1.4.0
