@@ -104,13 +104,14 @@ In our example this would be:
 Start Service
 =============
 
-Now you need to load you changes and start your service:
+Now you need to load the changes and start your service:
 
 ::
 
  [isabell@stardust ~]$ supervisorctl reread
  [isabell@stardust ~]$ supervisorctl update
  [isabell@stardust ~]$ supervisorctl start resilio-sync
+ [isabell@stardust ~]$ 
 
 Nor go to ``https://resilio.isabell.uber.space`` and see if it works. Enjoy!
 
