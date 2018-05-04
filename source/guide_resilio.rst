@@ -23,9 +23,9 @@ License
 =======
 
 All relevant legal information can be found here:
-- http://www.resilio.com/legal/privacy
-- http://www.resilio.com/legal/terms-of-use
-- http://www.resilio.com/legal/eula
+  * http://www.resilio.com/legal/privacy
+  * http://www.resilio.com/legal/terms-of-use
+  * http://www.resilio.com/legal/eula
 
 Prerequisites
 =============
