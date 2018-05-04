@@ -43,10 +43,10 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
 ::
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust ~]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ 
+ [isabell@stardust  bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ rm resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ 
 
 Setup .htaccess
 ===============
@@ -109,12 +109,12 @@ The webinterface will notify you when a new version of Resilio Sync is available
 ::
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust ~]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ supervisorctl stop resilio-sync
- [isabell@stardust ~]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ supervisorctl start resilio-sync
- [isabell@stardust ~]$ 
+ [isabell@stardust  bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ supervisorctl stop resilio-sync
+ [isabell@stardust  bin]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ rm resilio-sync_x64.tar.gz
+ [isabell@stardust  bin]$ supervisorctl start resilio-sync
+ [isabell@stardust  bin]$ 
 
 .. _Resilio: https://www.resilio.com
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
