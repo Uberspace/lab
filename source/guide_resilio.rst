@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Martin Porsch <martin.pors.ch/martin@pors.ch>
+.. author:: Martin Porsch <https://martin.pors.ch/martin@pors.ch>
 
 .. sidebar:: About
   
@@ -11,7 +11,7 @@
 Resilio Sync
 ############
 
-Resilio-Sync_ (formerly BitTorrent Sync) is a private file syncing similar to Dropbox that works with peer to peer cennections between connected devices. 
+Resilio-Sync_ (formerly BitTorrent Sync) is a file syncing service similar to Dropbox that works with private peer to peer connections between connected devices.
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of 
@@ -22,7 +22,7 @@ Resilio-Sync_ (formerly BitTorrent Sync) is a private file syncing similar to Dr
 Prerequisites
 =============
 
-We need to set up some directories in order to make it work:
+We need to set up some directories in order to make it work. ``~/bin/resilio`` is where we will put the executable and ``~/.sync`` is wehre Resilio-Sync wants to store all config files.
 
 ::
 
@@ -30,8 +30,9 @@ We need to set up some directories in order to make it work:
  [isabell@stardust ~]$ mkdir ~/.sync
  [isabell@stardust ~]$ 
 
-You need a free port that Reslio-Sync can listen to. To generate a currently unoccupied port run:
-.. code-block:: none
+Furthermore, we need a free port that Resilio-Sync can listen to. To generate a currently unoccupied port run:
+
+::
 
  [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
  9000
@@ -39,7 +40,7 @@ You need a free port that Reslio-Sync can listen to. To generate a currently uno
 
 Write the port down. In our example it is 9000. In reality you'll get a free port between 61000 and 65535.
 
-Furthermore, we need a subdomain that we want Resilio-Sync to run on. In our guide we will use ``https://resilio.isabell.uber.space``. Create the corresponding directory as follows:
+Finally, we need a subdomain that we want Resilio-Sync to run on. In our guide we will use ``https://resilio.isabell.uber.space``. Create the corresponding directory as follows:
 
 ::
 
@@ -50,7 +51,7 @@ Furthermore, we need a subdomain that we want Resilio-Sync to run on. In our gui
 Installation
 ============
 
-Change into the newly created reslio directory, download and extract the latest version of Resilio-Sync:
+Change into the newly created resilio directory, download and extract the latest version of Resilio-Sync:
 
 ::
 
@@ -86,8 +87,7 @@ Configure ``supervisord``
 
 Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-.. warning:: Replace ``<PORT>`` with your port!
+.. warning:: Replace ``<username>`` with your username! Replace ``<PORT>`` with your port!
 
 .. code-block:: ini
 
@@ -115,6 +115,8 @@ Now you need to load you changes and start your service:
 Nor go to ``https://resilio.isabell.uber.space`` and see if it works. Enjoy!
 
 .. _Resilio-Sync: https://www.resilio.com
+.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 
