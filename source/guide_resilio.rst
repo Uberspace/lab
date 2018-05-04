@@ -19,17 +19,18 @@ Resilio Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service s
   * supervisord_
   * domains_
 
+License
+=======
+
+All relevant legal information can be found here:
+- http://www.resilio.com/legal/privacy
+- http://www.resilio.com/legal/terms-of-use
+- http://www.resilio.com/legal/eula
+
 Prerequisites
 =============
 
-We need to set up a directories in order to make it work. ``~/.sync`` is where Resilio Sync wants to store all config and index files.
-
-::
-
- [isabell@stardust ~]$ mkdir ~/.sync
- [isabell@stardust ~]$ 
-
-Furthermore, we need a free port that Resilio Sync can listen to. To generate a currently unoccupied port run:
+We need a free port that Resilio Sync can listen to. To discover a currently unoccupied port run:
 
 .. include:: includes/generate-port.rst
 
@@ -42,7 +43,7 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
 
  [isabell@stardust ~]$ cd ~/bin
  [isabell@stardust ~]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ tar -zxf resilio-sync_x64.tar.gz
+ [isabell@stardust ~]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
  [isabell@stardust ~]$ rm resilio-sync_x64.tar.gz
  [isabell@stardust ~]$ 
 
@@ -77,14 +78,14 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/<username>/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --log /home/<username>/logs/resilio-sync.log --storage /home/<username>/.sync
+ command=/home/<username>/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
 
 In our example this would be:
 
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:90000 --nodaemon --log /home/isabell/logs/resilio-sync.log --storage /home/isabell/.sync
+ command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:90000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============
@@ -95,7 +96,6 @@ Now you need to load the changes and start your service:
 
  [isabell@stardust ~]$ supervisorctl reread
  [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$ supervisorctl start resilio-sync
  [isabell@stardust ~]$ 
 
 Now go to ``https://isabell.uber.space`` and see if it works. Enjoy!
@@ -103,17 +103,15 @@ Now go to ``https://isabell.uber.space`` and see if it works. Enjoy!
 Update Resilio Sync
 ===================
 
-The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them and update the service:
+The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them, and update the service:
 
 ::
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust ~]$ rm rslsync
  [isabell@stardust ~]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ tar -zxf resilio-sync_x64.tar.gz
+ [isabell@stardust ~]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
  [isabell@stardust ~]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust ~]$ supervisorctl reread
- [isabell@stardust ~]$ supervisorctl update
+ [isabell@stardust ~]$ supervisorctl restart resilio-sync
  [isabell@stardust ~]$ 
 
 .. _Resilio Sync: https://www.resilio.com
