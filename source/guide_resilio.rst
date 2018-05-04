@@ -22,7 +22,7 @@ Resilio Sync_ (formerly BitTorrent Sync) is a proprietary file syncing service s
 License
 =======
 
-All relevant legal information can be found here:
+:: All relevant legal information can be found here:
 
   * http://www.resilio.com/legal/privacy
   * http://www.resilio.com/legal/terms-of-use
@@ -99,7 +99,7 @@ Now you need to load the changes and start your service:
  [isabell@stardust ~]$ supervisorctl update
  [isabell@stardust ~]$ 
 
-Now go to ``https://isabell.uber.space`` and see if it works. Enjoy!
+Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example) and see if it works. Enjoy!
 
 Update Resilio Sync
 ===================
