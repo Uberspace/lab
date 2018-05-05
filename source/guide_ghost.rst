@@ -2,8 +2,8 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/ghost.svg 
+
+  .. image:: _static/images/ghost.svg
       :align: center
 
 #####
@@ -16,10 +16,10 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_ 
-  * MySQL_ 
+  * Node.js_ and its package manager npm_
+  * MySQL_
   * supervisord_
   * domains_
 
@@ -32,7 +32,7 @@ We're using Node.js_ in the stable version 8:
 
  [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
@@ -54,7 +54,7 @@ Use ``npm`` to install ``ghost-cli`` globally:
  [...]
  + ghost-cli@1.5.2
  added 470 packages in 16.495s
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Install Ghost
 -------------
@@ -102,7 +102,7 @@ You will need to enter the following information:
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
- [isabell@stardust ghost]$ 
+ [isabell@stardust ghost]$
 
 Configuration
 =============
@@ -171,7 +171,7 @@ Tell ``supervisord`` to refresh its configuration and start the service:
  ghost: added process group
  [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
 
@@ -204,7 +204,7 @@ Install the required ``node`` modules:
  [isabell@stardust content]$ npm install --production
  [...]
  added 91 packages, removed 134 packages and updated 544 packages in 27.303s
- [isabell@stardust content]$ 
+ [isabell@stardust content]$
 
 Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
 
@@ -218,7 +218,7 @@ Replace the ``current`` symlink and link to the newest version. Again, replace t
  ghost: started
  [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
 

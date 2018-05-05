@@ -2,8 +2,8 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/lychee.png 
+
+  .. image:: _static/images/lychee.png
       :align: center
 
 #########
@@ -14,10 +14,10 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_ 
+  * MySQL_
   * domains_
 
 Prerequisites
@@ -65,7 +65,7 @@ For the last step you have to enter the username/password you want to use for th
 Updates
 =======
 
-You can regularly check their GitHub's Atom Feed_ for any new Lychee releases. 
+You can regularly check their GitHub's Atom Feed_ for any new Lychee releases.
 
 If a new version is available, ``cd`` to your Lychee folder and do a simple ``git pull origin master``:
 

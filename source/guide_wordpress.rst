@@ -2,8 +2,8 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/wordpress.png 
+
+  .. image:: _static/images/wordpress.png
       :align: center
 
 #########
@@ -16,10 +16,10 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_ 
+  * MySQL_
   * domains_
 
 Prerequisites
@@ -55,18 +55,18 @@ You will need to enter the following information:
  :emphasize-lines: 1,6,10
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wp core download 
+ [isabell@stardust html]$ wp core download
  Downloading WordPress 23.42.1 (en_US)...
  md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
  Success: WordPress downloaded.
  [isabell@stardust html]$ wp config create --dbname=isabell_wordpress --dbuser=isabell --dbpass=MySuperSecretPassword
  Success: Generated 'wp-config.php' file.
- [isabell@stardust html]$ wp db create 
+ [isabell@stardust html]$ wp db create
  Success: Database created.
- [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress> 
+ [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
  Admin password: SuperSecretSecurePassword
  Success: WordPress installed successfully.
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 WordPress will generate a secure password for the admin user.
 
@@ -79,7 +79,7 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 
  [isabell@stardust ~]$ wp plugin update --all --path=/var/www/virtual/$USER/html/
  Success: Plugin already updated.
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. _Wordpress: https://wordpress.org
 .. _PHP: http://www.php.net/

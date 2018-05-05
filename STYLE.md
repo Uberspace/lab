@@ -1,6 +1,6 @@
 ## Rules for guides
 
-You're welcome to add your own guides to this repository. 
+You're welcome to add your own guides to this repository.
 
 Please follow our rules to keep the guides maintainable and consistent.
 
@@ -12,7 +12,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * If any applications need to bind to one or more ports (like Node.js apps), use port 9000 - 9010 in your examples, which are never free on our servers. 
+ * If any applications need to bind to one or more ports (like Node.js apps), use port 9000 - 9010 in your examples, which are never free on our servers.
  * Use the templates in `source/includes/` where appropriate.
  * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
  * When there is a license needed for the software mention it.
@@ -47,7 +47,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  ℹ Setting up Systemd [skipped]
  ✔ Running database migrations
  ? Do you want to start Ghost? No
- [isabell@stardust ghost]$ 
+ [isabell@stardust ghost]$
 ```
 
  * Always end your console code blocks with `[isabell@stardust ~]$`.
@@ -106,24 +106,24 @@ Please use the following structure. Only document applicable steps, leave out he
 .. author:: YourName <YourURL/YourMail>
 
 .. sidebar:: About
-  
-  .. image:: _static/images/loremipsum.png 
+
+  .. image:: _static/images/loremipsum.png
       :align: center
 
 ##########
 Loremipsum
 ##########
 
-Loremipsum_ dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+Loremipsum_ dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
 At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_ 
-  * MySQL_ 
+  * Node.js_ and its package manager npm_
+  * MySQL_
   * supervisord_
   * domains_
 
@@ -143,7 +143,7 @@ We're using Node.js_ in the stable version 8:
 
  [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
 
@@ -153,7 +153,7 @@ You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
  --default-character-set=utf8mb4
  --user=ghost
  --password=MySuperSecretPassword
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Your blog URL needs to be setup:
 
@@ -161,7 +161,7 @@ Your blog URL needs to be setup:
 
  [isabell@stardust ~]$ uberspace web domain list
  loremipsum.uber.space
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Installation
 ============

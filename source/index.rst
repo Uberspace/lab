@@ -5,7 +5,7 @@
 .. image:: _static/images/atom.svg
 
 Uberlab is a collection of how-to guides for Uberspace 7. It is meant as an addition to the Manual_, providing hands-on
-guides on how to get popular (or even niche) software running on our platform. 
+guides on how to get popular (or even niche) software running on our platform.
 
 We hope that these guides not only enable you to install a certain software in your Uberspace, but that you might also learn something from them, giving you a better understanding of our system and Linux in general.
 
@@ -23,7 +23,7 @@ Thank you and have fun experimenting!
 .. _GitHub repository: https://github.com/Uberspace/lab/
 .. _support: https://uberspace.de/support
 
-.. toctree:: 
+.. toctree::
    :caption: Guides
    :hidden:
    :maxdepth: 1
@@ -31,7 +31,7 @@ Thank you and have fun experimenting!
 
    guide_*
 
-.. toctree:: 
+.. toctree::
    :caption: Meta
    :hidden:
    :maxdepth: 1
