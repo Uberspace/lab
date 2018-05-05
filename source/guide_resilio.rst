@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Martin Porsch <https://martin.pors.ch/martin@pors.ch>
+.. author:: Martin Porsch <https://github.com/kubiac/>
 
 .. sidebar:: About
   
@@ -104,7 +104,7 @@ Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.spa
 Update Resilio Sync
 ===================
 
-The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them, and update the service:
+The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them, and restart the service:
 
 ::
 
