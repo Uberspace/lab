@@ -68,7 +68,7 @@ class Authors(SphinxDirective):
         authors = env.authors.get(env.docname, [])
 
         if not authors:
-            return []
+            return [nodes.Text('Written by: Uberspace')]
 
         return [nodes.Text('Written by: ')] + comma_list(nodes.Text(a) for a in authors)
 
