@@ -134,7 +134,6 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
-
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
 .. _PHP: https://manual.uberspace.de/en/lang-php.html
@@ -150,3 +149,5 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 ----
 
 Tested with Nextcloud 13.0.1, Uberspace 7.1.3
+
+.. authors::

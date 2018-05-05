@@ -142,3 +142,5 @@ By using composer, you can update an existing installation to a specific version
 ----
 
 Tested with Neos 3.3.9 and Uberspace 7.1.1
+
+.. authors::
