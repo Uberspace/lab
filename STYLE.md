@@ -220,6 +220,8 @@ Updates
 
 Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
+.. authors::
+
 ```
 
 When you're happy with your guide create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
