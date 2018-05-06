@@ -67,7 +67,7 @@ In our example this would be:
 .. code-block:: .htaccess
 
  RewriteEngine On
- RewriteRule (.*) http://localhost:90000/$1 [P]
+ RewriteRule (.*) http://localhost:9000/$1 [P]
  DirectoryIndex disabled
 
 Configure ``supervisord``
@@ -87,7 +87,7 @@ In our example this would be:
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:90000 --nodaemon --storage /home/isabell/.sync
+ command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============
