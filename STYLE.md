@@ -127,6 +127,13 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
   * supervisord_
   * domains_
 
+License
+=======
+
+All relevant legal information can be found here 
+
+  * http://www.loremipsum.com/legal/privacy
+
 Prerequisites
 =============
 
