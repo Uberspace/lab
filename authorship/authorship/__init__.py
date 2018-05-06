@@ -112,20 +112,37 @@ def process_authorlists(app, doctree, fromdocname):
         a: set(g for g, guide_authors in env.authors.items() if a in guide_authors)
         for a in authors
     }
+    count_by_author = {a: len(guides_by_author[a]) for a in authors}
 
     for node in doctree.traverse(allauthors):
-        lst = nodes.bullet_list()
+        author_list = nodes.enumerated_list()
 
-        for author in authors:
-            lst_item = nodes.list_item()
-            lst += lst_item
-            lst_item += addnodes.compact_paragraph(text=author)
+        for author, count in sorted(
+            count_by_author.items(), key=lambda x: (-x[1], x[0])
+        ):
+            # list item
+            author_entry = nodes.list_item()
+            author_list += author_entry
 
-            lst_item += nodes.raw('', '<br>', format='html')
+            # counter
+            counter_div = nodes.container()
+            counter_div += addnodes.compact_paragraph(text=count)
+            author_entry += counter_div
 
-            links = []
+            # author
+            author_div = nodes.container()
+            author_div += addnodes.compact_paragraph(text=author)
+            author_entry += author_div
+
+            # linklist
+            link_list = nodes.bullet_list()
+            author_entry += link_list
 
             for guide in guides_by_author[author]:
+                # guide
+                link_entry = nodes.list_item()
+                link_list += link_entry
+
                 # I can't figure out a way to get the link and title from a page name..
                 link = guide + '.html'
                 title = guide.partition('_')[2].title()
@@ -134,13 +151,9 @@ def process_authorlists(app, doctree, fromdocname):
                 link_wrapper += nodes.reference(
                     '', '', nodes.Text(title), internal=True, refuri=link, anchorname=''
                 )
+                link_entry += link_wrapper
 
-                links.append(link_wrapper)
-
-            for n in comma_list(links):
-                lst_item += n
-
-        node.replace_self([lst])
+        node.replace_self([author_list])
 
 
 def setup(app):
