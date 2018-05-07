@@ -21,6 +21,12 @@ $(function () {
     }
   }
 
+  function circleRatio () {
+    $('.circle').each(function () {
+      $(this).height($(this).width())
+    })
+  }
+
   function replaceEntities (text) {
     text = text.replace('&lt;', '<')
     text = text.replace('&gt;', '>')
@@ -58,9 +64,16 @@ $(function () {
   // "hall of fame" stuff…
   if ($('#hall-of-fame').length) {
     console.log('Welcome to the "Hall of Fame"!')
+    // fix score circle
+    let selector = '#hall-of-fame > ol > li > div:first-child'
+    $(selector).each(function () {
+      $(this).wrapInner('<div class="circle"></div>')
+    })
+    circleRatio()
+    $(window).resize(circleRatio)
     // format author lines
-    const authors = '#hall-of-fame > ol > li > div:nth-child(2)'
-    $(authors).each(function () {
+    selector = '#hall-of-fame > ol > li > div:nth-child(2)'
+    $(selector).each(function () {
       formatAuthor($(this))
     })
   }

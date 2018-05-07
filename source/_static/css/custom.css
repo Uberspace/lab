@@ -109,11 +109,6 @@ nav li {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #b3b3b3;
-    color: #404040;
-    border-radius: 50%;
-    font-size: 160%;
-    font-weight: bold;
 }
 
 #hall-of-fame ol > li > div:not(:first-child) {
@@ -127,12 +122,31 @@ nav li {
     margin-left: 1rem;
 }
 
+#hall-of-fame ol > li > ul:before {
+    content: '→ ';
+}
+
 #hall-of-fame ol > li > ul > li {
     display: inline;
 }
 
 #hall-of-fame ol > li > ul > li:not(:last-child):after {
     content: ', ';
+}
+
+#hall-of-fame .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: .4em;
+    margin: 0;
+    background-color: #b3b3b3;
+    color: #404040;
+    border-radius: 50%;
+    font-size: 160%;
+    font-weight: bold;
 }
 
 #hall-of-fame .author {
