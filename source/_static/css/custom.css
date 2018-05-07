@@ -85,3 +85,52 @@ nav li {
     shape-margin: 1em;
 }
 
+/* Hall of Fame */
+
+#hall-of-fame ol,
+#hall-of-fame ol li {
+    list-style: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+#hall-of-fame ol > li {
+    display: grid;
+    grid-template-columns: 1fr 11fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "score author"
+        "score guides";
+    margin-bottom: 1.5rem;
+}
+
+#hall-of-fame ol > li > div:first-child {
+    grid-area: score;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b3b3b3;
+    color: #404040;
+    border-radius: 50%;
+    font-size: 160%;
+    font-weight: bold;
+}
+
+#hall-of-fame ol > li > div:not(:first-child) {
+    grid-area: author;
+    margin-left: 1rem;
+    font-size: 120%;
+}
+
+#hall-of-fame ol > li > ul {
+    grid-area: guides;
+    margin-left: 1rem;
+}
+
+#hall-of-fame ol > li > ul > li {
+    display: inline;
+}
+
+#hall-of-fame ol > li > ul > li:not(:last-child):after {
+    content: ', ';
+}
