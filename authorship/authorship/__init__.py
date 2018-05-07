@@ -138,7 +138,7 @@ def process_authorlists(app, doctree, fromdocname):
             link_list = nodes.bullet_list()
             author_entry += link_list
 
-            for guide in guides_by_author[author]:
+            for guide in sorted(guides_by_author[author]):
                 # guide
                 link_entry = nodes.list_item()
                 link_list += link_entry
