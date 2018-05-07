@@ -2,7 +2,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/wallabag.png
       :align: center
 
@@ -80,23 +80,23 @@ Change to that folder and run ``make install``. During the installation process,
   [...]
   Creating the "app/config/parameters.yml" file
   Some parameters are missing. Please provide them.
-  database_driver (pdo_mysql): 
-  database_driver_class (null): 
-  database_host (127.0.0.1): 
-  database_port (null): 
+  database_driver (pdo_mysql):
+  database_driver_class (null):
+  database_host (127.0.0.1):
+  database_port (null):
   database_name (wallabag): isabell_wallabag
   database_user (root): isabell
   database_password (null): MySuperSecretPassword
-  database_path (null): 
-  database_table_prefix (wallabag_):  
-  database_socket (null): 
-  database_charset (utf8mb4):  
+  database_path (null):
+  database_table_prefix (wallabag_):
+  database_socket (null):
+  database_charset (utf8mb4):
   domain_name ('https://your-wallabag-url-instance.com'): https://isabell.uber.space
-  mailer_transport (smtp): 
+  mailer_transport (smtp):
   mailer_host (127.0.0.1): 127.0.0.1:587
   mailer_user (null): isabell@uber.space
   mailer_password (null): MySuperSecretPassword
-  locale (en):  
+  locale (en):
   secret (ovmpmAWXRCabNlMgzlzFXDYmCFfzGv): *!!set.random.string!!*
   twofactor_auth (true):
   twofactor_sender (no-reply@wallabag.org): isabell@uber.space

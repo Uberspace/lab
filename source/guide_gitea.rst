@@ -2,7 +2,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/gitea.png
       :align: center
 
@@ -16,9 +16,9 @@ of the then-popular Gogs_, but quickly became more active and bigger than the or
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_ 
+  * MySQL_
   * supervisord_
   * domains_
 
@@ -64,7 +64,7 @@ make sure that the file can be executed.
   Length: 52960072 (51M) [application/octet-stream]
   Saving to: gitea/gitea’
 
-  100%[=======================================================>] 52,960,072  9.99MB/s   in 5.8s   
+  100%[=======================================================>] 52,960,072  9.99MB/s   in 5.8s
 
   2018-03-25 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [52960072/52960072]
   [isabell@stardust ~]$ sha256sum gitea/gitea
@@ -143,7 +143,7 @@ Tell ``supervisord`` to refresh its configuration and start the service:
  gitea: added process group
  [isabell@stardust ~]$ supervisorctl status
  gitea                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
 

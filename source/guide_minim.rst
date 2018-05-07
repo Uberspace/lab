@@ -2,8 +2,8 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/minim.png 
+
+  .. image:: _static/images/minim.png
       :align: center
 
 #####
@@ -18,7 +18,7 @@ The minim - Wiki can be used for wiki and also for other online projects.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
   * domains_

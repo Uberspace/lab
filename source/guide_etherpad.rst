@@ -2,7 +2,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/etherpad.svg
       :align: center
 
@@ -215,7 +215,7 @@ Then you need to restart the service daemon, so the new code is used by the webs
   etherpad: stopped
   etherpad: started
   [isabell@stardust ~]$
-  
+
 
 
 .. _`Etherpad Lite`: http://etherpad.org/
@@ -229,6 +229,6 @@ Then you need to restart the service daemon, so the new code is used by the webs
 
 ----
 
-Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1 
+Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1
 
 .. authors::

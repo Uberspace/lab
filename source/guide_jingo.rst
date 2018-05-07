@@ -242,7 +242,7 @@ In the end you need to restart the service daemon, so the new code is used by th
   jingo: stopped
   jingo: started
   [isabell@stardust ~]$
-  
+
 
 
 .. _Jingo: https://github.com/claudioc/jingo

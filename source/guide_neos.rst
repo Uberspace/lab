@@ -1,18 +1,18 @@
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <uberlab@danielkratz.com>  <http://blah.com/> xxx
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/neos.png 
+
+  .. image:: _static/images/neos.png
       :align: center
 
 #########
 Neos
 #########
 
-Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence. 
+Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence.
 
-The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences. 
+The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences.
 
 Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
 
@@ -20,16 +20,16 @@ Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is mainta
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_ 
+  * MySQL_
   * domains_
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1: 
+We're using PHP_ in the stable version 7.1:
 
 ::
 
@@ -82,7 +82,7 @@ Configuration
 
 Point your browser to your website URL and append /setup (e.g. isabell.uber.space/setup) to use the web based installer.
 
-After setting some things up automatically, the setup will ask you for a setup password. You need to get this from a file in your Neos installation first: 
+After setting some things up automatically, the setup will ask you for a setup password. You need to get this from a file in your Neos installation first:
 
 ::
 
@@ -104,7 +104,7 @@ Step 2: To configure your database, you need to enter the following information:
 
 Step 3: Create an administrator account. Please don't use ``admin`` as your username and set yourself a strong password.
 
-Step 4: Create a new site by importing an existing/demo package or creating a new one. 
+Step 4: Create a new site by importing an existing/demo package or creating a new one.
 
 Step 5: You have successfully installed Neos on Uberspace 7!
 
@@ -122,7 +122,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Neos' `releases <https://github.com/neos/neos/releases>`_ for the latest versions. If a newer
-version is available, you should manually update your installation. 
+version is available, you should manually update your installation.
 
 By using composer, you can update an existing installation to a specific version, without having to create a new project. But you have to follow version specific update instructions which you can find at the end of the official download_ page on the Neos website.
 
@@ -141,4 +141,6 @@ By using composer, you can update an existing installation to a specific version
 
 ----
 
-Tested with Neos 3.3.9 and Uberspace 7.1.1 
+Tested with Neos 3.3.9 and Uberspace 7.1.1
+
+.. authors::

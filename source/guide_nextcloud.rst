@@ -2,8 +2,8 @@
 .. author:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/nextcloud.png 
+
+  .. image:: _static/images/nextcloud.png
       :align: center
 
 #########
@@ -16,10 +16,10 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_ 
+  * MySQL_
   * domains_
   * cronjobs_
 
@@ -59,7 +59,7 @@ Installation
 Now point your browser to your uberspace URL and follow the instructions.
 
 You will need to enter the following information:
-  
+
   * Administrator username and password: Insert the credentials you want to use for the admin user
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your Nextcloud database name: we suggest you use an additional_ database. For example: isabell_nextcloud
@@ -134,7 +134,6 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
-
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
 .. _PHP: https://manual.uberspace.de/en/lang-php.html
@@ -150,3 +149,5 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 ----
 
 Tested with Nextcloud 13.0.1, Uberspace 7.1.3
+
+.. authors::
