@@ -1,4 +1,4 @@
-.. author:: nichtmax <github@moritz.in>
+.. author:: nichtmax
 .. highlight:: console
 
 .. sidebar:: Logo

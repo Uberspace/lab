@@ -140,7 +140,7 @@ nav li {
     justify-content: center;
     width: 100%;
     height: auto;
-    padding: .4em;
+    padding: .5rem;
     margin: 0;
     background-color: #b3b3b3;
     color: #404040;
@@ -151,4 +151,12 @@ nav li {
 
 #hall-of-fame .author {
     font-weight: bolder;
+}
+
+#hall-of-fame .autolink:before {
+    content: "<";
+}
+
+#hall-of-fame .autolink:after {
+    content: ">";
 }

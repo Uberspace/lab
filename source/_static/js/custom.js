@@ -27,16 +27,15 @@ $(function () {
     })
   }
 
-  function replaceEntities (text) {
-    text = text.replace('&lt;', '<')
-    text = text.replace('&gt;', '>')
-    return text
-  }
-
-  function formatExtra (text) {
-    text = replaceEntities(text)
-    // TODO: auto–links
-    return text
+  function autoLinks (match, link, offset, string) {
+    const reMail = new RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)
+    const reURL = new RegExp(/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi)
+    if (link.match(reMail)) {
+      link = `<a href="mailto:${link}">${link}</a>`
+    } else if (link.match(reURL)) {
+      link = `<a href="${link}">${link}</a>`
+    }
+    return `<span class="autolink">${link}</span>`
   }
 
   function formatAuthor (ele) {
@@ -44,10 +43,13 @@ $(function () {
     const idx = text.search(/[^\w\s]/)
     const author = $('<span class="author"></span>')
     const extra = $('<small></small>')
+    let extraText = ''
     ele.html('')
     if (idx >= 0) {
       author.text(text.slice(0, idx).trim())
-      extra.text(formatExtra(text.slice(idx).trim()))
+      extraText = text.slice(idx).trim()
+      extraText = extraText.replace(/&lt;([^>]+?)&gt;/g, autoLinks)
+      extra.append(extraText)
     } else {
       author.text(text.trim())
     }
