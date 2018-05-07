@@ -1,4 +1,4 @@
-.. author:: Daniel Kratz <uberlab@danielkratz.com>  <http://blah.com/> xxx
+.. author:: Daniel Kratz <uberlab@danielkratz.com>
 .. highlight:: console
 
 .. sidebar:: Logo
