@@ -1,4 +1,4 @@
-.. author:: nichtmax
+.. author:: nichtmax <https://moritz.in>
 .. highlight:: console
 
 .. sidebar:: Logo
