@@ -124,3 +124,5 @@ The webinterface will notify you when a new version of Resilio Sync is available
 ----
 
 Tested with Resilio Sync 2.5.12, Uberspace 7.1.4.0
+
+.. authors::
