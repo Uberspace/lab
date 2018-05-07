@@ -134,3 +134,7 @@ nav li {
 #hall-of-fame ol > li > ul > li:not(:last-child):after {
     content: ', ';
 }
+
+#hall-of-fame .author {
+    font-weight: bolder;
+}
