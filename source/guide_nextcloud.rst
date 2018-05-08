@@ -112,6 +112,8 @@ To do that, add the following lines to $HOME/etc/php.d/opcache.ini
  opcache.save_comments=1
  opcache.revalidate_freq=1
 
+Make sure that your PHP installation is equipped with the ``opcode`` module - it must be loaded for this to work.
+
 After that you need to reload your PHP configuration:
 
 ::
