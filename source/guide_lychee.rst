@@ -1,4 +1,4 @@
-.. author:: TheForcer <25257144+TheForcer@users.noreply.github.com>
+.. author:: TheForcer <https://github.com/TheForcer>
 .. highlight:: console
 
 .. sidebar:: Logo

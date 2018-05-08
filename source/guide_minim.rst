@@ -1,4 +1,4 @@
-.. author:: minim <38093214+minim-one@users.noreply.github.com>
+.. author:: minim <https://github.com/minim-one>
 .. highlight:: console
 
 .. sidebar:: Logo
