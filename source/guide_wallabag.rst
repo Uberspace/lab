@@ -33,7 +33,7 @@ We're using PHP_ in the stable version 7.1:
 
 .. include:: includes/my-print-defaults.rst
 
-Also, the domain you want to use for Lychee must be set up as well:
+Also, the domain you want to use for Wallabag must be set up as well:
 
 .. include:: includes/web-domain-list.rst
 
