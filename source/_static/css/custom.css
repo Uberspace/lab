@@ -123,7 +123,9 @@ nav li {
 }
 
 #hall-of-fame ol > li > ul:before {
-    content: '→ ';
+    content: url(../images/icn-rocket.svg);
+    width: 23px;
+    height: 15px;
 }
 
 #hall-of-fame ol > li > ul > li {
