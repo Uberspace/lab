@@ -42,15 +42,14 @@ Installation
 
 ``cd`` to your `document root`_, then download the latest release of EQdkp Plus and extract it:
 
-.. note:: The link to the lastest version can be found at EQdkp Plus's `download page <https://eqdkp-plus.eu/repository/download>`_.
-
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ curl http://cdn2.eqdkp-plus.eu/core/2.3.0-rc9_1/eqdkp-plus_2.3.0-rc9_core.zip -o eqdkp-plus.zip
- % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+ [isabell@stardust html]$ curl -L https://eqdkp-plus.eu/repository/download/latestcore -o eqdkp-plus.zip
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
- 100 8709k  100 8709k    0     0  46.4M      0 --:--:-- --:--:-- --:--:-- 46.7M
+  100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
+  100 5138k  100 5138k    0     0   769k      0  0:00:06  0:00:06 --:--:-- 1108k
  [isabell@stardust html]$ unzip eqdkp-plus.zip
 
 Now point your browser to your uberspace URL and follow the instructions of the Installer Assistent.
