@@ -16,6 +16,9 @@ The system is best known for its intuitive approach of editing content directly 
 
 Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
 
+.. warning:: Neos v4 was released recently. It requires MariaDB 10.2, which is not yet available on Uberspace. The team is working on a fix. 
+
+::
 
 
 ----
