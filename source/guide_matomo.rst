@@ -46,6 +46,7 @@ If you want to install Matomo into a subfolder of your domain, create a new fold
  [isabell@stardust ~]$ cd ~/html/
  [isabell@stardust ~]$ mkdir matomo
  [isabell@stardust ~]$ cd matomo/
+ [isabell@stardust matomo]$
 
 If you want to install matomo into your `document root`_, just navigate with ``cd`` to your `document root`_.
 
@@ -60,8 +61,9 @@ Now download the latest version and extract it:
                                  Dload  Upload   Total   Spent    Left  Speed
   100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
   
-  [...]
-
+ [...]
+ 
+ [isabell@stardust matomo]$
 
 This will create a ``piwik`` folder containing the files and directories. Now we will move the files from the ``piwik`` folder to the parent folder.
 
