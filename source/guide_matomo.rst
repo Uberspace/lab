@@ -55,7 +55,7 @@ Now download the latest version and extract it:
 
 ::
 
- [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip
+ [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip && rm matomo.zip
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
