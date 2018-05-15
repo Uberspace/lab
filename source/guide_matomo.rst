@@ -70,6 +70,7 @@ This will create a ``piwik`` folder containing the files and directories. Now we
 ::
 
  [isabell@stardust matomo]$ cd piwik/ && mv * .. && cd .. && rm piwik -rf
+ [isabell@stardust matomo]$
 
 Now point your browser to your Matomo URL and follow the instructions of the Installer.
 
