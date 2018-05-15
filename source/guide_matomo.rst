@@ -78,7 +78,8 @@ You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your Matomo database name: we suggest you use an additional_ database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
-
+  * Name and URL of the first website you want to track with Matomo (more can be added after installation)
+  
 Privacy
 =======
 Matomo can be configured to ensure that users' privacy is respected. This is required in some countries. A detailed guide for configuring privacy settings in Matomo can be found `here <https://matomo.org/docs/privacy/>`_.
