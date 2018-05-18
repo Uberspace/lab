@@ -14,7 +14,7 @@ Kirby_ is a modern, fast, flexible, file-based (no database) content management 
 
 The idea behind Kirby is to provide a tool for developing websites or applications that is both easy to use for developers and at the same time gives you all the freedom you want to structure your content and render your output.
 
-Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code is open source, a license is required for use in production. 
+Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code of Kirby is available for download, a per website license_ is required to use it in production. 
 
 ----
 
@@ -41,61 +41,57 @@ Your website domain needs to be set up:
 Installation
 ============
 
-The installation of Kirby is quite easy. Just clone the Kirby Starterkit in your `document root`_. 
+To install and update Kirby we use the Kirby CLI_, which is a command line interface to manage Kirby installations more efficiently. You can install it via Composer. 
 
 .. code-block:: console
- :emphasize-lines: 2
+ :emphasize-lines: 1
 
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ git clone --recursive https://github.com/getkirby/starterkit.git ~/html
-  Cloning into 'html'...
-  remote: Counting objects: 3749, done.
-  remote: Compressing objects: 100% (69/69), done.
-  remote: Total 3749 (delta 25), reused 92 (delta 25), pack-reused 3649
-  Receiving objects: 100% (3749/3749), 7.74 MiB | 9.97 MiB/s, done.
-  Resolving deltas: 100% (1035/1035), done.
- [isabell@stardust html]$
+ [isabell@stardust ~]$ composer global require getkirby/cli:1.4.0
+  Changed current directory to /home/isabell/.config/composer
+  ./composer.json has been updated
+  Loading composer repositories with package information
+  Updating dependencies (including require-dev)
+  Nothing to install or update
+  Generating autoload files
+ [isabell@stardust ~]$
+
+.. warning:: Please note that we are installing the latest release tag (1.4.0) instead of master, since the master branch contains a bug_ which would prevent the CLI from running on Uberspace 7. 
+
+To use the ``kirby`` command you need to include the Composer vendor/bin directory in your path. Include it in you .bashrc file and source it to use it right away.
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust ~]$ echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc
+ [isabell@stardust ~]$ source ~/.bashrc
+ [isabell@stardust ~]$
+
+To install the Kirby Starterkit_ into your `document root`_, you just need to use the ``kirby install`` command. 
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER
+ [isabell@stardust ~]$ kirby install html
+  Installing Kirby...
+  ======================================================================> 100%
+  Extracting files
+  Kirby is installed!
+ [isabell@stardust ~]$
 
 That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit. 
-
-.. note:: While we are cloning Kirby from Github you can alternatively just download_ the zip and upload the contents manually to your `document root`_.
-
-To simplify future updates we are replacing the ``kirby`` and ``panel`` folders and add them again as Git submodules. Using this workflow, updates will need only two commands on the command line. 
-
-First, we remove the existing folders from the filesystem. Then we stage the changes in Git to remove the folders from the repository index. 
-
-.. code-block:: console
- :emphasize-lines: 2,3
-
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ rm -R panel kirby
- [isabell@stardust html]$ git add .
- [isabell@stardust html]$
-
-Finally we are adding the components as Git submodules and try to update them just to be safe.
-
-.. code-block:: console
- :emphasize-lines: 1,5,9
-
- [isabell@stardust html]$ git submodule add https://github.com/getkirby/kirby.git
-  Cloning into '/var/www/virtual/isabell/html/kirby'...
-  remote: Counting objects: 4344, done.
-  [...]
- [isabell@stardust html]$ git submodule add https://github.com/getkirby/panel.git
-  Cloning into '/var/www/virtual/isabell/html/panel'...
-  remote: Counting objects: 11083, done.
-  [...]
- [isabell@stardust html]$ git submodule update --init --recursive
- [isabell@stardust html]$
 
 Configuration
 ============
 
-When you're ready to launch your website with Kirby you need to purchase a license_. To use your license go to ``/site/config/config.php`` and fill in your licence key.
+When you're ready to launch your website with Kirby you need to purchase a license_. To use your license edit the configuration file ``~/html/site/config/config.php`` and fill in your licence key.
 
 .. code-block:: php
 
   c::set('license', 'your license key');
+
+.. warning:: Please be aware that one license is valid for a single website only. So you need to purchase additional licences for multiple websites. This is no legal advice. Please review the `license options <https://getkirby.com/buy>`_ and the `licence agreement <https://getkirby.com/license>`_ for yourself and contact the developer if you're not sure. 
+
 
 Best practices
 ============
@@ -105,17 +101,17 @@ If you want to avoid the demo code and contents of the Kirby Starterkit, there i
 Tuning
 ============
 
-For complex sites with lots of content or high amounts of traffic you can switch on Kirby's cache. The cache stores the entire result of a rendered page. As long as the cache is valid, visitors will be served the cached version which is pretty close in performance to a static html file.
+For larger sites you can switch on Kirby's cache. The cache stores the entire result of a rendered page. As long as the cache is valid, visitors will be served the cached version which is faster than to regenerate it.
 
-The cache can be activated in ``/site/config/config.php``:
+The cache can be activated by editing the ``config.php``:
 
 .. code-block:: php
 
   c::set('cache', true);
 
-.. note:: Kirby is using a simple file cache by default. Please make sure that ``/site/cache`` is writable in order to make the cache work. If you've not changed the write permissions this should work out of the box.
+.. note:: Kirby is using a simple file cache by default. Please make sure that ``~/html/site/cache`` is writable in order to make the cache work. If you've not changed the write permissions this should work out of the box.
 
-If you need dynamic output on individual pages you can ignore them from being cached, by adding their URI to the cache.ignore array in ``/site/config/config.php``:
+If you need dynamic output on individual pages you can ignore them from being cached, by adding their URI to the cache.ignore array in the ``config.php``:
 
 .. code-block:: php
 
@@ -131,18 +127,19 @@ Updates
 Check Kirby's `releases <https://github.com/getkirby/starterkit/releases>`_ for the latest versions. If a newer
 version is available, you should update your installation. 
 
-If you've followed this guide and are using Git submodules for the Kirby core and the panel, updating via the command line is very easy. Just checkout the submodules and pull the newest version from Github:
-
+To update Kirby you just need to use the ``kirby update`` command in the directory of your installation. 
 
 .. code-block:: console
- :emphasize-lines: 2,3
+ :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ git submodule foreach --recursive git checkout master
- [isabell@stardust html]$ git submodule foreach --recursive git pull
- [isabell@stardust html]$
+ [isabell@stardust html]$ kirby update
+  Updating Kirby...
+  [...]
+  Kirby has been updated to 64.8.6
+ [isabell@stardust ~]$
 
-If you've downloaded Kirby as a ZIP archive and uploaded it manually you can update by redownloading the package and just replace the ``kirby`` and ``panel`` folders with the ones from the new archive.
+If you've enabled the cache, you might need to empty the cache directory to be sure nothing breaks. Delete all contents from ``~/html/site/cache`` in order to do so.
 
 .. warning:: Kirby and especially **Plugins** are **not** updated automatically, so make sure to regularly check any update options.
 
@@ -155,7 +152,10 @@ If you've downloaded Kirby as a ZIP archive and uploaded it manually you can upd
 .. _download: https://getkirby.com/docs/installation/download
 .. _license: https://getkirby.com/buy
 .. _Plainkit: https://github.com/getkirby/plainkit
+.. _Starterkit: https://github.com/getkirby/starterkit
+.. _CLI: https://github.com/getkirby/cli
+.. _bug: https://github.com/getkirby/cli/issues/36
 
 ----
 
-Tested with Kirby 2.5.10 and Uberspace 7.1.4
+Tested with Kirby 2.5.10 and Uberspace 7.1.5
