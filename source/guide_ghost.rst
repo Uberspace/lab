@@ -62,7 +62,7 @@ Install Ghost
 Create a ``ghost`` directory in your home, ``cd`` to it and then run the installer. Since the installer expects to be run with root privileges, we need to adjust some settings_:
 
   * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
-  * ``-no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
+  * ``--no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
   * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use supervisord_ later instead.
   * ``--no-setup-nginx``: Skips webserver configuration. We'll use a htaccess_ file for apache_ later instead.
   * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
