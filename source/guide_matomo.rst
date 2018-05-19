@@ -10,7 +10,7 @@
 Matomo
 #########
 
-Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence.
+Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
 
 ----
 
@@ -52,8 +52,6 @@ If you want to install matomo into your `document root`_, just navigate with ``c
 
 Now download the latest version and extract it:
 
-.. note:: The link to the lastest version can be found at Matomo's `download page <https://matomo.org/download/>`_.
-
 ::
 
  [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip && rm matomo.zip
@@ -72,18 +70,60 @@ This will create a ``piwik`` folder containing the files and directories. Now we
  [isabell@stardust matomo]$ cd piwik/ && mv * .. && cd .. && rm piwik -rf
  [isabell@stardust matomo]$
 
-Now point your browser to your Matomo URL and follow the instructions of the Installer.
+Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. After that, follow the instructions of the Installer.
 
 You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
   * your Matomo database name: we suggest you use an additional_ database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
   * Name and URL of the first website you want to track with Matomo (more can be added after installation)
+
+Tracking
+========
+There are different ways to use Matomo for website tracking. The easiest way is to embed the provided JavaScript Tracking Code into your website. It should be added into the head section before the closing ``</head>`` tag.
+
+::
+
+  <!doctype html>
+
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="Isabells Blog">
+    <meta name="author" content="Isabell">
+
+    <!-- Matomo -->
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//isabell.uber.space/matomo/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+
+  [...]
+
+Moreover, Matomo provides Image Tracking and the importing of server logs. Also it offers a `Tracking HTTP API <https://developer.matomo.org/api-reference/tracking-api>`_, which lets you integrate the Matomo Tracking for example in your PHP application.
+
   
 Privacy
 =======
-Matomo can be configured to ensure that users' privacy is respected. This is required in some countries. A detailed guide for configuring privacy settings in Matomo can be found `here <https://matomo.org/docs/privacy/>`_.
 
+By default, Matomo respects `DoNotTrack`. As Uberspace shortens IP addresses by default, there are no additional privacy settings needed.
+
+Nevertheless, you should update your Privacy Policy to explain how Matomo is used and what data it gathers. For this, Matomo provides a `Privay Policy template <https://matomo.org/privacy-policy/>`_.
+
+Also, you can provide your users an Opt-Out Feature using iframes. Therefore, go to ``Administration >> Privacy >> Users opt-out`` and copy the provided HTML-Code into your website, e.g. in your Privacy Policy.
 
 Updates
 =======
