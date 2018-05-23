@@ -1,4 +1,4 @@
-.. author:: minim <https://github.com/minim-one>
+.. author:: minim <https://minim.one/>
 .. highlight:: console
 
 .. sidebar:: Logo
