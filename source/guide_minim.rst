@@ -10,11 +10,9 @@
 minim
 #####
 
-minim_ offers super simple PHP Content Management Systems. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
+minim_ offers a super simple PHP Content Management System. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
 
-The minim - Blog is ideal for simple travel blogs or publishing news. It has an easy administration interface and a automatic generated RSS feed. Themes and other modifications are fully customisable.
-
-The minim - Wiki can be used for wiki and also for other online projects.
+It'is ideal for simple travel blogs or publishing news. It has an easy administration interface and a automatic generated RSS feed. Themes and other modifications are fully customisable.
 
 ----
 
@@ -44,18 +42,18 @@ Your URL needs to be setup:
 Installation
 ============
 
-Download minim system
----------------------
+Download minim
+--------------
 
-Use ``wget`` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version. The ``minim-system`` is ether ``minim-blog`` or ``minim-wiki``.
+Use ``wget`` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version.
 
 .. code-block:: console
  :emphasize-lines: 2,3,4
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
- [isabell@stardust html]$ unzip minim-system-23.42.1
- [isabell@stardust html]$ rm minim-system-23.42.1
+ [isabell@stardust html]$ wget https://minim.one/downloads/minim-23.42.1.zip
+ [isabell@stardust html]$ unzip minim-23.42.1
+ [isabell@stardust html]$ rm minim-23.42.1
  [isabell@stardust html]$
 
 Configuration
@@ -79,7 +77,7 @@ Best practices
 Security
 --------
 
-The admin interface in the blog system is disabled by default. If you enable it, you should change the standard password.
+The admin interface is disabled by default. If you enable it, you should change the standard password.
 
 Updates
 =======
@@ -92,12 +90,12 @@ Check minim's feed_ for the latest version and copy the link to the ``.zip`` arc
  :emphasize-lines: 2,4,5,6,7
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://minim.one/downloads/minim-system-23.42.1.zip
+ [isabell@stardust html]$ wget https://minim.one/downloads/minim-23.42.1.zip
  [isabell@stardust html]$ cp -r minim minim-backup
- [isabell@stardust html]$ unzip minim-system-23.42.1.zip -d minim-system-23.42.1
- [isabell@stardust html]$ mv minim-system-23.42.1/minim/config minim-system-23.42.1/minim/config-new
- [isabell@stardust html]$ cp -r minim-system-23.42.1/minim ./
- [isabell@stardust html]$ rm -rf minim-system-23.42.1*
+ [isabell@stardust html]$ unzip minim-23.42.1.zip -d minim-23.42.1
+ [isabell@stardust html]$ mv minim-23.42.1/minim/config minim-23.42.1/minim/config-new
+ [isabell@stardust html]$ cp -r minim-23.42.1/minim ./
+ [isabell@stardust html]$ rm -rf minim-23.42.1*
  [isabell@stardust html]$
 
 Check if the configuration_ changed in ``config-new/config.php`` and your ``config/config.php`` (happens very rarely).
@@ -112,6 +110,6 @@ If everything works alright you can delete your ``minim-backup`` and the ``confi
 
 ----
 
-Tested with minim - Blog 0.5.0.1 and minim - Wiki 0.1.0.1, Uberspace 7.1.1
+Tested with minim 0.5.0.1, Uberspace 7.1.6
 
 .. authors::
