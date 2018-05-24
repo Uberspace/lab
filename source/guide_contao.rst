@@ -81,7 +81,7 @@ Next, remove the unused `document root`_ and create a new **symbolic link** to t
 
 .. warning:: Please make sure your `document root`_ is empty before removing it!
 
-  Replace again ``<target>`` by the folder name where the Contao project files sit in.
+  Again, replace ``<target>`` by the folder name where the Contao project files sit in.
 
 .. code-block:: console
  :emphasize-lines: 1,3
@@ -112,7 +112,7 @@ Step 2: To configure your database connection, you need to enter the MySQL and d
 
 Step 3: Update the database (this will create the database and table structure).
 
-Step 4: Create an Contao back end administrator account.
+Step 4: Create a Contao back end administrator account.
 
 Step 5: You have successfully installed the Contao CMS on Uberspace 7!
 
