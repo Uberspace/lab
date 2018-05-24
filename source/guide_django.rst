@@ -17,7 +17,7 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python and its package manager pip
+  * Python_ and its package manager pip
   * supervisord_
 
 License
@@ -35,7 +35,7 @@ Your URL needs to be setup:
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
- loremipsum.uber.space
+ isabell.uber.space
  [isabell@stardust ~]$
 
 Installation
@@ -150,10 +150,11 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 
 .. _Django: https://www.djangoproject.com/
+.. _Python: https://manual.uberspace.de/en/lang-python.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 
-Tested with Django 2.0.5, Uberspace 7.1.4
+Tested with Django 2.0.5, Uberspace 7.1.6
 
 .. authors::
