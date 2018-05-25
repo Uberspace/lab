@@ -41,3 +41,4 @@ Thank you and have fun experimenting!
    Repository <https://github.com/Uberspace/lab>
    Changelog <https://github.com/Uberspace/lab/commits/master>
    Imprint <https://uberspace.de/imprint>
+   Privacy <https://uberspace.de/privacy>
