@@ -10,7 +10,7 @@
 Nextcloud
 #########
 
-Nextcloud_ is an open source cloud solution written in PHP and distributed under the AGPLv3 licence.
+Nextcloud_ is an open source cloud solution written in PHP and distributed under the AGPLv3 license.
 
 Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by Nextcloud GmbH.
 
