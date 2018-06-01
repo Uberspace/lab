@@ -103,13 +103,13 @@ Configure database and domain
 Now you should reach your installation under the URL ``https://<username>.uber.space/tt-rss`` (would be ``https://isabell.uber.space/tt-rss`` in our example).
 Open the URL and set the Database settings to
 
- * Database Type - MySQL
+ * Database Type: MySQL
  * Username: isabell (your MySQL username)
  * Password: MySuperSecretPassword (your MySQL password)
- * Database name - isabell_tt_rss (replace isabell with your own user)
+ * Database name: isabell_tt_rss (replace isabell with your own user)
 
 Under other settings the domain https://isabell.uber.space/tt-rss should be shown.
-Now click on `Test Configuration`. If everything worked should see the messages
+Now click on `Test Configuration`. If everything worked you should see the messages
  * Configuration check succeeded.
  * Database test succeeded.
 
@@ -121,8 +121,8 @@ If you need to change it afterwards you will find it under ``~/html/tt-rss/confi
 
  Now you can reach Tiny Tiny RSS under https://isabell.uber.space/tt-rss for the first time. Log in with 
 
-  * user - admin
-  * password - password
+  * User: admin
+  * Password: password
 
 You will be greeted by a dialog to change the default password. Do that and optionally add one or more users with restricted rights
 for capturing and reading RSS feeds.
