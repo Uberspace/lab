@@ -57,15 +57,6 @@ To install and update Kirby we use the Kirby CLI_, which is a command line inter
 
 .. warning:: Please note that we are installing the latest release tag (1.4.0) instead of master, since the master branch contains a bug_ which would prevent the CLI from running on Uberspace 7. 
 
-To use the ``kirby`` command you need to include the Composer vendor/bin directory in your path. Include it in you .bashrc file and source it to use it right away.
-
-.. code-block:: console
- :emphasize-lines: 1,2
-
- [isabell@stardust ~]$ echo 'export PATH="$PATH:$HOME/.config/composer/vendor/bin"' >> ~/.bashrc
- [isabell@stardust ~]$ source ~/.bashrc
- [isabell@stardust ~]$
-
 To install the Kirby Starterkit_ into your `document root`_, you just need to use the ``kirby install`` command. 
 
 .. code-block:: console
@@ -96,7 +87,7 @@ When you're ready to launch your website with Kirby you need to purchase a licen
 Best practices
 ============
 
-If you want to avoid the demo code and contents of the Kirby Starterkit, there is a minimal setup available known as Plainkit_. You can install it the same way as the Starterkit. However, the use is only recommended for users who are already familiar with Kirby. 
+If you want to avoid the demo code and contents of the Kirby Starterkit, there is a minimal setup available known as Plainkit_. You can install it by appending the kit parameter to the install command ``kirby install html --kit plainkit``. However, the use is only recommended for users who are already familiar with Kirby. 
 
 Tuning
 ============
