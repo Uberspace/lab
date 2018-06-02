@@ -44,23 +44,11 @@ We're using PHP in the latest stable version 7.1:
  Using 'PHP' version: '7.1'
  [isabell@stardust ~]$
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
-
-::
-
- [isabell@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=isabell
- --password=MySuperSecretPassword
- [isabell@stardust ~]$
+.. include:: includes/my-print-defaults.rst
 
 The URL where you want to run Tiny Tiny RSS needs to be setup:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
@@ -73,7 +61,7 @@ wil use git to download the software. So go to the webroot and clone Tiny Tiny R
 
 ::
 
- [isabell@stardust ~]$ cd html
+ [isabell@stardust ~]$ cd ~/html
  [isabell@stardust ~]$ git clone https://tt-rss.org/git/tt-rss.git tt-rss
  Klone nach 'tt-rss' ...
  remote: Counting objects: 59813, done.
@@ -160,6 +148,8 @@ Setup automatic update
 To update your installation you just need to do a ``git pull`` and restart the RSS update daemon. So let's automate this.
 Create the file ``~/bin/ttrss-update`` with the content
 
+.. warning:: Replace ``<isabell>`` with your username!
+
 ::
 
  #/bin/sh
@@ -180,6 +170,8 @@ Now add a line to your crontab to update it daily.
  [isabell@stardust ~]$ crontab -e
 
 Add the following line to the crontab and save it
+
+.. warning:: Replace ``<isabell>`` with your username!
 
 ::
 
