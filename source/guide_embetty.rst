@@ -55,6 +55,7 @@ Use ``npm`` to install the latest version of Embetty server:
   /home/isabell/bin/embetty -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty
   + @heise/embetty-server@1.0.0-beta.6
   added 182 packages in 10.878s
+  [isabell@stardust ~]$ 
 
 Configuration
 =============
