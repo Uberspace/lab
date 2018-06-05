@@ -1,4 +1,4 @@
-.. sectionauthor:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <uberlab@danielkratz.com>
 .. highlight:: console
 
 .. sidebar:: Logo
