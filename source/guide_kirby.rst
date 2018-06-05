@@ -150,3 +150,5 @@ If you've enabled the cache, you might need to empty the cache directory to be s
 ----
 
 Tested with Kirby 2.5.10 and Uberspace 7.1.5
+
+.. authors::
