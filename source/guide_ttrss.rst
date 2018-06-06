@@ -62,14 +62,14 @@ wil use git to download the software. So go to the webroot and clone Tiny Tiny R
 ::
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust ~]$ git clone https://tt-rss.org/git/tt-rss.git tt-rss
- Klone nach 'tt-rss' ...
+ [isabell@stardust html]$ git clone https://tt-rss.org/git/tt-rss.git .
+ Cloning into '.'...
  remote: Counting objects: 59813, done.
  remote: Compressing objects: 100% (23687/23687), done.
  remote: Total 59813 (delta 32579), reused 59789 (delta 32557)
- Empfange Objekte: 100% (59813/59813), 74.56 MiB | 1.28 MiB/s, Fertig.
- Löse Unterschiede auf: 100% (32579/32579), Fertig.
- [isabell@stardust ~]$
+ Receiving objects: 100% (59813/59813), 74.56 MiB | 1.28 MiB/s, done.
+ Resolving deltas: 100% (32579/32579), done.
+ [isabell@stardust html]$
 
 Configuration
 =============
@@ -81,33 +81,28 @@ It's a good idea to create the tables under a separate database.
 
 ::
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_tt_rss"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_tt_rss"
 
-Replace <isabell> with your own user. 
+Replace <username> with your own user. 
 
 Configure database and domain
 -----------------------------
 
 Now you should reach your installation under the URL ``https://<username>.uber.space/tt-rss`` (would be ``https://isabell.uber.space/tt-rss`` in our example).
-Open the URL and set the Database settings to
+Open the URL and set the Database settings to your MySQL hostname, username and password: the hostname is localhost and you should know your MySQL credentials by now. If you don’t, start reading again at the top.
 
- * Database Type: MySQL
- * Username: isabell (your MySQL username)
- * Password: MySuperSecretPassword (your MySQL password)
- * Database name: isabell_tt_rss (replace isabell with your own user)
-
-Under other settings the domain https://isabell.uber.space/tt-rss should be shown.
+Under other settings the domain https://isabell.uber.space should be shown.
 Now click on `Test Configuration`. If everything worked you should see the messages
  * Configuration check succeeded.
  * Database test succeeded.
 
 Click on `Initialize Database`. After that the generated configuration will be shown. Click on `Save configuration` to save it.
-If you need to change it afterwards you will find it under ``~/html/tt-rss/config-php``.
+If you need to change it afterwards you will find it under ``~/html/config-php``.
 
  Configure users
  ---------------
 
- Now you can reach Tiny Tiny RSS under https://isabell.uber.space/tt-rss for the first time. Log in with 
+ Now you can reach Tiny Tiny RSS under https://isabell.uber.space for the first time. Log in with 
 
   * User: admin
   * Password: password
@@ -119,13 +114,20 @@ Setup daemon to fetch RSS feeds
 -------------------------------
 Create ``~/etc/services.d/ttrss.ini`` with the following content:
 
-.. warning:: Replace ``<isabell>`` with your username!
+.. code-block:: ini
+
+ [program:ttrss]
+ directory=/home/<username>/html/
+ command=/home/<username>/html/update_daemon2.php --quiet
+ redirect_stderr=true
+
+In our example this would be:
 
 .. code-block:: ini
 
  [program:ttrss]
- directory=/home/isabell/html/tt-rss/
- command=/home/isabell/html/tt-rss/update_daemon2.php --quiet
+ directory=/home/isabell/html/
+ command=/home/isabell/html/update_daemon2.php --quiet
  redirect_stderr=true
 
 Tell ``supervisord`` to refresh its configuration and start the service:
@@ -153,7 +155,7 @@ Create the file ``~/bin/ttrss-update`` with the content
 ::
 
  #/bin/sh
- cd /home/isabell/html/tt-rss
+ cd /home/isabell/html
  git pull
  supervisorctl restart ttrss
 
@@ -182,7 +184,7 @@ If you don't want to get a mail for each update you need to add the line ``MAILT
 Finishing installation
 ======================
 
-Point your browser to https://isabell.uber.space/tt-rss logon and add your first RSS feed!
+Point your browser to https://isabell.uber.space logon and add your first RSS feed!
 
 
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
