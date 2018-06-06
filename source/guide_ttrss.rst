@@ -88,7 +88,7 @@ Replace <username> with your own user.
 Configure database and domain
 -----------------------------
 
-Now you should reach your installation under the URL ``https://<username>.uber.space/tt-rss`` (would be ``https://isabell.uber.space/tt-rss`` in our example).
+Now you should reach your installation under the URL ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example).
 Open the URL and set the Database settings to your MySQL hostname, username and password: the hostname is localhost and you should know your MySQL credentials by now. If you don’t, start reading again at the top.
 
 Under other settings the domain https://isabell.uber.space should be shown.
