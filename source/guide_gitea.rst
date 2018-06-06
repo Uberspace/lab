@@ -57,7 +57,7 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v42.0.0/gitea-42.0.0-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.4.2/gitea-1.4.2-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -68,7 +68,7 @@ make sure that the file can be executed.
 
   2018-03-25 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [52960072/52960072]
   [isabell@stardust ~]$ sha256sum gitea/gitea
-  6914f61121847bf7aad66ec63079fbf84c3be91ac9b0aade16e92f657155cd39  bin/gitea
+  e14e54f334ce022d2026d0801da1ed1bf3bcba751b16fb290bae4d10d14482e9  gitea/gitea
   [isabell@stardust ~]$ chmod +x gitea/gitea
   [isabell@stardust ~]$
 
@@ -121,17 +121,19 @@ Create ``~/etc/services.d/gitea.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username!
 
+.. warning:: Replace ``<yourport>`` with your port!
+
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/<username>/gitea/gitea web
+  command=/home/<username>/gitea/gitea web -port <yourport>
 
 In our example this would be:
 
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/isabell/gitea/gitea web
+  command=/home/isabell/gitea/gitea web -port 9000
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
