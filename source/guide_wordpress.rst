@@ -92,6 +92,6 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 
 ----
 
-Tested with WordPress 4.9.5, Uberspace 7.1.2
+Tested with WordPress 4.9.6, Uberspace 7.1.2
 
 .. authors::
