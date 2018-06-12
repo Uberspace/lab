@@ -163,7 +163,7 @@ Then make it executable
 
 ::
 
- [isabell@stardust ~]$ chmode +x ~/bin/ttrss-update
+ [isabell@stardust ~]$ chmod +x ~/bin/ttrss-update
 
 Now add a line to your crontab to update it daily.
 
