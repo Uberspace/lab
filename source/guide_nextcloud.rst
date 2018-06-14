@@ -49,7 +49,7 @@ Installation
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd /home/$USER/html/
  [isabell@stardust html]$ curl https://download.nextcloud.com/server/releases/latest.tar.bz2 | tar -xjf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -76,14 +76,14 @@ Add the following cronjob to your crontab_:
 
 ::
 
- *  *  *  *  * php -f /var/www/virtual/$USER/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ *  *  *  *  * php -f /home/$USER/html/cron.php > /home/$USER/logs/nextcloud-cron.log 2>&1
 
 Memcaching
 ----------
 
 To further enhance perfomance, enable Memcaching.
 
-To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
+To enable Memcaching (APCu), add the following line to your /home/$USER/html/config/config.php:
 
 .. code-block:: console
  :emphasize-lines: 5
