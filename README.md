@@ -3,6 +3,10 @@
 The UberLab aims to provide various tutorials on how to
 setup tools and software inside an uberspace on U7.
 
+## Official Version
+
+The official version can be found here: https://lab.uberspace.de/
+
 ## Development
 
 Pushing for each and every change is fun, but can take some
