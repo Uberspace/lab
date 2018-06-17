@@ -76,7 +76,7 @@ Add the following cronjob to your crontab_:
 
 ::
 
- *  *  *  *  * php -f /var/www/virtual/$USER/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */15  *  *  *  * php -f /var/www/virtual/$USER/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
 Memcaching
 ----------
