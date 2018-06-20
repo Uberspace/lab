@@ -57,7 +57,7 @@ Clone the Tiny Tiny RSS repository
 ----------------------------------
 
 As Tiny Tiny RSS uses a rolling release model with the git master branch as current stable version, we
-wil use git to download the software. So go to the webroot and clone Tiny Tiny RSS.
+will use git to download the software. So go to the webroot and clone Tiny Tiny RSS.
 
 ::
 
