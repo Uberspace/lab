@@ -43,7 +43,17 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of the Nextcloud and extract it:
+If you want to install Nextcloud into a subfolder of your domain, create a new folder and navigate to it:
+::
+
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust ~]$ mkdir nextcloud
+ [isabell@stardust ~]$ cd nextcloud/
+ [isabell@stardust nextcloud]$
+
+If you want to install nextclod into your `document root`_, just navigate with ``cd`` to your `document root`_.
+
+Now download the latest release of the Nextcloud and extract it:
 
 .. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
