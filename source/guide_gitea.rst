@@ -85,7 +85,7 @@ Since Gitea uses its own webserver, you need to find a free port and bind your a
 Change the configuration
 ------------------------
 
-You need to create a custom diretory
+You need to create a custom directory
 
 ::
 
