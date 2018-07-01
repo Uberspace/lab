@@ -57,7 +57,7 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.4.2/gitea-1.4.2-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.4.3/gitea-1.4.3-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -68,7 +68,7 @@ make sure that the file can be executed.
 
   2018-03-25 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [52960072/52960072]
   [isabell@stardust ~]$ sha256sum gitea/gitea
-  e14e54f334ce022d2026d0801da1ed1bf3bcba751b16fb290bae4d10d14482e9  gitea/gitea
+  fe60fca294baa24fe4862bbcfe29c92d5a8a883a48aadb80f3a1270cf5de9bd4  gitea/gitea
   [isabell@stardust ~]$ chmod +x gitea/gitea
   [isabell@stardust ~]$
 
@@ -175,6 +175,6 @@ version is available, repeat the "Installation" step followed by ``supervisorctl
 
 ----
 
-Tested with Gitea 1.4.0, Uberspace 7.1.3
+Tested with Gitea 1.4.3, Uberspace 7.1.3
 
 .. authors::
