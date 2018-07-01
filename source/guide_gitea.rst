@@ -156,13 +156,30 @@ Point your browser to your gitea URL and finish the installation.
 
 .. note:: Using the same public key for Gitea and your Uberspace will prevent you from logging in with this key via SSH. Login via password still works as expected, you can use the Dashboard_ to manage your keys.
 
+SSH key management through gitea
+================================
+
+If you want that gitea manages SSH authorized_keys you can do:
+
+::
+
+ [isabell@stardust ~]$ ln -s ~/.ssh ~/gitea/
+
+Add your key in gitea and then change the line in ``.ssh/authorized_keys`` to the following:
+
+::
+
+ command="if [ -t 0 ]; then bash; elif [[ $SSH_ORIGINAL_COMMAND =~ ^(scp|rsync|mysqldump).* ]]; then eval $SSH_ORIGINAL_COMMAND; else /home/<username>/gitea/gitea serv key-1 --config='/home/<username>/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
+
+.. warning:: Replace ``<username>`` with your username and put your public key after ``ssh-``!
+
 Updates
 =======
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If a newer
-version is available, repeat the "Installation" step followed by ``supervisorctl restart gitea`` to restart gitea.
+version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the "Installation" step followed by ``supervisorctl start gitea`` to restart gitea.
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
