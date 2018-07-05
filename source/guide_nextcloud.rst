@@ -127,6 +127,23 @@ Nextcloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the `manual <https://manual.uberspace.de/en/web-security.html>`_.
 
+Syncing with macOS
+------------------
+
+If you plan on using the contacts and calendars apps and syncing them with macOS you should add some HTTP redirects. 
+MacOS expects to find the CalDAV and CardDAV endpoints with specific URLs and thus we need to add some webserver configuration to
+make the URLs work as expected.
+Edit /var/www/virtual/$USER/html/.htaccess and add the following two lines
+
+::
+
+ Redirect 301 /.well-known/carddav /remote.php/dav
+ Redirect 301 /.well-known/caldav /remote.php/dav
+
+::
+
+Follow the instructions in the NextCloud `manual <https://docs.nextcloud.com/server/13/user_manual/pim/sync_ios.html>`_ to set up the accounts on your devices.
+
 Updates
 =======
 
