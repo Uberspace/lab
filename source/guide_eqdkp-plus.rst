@@ -6,9 +6,9 @@
   .. image:: _static/images/eqdkp-plus.svg
       :align: center
 
-#########
+##########
 EQdkp Plus
-#########
+##########
 
 EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP and distributed unter the AGPLv3 licence. 
 It is focused on supporting guilds and clans playing online games, especially MMORPGs. Therefore it brings tools for planning raids or distributing loot or points like DKP (Dragon Kill Points).
@@ -66,6 +66,7 @@ You will need to enter the following information:
    [isabell@stardust html]$ openssl rand -base64 32
    SuperSecretPassword
    [isabell@stardust html]$ 
+
   * Make additional settings like setting first day of week etc. The script path setting is automatically detected and only needs to be changed if the detection will fail. The script path is the subfolder of your domain. If you follow this tutorial, it is ``/``.
   * Administrator username and password: choose a username (maybe not *admin*) and a strong password for the admin user
 
