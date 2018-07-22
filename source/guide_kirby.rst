@@ -73,7 +73,7 @@ To install the Kirby Starterkit_ into your `document root`_, you just need to us
 That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit. 
 
 Configuration
-============
+=============
 
 When you're ready to launch your website with Kirby you need to purchase a license_. To use your license edit the configuration file ``~/html/site/config/config.php`` and fill in your licence key.
 
@@ -85,7 +85,7 @@ When you're ready to launch your website with Kirby you need to purchase a licen
 
 
 Best practices
-============
+==============
 
 If you want to avoid the demo code and contents of the Kirby Starterkit, there is a minimal setup available known as Plainkit_. You can install it by appending the kit parameter to the install command ``kirby install html --kit plainkit``. However, the use is only recommended for users who are already familiar with Kirby. 
 

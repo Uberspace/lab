@@ -1,6 +1,6 @@
-#########
+##########
 ⚛️ Uberlab
-#########
+##########
 
 .. image:: _static/images/atom.svg
 

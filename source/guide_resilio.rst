@@ -56,7 +56,7 @@ Create ``~/html/.htaccess`` with the following content:
 
 .. warning:: Replace ``<yourport>`` with your port!
 
-.. code-block:: .htaccess
+.. code-block:: apacheconf
 
  RewriteEngine On
  RewriteRule (.*) http://localhost:<yourport>/$1 [P]
@@ -64,7 +64,7 @@ Create ``~/html/.htaccess`` with the following content:
 
 In our example this would be:
 
-.. code-block:: .htaccess
+.. code-block:: apacheconf
 
  RewriteEngine On
  RewriteRule (.*) http://localhost:9000/$1 [P]

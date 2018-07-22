@@ -93,14 +93,15 @@ Open the URL and set the Database settings to your MySQL hostname, username and 
 
 Under other settings the domain https://isabell.uber.space should be shown.
 Now click on `Test Configuration`. If everything worked you should see the messages
+
  * Configuration check succeeded.
  * Database test succeeded.
 
 Click on `Initialize Database`. After that the generated configuration will be shown. Click on `Save configuration` to save it.
 If you need to change it afterwards you will find it under ``~/html/config-php``.
 
- Configure users
- ---------------
+Configure users
+---------------
 
  Now you can reach Tiny Tiny RSS under https://isabell.uber.space for the first time. Log in with 
 
