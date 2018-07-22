@@ -40,7 +40,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  ? Enter your Ghost database name: isabell_ghost
  ✔ Configuring Ghost
  ✔ Setting up instance
- ℹ Setting up "isabell" mysql user [skipped]
+ ℹ Setting up "ghost" mysql user [skipped]
  ℹ Setting up Nginx [skipped]
  Task ssl depends on the 'nginx' stage, which was skipped.
  ℹ Setting up SSL [skipped]
