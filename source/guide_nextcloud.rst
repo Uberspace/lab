@@ -132,6 +132,15 @@ Updates
 
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
+If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
+In most cases this happens due to wrong owner rights which can be fixed with finishing the update via console and fixing the rights.
+::
+ 
+ [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isaball@stardust ~]$ php occ upgrade
+ [isaball@stardust ~]$ restorecon -R .
+ [isabell@stardust ~]$
+
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
 .. _ownCloud: https://owncloud.org
