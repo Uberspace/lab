@@ -40,7 +40,7 @@ $(function () {
 
   function formatAuthor (ele) {
     const text = ele.html().trim()
-    const idx = text.search(/[^\w\s]/)
+    const idx = text.search(/[^A-Za-z\sÂÀÅÃÄâàáåãäÇçćčđÉÊÈËéêèëÓÔÒÕØÖóôòõöŠšßÚÛÙÜúûùüÝŸýÿŽž]/)
     const author = $('<span class="author"></span>')
     const extra = $('<small></small>')
     let extraText = ''
