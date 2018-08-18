@@ -7,9 +7,9 @@
   .. image:: _static/images/mailman.jpg
       :align: center
 
-###########
-Mailman 2.1
-###########
+#######
+Mailman
+#######
 
 Mailman_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
 
@@ -50,9 +50,9 @@ Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ an
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/isabell
- [isabell@stardust ~]$ wget https://ftp.gnu.org/gnu/mailman/mailman-2.1.29.tgz
- [isabell@stardust ~]$ tar xzvf mailman-2.1.29.tgz
- [isabell@stardust ~]$ cd mailman-2.1.29
+ [isabell@stardust ~]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
+ [isabell@stardust ~]$ tar xzvf mailman-99.9.9.tgz
+ [isabell@stardust ~]$ cd mailman-99.9.9
  [isabell@stardust ~]$
 
 Step 2
@@ -66,11 +66,15 @@ Create the installation folder
 
 and run the configure script, telling Mailman where to install and what user/groups to use for its binaries:
 
+* ``--with-username``: Specify a different username than mailman. The value of this option can be an integer user id or a user name. 
+* ``--with-groupname``: Specify a different group than mailman. The value of this option can be an integer group id or a group name. 
+* ``--prefix``: Standard GNU configure option which changes the base directory that Mailman is installed into. By default $prefix is /usr/local/mailman
+* ``--with-mail-gid``: Specify an alternative group for running scripts via the mail wrapper.
+* ``--with-cgi-gid``: Specify an alternative group for running scripts via the CGI wrapper.
+
 ::
 
- [isabell@stardust ~]$ ./configure --with-username=isabell --with-groupname=isabell \
-  --prefix=/var/www/virtual/isabell/mailman/ \
-  --with-mail-gid=isabell --with-cgi-gid=isabell
+ [isabell@stardust ~]$ ./configure --with-username=isabell --with-groupname=isabell --prefix=/var/www/virtual/isabell/mailman/ --with-mail-gid=isabell --with-cgi-gid=isabell
  [isabell@stardust ~]$
 
 After configuration is finished, you may compile and install the package by running
@@ -101,7 +105,13 @@ If you want the webinterface to be available publically, we need to create a cou
  [isabell@stardust ~]$ cd /var/www/virtual/isabell/html
  [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/cgi-bin ./mailman
  [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/archives/public ./pipermail
- [isabell@stardust ~]$ printf "Options +ExecCGI\nSetHandler cgi-script" > /var/www/virtual/isabell/mailman/cgi-bin/.htaccess
+
+Create the file ``/var/www/virtual/isabell/mailman/cgi-bin/.htaccess`` with the following content:
+
+::
+
+ Options +ExecCGI
+ SetHandler cgi-script
 
 Finally, we need to adjust file permissions for the Mailman_ cgi-scripts to run:
 
@@ -134,8 +144,8 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
 
 After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``~/addlist.sh listname`` if you stored it as ``addlist.sh`` and want to create aliases for a list ``listname``).
 
-Step 6
-------
+Configuration
+=============
 
 By now we have installed all the necessary files - let's tell them what they should actually do. In ``/var/www/virtual/isabell/mailman/Mailman``, you will find two important files for configuration: ``Defaults.py`` and ``mm_cfg.py``. In the former, you will be able to review every settings default value. In the latter, you can change the value of each setting.
 
@@ -165,8 +175,12 @@ and running
 
  [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/withlist -l -a -r fix_url
 
-Step 7
-------
+
+Finishing Installation
+======================
+
+Create site-wide mailinglist
+----------------------------
 
 Now we are ready to create the administrative (site-wide) mailing list! Simply run
 
@@ -176,8 +190,8 @@ Now we are ready to create the administrative (site-wide) mailing list! Simply r
 
 and follow the on-screen instructions. Don't forget to create the .qmail-aliases afterwards!
 
-Step 8
-------
+Install cronjobs
+----------------
 
 Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. To install them for your user, run:
 
@@ -185,8 +199,8 @@ Mailman_ offers a couple of cronjobs to perform some maintenance actions at regu
 
  [isabell@stardust ~]$ crontab /var/www/virtual/isabell/mailman/cron/crontab.in
 
-Step 9
-------
+Setup daemon
+------------
 
 Create ``~/etc/services.d/mailman.ini`` with the following content (insert your username!):
 
