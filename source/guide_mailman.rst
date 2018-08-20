@@ -126,7 +126,7 @@ Step 5
 
 Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. The following script is based on the script provided in the official installation instructions and may be used by placing it in your ``~/bin`` folder (for example as ``addlist.sh``):
 
-::
+.. code :: bash
 
  #!/bin/sh
  if [ $# = 1 ]; then
@@ -144,19 +144,37 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
  echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > .qmail-$i-unsubscribe
  fi
 
+Don't forget to make the script executable:
+
+::
+
+ [isabell@stardust ~]$ chmod +x ~/bin/addlist.sh
+ [isabell@stardust ~]$
+
 After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``addlist.sh listname`` if you stored it as ``~/bin/addlist.sh`` and want to create aliases for a list ``listname``).
 
 Configuration
 =============
 
-By now we have installed all the necessary files - let's tell them what they should actually do. In ``/var/www/virtual/isabell/mailman/Mailman``, you will find two important files for configuration: ``Defaults.py`` and ``mm_cfg.py``. In the former, you will be able to review every settings default value. In the latter, you can change the value of each setting.
+By now we have installed all the necessary files - let's tell them what they should actually do.
 
-For our Uberspace, we should set ``DEFAULT_URL_HOST`` and ``DEFAULT_EMAIL_HOST`` to the name of your Uberspace host (i.e. ``stardust.uberspace.de``).
+Step 1
+------
 
-You will also need to create a mailbox_ for Mailman to use and set the following options respectively:
+Create a mailbox_ for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
 
-::
+Step 2
+------
 
+Set the following options in ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
+
+.. code:: python
+
+ # configure default domains to use for the webinterface and e-mail addresses
+ DEFAULT_URL_HOST = 'isabell.uber.space'
+ DEFAULT_EMAIL_HOST = 'isabell.uber.space'
+
+ # configure mailmans mailbox
  SMTP_AUTH = True
  SMTP_USE_TLS = True
  SMTPHOST = 'stardust.uberspace.de'
@@ -165,17 +183,12 @@ You will also need to create a mailbox_ for Mailman to use and set the following
  SMTP_USER = 'mailmanbox@isabell.uber.space'
  SMTP_PASSWD = 'betterPWthanThis'
 
-Additionally, you may enable HTTPS for your interface by setting:
-
-::
-
+ # tell mailman to use HTTPS
  DEFAULT_URL_PATTERN = 'https://%s/mailman'
 
-and running
+You can look up the meaning  and default value of each variable in the file ``Defaults.py`` in the same folder.
 
-::
-
- [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/withlist -l -a -r fix_url
+.. warning:: Do not modify the ``Defaults.py`` as it may be overwritten on updates!
 
 
 Finishing Installation
