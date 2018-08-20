@@ -31,11 +31,13 @@ Mailman is released under the GNU General Public License
 Prerequisites
 =============
 
-Your URL needs to be setup:
+Your URL needs to be setup for web and mail:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
+ isabell.uber.space
+ [isabell@stardust ~]$ uberspace mail domain list
  isabell.uber.space
  [isabell@stardust ~]$
 
