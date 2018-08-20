@@ -203,7 +203,9 @@ Now we are ready to create the administrative (site-wide) mailing list! Simply r
 
  [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/newlist mailman
 
-and follow the on-screen instructions. Don't forget to create the .qmail-aliases afterwards!
+and follow the on-screen instructions.
+
+.. warning:: Don't forget to create the .qmail-aliases afterwards!
 
 Install cronjobs
 ----------------
