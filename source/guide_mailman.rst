@@ -124,7 +124,7 @@ Finally, we need to adjust file permissions for the Mailman_ cgi-scripts to run:
 Step 5
 ------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. The following script is based on the script provided in the official installation instructions and may be used by placing it in your Uberspace home-folder:
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. The following script is based on the script provided in the official installation instructions and may be used by placing it in your ``~/bin`` folder (for example as ``addlist.sh``):
 
 ::
 
@@ -144,7 +144,7 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
  echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > .qmail-$i-unsubscribe
  fi
 
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``~/addlist.sh listname`` if you stored it as ``addlist.sh`` and want to create aliases for a list ``listname``).
+After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``addlist.sh listname`` if you stored it as ``~/bin/addlist.sh`` and want to create aliases for a list ``listname``).
 
 Configuration
 =============
