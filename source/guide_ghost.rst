@@ -52,8 +52,8 @@ Use ``npm`` to install ``ghost-cli`` globally:
 
  [isabell@stardust ~]$ npm i -g ghost-cli
  [...]
- + ghost-cli@1.5.2
- added 470 packages in 16.495s
+ + ghost-cli@1.9.0
+ added 381 packages in 21.677s
  [isabell@stardust ~]$
 
 Install Ghost
@@ -86,7 +86,7 @@ You will need to enter the following information:
  ✔ Checking for a MySQL installation
  ✔ Checking for latest Ghost version
  ✔ Setting up install directory
- ✔ Downloading and installing Ghost v1.21.2
+ ✔ Downloading and installing Ghost v2.0.0
  ✔ Finishing install process
  ? Enter your blog URL: https://isabell.uber.space
  ? Enter your MySQL hostname: localhost
@@ -193,6 +193,7 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  [isabell@stardust ~]$ cd ~/ghost/versions/
  [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
  [isabell@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
+ Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
 
 Install the required ``node`` modules:
@@ -237,6 +238,6 @@ If it's not in state RUNNING, check your configuration.
 
 ----
 
-Tested with Ghost 1.22.1, Uberspace 7.1.1
+Tested with Ghost 2.0.0, Uberspace 7.1.11
 
 .. authors::
