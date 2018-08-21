@@ -114,5 +114,8 @@ Scripts/
 # mypy
 .mypy_cache/
 
+### PhpStorm ###
+.idea/
+
 
 # End of https://www.gitignore.io/api/python
