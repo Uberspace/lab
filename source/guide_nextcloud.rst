@@ -133,7 +133,7 @@ Updates
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
 If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
-In most cases this happens due to wrong owner rights which can be fixed with finishing the update via console and fixing the rights.
+In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
  
  [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
@@ -153,6 +153,7 @@ In most cases this happens due to wrong owner rights which can be fixed with fin
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html
 .. _crontab: https://manual.uberspace.de/en/daemons-cron.html
+.. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 
 ----
