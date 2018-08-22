@@ -43,17 +43,18 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Install ghost-cli
------------------
+Install ghost-cli and knex-migrator
+-----------------------------------
 
-Use ``npm`` to install ``ghost-cli`` globally:
+Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally:
 
 ::
 
- [isabell@stardust ~]$ npm i -g ghost-cli
+ [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator
  [...]
- + ghost-cli@1.9.0
- added 381 packages in 21.677s
+ + ghost-cli@1.9.1
+ + knex-migrator@3.2.3
+ added 690 packages in 31.543s
  [isabell@stardust ~]$
 
 Install Ghost
@@ -185,6 +186,9 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+Download and unzip new version
+------------------------------
+
 Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
@@ -196,7 +200,8 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
 
-Install the required ``node`` modules:
+Install the required ``node`` modules
+-------------------------------------
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -207,13 +212,27 @@ Install the required ``node`` modules:
  added 91 packages, removed 134 packages and updated 544 packages in 27.303s
  [isabell@stardust content]$
 
-Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
+Migrate your database
+---------------------
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ rm ~/ghost/current
- [isabell@stardust ~]$ ln -s $HOME/ghost/versions/23.42.1 $HOME/ghost/current
+ [isabell@stardust ~]$ cd ~/ghost
+ [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --init --mgpath ./versions/23.42.1/
+ [2018-08-22 14:18:21] INFO Creating database backup
+ […]
+ [2018-08-22 16:18:23] INFO Finished database migration! 
+
+Replace the ``current`` symlink and link to the newest version
+--------------------------------------------------------------
+
+Again, replace the version number with the newest version.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [isabell@stardust ~]$ ln -sfn $HOME/ghost/versions/23.42.1 $HOME/ghost/current
  [isabell@stardust ~]$ supervisorctl restart ghost
  ghost: stopped
  ghost: started
