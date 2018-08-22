@@ -107,6 +107,7 @@ If you want the webinterface to be available publically, we need to create a cou
  [isabell@stardust ~]$ cd /var/www/virtual/isabell/html
  [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/cgi-bin ./mailman
  [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/archives/public ./pipermail
+ [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/icons ./icons
 
 Create the file ``/var/www/virtual/isabell/mailman/cgi-bin/.htaccess`` with the following content:
 
@@ -131,17 +132,17 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
  #!/bin/sh
  if [ $# = 1 ]; then
  i=$1
- echo Making links to $i in the current directory...
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman post $i" > .qmail-$i
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman admin $i" > .qmail-$i-admin
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman bounces $i" > .qmail-$i-bounces
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman confirm $i" > .qmail-$i-confirm
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman join $i" > .qmail-$i-join
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman leave $i" > .qmail-$i-leave
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman owner $i" > .qmail-$i-owner
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman request $i" > .qmail-$i-request
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman subscribe $i" > .qmail-$i-subscribe
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > .qmail-$i-unsubscribe
+ echo Making links to $i in home directory...
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman post $i" > ~/.qmail-$i
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman admin $i" > ~/.qmail-$i-admin
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman bounces $i" > ~/.qmail-$i-bounces
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman confirm $i" > ~/.qmail-$i-confirm
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman join $i" > ~/.qmail-$i-join
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman leave $i" > ~/.qmail-$i-leave
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman owner $i" > ~/.qmail-$i-owner
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman request $i" > ~/.qmail-$i-request
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman subscribe $i" > ~/.qmail-$i-subscribe
+ echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > ~/.qmail-$i-unsubscribe
  fi
 
 Don't forget to make the script executable:
@@ -238,6 +239,18 @@ Tell supervisord_ to refresh and start the qrunner:
  mailman                          RUNNING   pid 3226, uptime 0:03:42
 
 If it is not in state ``RUNNING``, check your configuration and logs.
+
+Redirect HTTP-requests
+----------------------
+
+If you don't want a pesky HTTP 403 (Forbidden) error when someone calls ``https://isabell.uber.space/mailman``, you can extend the ``.htaccess`` in ``/var/www/virtual/isabell/mailman/cgi-bin`` with the following lines and they will be redirected to the ``listinfo`` page:
+
+::
+
+ RewriteEngine on
+ RewriteBase /
+ RewriteCond %{REQUEST_URI} ^\/mailman\/$
+ RewriteRule .* mailman/listinfo [R=301,L]
 
 All done! Enjoy using your new list manager available at ``https://isabell.uber.space/mailman``!
 
