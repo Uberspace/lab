@@ -77,7 +77,7 @@ Best practices
 Security
 --------
 
-The admin interface is disabled by default. If you enable it, you should change the standard password.
+The admin interface is disabled by default. If you enable it, you should change the standard password in ``addons/admin.php``.
 
 Updates
 =======
@@ -91,7 +91,7 @@ Check minim's feed_ for the latest version and copy the link to the ``.zip`` arc
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://minim.one/downloads/minim-23.42.1.zip
- [isabell@stardust html]$ cp -r minim minim-backup
+ [isabell@stardust html]$ cp -r minim/config minim-config-backup
  [isabell@stardust html]$ unzip minim-23.42.1.zip -d minim-23.42.1
  [isabell@stardust html]$ mv minim-23.42.1/minim/config minim-23.42.1/minim/config-new
  [isabell@stardust html]$ cp -r minim-23.42.1/minim ./
@@ -99,7 +99,7 @@ Check minim's feed_ for the latest version and copy the link to the ``.zip`` arc
  [isabell@stardust html]$
 
 Check if the configuration_ changed in ``config-new/config.php`` and your ``config/config.php`` (happens very rarely).
-If everything works alright you can delete your ``minim-backup`` and the ``config-new`` directories.
+If everything works alright you can delete your ``minim-config-backup`` and the ``config-new`` directories.
 
 .. _minim: https://minim.one/
 .. _domains: https://manual.uberspace.de/en/web-domains.html
@@ -110,6 +110,6 @@ If everything works alright you can delete your ``minim-backup`` and the ``confi
 
 ----
 
-Tested with minim 0.5.0.1, Uberspace 7.1.6
+Tested with minim 0.9.0, Uberspace 7.1.12
 
 .. authors::
