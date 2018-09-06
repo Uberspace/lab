@@ -87,11 +87,10 @@ Updates
 Check minim's feed_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
- :emphasize-lines: 2,4,5,6,7
+ :emphasize-lines: 2,3,4,5,6
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://minim.one/downloads/minim-23.42.1.zip
- [isabell@stardust html]$ cp -r minim/config minim-config-backup
  [isabell@stardust html]$ unzip minim-23.42.1.zip -d minim-23.42.1
  [isabell@stardust html]$ mv minim-23.42.1/minim/config minim-23.42.1/minim/config-new
  [isabell@stardust html]$ cp -r minim-23.42.1/minim ./
@@ -99,7 +98,7 @@ Check minim's feed_ for the latest version and copy the link to the ``.zip`` arc
  [isabell@stardust html]$
 
 Check if the configuration_ changed in ``config-new/config.php`` and your ``config/config.php`` (happens very rarely).
-If everything works alright you can delete your ``minim-config-backup`` and the ``config-new`` directories.
+If everything works alright you can delete the ``config-new`` directory.
 
 .. _minim: https://minim.one/
 .. _domains: https://manual.uberspace.de/en/web-domains.html
