@@ -6,9 +6,9 @@
   .. image:: _static/images/gitlab-logo.png
       :align: center
 
-#######
+#############
 Gitlab Runner
-#######
+#############
 
 GitLab Runner is the open source project that is used to run your jobs and send the results back to `GitLab`_. It is used in conjunction with `GitLab`_ CI, the open-source continuous integration service included with `GitLab`_ that coordinates the jobs.
 
@@ -82,14 +82,12 @@ Register the runner
 Configure the supervisord service
 =================================
 
-Create a shell script that keeps the call for the runner:
+Create a shell script (e.g. ``~/bin/gitlab-runner.sh``) that keeps the call for the runner:
 
 ::
 
-  [isabell@stardust ~]$ cat > ~/bin/gitlab-runner.sh <<__EOF__
   #!/bin/bash
   /home/$USER/bin/gitlab-runner-11.1.0 run --working-directory=/home/$USER/gitlab-runner/
- __EOF__
 
 Make it executable:
 
@@ -97,22 +95,28 @@ Make it executable:
 
   [isabell@stardust ~]$ chmod +x ~/bin/gitlab-runner.sh
 
-Create supervisord ini:
+Create supervisord ini (e.g. ``~/etc/services.d/gitlab-runner.ini``:
 
 ::
 
-  [isabell@stardust ~]$ cat > ~/etc/services.d/gitlab-runner.ini <<__EOF__
   [program:gitlab-runner]
   command=/home/$USER/bin/gitlab-runner.sh
-  __EOF__
 
 
-Start the runner
------------------
+Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
-  [isabell@stardust ~]$ supervisorctl start gitlab-runner
+ [isabell@stardust ~]$ supervisorctl reread
+ gitlab-runner: available
+ [isabell@stardust ~]$ supervisorctl update
+ gitlab-runner: added process group
+ [isabell@stardust ~]$ supervisorctl status
+ gitlab-runner                   RUNNING   pid 26020, uptime 0:03:14
+ [isabell@stardust ~]$
+
+
+If it’s not in state RUNNING, check your configuration.
 
 .. _Gitlab: https://gitlab.com
 .. _Gitlab Runner docs: https://docs.gitlab.com/runner/
