@@ -151,8 +151,8 @@ All further information can be found on the official download_ page.
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _Composer: https://getcomposer.org/
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _feed: https://github.com/contao/managed-edition/releases.atom
-.. _releases: https://github.com/contao/managed-edition/releases
+.. _feed: https://github.com/contao/contao/releases.atom
+.. _releases: https://github.com/contao/contao/releases
 .. _news: https://contao.org/news.html
 .. _download: https://contao.org/download.html
 
