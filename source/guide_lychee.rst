@@ -78,8 +78,8 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 
 
 .. _Lychee: https://lychee.electerious.com/
-.. _GitHub: https://github.com/electerious/Lychee/releases
-.. _Feed: https://github.com/electerious/Lychee/releases.atom
+.. _GitHub: https://github.com/LycheeOrg/Lychee/releases
+.. _Feed: https://github.com/LycheeOrg/Lychee/releases.atom
 .. _PHP: https://manual.uberspace.de/en/lang-php.html
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
