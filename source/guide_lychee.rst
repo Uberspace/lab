@@ -44,7 +44,7 @@ Clone the Lychee code from GitHub_:
 
 ::
 
- [isabell@stardust ~]$ git clone https://github.com/electerious/Lychee ~/html
+ [isabell@stardust ~]$ git clone https://github.com/LycheeOrg/Lychee ~/html
  Cloning into '/home/isabell/html'...
  remote: Counting objects: 10458, done.
  remote: Compressing objects: 100% (8/8), done.
