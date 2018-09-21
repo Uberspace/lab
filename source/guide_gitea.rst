@@ -31,14 +31,14 @@ You need a database for gitea:
 
 .. warning:: Replace ``<username>`` with your username!
 
-.. code-block:: ini
+.. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_gitea"
   [isabell@stardust ~]$
 
 In our example this would be:
 
-.. code-block:: ini
+.. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_gitea"
   [isabell@stardust ~]$
@@ -96,7 +96,7 @@ You need to create a custom directory
 and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
 desired port, domain and disable public registration:
 
-::
+.. code-block:: ini
 
   [server]
   HTTP_PORT = 9000
@@ -167,7 +167,7 @@ If you want that gitea manages SSH authorized_keys you can do:
 
 Add your key in gitea and then change the line in ``.ssh/authorized_keys`` to the following:
 
-::
+.. code-block:: sh
 
  command="if [ -t 0 ]; then bash; elif [[ $SSH_ORIGINAL_COMMAND =~ ^(scp|rsync|mysqldump).* ]]; then eval $SSH_ORIGINAL_COMMAND; else /home/<username>/gitea/gitea serv key-1 --config='/home/<username>/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
 
