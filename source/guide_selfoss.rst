@@ -2,7 +2,7 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
-.. sidebar:: About
+.. sidebar:: Logo
 
   .. image:: _static/images/selfoss.png
       :align: center
