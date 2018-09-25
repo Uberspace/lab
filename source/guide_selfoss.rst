@@ -86,7 +86,7 @@ Setup your database
 
 We recommend setting up a new database for selfoss.
 
-::
+.. code-block:: console
  :emphasize-lines: 1
  
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_selfoss"
