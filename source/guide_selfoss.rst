@@ -88,7 +88,7 @@ We recommend setting up a new database for selfoss.
 
 ::
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE $USER_selfoss"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_selfoss"
 
 Configuration
 -------------
@@ -96,7 +96,7 @@ Configuration
 Copy the ``default.ini`` to ``config.ini``:
 
 ::
- 
+ :emphasize-lines: 1
  [isabell@stardust isabell]$ cd html
  [isabell@stardust html]$ cp default.ini config.ini
  [isabell@stardust html]$ 
