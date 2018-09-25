@@ -1,4 +1,4 @@
-.. author:: Salocin <hallo@uberspace.de>
+.. author:: Nico Graf <hallo@uberspace.de>
 .. highlight:: console
 
 .. sidebar:: Logo
