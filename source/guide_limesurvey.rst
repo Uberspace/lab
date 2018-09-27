@@ -47,7 +47,7 @@ You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
  --password=MySuperSecretPassword
  [isabell@stardust ~]$
 
-Your blog URL needs to be setup:
+Your survey URL needs to be setup:
 
 ::
 
