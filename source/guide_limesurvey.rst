@@ -68,6 +68,9 @@ Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link
  
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
+ [...]
+ 2018-10-02 16:01:50 (10.0 MB/s) - ‘stable-release?download=4711:limesurvey4711%20180926targz’ saved [72359513/72359513]
+ [isabell@stardust html]$ 
 
 
 Extract archive
