@@ -76,11 +76,6 @@ Extract archive
 ::
 
  [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1
- […]
- limesurvey/admin/
- limesurvey/admin/admin.php
- limesurvey/admin/index.php
- limesurvey/.editorconfig
  [isabell@stardust html]$ 
 
 Configuration
@@ -93,13 +88,15 @@ We recommend to use a new database such as ``isabell_limesurvey`` for LimeSurvey
 Edit .htaccess
 ---------------
 
-Edit the ``.htaccess`` file and uncomment the following line:
+The default ``.htaccess`` includes a RewriteCond so that existing directories won't be rewritten, but for some reason it is commented out:
 
 .. code-block:: apacheconf
  
      #RewriteCond %{REQUEST_FILENAME} !-d
 
-So the full ``.htaccess`` file should look like this:
+
+
+Edit the ``.htaccess`` file and uncomment the line above, so the full ``.htaccess`` file should look like this:
 
 .. code-block:: apacheconf
  
