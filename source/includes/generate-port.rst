@@ -1,4 +1,4 @@
-.. code-block:: none
+.. code-block:: console
 
  [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
  9000

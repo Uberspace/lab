@@ -1,6 +1,6 @@
-#########
+##########
 ⚛️ Uberlab
-#########
+##########
 
 .. image:: _static/images/atom.svg
 
@@ -40,3 +40,5 @@ Thank you and have fun experimenting!
    hall_of_fame
    Repository <https://github.com/Uberspace/lab>
    Changelog <https://github.com/Uberspace/lab/commits/master>
+   Legal Notice <https://uberspace.de/imprint>
+   Privacy <https://uberspace.de/privacy>

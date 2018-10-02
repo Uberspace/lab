@@ -130,15 +130,12 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-If there is a new version available, you can get the code using git:
+If there is a new version available, you can update with the following command:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust html]$ git pull origin master
-  From https://github.com/wallabag/wallabag
-   * branch              master     -> FETCH_HEAD
-  Already up to date.
+  [isabell@stardust html]$ make update
   [isabell@stardust html]$
 
 
