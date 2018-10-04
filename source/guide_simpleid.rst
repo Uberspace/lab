@@ -91,7 +91,7 @@ In our example this would be:
  
 .. code-block:: php
 
- define('SIMPLEID_BASE_URL', 'https://isabella.uber.space/simpleid');
+ define('SIMPLEID_BASE_URL', 'https://isabell.uber.space/simpleid');
 
 Create identity
 ---------------
@@ -170,7 +170,7 @@ This will be the URL you'll have to use for registering with websites. We'll cre
 
 .. code-block:: php
 
- identity="https://isabella.uber.space/openid/"
+ identity="https://isabell.uber.space/openid/"
 
 .. warning:: Don't forget the closing ``/`` or you'll get an error if you try to use the identity.
 
@@ -191,8 +191,8 @@ Create the file index.htm with the following content:
 
  <html>
    <head>
-     <link rel="openid.server" href="https://isabella.uber.space/simpleid/" />
-     <link rel="openid2.provider" href="https://isabella.uber.space/simpleid/" />
+     <link rel="openid.server" href="https://isabell.uber.space/simpleid/" />
+     <link rel="openid2.provider" href="https://isabell.uber.space/simpleid/" />
    </head>
  </html>
 
