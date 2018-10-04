@@ -123,7 +123,7 @@ First we'll generate a random salt to make this secure as possible. You are free
 ::
 
  [isabell@stardust ~]$ date +%s | sha256sum | base64 | head -c 16 ; echo
- Y2MyZTNkYzI0OTA3
+ MySuperSecretSalt
  [isabell@stardust ~]$
  
 With this generated hash and your password in mind we can create the SHA256 hash with 100,000 iterations for the identity file.
