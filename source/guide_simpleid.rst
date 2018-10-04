@@ -1,6 +1,11 @@
 .. highlight:: console
 
 .. author:: Philipp Wensauer <mail@philippwensauer.com>
+
+.. sidebar:: Logo
+
+  .. image:: _static/images/simpleid.png
+      :align: center
       
 ##########
 SimpleID
@@ -47,8 +52,9 @@ Step 1 - Download & Extract
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget http://downloads.sourceforge.net/simpleid/simpleid-1.0.2.tar.gz
- [isabell@stardust isabell]$ tar -xzf simpleid-1.0.2.tar.gz
+ [isabell@stardust isabell]$ wget http://downloads.sourceforge.net/simpleid/simpleid-42.23.1.tar.gz
+ [isabell@stardust isabell]$ tar -xzf simpleid-42.23.1.tar.gz
+ [isabell@stardust ~]$
 
 Step 2 - Symlink
 ----------------
@@ -58,6 +64,7 @@ The folder containing the frontend needs to be accessible via web. To achieve th
 ::
 
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/simpleid/www/ ~/html/simpleid
+ [isabell@stardust ~]$
  
 Step 3 - Copy empty configuration
 ---------------------------------
@@ -65,12 +72,14 @@ Step 3 - Copy empty configuration
 ::
 
  [isabell@stardust isabell]$ cp /var/www/virtual/$USER/simpleid/www/config.php.dist /var/www/virtual/$USER/simpleid/www/config.php
+ [isabell@stardust ~]$
 
 Step 4 - Cleanup
 ----------------
 ::
 
- [isabell@stardust isabell]$ rm simpleid-1.0.2.tar.gz
+ [isabell@stardust isabell]$ rm simpleid-42.23.1.tar.gz
+ [isabell@stardust ~]$
  
 Configuration
 =============
@@ -102,7 +111,8 @@ You will need to create an identify file for every user of your SimpleID install
 
 ::
 
- [isabell@stardust isabell]$ cp /var/www/virtual/$USER/simpleid/identities/example.identity.dist /var/www/virtual/$USER/simpleid/identities/<username>.identity 
+ [isabell@stardust isabell]$ cp /var/www/virtual/$USER/simpleid/identities/example.identity.dist /var/www/virtual/$USER/simpleid/identities/<username>.identity
+ [isabell@stardust ~]$
 
 Before editing this file, we need to create a password/salt pair.
 
@@ -123,13 +133,14 @@ With this generated hash and your password in mind we can create the SHA256 hash
 ::
 
  [isabell@stardust ~]$ php -r 'echo hash_pbkdf2("sha256", "<password>", "<salt>", 100000).PHP_EOL;'
+ [isabell@stardust ~]$
 
 With our example values this would be
 
 ::
 
- [isabell@stardust ~]$ php -r 'echo hash_pbkdf2("sha256", "MySuperSecretPassword", "Y2MyZTNkYzI0OTA3", 100000).PHP_EOL;'
- 1d62e170c8af2529b51f8450406e7f7280f5076da1c7e17bbd44575c8112f5b6
+ [isabell@stardust ~]$ php -r 'echo hash_pbkdf2("sha256", "MySuperSecretPassword", "MySuperSecretSalt", 100000).PHP_EOL;'
+ 5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8
  [isabell@stardust ~]$
 
 Then open the identity file you copied before to /var/www/virtual/$USER/simpleid/identities/<username>.identity in your favorite editor.
@@ -144,7 +155,7 @@ In our example we would use this passline:
 
 .. code-block:: php
 
- pass="1d62e170c8af2529b51f8450406e7f7280f5076da1c7e17bbd44575c8112f5b6:pbkdf2:sha256:Y2MyZTNkYzI0OTA3"
+ pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:MySuperSecretSalt"
  
 Since this is our first user, it should be set as administrator by changing
 
@@ -184,6 +195,7 @@ For finally using this identity you'll need to create a file at the URL we've de
 ::
 
  [isabell@stardust ~]$ mkdir ~/html/openid
+ [isabell@stardust ~]$
 
 Create the file index.htm with the following content:
 
