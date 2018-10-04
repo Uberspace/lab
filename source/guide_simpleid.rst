@@ -210,9 +210,17 @@ Create the file index.htm with the following content:
 
 You are now ready to use your own OpenID provider. Just make sure you are using the right URL for authentication, https://<username>.uber.space/openid.
 
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+Follow the steps described in the UPGRADE.txt shipped with the newest version. There all steps described you'll have to perform to update your installation.
+
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _PHP: https://manual.uberspace.de/en/lang-php.html
+.. _feed: http://simpleid.koinic.net/releases/
 
 ----
 
