@@ -241,7 +241,7 @@ Finishing installation
 
   [isabell@stardust ~]$ supervisorctl reread
   [isabell@stardust ~]$ supervisorctl update
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Add a user
 ----------
@@ -252,11 +252,11 @@ Since we don’t want to run a public instance and have disabled registration, w
 
   [isabell@stardust ~]$ cd ~/codemd
   [isabell@stardust ~]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd" bin/manage_users --add isabell@uberspace.de
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 It will prompt you for a password now.
 
-.. warning:: 
+.. warning::
 
   Don’t forget your password, neither the site nor the CLI currently seem to offer a way to reset it!
 
@@ -280,16 +280,10 @@ Again, don't forget to fill in your port number in the last line!
 
 And you're done!
 
-Updates
-=======
-
-.. warning:: 
-  I have not actually tested this so far!
-
-If you want to update your CodiMD installation, follow `these instruction <https://github.com/hackmdio/codimd#upgrade>`_, and merge it with this manual. Good luck.
-
-
-.. note:: Check the `changelog <https://github.com/hackmdio/codimd/releases>`_ regularly to stay informed about new updates and releases.
+.. Updates
+   =======
+   If you want to update your CodiMD installation, follow `these instruction <https://github.com/hackmdio/codimd#upgrade>`_, and merge it with this manual. Good luck.
+   .. note:: Check the `changelog <https://github.com/hackmdio/codimd/releases>`_ regularly to stay informed about new updates and releases.
 
 .. _HackMD: https://hackmd.io/
 .. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
