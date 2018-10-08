@@ -125,7 +125,7 @@ Nevertheless, you should update your Privacy Policy to explain how Matomo is use
 
 Also, you can provide your users an Opt-Out Feature using iframes. Therefore, go to ``Administration >> Privacy >> Users opt-out`` and copy the provided HTML-Code into your website, e.g. in your Privacy Policy.
 
-**Important note**: If you want to track a website outside of your uberspace, be aware that you won't be able to place an opt-out iFrame due to the option ``X-Frame-Options: SAMEORIGIN`` which is enabled by default. This implicates a breach of the GDPR laws and should be solved otherwise. Use a solution like the official plugin  `Ajax Opt Out <https://plugins.matomo.org/AjaxOptOut/>`_ instead to serve a opt-out option for your visitors.
+.. warning:: If you want to track a website outside of your uberspace, be aware that you won't be able to place an opt-out iFrame due to the option ``X-Frame-Options: SAMEORIGIN`` which is enabled by default. This implicates a breach of the GDPR laws and should be solved otherwise. Use a solution like the official plugin  `Ajax Opt Out <https://plugins.matomo.org/AjaxOptOut/>`_ instead to serve a opt-out option for your visitors.
 
 Updates
 =======
