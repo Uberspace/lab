@@ -161,14 +161,31 @@ Creating users
 Since we do not run a public server we have to add users before we can use The Lounge:
 
 ::
+ :emphasize-lines: 2, 3
 
- thelounge add isabell
+ [isabell@stardusts ~]$ thelounge add isabell
+ 2018-10-09 20:20:20 [PROMPT] Enter password:
+ 2018-10-09 20:20:22 [PROMPT] Save logs to disk? (yes)
+ 2018-10-09 20:21:12 [INFO] User isabel created.
+ 2018-10-09 20:21:12 [INFO] User file located at /home/isabell/.lounge/users/isabel.json.
+ [isabell@stardusts ~]$
+
+If you need to change the password for a user this can be done with:
+
+::
+ :emphasize-lines: 2
+
+ [isabell@stardusts ~]$ thelounge reset isabell
+ 2018-10-09 20:22:02 [PROMPT] Enter new password:
+ 2018-10-09 20:22:06 [INFO] Successfully reset password for isabel.
+ [isabell@stardusts ~]$
 
 If you need to change the settings for a user this can be done with:
 
 ::
 
- thelounge edit isabell
+ [isabell@stardusts ~]$ thelounge edit isabell
+ [isabell@stardusts ~]$
 
 Launch The Lounge
 -----------------
