@@ -90,6 +90,7 @@ Create the configuration directory:
 To configure The Lounge you need to create the ``~/.lounge/config.js`` file with the following content:
 
 .. code-block:: javascript
+ :emphasize-lines: 6
 
  "use strict"
 
@@ -136,6 +137,7 @@ Create ``~/etc/services.d/thelounge.ini`` with the following content:
 .. warning:: Replace ``<username>`` with your username!
 
 .. code-block:: ini
+ :emphasize-lines: 2
 
  [program:thelounge]
  command=/home/<username>/bin/thelounge start
