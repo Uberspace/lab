@@ -197,7 +197,7 @@ For finally using this identity you'll need to create a file at the URL we've de
  [isabell@stardust ~]$ mkdir ~/html/openid
  [isabell@stardust ~]$
 
-Create the file index.htm with the following content:
+Create the file ~/html/openid/index.htm with the following content:
 
 .. code-block:: html
 
