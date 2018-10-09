@@ -114,21 +114,6 @@ From now on you can modify with the ``thelounge config`` command.
 
 For a full list of all configuration options see `the official documentation`_.
 
-Creating users
---------------
-
-Since we do not run a public server we have to add users before we can use The Lounge:
-
-::
-
- thelounge add isabell
-
-If you need to change the settings for a user this can be done with:
-
-::
-
- thelounge edit isabell
-
 Setup daemon
 ------------
 
@@ -169,6 +154,24 @@ If it's not in state RUNNING, check your configuration.
 
 Finishing installation
 ======================
+
+Creating users
+--------------
+
+Since we do not run a public server we have to add users before we can use The Lounge:
+
+::
+
+ thelounge add isabell
+
+If you need to change the settings for a user this can be done with:
+
+::
+
+ thelounge edit isabell
+
+Launch The Lounge
+-----------------
 
 Point your browser to your The Lounge URL and enjoy.
 
