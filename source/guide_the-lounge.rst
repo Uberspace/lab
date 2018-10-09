@@ -155,12 +155,12 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
- [isabell@stardusts ghost]$ supervisorctl reread
- ghost: available
- [isabell@stardusts ghost]$ supervisorctl update
- ghost: added process group
+ [isabell@stardusts ~]$ supervisorctl reread
+ thelounge: available
+ [isabell@stardusts ~]$ supervisorctl update
+ thelounge: added process group
  [isabell@stardusts ~]$ supervisorctl status
- ghost                            RUNNING   pid 26020, uptime 0:03:14
+ thelounge                            RUNNING   pid 26020, uptime 0:03:14
  [isabell@stardusts ~]$
 
 If it's not in state RUNNING, check your configuration.
@@ -205,7 +205,6 @@ If it's not in state RUNNING, check your configuration.
 .. _Shout: http://shout-irc.com/
 .. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
 .. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _settings: https://docs.ghost.org/v1/docs/cli-install
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _htaccess: https://manual.uberspace.de/en/web-documentroot.html#own-configuration
 .. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
