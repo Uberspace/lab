@@ -99,8 +99,6 @@ To configure The Lounge you need to create the ``~/.lounge/config.js`` file with
    port: <yourport>,
    reverseproxy: true
  };
- EOT
- [isabell@stardusts ~]$
 
 Alternatively you can download the full default configuration from the project repository:
 
@@ -108,7 +106,6 @@ Alternatively you can download the full default configuration from the project r
 
 ::
 
- [isabell@stardusts ~]$ mkdir ~/.lounge
  [isabell@stardusts ~]$ wget https://raw.githubusercontent.com/thelounge/thelounge/master/defaults/config.js > ~/.lounge/config.js
  [isabell@stardusts ~]$
 
