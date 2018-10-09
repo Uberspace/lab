@@ -58,7 +58,7 @@ Verify installation
 
 ::
 
- [isabell@stardusts ~]$ thelounge -v
+ [isabell@stardusts ~]$ thelounge --version
  v2.7.0
 
 Configuration
