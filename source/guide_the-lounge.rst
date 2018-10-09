@@ -160,7 +160,7 @@ Creating users
 
 Since we do not run a public server we have to add users before we can use The Lounge:
 
-::
+.. code-block:: console
  :emphasize-lines: 2, 3
 
  [isabell@stardusts ~]$ thelounge add isabell
@@ -172,7 +172,7 @@ Since we do not run a public server we have to add users before we can use The L
 
 If you need to change the password for a user this can be done with:
 
-::
+.. code-block:: console
  :emphasize-lines: 2
 
  [isabell@stardusts ~]$ thelounge reset isabell
