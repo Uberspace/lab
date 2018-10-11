@@ -7,9 +7,9 @@
   .. image:: _static/images/kanboard.svg
       :align: center
 
-#######
+########
 Kanboard
-#######
+########
 
 Kanboard_ is a free and open source Kanban project management software.
 
@@ -47,21 +47,32 @@ The domain you want to use must be set up:
 Installation
 ============
 
-Clone the Kanboard code from GitHub_:
+Download and extract TAR.GZ archive
+-----------------------------------
+
+Check the Kanboard_ website or GitHub_ for the `latest release`_ and copy the download link to the TAR.GZ file. Then ``cd`` to your DocumentRoot_ and use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. code-block:: console
- :emphasize-lines: 1
+ :emphasize-lines: 2
 
- [isabell@stardust ~]$ git clone https://github.com/kanboard/kanboard ~/html
- Cloning into '/home/isabell/html'...
- remote: Enumerating objects: 76, done.
- remote: Counting objects: 100% (76/76), done.
- remote: Compressing objects: 100% (52/52), done.
- remote: Total 57743 (delta 28), reused 42 (delta 22), pack-reused 57667
- Receiving objects: 100% (57743/57743), 65.28 MiB | 11.89 MiB/s, done.
- Resolving deltas: 100% (37070/37070), done.
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ wget https://github.com/kanboard/kanboard/archive/v42.23.1.tar.gz
+ […]
+ Saving to: ‘v42.23.1.tar.gz’
 
+ 100%[========================================================================================================================>] 3,172,029   3.45MB/s   in 0.9s
+
+ 2018-10-11 14:48:20 (3.45 MB/s) - 'v42.23.1.tar.gz' saved [3172029]
+ [isabell@stardust isabell]$
+
+Untar the archive to the ``html`` folder and then delete it. Replace the version in the file name with the one you downloaded.
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust isabell]$ tar -xzf v42.23.1.tar.gz -C html/ --strip-components=1
+ [isabell@stardust isabell]$ rm v42.23.1.tar.gz
+ [isabell@stardust isabell]$
 
 
 Configuration
@@ -109,7 +120,7 @@ Now edit ``config.php`` file, change the Database driver to ``mysql`` and provid
  // Mysql/Postgres database name
  define('DB_NAME', 'isabell_kanboard');
 
-Now, go to ``isabell.uber.space`` and log in to your installation with the default login ``admin`` and password ``admin``.
+Go to ``https://isabell.uber.space/`` and log in to your installation with the default login ``admin`` and password ``admin``.
 
 .. warning:: Do not forget to change the default user/password!
 
@@ -118,14 +129,14 @@ Check out the official `Kanboard documentation`_ for explanation of further conf
 Cron job
 ========
 
-To work properly, Kanboard requires that a `background job`_ run on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am. Make sure to replace ``isabell`` with your own user name.
+To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am. Make sure to replace ``isabell`` with your own user name.
 
 ::
 
   0 8 * * * cd /var/www/virtual/isabell/html && ./cli cronjob >/dev/null 2>&1
 
-Tuning
-=======
+Best practices
+==============
 
 Plugins
 -------
@@ -141,7 +152,7 @@ To receive `email notifications`_, users of Kanboard `must have`_:
 * Have a valid email address in their profile
 * Be a member of the project that will trigger notifications
 
-Set the email address used for the "From" header by changing the values in ``config.php``:
+Set the email address used for the "From" header by changing the value in ``config.php``:
 
 .. code-block:: ini
  :emphasize-lines: 2
@@ -149,7 +160,7 @@ Set the email address used for the "From" header by changing the values in ``con
  // E-mail address used for the "From" header (notifications)
  define('MAIL_FROM', 'isabell@uber.space');
 
-Specify the URL of your Kanboard installation in your Application Settings to display a link to the task in notifications: ``http://isabell.uber.space/``. By default, nothing is defined, so no links will be displayed in notifications.
+Specify the URL of your Kanboard installation in your Application Settings to display a link to the task in notifications: ``https://isabell.uber.space/``. By default, nothing is defined, so no links will be displayed in notifications.
 
 .. note:: Don’t forget the ending slash ``/``.
 
@@ -159,7 +170,7 @@ Debugging
 Enable debug mode by setting the following two values in ``config.php``:
 
 .. code-block:: ini
- :emphasize-lines: 2
+ :emphasize-lines: 2,5
 
  // Enable/Disable debug
  define('DEBUG', true);
@@ -173,15 +184,23 @@ The file ``debug.log`` will be found in the ``data`` folder of your Kanboard dir
 Updates
 =======
 
-You can regularly check the GitHub's Atom Feed_ for any new Kanboard releases. If a new version is available, ``cd`` to your Kanboard folder and do a simple ``git pull origin master``:
+.. note:: Check the update Feed_ regularly to stay informed about the newest version.
 
-::
+Check the GitHub's Atom Feed_ for any new Kanboard releases and copy the link to the ``.tar.gz`` archive. In this example the version is v42.23.2, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ git pull origin master
- Already up to date.
- [isabell@stardust html]$
+.. code-block:: console
+ :emphasize-lines: 2,3,4,5,6,7
 
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ wget https://github.com/kanboard/kanboard/archive/v42.23.2.tar.gz
+ [isabell@stardust isabell]$ tar -xzf v42.23.2.tar.gz
+ [isabell@stardust isabell]$ mv kanboard-42.23.2/config.php kanboard-42.23.2/config_new.php
+ [isabell@stardust isabell]$ cp -r html/data/ html/plugins/ html/config.php kanboard-42.23.2/
+ [isabell@stardust isabell]$ cp -r kanboard-42.23.2/* html/
+ [isabell@stardust isabell]$ rm -rf kanboard-42.23.2 v42.23.2.tar.gz
+ [isabell@stardust isabell]$
+
+Check the `Kanboard documentation`_ if the configuration changed between ``config_new.php`` and your ``config.php`` (happens very rarely). If everything works alright you can delete the ``config_new.php`` file. Also check ``.htaccess`` if further adjustments needed to be made.
 
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
@@ -194,12 +213,14 @@ You can regularly check the GitHub's Atom Feed_ for any new Kanboard releases. I
 .. _Kanboard documentation: https://docs.kanboard.org/en/latest/admin_guide/config_file.html
 .. _background job: https://docs.kanboard.org/en/latest/admin_guide/cronjob.html
 .. _Github: https://github.com/kanboard/kanboard
+.. _latest release: https://github.com/kanboard/kanboard/releases/latest
 .. _Feed: https://github.com/kanboard/kanboard/releases.atom
 .. _Plugins: https://kanboard.org/#plugins
 .. _email notifications: https://docs.kanboard.org/en/latest/admin_guide/email.html
 .. _must have: https://docs.kanboard.org/en/latest/user_guide/notifications.html
+
 ----
 
-Tested with Kanboard 1.2.6, Uberspace 7.1.13.0
+Tested with Kanboard 1.2.6, Uberspace 7.1.14.0
 
 .. authors::
