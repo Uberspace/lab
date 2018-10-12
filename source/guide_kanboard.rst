@@ -96,7 +96,7 @@ Copy the ``config.default.php`` to ``config.php``:
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust isabell]$ cd html
+ [isabell@stardust isabell]$ cd ~/html
  [isabell@stardust html]$ cp config.default.php config.php
  [isabell@stardust html]$
 
