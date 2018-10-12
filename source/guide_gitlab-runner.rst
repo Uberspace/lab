@@ -51,13 +51,13 @@ Make it executable:
 
 ::
 
-  [isabell@stardust ~]$ chmod +x gitlab-runner
+  [isabell@stardust ~]$ chmod +x /home/$USER/bin/gitlab-runner
 
 **Optional** check runner version:
 
 ::
 
-  [isabell@stardust ~]$ ./bin/gitlab-runner -v
+  [isabell@stardust ~]$ /home/$USER/bin/gitlab-runner -v
 
 Create working directory
 ------------------------
@@ -77,12 +77,12 @@ Register the runner
 
 ::
 
-  [isabell@stardust ~]$ ./bin/gitlab-runner register
+  [isabell@stardust ~]$ /home/$USER/bin/gitlab-runner register
 
 Configure the supervisord service
 =================================
 
-Create a shell script (e.g. ``~/bin/gitlab-runner.sh``) that keeps the call for the runner:
+Create a shell script (e.g. ``/home/$USER/bin/gitlab-runner.sh``) that keeps the call for the runner:
 
 ::
 
@@ -93,9 +93,9 @@ Make it executable:
 
 ::
 
-  [isabell@stardust ~]$ chmod +x ~/bin/gitlab-runner.sh
+  [isabell@stardust ~]$ chmod +x /home/$USER/bin/gitlab-runner.sh
 
-Create supervisord ini (e.g. ``~/etc/services.d/gitlab-runner.ini``:
+Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 
 ::
 
