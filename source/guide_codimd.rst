@@ -72,7 +72,7 @@ Remove UglifyJS
 
 The UglifyJS plugin freezes the compilation step, because it tries to compile everything in parallel and then reaches the maximum memory-limit/user of uberspace. And since it's apparently not necessary, we'll just remove it.
 
-Open ``webpack.production.js`` and comment out this line:
+Open ``webpack.prod.js`` and comment out this line:
 
 .. code-block:: javascript
 
