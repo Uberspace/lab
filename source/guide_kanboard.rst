@@ -186,21 +186,20 @@ Updates
 
 .. note:: Check the update Feed_ regularly to stay informed about the newest version.
 
-Check the GitHub's Atom Feed_ for any new Kanboard releases and copy the link to the ``.tar.gz`` archive. In this example the version is v42.23.2, which of course does not exist. Change the version to the latest one in the highlighted lines.
+Check the GitHub's Atom Feed_ for any new Kanboard releases and copy the link to the ``.tar.gz`` archive. In this example the version is v42.23.2, which does not exist of course. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
- :emphasize-lines: 2,3,4,5,6,7
+ :emphasize-lines: 2,3,4,5,6
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ wget https://github.com/kanboard/kanboard/archive/v42.23.2.tar.gz
  [isabell@stardust isabell]$ tar -xzf v42.23.2.tar.gz
- [isabell@stardust isabell]$ mv kanboard-42.23.2/config.php kanboard-42.23.2/config_new.php
  [isabell@stardust isabell]$ cp -r html/data/ html/plugins/ html/config.php kanboard-42.23.2/
  [isabell@stardust isabell]$ cp -r kanboard-42.23.2/* html/
  [isabell@stardust isabell]$ rm -rf kanboard-42.23.2 v42.23.2.tar.gz
  [isabell@stardust isabell]$
 
-Check the `Kanboard documentation`_ if the configuration changed between ``config_new.php`` and your ``config.php`` (happens very rarely). If everything works alright you can delete the ``config_new.php`` file. Also check ``.htaccess`` if further adjustments needed to be made.
+Check the `Kanboard documentation`_ if the configuration changed between ``config.default.php`` and your ``config.php`` (happens very rarely). Also check ``.htaccess`` if further adjustments needed to be made.
 
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
