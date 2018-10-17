@@ -368,6 +368,8 @@ if everything is fine.
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ node_modules/.bin/sequelize db:migrate
+  [...]
   [isabell@stardust ~]$ supervisorctl start codimd
   codimd: started
   [isabell@stardust ~]$ rm codimd-old -rf
