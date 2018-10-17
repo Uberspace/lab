@@ -183,7 +183,7 @@ After updating your installation you should clean the cache to prevent errors.
 .. _LICENSE: https://github.com/BookStackApp/BookStack/blob/master/LICENSE
 .. _additional database: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
-.. _BookStack blog: https://www.bookstackapp.com/blog/tag/releases/
+.. _BookStack blog: https://www.bookstackapp.com/tags/releases/
 
 ----
 
