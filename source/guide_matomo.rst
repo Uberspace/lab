@@ -44,8 +44,8 @@ If you want to install Matomo into a subfolder of your domain, create a new fold
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust ~]$ mkdir matomo
- [isabell@stardust ~]$ cd matomo/
+ [isabell@stardust html]$ mkdir matomo
+ [isabell@stardust html]$ cd matomo/
  [isabell@stardust matomo]$
 
 If you want to install matomo into your `document root`_, just navigate with ``cd`` to your `document root`_.
@@ -77,6 +77,28 @@ You will need to enter the following information:
   * your Matomo database name: we suggest you use an additional_ database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
   * Name and URL of the first website you want to track with Matomo (more can be added after installation)
+
+
+Best practices
+==============
+
+auto-archive
+------------
+
+archiving can slow down Matomo quite a bit. So if you want to have a more fluent workflow this is recommended.
+
+enter crontab with
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ crontab -e
+
+and enter: (more configuration-details about cron_)
+
+.. code-block:: guess
+
+  5 * * * * /usr/bin/php71 /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+
 
 Tracking
 ========
@@ -141,6 +163,7 @@ The easiest way to update Matomo is to use the web updater provided in the admin
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
+.. _cron: https://manual.uberspace.de/en/daemons-cron.html
 
 ----
 
