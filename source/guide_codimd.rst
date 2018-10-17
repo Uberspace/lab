@@ -20,7 +20,7 @@ Inspired by Hackpad, with more focus on speed and flexibility, and build from Ha
   * MySQL_
   * supervisord_
   * domains_
-  * Node.js_ and its package manager npm_
+  * Node_ and its package manager npm_
 
 
 Prerequisites
@@ -28,7 +28,7 @@ Prerequisites
 
 .. include:: includes/my-print-defaults.rst
 
-We're using Node.js_ in the stable version 8:
+We're using Node_ in the stable version 8:
 
 ::
 
@@ -47,24 +47,47 @@ You need a special database for CodiMD_:
 
 .. warning:: Replace ``<username>`` with your username!
 
+Create Database
+---------------
+
 .. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_codimd CHARACTER SET utf8 COLLATE utf8_general_ci;"
   [isabell@stardust ~]$
 
+Download Sources
+----------------
+
+go to the release_-site and download the latest version 
+
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone https://github.com/hackmdio/codimd.git
-  Cloning into 'codimd'...
-  remote: Enumerating objects: 13, done.
-  remote: Counting objects: 100% (13/13), done.
-  remote: Compressing objects: 100% (11/11), done.
-  remote: Total 12832 (delta 4), reused 8 (delta 2), pack-reused 12819
-  Receiving objects: 100% (12832/12832), 19.75 MiB | 1.20 MiB/s, done.
-  Resolving deltas: 100% (7868/7868), done.
+  [isabell@stardust ~]$ wget https://github.com/hackmdio/codimd/archive/6.6.66.zip
+  --2018-10-17 18:50:29--  https://github.com/hackmdio/codimd/archive/6.6.66.zip
+  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
+  Connecting to github.com (github.com)|192.30.253.112|:443... connected.
+  HTTP request sent, awaiting response... 302 Found
+  Location: https://codeload.github.com/hackmdio/codimd/zip/1.2.1 [following]
+  --2018-10-17 18:50:29--  https://codeload.github.com/hackmdio/codimd/zip/1.2.1
+  Resolving codeload.github.com (codeload.github.com)... 192.30.253.121, 192.30.253.120
+  Connecting to codeload.github.com (codeload.github.com)|192.30.253.121|:443... connected.
+  HTTP request sent, awaiting response... 200 OK
+  Length: unspecified [application/zip]
+  Saving to: ‘6.6.66.zip’
+  
+      [     <=>                                                                                                                                        ] 7,090,453   6.28MB/s   in 1.1s   
+  
+  2018-10-17 18:50:31 (6.28 MB/s) - ‘6.6.66.zip’ saved [7090453]
+  [isabell@stardust ~]$ unzip 6.6.66.zip
+  [...]
+  [isabell@stardust ~]$ mv codimd-6.6.66/ codimd
+  [isabell@stardust ~]$ rm 6.6.66.zip
   [isabell@stardust ~]$ cd codimd
-  [isabell@stardust ~]$ bin/setup
-  [isabell@stardust ~]$
+  [isabell@stardust codimd]$ bin/setup
+  copy config files
+  install npm packages
+  [...]
+  [isabell@stardust codimd]$
 
 
 Remove UglifyJS
@@ -72,7 +95,7 @@ Remove UglifyJS
 
 The UglifyJS plugin freezes the compilation step, because it tries to compile everything in parallel and then reaches the maximum memory-limit/user of uberspace. And since it's apparently not necessary, we'll just remove it.
 
-Open ``webpack.prod.js`` and comment out this line:
+Open ``webpack.production.js`` and comment out this line (currently line 6):
 
 .. code-block:: javascript
 
@@ -81,11 +104,12 @@ Open ``webpack.prod.js`` and comment out this line:
 So that it looks like this:
 
 .. code-block:: javascript
+  :emphasize-lines: 1
 
   //var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 
-And comment out this block:
+And comment out this block (currently line 15 - 26):
 
 .. code-block:: javascript
 
@@ -105,8 +129,9 @@ And comment out this block:
 So that it looks like this:
 
 .. code-block:: javascript
+  :emphasize-lines: 1, 12
 
-  /*  new ParallelUglifyPlugin({
+  /*new ParallelUglifyPlugin({
       uglifyJS: {
         compress: {
           warnings: false
@@ -126,14 +151,18 @@ Compilation
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ npm run build
-  [isabell@stardust ~]$
+  [isabell@stardust codimd]$ npm run build
+  [...]
+  [isabell@stardust codimd]$
 
 
 Configuration
 =============
 
-I don’t know why, but when I tried it, CodiMD ignored the config files. So we’ll make this very short and replace the content of config.json with this:
+Create config file
+------------------
+
+I don’t know why, but when I tried it, CodiMD ignored the config files. So we’ll make this very short and replace the content of ``config.json`` with this:
 
 .. code-block:: JSON
 
@@ -164,12 +193,44 @@ Generate random string to sign our session cookies with:
 
 And remember it.
 
+Configure Database
+------------------
+
+enter your sql credetials in ``.sequelizerc``:
+
+.. code-block:: ini
+  :emphasize-lines: 7
+
+  var path = require('path');
+  
+  module.exports = {
+      'config':          path.resolve('config.json'),
+      'migrations-path': path.resolve('lib', 'migrations'),
+      'models-path':     path.resolve('lib', 'models'),
+      'url':             'mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd'
+  }
+
+In our example this would be:
+
+.. code-block:: ini
+  :emphasize-lines: 7
+
+  var path = require('path');
+  
+  module.exports = {
+      'config':          path.resolve('config.json'),
+      'migrations-path': path.resolve('lib', 'migrations'),
+      'models-path':     path.resolve('lib', 'models'),
+      'url':             'mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd'
+  }
+
 Setup daemon
 ------------
 
-Create a file ``~/etc/services.d/codemd.ini`` and put the following in it:
+Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 
 .. code-block:: ini
+  :emphasize-lines: 6, 7, 8, 20
 
 	[supervisord]
 	loglevel=warn
@@ -198,6 +259,7 @@ Create a file ``~/etc/services.d/codemd.ini`` and put the following in it:
 In our example this would be:
 
 .. code-block:: ini
+  :emphasize-lines: 6, 7, 8, 20
 
 	[supervisord]
 	loglevel=warn
@@ -240,7 +302,9 @@ Finishing installation
 .. code-block:: console
 
   [isabell@stardust ~]$ supervisorctl reread
+  codimd: available
   [isabell@stardust ~]$ supervisorctl update
+  codimd: added process group
   [isabell@stardust ~]$
 
 Add a user
@@ -250,9 +314,9 @@ Since we don’t want to run a public instance and have disabled registration, w
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~/codemd
-  [isabell@stardust ~]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd" bin/manage_users --add isabell@uberspace.de
-  [isabell@stardust ~]$
+  [isabell@stardust ~]$ cd ~/codimd
+  [isabell@stardust codimd]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd" bin/manage_users --add isabell@uber.space
+  [isabell@stardust codimd]$
 
 It will prompt you for a password now.
 
@@ -280,13 +344,42 @@ Again, don't forget to fill in your port number in the last line!
 
 And you're done!
 
-.. Updates
-   =======
-   If you want to update your CodiMD installation, follow `these instruction <https://github.com/hackmdio/codimd#upgrade>`_, and merge it with this manual. Good luck.
-   .. note:: Check the `changelog <https://github.com/hackmdio/codimd/releases>`_ regularly to stay informed about new updates and releases.
+Updates
+=======
+.. note:: Check the `changelog <https://github.com/hackmdio/codimd/releases>`_ regularly to stay informed about new updates and releases.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~
+  [isabell@stardust ~]$ supervisorctl stop codimd
+  codimd: stopped
+  [isabell@stardust ~]$ mv codimd codimd-old
+  [isabell@stardust ~]$
+
+Redo these steps:
+
+- `Download Sources`_
+- `Remove UglifyJS`_
+- `Compilation`_
+- `Create config file`_
+- `Configure Database`_
+
+if everything is fine.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ supervisorctl start codimd
+  codimd: started
+  [isabell@stardust ~]$ rm codimd-old -rf
+  [isabell@stardust ~]$
+
+if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` back to its place.
+
 
 .. _HackMD: https://hackmd.io/
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
+.. _CodiMD: https://github.com/hackmdio/codimd
+.. _release: https://github.com/hackmdio/codimd/releases
+.. _Node: https://manual.uberspace.de/en/lang-nodejs.html
 .. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
@@ -298,6 +391,6 @@ And you're done!
 
 Manual derived from `this blog <https://w.h8.lv/s/how_to_install_hackmd_on_uberspace>`_
 
-Tested with CodiMD 1.2.0, Uberspace 7.1.13
+Tested with CodiMD 1.2.1, Uberspace 7.1.13
 
 .. authors::
