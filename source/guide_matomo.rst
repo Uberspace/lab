@@ -97,7 +97,7 @@ and enter: (more configuration-details about cron_)
 
 .. code-block:: guess
 
-  5 * * * * /usr/bin/php71 /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+  5 * * * * /usr/bin/php /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
 
 
 Tracking
