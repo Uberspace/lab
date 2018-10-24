@@ -51,7 +51,6 @@ Installation
 To install BookStack clone the release branch of the official repository one level above your DocumentRoot_ using Git.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch
@@ -63,7 +62,6 @@ To install BookStack clone the release branch of the official repository one lev
 ``cd`` into your BookStack directory and install the neccessary dependencies using Composer_.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust isabell]$ cd BookStack
  [isabell@stardust isabell]$ composer install
@@ -88,7 +86,6 @@ Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file
 
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust BookStack]$ cp .env.example .env
  [isabell@stardust ~]$
@@ -98,7 +95,7 @@ Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file
 To make your BookStack installation safe you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
 
 .. code-block:: console
- :emphasize-lines: 1,6
+ :emphasize-lines: 6
 
  [isabell@stardust BookStack]$ php artisan key:generate
  **************************************
@@ -114,7 +111,6 @@ Remove your unused DocumentRoot_ and create a new symbolic link to the ``BookSta
 .. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any. You can also rename the folder to something that's not ``html``.
 
 .. code-block:: console
- :emphasize-lines: 2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -rf html
@@ -124,7 +120,7 @@ Remove your unused DocumentRoot_ and create a new symbolic link to the ``BookSta
 Now use the following command to create and populate the tables in your database. Confirm the command with ``yes``.
 
 .. code-block:: console
- :emphasize-lines: 2,7
+ :emphasize-lines: 7
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ php artisan migrate
@@ -152,7 +148,6 @@ Updates
 To update BookStack you can run the following command in the root directory of the application. This will update your installation via Git, install new dependencies via Composer and migrate your database. It's possible that you need to confirm the steps while updating.
 
 .. code-block:: console
- :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ git pull origin release && composer install && php artisan migrate
@@ -164,7 +159,6 @@ To update BookStack you can run the following command in the root directory of t
 After updating your installation you should clean the cache to prevent errors.
 
 .. code-block:: console
- :emphasize-lines: 2,4
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ php artisan cache:clear
