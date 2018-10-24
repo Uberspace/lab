@@ -45,7 +45,7 @@ Installation
 Download minim
 --------------
 
-Use ``wget`` to download the latest release_. Copy the path to the ``.zip`` archive to your wget command. Change the URL to the latest version.
+Use ``wget`` to download the latest release_.
 
 .. code-block:: console
 
@@ -83,7 +83,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check minim's feed_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+Check minim's feed_ for the latest version.
 
 .. code-block:: console
 
