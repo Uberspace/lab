@@ -49,7 +49,6 @@ Installation
 We will install October using the official command-line interface (CLI). To do this simply ``cd`` into your DocumentRoot_ and use the the following command to download the install script using cURL and execute it with PHP.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust isabell]$ curl -s https://octobercms.com/api/installer | php
@@ -74,7 +73,6 @@ During the setup process you will be asked for database credentials. We use MySQ
 To start the CLI that will guide you trough the setup use the ``october:install`` command.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ php artisan october:install
@@ -113,7 +111,6 @@ Updates
 To update October and your installed plugins you can use the ``october:update`` CLI command in the root directory of the application. This will update the core application and plugin files, followed by a database migration.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ php artisan october:update
