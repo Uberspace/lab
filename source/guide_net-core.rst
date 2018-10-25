@@ -38,12 +38,12 @@ Therefore we need to tell the application a bit about the current hosting situat
 
 First of all, you need to install the ``Microsoft.AspNetCore.HttpOverrides`` NuGet package. After the installation is successful, add the following lines to the beginning your ``Configure()`` method in ``Startup.cs``:
 
-::
+.. code-block:: apacheconf
 
- app.UseForwardedHeaders(new ForwardedHeadersOptions
- {
-     ForwardedHeaders = ForwardedHeaders.All
- });
+     app.UseForwardedHeaders(new ForwardedHeadersOptions
+     {
+         ForwardedHeaders = ForwardedHeaders.All
+     });
 
 These lines should absolutely be placed at the top of the method, so that each following middleware can make use of the configuration. This is especially important for the already mentioned Authentication middleware.
 
@@ -51,22 +51,22 @@ When setup, your .NET Core app recognizes the ``X-Forwarded-For``, ``X-Forwarded
 
 We need to add all three headers. Because Uberspace 7 only supports HTTPS, we can hardcode the protocol ``https``, we also can hardcode the ``X-Forwarded-For``. The only thing that needs to be adjusted is the ``X-Forwarded-Host`` header. Here you should enter the domain of your Uberspace account. This can be the default Uberspace domain, or a custom one.
 
-::
+.. code-block:: apacheconf
 
- RequestHeader set "X-Forwarded-Proto" https
- RequestHeader set "X-Forwarded-For" 127.0.0.1
- RequestHeader set "X-Forwarded-Host" isabell.uber.space
+     RequestHeader set "X-Forwarded-Proto" https
+     RequestHeader set "X-Forwarded-For" 127.0.0.1
+     RequestHeader set "X-Forwarded-Host" isabell.uber.space
 
 For example, a complete ``.htaccess`` could look like this:
 
-::
+.. code-block:: apacheconf
 
- RewriteEngine On
- RequestHeader set "X-Forwarded-Proto" https
- RequestHeader set "X-Forwarded-For" 127.0.0.1
- RequestHeader set "X-Forwarded-Host" isabell.uber.space
- RewriteRule ^(.*) http://localhost:9001/$1 [P]
- DirectoryIndex disabled
+     RewriteEngine On
+     RequestHeader set "X-Forwarded-Proto" https
+     RequestHeader set "X-Forwarded-For" 127.0.0.1
+     RequestHeader set "X-Forwarded-Host" isabell.uber.space
+     RewriteRule ^(.*) http://localhost:9001/$1 [P]
+     DirectoryIndex disabled
 
 That's it, you're done!
 
