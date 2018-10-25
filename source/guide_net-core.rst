@@ -4,7 +4,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: https://manual.uberspace.de/en/_images/logo_dotnet.png
+  .. image:: _static/images/dotnet.png
       :align: center
 
 ########
@@ -25,7 +25,7 @@ License
 Installation
 ============
 
-For the setup of .NET Core follow the basic guid from `the Uberspace team`_.
+For the setup of .NET Core follow the basic guide from `the Uberspace team`_.
 
 Configuration
 =============
@@ -53,7 +53,7 @@ We need to add all three headers. Because Uberspace 7 only supports HTTPS, we ca
 ::
  RequestHeader set "X-Forwarded-Proto" https
  RequestHeader set "X-Forwarded-For" 127.0.0.1
- RequestHeader set "X-Forwarded-Host" your.uber.space
+ RequestHeader set "X-Forwarded-Host" isabell.uber.space
 
 
 For example, a complete ``.htaccess`` could look like this:
@@ -62,11 +62,11 @@ For example, a complete ``.htaccess`` could look like this:
  RewriteEngine On
  RequestHeader set "X-Forwarded-Proto" https
  RequestHeader set "X-Forwarded-For" 127.0.0.1
- RequestHeader set "X-Forwarded-Host" my.uber.space
- RewriteRule ^(.*) http://localhost:63343/$1 [P]
+ RequestHeader set "X-Forwarded-Host" isabell.uber.space
+ RewriteRule ^(.*) http://localhost:9001/$1 [P]
  DirectoryIndex disabled
 
-After that, everything should work as expected! 🎉
+That's it, you're done!
 
 .. _the Uberspace team: https://manual.uberspace.de/en/lang-dotnet.html
 .. _MIT: https://opensource.org/licenses/MIT
