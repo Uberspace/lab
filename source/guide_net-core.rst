@@ -38,7 +38,7 @@ Therefore we need to tell the application a bit about the current hosting situat
 
 First of all, you need to install the ``Microsoft.AspNetCore.HttpOverrides`` NuGet package. After the installation is successful, add the following lines to the beginning your ``Configure()`` method in ``Startup.cs``:
 
-.. code-block:: apacheconf
+.. code-block:: csharp
 
      app.UseForwardedHeaders(new ForwardedHeadersOptions
      {
