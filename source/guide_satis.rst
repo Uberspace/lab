@@ -19,7 +19,8 @@ This guide shows you how to quickly setup satis on your Uberspace account.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Composer_
+  * cronjobs_
+  * composer_
 
 Installation
 ============
@@ -114,3 +115,6 @@ To update the satis tool you just have to pull the latest changes and run compos
 ----
 
 Tested with Satis 1.0.0, Uberspace 7.1.14.0
+
+.. _composer: https://getcomposer.org
+.. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html
