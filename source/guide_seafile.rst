@@ -59,8 +59,9 @@ Download the seafile server and extract it to a folder called seafile.
 
 ::
 
- [isabell@stardust ~]$ mkdir seafile
- [isabell@stardust ~]$ cd seafile/
+ [isabell@stardust ~]$ mkdir ~/tmp
+ [isabell@stardust ~]$ mkdir ~/seafile
+ [isabell@stardust ~]$ cd ~/seafile/
  [isabell@stardust ~]$ curl https://download.seadrive.org/seafile-server_6.3.4_x86-64.tar.gz | tar xzf -
  [isabell@stardust ~]$
 
@@ -202,7 +203,19 @@ Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the fo
   FILE_SERVER_ROOT = SITE_BASE + '/seafhttp'
   CSRF_TRUSTED_ORIGINS = [SITE_NAME]
 
-Step 9 - Setup .htaccess
+Step 9
+------
+
+Edit ``~/seafile/seafile-server-latest/seahub/seahub/settings.py`` and change the ``CACHE_DIR`` to a path in your Home: 
+
+.. warning:: Replace ``isabell`` with your username!
+
+::
+ 
+ CACHE_DIR = "/home/isabell/tmp"
+
+
+Step 10 - Setup .htaccess
 ------------------------
 
 Create a ``~/html/.htaccess`` file with the following content:
