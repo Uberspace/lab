@@ -1,5 +1,6 @@
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
 .. highlight:: console
+
+.. author:: Daniel Kratz <uberlab@danielkratz.com>
 
 .. sidebar:: Logo
 
@@ -10,16 +11,11 @@
 Neos
 #########
 
-Neos_ is an open source Content Application Platform based on its own PHP framework Flow and distributed under the GPLv3 licence.
+Neos_ is an open source Content Application Platform based on its own PHP framework Flow.
 
 The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences.
 
 Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
-
-.. warning:: Neos v4 was released recently. It requires MariaDB 10.2, which is not yet available on Uberspace. The team is working on a fix. 
-
-::
-
 
 ----
 
@@ -28,6 +24,11 @@ Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is mainta
   * PHP_
   * MySQL_
   * domains_
+
+License
+=======
+
+Neos is free and open source software licensed under `GPL v3`_.
 
 Prerequisites
 =============
@@ -49,9 +50,9 @@ Your website domain needs to be set up:
 Installation
 ============
 
-Since Neos uses the subdirectory Web/ as web root you should not install Neos in your `document root`_. Instead we install it next to that and then use a symlink to make it accessible.
+Since Neos uses the subdirectory Web/ as web root you should not install Neos in your `DocumentRoot`_. Instead we install it next to that and then use a symlink to make it accessible.
 
-``cd`` to one level above your `document root`_, then use the dependency manager Composer to create a new project based on the Neos base distribution:
+``cd`` to one level above your `DocumentRoot`_, then use the dependency manager Composer to create a new project based on the Neos base distribution:
 
 .. note:: Composer will install all neccessary dependencies Neos needs to run. This can take some time.
 
@@ -69,9 +70,9 @@ Since Neos uses the subdirectory Web/ as web root you should not install Neos in
 
  [isabell@stardust isabell]$
 
-Remove your unused `document root`_ and create a new symbolic link to the Neos/Web directory:
+Remove your unused `DocumentRoot`_ and create a new symbolic link to the Neos/Web directory:
 
-.. warning:: Please make sure your document root is empty before removing it. This step will delete all contained files if any.
+.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any.
 
 ::
 
@@ -137,13 +138,14 @@ By using composer, you can update an existing installation to a specific version
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
+.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 .. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _feed: https://github.com/neos/neos/releases.atom
 .. _download: https://www.neos.io/download-and-extend.html
+.. _GPL v3: https://opensource.org/licenses/GPL-3.0
 
 ----
 
-Tested with Neos 3.3.9 and Uberspace 7.1.1
+Tested with Neos 4.1.7 and Uberspace 7.1.15
 
 .. authors::
