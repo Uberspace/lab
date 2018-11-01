@@ -11,7 +11,7 @@
 Seafile
 ##########
 
-Seafile is an enterprise file hosting platform with high reliability and performance. Put files on your own server. Sync and share files across different devices, or access all the files as a virtual disk.
+Seafile_ is an enterprise file hosting platform with high reliability and performance. Put files on your own server. Sync and share files across different devices, or access all the files as a virtual disk.
 
 ----
 
@@ -282,7 +282,7 @@ Updating seafile is pretty easy. Just untar the new package into the "seafile" d
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-
+.. _Seafile: https://www.seafile.com
 
 ----
 
