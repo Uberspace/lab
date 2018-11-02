@@ -201,6 +201,7 @@ Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the fo
   FILE_SERVER_ROOT = SITE_BASE + '/seafhttp'
   CSRF_TRUSTED_ORIGINS = [SITE_NAME]
   
+  #redirect to $USER tmp, avoid conflict with other users
   CACHE_DIR = "/home/isabell/seafile/tmp/logs"
   
   import os
