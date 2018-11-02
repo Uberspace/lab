@@ -54,7 +54,6 @@ Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ an
  [isabell@stardust ~]$ cd /var/www/virtual/isabell
  [isabell@stardust ~]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
  [isabell@stardust ~]$ tar xzvf mailman-99.9.9.tgz
- [isabell@stardust ~]$ cd mailman-99.9.9
  [isabell@stardust ~]$
 
 Step 2
@@ -76,6 +75,7 @@ and run the configure script, telling Mailman where to install and what user/gro
 
 ::
 
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman-99.9.9
  [isabell@stardust ~]$ ./configure --with-username=isabell --with-groupname=isabell --prefix=/var/www/virtual/isabell/mailman/ --with-mail-gid=isabell --with-cgi-gid=isabell
  [isabell@stardust ~]$
 
@@ -185,7 +185,7 @@ Set the following options in ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.p
  SMTP_PASSWD = 'betterPWthanThis'
 
  # tell mailman to use HTTPS
- DEFAULT_URL_PATTERN = 'https://%s/mailman'
+ DEFAULT_URL_PATTERN = 'https://%s/mailman/'
 
 You can look up the meaning  and default value of each variable in the file ``Defaults.py`` in the same folder.
 
