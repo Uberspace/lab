@@ -49,6 +49,21 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
+Configure port
+--------------
+
+Since seafile uses its own webserver and fileserver, you need to find 2 free ports. Run this command 2 times and write down the 2 ports.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
+ 9000
+ [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
+ 9001
+ [isabell@stardust ~]$
+
+Write the ports down. In our example we use 9000 as gunicorn-port and 9001 as fileserver-port. In reality you'll get free ports between 61000 and 65535.
+
 Installation
 ============
 
@@ -135,21 +150,6 @@ Important answers:
 
   verifying user "isabell" access to database isabell_seahub ...  done
 
-Configure port
---------------
-
-Since seafile uses its own webserver and fileserver, you need to find 2 free ports. Run this command 2 times and write down the 2 ports.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
- 9000
- [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
- 9001
- [isabell@stardust ~]$
-
-Write the ports down. In our example we use 9000 as gunicorn-port and 9001 as fileserver-port. In reality you'll get free ports between 61000 and 65535.
-
 Step 5
 ------
 
@@ -192,15 +192,28 @@ Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the fo
 .. warning:: Replace ``isabell`` with your username!
 
 .. code-block:: console
-  :emphasize-lines: 1,2
-
+  
   SITE_BASE = 'https://isabell.uber.space'
   SITE_NAME = 'isabell.uber.space'
-
+  
   SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+   
   FILE_SERVER_ROOT = SITE_BASE + '/seafhttp'
   CSRF_TRUSTED_ORIGINS = [SITE_NAME]
+  
+  CACHE_DIR = "/home/isabell/seafile/tmp/logs"
+  
+  import os
+  
+  CACHES = {
+    'default': {
+      'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+      'LOCATION': os.path.join(CACHE_DIR, 'seahub_cache'),
+      'OPTIONS': {
+        'MAX_ENTRIES': 1000000
+      }
+    }
+  }
 
 Step 9 - Setup .htaccess
 ------------------------
