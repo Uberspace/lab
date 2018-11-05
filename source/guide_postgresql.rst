@@ -2,56 +2,41 @@
 
 .. author:: FM <git.fm@mmw9.de>
 
-.. version:: 1.0
-
 ##########
 PostgreSQL
 ##########
 
-PostgreSQL is a free and object relational database system. Also compatible to the familiar SQL-Standard. More details are available at Wikipedia:
+PostgreSQL_ is a free and object relational database system. Also compatible to the familiar SQL-Standard. More details are available in the Wikipedia_.
 
-* https://en.wikipedia.org/wiki/PostgreSQL
-
-PostgreSQL is quiet intesting, because some projects (e.g. Miniflux2) supports only PostgreSQL and will be suported by many other projects as alternative to MySQL.
+Some projects (e.g. Miniflux2) require PostgreSQL and many others support it as an alternative to MySQL.
 
 License
 =======
 
-PostgreSQL is released under the PostgreSQL License, a liberal Open Source license, similar to the BSD or MIT licenses.
-
-All relevant legal information can be found here: 
-
-  * https://www.postgresql.org/about/licence/
-
-Prerequisites
-=============
-
-No prerequisites at the moment.
+PostgreSQL is released under the `PostgreSQL License`_, a liberal Open Source license, similar to the BSD or MIT licenses.
 
 Installation
 ============
 
-Step 1 - Source Code Download and Extracting
---------------------------------------------
+Step 1 - Download and extract the source code
+---------------------------------------------
 
-I prefer to download all installation packages to a special work directory. In my case 'filebase'.
+Create a working directory.
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/filebase/
- [isabell@stardust ~]$ cd ~/filebase/
+ [isabell@stardust ~]$ mkdir ~/postgres/
+ [isabell@stardust ~]$ cd ~/postgres/
  [isabell@stardust ~]$
 
-In this installation, i prefer to download the version 9.6.10. A list of supported major and beta releases can be found here:
-
- * https://download.postgresql.org/pub/source/ 
+Download version 9.6.10. A list of supported major and beta releases can be found on the PostgreSQL `download server`_. 
 
 ::
 
  [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v9.6.10/postgresql-9.6.10.tar.gz
  [isabell@stardust ~]$
 
-To extract the complete tar container, i consider the following options:
+To extract the tar archive, use the following options:
 
  * ``-x``: To extract files and directories.
  * ``-v``: To have a verbose output.
@@ -60,32 +45,30 @@ To extract the complete tar container, i consider the following options:
 
 ::
 
- [isabell@stardust ~]$ tar -xvzf ~/filebase/postgresql-9.6.10.tar.gz
+ [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-9.6.10.tar.gz
  [isabell@stardust ~]$
 
 
 Step 2 - Source Code Configuration, Compiling and Installation
 --------------------------------------------------------------
 
-Here we use the clasic way to configure and compile the source code with *configure* and *make* and finaly to install with *make install*.
+Configure and compile the source code with the commands ``configure`` and ``make`` and finally install it with ``make install``.
 
-.. note:: Please use single steps instead to combine all three in one process to see and identify possible errors.
+.. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-But before we start, we have to consider some aspects (e.g. Python support) and correponding settings, regarding to a shared hosting like by Uberspace:
+Before we start, we have to consider some aspects, e.g. Python support, and correponding settings, regarding a shared hosting environment like Uberspace:
 
  * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
- * ``--with-python PYTHON=/usr/bin/python2``: Compiling with Python 2.x support. Alternative you can choose */usr/bin/python3*. Both are links to the actual supported Python versions.
+ * ``--with-python PYTHON=/usr/bin/python2``: Compiling with Python 2.x support. Alternative you can choose ``/usr/bin/python3``. Both are links to the actual supported Python versions.
  * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude this.
 
-Other options can be found under (here in this case for version 9.6.10, but direct links are available for other versions too):
+Other options can be found in the PostgreSQL documentation_.
 
- * https://www.postgresql.org/docs/9.6/static/install-procedure.html
-
-.. important:: For a future usage with projects like Miniflux, ejabberd, Matrix etc. it is recommend to consider everthing like docs and especialy additional modules by PostgreSQL. This is the reason to use the supported option *world* for *make* and *make install*.
+.. important:: For future usage with projects like Miniflux, ejabberd, Matrix etc. it is recommended to consider everything like docs and especialy additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
 
 ::
 
- [isabell@stardust ~]$ cd ~/filebase/postgresql-9.6.10
+ [isabell@stardust ~]$ cd ~/postgres/postgresql-9.6.10
  [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline
  [isabell@stardust ~]$ make world
  [isabell@stardust ~]$ make install-world
@@ -95,26 +78,24 @@ Other options can be found under (here in this case for version 9.6.10, but dire
 Step 3 - Environment Settings
 -----------------------------
 
-Some environment settings are necessary, that PostgreSQL tools are available without any problems.
+Please add the following lines to your ``~/.bash_profile``:
 
-Here as example for a bash shell setting, please add the following lines to ~/.bash_profile:
-
-.. code-block:: .bash_profile
+.. code-block:: bash
 
  # Postgresql Environment
 
  export PATH=$HOME/opt/postgresql/bin/:$PATH
  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opt/postgresql/lib
- export PGPASSFILE='$HOME/.pgpass'
+ export PGPASSFILE=$HOME/.pgpass
 
-Reload the .bash_profile with:
+Reload the ``.bash_profile with``:
 
 ::
 
  [isabell@stardust ~]$ source ~/.bash_profile
  [isabell@stardust ~]$
 
-And let show the installed PostgreSQL version as first test:
+Run ``psql --version`` to verify the installation so far:
 
 ::
 
@@ -130,18 +111,20 @@ A database cluster is the base for all new single data bases. We will define the
 
 To reduce the effort for the database cluster administration, we will define at first the password and safe it into the file *.pgpass*.  
 
-Create ``~/*.pgpass`` with the following content:
+Create a ``~/.pgpass`` file with the following content:
 
 .. warning:: Replace ``<username>`` with your Uberspace name!
 
-.. code-block:: .pgpass
+.. warning:: Replace the dummy password with your own!
+
+.. code-block:: 
 
  #hostname:port:database:username:password (min 64 characters)
  *:*:*:<username>:1234567890123456789012345678901234567890123456789012345678901234
 
 In our example this would be:
 
-.. code-block:: .pgpass
+.. code-block:: 
 
  #hostname:port:database:username:password (min 64 characters)
  *:*:*:isabell:1234567890123456789012345678901234567890123456789012345678901234
@@ -153,14 +136,14 @@ And change the permissions with:
  [isabell@stardust ~]$ chmod 0600 ~/.pgpass
  [isabell@stardust ~]$
 
-To use the pure password for the database cluster creation, we will create temporaly a password file, based on the *.pgpass* file with:
+To use the pure password for the database cluster creation, create a temporary password file, based on the ``.pgpass`` file with:
 
 ::
 
  [isabell@stardust ~]$ cp ~/.pgpass ~/pgpass.temp
  [isabell@stardust ~]$
 
-Delete all additional text in your *~/pgpass.temp* file that you have only your password and check the content:
+Delete all additional text in your ``~/pgpass.temp`` file so that you have only your password and check the content:
 
 ::
 
@@ -168,7 +151,7 @@ Delete all additional text in your *~/pgpass.temp* file that you have only your 
  1234567890123456789012345678901234567890123456789012345678901234
  [isabell@stardust ~]$
 
-Now we will create the database cluster with:
+Now create the database cluster:
 
 .. warning:: Replace ``<username>`` with your Uberspace name!
 
@@ -193,26 +176,23 @@ Now we will create the database cluster with:
     pg_ctl -D /home/<username>/opt/postgresql/data/ -l logfile start
  [isabell@stardust ~]$
 
-The temporary password file is not more necessary:
+The temporary password file is no longer necessary:
 
 ::
 
  [isabell@stardust ~]$ rm ~/pgpass.temp
  [isabell@stardust ~]$
 
-.. warning:: The password above is only an example and must be replaced with your own strong password.
-
-
 Configuration
 =============
 
-After the installation of PostgreSQL, it is necessary to configure the network invironment. This installation consider both, the loopback interface together with the access over the unix domain socket. The access over the unix domain socket alone is not supported by every project.
+After the installation of PostgreSQL, it is necessary to configure the network invironment. This installation considers the loopback interface as well as the access via a unix socket. The access via a unix socket is not supported by every project.
 
 
 Step 1 - Configure Port
 -----------------------
 
-The standard port by PostgreSQL will not be supported by Uberspace. Here we must identify a free port number at first:
+PostgreSQL's is not be supported by Uberspace. Find a free Port:
 
 ::
 
@@ -223,30 +203,30 @@ The standard port by PostgreSQL will not be supported by Uberspace. Here we must
 Write down your new port number. In this example it is 9000, but in reality you’ll get a free port number between 61000 and 65535.
 
 
-Step 2 - Configure the Unix Domain Socket
------------------------------------------
+Step 2 - Configure the Unix Socket
+----------------------------------
 
-The unix domain socket will be configured to the standard port. You mast set the environment varables with your new port:
+The unix socket will be configured to the standard port. You must set the environment varables with your new port:
 
-Open the file ``~/*.bashrc`` and add the following content:
+Edit your ``~/.bashrc`` and add the following content:
 
-.. code-block::
+.. warning:: Replace the port number with the one you wrote down earlier.
+
+.. code-block:: bash
+ :emphasize-lines: 2
 
  export PGHOST=localhost
  export PGPORT=9000
 
-.. warning:: Please use your own selected port number, instead 9000 like in this example.
-
-
 Step 3 - Maintain the PostgreSQL-Configuration
 ----------------------------------------------
 
-Open the configuration file ``~/opt/postgresql/data/postgresql.conf`` and select the connections section to maintain the lines like below for the key values *listen_adresses*, *port* and *unix_socket_directories*:
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
 
-.. warning:: Please use your own selected port number, instead 9000 like in this example. And replace ``<username>`` with your username!
+.. warning:: Replace the port number with the one you wrote down earlier and replace ``<username>`` with your username!
 
-.. code-block:: postgresql.conf
- :emphasize-lines: 7,11
+.. code-block:: postgres
+ :emphasize-lines: 7,11,14
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
@@ -289,6 +269,7 @@ Create ``~/etc/services.d/postgresql.ini`` with the following content:
 In our example this would be:
 
 .. code-block:: ini
+ :emphasize-lines: 2
 
  [program:postgresql]
  command=/home/isabell/opt/postgresql/bin/postgres -D /home/isabell/opt/postgresql/data/
@@ -303,14 +284,22 @@ The supervisor must be informed about the new service:
  postgresql: available
  [isabell@stardust ~]$
 
- The first run will be initialized with:
+The first run will be initialized with:
 
 ::
 
  [isabell@stardust ~]$ supervisorctl update
  [isabell@stardust ~]$
 
-To stop and start the daemon due to maintenance tasks, you can use the following entries:
+Run ``supervisorctl status`` to check that the daemon is running:
+
+::
+
+ [isabell@stardust ~]$ supervisorctl status
+ postgresql                       RUNNING   pid 15477, uptime 0:00:07
+ [isabell@stardust ~]$
+
+To stop and start the daemon to perform maintenance tasks, you can use ``supervisorctl stop`` and ``supervisorctl start``, respectively:
 
 ::
 
@@ -324,9 +313,7 @@ To stop and start the daemon due to maintenance tasks, you can use the following
  postgresql: started
  [isabell@stardust ~]$
 
-You can find more details to the supervisor at:
-
-  * https://manual.uberspace.de/en/daemons-supervisord.html
+Check out the `supervisord manual`_ for further details.
 
 
 Database and User Management
@@ -344,13 +331,13 @@ Step 1 - New User
 
 To create a new database user, i consider the following option:
 
- * ``-P``: To get a username and password dialogue.
+ * ``-P``: To get a user name and password dialogue.
 
-.. warning:: Please replace ``synapse`` with your preferred name!
+.. warning:: Please replace ``<username>`` with your user name!
 
 ::
 
- [isabell@stardust ~]$ createuser synapse -P
+ [isabell@stardust ~]$ createuser <username> -P
  Enter password for new role: 
  Enter it again: 
  [isabell@stardust ~]$
@@ -366,11 +353,11 @@ Step 2 - New Database
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
  * ``database name``: And as last option the name of the database.
 
-.. warning:: Please replace ``synapse`` with your preferred names!
+.. warning:: Please replace ``<username>`` with your user name!
 
 ::
 
- [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=synapse --template=template0 synapse
+ [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template0 <username>
  [isabell@stardust ~]$
 
 
@@ -379,8 +366,15 @@ Best practices
 
 To configure your project with the PostgreSQL details, you should have the database name, user name and password, localhost as server address and your port number.
 
+.. _PostgreSQL: https://www.postgresql.org
+.. _Wikipedia: https://en.wikipedia.org/wiki/PostgreSQL
+.. _PostgreSQL License: https://www.postgresql.org/about/licence/
+.. _documentation: https://www.postgresql.org/docs/9.6/static/install-procedure.html
+.. _download server: https://download.postgresql.org/pub/source/
+.. _supervisord manual: https://manual.uberspace.de/en/daemons-supervisord.html
+
 ----
 
 Tested with Uberspace 7.1.15 and PostgreSQL 9.6.10
 
-.. authors:: FM
+.. authors:: 
