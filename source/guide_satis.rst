@@ -92,12 +92,12 @@ To automate the building of the static site you can add a cron job, e.g.:
 
   */5 * * * * /home/$USER/bin/satisupdate
 
-For more information visit the official manual: https://manual.uberspace.de/en/daemons-cron.html
+You can learn more about cronjobs in the `uberspace manual <https://manual.uberspace.de/en/daemons-cron.html>`_.
 
 Add your custom domain
 --------
 
-If you want to use a custom domain you can add it to your uberspace by following the steps of the official manual (https://manual.uberspace.de/en/web-domains.html).
+If you want to use a custom domain you can add it to your uberspace by following the steps of the `uberspace manual <https://manual.uberspace.de/en/web-domains.html>`_.
 
 After that you can add your domain to the third line of the satis config file containing the word homepage.
 
