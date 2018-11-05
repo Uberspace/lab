@@ -88,7 +88,7 @@ Please add the following lines to your ``~/.bash_profile``:
  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opt/postgresql/lib
  export PGPASSFILE=$HOME/.pgpass
 
-Reload the ``.bash_profile with``:
+Reload the ``.bash_profile`` with:
 
 ::
 
@@ -118,7 +118,8 @@ Create a ``~/.pgpass`` file with the following content:
 .. warning:: Replace the dummy password with your own!
 
 .. code-block:: 
-
+ :emphasize-lines: 1,2
+ 
  #hostname:port:database:username:password (min 64 characters)
  *:*:*:<username>:1234567890123456789012345678901234567890123456789012345678901234
 
@@ -155,7 +156,8 @@ Now create the database cluster:
 
 .. warning:: Replace ``<username>`` with your Uberspace name!
 
-::
+.. code-block::
+ :emphasize-lines: 1
 
  [isabell@stardust ~]$ initdb --pwfile="/home/<username>/pgpass.temp" --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
  The files belonging to this database system will be owned by user "".
@@ -335,7 +337,8 @@ To create a new database user, i consider the following option:
 
 .. warning:: Please replace ``<username>`` with your user name!
 
-::
+.. code-block::
+ :emphasize-lines: 1
 
  [isabell@stardust ~]$ createuser <username> -P
  Enter password for new role: 
@@ -355,7 +358,8 @@ Step 2 - New Database
 
 .. warning:: Please replace ``<username>`` with your user name!
 
-::
+.. code-block::
+ :emphasize-lines: 1
 
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template0 <username>
  [isabell@stardust ~]$
