@@ -117,7 +117,7 @@ Create a ``~/.pgpass`` file with the following content:
 
 .. warning:: Replace the dummy password with your own!
 
-.. code-block:: 
+.. code-block:: console
  :emphasize-lines: 1,2
  
  #hostname:port:database:username:password (min 64 characters)
@@ -125,7 +125,7 @@ Create a ``~/.pgpass`` file with the following content:
 
 In our example this would be:
 
-.. code-block:: 
+.. code-block:: console
 
  #hostname:port:database:username:password (min 64 characters)
  *:*:*:isabell:1234567890123456789012345678901234567890123456789012345678901234
@@ -156,7 +156,7 @@ Now create the database cluster:
 
 .. warning:: Replace ``<username>`` with your Uberspace name!
 
-.. code-block::
+.. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ initdb --pwfile="/home/<username>/pgpass.temp" --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
@@ -337,7 +337,7 @@ To create a new database user, i consider the following option:
 
 .. warning:: Please replace ``<username>`` with your user name!
 
-.. code-block::
+.. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ createuser <username> -P
@@ -358,7 +358,7 @@ Step 2 - New Database
 
 .. warning:: Please replace ``<username>`` with your user name!
 
-.. code-block::
+.. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template0 <username>
