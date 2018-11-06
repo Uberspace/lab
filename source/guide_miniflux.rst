@@ -64,7 +64,7 @@ New PostgreSQL Database
 .. warning:: Please replace ``<username>`` with your user name!
 
 .. code-block:: console
- :emphasize-lines: 1,2
+ :emphasize-lines: 2
 
  [isabell@stardust ~]$ psql -d template1 -c 'create extension hstore;'
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template1 miniflux2
@@ -100,8 +100,7 @@ Check the Miniflux_ website or GitHub_ for the `latest release`_ and copy the do
 
 Make the file ``miniflux-linux-amd64`` executable
 
-.. code-block:: console
- :emphasize-lines: 1
+::
 
  [isabell@stardust bin]$ chmod +x miniflux-linux-amd64
  [isabell@stardust bin]$
@@ -132,7 +131,7 @@ Setup PostgreSQL database and admin user
 Define the environment variable DATABASE_URL first for temporarily usage. After that, run the SQL migrations and create an admin user.
 
 .. code-block:: console
- :emphasize-lines: 1,2,9
+ :emphasize-lines: 1
 
   [isabell@stardust ~]$ export DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
   [isabell@stardust ~]$ miniflux-linux-amd64 -migrate
@@ -166,8 +165,7 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
 
 Tell supervisord_ to refresh its configuration and start the service:
 
-.. code-block:: console
- :emphasize-lines: 1,3,5
+::
 
  [isabell@stardust ~]$ supervisorctl reread
  miniflux: available
@@ -218,8 +216,7 @@ Check the GitHub's Atom Feed_ for any new Miniflux releases and copy the link to
 
 Make the binary ``miniflux-linux-amd64`` executable, migrate the database and start the service again.
 
-.. code-block:: console
- :emphasize-lines: 1,2,9
+::
 
  [isabell@stardust bin]$ chmod +x miniflux-linux-amd64
  [isabell@stardust bin]$ miniflux-linux-amd64 -migrate
