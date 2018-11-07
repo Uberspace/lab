@@ -2,31 +2,38 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
-  .. image:: _static/images/kirby.svg 
+
+  .. image:: _static/images/kirby.svg
       :align: center
 
 #########
 Kirby
 #########
 
-Kirby_ is a modern, fast, flexible, file-based (no database) content management system written in PHP. 
+Kirby_ is a modern, fast, flexible, file-based (no database) content management system written in PHP.
 
 The idea behind Kirby is to provide a tool for developing websites or applications that is both easy to use for developers and at the same time gives you all the freedom you want to structure your content and render your output.
 
-Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code of Kirby is available for download, a per website license_ is required to use it in production. 
+Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code of Kirby is available for download, a per website license_ is required to use it in production.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
   * domains_
 
+License
+=======
+
+Kirby is licensed under the `Kirby End User License Agreement`_ which you can find on the official website. You need to purchase a license_ to use Kirby with your website.
+
+.. warning:: Please be aware that one license is valid for a single website only. So you need to purchase additional licences for multiple websites. This is no legal advice. Please review the `license options`_ and the `Kirby End User License Agreement`_ for yourself and contact the developer if you’re not sure.
+
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1: 
+We're using PHP_ in the stable version 7.1:
 
 ::
 
@@ -41,7 +48,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install and update Kirby we use the Kirby CLI_, which is a command line interface to manage Kirby installations more efficiently. You can install it via Composer. 
+To install and update Kirby we use the Kirby CLI_, which is a command line interface to manage Kirby installations more efficiently. You can install it via Composer.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -55,9 +62,9 @@ To install and update Kirby we use the Kirby CLI_, which is a command line inter
   Generating autoload files
  [isabell@stardust ~]$
 
-.. warning:: Please note that we are installing the latest release tag (1.4.0) instead of master, since the master branch contains a bug_ which would prevent the CLI from running on Uberspace 7. 
+.. warning:: Please note that we are installing the latest release tag (1.4.0) instead of master, since the master branch contains a bug_ which would prevent the CLI from running on Uberspace 7.
 
-To install the Kirby Starterkit_ into your `document root`_, you just need to use the ``kirby install`` command. 
+To install the Kirby Starterkit_ into your `document root`_, you just need to use the ``kirby install`` command.
 
 .. code-block:: console
  :emphasize-lines: 1,2
@@ -70,7 +77,7 @@ To install the Kirby Starterkit_ into your `document root`_, you just need to us
   Kirby is installed!
  [isabell@stardust ~]$
 
-That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit. 
+That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit.
 
 Configuration
 =============
@@ -81,13 +88,13 @@ When you're ready to launch your website with Kirby you need to purchase a licen
 
   c::set('license', 'your license key');
 
-.. warning:: Please be aware that one license is valid for a single website only. So you need to purchase additional licences for multiple websites. This is no legal advice. Please review the `license options <https://getkirby.com/buy>`_ and the `licence agreement <https://getkirby.com/license>`_ for yourself and contact the developer if you're not sure. 
+.. warning:: Please check the licensing information at the beginning of this guide.
 
 
 Best practices
 ==============
 
-If you want to avoid the demo code and contents of the Kirby Starterkit, there is a minimal setup available known as Plainkit_. You can install it by appending the kit parameter to the install command ``kirby install html --kit plainkit``. However, the use is only recommended for users who are already familiar with Kirby. 
+If you want to avoid the demo code and contents of the Kirby Starterkit, there is a minimal setup available known as Plainkit_. You can install it by appending the kit parameter to the install command ``kirby install html --kit plainkit``. However, the use is only recommended for users who are already familiar with Kirby.
 
 Tuning
 ============
@@ -116,9 +123,9 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Kirby's `releases <https://github.com/getkirby/starterkit/releases>`_ for the latest versions. If a newer
-version is available, you should update your installation. 
+version is available, you should update your installation.
 
-To update Kirby you just need to use the ``kirby update`` command in the directory of your installation. 
+To update Kirby you just need to use the ``kirby update`` command in the directory of your installation.
 
 .. code-block:: console
  :emphasize-lines: 1,2
@@ -146,6 +153,8 @@ If you've enabled the cache, you might need to empty the cache directory to be s
 .. _Starterkit: https://github.com/getkirby/starterkit
 .. _CLI: https://github.com/getkirby/cli
 .. _bug: https://github.com/getkirby/cli/issues/36
+.. _Kirby End User License Agreement: https://getkirby.com/license
+.. _license options: https://getkirby.com/buy
 
 ----
 

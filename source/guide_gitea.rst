@@ -31,14 +31,14 @@ You need a database for gitea:
 
 .. warning:: Replace ``<username>`` with your username!
 
-.. code-block:: ini
+.. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_gitea"
   [isabell@stardust ~]$
 
 In our example this would be:
 
-.. code-block:: ini
+.. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_gitea"
   [isabell@stardust ~]$
@@ -57,7 +57,7 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.4.3/gitea-1.4.3-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.5.1/gitea-1.5.1-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -66,9 +66,9 @@ make sure that the file can be executed.
 
   100%[=======================================================>] 52,960,072  9.99MB/s   in 5.8s
 
-  2018-03-25 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [52960072/52960072]
+  2018-09-16 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [60473144/60473144]
   [isabell@stardust ~]$ sha256sum gitea/gitea
-  fe60fca294baa24fe4862bbcfe29c92d5a8a883a48aadb80f3a1270cf5de9bd4  gitea/gitea
+  ae4f43f73acbd0b61fbca78385a017d7aaed6f7d50f2bff5c3f057acfb46c71a gitea/gitea
   [isabell@stardust ~]$ chmod +x gitea/gitea
   [isabell@stardust ~]$
 
@@ -96,7 +96,7 @@ You need to create a custom directory
 and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
 desired port, domain and disable public registration:
 
-::
+.. code-block:: ini
 
   [server]
   HTTP_PORT = 9000
@@ -167,7 +167,7 @@ If you want that gitea manages SSH authorized_keys you can do:
 
 Add your key in gitea and then change the line in ``.ssh/authorized_keys`` to the following:
 
-::
+.. code-block:: sh
 
  command="if [ -t 0 ]; then bash; elif [[ $SSH_ORIGINAL_COMMAND =~ ^(scp|rsync|mysqldump).* ]]; then eval $SSH_ORIGINAL_COMMAND; else /home/<username>/gitea/gitea serv key-1 --config='/home/<username>/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
 
@@ -192,6 +192,6 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 ----
 
-Tested with Gitea 1.4.3, Uberspace 7.1.3
+Tested with Gitea 1.5.1, Uberspace 7.1.3
 
 .. authors::

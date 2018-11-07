@@ -197,14 +197,13 @@ If there is a new version available, you can get the code using git. Replace the
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
-  [isabell@stardust ~]$ git pull origin release/66.6.6
-  From git://github.com/ether/etherpad-lite
-  * branch              release/66.6.6 -> FETCH_HEAD
-  Updating e84c6962..1e25e7fc
+  [isabell@stardust etherpad]$ git checkout  -- src/package.json
+  [isabell@stardust etherpad]$ git pull origin 47.11.0
+  From https://github.com/ether/etherpad-lite
+   * tag                 47.11.0      -> FETCH_HEAD
+  Updating b8b2e4bc..96ac381a
   Fast-forward
-  [...]
-  32 files changed, 2033 insertions(+), 212 deletions(-)
-  [...]
+  […]
   [isabell@stardust ~]$
 
 Then you need to restart the service daemon, so the new code is used by the webserver:
@@ -216,7 +215,7 @@ Then you need to restart the service daemon, so the new code is used by the webs
   etherpad: started
   [isabell@stardust ~]$
 
-
+It might take a few minutes before your Etherpad comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f etherpad``.
 
 .. _`Etherpad Lite`: http://etherpad.org/
 .. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
@@ -229,6 +228,6 @@ Then you need to restart the service daemon, so the new code is used by the webs
 
 ----
 
-Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1
+Tested with Etherpad Lite 1.7.0 and Uberspace 7.1.15.0
 
 .. authors::

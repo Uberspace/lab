@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Hoffmann <uberlab@emptyweb.de>
+.. author:: Thomas Hoffmann <uberlab@emptyweb.de>, Ezzra <ezzra@posteo.de>
 
 .. sidebar:: Logo
 
@@ -46,68 +46,91 @@ Installation
 
 Step 1
 ------
+Prepare the installation folders:
 
-Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ and extract the archive in your webroot
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/
+ [isabell@stardust isabell]$ mkdir mailman_source
+ [isabell@stardust isabell]$ mkdir mailman
+ [isabell@stardust isabell]$ chmod g+s mailman
+ [isabell@stardust isabell]$
+
+Step 2
+------
+
+Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ and extract the archive in your webroot (replace the version numbers accordingly):
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/isabell
- [isabell@stardust ~]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
- [isabell@stardust ~]$ tar xzvf mailman-99.9.9.tgz
- [isabell@stardust ~]$ cd mailman-99.9.9
- [isabell@stardust ~]$
+ [isabell@stardust isabell]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
+ [isabell@stardust isabell]$ tar xzvf mailman-99.9.9.tgz -C mailman_source --strip-components=1
+ [isabell@stardust isabell]$
 
-Step 2
-------
-Create the installation folder
+Now run the configure script, telling Mailman where to install and what user/groups to use for its binaries. You need to change your Uberspace account name for each parameter (you can find a declaration for the parameters in the Mailman documentation_):
 
 ::
 
- [isabell@stardust ~]$ mkdir /var/www/virtual/isabell/mailman
- [isabell@stardust ~]$ chmod a+rx,g+ws /var/www/virtual/isabell/mailman
 
-and run the configure script, telling Mailman where to install and what user/groups to use for its binaries:
-
-* ``--with-username``: Specify a different username than mailman. The value of this option can be an integer user id or a user name. 
-* ``--with-groupname``: Specify a different group than mailman. The value of this option can be an integer group id or a group name. 
-* ``--prefix``: Standard GNU configure option which changes the base directory that Mailman is installed into. By default $prefix is /usr/local/mailman
-* ``--with-mail-gid``: Specify an alternative group for running scripts via the mail wrapper.
-* ``--with-cgi-gid``: Specify an alternative group for running scripts via the CGI wrapper.
-
-::
-
- [isabell@stardust ~]$ ./configure --with-username=isabell --with-groupname=isabell --prefix=/var/www/virtual/isabell/mailman/ --with-mail-gid=isabell --with-cgi-gid=isabell
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman_source
+ [isabell@stardust mailman_source]$ ./configure --with-username=isabell --with-groupname=isabell --prefix=/var/www/virtual/isabell/mailman/ --with-mail-gid=isabell --with-cgi-gid=isabell
+ [...]
+ config.status: creating build/cron/nightly_gzip
+ config.status: creating build/cron/senddigests
+ config.status: executing default commands
+ configuration completed at Thu Nov 1 10:10:10 CET 2018
+ [isabell@stardust mailman_source]$ 
 
 After configuration is finished, you may compile and install the package by running
 
 ::
 
- [isabell@stardust ~]$ make && make install
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman_source
+ [isabell@stardust mailman_source]$ make && make install
+ Compiling /var/www/virtual/isabell/mailman/Mailman/versions.py ...
+ Upgrading from version 0x0 to 0x2011df0
+ getting rid of old source files
+ no lists == nothing to do, exiting
+ [isabell@stardust mailman_source]$
+
+
+If compilation and installation finished without errors, we will no longer need the source files now, so clean them up:
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/
+ [isabell@stardust isabell]$ rm mailman-*.tgz
+ [isabell@stardust isabell]$ rm -fvr mailman_source
+ [isabell@stardust isabell]$
+
 
 Step 3
 ------
 
-If compilation and installation finished without errors, we can continue by checking folder permissions in the installation folder.
+We can continue by checking folder permissions in the installation folder:
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman
- [isabell@stardust ~]$ bin/check_perms
+ [isabell@stardust mailman]$ bin/check_perms
+ No problems found
+ [isabell@stardust mailman]$
 
 In case errors are found, you should definitely fix them before continuing.
 
 Step 4
 ------
 
-If you want the webinterface to be available publically, we need to create a couple of SymLinks and an htaccess-file.
+If you want the webinterface to be available publically, we need to create a couple of SymLinks and an htaccess-file:
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/isabell/html
- [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/cgi-bin ./mailman
- [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/archives/public ./pipermail
- [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/mailman/icons ./icons
+ [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/cgi-bin ./mailman
+ [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/archives/public ./pipermail
+ [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/icons ./icons
+ [isabell@stardust html]$
 
 Create the file ``/var/www/virtual/isabell/mailman/cgi-bin/.htaccess`` with the following content:
 
@@ -121,11 +144,12 @@ Finally, we need to adjust file permissions for the Mailman_ cgi-scripts to run:
 ::
 
  [isabell@stardust ~]$ chmod -R 0755 /var/www/virtual/isabell/mailman/cgi-bin
+ [isabell@stardust ~]$
 
 Step 5
 ------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. The following script is based on the script provided in the official installation instructions and may be used by placing it in your ``~/bin`` folder (for example as ``addlist.sh``):
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman-add-list.sh`` with the following content (this code is based on the script provided in the official installation instructions):
 
 .. code :: bash
 
@@ -145,14 +169,14 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
  echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > ~/.qmail-$i-unsubscribe
  fi
 
-Don't forget to make the script executable:
+You still need to make the script executable:
 
 ::
 
- [isabell@stardust ~]$ chmod +x ~/bin/addlist.sh
+ [isabell@stardust ~]$ chmod +x ~/bin/mailman-add-list.sh
  [isabell@stardust ~]$
 
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``addlist.sh listname`` if you stored it as ``~/bin/addlist.sh`` and want to create aliases for a list ``listname``).
+After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman-add-list.sh listname`` if you stored it as ``~/bin/mailman-add-list.sh`` and want to create aliases for a list ``listname``).
 
 Configuration
 =============
@@ -167,7 +191,7 @@ Create a mailbox_ for Mailman to use to send e-mails. In this example, we are go
 Step 2
 ------
 
-Set the following options in ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
+Add the following options to the end of the file ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
 
 .. code:: python
 
@@ -182,10 +206,10 @@ Set the following options in ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.p
  SMTPPORT = '587'
 
  SMTP_USER = 'mailmanbox@isabell.uber.space'
- SMTP_PASSWD = 'betterPWthanThis'
+ SMTP_PASSWD = 'MySuperSecretPassword'
 
  # tell mailman to use HTTPS
- DEFAULT_URL_PATTERN = 'https://%s/mailman'
+ DEFAULT_URL_PATTERN = 'https://%s/mailman/'
 
 You can look up the meaning  and default value of each variable in the file ``Defaults.py`` in the same folder.
 
@@ -194,28 +218,6 @@ You can look up the meaning  and default value of each variable in the file ``De
 
 Finishing Installation
 ======================
-
-Create site-wide mailinglist
-----------------------------
-
-Now we are ready to create the administrative (site-wide) mailing list! Simply run
-
-::
-
- [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/newlist mailman
-
-and follow the on-screen instructions.
-
-.. warning:: Don't forget to create the .qmail-aliases afterwards!
-
-Install cronjobs
-----------------
-
-Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. To install them for your user, run:
-
-::
-
- [isabell@stardust ~]$ crontab /var/www/virtual/isabell/mailman/cron/crontab.in
 
 Setup daemon
 ------------
@@ -237,8 +239,37 @@ Tell supervisord_ to refresh and start the qrunner:
  mailman: added process group
  [isabell@stardust ~]$ supervisorctl status
  mailman                          RUNNING   pid 3226, uptime 0:03:42
+ [isabell@stardust ~]$
 
 If it is not in state ``RUNNING``, check your configuration and logs.
+
+Install cronjobs
+----------------
+
+Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. To install them for your user, run:
+
+::
+
+ [isabell@stardust ~]$ crontab /var/www/virtual/isabell/mailman/cron/crontab.in
+ [isabell@stardust ~]$
+
+Create the first mailinglist
+----------------------------
+
+Now we are ready to create the first mailing list! Simply run
+
+::
+
+ [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/newlist mailman
+ Enter the email of the person running the list: isabell@uber.space
+ Initial test password:
+ [...]
+ Hit enter to notify test owner...
+ [isabell@stardust ~]$
+
+and follow the on-screen instructions.
+
+.. warning:: Don't forget to create the .qmail-aliases using the 'mailman-add-list.sh' script afterwards!
 
 Redirect HTTP-requests
 ----------------------
@@ -259,7 +290,8 @@ This guide is based on the `official Mailman 2.1 installation instructions <http
 .. _Mailman: http://www.list.org/
 .. _Python: https://manual.uberspace.de/en/lang-python.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _mailbox: https://manual.uberspace.de/en/mail-mailboxes.html
+.. _mailbox: https://manual.uberspace.de/en/mail-mailboxes.html#setup-a-new-mailbox
+.. _documentation: https://www.gnu.org/software/mailman/mailman-install.txt
 
 
 .. authors::
