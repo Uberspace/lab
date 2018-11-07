@@ -8,10 +8,10 @@
       :align: center
 
 ##########
-Pretix
+pretix
 ##########
 
-Pretix_ is an open source ticketing solution. It is written in Django_ and can be highly customized for the process of ticket sales.
+pretix_ is an open source ticketing solution. It is written in Django_ and can be highly customized for the process of ticket sales.
 
 ----
 
@@ -45,7 +45,7 @@ Installation
 
 Step 1
 ------
-Get the Pretix source code from Github and clone it to ``~/pretix``, be sure to replace the pseudo branch number ``release/6.6.x`` here with the latest release branch from the Github repository at https://github.com/pretix/pretix/branches/active:
+Get the pretix source code from Github and clone it to ``~/pretix``, be sure to replace the pseudo branch number ``release/6.6.x`` here with the latest release branch from the Github repository at https://github.com/pretix/pretix/branches/active:
 
 ::
 
@@ -65,7 +65,7 @@ Also, you need to create an extra data folder:
  
 Step 2
 ------
-Install the requirements for Pretix_:
+Install the requirements for pretix_:
 
 ::
 
@@ -95,7 +95,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
   :emphasize-lines: 2,3,5,9,10,11,15,16,17,18
 
     [pretix]
-    instance_name=Isabells Pretix
+    instance_name=Isabells pretix
     url=https://isabell.uber.space
     currency=EUR
     datadir=/home/isabell/pretix_data
@@ -135,7 +135,7 @@ You will also need to install a mysqlclient package:
 
 Step 6
 ------
-Initialize the Pretix_ database tables and generate the static files:
+Initialize the pretix_ database tables and generate the static files:
 
 ::
 
@@ -167,7 +167,7 @@ Step 9
 Step 10
 -------
 
-Finally, you should set up a service that keeps Pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
+Finally, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username and ``<yourport>`` with the new portnumber you got!
 
@@ -226,7 +226,7 @@ If there is a new version available, update your branch according to the version
  [isabell@stardust pretix]$
 
 
-.. _Pretix: https://pretix.eu/
+.. _pretix: https://pretix.eu/
 .. _Django:  https://www.djangoproject.com/
 .. _Python: https://manual.uberspace.de/en/lang-python.html
 .. _Gunicorn: https://gunicorn.org/
@@ -238,6 +238,6 @@ If there is a new version available, update your branch according to the version
 
 ----
 
-Tested with Pretix 2.1.0 and Uberspace 7.1.15.0
+Tested with pretix 2.1.0 and Uberspace 7.1.15.0
 
 .. authors::
