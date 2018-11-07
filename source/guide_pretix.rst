@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Ezra <ezra@posteo.de>
+.. author:: ezra <ezra@posteo.de>
 
 .. sidebar:: About
 
