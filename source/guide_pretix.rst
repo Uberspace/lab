@@ -235,9 +235,12 @@ If there is a new version available, update your branch according to the version
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/pretix/pretix
 .. _feed: https://github.com/pretix/pretix/releases.atom
+.. _bullshit: https://bullenscheisse.de/2018/pretix-auf-einem-uberspace/
 
 ----
 
 Tested with pretix 2.1.0 and Uberspace 7.1.15.0
 
 .. authors::
+
+This guide was written with the help of a former text on "bullshit_", thanks to Nathan.
