@@ -1,7 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Hoffmann <uberlab@emptyweb.de>
-.. author:: Ezzra <ezzra@posteo.de>
+.. author:: Thomas Hoffmann <uberlab@emptyweb.de>, Ezzra <ezzra@posteo.de>
 
 .. sidebar:: Logo
 

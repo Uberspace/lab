@@ -1,4 +1,4 @@
-.. author:: ezra <ezra@posteo.de>
+.. author:: ezzra <ezra@posteo.de>
 .. highlight:: console
 
 .. sidebar:: Logo
