@@ -128,7 +128,7 @@ Finishing installation
 Setup PostgreSQL database and admin user
 ----------------------------------------
 
-Define the environment variable DATABASE_URL first for temporarily usage. After that, run the SQL migrations and create an admin user.
+Define the environment variable ``DATABASE_URL`` first for temporary usage. After that, run the SQL migrations and create an admin user.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -175,7 +175,7 @@ Tell supervisord_ to refresh its configuration and start the service:
  miniflux                            RUNNING   pid 26020, uptime 0:03:14
  [isabell@stardust ~]$
 
-If it's not in state RUNNING, check your configuration.
+If it's not in state ``RUNNING``, check your configuration.
 
 Go to ``https://isabell.uber.space/`` and log in to your installation with the login ``isabell`` and password given above.
 
@@ -186,7 +186,7 @@ Best practices
 Configuration
 -------------
 
-Check the `Miniflux documentation`_ for further environment variables, that could be placed in ``~/etc/services.d/miniflux.ini``.
+Check the `Miniflux documentation`_ for further environment variables that could be placed in ``~/etc/services.d/miniflux.ini``.
 
 
 Updates
