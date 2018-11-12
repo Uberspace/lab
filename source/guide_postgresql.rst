@@ -220,6 +220,12 @@ Edit your ``~/.bashrc`` and add the following content:
  export PGHOST=localhost
  export PGPORT=9000
 
+Load the new settings:
+
+.. code-block:: bash
+
+ [isabell@stardust ~] source ~/.bashrc
+
 Step 3 - Maintain the PostgreSQL Configuration
 ----------------------------------------------
 
