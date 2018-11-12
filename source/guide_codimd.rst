@@ -232,58 +232,58 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 .. code-block:: ini
   :emphasize-lines: 6, 7, 8, 20
 
-	[supervisord]
-	loglevel=warn
+[supervisord]
+loglevel=warn
 
-	[program:codimd]
-	environment=
-		CMD_SESSION_SECRET="<random>",
-		CMD_DOMAIN="<domain>",
-		CMD_PORT=<port>,
-		NODE_ENV="production",
-		CMD_USECDN=false,
-		CMD_ALLOW_ANONYMOUS=false,
-		CMD_ALLOW_ANONYMOUS_EDITS=true,
-		CMD_ALLOW_FREEURL=true,
-		CMD_DEFAULT_PERMISSION=private,
-		CMD_SESSION_LIFE=1209600000,
-		CMD_EMAIL=true,
-		CMD_ALLOW_EMAIL_REGISTER=false,
-		CMD_IMAGE_UPLOAD_TYPE=filesystem,
-		CMD_PROTOCOL_USESSL=true,
-		CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
+[program:codimd]
+environment=
+	CMD_SESSION_SECRET="<random>",
+	CMD_DOMAIN="<domain>",
+	CMD_PORT=<port>,
+	NODE_ENV="production",
+	CMD_USECDN=false,
+	CMD_ALLOW_ANONYMOUS=false,
+	CMD_ALLOW_ANONYMOUS_EDITS=true,
+	CMD_ALLOW_FREEURL=true,
+	CMD_DEFAULT_PERMISSION=private,
+	CMD_SESSION_LIFE=1209600000,
+	CMD_EMAIL=true,
+	CMD_ALLOW_EMAIL_REGISTER=false,
+    CMD_IMAGE_UPLOAD_TYPE=filesystem,
+	CMD_PROTOCOL_USESSL=true,
+	CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
 
-	directory=/home/<username>/codimd
-	command=node app.js
+directory=/home/<username>/codimd
+command=node app.js
 
 In our example this would be:
 
 .. code-block:: ini
   :emphasize-lines: 6, 7, 8, 20
 
-	[supervisord]
-	loglevel=warn
+[supervisord]
+loglevel=warn
 
-	[program:codimd]
-	environment=
-		CMD_SESSION_SECRET="extremerandom",
-		CMD_DOMAIN="isabell.uber.space",
-		CMD_PORT=9000,
-		NODE_ENV="production",
-		CMD_USECDN=false,
-		CMD_ALLOW_ANONYMOUS=false,
-		CMD_ALLOW_ANONYMOUS_EDITS=true,
-		CMD_ALLOW_FREEURL=true,
-		CMD_DEFAULT_PERMISSION=private,
-		CMD_SESSION_LIFE=1209600000,
-		CMD_EMAIL=true,
-		CMD_ALLOW_EMAIL_REGISTER=false,
-		CMD_IMAGE_UPLOAD_TYPE=filesystem,
-		CMD_PROTOCOL_USESSL=true,
-		CMD_DB_URL="mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd",
+[program:codimd]
+environment=
+	CMD_SESSION_SECRET="extremerandom",
+	CMD_DOMAIN="isabell.uber.space",
+	CMD_PORT=9000,
+	NODE_ENV="production",
+	CMD_USECDN=false,
+	CMD_ALLOW_ANONYMOUS=false,
+	CMD_ALLOW_ANONYMOUS_EDITS=true,
+	CMD_ALLOW_FREEURL=true,
+	CMD_DEFAULT_PERMISSION=private,
+	CMD_SESSION_LIFE=1209600000,
+	CMD_EMAIL=true,
+	CMD_ALLOW_EMAIL_REGISTER=false,
+	CMD_IMAGE_UPLOAD_TYPE=filesystem,
+	CMD_PROTOCOL_USESSL=true,
+	CMD_DB_URL="mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd",
 
-	directory=/home/isabell/codimd
-	command=node app.js
+directory=/home/isabell/codimd
+command=node app.js
 
 
 
