@@ -23,6 +23,9 @@ Up1_ provides a very simple web interface to share files end-to-end encrypted vi
 Prerequisites
 =============
 
+Node and npm
+------------
+
 We're using Node.js_ in the stable version 8:
 
 ::
@@ -30,7 +33,7 @@ We're using Node.js_ in the stable version 8:
  [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '8'
  [isabell@stardust ~]$
- 
+
 We will need to update the Node Packet Manager npm:
 
 ::
@@ -38,10 +41,20 @@ We will need to update the Node Packet Manager npm:
   [isabell@stardust ~]$ npm install npm@latest -g
   + npm@6.4.1
   updated 1 package in 14.629s
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ hash -r
+  [isabell@stardust ~]$ npm --version
+  6.4.1
+  [isabell@stardust ~]$
 
+This should return a version from ``6.0.0`` upwards.
+
+Mysql
+-----
 
 .. include:: includes/my-print-defaults.rst
+
+Domain
+------
 
 Your URL needs to be setup:
 
@@ -64,7 +77,9 @@ First get the Up1 source code from Github_:
   Note: checking out '059f199a6f94fc6c90cde1e4dab0b5b85b49533c'.
   [isabell@stardust ~]$
 
-You have now downloaded the master development branch, because this might behave like a beta version of the software, you should check out the latest release. Please be sure to replace the pseudo version number ``66.6`` here with the latest version number from the release feed_:
+You have now downloaded the master development branch, because this might behave like a beta version of the software, you should check out the latest release. 
+
+Please be sure to replace the pseudo version number ``66.6`` here with the latest version number from the release feed_:
 
 ::
 
