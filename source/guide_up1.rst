@@ -184,6 +184,7 @@ Create ``~/etc/services.d/up1.ini`` with the following content:
 .. code-block:: ini
 
  [program:up1]
+ directory=/home/isabell/up1/server/
  command=node /home/<username>/up1/server/server.js
 
 In our example this would be:
