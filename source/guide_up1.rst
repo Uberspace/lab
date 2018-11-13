@@ -121,6 +121,8 @@ Copy the example settings files to create your own configuration:
 
 Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh portnumber you got earlier. Also set a random string for ``api_key`` and ``delete_key``:
 
+.. note:: You can use the following code, for example, to create a random string: ``[isabell@stardust ~]$ head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20 ; echo ''``
+
 .. code-block:: none
  :emphasize-lines: 2,3,13
 
