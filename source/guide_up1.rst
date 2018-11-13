@@ -122,7 +122,7 @@ Copy the example settings files to create your own configuration:
 Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh portnumber you got earlier. Also set a random string for ``api_key`` and ``delete_key``:
 
 .. code-block:: none
- :emphasize-lines: 2,3,13,18
+ :emphasize-lines: 2,3,13
 
   {
   "api_key": "<any_random_string>",
@@ -137,13 +137,6 @@ Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh 
   "http": {
     "enabled": true,
     "listen": "localhost:<yourport>"
-  },
-
-  "https": {
-    "enabled": false,
-    "listen": "localhost:<yourport>",
-    "cert": "./cert.pem",
-    "key": "./key.pem"
   },
 
 Then add the same ``api_key`` to the file ``~/up1/client/config.js``:
