@@ -54,7 +54,7 @@ First get the Up1 source code from Github_:
 
 ::
 
-  [isabell@stardust ~]$ git clone https://github.com/Upload/Up1 up1 --depth 1
+  [isabell@stardust ~]$ git clone https://github.com/Upload/Up1 up1
   Cloning into 'up1'...
   remote: Enumerating objects: 37, done.
   remote: Counting objects: 100% (37/37), done.
@@ -69,7 +69,7 @@ You have now downloaded the master development branch, because this might behave
 ::
 
   [isabell@stardust ~]$ cd ~/up1
-  [isabell@stardust up1]$ git checkout v66.6 --depth1
+  [isabell@stardust up1]$ git checkout tags/v66.6
   You are in 'detached HEAD' state. You can look around, [...]
   [isabell@stardust up1]$ git checkout -b latest
   Switched to a new branch 'latest'
