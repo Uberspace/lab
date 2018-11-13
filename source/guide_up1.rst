@@ -116,7 +116,7 @@ Copy the example settings files to create your own configuration:
 
   [isabell@stardust ~]$ cd ~/up1
   [isabell@stardust up1]$ cp server/server.conf.example server/server.conf
-  [isabell@stardust up1]$ cp client/config.js.example server/config.js
+  [isabell@stardust up1]$ cp client/config.js.example client/config.js
   [isabell@stardust up1]$
 
 Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh portnumber you got earlier. Also set a random string for ``api_key`` and ``delete_key``:
