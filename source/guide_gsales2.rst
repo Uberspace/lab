@@ -60,7 +60,7 @@ After setting the PHP version just make sure we are using the correct version:
 
 
 
-The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide guide_ioncube_ to setup the loader for your space.
+The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide `ionCube Loader`_ to setup the loader for your space.
 
 
 
