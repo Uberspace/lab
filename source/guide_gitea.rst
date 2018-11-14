@@ -57,7 +57,7 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.5.1/gitea-1.5.1-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.5.3/gitea-1.5.3-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -192,6 +192,6 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 ----
 
-Tested with Gitea 1.5.1, Uberspace 7.1.3
+Tested with Gitea 1.5.3, Uberspace 7.1.16
 
 .. authors::
