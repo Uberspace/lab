@@ -59,60 +59,8 @@ After setting the PHP version just make sure we are using the correct version:
  [isabell@stardust ~]$
 
 
-The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder.
-In order to run GSALES 2 on your server you need the so called IonCube Loader.
 
-The setup of the IonCube Loader is pretty straightforward.
-
-First we have to download and extract it:
-
-::
-
-  [isabell@stardust ~]$ wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
-  [isabell@stardust ~]$ tar -xvzf ioncube_loaders_lin_x86-64.tar.gz
-  [isabell@stardust ~]$
-  
-  
-  
-Tidy up our space a little bit by removing the downloaded archive:
-  
-::  
-
-  [isabell@stardust ~]$ rm ioncube_loaders_lin_x86-64.tar.gz
-  [isabell@stardust ~]$
-  
-
-
-Now we have to make sure that our PHP is loading this extension.
-Create the php.early.d directory which is holding the custom configuration directives for PHP:
-
-:: 
-
-  [isabell@stardust ~]$ mkdir etc/php.early.d
-  [isabell@stardust ~]$
-
-
-
-The following command creates a configuration file in that directory telling PHP the extension to load:
-
-Attention! Make sure to replace "stardust" with your uberspace name.  
-
-  
-:: 
-
-  [isabell@stardust ~]$ echo 'zend_extension=/home/stardust/ioncube/ioncube_loader_lin_7.1.so' > etc/php.early.d/ioncube.ini
-  [isabell@stardust ~]$
-
-  
-  
-  
-The Changes will take effect after reloading PHP:
-
-:: 
-
-  [isabell@stardust ~]$ uberspace tools restart php
-  Your php configuration has been loaded.
-  [isabell@stardust ~]$
+The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide :ref:`guide_ioncube` to setup the loader for your space.
 
 
 
