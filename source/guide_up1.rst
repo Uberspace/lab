@@ -48,11 +48,6 @@ We will need to update the Node Packet Manager npm:
 
 This should return a version from ``6.0.0`` upwards.
 
-Mysql
------
-
-.. include:: includes/my-print-defaults.rst
-
 Domain
 ------
 
