@@ -1,4 +1,4 @@
-.. guide_ioncube:
+.. _guide_ioncube:
 
 .. highlight:: console
 
