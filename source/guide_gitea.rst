@@ -66,13 +66,6 @@ make sure that the file can be executed.
 Configuration
 =============
 
-Configure port
---------------
-
-Since Gitea uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Change the configuration
 ------------------------
 
@@ -84,8 +77,7 @@ You need to create a custom directory
   [isabell@stardust ~]$
 
 
-and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
-desired port, domain and disable public registration:
+and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the port and domain and to disable public registration:
 
 .. code-block:: ini
 
@@ -100,10 +92,14 @@ desired port, domain and disable public registration:
 Gitea provides many other configuration options. Take a look at the Documentation_
 to learn more.
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-.. include:: includes/proxy-rewrite.rst
+.. note::
+
+    Gitea is running on port 9000.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
