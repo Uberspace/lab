@@ -109,18 +109,14 @@ Make the file ``miniflux-linux-amd64`` executable
 Configuration
 =============
 
-Configure port
---------------
+Configure web server
+--------------------
 
-You need to find a free port and bind your application to it.
+.. note::
 
-.. include:: includes/generate-port.rst
+    Miniflux is running on port 9000.
 
-
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Finishing installation
 ======================
@@ -133,7 +129,7 @@ Define the environment variable ``DATABASE_URL`` first for temporary usage. Afte
 .. code-block:: console
  :emphasize-lines: 1
 
-  [isabell@stardust ~]$ export DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
+  [isabell@stardust ~]$ export DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost"
   [isabell@stardust ~]$ miniflux-linux-amd64 -migrate
   Current schema version: 0
   Latest schema version: 16
@@ -155,7 +151,7 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
 
  [program:miniflux]
  environment =
-  LISTEN_ADDR="127.0.0.1:9000",
+  LISTEN_ADDR="0.0.0.0:9000",
   BASE_URL="https://isabell.uber.space",
   DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
  command=miniflux-linux-amd64
