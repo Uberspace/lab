@@ -64,17 +64,14 @@ Verify installation
 Configuration
 =============
 
-Configure port
---------------
+Configure web server
+--------------------
 
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
+.. note::
 
-.. include:: includes/generate-port.rst
+    The Lounge is running on port 9000.
 
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Create configuration file
 -------------------------
@@ -96,8 +93,6 @@ To configure The Lounge you need to create the ``~/.lounge/config.js`` file with
 
  module.exports = {
    public: false,
-   host: '127.0.0.1',
-   port: <yourport>,
    reverseproxy: true
  };
 
