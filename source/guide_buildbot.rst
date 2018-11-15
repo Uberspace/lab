@@ -250,7 +250,7 @@ Secondly, create the file ``~/etc/services.d/buildbot-worker.ini`` with the foll
 ::
 
  [program:buildbot-worker]
- command=/home/isabell/.local/bin/buildbot-worker start --nodaemon /home/isabell/bb-worker/example-worker
+ command=/home/isabell/.local/bin/buildbot-worker start --nodaemon /home/isabell/bb-workers/example-worker
 
 After creating these files, call ``supervisorctl reread`` and ``supervisorctl update`` to finalize the supervisord_ setup.
 
