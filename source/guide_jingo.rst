@@ -86,14 +86,6 @@ You then have to configure the Git repository with name and email, if you haven'
 
 .. note:: You can of course set arbitrary informations here. If you want to share your data using Github for example, you might want to set the appropriate data.
 
-
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Change the configuration
 ------------------------
 
@@ -104,10 +96,10 @@ You first need to create a default config file using the ``jingo`` command:
   [isabell@stardust ~]$ ~/jingo/jingo -s > ~/jingo/config.yaml
   [isabell@stardust ~]$
 
-Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First of all, set the correct port and the repository folder. Be sure to replace ``<username>`` and ``<yourport>`` with the appropriate data:
+Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First of all, set repository folder. Be sure to replace ``<username>`` with your actual username:
 
 .. code-block:: yaml
-  :emphasize-lines: 6,11
+  :emphasize-lines: 6
 
   # Configuration sample file for Jingo (YAML)
   application:
@@ -116,12 +108,6 @@ Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First 
     favicon: ''
     repository: '/home/<username>/jingo_data'
     docSubdir: ''
-  [...]
-  server:
-    hostname: localhost
-    port: <yourport>
-    localOnly: false
-    baseUrl: ''
   [...]
 
 You will also need to set up an account to login. You can choose multiple ways for authentication like *Github*, *Google*, *Ldap*.
@@ -151,11 +137,14 @@ Save the returned hash (here ``7dfd2a21e27be76896430ee382e268b362d812d7``) toget
 
 .. warning:: Of course you have to change the string ``MySuperSecretPassword`` to your personal password and use the corresponding hash!
 
+Configure web server
+--------------------
 
-Setup .htaccess
----------------
+.. note::
 
-.. include:: includes/proxy-rewrite.rst
+    Jingo is running on port 6067.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
