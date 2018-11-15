@@ -74,6 +74,21 @@ Migrate database
 Configuration
 =============
 
+Configure Hostname
+------------------
+
+Edit ``~/MyDjangoProject/MyDjangoProject/settings.py`` and edit the line ``ALLOWED_HOSTS = []`` to add your host name.
+
+::
+
+ ALLOWED_HOSTS = ['isabell.uber.space']
+
+If you need to add multiple host names, seperate thim with commas like this:
+
+::
+
+ ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
+
 Configure port
 --------------
 
