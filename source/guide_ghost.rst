@@ -108,38 +108,29 @@ You will need to enter the following information:
 Configuration
 =============
 
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
-Change the configuration
+Change network interface
 ------------------------
 
-You need to adjust your ``~/ghost/config.production.json`` with the new port. Find the following code block and change port 2369 to your own port:
+Edit ``~/ghost/config.production.json`` and change the host IP address to ``0.0.0.0``:
 
-::
+.. code-block:: none
+ :emphasize-lines: 5
 
- "server": {
-   "port": 2369,
-   "host": "0.0.0.0"
- },
+ {
+   "url": "https://isabell.uber.space",
+   "server": {
+     "port": 2368,
+     "host": "0.0.0.0"
+   },
 
-In our example this would be:
+Configure web server
+--------------------
 
-::
+.. note::
 
- "server": {
-   "port": 9000,
-   "host": "0.0.0.0"
- },
+    Ghost is running on port 2368.
 
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
