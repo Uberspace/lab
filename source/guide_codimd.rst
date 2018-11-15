@@ -170,14 +170,6 @@ I don’t know why, but when I tried it, CodiMD ignored the config files. So we�
 
 That’s all. The actual configuration will be done through environment!
 
-Configure port
---------------
-
-Since CodiMD uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
-
 Get Session Cookie
 ------------------
 
@@ -205,7 +197,7 @@ enter your sql credetials in ``.sequelizerc``:
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),
       'models-path':     path.resolve('lib', 'models'),
-      'url':             'mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd'
+      'url':             'mysql://<username>:<mysql_pw>@127.0.0.1:3306/<username>_codimd'
   }
 
 In our example this would be:
@@ -219,7 +211,7 @@ In our example this would be:
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),
       'models-path':     path.resolve('lib', 'models'),
-      'url':             'mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd'
+      'url':             'mysql://isabell:MySuperSecretPassword@127.0.0.1:3306/isabell_codimd'
   }
 
 Setup daemon
@@ -228,7 +220,7 @@ Setup daemon
 Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 8
+  :emphasize-lines: 6, 7
 
   [supervisord]
   loglevel=warn
@@ -237,7 +229,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
   environment=
   	CMD_SESSION_SECRET="<random>",
   	CMD_DOMAIN="<domain>",
-  	CMD_PORT=<port>,
+  	CMD_PORT=60101,
   	NODE_ENV="production",
   	CMD_USECDN=false,
   	CMD_ALLOW_ANONYMOUS=false,
@@ -257,7 +249,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 In our example this would be:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 8
+  :emphasize-lines: 6, 7
 
   [supervisord]
   loglevel=warn
@@ -266,7 +258,7 @@ In our example this would be:
   environment=
   	CMD_SESSION_SECRET="extremerandom",
   	CMD_DOMAIN="isabell.uber.space",
-  	CMD_PORT=9000,
+  	CMD_PORT=60101,
   	NODE_ENV="production",
   	CMD_USECDN=false,
   	CMD_ALLOW_ANONYMOUS=false,
@@ -285,7 +277,7 @@ In our example this would be:
 
 
 
-Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, ``CMD_PORT`` and ``CMD_DB_URL`` and you're good to go!
+Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_DB_URL`` and you're good to go!
 
 See `here <https://github.com/hackmdio/codimd#environment-variables-will-overwrite-other-server-configs>`_ for a detailed look at what these options do.
 
@@ -313,7 +305,7 @@ Since we don’t want to run a public instance and have disabled registration, w
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/codimd
-  [isabell@stardust codimd]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd" bin/manage_users --add isabell@uber.space
+  [isabell@stardust codimd]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@127.0.0.1:3306/<username>_codimd" bin/manage_users --add isabell@uber.space
   [isabell@stardust codimd]$
 
 It will prompt you for a password now.
@@ -326,17 +318,11 @@ It will prompt you for a password now.
 Configure web server
 --------------------
 
-In order for your CodiMD instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
+.. include:: includes/web-backend.rst
 
-.. code-block:: ini
-  :emphasize-lines: 4
+.. note::
 
-  DirectoryIndex disabled
-
-  RewriteEngine On
-  RewriteRule ^(.*) http://localhost:<PORT>/$1 [P]
-
-Again, don't forget to fill in your port number in the last line!
+    CodeiMD is running on port 60101.
 
 And you're done!
 
