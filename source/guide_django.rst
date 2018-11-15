@@ -89,17 +89,14 @@ If you need to add multiple host names, seperate thim with commas like this:
 
  ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
 
-Configure port
---------------
+Configure web server
+--------------------
 
-Since Django applications use their own webserver, you need to find a free port and bind your application to it.
+.. note::
 
-.. include:: includes/generate-port.rst
+    Django is running on port 8000.
 
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite-static.rst
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
@@ -107,16 +104,15 @@ Setup daemon
 To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/myDjangoProject.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
-.. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,5,16,17
+  :emphasize-lines: 2,3,16,17
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject
   chdir = /home/<username>/MyDjangoProject
 
-  http = :<yourport>
+  http = :8000
   master = true
   wsgi-file = %(base)/wsgi.py
   touch-reload = %(wsgi-file)
@@ -133,13 +129,11 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 Test installation
 -----------------
 
-Perform a CURL request to your custom port to see if your installation succeeded:
-
-.. warning:: Replace ``<yourport>`` with your port!
+Perform a CURL request to djangos port to see if your installation succeeded:
 
 ::
 
- [isabell@stardust ~]$ curl -I localhost:<yourport>
+ [isabell@stardust ~]$ curl -I localhost:8000
  HTTP/1.1 200 OK
  Content-Type: text/html
  X-Frame-Options: SAMEORIGIN
