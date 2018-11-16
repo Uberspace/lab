@@ -30,7 +30,7 @@ License
 =======
 
 GSALES is distributed in a free demo mode where the count of recordsets is limited.
-After exceeding the limit GSALES will fall back to a read-only mode requiring you to rent or purchase a licence for the application at https://www.gsales.de.
+After exceeding the limit GSALES will fall back to a read-only mode requiring you to rent or purchase a licence for the application at `gsales.de <https://www.gsales.de>`_.
 
 
 
@@ -60,7 +60,7 @@ After setting the PHP version just make sure we are using the correct version:
 
 
 
-The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide `ionCube Loader`_ to setup the loader for your space.
+The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide :ref:`ionCube Loader <guide_ioncube>` to setup the loader for your space.
 
 
 
@@ -152,4 +152,8 @@ GSALES 2 Updates are pretty straightforward.
 
 3. Point your Browser to the Installation and an Updater will guide you through the rest of the process.
 
-A more detailed update instruction can be found at https://support.gsales.de/hc/de/articles/202105793-gSales-2-richtig-schnell-updaten
+A more detailed update instruction can be found on the `gsales website <gsalesupdate_>`_.
+
+.. _PHP: https://manual.uberspace.de/en/lang-php.html
+.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
+.. _gsalesupdate: https://support.gsales.de/hc/de/articles/202105793-gSales-2-richtig-schnell-updaten
