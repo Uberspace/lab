@@ -160,6 +160,6 @@ A more detailed update instruction can be found on the `gsales website <gsalesup
 
 ----
 
-Tested with GSales 7.1, Uberspace 7.1.16
+Tested with GSALES 2 Revision #1123 for PHP 7.1, Uberspace 7.1.16
 
 .. authors::
