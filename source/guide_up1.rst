@@ -155,7 +155,7 @@ Then add the same ``api_key`` to the file ``~/up1/client/config.js``:
 
 .. code-block:: none
 
-  upload.config.api_key = '<any_random_string>'
+  upload.config.api_key = '<random_string_from_above>'
 
 If you want to, you can also edit the website footer and contact informations to your details in the same file:
 
