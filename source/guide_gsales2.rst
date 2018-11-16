@@ -157,3 +157,9 @@ A more detailed update instruction can be found on the `gsales website <gsalesup
 .. _PHP: https://manual.uberspace.de/en/lang-php.html
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _gsalesupdate: https://support.gsales.de/hc/de/articles/202105793-gSales-2-richtig-schnell-updaten
+
+----
+
+Tested with GSales 7.1, Uberspace 7.1.16
+
+.. authors::
