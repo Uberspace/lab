@@ -125,7 +125,9 @@ Changes to the PHP configuration will take effect after reloading PHP:
   [isabell@stardust ~]$ uberspace tools restart php
   Your php configuration has been loaded.
   [isabell@stardust ~]$
-  
+
+.. _PHP: https://manual.uberspace.de/en/lang-php.html
+
 ----
 
 Tested with IonCube 10.2.7, Uberspace 7.1.16
