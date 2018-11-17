@@ -45,13 +45,24 @@ First get the Etherpad Lite source code from Github_, be sure to replace the pse
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch release/66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
   remote: Counting objects: 29789, done.
   remote: Compressing objects: 100% (14/14), done.
   remote: Total 29789 (delta 9), reused 16 (delta 7), pack-reused 29768
   Receiving objects: 100% (29789/29789), 19.25 MiB | 6.07 MiB/s, done.
   Resolving deltas: 100% (21251/21251), done.
+  Note: checking out '96ac381afb9ea731dad48968f15d77dc6488bd0d'.
+
+  You are in 'detached HEAD' state. You can look around, make experimental
+  changes and commit them, and you can discard any commits you make in this
+  state without impacting any branches by performing another checkout.
+
+  If you want to create a new branch to retain commits you create, you may
+  do so (now or later) by using -b with the checkout command again. Example:
+
+    git checkout -b <new-branch-name>
+
   [isabell@stardust ~]$
 
 
