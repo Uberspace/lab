@@ -164,6 +164,7 @@ It is recommended to set up a cron job to automatically update your feeds. Edit 
 .. _salt: https://en.wikipedia.org/wiki/Salt_(cryptography)
 .. _selfoss documentation: https://selfoss.aditu.de/#configuration_params
 .. _Github repo: https://github.com/SSilence/selfoss
+
 ----
 
 Tested with selfoss 2.18, Uberspace 7.1.12.0

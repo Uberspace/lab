@@ -331,7 +331,7 @@ It is highly recommended to use a separate user together with a strong password 
 
 The following example considers a database and new user for Synapse, the Matrix (https://matrix.org) reference server. You can use this example for other projects as well.
 
-.. info:: Please start your PostgreSQL daemon before you maintain anything.
+.. note:: Please start your PostgreSQL daemon before you maintain anything.
 
 
 Step 1 - New User

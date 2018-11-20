@@ -10,9 +10,9 @@
       :align: center
 
 
-#########
+##############
 ionCube Loader
-#########
+##############
 
 Using ionCube encoded and secured PHP files requires a file called the ionCube Loader to be installed on the web server and made available to PHP.
 
@@ -24,7 +24,7 @@ Using ionCube encoded and secured PHP files requires a file called the ionCube L
 
   
 Installation
-=============
+============
 
 The installation of the ionCube Loader is pretty straightforward.
 
@@ -71,7 +71,7 @@ As you know, your Uberspace supports multiple PHP versions. The ionCube Loader d
 
 
 ionCube Loader for PHP 5.6
-=============
+==========================
 
 Create the following configuration directive if you are using PHP 5.6.
 
@@ -83,7 +83,7 @@ Create the following configuration directive if you are using PHP 5.6.
 
 
 ionCube Loader for PHP 7.0
-=============
+==========================
 
 Create the following configuration directive if you are using PHP 7.0.
 
@@ -95,7 +95,7 @@ Create the following configuration directive if you are using PHP 7.0.
 
 
 ionCube Loader for PHP 7.1
-=============
+==========================
 
 Create the following configuration directive if you are using PHP 7.1.
 
@@ -107,7 +107,7 @@ Create the following configuration directive if you are using PHP 7.1.
 
 
 ionCube Loader for PHP 7.2
-=============
+==========================
 
 Create the following configuration directive if you are using PHP 7.2.
 

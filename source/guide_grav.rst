@@ -64,7 +64,7 @@ To install Grav we use Composer_ to create a new project in our `document root`_
 Visit your previously set up domain isabell.uber.space and you will see a page confirming that the installation was successfull.
 
 Install admin panel
----------------
+-------------------
 
 You can optionally install the Grav admin panel. To do so we use the integrated Grav Package Manager (GPM).
 Navigate to your installation directory and install the admin plugin. The package manager will ask you to confirm the installation.
