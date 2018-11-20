@@ -77,7 +77,7 @@ Create the following configuration directive if you are using PHP 5.6.
 
 :: 
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/stardust/ioncube/ioncube_loader_lin_5.6.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_5.6.so' > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -89,7 +89,7 @@ Create the following configuration directive if you are using PHP 7.0.
 
 :: 
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/stardust/ioncube/ioncube_loader_lin_7.0.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.0.so' > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -101,7 +101,7 @@ Create the following configuration directive if you are using PHP 7.1.
 
 :: 
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/stardust/ioncube/ioncube_loader_lin_7.1.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.1.so' > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -113,7 +113,7 @@ Create the following configuration directive if you are using PHP 7.2.
 
 :: 
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/stardust/ioncube/ioncube_loader_lin_7.2.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.2.so' > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
