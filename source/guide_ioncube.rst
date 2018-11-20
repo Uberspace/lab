@@ -66,7 +66,7 @@ As you know, your Uberspace supports multiple PHP versions. The ionCube Loader d
  
 
 
-.. warning:: Make sure to replace "stardust" in the next step with your own username!
+.. warning:: Make sure to replace "isabell" in the next step with your own username!
 
 
 
