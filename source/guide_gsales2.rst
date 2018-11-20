@@ -92,8 +92,8 @@ Extract the downloaded archive
 
  [isabell@stardust html]$ tar -xvzf latest71.tar.gz
  
-After extracting the archive a new subdirectory with gsales2-revXXXX is created.
-For easier access rename this subdirectory to "gsales2" with the following command:
+After extracting the archive a new subdirectory with ``gsales2-revXXXX`` is created.
+For easier access rename this subdirectory to ``gsales2`` with the following command:
 
 ::
 
@@ -118,7 +118,14 @@ Prepare the GSALES 2 configuration file which has to be in place to hold the par
 
  [isabell@stardust html]$ cp gsales2/lib/inc.cfg.dist.php gsales2/lib/inc.cfg.php
 
+Create database
+===============
 
+Use this command to create a database named ``<username>_gsales2``. In our example this would be ``isabell_gsales2``.
+
+::
+
+ [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_gsales2"
 
 Configuration
 =============
@@ -130,15 +137,15 @@ Find out the information for your uberspace mysql database with the command:
 
 .. include:: includes/my-print-defaults.rst
 
-Use "localhost" for the Server and your uberspace Name for "Datenbank" and "Benutzer". Add the "Passwort" accordingly to the output of the above command.
+Use ``localhost`` for the Server and your user name for “Benutzer,” the database name ``<username>_gsales2`` for  “Datenbank”. Add the “Passwort” according to the output of the command above.
 
-Click the Button "Datenbankzugang speichern und weiter >>" to continue.
+Click the Button “Datenbankzugang speichern und weiter >>” to continue.
 
 Make sure the boxes on the next page are all green and all requirements for GSALES 2 are set and met.
-Click the Button "Installation starten >>".
+Click the Button “Installation starten >>”.
 
-Scroll to the very bottom of the page - make sure everything is green again and find your Login information under the Headline "Installation erfolgreich".
-Make sure to save your GSALES 2 Password. Click blue Button "zum GSALES-Login" to Login to your new GSALES 2 Installation.
+Scroll to the very bottom of the page - make sure everything is green again and find your Login information under the Headline “Installation erfolgreich”.
+Make sure to save your GSALES 2 Password. Click blue Button “zum GSALES-Login” to Login to your new GSALES 2 Installation.
 
 
 Updates
