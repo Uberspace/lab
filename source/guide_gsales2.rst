@@ -116,7 +116,7 @@ Prepare the GSALES 2 configuration file which has to be in place to hold the par
  
 ::
 
- [isabell@stardust html]$ mv gsales2/lib/inc.cfg.dist.php gsales2/lib/inc.cfg.php
+ [isabell@stardust html]$ cp gsales2/lib/inc.cfg.dist.php gsales2/lib/inc.cfg.php
 
 
 
