@@ -328,17 +328,15 @@ It will prompt you for a password now.
 Configure web server
 --------------------
 
-In order for your CodeMD instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the `document root`_ for details), with the following content:
+In order for your CodiMD instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the `document root`_ for details), with the following content:
 
 .. code-block:: ini
+  :emphasize-lines: 4
 
   DirectoryIndex disabled
 
   RewriteEngine On
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{ENV:HTTPS} !=on
-  RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
-  RewriteRule (.*) http://localhost:<PORT>/$1 [P]
+  RewriteRule ^(.*) http://localhost:<PORT>/$1 [P]
 
 Again, don't forget to fill in your port number in the last line!
 
