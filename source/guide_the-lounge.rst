@@ -6,9 +6,9 @@
   .. image:: _static/images/the-lounge.svg
       :align: center
 
-#####
+##########
 The Lounge
-#####
+##########
 
 `The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License, this self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
 
@@ -77,7 +77,7 @@ Setup .htaccess
 .. include:: includes/proxy-rewrite.rst
 
 Create configuration file
-------------------------
+-------------------------
 
 Create the configuration directory:
 
@@ -198,7 +198,7 @@ Updates
 .. note:: Check the release_ page or update feed_ regularly to stay informed about the newest version.
 
 Update
-------------------------------
+------
 
 To get the latest version of The Lounge you can use the ``npm`` package manager:
 

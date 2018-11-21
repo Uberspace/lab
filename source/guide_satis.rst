@@ -6,9 +6,9 @@
   .. image:: _static/images/composer-satis.png
       :align: center
 
-##########
+##############
 Composer Satis
-##########
+##############
 
 To manage private composer packages you can either use a private packagist account or host it for free by yourself with composer satis.
 The latter is as easy as cloning the official composer satis repository and editing the config file.
@@ -26,7 +26,7 @@ Installation
 ============
 
 Clone the satis repository
-------
+--------------------------
 
 Use ``composer`` to create a new satis project locally:
 
@@ -38,7 +38,7 @@ Configuration
 =============
 
 Configure satis
---------------
+---------------
 
 Create a json config file (e.g. ``/home/$USER/satis/satis.json``) with your private composer packages inside:
 
@@ -55,7 +55,7 @@ Create a json config file (e.g. ``/home/$USER/satis/satis.json``) with your priv
   }
 
 Create a script for building
--------------
+----------------------------
 
 Create a shell script (e.g. ``/home/$USER/bin/satisupdate``) that keeps the call for the build step:
 
@@ -70,7 +70,7 @@ Create a shell script (e.g. ``/home/$USER/bin/satisupdate``) that keeps the call
   php bin/satis build satis.json "/home/$USER/html/" --no-interaction --quiet
 
 Build static site
-======================
+=================
 
 Now you can build the static packages site with the following command:
 
@@ -81,10 +81,10 @@ Now you can build the static packages site with the following command:
 This will build the static site inside your Uberspace document root (``/home/$USER/html``).
 
 Optional tips
-==============
+=============
 
 Automate the building with a cron job
---------
+-------------------------------------
 
 To automate the building of the static site you can add a cron job, e.g.:
 
@@ -92,12 +92,12 @@ To automate the building of the static site you can add a cron job, e.g.:
 
   */5 * * * * /home/$USER/bin/satisupdate
 
-You can learn more about cronjobs in the `uberspace manual <https://manual.uberspace.de/en/daemons-cron.html>`_.
+You can learn more about cronjobs in the `uberspace manual cron article <https://manual.uberspace.de/en/daemons-cron.html>`_.
 
 Add your custom domain
---------
+----------------------
 
-If you want to use a custom domain you can add it to your uberspace by following the steps of the `uberspace manual <https://manual.uberspace.de/en/web-domains.html>`_.
+If you want to use a custom domain you can add it to your uberspace by following the steps of the `uberspace manual domains article <https://manual.uberspace.de/en/web-domains.html>`_.
 
 After that you can add your domain to the third line of the satis config file containing the word homepage.
 

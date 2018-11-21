@@ -90,7 +90,7 @@ Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file
  [isabell@stardust BookStack]$ cp .env.example .env
  [isabell@stardust ~]$
 
-.. info:: You can optionally configure BookStack to send emails in the same place.
+.. note:: You can optionally configure BookStack to send emails in the same place.
 
 To make your BookStack installation safe you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
 

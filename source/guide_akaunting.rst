@@ -7,9 +7,9 @@
   .. image:: _static/images/akaunting.png
       :align: center
 
-##########
+#########
 Akaunting
-##########
+#########
 
 Akaunting_  is a free, open source accounting software designed for small businesses and freelancers. With features like invoicing, expense tracking and accounting it can be used to manage money online while retaining full data ownership.
 
@@ -74,12 +74,12 @@ Configuration
 Point your browser to your domain (e.g. isabell.uber.space) to set up and configure your Akaunting installation.
 
 Step 1: Language Selection
---------------
+--------------------------
 
 Choose your desired language.
 
 Step 2: Database Setup
---------------
+----------------------
 
 Akaunting saves your data in a MySQL database. We suggest you use an `additional database`_. You need to create this database before you enter the database credentials in the installer.
 
@@ -95,14 +95,14 @@ Enter the following informations into the installer:
   * the name of your newly created Akaunting database (e.g. ``isabell_akaunting``)
 
 Step 3: Company and Admin Details
---------------
+---------------------------------
 
 Fill in the name of your company, the company email adress (email sender if you send e.g. invoices), an admin email adress and your admin password.
 
 **That's it.** After the installation you can login with your chosen admin credentials.
 
 Usage
-=======
+=====
 
 There is a user manual available which describes the interface, concepts and workflows:
 
