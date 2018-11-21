@@ -59,7 +59,7 @@ Installation
 ============
 
 Download archive
-------
+----------------
 
 Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
 
@@ -74,7 +74,7 @@ Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link
 
 
 Extract archive
-------
+---------------
 
 ::
 
