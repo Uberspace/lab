@@ -104,14 +104,14 @@ Create config files
 You need to enter this to ``~/.config/radicale/config`` and adjust the new port.
 
 .. code-block:: ini
-  :emphasize-lines: 2
+  :emphasize-lines: 2,6
 
   [server]
   hosts = localhost:<port>
 
   [auth]
   type = htpasswd
-  htpasswd_filename = ~/html/htpasswd
+  htpasswd_filename = /var/www/virtual/<username>htpasswd
   htpasswd_encryption = bcrypt
 
   [storage]
