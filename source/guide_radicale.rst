@@ -152,7 +152,7 @@ For the generation of the file with the user use this command:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ htpasswd -B -c ~/html/htpasswd isabell
+  [isabell@stardust ~]$ htpasswd -B -c /var/www/virtual/$USER/htpasswd isabell
   New password:
   Re-type new password:
   [isabell@stardust ~]$ 
@@ -163,7 +163,7 @@ For every following user use it without ``-c``:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ htpasswd -B ~/html/htpasswd isabell
+  [isabell@stardust ~]$ htpasswd -B /var/www/virtual/$USER/htpasswd isabell
   New password:
   Re-type new password:
   [isabell@stardust ~]$ 
@@ -179,7 +179,7 @@ In order for your Radicale instance to be reachable from the web, you need to pu
 
   AuthType      Basic
   AuthName      "Radicale - Password Required"
-  AuthUserFile  "/var/www/virtual/<username>/html/htpasswd"
+  AuthUserFile  "/var/www/virtual/<username>/htpasswd"
   Require       valid-user
 
   DirectoryIndex disabled
