@@ -39,6 +39,12 @@ Your radicale URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
+The configuration directory needs to be created:
+
+::
+
+ [isabell@stardust ~] mkdir -p ~/.config/radicale/
+
 Installation
 ============
 
