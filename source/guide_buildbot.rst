@@ -106,18 +106,45 @@ Step 5
 
 Edit the file ``/home/isabell/bb-master/master/master.cfg``, which is basically a Python_ file. For now, we only need to change the ports. In ``c['www']``, change the port of the webinterface to ``12345`` (as selected before) and in ``c['protocols']``, change the port to ``54321``. That is going to be the port that the workers will communicate through. You should read through the rest of the options already, but leave things to their default values for now.
 
+.. note::This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository.
+
 Step 6
 ------
 
 That's it! Our master should be able to start now:
 
+.. note::We are starting buildbot with the ``--nodaemon`` option, forcing it to start in the foreground. We do this to avoid mistakes due to background processes when setting p supervisord in the next step. In order to continue with the guide, you'll need to terminate it using Ctrl+C after it starts successfully.
+
 ::
 
- [isabell@stardust bb-master] buildbot start master
+ [isabell@stardust bb-master] buildbot start --nodaemon master
  Following twistd.log until startup finished..
  The buildmaster appears to have (re)started correctly.
 
 If you don't get the same output, check the log at ``master/twistd.log`` for errors.
+
+Step 7
+------
+
+In this step, we will set up supervisord_ to take control of our Buildbot_ master.
+
+Create the file ``~/etc/services.d/buildbot-master.ini`` with the following content:
+
+::
+
+ [program:buildbot-master]
+ command=%{ENV_HOME}/.local/bin/buildbot start --nodaemon %{ENV_HOME}/bb-master/master
+
+After saving, update supervisord_ and check on the master's status:
+
+::
+
+ [isabell@stardust bb-master] supervisorctl reread && supervisorctl update
+ [isabell@stardust bb-master] supervisorctl status
+ buildbot-master                  RUNNING   pid 3032, uptime 0 days, 0:06:35
+
+If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors again.
+
 
 Configuration of the worker
 ===========================
@@ -135,6 +162,29 @@ Change directories and create the worker:
  [isabell@stardust bb-workers] buildbot-worker create-worker example-worker localhost:54321 example-worker pass
 
 This will create the directory ``example-worker`` and deposit the worker configuration file (``example-worker/buildbot.tac``) as well as some additional files with meta information about this worker. The creation tool will give you some output and instructions on what to edit afterwards - you should definitely take a look at the mentioned files and enter your information.
+
+Step 2
+------
+
+The worker also requires its own process for which we will use supervisord_ again.
+
+Create the file ``~/etc/services.d/buildbot-worker.ini`` with the following content:
+
+::
+
+ [program:buildbot-worker]
+ command=%{ENV_HOME}/.local/bin/buildbot-worker start --nodaemon %{ENV_HOME}/bb-workers/example-worker
+
+After saving, update supervisord_ and check on the worker's status:
+
+::
+
+ [isabell@stardust bb-master] supervisorctl reread && supervisorctl update
+ [isabell@stardust bb-master] supervisorctl status
+ buildbot-master                  RUNNING   pid 3032, uptime 0 days, 0:06:35
+ buildbot-worker                  RUNNING   pid 3092, uptime 0 days, 0:03:14
+
+If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors again.
 
 
 Configuration of the SSH connection
@@ -209,31 +259,6 @@ And that's it! Now, push-events in your gitea repository will trigger the runtes
 
 Finishing Installation
 ======================
-
-Setting up supervisord
-----------------------
-
-.. warning:: Don't forget to stop your buildbot master and worker before completing this step! Otherwise, your supervised processes will not start.
-
-
-
-BuildBot_ can be run in the foreground as well - which is great news for us because we can use supervisord_ to watch and control the process. To set that up, we need to create two files - one for the master, one for the worker.
-
-Create the file ``~/etc/services.d/buildbot-master.ini`` with the following content (adjust the paths to match your account, of course):
-
-::
-
- [program:buildbot-master]
- command=/home/isabell/.local/bin/buildbot start --nodaemon /home/isabell/bb-master/master
-
-Secondly, create the file ``~/etc/services.d/buildbot-worker.ini`` with the following content (again, adjust the paths, please):
-
-::
-
- [program:buildbot-worker]
- command=/home/isabell/.local/bin/buildbot-worker start --nodaemon /home/isabell/bb-workers/example-worker
-
-After creating these files, call ``supervisorctl reread`` and ``supervisorctl update`` to finalize the supervisord_ setup.
 
 Congratulations! You now have an operational BuildBot_ installation on your Uberspace! Continue with the recommended reading from the beginning to learn more about the architecture of BuildBot_ and how to set up your own repositories and builders.
 
