@@ -34,40 +34,23 @@ In this tutorial, we will first follow along with the official installation manu
 License
 =======
 
-Buildbot is released under the GNU General Public License v2.0
+Buildbot is released under the `GNU General Public License v2.0 <https://www.gnu.org/licenses/old-licenses/gpl-2.0>`_.
 
-  * https://www.gnu.org/licenses/old-licenses/gpl-2.0
-
-Prerequisites
-=============
-
-For ease of use, you should set your default Python_ version to 3.6 and upgrade the ``pip3.6`` installation as well:
-
-::
-
- [isabell@stardust ~]$ ln -s /usr/bin/python3.6 $HOME/bin/python
- [isabell@stardust ~]$ python --version
- Python 3.6.5
- [isabell@stardust ~]$ pip3.6 install --upgrade pip --user
- [isabell@stardust ~]$ pip --version
- pip 18.1 from /home/isabell/.local/lib/python3.6/site-packages/pip (python 3.6)
-
-If pip doesn't report the new version right away, try logging out and back in again.
 
 Installation
 ============
 
-You can install the BuildBot_ bundle using pip:
+You can install the BuildBot_ bundle using ``pip3.6``:
 
 ::
 
- [isabell@stardust ~]$ pip install buildbot[bundle] --user
+ [isabell@stardust ~]$ pip3.6 install buildbot[bundle] --user
 
 If you want e-mail notifications from BuildBot_ to work later on, you will also need to install ``pyopenssl`` and ``service-identity``:
 
 ::
 
- [isabell@stardust ~]$ pip install pyopenssl service-identity --user
+ [isabell@stardust ~]$ pip3.6 install pyopenssl service-identity --user
 
 
 Configuration of the master
@@ -197,13 +180,11 @@ One useful thing to do with BuildBot_ is to use it as a continuous integration r
 Step 1
 ------
 
-For this, we will need to install the ``buildbot_gitea`` plugin for BuildBot, developed by Marvin Pohl of lab132. First, clone their git repository and then run the installation:
+For this, we will need to install the ``buildbot_gitea`` plugin for BuildBot, developed by Marvin Pohl of lab132. We will install directly from their git repository using pip:
 
 ::
 
- [isabell@stardust ~] git clone https://github.com/lab132/buildbot-gitea.git
- [isabell@stardust ~] cd buildbot-gitea
- [isabell@stardust buildbot-gitea] pip install . --user
+ [isabell@stardust ~] pip3.6 install git+https://github.com/lab132/buildbot-gitea.git --user
 
 Step 2
 ------
