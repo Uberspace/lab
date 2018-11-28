@@ -106,14 +106,14 @@ Step 5
 
 Edit the file ``/home/isabell/bb-master/master/master.cfg``, which is basically a Python_ file. For now, we only need to change the ports. In ``c['www']``, change the port of the webinterface to ``12345`` (as selected before) and in ``c['protocols']``, change the port to ``54321``. That is going to be the port that the workers will communicate through. You should read through the rest of the options already, but leave things to their default values for now.
 
-.. note::This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository.
+.. note::This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository. More information on how to configure builders is available in the `official Buildbot manual <https://docs.buildbot.net/latest/manual/index.html>`_.
 
 Step 6
 ------
 
 That's it! Our master should be able to start now:
 
-.. note::We are starting buildbot with the ``--nodaemon`` option, forcing it to start in the foreground. We do this to avoid mistakes due to background processes when setting p supervisord in the next step. In order to continue with the guide, you'll need to terminate it using Ctrl+C after it starts successfully.
+.. note::We are starting buildbot with the ``--nodaemon`` option, forcing it to start in the foreground. In order to continue with the guide, you'll need to terminate it using Ctrl+C after it starts successfully.
 
 ::
 
