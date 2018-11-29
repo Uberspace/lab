@@ -198,7 +198,9 @@ Finally, make sure that your daemon is in state ``RUNNING``:
 
 ::
 
-    [isabell@stardust ~]$ supervisorctl start openproject-daemon
+    [isabell@stardust ~]$ supervisorctl status
+    openproject-daemon               RUNNING   pid 26748, uptime 0:00:04
+    [isabell@stardust ~]$
 
 If it's not, check out the log using ``supervisorctl tail openproject-daemon``
 
