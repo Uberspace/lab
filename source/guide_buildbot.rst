@@ -106,14 +106,14 @@ Step 5
 
 Edit the file ``/home/isabell/bb-master/master/master.cfg``, which is basically a Python_ file. For now, we only need to change the ports. In ``c['www']``, change the port of the webinterface to ``12345`` (as selected before) and in ``c['protocols']``, change the port to ``54321``. That is going to be the port that the workers will communicate through. You should read through the rest of the options already, but leave things to their default values for now.
 
-.. note::This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository. More information on how to configure builders is available in the `official Buildbot manual <https://docs.buildbot.net/latest/manual/index.html>`_.
+.. note:: This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository. More information on how to configure builders is available in the `official Buildbot manual <https://docs.buildbot.net/latest/manual/index.html>`_.
 
 Step 6
 ------
 
 That's it! Our master should be able to start now:
 
-.. note::We are starting buildbot with the ``--nodaemon`` option, forcing it to start in the foreground. In order to continue with the guide, you'll need to terminate it using Ctrl+C after it starts successfully.
+.. note:: We are starting buildbot with the ``--nodaemon`` option, forcing it to start in the foreground. In order to continue with the guide, you'll need to terminate it using Ctrl+C after it starts successfully.
 
 ::
 
@@ -190,7 +190,7 @@ If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors
 Securing the BuildBot Installation
 ==================================
 
-Now that we have a working BuildBot_ master and worker, it's time to take a look at securing the webinterface. BuildBot_ was developed under the assumption that access to the webinterface would only be allowed from a private network and not the world wide web - so, by default, there is no permission or authentication management configured. If you plan on exposing the webinterface to the world, you should probably take a look at the `www authentication section in the official manual <https://docs.buildbot.net/latest/manual/configuration/www.html#web-authentication>`_ and use one of the available modules.
+Now that we have a working BuildBot_ master and worker, it's time to take a look at securing the webinterface. BuildBot_ was developed under the assumption that access to the webinterface would only be allowed from a private network and not the world wide web - so, by default, there is no permission or authentication management configured. Even if you don't plan on exposing the webinterface to the world, you should probably take a look at the `www authentication section in the official manual <https://docs.buildbot.net/latest/manual/configuration/www.html#web-authentication>`_ and use one of the available modules as otherwise all users on the same Uberspace host as you would be able to access your Buildbot_ freely.
 
 
 Using SSH Tunnel to keep BuildBot private
@@ -273,7 +273,7 @@ Step 3
 
 Adding the webhook to a repository works pretty much as expected. Go to the desired repository, click on ``Settings > Webhooks > Add Webhook > Gitea`` and enter ``http://localhost:12345/change_hook/gitea`` as the URL and whatever you entered as a secret as secret. This of course assumes that you installed gitea on the same Uberspace host as BuildBot_.
 
-.. note::If gitea and Buildbot are installed on different hosts, you will either need to set up an SSH tunnel between them or expose the Buildbot webinterface to the public. You may refer to the section on securing the Buildbot installation as a starting point. `autossh <http://www.harding.motd.ca/autossh/>`_ might also be interesting to you.
+.. note:: If gitea and Buildbot are installed on different hosts, you will either need to set up an SSH tunnel between them or expose the Buildbot webinterface to the public. You may refer to the section on securing the Buildbot installation as a starting point. `autossh <http://www.harding.motd.ca/autossh/>`_ might also be interesting to you.
 
 And that's it! Now, push-events in your gitea repository will trigger the runtests-builder from the example setup.
 
