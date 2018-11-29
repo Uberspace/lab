@@ -187,13 +187,16 @@ After saving, update supervisord_ and check on the worker's status:
 If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors again.
 
 
-Configuration of the SSH connection
-===================================
+Securing the BuildBot Installation
+==================================
 
-Step 1
-------
+Now that we have a working BuildBot_ master and worker, it's time to take a look at securing the webinterface. BuildBot_ was developed under the assumption that access to the webinterface would only be allowed from a private network and not the world wide web - so, by default, there is no permission or authentication management configured. If you plan on exposing the webinterface to the world, you should probably take a look at the `www authentication section in the official manual <https://docs.buildbot.net/latest/manual/configuration/www.html#web-authentication>`_ and use one of the available modules.
 
-In order to view the Buildbot master's webinterface, we need to forward the respective port through our SSH connection.
+
+Using SSH Tunnel to keep BuildBot private
+-----------------------------------------
+
+A better way to keep the webinterface secure is to never expose it to the public in the first place and use an SSH tunnel instead. This limits access to users who can connect to your Uberspace account via SSH.
 
 You can either do this via the ``ssh`` command like so:
 
@@ -216,11 +219,26 @@ You can then connect via
 
  [isabell@desktop ~] ssh stardust
 
-
-Step 2
-------
-
 Now that the connection is established with port forwarding, you can call up ``http://localhost:12345/`` in your browser to access the Buildbot_ webinterface! We have now basically completed the `'First Run' tutorial of the official manual <https://docs.buildbot.net/latest/tutorial/firstrun.html>`_ and you should be able to force an execution of the ``runtests`` builder.
+
+Restricting SSH access to port forwarding only
+----------------------------------------------
+
+If you don't want to give everyone who needs access to the BuildBot_ webinterface full shell access to your Uberspace account, there is support for that as well! You can simply prepend their public key in the ``~/.ssh/authorized_keys`` file with the following:
+
+::
+
+ command="echo 'This account can only be used for port forwarding to buildbot'",no-agent-forwarding,no-X11-forwarding,permitopen="localhost:12345" ssh-rsa ...
+
+This will allow the respective users to connect to the tunnel like this (the ``-N`` prevents execution of remote commands):
+
+::
+
+ [isabell@desktop ~] ssh -N -L 12345:localhost:12345 isabell@stardust.uberspace.de
+
+After which they will also be able to open ``http://localhost:12345/``, but won't have an open shell to which they could issue other commands or forward to any other port than ``12345``. You can also verify that it's working by connecting without the ``-N`` parameter - that should show you the error message configured in ``command`` beforehand.
+
+
 
 Integration with gitea
 ======================
@@ -254,6 +272,8 @@ Step 3
 ------
 
 Adding the webhook to a repository works pretty much as expected. Go to the desired repository, click on ``Settings > Webhooks > Add Webhook > Gitea`` and enter ``http://localhost:12345/change_hook/gitea`` as the URL and whatever you entered as a secret as secret. This of course assumes that you installed gitea on the same Uberspace host as BuildBot_.
+
+.. note::If gitea and Buildbot are installed on different hosts, you will either need to set up an SSH tunnel between them or expose the Buildbot webinterface to the public. You may refer to the section on securing the Buildbot installation as a starting point. `autossh <http://www.harding.motd.ca/autossh/>`_ might also be interesting to you.
 
 And that's it! Now, push-events in your gitea repository will trigger the runtests-builder from the example setup.
 
