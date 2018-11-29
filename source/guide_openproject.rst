@@ -37,7 +37,7 @@ Installation
 Download OpenProject and install packages
 -----------------------------------------
 
-In this example, we use the "community edition" of OpenProject, which comes with some common plugins included. If you prefer to install plain OpenProject without any plugins, replace the url below by ``https://github.com/opf/openproject.git``.
+In this example, we use the "community edition" of OpenProject, which comes with some common plugins included. If you prefer to install a plain OpenProject without any plugins, replace the URL below with ``https://github.com/opf/openproject.git``.
 
 .. code-block:: console 
     :emphasize-lines: 2
@@ -55,7 +55,7 @@ In this example, we use the "community edition" of OpenProject, which comes with
 Setup MySQL database
 --------------------
 
-Create a new database with the name <username>_openproject (replace <username> with your username): 
+Create a new database with the name ``<username>_openproject`` (replace ``<username>`` with your username): 
 
 .. code-block:: console 
     :emphasize-lines: 2
@@ -76,7 +76,7 @@ Now we tell OpenProject to use our new database. First, make a copy of the examp
 Open ``~/openproject-ce/config/database.yml`` and search for the "production"-block:
 
 .. code-block:: none
-  :emphasize-lines: 3,5,6,8
+  :emphasize-lines: 3,5,6
 
   production:
     adapter: mysql2
@@ -85,24 +85,25 @@ Open ``~/openproject-ce/config/database.yml`` and search for the "production"-bl
     username: <username>
     password: <password>
     # For MySQL 5.6 or older, set encoding to utf8.
-    encoding: utf8
+    encoding: utf8mb4
 
-In this block, replace <databasename> with the name of the database that we created in the previous step ("<username>_openproject" if you chose the same name as in the example), replace <username> and <password> with your MySQL credentials, and set the encoding to utf8.
+In this block, replace ``<databasename>`` with the name of the database that we created in the previous step (``<username>_openproject`` if you chose the same name as in the example), replace ``<username>`` and ``<password>`` with your MySQL credentials, and set the encoding to utf8.
 
 .. warning:: The yml-files are sensitive to whitespace.
 
 Initialize MySQL database
 -------------------------
 
-The following commands will prepare the mysql-database for OpenProject:
+The following commands will prepare the MySQL database for OpenProject:
 
   .. code-block:: console 
   
     [isabell@stardust ~]$ cd ~/openproject-ce
-    [isabell@stardust openproject-ce]$ RAILS_ENV="production" ./bin/rake db:create
-    [isabell@stardust openproject-ce]$ RAILS_ENV="production" ./bin/rake db:migrate
-    [isabell@stardust openproject-ce]$ RAILS_ENV="production" ./bin/rake db:seed
-    [isabell@stardust openproject-ce]$ RAILS_ENV="production" ./bin/rake assets:precompile
+    [isabell@stardust openproject-ce]$ export RAILS_ENV="production"
+    [isabell@stardust openproject-ce]$  ./bin/rake db:create
+    [isabell@stardust openproject-ce]$ ./bin/rake db:migrate
+    [isabell@stardust openproject-ce]$ ./bin/rake db:seed
+    [isabell@stardust openproject-ce]$ ./bin/rake assets:precompile
     [isabell@stardust openproject-ce]$ 
 
 
@@ -132,7 +133,7 @@ Open the file ``~/openproject-ce/config/configuration.yml`` and append the follo
     protocol: https
   rails_cache_store: :memcache
 
-In this block, replace <hostname> with your hostname (e.g. stardust.uberspace.de), set the smtp-port to 587, and enter your username and the password for your mailbox. The username includes the domain, e.g. ``isabell@uber.space``. The password is the same as your password for ssh.
+In this block, replace ``<hostname>`` with your Uberspace's hostname (e.g. ``stardust.uberspace.de``), set the SMTP port to 587, and enter your username and the password for your mailbox. The username includes the domain, e.g. ``isabell@uber.space``. The password is the same as your password for ssh.
 
 .. warning:: The yml-files are sensitive to whitespace.
 
@@ -184,7 +185,7 @@ Create the file ``~/etc/services.d/openproject-daemon.ini`` with the following c
     autorestart=yes
     environment=HOME=/home/<username>,RAILS_ENV=production,SECRET_KEY_BASE=<secret_key>
 
-Replace <username> with your username (two times), replace <portnumber> with the free port, and replace <secret_key> with the key that was generated in the previous step.
+Replace ``<username>`` with your username (twice), replace ``<portnumber> with the free port, and replace <secret_key> with the key that was generated in the previous step.
 
 The following commands tell supervisord about our new service and start the daemon:
 
@@ -192,8 +193,14 @@ The following commands tell supervisord about our new service and start the daem
 
     [isabell@stardust ~]$ supervisorctl reread
     [isabell@stardust ~]$ supervisorctl update
+
+Finally, make sure that your daemon is in state ``RUNNING``:
+
+::
+
     [isabell@stardust ~]$ supervisorctl start openproject-daemon
 
+If it's not, check out the log using ``supervisorctl tail openproject-daemon``
 
 
 Finishing installation
