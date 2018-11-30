@@ -209,9 +209,9 @@ If there is a new version available, you can get the code using git. Replace the
 
   [isabell@stardust ~]$ cd ~/etherpad
   [isabell@stardust etherpad]$ git checkout  -- src/package.json
-  [isabell@stardust etherpad]$ git pull origin 47.11.0
+  [isabell@stardust etherpad]$ git pull origin 66.6.6
   From https://github.com/ether/etherpad-lite
-   * tag                 47.11.0      -> FETCH_HEAD
+   * tag                 66.6.6      -> FETCH_HEAD
   Updating b8b2e4bc..96ac381a
   Fast-forward
   […]
