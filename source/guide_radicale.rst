@@ -111,7 +111,7 @@ You need to enter this to ``~/.config/radicale/config`` and adjust the new port.
 
   [auth]
   type = htpasswd
-  htpasswd_filename = /var/www/virtual/<username>htpasswd
+  htpasswd_filename = /var/www/virtual/<username>/htpasswd
   htpasswd_encryption = bcrypt
 
   [storage]
