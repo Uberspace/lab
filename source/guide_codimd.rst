@@ -1,5 +1,7 @@
 .. highlight:: console
 .. author:: stunkymonkey <stunkymonkey.de>
+.. author:: Kirby <kindful.work>
+
 
 .. sidebar:: Logo
 
@@ -180,6 +182,10 @@ And remember it.
 
 Configure Database
 ------------------
+
+We're using SQLite, which saves it's database into a simple file, which will be automatically created. We call it ``codimd.db``.
+
+Enter the database file name in ``.sequelizerc``:
 
 .. code-block:: ini
   :emphasize-lines: 7
