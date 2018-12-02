@@ -17,7 +17,6 @@ Inspired by Hackpad, with more focus on speed and flexibility, and build from Ha
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
   * supervisord_
   * domains_
   * Node_ and its package manager npm_
@@ -25,8 +24,6 @@ Inspired by Hackpad, with more focus on speed and flexibility, and build from Ha
 
 Prerequisites
 =============
-
-.. include:: includes/my-print-defaults.rst
 
 We're using Node_ in the stable version 8:
 
@@ -42,18 +39,6 @@ Your blog URL needs to be setup:
 
 Installation
 ============
-
-You need a special database for CodiMD_:
-
-.. warning:: Replace ``<username>`` with your username!
-
-Create Database
----------------
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_codimd CHARACTER SET utf8 COLLATE utf8_general_ci;"
-  [isabell@stardust ~]$
 
 Download Sources
 ----------------
@@ -196,8 +181,6 @@ And remember it.
 Configure Database
 ------------------
 
-enter your sql credetials in ``.sequelizerc``:
-
 .. code-block:: ini
   :emphasize-lines: 7
 
@@ -207,21 +190,7 @@ enter your sql credetials in ``.sequelizerc``:
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),
       'models-path':     path.resolve('lib', 'models'),
-      'url':             'mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd'
-  }
-
-In our example this would be:
-
-.. code-block:: ini
-  :emphasize-lines: 7
-
-  var path = require('path');
-  
-  module.exports = {
-      'config':          path.resolve('config.json'),
-      'migrations-path': path.resolve('lib', 'migrations'),
-      'models-path':     path.resolve('lib', 'models'),
-      'url':             'mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd'
+      'url':             'sqlite:codimd.db'
   }
 
 Setup daemon
@@ -251,7 +220,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
   	CMD_ALLOW_EMAIL_REGISTER=false,
       CMD_IMAGE_UPLOAD_TYPE=filesystem,
   	CMD_PROTOCOL_USESSL=true,
-  	CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
+  	CMD_DB_URL="sqlite:codimd.db",
 
   directory=/home/<username>/codimd
   command=node app.js
@@ -280,14 +249,14 @@ In our example this would be:
   	CMD_ALLOW_EMAIL_REGISTER=false,
   	CMD_IMAGE_UPLOAD_TYPE=filesystem,
   	CMD_PROTOCOL_USESSL=true,
-  	CMD_DB_URL="mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd",
+  	CMD_DB_URL="sqlite:codimd.db",
 
   directory=/home/isabell/codimd
   command=node app.js
 
 
 
-Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, ``CMD_PORT`` and ``CMD_DB_URL`` and you're good to go!
+Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_PORT`` and you're good to go!
 
 See `here <https://github.com/hackmdio/codimd#environment-variables-will-overwrite-other-server-configs>`_ for a detailed look at what these options do.
 
@@ -315,7 +284,7 @@ Since we don’t want to run a public instance and have disabled registration, w
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/codimd
-  [isabell@stardust codimd]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd" bin/manage_users --add isabell@uber.space
+  [isabell@stardust codimd]$ CMD_DB_URL="sqlite:codimd.db" bin/manage_users --add isabell@uber.space
   [isabell@stardust codimd]$
 
 It will prompt you for a password now.
@@ -366,8 +335,11 @@ if everything is fine.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ node_modules/.bin/sequelize db:migrate
+  [isabell@stardust ~]$ cd codimd
+  [isabell@stardust codimd]$ cp ../codimd-old/codimd.db .
+  [isabell@stardust codimd]$ node_modules/.bin/sequelize db:migrate
   [...]
+  [isabell@stardust codimd]$ cd ..
   [isabell@stardust ~]$ supervisorctl start codimd
   codimd: started
   [isabell@stardust ~]$ rm codimd-old -rf
@@ -383,7 +355,6 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 .. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 
