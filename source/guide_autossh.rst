@@ -2,11 +2,6 @@
 
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>
 
-.. sidebar:: Logo
-
-  .. image:: _static/images/buildbot.svg
-      :align: center
-
 #######
 autossh
 #######
