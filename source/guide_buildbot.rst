@@ -266,7 +266,7 @@ Now that we installed the ``buildbot_gitea`` plugin, we can use ``gitea`` as a d
 		'secret': 'SomeSecretPassPhraseToAuthenticateGitea',
 	}}
 
-That's it! Restart your BuildBot_ master via ``buildbot restart master`` and continue by adding the webhook to the desired gitea repository!
+That's it! Restart your BuildBot_ master via ``supervisorctl restart buildbot-master`` and continue by adding the webhook to the desired gitea repository!
 
 Step 3
 ------
