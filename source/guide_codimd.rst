@@ -52,7 +52,7 @@ Create Database
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_codimd CHARACTER SET utf8 COLLATE utf8_general_ci;"
+  [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_codimd CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
   [isabell@stardust ~]$
 
 Download Sources
