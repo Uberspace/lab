@@ -133,7 +133,7 @@ Create the file ``~/etc/services.d/buildbot-master.ini`` with the following cont
 ::
 
  [program:buildbot-master]
- command=%{ENV_HOME}/.local/bin/buildbot start --nodaemon %{ENV_HOME}/bb-master/master
+ command=%(ENV_HOME)s/.local/bin/buildbot start --nodaemon %(ENV_HOME)s/bb-master/master
 
 After saving, update supervisord_ and check on the master's status:
 
@@ -173,7 +173,7 @@ Create the file ``~/etc/services.d/buildbot-worker.ini`` with the following cont
 ::
 
  [program:buildbot-worker]
- command=%{ENV_HOME}/.local/bin/buildbot-worker start --nodaemon %{ENV_HOME}/bb-workers/example-worker
+ command=%(ENV_HOME)s/.local/bin/buildbot-worker start --nodaemon %(ENV_HOME)s/bb-workers/example-worker
 
 After saving, update supervisord_ and check on the worker's status:
 
@@ -266,7 +266,7 @@ Now that we installed the ``buildbot_gitea`` plugin, we can use ``gitea`` as a d
 		'secret': 'SomeSecretPassPhraseToAuthenticateGitea',
 	}}
 
-That's it! Restart your BuildBot_ master via ``buildbot restart master`` and continue by adding the webhook to the desired gitea repository!
+That's it! Restart your BuildBot_ master via ``supervisorctl restart buildbot-master`` and continue by adding the webhook to the desired gitea repository!
 
 Step 3
 ------
