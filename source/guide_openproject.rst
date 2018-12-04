@@ -179,11 +179,11 @@ Create the file ``~/etc/services.d/openproject-daemon.ini`` with the following c
   .. code-block:: ini
   
     [program:openproject-daemon]
-    directory=/home/<username>/openproject-ce
+    directory=%(ENV_HOME)s/openproject-ce
     command=bash -c 'exec bundle exec unicorn --host 127.0.0.1 --port <portnumber> --env production'
     autostart=yes
     autorestart=yes
-    environment=HOME=/home/<username>,RAILS_ENV=production,SECRET_KEY_BASE=<secret_key>
+    environment=HOME=%(ENV_HOME)s,RAILS_ENV=production,SECRET_KEY_BASE=<secret_key>
 
 Replace ``<username>`` with your username (twice), replace ``<portnumber> with the free port, and replace <secret_key> with the key that was generated in the previous step.
 

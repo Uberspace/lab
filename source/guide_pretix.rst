@@ -169,12 +169,12 @@ Step 10
 
 Finally, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username and ``<yourport>`` with the new portnumber you got!
+.. warning:: Replace ``<yourport>`` with the new portnumber you got!
 
 .. code-block:: ini
 
  [program:pretix]
- command=/home/<username>/.local/bin/gunicorn --reload --chdir /home/<username>/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT
@@ -184,7 +184,7 @@ In our example this would be:
 .. code-block:: ini
 
  [program:pretix]
- command=/home/isabell/.local/bin/gunicorn --reload --chdir /home/isabell/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT

@@ -151,8 +151,6 @@ Setup daemon
 
 Create ``~/etc/services.d/miniflux.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:miniflux]
@@ -160,7 +158,7 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
   LISTEN_ADDR="127.0.0.1:9000",
   BASE_URL="https://isabell.uber.space",
   DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
- command=/home/<username>/bin/miniflux-linux-amd64
+ command=%(ENV_HOME)s/bin/miniflux-linux-amd64
 
 
 Tell supervisord_ to refresh its configuration and start the service:

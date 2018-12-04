@@ -146,20 +146,10 @@ Setup daemon
 
 Create ``~/etc/services.d/ghost.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:ghost]
- directory=/home/<username>/ghost
- command=env NODE_ENV=production /bin/node current/index.js
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:ghost]
- directory=/home/isabell/ghost
+ command=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
 Tell ``supervisord`` to refresh its configuration and start the service:

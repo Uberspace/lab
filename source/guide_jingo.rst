@@ -162,19 +162,10 @@ Setup daemon
 
 Create ``~/etc/services.d/jingo.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` (2 times) with your username!
-
 .. code-block:: ini
 
   [program:jingo]
-  command=/home/<username>/jingo/jingo -c /home/<username>/jingo/config.yaml
-
-In our example this would be:
-
-.. code-block:: ini
-
-  [program:jingo]
-  command=/home/isabell/jingo/jingo -c /home/isabell/jingo/config.yaml
+  command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
 
 Tell supervisord_ to refresh its configuration and start the service:
 

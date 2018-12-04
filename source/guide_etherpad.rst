@@ -159,20 +159,10 @@ Setup daemon
 
 Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:etherpad]
- command=/home/<username>/etherpad/bin/run.sh
- environment=NODE_ENV="production"
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:etherpad]
- command=/home/isabell/etherpad/bin/run.sh
+ command=%(ENV_HOME)s/etherpad/bin/run.sh
  environment=NODE_ENV="production"
 
 Tell supervisord_ to refresh its configuration and start the service:

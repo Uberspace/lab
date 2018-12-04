@@ -15,7 +15,7 @@ Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
   :emphasize-lines: 2
 
   [program:uwsgi]
-  command=/home/<username>/.local/bin/uwsgi --master --emperor /home/<username>/uwsgi/apps-enabled
+  command=%(ENV_HOME)s/.local/bin/uwsgi --master --emperor /home/<username>/uwsgi/apps-enabled
   autostart=true
   autorestart=true
   stderr_logfile = ~/uwsgi/err.log
@@ -27,7 +27,7 @@ In our example this would be:
 .. code-block:: ini
 
   [program:uwsgi]
-  command=/home/isabell/.local/bin/uwsgi --master --emperor /home/isabell/uwsgi/apps-enabled
+  command=%(ENV_HOME)s/.local/bin/uwsgi --master --emperor /home/isabell/uwsgi/apps-enabled
   autostart=true
   autorestart=true
   stderr_logfile = ~/uwsgi/err.log

@@ -75,19 +75,19 @@ Configure ``supervisord``
 
 Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username! Replace ``<yourport>`` with your port!
+.. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/<username>/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
+ command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
 
 In our example this would be:
 
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============

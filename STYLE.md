@@ -75,7 +75,7 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
 .. code-block:: ini
 
  [program:ghost]
- directory=/home/<username>/ghost
+ command=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
 In our example this would be:
@@ -83,7 +83,7 @@ In our example this would be:
 .. code-block:: ini
 
  [program:ghost]
- directory=/home/isabell/ghost
+ command=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 ```
 

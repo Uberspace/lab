@@ -126,18 +126,9 @@ Setup daemon
 Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 
 .. code-block:: ini
-  :emphasize-lines: 2
 
   [program:radicale]
-  command=/home/<username>/.local/bin/radicale -f
-
-In our example this would be:
-
-.. code-block:: ini
-  :emphasize-lines: 2
-
-  [program:radicale]
-  command=/home/isabell/.local/bin/radicale -f
+  command=%(ENV_HOME)s/.local/bin/radicale -f
 
 
 Finishing installation
