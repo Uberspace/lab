@@ -6,9 +6,9 @@
   .. image:: _static/images/puma.png
       :align: center
 
-#######
+####
 Puma
-#######
+####
 
 Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for running Rack_ apps only. It is licensed under the BSD 3-Clause license. This guide explains how to install Puma and run a minimal, custom Ruby application.
 
@@ -19,12 +19,27 @@ Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for 
   * Ruby_
   * supervisord_
 
+Prerequisites
+=============
+
+We're using Ruby_ in the stable version 2.5:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace tools version show ruby
+  Using 'Ruby' version: '2.5'
+  [isabell@stardust ~]$
+
+If you want to use Puma with your own domain you need to setup your domain first:
+
+.. include:: includes/web-domain-list.rst
+
 Installation
 ============
 
 Use ``gem`` to install the latest version of Puma:
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ gem install puma
   Fetching: puma-3.12.0.gem (100%)
@@ -35,22 +50,23 @@ Use ``gem`` to install the latest version of Puma:
   
 Create a directory, and inside the directory a file ``rubyapp.ru`` for the application:
 
-::
+.. code-block:: console
 
-  [isabell@stardust ~]$ mkdir ~/rubyapp
-  [isabell@stardust ~]$ touch ~/rubyapp/rubyapp.ru
+  [isabell@stardust ~]$ mkdir ~/puma
+  [isabell@stardust ~]$ touch ~/puma/rubyapp.ru
   [isabell@stardust ~]$ 
 
 Update the permissions so that the application file is executable:
 
-::
+.. code-block:: console
 
-  [isabell@stardust ~]$ chmod +x ~/rubyapp/rubyapp.ru 
+  [isabell@stardust ~]$ chmod +x ~/puma/rubyapp.ru 
   [isabell@stardust ~]$ 
   
-This file is the Rackup file for the application. Add the following content to ``~/rubyapp/rubyapp.ru``, a simple Hello World application:
+This file is the Rackup file for the application. Add the following content to ``~/puma/rubyapp.ru``, a simple Hello World application:
 
 .. code-block:: none
+
   class HelloWorld
     def call(env)
       [200, {"Content-Type" => "text/plain"}, ["Hello World"]]
@@ -59,6 +75,12 @@ This file is the Rackup file for the application. Add the following content to `
 
   run HelloWorld.new
 
+Create the folder for logs:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mkdir ~/logs/puma
+  [isabell@stardust ~]$ 
 
 Configuration
 =============
@@ -73,37 +95,43 @@ You need to find a free port to bind Puma to it.
 Puma configuration file
 -----------------------
 
-Next, create a Puma configuration file, update the permissions as before,
+Next, create a Puma configuration file, update the permissions as before...
 
-::
+.. code-block:: console
 
-  [isabell@stardust ~]$ touch ~/rubyapp/config.rb
-  [isabell@stardust ~]$ chmod +x ~/rubyapp/config.rb
+  [isabell@stardust ~]$ touch ~/puma/config.rb
+  [isabell@stardust ~]$ chmod +x ~/puma/config.rb
   [isabell@stardust ~]$
 
-and add the following content:
+... and add the following content. Adapt the highlighted lines to your setup.
 
 .. code-block:: none
+  :emphasize-lines: 4,7,10,13
+
   #!/usr/bin/env puma
 
   # The directory to operate out of.
-  directory '/home/isabell/rubyapp'
+  directory '/home/isabell/puma'
 
   # The path to the rackup file
-  rackup '/home/isabell/rubyapp/rubyapp.ru'
+  rackup '/home/isabell/puma/rubyapp.ru'
 
   # Bind Puma to the port
-  bind 'tcp://127.0.0.1:9000'
-
+  bind 'tcp://0.0.0.0:9000'
+  
+  # Enable logging
+  stdout_redirect '/home/isabell/logs/puma/out.log', '/home/isabell/logs/puma/err.log', true
 
 Setup supervisord
 -----------------
 
-Create ``~/etc/services.d/rubyapp.ini`` with the following content:
+Create ``~/etc/services.d/puma.ini`` with the following content. Adapt the highlighted lines to your setup.
 
 .. code-block:: ini
-  [program:rubyapp]
-  command=/opt/uberspace/etc/isabell/binpaths/ruby/puma --config /home/isabell/rubyapp/config.rb
+  :emphasize-lines: 2
+
+  [program:puma]
+  command=/opt/uberspace/etc/isabell/binpaths/ruby/puma --config %(ENV_HOME)s/isabell/puma/config.rb
   autostart=yes
   autorestart=yes
 
@@ -111,12 +139,12 @@ The ``--config`` parameter provides the path to the configuration file.
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ supervisorctl reread
-  rubyapp: available
+  puma: available
   [isabell@stardust ~]$ supervisorctl update
-  rubyapp: added process group
+  puma: added process group
   [isabell@stardust ~]$ 
 
 Setup .htaccess
@@ -125,40 +153,17 @@ Setup .htaccess
 Create the file ``~/html/.htaccess`` with the following content to forward requests from the outside to Puma:
 
 .. code-block:: none
+
   DirectoryIndex disabled
 
   RewriteEngine On
-  RewriteRule ^rubyapp/(.*) http://localhost:9000/$1 [P]
-
-Logging
--------
-
-If you want to enable logging, create a new directory for Puma logfiles:
-
-::
-
-  [isabell@stardust ~]$ mkdir /home/isabell/logs/puma
-  [isabell@stardust ~]$
-
-Edit the configuration file at ``~/rubyapp/config.ru`` and append the following line to redirect Puma's output and errors to log files:
-
-.. code-block:: none
-  stdout_redirect '/home/isabell/logs/puma/out.log', '/home/isabell/logs/puma/err.log', true
-
-Restart Puma to reload the configuration file:
-
-::
-
-  [isabell@stardust puma]$ supervisorctl restart rubyapp
-  rubyapp: stopped
-  rubyapp: started
-  [isabell@stardust puma]$ 
+  RewriteRule ^(.*) http://localhost:9000/$1 [P]
 
 
 Test
 ----
 
-To validate the installation, open a browser and visit ``isabell.uber.space/rubyapp/``. If everything is set up correctly, you will see "Hello World". 
+To validate the installation, open a browser and visit ``isabell.uber.space``. If everything is set up correctly, you will see "Hello World". 
 
 
 Updates
@@ -168,18 +173,17 @@ Updates
 
 Use ``gem`` to update Puma:
 
-::
+.. code-block:: console
 
-  [isabell@stardust puma]$ gem update puma
+  [isabell@stardust ~]$ gem update puma
   (...)
-  [isabell@stardust puma]$ 
+  [isabell@stardust ~]$ 
 
 Further Reading
 ===============
 
 * Puma's readme_ on GitHub
 * An example configuration_ file 
-
 
 ----
 
@@ -193,5 +197,5 @@ Tested with Puma 3.12, Uberspace 7.1.13.0
 .. _Rack: https://rack.github.io
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _readme: https://github.com/puma/puma
-.. _configuration https://github.com/puma/puma/blob/master/examples/config.rb
+.. _configuration: https://github.com/puma/puma/blob/master/examples/config.rb
 .. _feed: https://github.com/puma/puma/releases
