@@ -253,7 +253,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
   	CMD_PROTOCOL_USESSL=true,
   	CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
 
-  command=%(ENV_HOME)s/codimd
+  directory=%(ENV_HOME)s/codimd
   command=node app.js
 
 In our example this would be:
@@ -282,7 +282,7 @@ In our example this would be:
   	CMD_PROTOCOL_USESSL=true,
   	CMD_DB_URL="mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd",
 
-  command=%(ENV_HOME)s/codimd
+  directory=%(ENV_HOME)s/codimd
   command=node app.js
 
 

@@ -149,7 +149,7 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
 .. code-block:: ini
 
  [program:ghost]
- command=%(ENV_HOME)s/ghost
+ directory=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
 Tell ``supervisord`` to refresh its configuration and start the service:
