@@ -119,22 +119,10 @@ Setup daemon
 
 Create ``~/etc/services.d/thelounge.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
-.. code-block:: ini
- :emphasize-lines: 2
-
- [program:thelounge]
- command=/home/<username>/bin/thelounge start
- autostart=yes
- autorestart=yes
-
-In our example this would be:
-
 .. code-block:: ini
 
  [program:thelounge]
- command=/home/isabell/bin/thelounge start
+ command=%(ENV_HOME)s/bin/thelounge start
  autostart=yes
  autorestart=yes
 

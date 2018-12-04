@@ -265,22 +265,10 @@ Step 4 - Setup Daemon
 
 Create ``~/etc/services.d/postgresql.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:postgresql]
- command=/home/<username>/opt/postgresql/bin/postgres -D /home/<username>/opt/postgresql/data/
- autostart=yes
- autorestart=yes
-
-In our example this would be:
-
-.. code-block:: ini
- :emphasize-lines: 2
-
- [program:postgresql]
- command=/home/isabell/opt/postgresql/bin/postgres -D /home/isabell/opt/postgresql/data/
+ command=%(ENV_HOME)s/opt/postgresql/bin/postgres -D %(ENV_HOME)s/opt/postgresql/data/
  autostart=yes
  autorestart=yes
 

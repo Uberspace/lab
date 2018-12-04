@@ -174,21 +174,11 @@ Setup daemon
 
 Create ``~/etc/services.d/up1.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:up1]
- directory=/home/<username>/up1/server/
- command=node /home/<username>/up1/server/server.js
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:up1]
- directory=/home/isabell/up1/server/
- command=node /home/isabell/up1/server/server.js
+ directory=%(ENV_HOME)s/up1/server/
+ command=node %(ENV_HOME)s/up1/server/server.js
 
 Tell supervisord_ to refresh its configuration and start the service:
 

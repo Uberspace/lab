@@ -119,21 +119,19 @@ Setup daemon
 
 Create ``~/etc/services.d/gitea.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/<username>/gitea/gitea web -port <yourport>
+  command=%(ENV_HOME)s/gitea/gitea web -port <yourport>
 
 In our example this would be:
 
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/isabell/gitea/gitea web -port 9000
+  command=%(ENV_HOME)s/gitea/gitea web -port 9000
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 

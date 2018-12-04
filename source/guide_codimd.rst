@@ -230,7 +230,7 @@ Setup daemon
 Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 8, 20
+  :emphasize-lines: 6, 7, 8
 
   [supervisord]
   loglevel=warn
@@ -253,13 +253,13 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
   	CMD_PROTOCOL_USESSL=true,
   	CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
 
-  directory=/home/<username>/codimd
+  directory=%(ENV_HOME)s/codimd
   command=node app.js
 
 In our example this would be:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 8, 20
+  :emphasize-lines: 6, 7, 8
 
   [supervisord]
   loglevel=warn
@@ -282,7 +282,7 @@ In our example this would be:
   	CMD_PROTOCOL_USESSL=true,
   	CMD_DB_URL="mysql://isabell:MySuperSecretPassword@localhost:3306/isabell_codimd",
 
-  directory=/home/isabell/codimd
+  directory=%(ENV_HOME)s/codimd
   command=node app.js
 
 
