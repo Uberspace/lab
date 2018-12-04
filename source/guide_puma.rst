@@ -55,17 +55,10 @@ Create a directory, and inside the directory a file ``rubyapp.ru`` for the appli
   [isabell@stardust ~]$ mkdir ~/puma
   [isabell@stardust ~]$ touch ~/puma/rubyapp.ru
   [isabell@stardust ~]$ 
-
-Update the permissions so that the application file is executable:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ chmod +x ~/puma/rubyapp.ru 
-  [isabell@stardust ~]$ 
   
 This file is the Rackup file for the application. Add the following content to ``~/puma/rubyapp.ru``, a simple Hello World application:
 
-.. code-block:: none
+.. code-block:: ruby
 
   class HelloWorld
     def call(env)
@@ -95,12 +88,11 @@ You need to find a free port to bind Puma to it.
 Puma configuration file
 -----------------------
 
-Next, create a Puma configuration file, update the permissions as before...
+Next, create a Puma configuration file:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ touch ~/puma/config.rb
-  [isabell@stardust ~]$ chmod +x ~/puma/config.rb
   [isabell@stardust ~]$
 
 ... and add the following content. Adapt the highlighted lines to your setup.
@@ -150,9 +142,10 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 Setup .htaccess
 ---------------
 
-Create the file ``~/html/.htaccess`` with the following content to forward requests from the outside to Puma:
+Create the file ``~/html/.htaccess`` with the following content to forward requests from the outside to Puma. Adapt the highlighted lines to your setup.
 
 .. code-block:: none
+  :emphasize-lines: 4
 
   DirectoryIndex disabled
 
@@ -187,7 +180,7 @@ Further Reading
 
 ----
 
-Tested with Puma 3.12, Uberspace 7.1.13.0
+Tested with Puma 3.12, Uberspace 7.1.17
 
 
 .. authors::
