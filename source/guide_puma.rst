@@ -123,7 +123,7 @@ Create ``~/etc/services.d/puma.ini`` with the following content. Adapt the highl
   :emphasize-lines: 2
 
   [program:puma]
-  command=/opt/uberspace/etc/isabell/binpaths/ruby/puma --config %(ENV_HOME)s/isabell/puma/config.rb
+  command=/opt/uberspace/etc/isabell/binpaths/ruby/puma --config %(ENV_HOME)s/puma/config.rb
   autostart=yes
   autorestart=yes
 
