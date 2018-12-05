@@ -45,14 +45,12 @@ Installation
 
 You need a special database for CodiMD_:
 
-.. warning:: Replace ``<username>`` with your username!
-
 Create Database
 ---------------
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_codimd CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
+  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_codimd CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
   [isabell@stardust ~]$
 
 Download Sources

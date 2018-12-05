@@ -86,7 +86,7 @@ Akaunting saves your data in a MySQL database. We suggest you use an `additional
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_akaunting"
+ [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_akaunting"
  [isabell@stardust ~]$
 
 Enter the following informations into the installer:

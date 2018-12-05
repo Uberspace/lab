@@ -98,11 +98,9 @@ Create the needed MySQL databases as the installer file won't work on uberspace.
 
 ::
 
- [isabell@stardust ~]$ mysql
- MariaDB [(none)]>     create database `isabell_ccnet` character set = 'utf8';
- MariaDB [(none)]>     create database `isabell_seafile` character set = 'utf8';
- MariaDB [(none)]>     create database `isabell_seahub` character set = 'utf8';
- MariaDB [(none)]>     exit;
+ [isabell@stardust ~]$ mysql -e "create database ${USER}_ccnet character set = 'utf8';"
+ [isabell@stardust ~]$ mysql -e "create database ${USER}_seafile character set = 'utf8';
+ [isabell@stardust ~]$ mysql -e "create database ${USER}_seahub character set = 'utf8';
  [isabell@stardust ~]$
 
 Step 4

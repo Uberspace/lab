@@ -33,14 +33,7 @@ You need a database for gitea:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_gitea"
-  [isabell@stardust ~]$
-
-In our example this would be:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_gitea"
+  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_gitea"
   [isabell@stardust ~]$
 
 Your gitea URL needs to be setup:
