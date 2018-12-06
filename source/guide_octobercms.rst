@@ -67,7 +67,7 @@ During the setup process you will be asked for database credentials. We use MySQ
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_october"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_october"
  [isabell@stardust ~]$
 
 To start the CLI that will guide you trough the setup use the ``october:install`` command.

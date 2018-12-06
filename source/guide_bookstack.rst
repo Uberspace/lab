@@ -79,7 +79,7 @@ We suggest you use an `additional database`_ for BookStack to save your data. Yo
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_bookstack"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_bookstack"
  [isabell@stardust ~]$
 
 Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL credentials_ and save the file.

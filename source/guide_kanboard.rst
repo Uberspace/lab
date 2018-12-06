@@ -86,7 +86,7 @@ We recommend setting up a new MySQL database for Kanboard.
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE <username>_kanboard CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_kanboard CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;;"
 
 Configuration
 -------------
