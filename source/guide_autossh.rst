@@ -6,17 +6,17 @@
 autossh
 #######
 
-autossh_ is a program to start a copy of ssh and monitor it, restarting it as necessary should it die or stop passing traffic.
+autossh_ is a program to start an SSH session and monitor it, restarting it as necessary should it die or stop passing traffic.
 
-When following best practices laid out by Uberspace (every service should use its own Uberspace account), it can sometimes become necessary to connect two Uberspace hosts with another privately. This is for example the case, if - for example - you are running an OpenLDAP installation on host A and want to use it for authentication for a nextCloud installation on host B. You wouldn't want the whole world to access your OpenLDAP server, right? autossh_ allows us to set up an automatically monitored tunnel between hosts to use for port forwarding.
+When following best practices laid out by Uberspace (every service should use its own Uberspace account), it can sometimes be necessary to connect two Uberspace hosts with each other privately. For example, this is  the case if you are running an OpenLDAP installation on host A and want to use it for authentication for a Nextcloud installation on host B. autossh_ allows you to set up an automatically monitored tunnel between hosts to use for port forwarding.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * ssh
-  * ssh port forwarding
-  * ssh public key authentication
+  * SSH_
+  * SSH port forwarding
+  * SSH public key authentication
   * supervisord_
 
 License
@@ -47,14 +47,14 @@ Run ``configure``, ``make`` and ``make install`` (the ``--prefix`` options tells
 
 ::
 
- [isabell@stardust autossh-99.9f] ./configure --prefix=/home/isabell
+ [isabell@stardust autossh-99.9f] ./configure --prefix=$HOME
  [...]
  [isabell@stardust autossh-99.9f] make
  [...]
  [isabell@stardust autossh-99.9f] make install
  [...]
 
-After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors. That's it! Time to configure autossh!
+After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors. 
 
 
 Configuration and Usage
@@ -63,18 +63,29 @@ Configuration and Usage
 Step 1
 ------
 
-In order to use autossh_ comfortably, we need to define a connection in our ``~/.ssh/config`` - for the sake of the example, let's assume the following connection in ``~/.ssh/config``:
+In order to use autossh_ comfortably, you need to define a connection in your ``~/.ssh/config`` - for the sake of the example, let's assume the following connection in ``~/.ssh/config``:
 
 ::
 
  Host service-tunnel
   HostName tsudrats.uberspace.de
   User llebasi
-  IdentityFile /home/isabell/.ssh/servicetunnel
+  IdentityFile ~/.ssh/servicetunnel
   LocalForward 9000 localhost:9000
 
 
 This configuration will forward the local port ``9000`` to the remote port ``9000``. It could be opened manually by calling ``ssh service-tunnel``.
+
+To ensure that the remote host and it's key fingerprint are trusted, either add them manually to your ``~/.ssh/known_hosts`` or connect to the host once, check the fingerprint and then answer ``yes`` when prompted.
+
+::
+
+ [isabell@stardust ~] ssh llebasi@tsudrats.uberspace.de exit
+ The authenticity of host 'tsudrats.uberspace.de (185.26.156.254)' can't be established.
+ ED25519 key fingerprint is SHA256:taekOiAJ0efuyKpBtDKuE9c04LXJqJhVNcP1ltr798E.
+ ED25519 key fingerprint is MD5:dc:df:0a:f7:2c:cd:62:8a:7e:a3:d7:a1:43:56:0c:36:0.
+ Are you sure you want to continue connecting (yes/no)? yes
+ Warning: Permanently added 'tsudrats.uberspace.de,185.26.156.254' (ED25519) to the list of known hosts.
 
 .. note:: This guide assumes that you have set up public key authentication (see ``IdentityFile`` parameter in ``~/.ssh/config``). This is required as otherwise you will always be prompted for your password when trying to open the tunnel. See `the Uberspace manual <https://manual.uberspace.de/en/basics-ssh.html#working-with-keys>`_ for setting up public key authentication if you don't know how.
 
@@ -90,7 +101,7 @@ With the information from step 1, it is time to configure supervisord_ to handle
  autostart=true
  autorestart=false
 
-This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh to not send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection. After you have created the file, update the control daemon:
+This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh not to send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection. After you have created the file, update the control daemon:
 
 ::
 
@@ -98,13 +109,16 @@ This will make sure that autossh_ is automatically started if the host reboots b
  autossh: available
  [isabell@stardust ~] supervisorctl update
  autossh: added process group
+ [isabell@stardust ~] supervisorctl status
+ autossh                         RUNNING   pid 16184, uptime 0:00:02
 
-This will then launch autossh.
+Check the output of ``supervisorctl status``. If it's not in state ``RUNNING``, something went wrong.
 
 That's it, you have successfully configured an automatically launching port forwarding tunnel between to hosts!
 
 
 .. _autossh: http://www.harding.motd.ca/autossh/
+.. _SSH: https://manual.uberspace.de/en/basics-ssh.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 .. authors::
