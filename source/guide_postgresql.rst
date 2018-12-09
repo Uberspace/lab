@@ -56,15 +56,15 @@ Configure and compile the source code with the commands ``configure`` and ``make
 
 .. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-Before we start, we have to consider some aspects, e.g. Python support, and correponding settings, regarding a shared hosting environment like Uberspace:
+Before we start, we have to consider some aspects, e.g. Python support, and corresponding settings, regarding to a shared hosting environment like Uberspace:
 
  * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
  * ``--with-python PYTHON=/usr/bin/python2``: Compiling with Python 2.x support. Alternatively you can choose ``/usr/bin/python3``. Both are links to the actual supported Python versions.
- * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude this.
+ * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude Readline with this option.
 
 Other options can be found in the PostgreSQL documentation_.
 
-.. important:: For future usage with projects like Miniflux, ejabberd, Matrix etc. it is recommended to consider everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
+.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
 
 ::
 
@@ -188,7 +188,7 @@ The temporary password file is no longer necessary:
 Configuration
 =============
 
-After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via a Unix socket.  Access via a Unix socket is not supported by every project.
+After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via an Unix socket is not supported by every project.
 
 
 Step 1 - Configure Port
@@ -348,14 +348,14 @@ Step 2 - New Database
  * ``--encoding``: Set of UTF8 encoding
  * ``--owner``: The owner of the new database. In this example the new user of step 1.
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
- * ``database name``: And as last option the name of the database.
+ * ``database name``: And as last option the name of the database. In this example 'synapse'.
 
-.. warning:: Please replace ``<username>`` with your user name!
+.. warning:: Please replace ``<username>`` with your user name, created in step 1!
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template0 <username>
+ [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> --template=template0 synapse
  [isabell@stardust ~]$
 
 
