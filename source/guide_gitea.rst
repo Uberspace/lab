@@ -118,6 +118,8 @@ Create ``~/etc/services.d/gitea.ini`` with the following content:
 
   [program:gitea]
   command=%(ENV_HOME)s/gitea/gitea web -port <yourport>
+  autostart=yes
+  autorestart=yes
 
 In our example this would be:
 
@@ -125,6 +127,8 @@ In our example this would be:
 
   [program:gitea]
   command=%(ENV_HOME)s/gitea/gitea web -port 9000
+  autostart=yes
+  autorestart=yes
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 

@@ -166,6 +166,8 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
 
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
+  autostart=yes
+  autorestart=yes
 
 Tell supervisord_ to refresh its configuration and start the service:
 

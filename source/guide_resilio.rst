@@ -81,6 +81,8 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 
  [program:resilio-sync]
  command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
+ autostart=yes
+ autorestart=yes
 
 In our example this would be:
 
@@ -88,6 +90,8 @@ In our example this would be:
 
  [program:resilio-sync]
  command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ autostart=yes
+ autorestart=yes
 
 Start Service
 =============

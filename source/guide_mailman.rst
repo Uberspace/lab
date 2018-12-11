@@ -229,6 +229,8 @@ Create ``~/etc/services.d/mailman.ini`` with the following content (insert your 
 
  [program:mailman]
  command=/var/www/virtual/isabell/mailman/bin/qrunner --runner=All
+ autostart=yes
+ autorestart=yes
 
 Tell supervisord_ to refresh and start the qrunner:
 

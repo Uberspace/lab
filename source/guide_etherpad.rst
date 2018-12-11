@@ -164,6 +164,8 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
  [program:etherpad]
  command=%(ENV_HOME)s/etherpad/bin/run.sh
  environment=NODE_ENV="production"
+ autostart=yes
+ autorestart=yes
 
 Tell supervisord_ to refresh its configuration and start the service:
 

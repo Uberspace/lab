@@ -129,7 +129,8 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 
   [program:radicale]
   command=%(ENV_HOME)s/.local/bin/radicale -f
-
+  autostart=yes
+  autorestart=yes
 
 Finishing installation
 ======================

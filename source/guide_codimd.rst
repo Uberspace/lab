@@ -253,6 +253,8 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 
   directory=%(ENV_HOME)s/codimd
   command=node app.js
+  autostart=yes
+  autorestart=yes
 
 In our example this would be:
 
@@ -282,8 +284,8 @@ In our example this would be:
 
   directory=%(ENV_HOME)s/codimd
   command=node app.js
-
-
+  autostart=yes
+  autorestart=yes
 
 Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, ``CMD_PORT`` and ``CMD_DB_URL`` and you're good to go!
 

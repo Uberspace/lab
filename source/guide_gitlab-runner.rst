@@ -101,6 +101,8 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 
   [program:gitlab-runner]
   command=/home/$USER/bin/gitlab-runner.sh
+  autostart=yes
+  autorestart=yes
 
 
 Tell ``supervisord`` to refresh its configuration and start the service:

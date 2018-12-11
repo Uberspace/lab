@@ -179,6 +179,8 @@ Create ``~/etc/services.d/up1.ini`` with the following content:
  [program:up1]
  directory=%(ENV_HOME)s/up1/server/
  command=node %(ENV_HOME)s/up1/server/server.js
+ autostart=yes
+ autorestart=yes
 
 Tell supervisord_ to refresh its configuration and start the service:
 

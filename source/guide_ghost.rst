@@ -151,6 +151,8 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
  [program:ghost]
  directory=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
+ autostart=yes
+ autorestart=yes
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 

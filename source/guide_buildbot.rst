@@ -134,6 +134,8 @@ Create the file ``~/etc/services.d/buildbot-master.ini`` with the following cont
 
  [program:buildbot-master]
  command=%(ENV_HOME)s/.local/bin/buildbot start --nodaemon %(ENV_HOME)s/bb-master/master
+ autostart=yes
+ autorestart=yes
 
 After saving, update supervisord_ and check on the master's status:
 

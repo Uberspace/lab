@@ -159,7 +159,8 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
   BASE_URL="https://isabell.uber.space",
   DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
  command=%(ENV_HOME)s/bin/miniflux-linux-amd64
-
+ autostart=yes
+ autorestart=yes
 
 Tell supervisord_ to refresh its configuration and start the service:
 

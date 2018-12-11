@@ -83,6 +83,8 @@ Create ``~/etc/services.d/embetty.ini`` with the following content:
  [program:embetty]
  command=%(ENV_HOME)s/bin/embetty start
  environment=PORT="<port>",TWITTER_ACCESS_TOKEN_KEY="<accesstoken>",TWITTER_ACCESS_TOKEN_SECRET="<accesstokensecret>",TWITTER_CONSUMER_KEY="<consumerkey>",TWITTER_CONSUMER_SECRET="<consumersecret>"
+ autostart=yes
+ autorestart=yes
 
 .. note:: If you don't need Twitter support, you can leave out the ``TWITTER_`` variables and only set ``PORT``.
 
@@ -93,6 +95,8 @@ In our example this would be:
  [program:embetty]
  command=%(ENV_HOME)s/bin/embetty start
  environment=PORT="9000",TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
+ autostart=yes
+ autorestart=yes
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
