@@ -76,7 +76,7 @@ Step 2: Modify htaccess file
 
 Open the file ``/var/www/virtual/$USER/.htaccess`` and add ``RewriteBase /`` after ``RewriteEngine On``:
 
-.. code-block::
+.. code-block:: 
 
  # Prevent Directory Listing
  <IfModule mod_rewrite.c>
