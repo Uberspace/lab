@@ -52,6 +52,9 @@ Your domain needs to be set up:
 Installation
 ============
 
+Step 1: Download latest release
+-------------------------------
+
 ``cd`` to your DocumentRoot_ and download the latest release, then unzip it into the ``html`` directory:
 
 .. code-block:: console
@@ -67,6 +70,25 @@ Installation
  inflating: html/routes/api.php
  inflating: html/routes/channels.php
  [isabell@stardust ~]$
+
+Step 2: Modify htaccess file
+----------------------------
+
+Open the file ``/var/www/virtual/$USER/.htaccess`` and add ``RewriteBase /`` after ``RewriteEngine On``:
+
+.. code-block::
+
+ # Prevent Directory Listing
+ <IfModule mod_rewrite.c>
+     # Prevent Directory Listing
+     [...]
+ 
+     RewriteEngine On
+     RewriteBase /
+     
+     # Prevent Direct Access to Protected Files
+     [...]
+
 
 Configuration
 =============
