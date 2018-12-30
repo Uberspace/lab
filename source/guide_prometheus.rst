@@ -1,0 +1,157 @@
+.. highlight:: console
+
+.. author:: Malte Krupa <nafn.de>
+
+.. sidebar:: About
+
+  .. image:: _static/images/prometheus.svg
+      :align: center
+
+##########
+Prometheus
+##########
+
+Prometheus_ is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus_, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, Prometheus_ joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.
+
+----
+
+.. note:: For this guide you should be familiar with the basic concepts of
+
+  * supervisord_
+
+License
+=======
+
+prometheus_ is licensed under the Apache License 2.0.
+
+All relevant legal information can be found here
+
+  * https://github.com/prometheus/prometheus/blob/master/LICENSE
+
+Prerequisites
+=============
+
+We need to prepare a couple of directories.
+
+The first directory is for storing the timeseries database:
+
+::
+
+ [isabell@stardust ~]$ mkdir var/lib/prometheus
+ [isabell@stardust ~]$
+
+The second directory is for storing the configuration files:
+
+::
+
+ [isabell@stardust ~]$ mkdir etc/prometheus
+ [isabell@stardust ~]$
+
+
+Installation
+============
+
+Step 1
+------
+
+Find the latest version of prometheus_ for linux from the website https://prometheus.io/download, download and extract it and enter the newly created directory:
+
+::
+
+ [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v42.23.1/prometheus-42.23.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ tar xvzf prometheus-42.23.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ cd prometheus-42.23.1.linux-amd64
+ [isabell@stardust prometheus-42.23.1.linux-amd64]$
+
+Step 2
+------
+
+Move the binary to ``~/bin`` and move the configuration file to ``~/etc/prometheus``.
+
+::
+
+ [isabell@stardust prometheus-42.23.1.linux-amd64]$ mv prometheus ~/bin/
+ [isabell@stardust prometheus-42.23.1.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
+ [isabell@stardust prometheus-42.23.1.linux-amd64]$
+
+Configuration
+=============
+
+Configure port
+--------------
+
+Prometheus_ uses its own webserver, so you'll need to find a free port and bind prometheus_ to it.
+
+.. include:: includes/generate-port.rst
+
+Setup .htaccess
+---------------
+
+.. include:: includes/proxy-rewrite.rst
+
+Setup daemon
+------------
+
+Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
+
+.. code-block:: ini
+  :emphasize-lines: 2
+
+  [program:prometheus]
+  command=/home/isabell/bin/prometheus
+    --web.listen-address=localhost:9000
+    --config.file=/home/isabell/etc/prometheus/prometheus.yml
+    --storage.tsdb.path=/home/isabell/var/lib/prometheus/
+    --storage.tsdb.retention=15d
+    --web.external-url=https://isabell.stardust.uberspace.de/prometheus/
+    --web.route-prefix=/
+  autostart=yes
+  autorestart=yes
+
+What the arguments for prometheus_ mean:
+
+  * ``--web.listen-address``: The IP address and port prometheus listens on.
+  * ``--config.file``: The full path to the prometheus_ configuration file.
+  * ``--storage.tsdb.path``: The path where prometheus stores the timeseries database.
+  * ``--storage.tsdb.retention``: The amount of time to keep the datapoints of the timeseries database (in this guide it's set to 15 days).
+  * ``--web.external-url``: The URL under which prometheus is reachable.
+  * ``--web.route-prefix``: The path under which promtheus is reachable.
+
+Finishing installation
+======================
+
+Start prometheus
+----------------
+
+To start prometheus via the previously created supervisord_ configuration, run the following command 
+
+::
+
+ [isabell@stardust ~]$ supervisorctl reread
+ prometheus: available
+ [isabell@stardust ~]$ supervisorctl update
+ prometheus: added process group
+ [isabell@stardust ~]$
+
+Now point your browser to your uberspace and you should see the prometheus webinterface.
+
+Best practices
+==============
+
+Security
+--------
+
+As described by the prometheus security documentation, it's presumed that untrusted users have access to the prometheus HTTP endpoint and logs.
+
+It is also presumed that only trusted users have the ability to change the command line, configuration file, rule files and other aspects of the runtime environment of Prometheus and other components.
+
+Further reading: https://prometheus.io/docs/operating/security/#prometheus
+
+.. _Prometheus: https://prometheus.io/
+.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+
+----
+
+Tested with Prometheus_ 2.6.0, Uberspace 7.1.19.0
+
+.. authors::
