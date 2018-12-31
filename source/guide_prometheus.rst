@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Malte Krupa <nafn.de>
+.. author:: Malte Krupa <http://nafn.de>
 
 .. sidebar:: About
 
@@ -54,7 +54,7 @@ Installation
 Step 1
 ------
 
-Find the latest version of prometheus_ for linux from the website https://prometheus.io/download, download and extract it and enter the newly created directory:
+Find the latest version of prometheus_ for the operating system ``linux`` and the architecture ``amd64`` from the `download page <https://prometheus.io/download>`_, download and extract it and enter the extracted directory:
 
 ::
 
@@ -66,7 +66,7 @@ Find the latest version of prometheus_ for linux from the website https://promet
 Step 2
 ------
 
-Move the binary to ``~/bin`` and move the configuration file to ``~/etc/prometheus``.
+Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 
 ::
 
@@ -94,8 +94,25 @@ Setup daemon
 
 Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 
+.. warning:: Replace ``<yourport>`` with your port!
+
 .. code-block:: ini
-  :emphasize-lines: 2
+  :emphasize-lines: 3
+
+  [program:prometheus]
+  command=/home/isabell/bin/prometheus
+    --web.listen-address=localhost:<yourport>
+    --config.file=/home/isabell/etc/prometheus/prometheus.yml
+    --storage.tsdb.path=/home/isabell/var/lib/prometheus/
+    --storage.tsdb.retention=15d
+    --web.external-url=https://isabell.stardust.uberspace.de/prometheus/
+    --web.route-prefix=/
+  autostart=yes
+  autorestart=yes
+
+In our example this would be:
+
+.. code-block:: ini
 
   [program:prometheus]
   command=/home/isabell/bin/prometheus
@@ -141,11 +158,16 @@ Best practices
 Security
 --------
 
-As described by the prometheus security documentation, it's presumed that untrusted users have access to the prometheus HTTP endpoint and logs.
+To quote the `prometheus security documentation <https://prometheus.io/docs/operating/security/#prometheus>`_:
 
-It is also presumed that only trusted users have the ability to change the command line, configuration file, rule files and other aspects of the runtime environment of Prometheus and other components.
+::
 
-Further reading: https://prometheus.io/docs/operating/security/#prometheus
+  It's presumed that untrusted users have access to the prometheus HTTP
+  endpoint and logs.
+
+  It is also presumed that only trusted users have the ability to change
+  the command line, configuration file, rule files and other aspects of
+  the runtime environment of Prometheus and other components.
 
 .. _Prometheus: https://prometheus.io/
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
