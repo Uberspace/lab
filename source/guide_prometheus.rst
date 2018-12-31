@@ -169,6 +169,10 @@ To quote the `prometheus security documentation <https://prometheus.io/docs/oper
   the command line, configuration file, rule files and other aspects of
   the runtime environment of Prometheus and other components.
 
+As stated in the security documentation, it is ok to make prometheus reachable for everyone as long as only you are able to change the configuration files and the CLI arguments.
+
+If this is something you do not want to do, you could hide it behind a basic auth. But keep in mind that by doing so, all other users of your uberspace host would still be able to access the prometheus webinterface!
+
 .. _Prometheus: https://prometheus.io/
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
