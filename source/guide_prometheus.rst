@@ -105,7 +105,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
     --config.file=/home/isabell/etc/prometheus/prometheus.yml
     --storage.tsdb.path=/home/isabell/var/lib/prometheus/
     --storage.tsdb.retention=15d
-    --web.external-url=https://isabell.stardust.uberspace.de/prometheus/
+    --web.external-url=https://isabell.stardust.uberspace.de/
     --web.route-prefix=/
   autostart=yes
   autorestart=yes
@@ -120,7 +120,7 @@ In our example this would be:
     --config.file=/home/isabell/etc/prometheus/prometheus.yml
     --storage.tsdb.path=/home/isabell/var/lib/prometheus/
     --storage.tsdb.retention=15d
-    --web.external-url=https://isabell.stardust.uberspace.de/prometheus/
+    --web.external-url=https://isabell.stardust.uberspace.de/
     --web.route-prefix=/
   autostart=yes
   autorestart=yes
