@@ -97,13 +97,13 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 .. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
-  :emphasize-lines: 3
+  :emphasize-lines: 7
 
   [program:prometheus]
   command=/home/isabell/bin/prometheus
     --web.listen-address=localhost:<yourport>
-    --config.file=/home/isabell/etc/prometheus/prometheus.yml
-    --storage.tsdb.path=/home/isabell/var/lib/prometheus/
+    --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
+    --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
     --storage.tsdb.retention=15d
     --web.external-url=https://isabell.stardust.uberspace.de/
     --web.route-prefix=/
