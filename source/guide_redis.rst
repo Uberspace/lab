@@ -174,8 +174,8 @@ Use the Unix socket ``~/.redis/sock`` to access redis with other applications. Y
 
 .. code-block:: bash
 
- [testnico@stardust ~]$ redis-cli -s ~/.redis/sock
- redis /home/testnico/.redis/sock>
+ [isabell@stardust ~]$ redis-cli -s ~/.redis/sock
+ redis /home/isabell/.redis/sock>
 
 .. _Redis: https://redis.io/
 .. _BSD license: https://github.com/antirez/redis/blob/unstable/COPYING
