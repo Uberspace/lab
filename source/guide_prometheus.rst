@@ -97,7 +97,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 .. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
-  :emphasize-lines: 7
+  :emphasize-lines: 3,7
 
   [program:prometheus]
   command=%(ENV_HOME)s/bin/prometheus
