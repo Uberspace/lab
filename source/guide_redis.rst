@@ -26,8 +26,8 @@ Redis is distributed under the `BSD license`_.
 Installation
 ============
 
-Download and extract Redis
---------------------------
+Download Redis
+--------------
 
 .. code-block:: bash
 
@@ -42,6 +42,12 @@ Download and extract Redis
  100%[======================================>] 1,999,982   --.-K/s   in 0.07s
 
  2019-01-03 13:51:21 (27.3 MB/s) - ‘redis-stable.tar.gz’ saved [1999982/1999982]
+
+
+Extract Redis
+--------------------------
+.. code-block:: bash
+
  [isabell@stardust ~]$ tar xfv redis-stable.tar.gz
  redis-stable/
  redis-stable/INSTALL
@@ -77,7 +83,7 @@ Try running ``src/redis-server`` to make sure everything works:
 
 .. code-block:: bash
 
- [isabell@stardust redis-stable]$ src/redis-server
+ [isabell@stardust redis-stable]$ src/redis-server --unixsocket ~/tmp/redis.sock
  16813:C 03 Jan 2019 14:02:49.774 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
  16813:C 03 Jan 2019 14:02:49.774 # Redis version=5.0.3, bits=64, commit=00000000, modified=0, pid=16813, just started
  16813:C 03 Jan 2019 14:02:49.774 # Warning: no config file specified, using the default config. In order to specify a config file use src/redis-server /path/to/re
@@ -138,7 +144,6 @@ Now create the config file ``~/.redis/conf`` with an editor of your choice and e
 
  unixsocket /home/<user>/.redis/sock
  daemonize no
- logfile stdout
  port 0
 
 Setup daemon
