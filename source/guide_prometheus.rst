@@ -100,7 +100,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
   :emphasize-lines: 7
 
   [program:prometheus]
-  command=/home/isabell/bin/prometheus
+  command=%(ENV_HOME)s/bin/prometheus
     --web.listen-address=localhost:<yourport>
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
@@ -115,10 +115,10 @@ In our example this would be:
 .. code-block:: ini
 
   [program:prometheus]
-  command=/home/isabell/bin/prometheus
+  command=%(ENV_HOME)s/bin/prometheus
     --web.listen-address=localhost:9000
-    --config.file=/home/isabell/etc/prometheus/prometheus.yml
-    --storage.tsdb.path=/home/isabell/var/lib/prometheus/
+    --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
+    --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
     --storage.tsdb.retention=15d
     --web.external-url=https://isabell.stardust.uberspace.de/
     --web.route-prefix=/
