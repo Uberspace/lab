@@ -37,7 +37,7 @@ The first directory is for storing the timeseries database:
 
 ::
 
- [isabell@stardust ~]$ mkdir var/lib/prometheus
+ [isabell@stardust ~]$ mkdir -p var/lib/prometheus
  [isabell@stardust ~]$
 
 The second directory is for storing the configuration files:
