@@ -168,7 +168,7 @@ Use ``mongo`` to run ``setup.js``. Replace ``<yourport>`` with your MongoDB port
 .mongorc.js (optional)
 ----------------------
 
-To make CLI access using the ``mongo`` command easier, you can create a ``~/.mongorc.js`` file. Every command in this file is executed whenever you run ``mongo``, so to avoid having to enter your password every time, you can store an authentication command there. Replace ``<username>``, ``<password>`` and ``<yourport>` with your own values.
+To make CLI access using the ``mongo`` command easier, you can create a ``~/.mongorc.js`` file. Every command in this file is executed whenever you run ``mongo``, so to avoid having to enter your password every time, you can store an authentication command there. Replace ``<username>``, ``<password>`` and ``<yourport>`` with your own values.
 
 .. code-block:: none
 
