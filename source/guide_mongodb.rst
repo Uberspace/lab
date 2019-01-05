@@ -172,7 +172,7 @@ To make CLI access using the ``mongo`` command easier, you can create a ``~/.mon
 
 .. code-block:: none
 
- db = connect("mongodb://<username>_mongoadmin:<password>@127.0.0.1:`<yourport>/admin")
+ db = connect("mongodb://<username>_mongoadmin:<password>@127.0.0.1:<yourport>/admin")
 
 Since ``mongo`` tries to connect to the default MongoDB port before executing ``.mongorc.js``, you need to run it with the ``--nodb`` parameter. Set an alias in your ``~/.bash_profile`` to do this automatically:
 
