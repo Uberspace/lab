@@ -186,7 +186,7 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
 
 .. code-block:: none
 
- [testnico@stardust ~]$ mongo
+ [isabell@stardust ~]$ mongo
  MongoDB shell version v4.0.5
  connecting to: mongodb://127.0.0.1:61026/admin
  Implicit session: session { "id" : UUID("6fd371f6-e1fa-461c-be0c-ea3cbe230a01") }
