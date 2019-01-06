@@ -127,7 +127,7 @@ Tell supervisord to refresh its configuration and start the service:
  [isabell@stardust ~]$ supervisorctl status 
  mongodb                          RUNNING   pid 24458, uptime 0:00:09
 
-If it’s not inIf it’s not in state RUNNING, check your configuration.
+If it’s not in state RUNNING, check your configuration.
 
 Create admin user
 -----------------
