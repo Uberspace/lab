@@ -115,7 +115,7 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
  2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
- [isabell@stardust isabell]$ unzip master.zip
+ [isabell@stardust isabell]$ unzip -o master.zip -x FreshRSS-master/data/do-install.txt
  […]
   inflating: FreshRSS-master/tests/app/Models/UserQueryTest.php
   inflating: FreshRSS-master/tests/bootstrap.php
