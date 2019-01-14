@@ -51,9 +51,8 @@ Step 1
 Preparing to set up on the Uberspace various directories for further action.
 
 ::
- 
- [isabell@stardust ~]$ mkdir apps
- [isabell@stardust ~]$ mkdir apps/hugo_render
+
+ [isabell@stardust ~]$ mkdir -p apps/hugo_render
  [isabell@stardust ~]$ mkdir hugo_website
  [isabell@stardust ~]$ 
  
