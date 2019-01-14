@@ -71,12 +71,30 @@ Step 3
 ------
 
 Now change the directory ``~/apps/hugo_render`` and set up Hugo.
+Check the Hugo_ website or `Github Repository`_ for the latest release and copy the download link to the .tar.gz file.
+Then ``cd`` to your ``~/apps/hugo_render`` folder and use ``wget`` to download it. Replace the URL with the one you just copied.
 
-::
+.. code-block:: console
+ :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd apps/hugo_render
  [isabell@stardust hugo_render]$ wget https://github.com/spf13/hugo/releases/download/hugo_42.23.1_Linux-64bit.tar.gz
+ […]
+ Saving to: ‘hugo_42.53.1_Linux-64bit.tar.gz’
+
+ 100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
+
+ 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_42.53.1_Linux-64bit.tar.gz’ saved [7750708/7750708]
+
+Unzip the archive and then delete it. Replace the version in the file name with the one you downloaded.
+
+.. code-block:: console
+ :emphasize-lines: 1,5
+
  [isabell@stardust hugo_render]$ tar -xvzf hugo_42.23.1_Linux-64bit.tar.gz
+ LICENSE
+ README.md
+ hugo
  [isabell@stardust hugo_render]$ rm hugo_42.23.1_Linux-64bit.tar.gz
  [isabell@stardust hugo_render]$ cd ~
  [isabell@stardust ~]$ 
@@ -202,6 +220,7 @@ If there is a new version available, update your hugo file in ``apps/hugo_render
 .. _feed: https://github.com/gohugoio/hugo/releases.atom
 .. _FutureImperfect: https://github.com/jpescador/hugo-future-imperfect
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+.. _Github Repository: https://github.com/gohugoio/hugo/releases
 
 ----
 
