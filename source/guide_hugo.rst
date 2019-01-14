@@ -7,9 +7,9 @@
   .. image:: _static/images/hugo-logo.png
       :align: center
 
-##########
+####
 Hugo
-##########
+####
 
 Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
 
@@ -59,15 +59,13 @@ Preparing to set up on the Uberspace various directories for further action.
 Step 2
 ------
 
-To run Hugo from any directory, add the path to Hugo in PATH. To do this, open bashrc with an editor of your choice (e.g. vim, nano) and add the following line at the end:
+To run Hugo from any directory, add the path to Hugo in PATH. To do this, open ``~/.bashrc`` with an editor of your choice (e.g. vim, nano) and add the following line at the end:
 
 ::
 
- [isabell@stardust ~]$ nano ~/.bashrc
- [isabell@stardust ~]$ export PATH=$HOME/apps/hugo_render/hugo:$PATH
- [isabell@stardust ~]$
+ export PATH=$HOME/apps/hugo_render/hugo:$PATH
 
-Then restart bashrc with source ``~/.bashrc`` to apply the change.
+Then re-read your ``.bashrc`` with ``source ~/.bashrc`` to apply the change.
 
 Step 3
 ------
