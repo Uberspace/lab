@@ -50,18 +50,6 @@ Installation
 
 ``cd`` to your `document root`_, then download and configure DokuWiki_.
 
-You will need to enter the following information:
-
-  * your wiki name: The name of your wiki.
-  * ACL: It´s recommended that ACL is enable.
-  * Superuser: The login name of the admin user.
-  * Real Name: Your name, nickname or something else (don´t use superuser name!)
-  * E-Mail: The e-mail adresse of the admin user.
-  * Password: The superduper secure password of the admin user.
-  * Initial ACL policy: Choose the type of your wiki.
-  * Allow users to register themselves: your decision
-  * Choose under which license your content will be published 
-
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
@@ -76,7 +64,20 @@ Finishing installation
 ======================
 
 Now point your Browser to your installation URL ``https://isabell.uber.space/install.php``. 
-Complete the form and follow the installation instructions (see above).
+Complete the form and follow the installation instructions.
+
+You will need to enter the following information:
+
+  * your wiki name: The name of your wiki.
+  * ACL: It´s recommended that ACL is enable.
+  * Superuser: The login name of the admin user.
+  * Real Name: Your name, nickname or something else (don´t use superuser name!)
+  * E-Mail: The e-mail adresse of the admin user.
+  * Password: The superduper secure password of the admin user.
+  * Initial ACL policy: Choose the type of your wiki.
+  * Allow users to register themselves: your decision
+  * Choose under which license your content will be published 
+
 At least you have to delete the ``install.php``. 
 
 Tuning
