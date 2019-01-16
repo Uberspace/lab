@@ -85,6 +85,7 @@ Then ``cd`` to your ``~/apps/hugo_render`` folder and use ``wget`` to download i
  100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
 
  2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_42.53.1_Linux-64bit.tar.gz’ saved [7750708/7750708]
+ [isabell@stardust hugo_render]$
 
 Unzip the archive and then delete it. Replace the version in the file name with the one you downloaded.
 
@@ -117,6 +118,19 @@ After Hugo is now installed on the Uberspace, now put on the Hugo side. To do th
  
  [isabell@stardust ~]$ cd ~/hugo_website
  [isabell@stardust hugo_website]$ hugo new site hugo_web
+ Congratulations! Your new Hugo site is created in /home/isabell/hugo_website/hugo_web.
+ 
+ Just a few more steps and you're ready to go:
+ 
+ 1. Download a theme into the same-named folder.
+    Choose a theme from https://themes.gohugo.io/, or
+    create your own with the "hugo new theme <THEMENAME>" command.
+ 2. Perhaps you want to add some content. You can add single files
+    with "hugo new <SECTIONNAME>/<FILENAME>.<FORMAT>".
+ 3. Start the built-in live server via "hugo server".
+ 
+ Visit https://gohugo.io/ for quickstart guide and full documentation.
+ [isabell@stardust ~]$ cd ~
  [isabell@stardust ~]$ 
  
 Step 5
@@ -129,7 +143,13 @@ Since Hugo is basically delivered without a theme, this must now be installed. T
  [isabell@stardust ~]$ cd hugo_website/hugo_web/themes
  [isabell@stardust themes]$ git clone https://github.com/jpescador/hugo-future-imperfect.git
  Cloning into 'hugo-future-imperfect'...
- [isabell@stardust ~]$ cp -R hugo-future-imperfect/exampleSite/* ../.
+ remote: Enumerating objects: 1, done.
+ remote: Counting objects: 100% (1/1), done.
+ remote: Total 1386 (delta 0), reused 0 (delta 0), pack-reused 1385
+ Receiving objects: 100% (1386/1386), 4.38 MiB | 6.65 MiB/s, done.
+ Resolving deltas: 100% (789/789), done.
+ [isabell@stardust themes]$ cp -R hugo-future-imperfect/exampleSite/* ../.
+ [isabell@stardust ~]$ cd ~
  [isabell@stardust ~]$ 
 
 Configuration
