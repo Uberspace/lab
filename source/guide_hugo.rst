@@ -63,7 +63,7 @@ To run Hugo from any directory, add the path to Hugo in PATH. To do this, open `
 
 ::
 
- export PATH=$HOME/apps/hugo_render/hugo:$PATH
+ export PATH=$HOME/apps/hugo_render:$PATH
 
 Then re-read your ``.bashrc`` with ``source ~/.bashrc`` to apply the change.
 
