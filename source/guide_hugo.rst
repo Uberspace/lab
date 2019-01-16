@@ -71,7 +71,7 @@ Step 3
 ------
 
 Now change the directory ``~/apps/hugo_render`` and set up Hugo.
-Check the Hugo_ website or `Github Repository`_ for the latest release and copy the download link to the .tar.gz file.
+Check the Hugo_ website or `Github Repository`_ for the latest release and copy the download link to the Linux-64bit.tar.gz file.
 Then ``cd`` to your ``~/apps/hugo_render`` folder and use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. code-block:: console
