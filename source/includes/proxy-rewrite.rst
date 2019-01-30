@@ -17,4 +17,6 @@ In our example this would be:
  DirectoryIndex disabled
 
  RewriteEngine On
- RewriteRule ^(.*) http://localhost:9000/$1 [P]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteBase /
+ RewriteRule ^(.*)$ http://127.0.0.1:9000/$1 [P]
