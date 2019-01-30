@@ -124,7 +124,7 @@ Copy the ``redis-server`` and ``redis-cli`` binaries to your `~/bin` folder:
 .. code-block:: bash
 
  [isabell@stardust ~]$ cp ~/redis-stable/src/redis-server ~/bin/
- [isabell@stardust ~]$ cp /redis-stable/src/redis-cli ~/bin/
+ [isabell@stardust ~]$ cp ~/redis-stable/src/redis-cli ~/bin/
  [isabell@stardust ~]$ 
 
 Configuration
