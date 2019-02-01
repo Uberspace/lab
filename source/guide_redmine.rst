@@ -22,6 +22,7 @@ This guide explains how to install Redmine on Uberspace.
 
   * Ruby_
   * supervisord_
+  * domains_
 
 Prerequisites
 =============
@@ -55,7 +56,9 @@ Ruby requires a database, so you should create an empty database now.
   [isabell@stardust ~] mysql -e "CREATE DATABASE ${USER}_redmine CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
   [isabell@stardust ~]
 
-.. include:: includes/web-domain-setup.rst
+Your domain needs to be setup:
+
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
@@ -242,6 +245,7 @@ Tested with Redmine 4.0.1, Ruby 2.5, Uberspace 7.2.2.0
 .. authors::
 
 .. _Redmine: https://www.redmine.org/
+.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Download: https://redmine.org/projects/redmine/wiki/Download/
 .. _Installation: https://redmine.org/projects/redmine/wiki/RedmineInstall
 .. _Security: https://www.redmine.org/projects/redmine/wiki/Security_Advisories
