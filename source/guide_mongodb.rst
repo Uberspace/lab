@@ -45,7 +45,6 @@ Go to the MongoDB Community Server `download page`_ and select the current versi
  100%[=============================================================>] 88,063,053  27.9MB/s   in 3.0s
  
  2019-01-05 17:15:57 (27.9 MB/s) - ‘/home/isabell/mongodb.tgz’ saved [88063053/88063053]
- [isabell@stardust ~]$
 
 
 
@@ -70,7 +69,6 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
  mongodb-linux-x86_64-rhel70-4.0.5/bin/mongos
  mongodb-linux-x86_64-rhel70-4.0.5/bin/mongo
  mongodb-linux-x86_64-rhel70-4.0.5/bin/install_compass
- [isabell@stardust ~]$
 
 You can now delete the archive:
 
@@ -128,7 +126,6 @@ Tell supervisord to refresh its configuration and start the service:
  mongodb: added process group
  [isabell@stardust ~]$ supervisorctl status 
  mongodb                          RUNNING   pid 24458, uptime 0:00:09
- [isabell@stardust ~]$
 
 If it’s not in state RUNNING, check your configuration.
 
@@ -167,7 +164,6 @@ Use ``mongo`` to run ``setup.js``. Replace ``<yourport>`` with your MongoDB port
  Implicit session: session { "id" : UUID("0ddef66e-e716-4ef2-bbc2-a50dfc3fad7e") }
  MongoDB server version: 4.0.5
  Successfully added user: { "user" : "isabell_mongoadmin", "roles" : [ "root" ] }
- [isabell@stardust ~]$
 
 .mongorc.js (optional)
 ----------------------
@@ -233,7 +229,6 @@ Restart your MongoDB and login to check the version.
  MongoDB server version: 4.0.5
  > exit
  bye
- [isabell@stardust ~]$
 
 .. _MongoDB: https://www.mongodb.com/
 .. _download page: https://www.mongodb.com/download-center/community
