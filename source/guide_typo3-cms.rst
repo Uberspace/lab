@@ -145,7 +145,7 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 .. _TYPO3 Association: https://typo3.org/project/association/`
 .. _PHP: http://www.php.net/
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _composer: https://get.composer.org/
+.. _composer: https://manual.uberspace.de/lang-php.html#package-manager
 .. _Composer Helper: https://get.typo3.org/misc/composer/helper
 .. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _document root: https://manual.uberspace.de/en/web-documentroot.html
