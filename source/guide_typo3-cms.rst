@@ -121,7 +121,8 @@ Step 5
 Choose whether you want to start with an empty TYPO3 installation (no pages, templates, configuration) or if you want
 to have a preconfigured basis to start from.
 
-----
+Next Steps
+==========
 
 The basic installation procedure is now complete, TYPO3 will be up and running and the most appropriate settings will
 have been made for you. You will get redirected to the TYPO3 Backend and can log in with the admin user account you
