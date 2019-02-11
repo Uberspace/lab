@@ -137,6 +137,25 @@ For further details, please have a look at the official `installation guide`_.
 Updates
 =======
 
+.. warning:: Note that TYPO3 and especially any 3rd party packages are **not** updated automatically, you need to take care of that yourself.
+
+To update TYPO3 ``cd`` into the directory you installed it in earlier and update using composer.
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/typo3-cms
+ [isabell@stardust typo3-cms]$ composer update typo3/minimal
+
+To update 3rd party packages, find the corresponding composer package name (e.g. from the official `TYPO3 extension repository`_),
+and update the package.
+
+In the example below assume ``georgringer/news`` is installed and is to be updated.
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/typo3-cms
+ [isabell@stardust typo3-cms]$ composer update georgringer/news
+
 Subscribe to the `TYPO3 Announce`_ mailing list to get regular updates regarding new TYPO3 releases and security bulletins.
 
 .. note:: This is a read-only mailing list, so you can neither reply nor post any messages yourself. If you have any questions or want to contribute join the `TYPO3 Slack`_.
@@ -144,6 +163,7 @@ Subscribe to the `TYPO3 Announce`_ mailing list to get regular updates regarding
 You may also refer to the official Twitter account `@typo3_security`_ to stay up-to-date on security advisories.
 
 .. _TYPO3 CMS: https://typo3.org/
+.. _TYPO3 extension repository: https://extensions.typo3.org/
 .. _GPL v2: https://www.gnu.org/licenses/gpl-2.0.html
 .. _TYPO3 Association: https://typo3.org/project/association/`
 .. _PHP: http://www.php.net/
