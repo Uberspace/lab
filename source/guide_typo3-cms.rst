@@ -136,11 +136,9 @@ Updates
 
 Subscribe to the `TYPO3 Announce`_ mailing list to get regular updates regarding new TYPO3 releases and security bulletins.
 
-.. note:: This is a read-only mailing list, so you can neither reply nor post any messages yourself.
+.. note:: This is a read-only mailing list, so you can neither reply nor post any messages yourself. If you have any questions or want to contribute join the `TYPO3 Slack`_.
 
 You may also refer to the official Twitter account `@typo3_security`_ to stay up-to-date on security advisories.
-
-If you have any questions or want to contribute join the `TYPO3 Slack`_.
 
 .. _TYPO3 CMS: https://typo3.org/
 .. _GPL v2: https://www.gnu.org/licenses/gpl-2.0.html
