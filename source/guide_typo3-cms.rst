@@ -66,6 +66,8 @@ use a symlink to make it accessible.
  [...]
  [isabell@stardust isabell]$
 
+.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files.
+
 Now remove the `document root`_ and create a symlink to the ``public`` directory.
 
 ::
