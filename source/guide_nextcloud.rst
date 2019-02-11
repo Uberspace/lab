@@ -138,6 +138,7 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
  
  [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
  [isaball@stardust ~]$ php occ upgrade
+ [isaball@stardust ~]$ php occ maintenance:mode --off
  [isaball@stardust ~]$ restorecon -R .
  [isabell@stardust ~]$
 
