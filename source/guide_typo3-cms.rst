@@ -90,7 +90,7 @@ in your browser. You will be redirected to the TYPO3 Install Tool which will gui
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
- [isabell@stardust isabell]$ touch FIRST_INSTALL
+ [isabell@stardust html]$ touch FIRST_INSTALL
 
 .. note:: In case you have any problems in your environment, you will get warnings or hints in this screen. In this case, you should try to fix them.
 
