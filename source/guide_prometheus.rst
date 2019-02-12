@@ -178,6 +178,6 @@ If this is something you do not want to do, you could hide it behind a basic aut
 
 ----
 
-Tested with Prometheus_ 2.6.0, Uberspace 7.1.19.0 and Prometheus_ 2.7.1, Uberspace 7.2.2.2
+Tested with Prometheus_ 2.7.1, Uberspace 7.2.2.2
 
 .. authors::
