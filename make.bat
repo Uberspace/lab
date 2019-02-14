@@ -1,5 +1,13 @@
 @ECHO OFF
 
+echo.Hi there, dear windows user. As we are primiarily linux/mac people
+echo.at uberspace, please note that building the lab on windows is not
+echo.directly supported. In case something breaks, feel free to open a
+echo.pull request fixing the problem, but don't hold your breath for a
+echo.fix on our side.
+echo.
+echo.Thank you!
+
 pushd %~dp0
 
 REM Command file for Sphinx documentation
