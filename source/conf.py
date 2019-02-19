@@ -87,7 +87,7 @@ extlinks = {
         'https://manual.uberspace.de/%s.html',
         ''
     ),
-    'manualanchor': (
+    'manual_anchor': (
         'https://manual.uberspace.de/%s',
         ''
     ),
