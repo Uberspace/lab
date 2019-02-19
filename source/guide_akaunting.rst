@@ -20,8 +20,8 @@ The software is based on top of the Laravel_ framework and therefore written in 
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -52,7 +52,7 @@ Your domain needs to be set up:
 Installation
 ============
 
-``cd`` to your DocumentRoot_ and download the latest release, then unzip it into the ``html`` directory:
+``cd`` to your :manual:`DocumentRoot <web-documentroot>` and download the latest release, then unzip it into the ``html`` directory:
 
 .. code-block:: console
  :emphasize-lines: 1,2,6
@@ -81,7 +81,7 @@ Choose your desired language.
 Step 2: Database Setup
 ----------------------
 
-Akaunting saves your data in a MySQL database. We suggest you use an `additional database`_. You need to create this database before you enter the database credentials in the installer.
+Akaunting saves your data in a MySQL database. We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>`. You need to create this database before you enter the database credentials in the installer.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -121,14 +121,10 @@ You can update the installation in the update wizzard which you can find in the 
 
 
 .. _Akaunting: https://akaunting.com
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/akaunting/akaunting/releases.atom
 .. _GPLv3: https://www.gnu.org/licenses/gpl-3.0.html
 .. _PHP: http://www.php.net/
-.. _additional database: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _Laravel: https://laravel.com/
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 
 
 ----
