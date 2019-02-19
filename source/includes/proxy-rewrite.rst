@@ -8,7 +8,9 @@ Create a ``~/html/.htaccess`` file with the following content:
  DirectoryIndex disabled
 
  RewriteEngine On
- RewriteRule ^(.*) http://localhost:<yourport>/$1 [P]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteBase /
+ RewriteRule ^(.*)$ http://127.0.0.1:<yourport>/$1 [P]
 
 In our example this would be:
 
