@@ -394,26 +394,26 @@ for Mailman 2 and is based on the script provided in the official installation i
  # First free port
  p=9000
  echo Making links to $i in home directory...
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
- echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
+ echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
  fi
 
 You still need to make the script executable:
 
 ::
 
- [isabell@stardust ~]$ chmod +x ~/bin/mailman-add-list.sh
+ [isabell@stardust ~]$ chmod +x ~/bin/mailman3-add-list.sh
  [isabell@stardust ~]$
 
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman-add-list.sh listname`` if you stored it as ``~/bin/mailman-add-list.sh`` and want to create aliases for a list ``listname``).
+After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-add-list.sh listname`` if you stored it as ``~/bin/mailman3-add-list.sh`` and want to create aliases for a list ``listname``).
 
 Install cronjobs
 ----------------
