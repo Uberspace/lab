@@ -59,7 +59,7 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user mailman postorius hyperkitty mailman-hyperkitty django whoosh
+ [isabell@stardust ~]$ pip3.6 install --user mailman postorius hyperkitty mailman-hyperkitty whoosh
  [...]
  [isabell@stardust ~]$
 
