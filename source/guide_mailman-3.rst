@@ -192,10 +192,9 @@ Based on this `guide <https://serverfault.com/a/608073>`_, we can create a small
  #! /usr/bin/env bash
  set -eu
  
- pidfile=/home/isabell/var/master.pid
- command="/home/isabell/.local/bin/mailman"
- cmd_config="--config /home/isabell/var/etc/mailman.cfg"
- 
+ pidfile=/home/aobtest/var/master.pid
+ command="/home/aobtest/.local/bin/mailman"
+ arg_config="--config /home/aobtest/var/etc/mailman.cfg "
  
  # Proxy signals
  function kill_app(){
@@ -205,8 +204,11 @@ Based on this `guide <https://serverfault.com/a/608073>`_, we can create a small
  }
  trap "kill_app" SIGINT SIGTERM
  
- # Launch daemon
- $command $cmd_config start
+ # Stop mailman if running
+ $command $arg_config stop
+ 
+ # Start with force if not exited correctly
+ $command $arg_config start --force
  sleep 2
  
  # Loop while the pidfile and the process exist
