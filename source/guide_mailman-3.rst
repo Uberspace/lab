@@ -95,22 +95,13 @@ Get and enable uwsgi
 
 Get .qmail helper script
 -------------------------
-Mailman 3 uses LMTP to transfer emails locally. As qmail_ is not able to use this directly, we need to download a helper script from the mailman source and adjust it to our needs:
+Mailman 3 uses LMTP to transfer emails locally. As qmail_ is not able to use this directly, we need to download a helper script from the mailman source:
 
 ::
 
  [isabell@stardust ~]$ cd bin
  [isabell@stardust bin]$ wget https://gitlab.com/mailman/mailman/raw/master/contrib/qmail-lmtp
  [isabell@stardust bin]$ chmod +x qmail-lmtp
-
-Now edit ``qmail-lmtp`` and change the two following lines:
-
-.. code :: python
-
- 1: #!/usr/bin/env python3.6
- [...]
- 18:            os.environ['EXT' + (sys.argv[2] if len(sys.argv) >= 3 else '')] + "@" + os.environ['HOST'],
-
 
 Configuration
 =============
@@ -411,16 +402,16 @@ for Mailman 2 and is based on the script provided in the official installation i
  # First free port
  p=9000
  echo Making links to $i in home directory...
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-admin
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-bounces
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-confirm
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-join
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-leave
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-owner
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-request
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-subscribe
- echo "|/home/isabell/bin/qmail-lmtp $p" > ~/.qmail-$i-unsubscribe
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
+ echo "|/home/isabell/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
  fi
 
 You still need to make the script executable:
