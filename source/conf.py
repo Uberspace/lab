@@ -33,7 +33,8 @@ import sphinx_rtd_theme
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'authorship',
+    'authorship',
+    'sphinx.ext.extlinks',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -78,24 +79,38 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+# Configure the `extlinks` extension to handle the `manual` directive.
+# By setting an empty string as the second tuple element, the display text
+# is the same as the target by default.
+extlinks = {
+    'manual': (
+        'https://manual.uberspace.de/%s.html',
+        ''
+    ),
+    'manual_anchor': (
+        'https://manual.uberspace.de/%s',
+        ''
+    ),
+}
+
 
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
-  'display_version': False,
-  'navigation_depth': 2,
-  'collapse_navigation': True
+    'display_version': False,
+    'navigation_depth': 2,
+    'collapse_navigation': True
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_last_updated_fmt = '%b %d, %Y'
 html_context = {
-  'css_files': ['_static/css/custom.css'],
-  'display_github': True,
-  'github_user': 'Uberspace',
-  'github_repo': 'lab',
-  'github_version': 'master',
-  'conf_py_path': '/source/'
+    'css_files': ['_static/css/custom.css'],
+    'display_github': True,
+    'github_user': 'Uberspace',
+    'github_repo': 'lab',
+    'github_version': 'master',
+    'conf_py_path': '/source/'
 }
 html_show_copyright = False
 html_favicon = '_static/favicon.ico'

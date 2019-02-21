@@ -84,7 +84,7 @@ Since Django applications use their own webserver, you need to find a free port 
 Setup .htaccess
 ---------------
 
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/proxy-rewrite-static.rst
 
 Setup daemon
 ------------

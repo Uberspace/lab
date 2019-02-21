@@ -58,10 +58,10 @@ Find the latest version of prometheus_ for the operating system ``linux`` and th
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v42.23.1/prometheus-42.23.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf prometheus-42.23.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd prometheus-42.23.1.linux-amd64
- [isabell@stardust prometheus-42.23.1.linux-amd64]$
+ [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.7.1/prometheus-2.7.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ tar xvzf prometheus-2.7.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ cd prometheus-2.7.1.linux-amd64
+ [isabell@stardust prometheus-2.7.1.linux-amd64]$
 
 Step 2
 ------
@@ -70,9 +70,9 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 
 ::
 
- [isabell@stardust prometheus-42.23.1.linux-amd64]$ mv prometheus ~/bin/
- [isabell@stardust prometheus-42.23.1.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
- [isabell@stardust prometheus-42.23.1.linux-amd64]$
+ [isabell@stardust prometheus-2.7.1.linux-amd64]$ mv prometheus ~/bin/
+ [isabell@stardust prometheus-2.7.1.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
+ [isabell@stardust prometheus-2.7.1.linux-amd64]$
 
 Configuration
 =============
@@ -178,6 +178,6 @@ If this is something you do not want to do, you could hide it behind a basic aut
 
 ----
 
-Tested with Prometheus_ 2.6.0, Uberspace 7.1.19.0
+Tested with Prometheus_ 2.7.1, Uberspace 7.2.2.2
 
 .. authors::
