@@ -347,17 +347,9 @@ When the Django is configured, we need to rename the example site to match our n
 
  [isabell@stardust mailman-suite]$
 
-Now, create a ``~/html/.htaccess`` file with the following content:
+.. include:: includes/proxy-rewrite-static.rst
 
-.. code-block:: apache
-
- DirectoryIndex disabled
-
- RewriteEngine On
- RewriteCond %{REQUEST_FILENAME} !-f
- RewriteBase /
- # Third free port
- RewriteRule ^(.*)$ http://127.0.0.1:9003/$1 [P]
+Please be sure to use the third free port, e.g. 9003!
 
 Finally, to be able to call and execute our Django app, we need to create ``~/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
 
