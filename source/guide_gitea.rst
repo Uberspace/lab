@@ -110,19 +110,10 @@ Setup daemon
 
 Create ``~/etc/services.d/gitea.ini`` with the following content:
 
-.. warning:: Replace ``<yourport>`` with your port!
-
 .. code-block:: ini
 
   [program:gitea]
-  command=%(ENV_HOME)s/gitea/gitea web -port <yourport>
-
-In our example this would be:
-
-.. code-block:: ini
-
-  [program:gitea]
-  command=%(ENV_HOME)s/gitea/gitea web -port 9000
+  command=%(ENV_HOME)s/gitea/gitea web
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
