@@ -29,8 +29,6 @@ Prerequisites
 
 You need a database for gitea:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_gitea"
