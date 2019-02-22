@@ -122,7 +122,7 @@ Create ``~/etc/services.d/thelounge.ini`` with the following content:
 .. code-block:: ini
 
  [program:thelounge]
- command=%(ENV_HOME)s/bin/thelounge start
+ command=thelounge start
  autostart=yes
  autorestart=yes
 

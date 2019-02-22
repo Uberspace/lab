@@ -108,7 +108,7 @@ Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` wi
  :emphasize-lines: 5
 
  [program:mongodb]
- command=%(ENV_HOME)s/bin/mongod
+ command=mongod
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
    --port <yourport>

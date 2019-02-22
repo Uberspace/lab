@@ -154,7 +154,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
 .. code-block:: ini
 
  [program:redis]
- command=%(ENV_HOME)s/bin/redis-server %(ENV_HOME)s/.redis/conf
+ command=redis-server %(ENV_HOME)s/.redis/conf
  autostart=yes
  autorestart=yes
 

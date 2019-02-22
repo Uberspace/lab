@@ -174,7 +174,7 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
 .. code-block:: ini
 
  [program:pretix]
- command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT
@@ -184,7 +184,7 @@ In our example this would be:
 .. code-block:: ini
 
  [program:pretix]
- command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT

@@ -100,7 +100,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
   :emphasize-lines: 3,7
 
   [program:prometheus]
-  command=%(ENV_HOME)s/bin/prometheus
+  command=prometheus
     --web.listen-address=localhost:<yourport>
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
@@ -115,7 +115,7 @@ In our example this would be:
 .. code-block:: ini
 
   [program:prometheus]
-  command=%(ENV_HOME)s/bin/prometheus
+  command=prometheus
     --web.listen-address=localhost:9000
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/

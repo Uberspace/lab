@@ -128,7 +128,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=%(ENV_HOME)s/.local/bin/radicale -f
+  command=radicale -f
 
 
 Finishing installation

@@ -80,14 +80,14 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 .. code-block:: ini
 
  [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
+ command=rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
 
 In our example this would be:
 
 .. code-block:: ini
 
  [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============
