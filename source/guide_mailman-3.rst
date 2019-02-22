@@ -183,9 +183,9 @@ Based on this `guide <https://serverfault.com/a/608073>`_, we can create a small
  #! /usr/bin/env bash
  set -eu
  
- pidfile=/home/aobtest/var/master.pid
- command="/home/aobtest/.local/bin/mailman"
- arg_config="--config /home/aobtest/var/etc/mailman.cfg "
+ pidfile=/home/isabell/var/master.pid
+ command="mailman"
+ arg_config="--config /home/isabell/var/etc/mailman.cfg "
  
  # Proxy signals
  function kill_app(){
@@ -220,7 +220,7 @@ As last step, we need to create the supervisord config file for mailman in ``~/e
 .. code :: ini
 
  [program:mailman3]
- command=%(ENV_HOME)s/bin/mailman3-daemon
+ command=mailman3-daemon
  autostart=true
  autorestart=true
  stderr_logfile = ~/var/logs/daemon_err.log
@@ -331,7 +331,7 @@ After we have adjusted our configuration file, we need to compile and configure 
  ℹ Superuser created successfully.
  [isabell@stardust mailman-suite]$
 
-When the Django is configured, we need to rename the example site to match our needs:
+When Django is configured, we need to rename the example site to match our needs:
 
 ::
 
@@ -394,16 +394,16 @@ for Mailman 2 and is based on the script provided in the official installation i
  # First free port
  p=9000
  echo Making links to $i in home directory...
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
- echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-admin
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-bounces
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-confirm
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-join
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-leave
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-owner
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-request
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
+ echo "|qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
  fi
 
 You still need to make the script executable:
