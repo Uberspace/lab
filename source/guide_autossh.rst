@@ -97,7 +97,7 @@ With the information from step 1, it is time to configure supervisord_ to handle
 ::
 
  [program:autossh]
- command=%(ENV_HOME)s/bin/autossh -M 0 service-tunnel -T -N
+ command=autossh -M 0 service-tunnel -T -N
  autostart=true
  autorestart=false
 
