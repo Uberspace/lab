@@ -124,7 +124,7 @@ You need to adjust your ``~/ghost/config.production.json`` with the new port. Fi
 
  "server": {
    "port": 2369,
-   "host": "127.0.0.1"
+   "host": "0.0.0.0"
  },
 
 In our example this would be:
@@ -133,7 +133,7 @@ In our example this would be:
 
  "server": {
    "port": 9000,
-   "host": "127.0.0.1"
+   "host": "0.0.0.0"
  },
 
 Setup .htaccess
