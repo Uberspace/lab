@@ -220,39 +220,17 @@ You can look up the meaning  and default value of each variable in the file ``De
 Finishing Installation
 ======================
 
-Setup daemon
-------------
-
-Create ``~/etc/services.d/mailman.ini`` with the following content (insert your username!):
-
-::
-
- [program:mailman]
- command=/var/www/virtual/isabell/mailman/bin/qrunner --runner=All
-
-Tell supervisord_ to refresh and start the qrunner:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- mailman: available
- [isabell@stardust ~]$ supervisorctl update
- mailman: added process group
- [isabell@stardust ~]$ supervisorctl status
- mailman                          RUNNING   pid 3226, uptime 0:03:42
- [isabell@stardust ~]$
-
-If it is not in state ``RUNNING``, check your configuration and logs.
-
 Install cronjobs
 ----------------
 
-Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. To install them for your user, run:
+Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. Additionally, there are some tasks that need to be run frequently (like checking mails). To install them for your user, run:
 
 ::
 
- [isabell@stardust ~]$ crontab /var/www/virtual/isabell/mailman/cron/crontab.in
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman
+ [isabell@stardust mailman]$ echo "* * * * * /var/www/virtual/$USER/mailman/bin/qrunner --runner=All --once" >> cron/crontab.in
+ [isabell@stardust mailman]$ crontab cron/crontab.in
+ [isabell@stardust mailman]$
 
 Create the first mailinglist
 ----------------------------
