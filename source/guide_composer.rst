@@ -3,7 +3,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/composer.png
+  .. image:: _static/images/composer-satis.png
       :align: center
 
 #########
