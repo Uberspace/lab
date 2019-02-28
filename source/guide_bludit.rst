@@ -73,8 +73,7 @@ Untar the archive and then delete it.
  […]
  bludit-3.8.0/install.php
  [isabell@stardust html]$ rm 3.8.0.tar.gz
- [isabell@stardust html]$ cd ~
- [isabell@stardust ~]$ 
+ [isabell@stardust html]$ 
 
 
 Finishing installation
