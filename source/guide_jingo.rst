@@ -5,7 +5,7 @@
 Jingo
 #####
 
-Jingo_ is a simple Wiki software that is based on Node.js_ and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
+Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
 
 At this time, Jingo is no longer actively developed but still supported for security issues.
 
@@ -13,14 +13,14 @@ At this time, Jingo is no longer actively developed but still supported for secu
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -167,7 +167,7 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -238,10 +238,6 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 .. _Jingo: https://github.com/claudioc/jingo
 .. _Github: https://github.com/claudioc/jingo
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/claudioc/jingo/releases.atom
 
 ----

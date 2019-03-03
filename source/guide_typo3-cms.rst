@@ -22,9 +22,9 @@ development of the platform.
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_
-  * composer_
-  * domains_
+  * :manual:`MySQL <database-mysql>`
+  * :manual_anchor:`composer <lang-php.html#package-manager>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
@@ -46,10 +46,10 @@ Your website domain needs to be set up:
 Installation
 ============
 
-TYPO3 9.5 provides the directory ``public`` as web root, so we will install it next to the default `document root`_ and
+TYPO3 9.5 provides the directory ``public`` as web root, so we will install it next to the default :manual:`document root <web-documentroot>` and
 use a symlink to make it accessible.
 
-``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` and set up a new project using composer_.
+``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` and set up a new project using :manual_anchor:`composer <lang-php.html#package-manager>`.
 
 ::
 
@@ -68,7 +68,7 @@ use a symlink to make it accessible.
 
 .. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files.
 
-Now remove the `document root`_ and create a symlink to the ``public`` directory.
+Now remove the :manual:`document root <web-documentroot>` and create a symlink to the ``public`` directory.
 
 ::
 
@@ -101,12 +101,12 @@ For the purpose of this guide we assume there are none, so we can proceed with t
 Step 2
 ------
 
-Enter your database credentials_, keep the other settings unchanged, they are correct as they are.
+Enter your database :manual_anchor:`credentials <database-mysql.html#login-credentials>`, keep the other settings unchanged, they are correct as they are.
 
 Step 3
 ------
 
-Create an additional_ database - for example: ``isabell_typo3``.
+Create an :manual_anchor:`additional <database-mysql.html#additional-databases>` database - for example: ``isabell_typo3``.
 
 Step 4
 ------
@@ -167,13 +167,7 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 .. _GPL v2: https://www.gnu.org/licenses/gpl-2.0.html
 .. _TYPO3 Association: https://typo3.org/project/association/
 .. _PHP: http://www.php.net/
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _composer: https://manual.uberspace.de/lang-php.html#package-manager
 .. _Composer Helper: https://get.typo3.org/misc/composer/helper
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _Install Tool: https://docs.typo3.org/typo3cms/InstallationGuide/master/In-depth/TheInstallTool/
 .. _installation guide: https://docs.typo3.org/typo3cms/InstallationGuide/master/
 .. _TYPO3 Announce: http://lists.typo3.org/cgi-bin/mailman/listinfo/typo3-announce

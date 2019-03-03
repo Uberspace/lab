@@ -13,15 +13,15 @@ Buildbot
 
 Buildbot is an open-source framework for automating software build, test, and release processes. At its core, Buildbot is a job scheduling system: it queues jobs, executes the jobs when the required resources are available, and reports the results. It can be easily installed and serve as a continuous integration platform to be used together with a variety of version control solutions, including gitea.
 
-In this tutorial, we will first follow along with the official installation manual and set up a ``hello world``-system and will extend the standard installation of Buildbot_ with a gitea_-Plugin.
+In this tutorial, we will first follow along with the official installation manual and set up a ``hello world``-system and will extend the standard installation of Buildbot_ with a :lab:`gitea <guide_gitea>`-Plugin.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
+  * :manual:`Python <lang-python>`
   * git_
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
   * ssh port forwarding
   * Folder/File Permissions
 
@@ -104,7 +104,7 @@ We'll use ``12345`` for the webinterface and ``54321`` for the worker connection
 Step 5
 ------
 
-Edit the file ``/home/isabell/bb-master/master/master.cfg``, which is basically a Python_ file. For now, we only need to change the ports. In ``c['www']``, change the port of the webinterface to ``12345`` (as selected before) and in ``c['protocols']``, change the port to ``54321``. That is going to be the port that the workers will communicate through. You should read through the rest of the options already, but leave things to their default values for now.
+Edit the file ``/home/isabell/bb-master/master/master.cfg``, which is basically a :manual:`Python <lang-python>` file. For now, we only need to change the ports. In ``c['www']``, change the port of the webinterface to ``12345`` (as selected before) and in ``c['protocols']``, change the port to ``54321``. That is going to be the port that the workers will communicate through. You should read through the rest of the options already, but leave things to their default values for now.
 
 .. note:: This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository. More information on how to configure builders is available in the `official Buildbot manual <https://docs.buildbot.net/latest/manual/index.html>`_.
 
@@ -126,7 +126,7 @@ If you don't get the same output, check the log at ``master/twistd.log`` for err
 Step 7
 ------
 
-In this step, we will set up supervisord_ to take control of our Buildbot_ master.
+In this step, we will set up :manual:`supervisord <daemons-supervisord>` to take control of our Buildbot_ master.
 
 Create the file ``~/etc/services.d/buildbot-master.ini`` with the following content:
 
@@ -135,7 +135,7 @@ Create the file ``~/etc/services.d/buildbot-master.ini`` with the following cont
  [program:buildbot-master]
  command=buildbot start --nodaemon %(ENV_HOME)s/bb-master/master
 
-After saving, update supervisord_ and check on the master's status:
+After saving, update :manual:`supervisord <daemons-supervisord>` and check on the master's status:
 
 ::
 
@@ -166,7 +166,7 @@ This will create the directory ``example-worker`` and deposit the worker configu
 Step 2
 ------
 
-The worker also requires its own process for which we will use supervisord_ again.
+The worker also requires its own process for which we will use :manual:`supervisord <daemons-supervisord>` again.
 
 Create the file ``~/etc/services.d/buildbot-worker.ini`` with the following content:
 
@@ -175,7 +175,7 @@ Create the file ``~/etc/services.d/buildbot-worker.ini`` with the following cont
  [program:buildbot-worker]
  command=buildbot-worker start --nodaemon %(ENV_HOME)s/bb-workers/example-worker
 
-After saving, update supervisord_ and check on the worker's status:
+After saving, update :manual:`supervisord <daemons-supervisord>` and check on the worker's status:
 
 ::
 
@@ -243,7 +243,7 @@ After which they will also be able to open ``http://localhost:12345/``, but won'
 Integration with gitea
 ======================
 
-One useful thing to do with BuildBot_ is to use it as a continuous integration runner. Since gitea_ also works on Uberspace but doesn't support 'direct' CI/CD integration like github and gitlab, we can use gitea_'s web hooks to trigger our BuildBot_ installation to do something.
+One useful thing to do with BuildBot_ is to use it as a continuous integration runner. Since :lab:`gitea <guide_gitea>` also works on Uberspace but doesn't support 'direct' CI/CD integration like github and gitlab, we can use :lab:`gitea <guide_gitea>`'s web hooks to trigger our BuildBot_ installation to do something.
 
 Step 1
 ------
@@ -284,9 +284,6 @@ Congratulations! You now have an operational BuildBot_ installation on your Uber
 
 
 .. _BuildBot: https://buildbot.net/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _gitea: https://lab.uberspace.de/en/guide_gitea.html
 .. _git: https://git-scm.com/
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 .. authors::

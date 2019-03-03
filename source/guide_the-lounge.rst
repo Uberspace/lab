@@ -18,14 +18,14 @@ The Lounge is based on the project Shout_ from which it is a community driven fo
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -213,12 +213,6 @@ If it's not in state RUNNING, check your configuration.
 .. _The Lounge: https://thelounge.chat/
 .. _the official documentation: https://thelounge.chat/docs/server/configuration.html
 .. _Shout: http://shout-irc.com/
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _htaccess: https://manual.uberspace.de/en/web-documentroot.html#own-configuration
-.. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _release: https://github.com/thelounge/thelounge/releases
 .. _feed: https://github.com/thelounge/thelounge/releases.atom
 

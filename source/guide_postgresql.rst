@@ -309,7 +309,7 @@ To stop and start the daemon to perform maintenance tasks, you can use ``supervi
  postgresql: started
  [isabell@stardust ~]$
 
-Check out the `supervisord manual`_ for further details.
+Check out the :manual:`supervisord manual <daemons-supervisord>` for further details.
 
 
 Database and User Management
@@ -369,7 +369,6 @@ To configure your project with the PostgreSQL details, you should have the datab
 .. _PostgreSQL License: https://www.postgresql.org/about/licence/
 .. _documentation: https://www.postgresql.org/docs/9.6/static/install-procedure.html
 .. _download server: https://download.postgresql.org/pub/source/
-.. _supervisord manual: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

@@ -10,21 +10,21 @@
 Etherpad Lite
 #############
 
-`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on Node.js_ and comes with lots of possible plugins.
+`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -111,7 +111,7 @@ You need to adjust your ``~/etherpad/settings.json`` with the new port. Find the
   "ip": "0.0.0.0",
   "port" : 9001,
 
-You also need to set up the MySQL_ database settings, therefore you should completely replace these codeblocks:
+You also need to set up the :manual:`MySQL <database-mysql>` database settings, therefore you should completely replace these codeblocks:
 
 .. code-block:: none
 
@@ -166,7 +166,7 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
  environment=NODE_ENV="production"
  autorestart=true
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -224,11 +224,6 @@ Then you need to restart the service daemon, so the new code is used by the webs
 It might take a few minutes before your Etherpad comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f etherpad``.
 
 .. _`Etherpad Lite`: http://etherpad.org/
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
 .. _`Custom static files`: http://etherpad.org/doc/v1.6.2/#index_custom_static_files

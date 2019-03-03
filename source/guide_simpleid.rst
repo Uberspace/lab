@@ -17,13 +17,13 @@ SimpleID is a simple, personal OpenID provider written in PHP.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -45,9 +45,9 @@ Installation
 Step 1 - Download & Extract
 ------------------------------
 
-``cd`` to your `document root`_, respectively the folder above, because not all files must/should be accessable via web, then download the latest release of *SimpleID* and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, respectively the folder above, because not all files must/should be accessable via web, then download the latest release of *SimpleID* and extract it:
 
-.. note:: The link to the lastest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases//>`_.
+.. note:: The link to the lastest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases/>`_.
 
 ::
 
@@ -217,9 +217,6 @@ Updates
 
 Follow the steps described in the UPGRADE.txt shipped with the newest version. There all steps described you'll have to perform to update your installation.
 
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
 .. _feed: http://simpleid.koinic.net/releases/
 
 ----

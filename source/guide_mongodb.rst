@@ -15,7 +15,7 @@ MongoDB_ is a NoSQL database, developed by MongoDB Inc.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of  supervisord_.
+.. note:: For this guide you should be familiar with the basic concepts of :manual:`supervisord <daemons-supervisord>`.
 
 License
 =======
@@ -237,7 +237,6 @@ Restart your MongoDB and login to check the version.
 
 .. _MongoDB: https://www.mongodb.com/
 .. _download page: https://www.mongodb.com/download-center/community
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

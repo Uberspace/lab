@@ -17,10 +17,10 @@ Inspired by Hackpad, with more focus on speed and flexibility, and build from Ha
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * supervisord_
-  * domains_
-  * Node_ and its package manager npm_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
+  * :manual:`Node <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
 
 
 Prerequisites
@@ -28,7 +28,7 @@ Prerequisites
 
 .. include:: includes/my-print-defaults.rst
 
-We're using Node_ in the stable version 8:
+We're using :manual:`Node <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -326,7 +326,7 @@ It will prompt you for a password now.
 Configure web server
 --------------------
 
-In order for your CodiMD instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the `document root`_ for details), with the following content:
+In order for your CodiMD instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
 
 .. code-block:: ini
   :emphasize-lines: 4
@@ -377,13 +377,6 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 .. _HackMD: https://hackmd.io/
 .. _CodiMD: https://github.com/hackmdio/codimd
 .. _release: https://github.com/hackmdio/codimd/releases
-.. _Node: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

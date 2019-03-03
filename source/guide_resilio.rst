@@ -17,8 +17,8 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * supervisord_
-  * domains_
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -118,8 +118,6 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$ 
 
 .. _Resilio: https://www.resilio.com
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

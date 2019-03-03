@@ -16,14 +16,14 @@ Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize a
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -58,7 +58,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``database_name:`` <username>_wallabag - *replace <username> with the MySQL username*
 * ``database_user:`` put in the MySQL username that you looked up in the prerequisites
 * ``database_password:`` that is the MySQL password that you looked up in the prerequisites
-* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special* |smtpport|_ *here*
+* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special* :manual_anchor:`smtp port <mail-access.html#smtp>` *here*
 * ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
 * ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
 * ``domain_name:`` put in here your domain or subdomain like https://isabell.uber.space
@@ -114,7 +114,8 @@ Change to that folder and run ``make install``. During the installation process,
   [OK] You can now configure your web server, see https://doc.wallabag.org
   [isabell@stardust html]$
 
-.. note:: You just need to set the highlighted values (as explained above), for the others just accept the default values with *enter*. You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml``
+.. note:: You just need to set the highlighted values (as explained above), for the others just accept the default values with *enter*. You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file.
+
 To apply changes to parameters.yml, you have to clear your cache by deleting everything in ``~/var/cache`` with this command: 
 
 ``[isabell@stardust html]$ bin/console cache:clear -e=prod``.
@@ -143,15 +144,9 @@ If there is a new version available, you can update with the following command:
 
 
 .. _Wallabag: https://wallabag.org
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _GitHub: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
-.. _smtpport: https://manual.uberspace.de/en/mail-access.html#smtp
-.. |smtpport| replace:: *smtp port*
 
 ----
 

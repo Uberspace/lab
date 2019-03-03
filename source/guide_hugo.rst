@@ -19,8 +19,8 @@ Hugo is a fast and modern static site generator written in Go, and designed to m
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * Git_
-  * Domains_
-  * supervisord_
+  * :manual:`Domains <web-domains>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -163,10 +163,8 @@ If there is a new version available, update the ``hugo`` binary in ``~/bin`` (re
 
 .. _Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
 .. _Hugo: https://gohugo.io/getting-started/installing/
-.. _Domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/gohugoio/hugo/releases.atom
 .. _FutureImperfect: https://github.com/jpescador/hugo-future-imperfect
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _Apache 2.0 License: https://github.com/gohugoio/hugo/blob/master/LICENSE
 .. _Github Repository: https://github.com/gohugoio/hugo/releases
 

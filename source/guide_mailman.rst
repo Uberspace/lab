@@ -18,8 +18,8 @@ Mailman_ is free software for managing electronic mail discussion and e-newslett
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
-  * supervisord_
+  * :manual:`Python <lang-python>`
+  * :manual:`supervisord <daemons-supervisord>`
   * Folder/File Permissions
 
 License
@@ -187,7 +187,7 @@ By now we have installed all the necessary files - let's tell them what they sho
 Step 1
 ------
 
-Create a mailbox_ for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
+Create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
 
 Step 2
 ------
@@ -267,9 +267,6 @@ All done! Enjoy using your new list manager available at ``https://isabell.uber.
 This guide is based on the `official Mailman 2.1 installation instructions <https://www.gnu.org/software/mailman/mailman-install/front.html>`_.
 
 .. _Mailman: http://www.list.org/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _mailbox: https://manual.uberspace.de/en/mail-mailboxes.html#setup-a-new-mailbox
 .. _documentation: https://www.gnu.org/software/mailman/mailman-install.txt
 
 

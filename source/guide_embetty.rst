@@ -10,14 +10,14 @@
 Embetty
 #######
 
-Embetty_ is a Node.js_ proxy service that allows you to embed Tweets and videos from YouTube, Facebook, and Vimeo on your website without compromising your visitor's privacy. It is developed by `Heise online`_ and is released under the MIT license.
+Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to embed Tweets and videos from YouTube, Facebook, and Vimeo on your website without compromising your visitor's privacy. It is developed by `Heise online`_ and is released under the MIT license.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * Node.js_
-  * supervisord_
+  * :manual:`Node.js <lang-nodejs>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
@@ -25,7 +25,7 @@ Prerequisites
 embetty.js
 ----------
 
-Download a copy of embetty.js and place it in your DocumentRoot_. Please refer to Embetty's `quick start guide`_ for details.
+Download a copy of embetty.js and place it in your :manual:`DocumentRoot <web-documentroot>`. Please refer to Embetty's `quick start guide`_ for details.
 
 Twitter credentials (optional)
 ------------------------------
@@ -152,10 +152,7 @@ Use ``npm`` to update Embetty:
 
 .. _Embetty: https://github.com/heiseonline/embetty
 .. _Heise online: https://www.heise.de
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _quick start guide: https://github.com/heiseonline/embetty#quick-start
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 .. _Twitter application: https://apps.twitter.com/
 .. _feed: https://github.com/heiseonline/embetty-server/releases
 
