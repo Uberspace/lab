@@ -16,14 +16,14 @@ Matomo_ (former known as Piwik) is an open source website tracking tool (like Go
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -48,7 +48,7 @@ If you want to install Matomo into a subfolder of your domain, create a new fold
  [isabell@stardust html]$ cd matomo/
  [isabell@stardust matomo]$
 
-If you want to install matomo into your `document root`_, just navigate with ``cd`` to your `document root`_.
+If you want to install matomo into your :manual:`document root <web-documentroot>`, just navigate with ``cd`` to your :manual:`document root <web-documentroot>`.
 
 Now download the latest version and extract it:
 
@@ -73,8 +73,8 @@ This will create a ``piwik`` folder containing the files and directories. Now we
 Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. After that, follow the instructions of the Installer.
 
 You will need to enter the following information:
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Matomo database name: we suggest you use an additional_ database. For example: isabell_matomo
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Matomo database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
   * Name and URL of the first website you want to track with Matomo (more can be added after installation)
 
@@ -93,7 +93,7 @@ enter crontab with
 
   [isabell@stardust ~]$ crontab -e
 
-and enter: (more configuration-details about cron_)
+and enter: (more configuration-details about :manual:`cron <daemons-cron>`)
 
 .. code-block:: guess
 
@@ -157,13 +157,6 @@ The easiest way to update Matomo is to use the web updater provided in the admin
 .. note:: Check the `changelog <https://matomo.org/changelog/>`_ regularly to stay informed about new updates and releases.
 
 .. _Matomo: https://matomo.org/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _cron: https://manual.uberspace.de/en/daemons-cron.html
 
 ----
 

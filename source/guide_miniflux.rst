@@ -17,9 +17,9 @@ Miniflux_ is a minimalist and opinionated feed reader.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PostgreSQL_
-  * domains_
-  * supervisord_
+  * :lab:`PostgreSQL <guide_postgresql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -29,7 +29,7 @@ The software is licensed under `Apache License 2.0`_. All relevant information c
 Prerequisites
 =============
 
-.. warning:: PostgreSQL has to be setup as shown in this Guide_! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
+.. warning:: PostgreSQL has to be setup as shown in this :lab_anchor:`Guide <guide_postgresql#database-and-user-management>`! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
 
 You’ll need to create a user and a database in PostgreSQL first.
 
@@ -161,7 +161,7 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
  command=miniflux-linux-amd64
 
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 ::
 
@@ -230,10 +230,6 @@ Make the binary ``miniflux-linux-amd64`` executable, migrate the database and st
 
 Check the `Miniflux`_ website for news and/or breaking changes.
 
-.. _PostgreSQL: https://lab.uberspace.de/en/guide_postgresql.html
-.. _Guide: https://lab.uberspace.de/en/guide_postgresql.html#database-and-user-management
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _Miniflux: https://miniflux.app/
 .. _Github: https://github.com/miniflux/miniflux
 .. _Apache License 2.0: https://github.com/miniflux/miniflux/blob/master/LICENSE

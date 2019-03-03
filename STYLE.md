@@ -87,6 +87,16 @@ In our example this would be:
  command=env NODE_ENV=production /bin/node current/index.js
 ```
 
+ * If you want to include links to https://manual.uberspace.de, please use the corresponding directives `manual` and `manual_anchor`. Use the `lab` and `lab_anchor` directives for linking other UberLab guides. Examples:
+
+```
+This is a link to the Python manual: :manual:`Python <lang-python>`.
+
+This is a link to a section of the Python manual: :manual_anchor:`pip <lang-python.html#pip>`.
+
+This is a lik to another guide: :lab:`Django <guide_django>`.
+```
+
 Please use the following structure. Only document applicable steps, leave out headlines you don't need.
 
  * Short description
@@ -122,10 +132,10 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -137,7 +147,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -145,7 +155,7 @@ We're using Node.js_ in the stable version 8:
  Using 'Node.js' version: '8'
  [isabell@stardust ~]$
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
 
 ::
 
@@ -209,11 +219,6 @@ Updates
 
 
 .. _Loremipsum: https://en.wikipedia.org/wiki/Lorem_ipsum
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/lorem/ipsum/releases.atom
 
 ----

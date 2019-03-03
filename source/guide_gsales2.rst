@@ -21,8 +21,8 @@ Equipped with a well documentated SOAP API you can easily attach tools and third
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
 
 
   
@@ -60,7 +60,7 @@ After setting the PHP version just make sure we are using the correct version:
 
 
 
-The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide :ref:`ionCube Loader <guide_ioncube>` to setup the loader for your space.
+The codebase of GSALES 2 is obfuscated and encrypted with the IonCube Encoder. In order to run GSALES 2 on your server you need the so called IonCube Loader. Please follow the guide :lab:`ionCube Loader <guide_ioncube>` to setup the loader for your space.
 
 
 
@@ -161,8 +161,6 @@ GSALES 2 Updates are pretty straightforward.
 
 A more detailed update instruction can be found on the `gsales website <gsalesupdate_>`_.
 
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _gsalesupdate: https://support.gsales.de/hc/de/articles/202105793-gSales-2-richtig-schnell-updaten
 
 ----

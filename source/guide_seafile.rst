@@ -17,9 +17,9 @@ Seafile is an enterprise file hosting platform with high reliability and perform
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_ and its package manager pip
-  * MySQL_
-  * domains_
+  * :manual:`Python <lang-python>` and its package manager pip
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -31,7 +31,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
 
 ::
 
@@ -275,12 +275,6 @@ Updating seafile is pretty easy. Just untar the new package into the "seafile" d
  [isabell@stardust ~]$ cd ~/seafile/
  [isabell@stardust ~]$ curl https://download.seadrive.org/seafile-server_6.3.4_x86-64.tar.gz | tar xzf -
  [isabell@stardust ~]$
-
-
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 
 
 ----

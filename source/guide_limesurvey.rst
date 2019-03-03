@@ -17,9 +17,9 @@ LimeSurvey_ is a free and open source survey web application.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -37,7 +37,7 @@ We're using PHP in the stable version 7.1:
  Using 'PHP' version: '7.1'
  [isabell@stardust ~]$
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
 
 ::
 
@@ -144,11 +144,6 @@ When a new version is released, copy the download link and download it as above,
 
 
 .. _LimeSurvey: https://www.limesurvey.org/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/LimeSurvey/LimeSurvey/releases.atom
 .. _GPLv2: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 .. _stable release: https://www.limesurvey.org/en/downloads/category/25-latest-stable-release

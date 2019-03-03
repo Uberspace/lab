@@ -20,7 +20,7 @@ Using ionCube encoded and secured PHP files requires a file called the ionCube L
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
+  * :manual:`PHP <lang-php>`
 
   
 Installation
@@ -126,7 +126,6 @@ Changes to the PHP configuration will take effect after reloading PHP:
   Your php configuration has been loaded.
   [isabell@stardust ~]$
 
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
 
 ----
 

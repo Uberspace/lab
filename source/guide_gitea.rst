@@ -18,9 +18,9 @@ of the then-popular Gogs_, but quickly became more active and bigger than the or
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
@@ -163,11 +163,8 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Dashboard: https://uberspace.de/dashboard/authentication
 
 ----

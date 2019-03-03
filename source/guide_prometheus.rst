@@ -17,7 +17,7 @@ Prometheus_ is an open-source systems monitoring and alerting toolkit originally
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -140,7 +140,7 @@ Finishing installation
 Start prometheus
 ----------------
 
-To start prometheus via the previously created supervisord_ configuration, run the following command 
+To start prometheus via the previously created :manual:`supervisord <daemons-supervisord>` configuration, run the following command 
 
 ::
 
@@ -174,7 +174,6 @@ As stated in the security documentation, it is ok to make prometheus reachable f
 If this is something you do not want to do, you could hide it behind a basic auth. But keep in mind that by doing so, all other users of your uberspace host would still be able to access the prometheus webinterface!
 
 .. _Prometheus: https://prometheus.io/
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

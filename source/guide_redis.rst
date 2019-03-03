@@ -15,7 +15,7 @@ Redis_ is a key-value store NoSQL database. It is primarily used because of its 
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of supervisord_.
+.. note:: For this guide you should be familiar with the basic concepts of :manual:`supervisord <daemons-supervisord>`.
 
 
 License
@@ -158,7 +158,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
  autostart=yes
  autorestart=yes
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: bash
 
@@ -184,7 +184,6 @@ Use the Unix socket ``~/.redis/sock`` to access redis with other applications. Y
 
 .. _Redis: https://redis.io/
 .. _BSD license: https://github.com/antirez/redis/blob/unstable/COPYING
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

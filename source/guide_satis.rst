@@ -19,7 +19,7 @@ This guide shows you how to quickly setup satis on your Uberspace account.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * cronjobs_
+  * :manual:`cronjobs <daemons-cron>`
   * composer_
 
 Installation
@@ -92,12 +92,12 @@ To automate the building of the static site you can add a cron job, e.g.:
 
   */5 * * * * /home/$USER/bin/satisupdate
 
-You can learn more about cronjobs in the `uberspace manual cron article <https://manual.uberspace.de/en/daemons-cron.html>`_.
+You can learn more about cronjobs in the :manual:`uberspace manual cron article <daemons-cron>`.
 
 Add your custom domain
 ----------------------
 
-If you want to use a custom domain you can add it to your uberspace by following the steps of the `uberspace manual domains article <https://manual.uberspace.de/en/web-domains.html>`_.
+If you want to use a custom domain you can add it to your uberspace by following the steps of the :manual:`uberspace manual domains article <web-domains>`.
 
 After that you can add your domain to the third line of the satis config file containing the word homepage.
 
@@ -116,5 +116,6 @@ To update the satis tool you just have to pull the latest changes and run compos
 
 Tested with Satis 1.0.0, Uberspace 7.1.14.0
 
+.. authors::
+
 .. _composer: https://getcomposer.org
-.. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html

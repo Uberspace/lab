@@ -18,15 +18,15 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
-  * cronjobs_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`cronjobs <daemons-cron>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -43,7 +43,7 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of the Nextcloud and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
 
 .. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
@@ -61,8 +61,8 @@ Now point your browser to your uberspace URL and follow the instructions.
 You will need to enter the following information:
 
   * Administrator username and password: Insert the credentials you want to use for the admin user
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Nextcloud database name: we suggest you use an additional_ database. For example: isabell_nextcloud
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Nextcloud database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_nextcloud
 
 Tuning
 ======
@@ -72,7 +72,7 @@ cronjob
 
 For better performance, Nextcloud suggests to add a local cronjob.
 
-Add the following cronjob to your crontab_:
+Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
@@ -125,7 +125,7 @@ HSTS
 
 Nextcloud will complain about your HSTS settings in the admin interface.
 
-At the moment it is not possible to change the HSTS settings, as mentioned in the `manual <https://manual.uberspace.de/en/web-security.html>`_.
+At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
 
 Updates
 =======
@@ -145,14 +145,6 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html
-.. _crontab: https://manual.uberspace.de/en/daemons-cron.html
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 

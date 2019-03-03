@@ -18,10 +18,10 @@ aggregator.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * domains_
-  * PHP_
-  * cron_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`PHP <lang-php>`
+  * :manual:`cron <daemons-cron>`
 
 License
 =======
@@ -31,7 +31,7 @@ The software is licensed under GPLv3_. All relevant information can be found in 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -51,7 +51,7 @@ Installation
 Download and extract ZIP archive
 --------------------------------
 
-Check the selfoss_ website or `GitHub repo`_ for the `latest release`_ and copy the download link to the ZIP file. Then ``cd`` to your DocumentRoot_ and use ``wget`` to download it. Replace the URL with the one you just copied.
+Check the selfoss_ website or `GitHub repo`_ for the `latest release`_ and copy the download link to the ZIP file. Then ``cd`` to your :manual:`DocumentRoot <web-documentroot>` and use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. code-block:: console
  :emphasize-lines: 2
@@ -152,12 +152,6 @@ It is recommended to set up a cron job to automatically update your feeds. Edit 
  
  */15 * * * * curl -so /dev/null https://isabell.uber.space/update
 
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _cron: https://manual.uberspace.de/en/daemons-cron.html
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _selfoss: https://selfoss.aditu.de/
 .. _latest release: https://github.com/SSilence/selfoss/releases/latest
 .. _GPLv3: https://www.gnu.org/licenses/gpl-3.0.html
