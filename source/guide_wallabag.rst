@@ -61,7 +61,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``mailer_host``: 127.0.0.1:587 - *we need to serve the special* |smtpport|_ *here*
 * ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
 * ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
-* ``domain_name:`` put in here your domain or subdomain like https://yourdomain
+* ``domain_name:`` put in here your domain or subdomain like https://isabell.uber.space
 * ``secret:`` type in any random string here, do not keep the defaul string!
 * ``twofactor_sender:`` choose an email address to be used as sender
 * ``fosuser_registration:`` set this to false, otherwise anyone can register at your wallabag instance
