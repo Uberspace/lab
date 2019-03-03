@@ -136,7 +136,7 @@ Update
 4. Extract the tar file.
 Untar the archive and replace existing files. After this, delete the tar file.
 
-.. warning:: The files in the directory ``/bl-content/database/`` should not be deleted. There the user accounts and other important stuff are stored. For more information look at the next chapter.
+.. warning:: The files in the directory ``/bl-content`` should not be deleted. There the user accounts and other important stuff are stored. For more information look at the next chapter.
 
 .. code-block:: console
  :emphasize-lines: 1,5
