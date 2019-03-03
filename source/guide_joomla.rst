@@ -80,12 +80,6 @@ You can also install optionally extra languages by clicking on ``Extra steps: In
 
 *Important*: Click ``Remove installation folder``. You will not be able to proceed beyond this point until the installation folder has been removed. This is a security feature of Joomla!
 
-Tuning [under construction]
-======
-
-  * Check the Post-installation Messages for any hints and errors
-  * ...
-
 Updates
 =======
 
