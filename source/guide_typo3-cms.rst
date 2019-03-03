@@ -165,7 +165,7 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 .. _TYPO3 CMS: https://typo3.org/
 .. _TYPO3 extension repository: https://extensions.typo3.org/
 .. _GPL v2: https://www.gnu.org/licenses/gpl-2.0.html
-.. _TYPO3 Association: https://typo3.org/project/association/`
+.. _TYPO3 Association: https://typo3.org/project/association/
 .. _PHP: http://www.php.net/
 .. _Composer Helper: https://get.typo3.org/misc/composer/helper
 .. _Install Tool: https://docs.typo3.org/typo3cms/InstallationGuide/master/In-depth/TheInstallTool/
