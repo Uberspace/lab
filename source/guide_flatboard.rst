@@ -11,7 +11,7 @@
 Flatboard
 #########
 
-Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown or BBcode.
+Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown [1]_ or BBcode.
 
 ----
 
@@ -182,6 +182,7 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 .. _twitter: https://twitter.com/flatboardoffic1
 .. _Flatboard: http://flatboard.free.fr
 
+.. [1] For the moment Markdown is not available, but should be fixed with one of the next updates.
 
 ----
 
