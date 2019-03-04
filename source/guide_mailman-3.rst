@@ -93,7 +93,7 @@ Get and enable uwsgi
 ---------------------
 .. include:: includes/install-uwsgi.rst
 
-Get .qmail helper script
+Get .qmail helper scripts
 -------------------------
 Mailman 3 uses LMTP to transfer emails locally. As qmail_ is not able to use this directly, we need to download a helper script from the mailman source:
 
@@ -102,6 +102,8 @@ Mailman 3 uses LMTP to transfer emails locally. As qmail_ is not able to use thi
  [isabell@stardust ~]$ cd bin
  [isabell@stardust bin]$ wget https://gitlab.com/mailman/mailman/raw/master/contrib/qmail-lmtp
  [isabell@stardust bin]$ chmod +x qmail-lmtp
+
+
 
 Configuration
 =============
@@ -116,22 +118,7 @@ We need to find a couple of free ports and bind your application to it.  Since M
 Configure Mailman Core
 ----------------------
 
-At first, we need to configure the REST interface of the core component. To create a basic configuration, we need to run ``mailman info`` and get the path of the configuration file. The output should look like this:
-
-:: 
-
- [isabell@stardust ~]$ mailman info
- GNU Mailman 3.2.0 (La Villa Strangiato)
- Python 3.6.7 (default, Dec  5 2018, 15:02:05)
- [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
- config file: /home/isabell/var/etc/mailman.cfg
- db url: sqlite:////home/isabell/var/data/mailman.db
- devmode: DISABLED
- REST root url: http://localhost:8001/3.1/
- REST credentials: restadmin:restpass
- [isabell@stardust ~]$ 
-
-When the file is created, we need to add and change a couple of options in ``/home/isabell/var/etc/mailman.cfg``. The ``mta`` section contains the configuration related to sending and receiving mails. As we are using qmail_, the incoming MTA has to be set to null. In ``webservice`` section we configure the REST API server. As sometimes the paths where mailman stores its data can depend on the directory from where it is called, we manually define all necessary paths in ``paths.custom`` and force their usage in ``mailman``. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
+At first, we need to configure the REST interface of the core component. Create the file ``~/var/etc/mailman.cfg``, paste and adjust the following config. The ``mta`` section contains the configuration related to sending and receiving mails. As we are using qmail_, the incoming MTA has to be set to null. In ``webservice`` section we configure the REST API server. As our mailman installation is user-based, we need to tell mailman where to look for it's binaries and configuration using ``paths.custom``. Change ``var_dir`` and ``bin_dir``. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
 
 .. code :: cfg
 
@@ -157,16 +144,19 @@ When the file is created, we need to add and change a couple of options in ``/ho
  [paths.custom]
  var_dir: /home/isabell/var
  bin_dir: /home/isabell/.local/bin
- log_dir: /home/isabell/var/logs
- lock_dir: /home/isabell/var/locks
- data_dir: /home/isabell/var/data
- cache_dir: /home/isabell/var/cache
- etc_dir: /home/isabell/var/etc
- messages_dir: /home/isabell/var/messages
- archive_dir: /home/isabell/var/archives
- template_dir: /home/isabell/var/templates
- pid_file: /home/isabell/var/master.pid
- lock_file: /home/isabell/var/locks/master.lck
+ 
+ queue_dir: $var_dir/queue
+ list_data_dir: $var_dir/lists
+ log_dir: $var_dir/logs
+ lock_dir: $var_dir/locks
+ data_dir: $var_dir/data
+ cache_dir: $var_dir/cache
+ etc_dir: $var_dir/etc
+ messages_dir: $var_dir/messages
+ archive_dir: $var_dir/archives
+ template_dir: $var_dir/templates
+ pid_file: $var_dir/master.pid
+ lock_file: $lock_dir/master.lck
 
  [mailman]
  layout: custom
@@ -174,58 +164,19 @@ When the file is created, we need to add and change a couple of options in ``/ho
 Daemonizing Mailman Core
 ------------------------
 
-As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman not having having the option to always run in foreground, we need some other means of controlling it.
-
-Based on this `guide <https://serverfault.com/a/608073>`_, we can create a small bash mapper that starts mailman and then stays in the foreground while regularly checking mailman's pid file. It is also able to gracefully terminate mailman through supervisorctl. Long story short, create a file ``~/bin/mailman3-daemon`` and put in the following content:
-
-.. code :: sh
-
- #! /usr/bin/env bash
- set -eu
- 
- pidfile=/home/isabell/var/master.pid
- command="mailman"
- arg_config="--config /home/isabell/var/etc/mailman.cfg "
- 
- # Proxy signals
- function kill_app(){
-     $command $cmd_config stop
-     kill $(cat $pidfile)
-     exit 0 # exit okay
- }
- trap "kill_app" SIGINT SIGTERM
- 
- # Stop mailman if running
- $command $arg_config stop
- 
- # Start with force if not exited correctly
- $command $arg_config start --force
- sleep 2
- 
- # Loop while the pidfile and the process exist
- while [ -f $pidfile ] && kill -0 $(cat $pidfile) ; do
-     sleep 0.5
- done
- exit 1000 # exit unexpected
- 
-Afterwards, make it executable:
-
-::
-
- [isabell@stardust ~]$ chmod +x ~/bin/mailman3-daemon
- [isabell@stardust ~]$
-
-As last step, we need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini``:
+As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
 
 .. code :: ini
 
  [program:mailman3]
- command=mailman3-daemon
+ enviroment=MAILMAN_VAR_DIR="%(ENV_HOME)s/var"
+ directory=%(ENV_HOME)s
+ command=%(ENV_HOME)s/.local/bin/master -C %(ENV_HOME)s/var/etc/mailman.cfg
  autostart=true
  autorestart=true
  stderr_logfile = ~/var/logs/daemon_err.log
  stdout_logfile = ~/var/logs/daemon_out.log
- stopsignal=INT
+ stopsignal=TERM
 
 Now we can tell ``supervisord`` to refresh its configuration and start the service:
 
@@ -383,27 +334,40 @@ Generally, it might be necessary to reload *uwsgi* after changing the config cha
 Setup .qmail-forwarder script
 -----------------------------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman3-add-list.sh`` with the following content (this code was created originally 
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman3-manage-qmail.sh`` with the following content (this code was created originally 
 for Mailman 2 and is based on the script provided in the official installation instructions). Make sure to change the ``p`` variable to your LMTP port:
 
 .. code :: bash
 
  #!/bin/sh
- if [ $# = 1 ]; then
- i=$1
- # First free port
- p=9000
- echo Making links to $i in home directory...
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-admin
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-bounces
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-confirm
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-join
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-leave
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-owner
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-request
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
- echo "|qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
+ if [ $# = 2 ]
+ then
+   i=$2
+   p=61902 # Change this - first free port
+ 
+   if [ $1 = "add" ]
+   then
+     echo Making links to $i in home directory...
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
+   elif [ $1 = "del" ]
+   then
+     echo "Removing qmail files for $i"
+     rm ~/.qmail-$i
+     rm ~/.qmail-$i-*
+   else 
+     echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
+   fi
+ else 
+   echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
  fi
 
 You still need to make the script executable:
@@ -413,7 +377,7 @@ You still need to make the script executable:
  [isabell@stardust ~]$ chmod +x ~/bin/mailman3-add-list.sh
  [isabell@stardust ~]$
 
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-add-list.sh listname`` if you stored it as ``~/bin/mailman3-add-list.sh`` and want to create aliases for a list ``listname``).
+After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-manage-qmail.sh add listname`` if you want to create aliases for a list ``listname``). To remove all .qmail-files, simply use ``mailman3-manage-qmail.sh del listname``.
 
 Install cronjobs
 ----------------
@@ -427,9 +391,9 @@ Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and
 
 Now you can create a new list using the Postorious web UI. 
 
-.. warning:: Don't forget to create the .qmail-aliases using the '~/bin/mailman3-add-list.sh' script afterwards!
+.. warning:: Don't forget to create the .qmail-aliases using the '~/bin/mailman3-manage-qmail.sh' script afterwards!
 
-This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for `Django <./guide_django.html>`_ and, of course, `Mailman 2 <./guide_mailman.html>`_.
+This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for `Django <./guide_django.html>`_ and, of course, `Mailman 2 <./guide_mailman.html>`_. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
 Tested with Django 2.1.7, HyperKitty 1.2.1, Mailman 3.2.0, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.2.2.
 
