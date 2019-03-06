@@ -23,8 +23,8 @@ Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 
 Prerequisites
@@ -43,7 +43,7 @@ We are using PHP_ in the stable version ``7.2``:
 
 .. include:: includes/my-print-defaults.rst
 
-Your `website domain`_ needs to be set up:
+Your :manual_anchor:`website domain <web-domains.html#setup>` needs to be set up:
 
 ::
 
@@ -56,9 +56,9 @@ Your `website domain`_ needs to be set up:
 Installation
 ============
 
-Since Contao uses the subdirectory ``web/`` as web root of your website you should **not** install Contao in your default Uberspace DocumentRoot_. Instead, we install it next to that and then use a symlink to make it accessible to the web.
+Since Contao uses the subdirectory ``web/`` as web root of your website you should **not** install Contao in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
 
-``cd`` to one level above your DocumentRoot_, then use the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**:
+``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**:
 
 .. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition <target> '42.23.*'``
   
@@ -80,9 +80,9 @@ Since Contao uses the subdirectory ``web/`` as web root of your website you shou
 
  [isabell@stardust isabell]$
 
-Next, remove the unused DocumentRoot_ and create a new **symbolic link** to the Contao ``web/`` subdirectory:
+Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory:
 
-.. warning:: Please make sure your DocumentRoot_ is empty before removing it!
+.. warning:: Please make sure your :manual:`DocumentRoot <web-documentroot>` is empty before removing it!
 
   Again, replace ``<target>`` by the folder name where the Contao project files sit in.
 
@@ -103,9 +103,9 @@ Configuration
 Create Database
 ---------------
 
-Contao saves your data in a MySQL_ database. It is recommended to use an `additional database`_ (e.g. ``isabell_contao``) instead of the default database.
+Contao saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_contao``) instead of the default database.
 
-.. note:: You need to create the database **before** you enter the database credentials_ in the `Contao install tool`_.
+.. note:: You need to create the database **before** you enter the database :manual_anchor:`credentials <database-mysql.html#login-credentials>` in the `Contao install tool`_.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -124,7 +124,7 @@ Point your web browser to your website URL and append ``/contao/install`` (e.g. 
 
 **Step 1:** When you run the Contao install tool the first time, the web based installer will prompt to set a new password. For all future accesses, the Contao install tool will ask for this password again.
 
-**Step 2:** To configure your database connection, you need to enter the MySQL database credentials_:
+**Step 2:** To configure your database connection, you need to enter the MySQL database :manual_anchor:`credentials <database-mysql.html#login-credentials>`:
 
   * MySQL hostname (use ``localhost``)
   * MySQL username (equals your Uberspace username, e.g. ``isabell``)
@@ -176,13 +176,7 @@ Alternatively, the update can also be performed via the `Contao Manager`_ which 
 .. _Contao: https://contao.org/
 .. _Symfony: https://symfony.com/
 .. _PHP: http://www.php.net/
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _website domain: https://manual.uberspace.de/en/web-domains.html#setup
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 .. _Composer: https://getcomposer.org/
-.. _additional database: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _feed: https://github.com/contao/contao/releases.atom
 .. _releases: https://github.com/contao/contao/releases
 .. _news: https://contao.org/news.html

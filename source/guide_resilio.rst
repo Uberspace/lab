@@ -17,8 +17,8 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * supervisord_
-  * domains_
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -80,14 +80,14 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 .. code-block:: ini
 
  [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
+ command=rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
 
 In our example this would be:
 
 .. code-block:: ini
 
  [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============
@@ -118,8 +118,6 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$ 
 
 .. _Resilio: https://www.resilio.com
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

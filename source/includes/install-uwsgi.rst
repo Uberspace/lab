@@ -12,7 +12,7 @@ Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
 .. code-block:: ini
 
   [program:uwsgi]
-  command=%(ENV_HOME)s/.local/bin/uwsgi --master --emperor %(ENV_HOME)s/uwsgi/apps-enabled
+  command=uwsgi --master --emperor %(ENV_HOME)s/uwsgi/apps-enabled
   autostart=true
   autorestart=true
   stderr_logfile = ~/uwsgi/err.log

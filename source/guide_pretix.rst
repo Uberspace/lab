@@ -17,8 +17,8 @@ pretix_ is an open source ticketing solution. It is written in Django_ and can b
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_ and its package manager pip
-  * supervisord_
+  * :manual:`Python <lang-python>` and its package manager pip
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -174,7 +174,7 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
 .. code-block:: ini
 
  [program:pretix]
- command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT
@@ -184,12 +184,12 @@ In our example this would be:
 .. code-block:: ini
 
  [program:pretix]
- command=%(ENV_HOME)s/.local/bin/gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -228,11 +228,7 @@ If there is a new version available, update your branch according to the version
 
 .. _pretix: https://pretix.eu/
 .. _Django:  https://www.djangoproject.com/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
 .. _Gunicorn: https://gunicorn.org/
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/pretix/pretix
 .. _feed: https://github.com/pretix/pretix/releases.atom
 .. _bullshit: https://bullenscheisse.de/2018/pretix-auf-einem-uberspace/

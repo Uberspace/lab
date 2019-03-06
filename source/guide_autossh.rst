@@ -14,10 +14,10 @@ When following best practices laid out by Uberspace (every service should use it
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * SSH_
+  * :manual:`SSH <basics-ssh>`
   * SSH port forwarding
   * SSH public key authentication
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -87,17 +87,17 @@ To ensure that the remote host and it's key fingerprint are trusted, either add 
  Are you sure you want to continue connecting (yes/no)? yes
  Warning: Permanently added 'tsudrats.uberspace.de,185.26.156.254' (ED25519) to the list of known hosts.
 
-.. note:: This guide assumes that you have set up public key authentication (see ``IdentityFile`` parameter in ``~/.ssh/config``). This is required as otherwise you will always be prompted for your password when trying to open the tunnel. See `the Uberspace manual <https://manual.uberspace.de/en/basics-ssh.html#working-with-keys>`_ for setting up public key authentication if you don't know how.
+.. note:: This guide assumes that you have set up public key authentication (see ``IdentityFile`` parameter in ``~/.ssh/config``). This is required as otherwise you will always be prompted for your password when trying to open the tunnel. See :manual_anchor:`the Uberspace manual <basics-ssh.html#working-with-keys>` for setting up public key authentication if you don't know how.
 
 Step 2
 ------
 
-With the information from step 1, it is time to configure supervisord_ to handle our autossh process. Create the file ``~/etc/services.d/autossh.ini`` with the following content:
+With the information from step 1, it is time to configure :manual:`supervisord <daemons-supervisord>` to handle our autossh process. Create the file ``~/etc/services.d/autossh.ini`` with the following content:
 
 ::
 
  [program:autossh]
- command=%(ENV_HOME)s/bin/autossh -M 0 service-tunnel -T -N
+ command=autossh -M 0 service-tunnel -T -N
  autostart=true
  autorestart=false
 
@@ -118,7 +118,5 @@ That's it, you have successfully configured an automatically launching port forw
 
 
 .. _autossh: http://www.harding.motd.ca/autossh/
-.. _SSH: https://manual.uberspace.de/en/basics-ssh.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 .. authors::

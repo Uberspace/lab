@@ -17,10 +17,10 @@ FreshRSS_ is a multi-user self-hosted RSS feed aggregator.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * domains_
-  * PHP_
-  * cron_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`PHP <lang-php>`
+  * :manual:`cron <daemons-cron>`
 
 License
 =======
@@ -48,7 +48,7 @@ If you want to use FreshRSS with your own domain, it needs to be set up.
 Installation
 ============
 
-``cd`` to your DocumentRoot_ and download the latest release from GitHub, then unzip it:
+``cd`` to your :manual:`DocumentRoot <web-documentroot>` and download the latest release from GitHub, then unzip it:
 
 ::
 
@@ -124,14 +124,8 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
 
 This will overwrite any changed files while keeping your current configuration.
 
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _cron: https://manual.uberspace.de/en/daemons-cron.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
 .. _FreshRSS: https://freshrss.github.io/FreshRSS
 .. _GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 
 ----
 

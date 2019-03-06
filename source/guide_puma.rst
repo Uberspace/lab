@@ -17,7 +17,7 @@ Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
   * Ruby_
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
@@ -188,7 +188,6 @@ Tested with Puma 3.12, Uberspace 7.1.17
 .. _Ruby: https://www.ruby-lang.org/
 .. _Puma: https://puma.io
 .. _Rack: https://rack.github.io
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _readme: https://github.com/puma/puma
 .. _configuration: https://github.com/puma/puma/blob/master/examples/config.rb
 .. _feed: https://github.com/puma/puma/releases

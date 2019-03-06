@@ -27,9 +27,9 @@ Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
-  * supervisord_
-  * domains_
+  * :manual:`Python <lang-python>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 
 Prerequisites
@@ -128,7 +128,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=%(ENV_HOME)s/.local/bin/radicale -f
+  command=radicale -f
 
 
 Finishing installation
@@ -163,7 +163,7 @@ For every following user use it without ``-c``:
 Configure web server
 --------------------
 
-In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the `document root`_ for details), with the following content:
+In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
 
 .. code-block:: ini
   :emphasize-lines: 3,9
@@ -210,11 +210,6 @@ Updates
 .. _Radicale: https://radicale.org/
 .. _Changelog: https://radicale.org/news/
 .. _Config: https://radicale.org/configuration/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

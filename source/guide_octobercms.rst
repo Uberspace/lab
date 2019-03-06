@@ -17,19 +17,19 @@ October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ 
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
 
-The OctoberCMS platform is released under the `MIT Licence`_. All relevant information can be found in the LICENSE_ file in the repository of the project. Please also review the `Marketplace terms`_ if you plan to use plugins or themes from the offical Marketplace.
+The OctoberCMS platform is released under the `MIT License`_. All relevant information can be found in the LICENSE_ file in the repository of the project. Please also review the `Marketplace terms`_ if you plan to use plugins or themes from the official Marketplace.
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -46,7 +46,7 @@ Your domain needs to be set up:
 Installation
 ============
 
-We will install October using the official command-line interface (CLI). To do this simply ``cd`` into your DocumentRoot_ and use the the following command to download the install script using cURL and execute it with PHP.
+We will install October using the official command-line interface (CLI). To do this simply ``cd`` into your :manual:`DocumentRoot <web-documentroot>` and use the the following command to download the install script using cURL and execute it with PHP.
 
 .. code-block:: console
 
@@ -62,7 +62,7 @@ The installer script will download all necessary files including the CLI so you 
 Configuration
 =============
 
-During the setup process you will be asked for database credentials. We use MySQL and suggest you use an `additional database`_ for October to save your data. You have to create this database first using the following command.
+During the setup process you will be asked for database credentials. We use MySQL and suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` for October to save your data. You have to create this database first using the following command.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -123,14 +123,9 @@ To update October and your installed plugins you can use the ``october:update`` 
 
 .. _October: https://octobercms.com/
 .. _Laravel: https://laravel.com/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/octobercms/october/releases.atom
-.. _MIT Licence: https://opensource.org/licenses/MIT
+.. _MIT License: https://opensource.org/licenses/MIT
 .. _LICENSE: https://github.com/octobercms/october/blob/master/LICENSE
-.. _additional database: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 .. _Marketplace terms: https://octobercms.com/help/terms/marketplace
 .. _Console command list: https://octobercms.com/docs/console/commands
 

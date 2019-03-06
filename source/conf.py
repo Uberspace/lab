@@ -79,7 +79,8 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-# Configure the `extlinks` extension to handle the `manual` directive.
+# Configure the `extlinks` extension to handle the `manual` and `lab`
+# directives.
 # By setting an empty string as the second tuple element, the display text
 # is the same as the target by default.
 extlinks = {
@@ -89,6 +90,14 @@ extlinks = {
     ),
     'manual_anchor': (
         'https://manual.uberspace.de/%s',
+        ''
+    ),
+    'lab': (
+        'https://lab.uberspace.de/%s.html',
+        ''
+    ),
+    'lab_anchor': (
+        'https://lab.uberspace.de/%s',
         ''
     ),
 }

@@ -18,8 +18,8 @@ Mailman_ is free software for managing electronic mail discussion and e-newslett
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
-  * supervisord_
+  * :manual:`Python <lang-python>`
+  * :manual:`supervisord <daemons-supervisord>`
   * Folder/File Permissions
 
 License
@@ -187,7 +187,7 @@ By now we have installed all the necessary files - let's tell them what they sho
 Step 1
 ------
 
-Create a mailbox_ for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
+Create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
 
 Step 2
 ------
@@ -220,39 +220,17 @@ You can look up the meaning  and default value of each variable in the file ``De
 Finishing Installation
 ======================
 
-Setup daemon
-------------
-
-Create ``~/etc/services.d/mailman.ini`` with the following content (insert your username!):
-
-::
-
- [program:mailman]
- command=/var/www/virtual/isabell/mailman/bin/qrunner --runner=All
-
-Tell supervisord_ to refresh and start the qrunner:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- mailman: available
- [isabell@stardust ~]$ supervisorctl update
- mailman: added process group
- [isabell@stardust ~]$ supervisorctl status
- mailman                          RUNNING   pid 3226, uptime 0:03:42
- [isabell@stardust ~]$
-
-If it is not in state ``RUNNING``, check your configuration and logs.
-
 Install cronjobs
 ----------------
 
-Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. To install them for your user, run:
+Mailman_ offers a couple of cronjobs to perform some maintenance actions at regular intervals. Additionally, there are some tasks that need to be run frequently (like checking mails). To install them for your user, run:
 
 ::
 
- [isabell@stardust ~]$ crontab /var/www/virtual/isabell/mailman/cron/crontab.in
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman
+ [isabell@stardust mailman]$ echo "* * * * * /var/www/virtual/$USER/mailman/bin/qrunner --runner=All --once" >> cron/crontab.in
+ [isabell@stardust mailman]$ crontab cron/crontab.in
+ [isabell@stardust mailman]$
 
 Create the first mailinglist
 ----------------------------
@@ -289,9 +267,6 @@ All done! Enjoy using your new list manager available at ``https://isabell.uber.
 This guide is based on the `official Mailman 2.1 installation instructions <https://www.gnu.org/software/mailman/mailman-install/front.html>`_.
 
 .. _Mailman: http://www.list.org/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _mailbox: https://manual.uberspace.de/en/mail-mailboxes.html#setup-a-new-mailbox
 .. _documentation: https://www.gnu.org/software/mailman/mailman-install.txt
 
 

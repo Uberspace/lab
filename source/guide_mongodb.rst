@@ -15,7 +15,7 @@ MongoDB_ is a NoSQL database, developed by MongoDB Inc.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of  supervisord_.
+.. note:: For this guide you should be familiar with the basic concepts of :manual:`supervisord <daemons-supervisord>`.
 
 License
 =======
@@ -108,7 +108,7 @@ Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` wi
  :emphasize-lines: 5
 
  [program:mongodb]
- command=%(ENV_HOME)s/bin/mongod
+ command=mongod
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
    --port <yourport>
@@ -237,7 +237,6 @@ Restart your MongoDB and login to check the version.
 
 .. _MongoDB: https://www.mongodb.com/
 .. _download page: https://www.mongodb.com/download-center/community
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

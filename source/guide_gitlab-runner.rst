@@ -16,7 +16,7 @@ GitLab Runner is the open source project that is used to run your jobs and send 
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
@@ -121,7 +121,6 @@ If it’s not in state RUNNING, check your configuration.
 .. _Gitlab: https://gitlab.com
 .. _Gitlab Runner docs: https://docs.gitlab.com/runner/
 .. _Gitlab Runner executors: https://docs.gitlab.com/runner/executors/README.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

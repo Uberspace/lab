@@ -18,13 +18,13 @@ It'is ideal for simple travel blogs or publishing news. It has an easy administr
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.2:
+We're using :manual:`PHP <lang-php>` in the stable version 7.2:
 
 ::
 
@@ -100,8 +100,6 @@ Check if the configuration_ changed in ``config-new/config.php`` and your ``conf
 If everything works alright you can delete the ``config-new`` directory.
 
 .. _minim: https://minim.one/
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _PHP: https://manual.uberspace.de/en/lang-php.html#show-available-versions
 .. _configuration: https://minim.one/docs/
 .. _feed: https://minim.one/rss/
 .. _release: https://minim.one/downloads/
