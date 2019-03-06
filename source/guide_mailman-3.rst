@@ -24,8 +24,8 @@ Mailman 3
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
-  * supervisord_
+  * :manual:`Python <lang-python>`
+  * :manual:`supervisord <daemons-supervisord>`
   * Folder/File Permissions
 
 License
@@ -48,7 +48,7 @@ Your URL needs to be setup for web and mail:
  isabell.uber.space
  [isabell@stardust ~]$
 
-Additionally, create a mailbox_ for Mailman to use to send e-mails. In this example, we are going to use ``forwarder@isabell.uber.space``.
+Additionally, create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for Mailman to use to send e-mails. In this example, we are going to use ``forwarder@isabell.uber.space``.
 
 Installation
 ============
@@ -95,7 +95,7 @@ Get and enable uwsgi
 
 Get .qmail helper scripts
 -------------------------
-Mailman 3 uses LMTP to transfer emails locally. As qmail_ is not able to use this directly, we need to download a helper script from the mailman source:
+Mailman 3 uses LMTP to transfer emails locally. As :manual_anchor:`qmail <basics-home.html#qmail>` is not able to use this directly, we need to download a helper script from the mailman source:
 
 ::
 
@@ -110,7 +110,7 @@ Configuration
 Get a free port
 ---------------
 
-We need to find a couple of free ports and bind your application to it.  Since Mailman Core itself exposes a REST interface, Postorius and HyperKitty run as Django applications with their own webserver and we need a LMTP port for local mail forwarding from qmail_ to Mailman, you will need to execute the following code multiple times (directly before you are going to change the respective configurations).
+We need to find a couple of free ports and bind your application to it.  Since Mailman Core itself exposes a REST interface, Postorius and HyperKitty run as Django applications with their own webserver and we need a LMTP port for local mail forwarding from :manual_anchor:`qmail <basics-home.html#qmail>` to Mailman, you will need to execute the following code multiple times (directly before you are going to change the respective configurations).
 
 .. include:: includes/generate-port.rst
 
@@ -118,7 +118,7 @@ We need to find a couple of free ports and bind your application to it.  Since M
 Configure Mailman Core
 ----------------------
 
-At first, we need to configure the REST interface of the core component. Create the file ``~/var/etc/mailman.cfg``, paste and adjust the following config. The ``mta`` section contains the configuration related to sending and receiving mails. As we are using qmail_, the incoming MTA has to be set to null. In ``webservice`` section we configure the REST API server. As our mailman installation is user-based, we need to tell mailman where to look for it's binaries and configuration using ``paths.custom``. Change ``var_dir`` and ``bin_dir``. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
+At first, we need to configure the REST interface of the core component. Create the file ``~/var/etc/mailman.cfg``, paste and adjust the following config. The ``mta`` section contains the configuration related to sending and receiving mails. As we are using :manual_anchor:`qmail <basics-home.html#qmail>`, the incoming MTA has to be set to null. In ``webservice`` section we configure the REST API server. As our mailman installation is user-based, we need to tell mailman where to look for it's binaries and configuration using ``paths.custom``. Change ``var_dir`` and ``bin_dir``. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
 
 .. code :: cfg
 
@@ -382,7 +382,7 @@ After creating a list via the webinterface, you can then run this script to crea
 Install cronjobs
 ----------------
 
-`Mailman 3`_ offers a `cronjobs <https://manual.uberspace.de/daemons-cron.html?highlight=cron#cron>`_ to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the line ``@daily /home/isabell/.local/bin/mailman digests --send`` at the end of the file.
+`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the line ``@daily /home/isabell/.local/bin/mailman digests --send`` at the end of the file.
 
 Using Mailman
 =============
@@ -393,7 +393,7 @@ Now you can create a new list using the Postorious web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases using the '~/bin/mailman3-manage-qmail.sh' script afterwards!
 
-This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for `Django <./guide_django.html>`_ and, of course, `Mailman 2 <./guide_mailman.html>`_. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
+This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
 Tested with Django 2.1.7, HyperKitty 1.2.1, Mailman 3.2.0, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.2.2.
 
@@ -401,13 +401,8 @@ Tested with Django 2.1.7, HyperKitty 1.2.1, Mailman 3.2.0, Postorius 1.2.4 and u
 .. _Mailman: http://www.list.org/
 .. _mailman-suite: https://gitlab.com/mailman/mailman-suite
 .. _mailman docs schema.cfg: https://mailman.readthedocs.io/en/latest/src/mailman/config/docs/config.html#schema-cfg
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _mailbox: https://manual.uberspace.de/en/mail-mailboxes.html#setup-a-new-mailbox
 .. _documentation: https://www.gnu.org/software/mailman/mailman-install.txt
 .. _SASS: https://sass-lang.com/
-.. _`macropin/docker-mailman`: https://github.com/macropin/docker-mailman/blob/master/mailman.sh
-.. _qmail: https://manual.uberspace.de/en/basics-home.html?highlight=qmail#qmail
 
 
 .. authors::
