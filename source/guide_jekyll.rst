@@ -164,14 +164,14 @@ Therefor we have to enter our remote repository and create a post-update hook fi
   GIT_REPO=$HOME/website
   TMP_GIT_CLONE=$HOME/website_temp
   GEMFILE=$TMP_GIT_CLONE/Gemfile
-  PUBLIC_WWW=/var/www/virtual/isabell/html
+  PUBLIC_WWW=/var/www/virtual/$USER/html
 
   git clone $GIT_REPO $TMP_GIT_CLONE
   BUNDLE_GEMFILE=$GEMFILE bundle install --path vendor/bundle
   BUNDLE_GEMFILE=$GEMFILE bundle exec jekyll build --source $TMP_GIT_CLONE --destination $PUBLIC_WWW
   rm -Rf $TMP_GIT_CLONE
 
-.. warning:: Be sure to change the value of ``PUBLIC_WWW`` to your document root.
+.. note:: If needed, ``PUBLIC_WWW`` can be adapted to serve on a different domain.
 
 We need to tell Jekyll where to find the source files of the website and where to deploy. So we have to add a configuration for the build process:
 
