@@ -162,7 +162,7 @@ Therefor we have to enter our remote repository and create a post-update hook fi
 .. code-block:: bash
   
   GIT_REPO=$HOME/website
-  TMP_GIT_CLONE=$HOME/website_temp
+  TMP_GIT_CLONE=$(mktemp -d)
   GEMFILE=$TMP_GIT_CLONE/Gemfile
   PUBLIC_WWW=/var/www/virtual/$USER/html
 
