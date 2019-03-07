@@ -92,7 +92,7 @@ the new file in order to configure your database settings for the "production" e
 
 Redmine uses Bundler to manage dependencies. Install Bundler running ``gem install bundler``.
 
-Install all dependencies running ``bundle install --without development test``.
+Install all dependencies running ``bundle install --without development test --path vendor/bundle``.
 It may happen that the gem ``rmagick`` can not be installed or that the target
 directory is not writable. In this case you can select a custom target directory
 and exclude the gem with the following command:
