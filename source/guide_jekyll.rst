@@ -37,7 +37,7 @@ All relevant legal information can be found here
 
 Prerequisites
 =============
-We're using `Ruby <lang-ruby>` in the version 2.5.3:
+We're using :manual:`Ruby <lang-ruby>` in the version 2.5.3:
 
 ::
 
