@@ -159,7 +159,7 @@ The next thing we we want to do is creating a post-update rule in git to deploy 
 
 Therefor we have to enter our remote repository and create a post-update hook file ``~/website/hooks/post-update`` with the following content:
 
-.. code-block:: ini
+.. code-block:: bash
   
   GIT_REPO=$HOME/website
   TMP_GIT_CLONE=$HOME/website_temp
