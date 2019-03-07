@@ -391,7 +391,7 @@ Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and
 
 Now you can create a new list using the Postorious web UI. 
 
-.. warning:: Don't forget to create the .qmail-aliases using the '~/bin/mailman3-manage-qmail.sh' script afterwards!
+.. warning:: Don't forget to create the .qmail-aliases using the ``mailman3-manage-qmail.sh`` script afterwards!
 
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
