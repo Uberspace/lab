@@ -1,4 +1,4 @@
-.. author:: nichtmax <https://moritz.in>
+.. author:: nichtmax <https://moritz.in> & updated by Peleke <https://www.peleke.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -22,17 +22,20 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
   * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
+  * :manual:`web backends <web-backends>`
 
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ uberspace tools version use node 10
+ Using 'Node.js' version: '10'
+ Selected node version 10
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
+ [eliza@dolittle ~]$
 
 .. include:: includes/my-print-defaults.rst
 
@@ -108,17 +111,28 @@ You will need to enter the following information:
 Configuration
 =============
 
-Configure port
+Configure web backend
 --------------
 
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
+Since Uberspace 7.2 you can use :manual:`web backends <web-backends>` which makes it very easy to get Ghost listen and running. Follow the steps of that article to set up your desired web backend for Ghost. Probably one of the easiest commands for this would be:
 
-.. include:: includes/generate-port.rst
+::
+
+ uberspace web backend set / --http --port 2369
 
 Change the configuration
 ------------------------
 
-You need to adjust your ``~/ghost/config.production.json`` with the new port. Find the following code block and change port 2369 to your own port:
+You need to adjust your ``~/ghost/config.production.json`` with the right interface. Find the following code block and change host 127.0.0.1 to 0.0.0.0:
+
+::
+
+ "server": {
+   "port": 2369,
+   "host": "127.0.0.1"
+ },
+
+Should be:
 
 ::
 
@@ -126,20 +140,6 @@ You need to adjust your ``~/ghost/config.production.json`` with the new port. Fi
    "port": 2369,
    "host": "0.0.0.0"
  },
-
-In our example this would be:
-
-::
-
- "server": {
-   "port": 9000,
-   "host": "0.0.0.0"
- },
-
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
 
 Setup daemon
 ------------
@@ -233,11 +233,11 @@ Again, replace the version number with the newest version.
 If it's not in state RUNNING, check your configuration.
 
 .. _Ghost: https://ghost.org
-.. _settings: https://docs.ghost.org/v1/docs/cli-install
+.. _settings: https://docs.ghost.org/api/ghost-cli/
 .. _feed: https://github.com/TryGhost/Ghost/releases.atom
 
 ----
 
-Tested with Ghost 2.0.0, Uberspace 7.1.11
+Tested with Ghost 2.17.0, Uberspace 7.2
 
 .. authors::
