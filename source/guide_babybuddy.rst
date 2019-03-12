@@ -45,6 +45,15 @@ You need `pipenv`_, a package manager/virtual environment tool for Python, so in
 ::
 
  [isabell@stardust ~]$ pip3.6 install pipenv --user
+ Collecting pipenv
+   Downloading https://files.pythonhosted.org/packages/13/b4/3ffa55f77161cff9a5220f162670f7c5eb00df52e00939e203f601b0f579/pipenv-2018.11.26-py3-none-any.whl (5.2MB)
+     100% |████████████████████████████████| 5.2MB 242kB/s
+ Requirement already satisfied: setuptools>=36.2.1 in /usr/lib/python3.6/site-packages (from pipenv)
+ Collecting virtualenv (from pipenv)
+   Downloading https://files.pythonhosted.org/packages/33/5d/314c760d4204f64e4a968275182b7751bd5c3249094757b39ba987dcfb5a/virtualenv-16.4.3-py2.py3-none-any.whl (2.0MB)
+     100% |████████████████████████████████| 2.0MB 614kB/s
+  […]
+ [isabell@stardust ~]$ 
 
 .. include:: includes/install-uwsgi.rst
 
@@ -58,7 +67,7 @@ During the installation process, you want to use Python in version 3.6. Set an a
 ::
 
  [isabell@stardust ~]$ alias python=python3.6
- [isabell@stardust ~]$ Python --version
+ [isabell@stardust ~]$ python --version
  Python 3.6.7
  [isabell@stardust ~]$
 
@@ -100,7 +109,7 @@ Install all the requirements. Since we are working with Python 3, we need to use
 ::
 
  [isabell@stardust ~]$ cd ~/babybuddy/public/
- [isabell@stardust ~/babybuddy/public]$ pipenv install --three
+ [isabell@stardust public]$ pipenv install --three
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 39/39 — 00:00:54
  To activate this project's virtualenv, run pipenv shell.
@@ -111,12 +120,12 @@ Also, install the package ``mysqlclient``:
 
 ::
 
- [isabell@stardust ~/babybuddy/public]$ pipenv install mysqlclient --three
+ [isabell@stardust public]$ pipenv install mysqlclient --three
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 40/40 — 00:00:02
  To activate this project's virtualenv, run pipenv shell.
  Alternatively, run a command inside the virtualenv with pipenv run.
- [isabell@stardust ~/babybuddy/public]$ cd
+ [isabell@stardust public]$ cd
  [isabell@stardust ~]$
 
 Step 5
@@ -129,12 +138,21 @@ Copy the template configuration file and adapt it based on the following example
  [isabell@stardust ~]$
 
 .. warning:: Replace ``<secretkey>`` with a random sequence of characters!
+
+Use this snippet to generate a random string to use as secret key:
+
+::
+
+ [isabell@stardust ~] < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;
+ extremerandom
+ [isabell@stardust ~]$
+
 .. warning:: Replace ``<host>`` with your host!
 .. warning:: Replace ``<username>`` with your username!
 .. warning:: Replace ``<databasepassword>`` with your database password!
 
 .. code-block:: python
-  :emphasize-lines: 6,8,16,17,18
+  :emphasize-lines: 6,8,15,16,17,18,19,20
 
    from .base import *
    
@@ -248,13 +266,13 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   /home/isabell/.local/share/virtualenvs/public-xxxxxx
 
 .. code-block:: ini
-  :emphasize-lines: 3,5,12,21,22
+  :emphasize-lines: 5,12
 
   [uwsgi]
   project = babybuddy
-  base_dir = /home/<username>/babybuddy
+  base_dir = $(HOME)/babybuddy
   
-  virtualenv = /home/<username>/.local/share/virtualenvs/public-xxxxxx
+  virtualenv = $(HOME)/.local/share/virtualenvs/public-xxxxxx
   chdir = %(base_dir)/public
   module =  %(project).wsgi:application
   env = DJANGO_SETTINGS_MODULE=%(project).settings.production
@@ -270,8 +288,8 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   
   plugin = python
   
-  uid = <username>
-  gid = <username>
+  uid = $(USER)
+  gid = $(USER)
 
 Finishing installation
 ======================
