@@ -17,15 +17,15 @@ Bludit_ is a web application to build your own website or blog in seconds, it's 
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * Domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`Domains <web-domains>`
 
 License
 =======
 
-Bludit_ are released under the MIT License. 
+Bludit_ is released under the MIT License.
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://tldrlegal.com/license/mit-license
   * https://docs.bludit.com/en/#license
@@ -33,7 +33,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -48,7 +48,7 @@ Your blog domain needs to be setup:
 Installation
 ============
 
-``cd`` to your `document root`_, then download and configure Bludit_.
+``cd`` to your :manual:`document root <web-documentroot>`, then download and configure Bludit_.
 
 .. code-block:: console
  :emphasize-lines: 1,2
@@ -62,31 +62,31 @@ Installation
 
  2019-02-27 20:02:16 (1.58 MB/s) - ‘3.8.0.tar.gz’ saved [1016833]
  [isabell@stardust html]$
- 
-Untar the archive and then delete it. 
+
+Untar the archive and then delete it.
 
 .. code-block:: console
  :emphasize-lines: 1,5
- 
+
  [isabell@stardust html]$ tar -xzvf 3.8.0.tar.gz --strip-components=1
  bludit-3.8.0/.github/
  […]
  bludit-3.8.0/install.php
  [isabell@stardust html]$ rm 3.8.0.tar.gz
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 
 Finishing installation
 ======================
 
-Now point your Browser to your installation URL ``https://isabell.uber.space/install.php``. 
+Now point your Browser to your installation URL ``https://isabell.uber.space/install.php``.
 Complete the form and follow the installation instructions.
 
 You will need to enter the following information:
 
   * language: the language you prefer.
   * admin password: set up your admin password.
-  
+
 
 Tuning
 ======
@@ -99,7 +99,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Your first plugin you have to install, is the **Version** plugin. It will show you in the admin panel the current used version of bludit. When there will be a new version of bludit, the plugin show you an info and a link to the bludit site. 
+Your first plugin you have to install, is the **Version** plugin. It will show you in the admin panel the current used version of bludit. When there will be a new version of bludit, the plugin show you an info and a link to the bludit site.
 To install log into admin panel and go to **Plugins**. The last plugin at the list ist **Version**. Only click activate and wait a moment. There it is.
 
 Update
@@ -140,13 +140,13 @@ Untar the archive and replace existing files. After this, delete the tar file.
 
 .. code-block:: console
  :emphasize-lines: 1,5
- 
+
  [isabell@stardust html]$ tar -xzvf 3.8.1.tar.gz --strip-components=1
  bludit-3.8.1/.github/
  […]
  bludit-3.8.1/install.php
  [isabell@stardust html]$ rm 3.8.1.tar.gz
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 5. Log into the admin area and check your settings.
 
@@ -158,23 +158,23 @@ Folder structure of Bludit.
 
 /html
     /bl-content/    « Databases and uploaded images
-    
+
     /bl-kernel/     « Core of Bludit
-    
+
     /bl-languages/  « Languages files
-    
+
     /bl-plugins/    « Plugins
-    
+
     /bl-themes/     « Themes
-    
+
 
 /bl-content/
 **************
 
 .. note:: This folder is very important, it is where Bludit stores all files, as well as databases and images. Before making some update it's highly recommended to make a backup of this folder.
 
-.. important:: 
- 
+.. important::
+
  **databases/**
     **plugins/ (Database: plugins)**
         - pages.php       (Database: pages)
@@ -208,7 +208,7 @@ This folder contains the core of Bludit.
 
 This folder contains all language files, each file is a JSON document, encoded in UTF-8.
 
-/bl-languages/    
+/bl-languages/
 ++++++++++++++
     * bg_BG.json
     * cs_CZ.json
@@ -251,11 +251,11 @@ Password recovery for user *admin*
 
 When you forgot the admin password, you can reset it manually.
 
-1. Download the file recovery.php_ from Bludit_ in your `document root`_.
+1. Download the file recovery.php_ from Bludit_ in your :manual:`document root <web-documentroot>`.
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget https://raw.githubusercontent.com/bludit/password-recovery-tool/master/recovery.php
  […]
@@ -274,7 +274,7 @@ When you forgot the admin password, you can reset it manually.
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ rm recovery.php
  [isabell@stardust html]$
@@ -282,12 +282,8 @@ When you forgot the admin password, you can reset it manually.
 
 
 
-
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _Domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/bludit/bludit/releases.atom
 .. _Bludit: https://www.bludit.com
-.. _`document root`: https://manual.uberspace.de/en/web-documentroot.html
 .. _Github: https://github.com/bludit/bludit/releases
 .. _recovery.php: https://raw.githubusercontent.com/bludit/password-recovery-tool/master/recovery.php
 
