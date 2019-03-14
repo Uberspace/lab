@@ -29,7 +29,7 @@ The software is licensed under `Apache License 2.0`_. All relevant information c
 Prerequisites
 =============
 
-.. warning:: PostgreSQL has to be setup as shown in this :lab_anchor:`Guide <guide_postgresql#database-and-user-management>`! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
+.. warning:: PostgreSQL has to be setup as shown in this :lab_anchor:`Guide <guide_postgresql.html#database-and-user-management>`! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
 
 You’ll need to create a user and a database in PostgreSQL first.
 

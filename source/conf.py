@@ -93,11 +93,11 @@ extlinks = {
         ''
     ),
     'lab': (
-        'https://lab.uberspace.de/%s.html',
+        '%s.html',
         ''
     ),
     'lab_anchor': (
-        'https://lab.uberspace.de/%s',
+        '%s',
         ''
     ),
 }
