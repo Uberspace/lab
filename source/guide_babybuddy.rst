@@ -53,7 +53,7 @@ You need `pipenv`_, a package manager/virtual environment tool for Python, so in
    Downloading https://files.pythonhosted.org/packages/33/5d/314c760d4204f64e4a968275182b7751bd5c3249094757b39ba987dcfb5a/virtualenv-16.4.3-py2.py3-none-any.whl (2.0MB)
      100% |████████████████████████████████| 2.0MB 614kB/s
   […]
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. include:: includes/install-uwsgi.rst
 
@@ -155,17 +155,17 @@ Use this snippet to generate a random string to use as secret key:
   :emphasize-lines: 6,8,15,16,17,18,19,20
 
    from .base import *
-   
+
    # Production settings
    # See babybuddy.settings.base for additional settings information.
-   
+
    SECRET_KEY = '<secretkey>'
-   
+
    ALLOWED_HOSTS = ['<host>']
-   
+
    # Database
    # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-   
+
    DATABASES = {
       'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -176,9 +176,9 @@ Use this snippet to generate a random string to use as secret key:
         'PORT': '3306',
       }
    }
-   
+
    # Static files
-   
+
    MEDIA_ROOT = os.path.join(BASE_DIR, '../data/media')
 
 To work correctly with the Uberspace Proxy, you need to add this option to the end of the file:
@@ -261,7 +261,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
 .. note:: Find the location of the pipenv virtual environment for the ``virtualenv`` parameter with the following command:
 
  ::
- 
+
   [isabell@stardust ~]$ cd ~/babybuddy/public/ && pipenv --venv
   /home/isabell/.local/share/virtualenvs/public-xxxxxx
 
@@ -271,23 +271,23 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   [uwsgi]
   project = babybuddy
   base_dir = $(HOME)/babybuddy
-  
+
   virtualenv = $(HOME)/.local/share/virtualenvs/public-xxxxxx
   chdir = %(base_dir)/public
   module =  %(project).wsgi:application
   env = DJANGO_SETTINGS_MODULE=%(project).settings.production
   master = True
   vacuum = True
-  
+
   http = :<yourport>
-  
+
   wsgi-file = %(base)/public/babybuddy/wsgi.py
   touch-reload = %(wsgi-file)
-  
+
   app = wsgi
-  
+
   plugin = python
-  
+
   uid = $(USER)
   gid = $(USER)
 
@@ -311,3 +311,8 @@ Change all default passwords.
 
 .. _`Baby Buddy`: https://github.com/cdubz/babybuddy
 .. _pipenv: https://github.com/pypa/pipenv
+
+
+----
+
+.. authors::
