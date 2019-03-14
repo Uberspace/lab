@@ -1,6 +1,6 @@
 # replace with 1.7.3 once released
-git+git://github.com/sphinx-doc/sphinx@b5ddc8c6977ac964e3ba4a2eb4647decdc742f4f
-sphinx-rtd-theme==0.2.*
+sphinx>=1.7.3,<2.0.0
+sphinx-rtd-theme==0.4.*
 sphinx-autobuild==0.7.*
 feedgen==0.6.1
 ./authorship
