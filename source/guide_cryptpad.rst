@@ -1,4 +1,4 @@
-.. author:: clue404 <uberspace@datentopf.org>
+.. author:: humbug <uberspace@humbug.pw>
 .. highlight:: console
 
 .. sidebar:: Logo
