@@ -1,11 +1,8 @@
-# Lab
+# Uberspace 7 Lab
 
-The UberLab aims to provide various tutorials on how to
-setup tools and software inside an uberspace on U7.
+Welcome to our laboratory! :tada:
 
-## Official Version
-
-The official version can be found here: https://lab.uberspace.de/
+This is where we host the source code of the official version over at https://lab.uberspace.de. The lab contains a collection of guides and tips on how to run specific software on Uberspace 7. Most of the guides are contributed by users like you! So, if you'd like to change or add something here, you're more than welcome to do so. Have a look at our [contributing guidelines](CONTRIBUTING.md) to learn how. Also, have a look at the [list of guides](https://github.com/Uberspace/lab/issues?q=is%3Aopen+is%3Aissue+label%3Aguide) people are looking for!
 
 ## Development
 

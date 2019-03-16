@@ -18,15 +18,15 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -43,17 +43,18 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Install ghost-cli
------------------
+Install ghost-cli and knex-migrator
+-----------------------------------
 
-Use ``npm`` to install ``ghost-cli`` globally:
+Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally:
 
 ::
 
- [isabell@stardust ~]$ npm i -g ghost-cli
+ [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator
  [...]
- + ghost-cli@1.5.2
- added 470 packages in 16.495s
+ + ghost-cli@1.9.1
+ + knex-migrator@3.2.3
+ added 690 packages in 31.543s
  [isabell@stardust ~]$
 
 Install Ghost
@@ -63,15 +64,15 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
   * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
   * ``--no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
-  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use supervisord_ later instead.
-  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a htaccess_ file for apache_ later instead.
-  * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
+  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use :manual:`supervisord <daemons-supervisord>` later instead.
+  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a :manual_anchor:`htaccess <web-documentroot.html#own-configuration>` file for :manual_anchor:`apache <lang-nodejs.html#connection-to-webserver>` later instead.
+  * ``--no-setup-mysql``: Skips setup of :manual:`MySQL <database-mysql>`. You can't do that without root privileges.
 
 You will need to enter the following information:
 
   * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Ghost database name: we suggest you use a additional_ database. For example: isabell_ghost
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Ghost database name: we suggest you use a :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_ghost
   * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
@@ -86,7 +87,7 @@ You will need to enter the following information:
  ✔ Checking for a MySQL installation
  ✔ Checking for latest Ghost version
  ✔ Setting up install directory
- ✔ Downloading and installing Ghost v1.21.2
+ ✔ Downloading and installing Ghost v2.0.0
  ✔ Finishing install process
  ? Enter your blog URL: https://isabell.uber.space
  ? Enter your MySQL hostname: localhost
@@ -123,7 +124,7 @@ You need to adjust your ``~/ghost/config.production.json`` with the new port. Fi
 
  "server": {
    "port": 2369,
-   "host": "127.0.0.1"
+   "host": "0.0.0.0"
  },
 
 In our example this would be:
@@ -132,7 +133,7 @@ In our example this would be:
 
  "server": {
    "port": 9000,
-   "host": "127.0.0.1"
+   "host": "0.0.0.0"
  },
 
 Setup .htaccess
@@ -145,20 +146,10 @@ Setup daemon
 
 Create ``~/etc/services.d/ghost.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:ghost]
- directory=/home/<username>/ghost
- command=env NODE_ENV=production /bin/node current/index.js
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:ghost]
- directory=/home/isabell/ghost
+ directory=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
 Tell ``supervisord`` to refresh its configuration and start the service:
@@ -185,6 +176,9 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+Download and unzip new version
+------------------------------
+
 Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
@@ -193,9 +187,11 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  [isabell@stardust ~]$ cd ~/ghost/versions/
  [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
  [isabell@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
+ Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
 
-Install the required ``node`` modules:
+Install the required ``node`` modules
+-------------------------------------
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -206,13 +202,27 @@ Install the required ``node`` modules:
  added 91 packages, removed 134 packages and updated 544 packages in 27.303s
  [isabell@stardust content]$
 
-Replace the ``current`` symlink and link to the newest version. Again, replace the version number with the newest version.
+Migrate your database
+---------------------
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ rm ~/ghost/current
- [isabell@stardust ~]$ ln -s $HOME/ghost/versions/23.42.1 $HOME/ghost/current
+ [isabell@stardust ~]$ cd ~/ghost
+ [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --init --mgpath ./versions/23.42.1/
+ [2018-08-22 14:18:21] INFO Creating database backup
+ […]
+ [2018-08-22 16:18:23] INFO Finished database migration! 
+
+Replace the ``current`` symlink and link to the newest version
+--------------------------------------------------------------
+
+Again, replace the version number with the newest version.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [isabell@stardust ~]$ ln -sfn $HOME/ghost/versions/23.42.1 $HOME/ghost/current
  [isabell@stardust ~]$ supervisorctl restart ghost
  ghost: stopped
  ghost: started
@@ -223,20 +233,11 @@ Replace the ``current`` symlink and link to the newest version. Again, replace t
 If it's not in state RUNNING, check your configuration.
 
 .. _Ghost: https://ghost.org
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _settings: https://docs.ghost.org/v1/docs/cli-install
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _htaccess: https://manual.uberspace.de/en/web-documentroot.html#own-configuration
-.. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _feed: https://github.com/TryGhost/Ghost/releases.atom
 
 ----
 
-Tested with Ghost 1.22.1, Uberspace 7.1.1
+Tested with Ghost 2.0.0, Uberspace 7.1.11
 
 .. authors::

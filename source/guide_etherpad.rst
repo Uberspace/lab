@@ -1,4 +1,4 @@
-.. author:: ezzra <ezra@posteo.de>
+.. author:: ezra <ezra@posteo.de>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -10,21 +10,21 @@
 Etherpad Lite
 #############
 
-`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on Node.js_ and comes with lots of possible plugins.
+`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -45,13 +45,24 @@ First get the Etherpad Lite source code from Github_, be sure to replace the pse
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch release/66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
   remote: Counting objects: 29789, done.
   remote: Compressing objects: 100% (14/14), done.
   remote: Total 29789 (delta 9), reused 16 (delta 7), pack-reused 29768
   Receiving objects: 100% (29789/29789), 19.25 MiB | 6.07 MiB/s, done.
   Resolving deltas: 100% (21251/21251), done.
+  Note: checking out '96ac381afb9ea731dad48968f15d77dc6488bd0d'.
+
+  You are in 'detached HEAD' state. You can look around, make experimental
+  changes and commit them, and you can discard any commits you make in this
+  state without impacting any branches by performing another checkout.
+
+  If you want to create a new branch to retain commits you create, you may
+  do so (now or later) by using -b with the checkout command again. Example:
+
+    git checkout -b <new-branch-name>
+
   [isabell@stardust ~]$
 
 
@@ -100,7 +111,7 @@ You need to adjust your ``~/etherpad/settings.json`` with the new port. Find the
   "ip": "0.0.0.0",
   "port" : 9001,
 
-You also need to set up the MySQL_ database settings, therefore you should completely replace these codeblocks:
+You also need to set up the :manual:`MySQL <database-mysql>` database settings, therefore you should completely replace these codeblocks:
 
 .. code-block:: none
 
@@ -148,23 +159,14 @@ Setup daemon
 
 Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:etherpad]
- command=/home/<username>/etherpad/bin/run.sh
+ command=%(ENV_HOME)s/etherpad/bin/run.sh
  environment=NODE_ENV="production"
+ autorestart=true
 
-In our example this would be:
-
-.. code-block:: ini
-
- [program:etherpad]
- command=/home/isabell/etherpad/bin/run.sh
- environment=NODE_ENV="production"
-
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -186,6 +188,10 @@ Personalization
 
 Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there.
 
+You can also personalize the look of your installation by including custom css- oder js-files. See `Custom static files`_ in the documentation for further information.
+
+**Important**: You need to place your custom-files in ``~/etherpad/node_modules/ep_etherpad-lite/static/custom`` **not** ``~/etherpad/static/custom`` for being recognized by your installation.
+
 Updates
 =======
 
@@ -197,14 +203,13 @@ If there is a new version available, you can get the code using git. Replace the
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
-  [isabell@stardust ~]$ git pull origin release/66.6.6
-  From git://github.com/ether/etherpad-lite
-  * branch              release/66.6.6 -> FETCH_HEAD
-  Updating e84c6962..1e25e7fc
+  [isabell@stardust etherpad]$ git checkout  -- src/package.json
+  [isabell@stardust etherpad]$ git pull origin 66.6.6
+  From https://github.com/ether/etherpad-lite
+   * tag                 66.6.6      -> FETCH_HEAD
+  Updating b8b2e4bc..96ac381a
   Fast-forward
-  [...]
-  32 files changed, 2033 insertions(+), 212 deletions(-)
-  [...]
+  […]
   [isabell@stardust ~]$
 
 Then you need to restart the service daemon, so the new code is used by the webserver:
@@ -216,19 +221,15 @@ Then you need to restart the service daemon, so the new code is used by the webs
   etherpad: started
   [isabell@stardust ~]$
 
-
+It might take a few minutes before your Etherpad comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f etherpad``.
 
 .. _`Etherpad Lite`: http://etherpad.org/
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
+.. _`Custom static files`: http://etherpad.org/doc/v1.6.2/#index_custom_static_files
 
 ----
 
-Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1
+Tested with Etherpad Lite 1.7.0 and Uberspace 7.1.15.0
 
 .. authors::

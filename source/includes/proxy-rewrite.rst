@@ -2,7 +2,7 @@ Create a ``~/html/.htaccess`` file with the following content:
 
 .. warning:: Replace ``<yourport>`` with your port!
 
-.. code-block:: none
+.. code-block:: apache
  :emphasize-lines: 4
 
  DirectoryIndex disabled
@@ -12,9 +12,9 @@ Create a ``~/html/.htaccess`` file with the following content:
 
 In our example this would be:
 
-.. code-block:: none
+.. code-block:: apache
 
  DirectoryIndex disabled
 
  RewriteEngine On
- RewriteRule ^(.*) http://localhost:9000/$1 [P]
+ RewriteRule ^(.*)$ http://127.0.0.1:9000/$1 [P]

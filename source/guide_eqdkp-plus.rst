@@ -17,14 +17,14 @@ It is focused on supporting guilds and clans playing online games, especially MM
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -41,7 +41,7 @@ If you want to use your EQdkp Plus with your own domain you need to setup your d
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of EQdkp Plus and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of EQdkp Plus and extract it:
 
 ::
 
@@ -57,8 +57,8 @@ Installation
 Now point your browser to your uberspace URL and follow the instructions of the Installer Assistent.
 
 You will need to enter the following information:
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your EQdkp Plus database name: we suggest you use an additional_ database. For example: isabell_eqdkp
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your EQdkp Plus database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_eqdkp
   * an encryption key: choose a strong encryption key, as sensitive data is encrypted using this key. You can generate a strong key using ``openssl``:
 
   ::
@@ -79,12 +79,6 @@ The easiest way to update EQdkp Plus is to use the web updater provided in the a
 .. note:: Check the `news <https://eqdkp-plus.eu/>`_ regularly to stay informed about new updates and releases.
 
 .. _EQdkp-Plus: https://eqdkp-plus.eu
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 
 ----
 

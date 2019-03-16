@@ -17,8 +17,8 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_ and its package manager pip
-  * supervisord_
+  * :manual:`Python <lang-python>` and its package manager pip
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -84,7 +84,7 @@ Since Django applications use their own webserver, you need to find a free port 
 Setup .htaccess
 ---------------
 
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/proxy-rewrite-static.rst
 
 Setup daemon
 ------------
@@ -150,8 +150,6 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 
 .. _Django: https://www.djangoproject.com/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 
