@@ -43,12 +43,11 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 6:
  Selected Node.js version 6
  [isabell@stardust ~]$
 
-We also need `Bower`_ and `Forever.js`_:
+We also need `Bower`:
 
 ::
 
  [isabell@stardust ~]$ npm install -g bower
- [isabell@stardust ~]$ npm install -g forever
  [isabell@stardust ~]$
 
 Installation
@@ -107,16 +106,27 @@ Due to the Web Backends we don't need to mess with ``.htaccess`` or any other co
 Setup daemon
 ------------
 
-I had some problems using ``supervisorctl`` so I changed it to the recommended ``forever.js``.
+Create ``~/etc/services.d/cryptpad.ini`` with the following content:
+
+.. warning:: Set ``directory`` to the directory of cryptpad!
+
+.. code-block:: ini
+
+ [program:cryptpad]
+ directory=%(ENV_HOME)s/html
+ command=node server
+ autostart=yes
+ autorestart=yes
+ 
+Now let's start the service:
 
 .. code-block:: console
 
- [isabell@stardust html]$ forever start server.js
- [isabell@stardust html]$ forever list
- info:    Forever processes running
- data:        uid  command               script    forever pid  id logfile                         uptime
- data:    [0] WsD- /opt/nodejs8/bin/node server.js 5509    7741    /home/isabell/.forever/WsD-.log 0:0:50:10.757
-
+ [isabell@stardust html]$ supervisorctl reread
+ [isabell@stardust html]$ supervisorctl update
+ [isabell@stardust html]$ supervisorctl start cryptpad
+ [isabell@stardust html]$ supervisorctl status
+ cryptpad                         RUNNING   pid 23323, uptime 0:07:29
 
 
 Best practices
@@ -142,14 +152,11 @@ If there is a new version available, you can get the code using git. Replace the
   Already up to date.
   [isabell@stardust html]$
 
-Then you need to restart forever, so the new code is used by the webserver:
+Then you need to restart the service, so the new code is used by the webserver:
 
 .. code-block:: console
 
-  [isabell@stardust html]$ forever restartall
-  info:    Forever restarted processes:
-  data:        uid  command               script    forever pid  id logfile                         uptime
-  data:    [0] WsD- /opt/nodejs8/bin/node server.js 5509    7741    /home/isabell/.forever/WsD-.log 0:0:55:19.190
+  [isabell@stardust html]$ supervisorctl restart cryptpad
   [isabell@stardust html]$
 
 .. _`Cryptpad`: https://cryptpad.fr/
@@ -157,7 +164,6 @@ Then you need to restart forever, so the new code is used by the webserver:
 .. _`Web Backends`: https://blog.uberspace.de/web-backends-websockets/
 .. _`hallo@uberspace.de`: hallo@uberspace.de
 .. _`Bower`: https://bower.io/
-.. _`Forever.js`: https://github.com/foreverjs/forever/
 .. _Github: https://github.com/xwiki-labs/cryptpad
 .. _feed: https://github.com/xwiki-labs/cryptpad/releases
 .. _`Wiki`: https://github.com/xwiki-labs/cryptpad/wiki/
