@@ -117,7 +117,7 @@ Create ``~/etc/services.d/cryptpad.ini`` with the following content:
  command=node server
  autostart=yes
  autorestart=yes
- 
+
 Now let's start the service:
 
 .. code-block:: console
@@ -129,7 +129,6 @@ Now let's start the service:
  cryptpad                         RUNNING   pid 23323, uptime 0:07:29
 
 
-Best practices
 Customization
 =============
 
