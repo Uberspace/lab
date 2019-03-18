@@ -92,26 +92,17 @@ Create the folder ``~/mongodb``. Your databases will be stored there.
 Configuration
 =============
 
-Configure port
---------------
-
-MongoDB needs a free TCP port to listen for connections. Run this snippet to find one:
-
-.. include:: includes/generate-port.rst
-
 Setup daemon
 ------------
 
-Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` with the following content. Replace ``<yourport>`` with the port from the previous step.
+Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` with the following content.
 
 .. code-block:: ini
- :emphasize-lines: 5
 
  [program:mongodb]
  command=mongod
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
-   --port <yourport>
    --auth
    --smallfiles
    --unixSocketPrefix %(ENV_HOME)s/mongodb
@@ -156,12 +147,12 @@ Create ``~/mongodb/setup.js``. Replace ``<username>`` with your Uberspace user n
     }
  )
 
-Use ``mongo`` to run ``setup.js``. Replace ``<yourport>`` with your MongoDB port.
+Use ``mongo`` to run ``setup.js``.
 
 .. code-block:: bash
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mongo --port <yourport> admin ~/mongodb/setup.js
+ [isabell@stardust ~]$ mongo admin ~/mongodb/setup.js
  MongoDB shell version v4.0.5
  connecting to: mongodb://127.0.0.1:63325/admin?gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("0ddef66e-e716-4ef2-bbc2-a50dfc3fad7e") }
@@ -172,19 +163,11 @@ Use ``mongo`` to run ``setup.js``. Replace ``<yourport>`` with your MongoDB port
 .mongorc.js (optional)
 ----------------------
 
-To make CLI access using the ``mongo`` command easier, you can create a ``~/.mongorc.js`` file. Every command in this file is executed whenever you run ``mongo``, so to avoid having to enter your password every time, you can store an authentication command there. Replace ``<username>``, ``<password>`` and ``<yourport>`` with your own values.
+To make CLI access using the ``mongo`` command easier, you can create a ``~/.mongorc.js`` file. Every command in this file is executed whenever you run ``mongo``, so to avoid having to enter your password every time, you can store an authentication command there. Replace ``<username>`` and ``<password>`` with your own values.
 
 .. code-block:: none
 
- db = connect("mongodb://<username>_mongoadmin:<password>@127.0.0.1:<yourport>/admin")
-
-Since ``mongo`` tries to connect to the default MongoDB port before executing ``.mongorc.js``, you need to run it with the ``--nodb`` parameter. Set an alias in your ``~/.bash_profile`` to do this automatically:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ echo "alias mongo='mongo --nodb'" >> ~/.bash_profile
- [isabell@stardust ~]$ source ~/.bash_profile
- [isabell@stardust ~]$ 
+ db = connect("mongodb://<username>_mongoadmin:<password>@127.0.0.1:27017/admin")
 
 Now you can just run ``mongo`` to connect to your MongoDB instance:
 
