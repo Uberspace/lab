@@ -51,8 +51,8 @@ Use ``wget`` to download the latest release_.
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://github.com/minim-one/minim/archive/master.zip
- [isabell@stardust html]$ unzip minim-master.zip
- [isabell@stardust html]$ rm minim-master.zip
+ [isabell@stardust html]$ unzip master.zip
+ [isabell@stardust html]$ rm master.zip
  [isabell@stardust html]$ mv minim-master minim
  [isabell@stardust html]$
 
@@ -62,9 +62,9 @@ Configuration
 Customization
 -------------
 
-You can leave the configuration_ in ``config/config.php`` or do changes as you want to.
+You can leave the configuration_ in ``minim/config/config.php`` or do changes as you want to.
 
-Create your own theme in ``themes``. Just copy the default theme or create one from scratch.
+Create your own theme in ``minim/themes``. Just copy the default theme or create one from scratch.
 
 Finishing installation
 ======================
