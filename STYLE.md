@@ -12,7 +12,6 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * If any applications need to bind to one or more ports (like Node.js apps), use port 9000 - 9010 in your examples, which are never free on our servers.
  * Use the templates in `source/includes/` where appropriate.
  * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
  * When there is a license needed for the software mention it.
@@ -185,11 +184,8 @@ Step 2
 Configuration
 =============
 
-Configure port
---------------
-
-Setup .htaccess
----------------
+Configure Webserver
+-------------------
 
 Setup daemon
 ------------
