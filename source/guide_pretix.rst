@@ -79,14 +79,6 @@ Install the requirements for pretix_:
  
 Step 3
 ------
-To work correctly with the Uberspace Proxy, you need to add this option to the end of the file ``~/pretix/src/pretix/settings.py``:
-
-.. code-block:: ini
-
-   USE_X_FORWARDED_HOST = True 
-
-Step 4
-------
 Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and insert the following content:
 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
@@ -115,7 +107,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     port=587
     tls=on
 
-Step 5
+Step 4
 ------
 Run this code to create the database ``<username>_pretix`` in MySQL:
 
@@ -133,7 +125,7 @@ You will also need to install a mysqlclient package:
  Successfully installed mysqlclient-1.3.13
  [isabell@stardust ~]$
 
-Step 6
+Step 5
 ------
 Initialize the pretix_ database tables and generate the static files:
 
@@ -144,7 +136,7 @@ Initialize the pretix_ database tables and generate the static files:
  [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py migrate
  [isabell@stardust ~]$
 
-Step 7
+Step 6
 ------
 Install Gunicorn_ as backend server:
 
@@ -153,38 +145,24 @@ Install Gunicorn_ as backend server:
  [isabell@stardust ~]$ pip3.6 install gunicorn --user
  [isabell@stardust ~]$
 
+Step 7
+------
+
+.. note::
+
+    Pretix is running on port 8000.
+
+.. include:: includes/web-backend.rst
+
 Step 8
-------
-Get a free port number:
-
-.. include:: includes/generate-port.rst
-
-Step 9
-------
-
-.. include:: includes/proxy-rewrite.rst
-
-Step 10
 -------
 
 Finally, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
 
-.. warning:: Replace ``<yourport>`` with the new portnumber you got!
-
 .. code-block:: ini
 
  [program:pretix]
- command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:<yourport> --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
- autostart=true
- autorestart=true
- stopsignal=INT
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:pretix]
- command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 127.0.0.1:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --chdir %(ENV_HOME)s/pretix/src --bind 0.0.0.0:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  autostart=true
  autorestart=true
  stopsignal=INT
@@ -204,9 +182,9 @@ Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration an
 If it's not in state RUNNING, check your configuration.
 
 
-Step 11
--------
+Step 9
 Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control``. 
+------
 
 Use ``admin@localhost`` as username and ``admin`` as password for your first login. You should change this password immediately after login!
 

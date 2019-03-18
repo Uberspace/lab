@@ -90,24 +90,16 @@ Configuration
 =============
 
 
-Configure port
---------------
-
-Since Radicale uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
-
 Create config files
 -------------------
 
-You need to enter this to ``~/.config/radicale/config`` and adjust the new port.
+Save the following as your radicale configuration in ``~/.config/radicale/config``.
 
 .. code-block:: ini
   :emphasize-lines: 2,6
 
   [server]
-  hosts = localhost:<port>
+  hosts = localhost:8000
 
   [auth]
   type = htpasswd
@@ -176,9 +168,9 @@ In order for your Radicale instance to be reachable from the web, you need to pu
   DirectoryIndex disabled
 
   RewriteEngine On
-  RewriteRule ^(.*) http://localhost:<port>/$1 [P]
+  RewriteRule ^(.*) http://<username>.local.uberspace.de:8000/$1 [P]
 
-Again, don't forget to fill in your port number and username!
+Again, don't forget to fill in your username!
 
 
 Start Service

@@ -107,13 +107,6 @@ Mailman 3 uses LMTP to transfer emails locally. As :manual_anchor:`qmail <basics
 
 Configuration
 =============
-Get a free port
----------------
-
-We need to find a couple of free ports and bind your application to it.  Since Mailman Core itself exposes a REST interface, Postorius and HyperKitty run as Django applications with their own webserver and we need a LMTP port for local mail forwarding from :manual_anchor:`qmail <basics-home.html#qmail>` to Mailman, you will need to execute the following code multiple times (directly before you are going to change the respective configurations).
-
-.. include:: includes/generate-port.rst
-
 
 Configure Mailman Core
 ----------------------
@@ -126,7 +119,6 @@ At first, we need to configure the REST interface of the core component. Create 
  incoming: mailman.mta.null.NullMTA
  lmtp_host: localhost
  smtp_host: stardust.uberspace.de
- # First free port
  lmtp_port: 9000
  smtp_port: 587 
  smtp_user: forwarder@isabell.uber.space
@@ -134,7 +126,6 @@ At first, we need to configure the REST interface of the core component. Create 
 
  [webservice]
  hostname: localhost
- # Second free port
  port: 9001
  use_https: no
  admin_user: restadmin
@@ -217,7 +208,6 @@ After the REST backend has been configured, we need to configure the Django fron
      # And more...
  ]
 
- # Second free port from above
  MAILMAN_REST_API_URL = 'http://localhost:9001' 
  MAILMAN_REST_API_USER = 'see_above'
  MAILMAN_REST_API_PASS = 'see_above'
@@ -298,9 +288,19 @@ When Django is configured, we need to rename the example site to match our needs
 
  [isabell@stardust mailman-suite]$
 
-.. include:: includes/proxy-rewrite-static.rst
+.. note::
 
-Please be sure to use the third free port, e.g. 9003!
+    mailman is running on port 9003.
+
+.. include:: includes/web-backend.rst
+
+Additionally, serve static files using apache:
+
+::
+
+  [isabell@stardust ~]$ uberspace web backend set /static --apache
+  Set backend for / to apache.
+  [isabell@stardust ~]$
 
 Finally, to be able to call and execute our Django app, we need to create ``~/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
 
@@ -309,7 +309,6 @@ Finally, to be able to call and execute our Django app, we need to create ``~/uw
  [uwsgi]
  chdir = /home/isabell/mailman-suite
  
- # Third free port
  http-socket = 0.0.0.0:9003
  master = true
  process = 2

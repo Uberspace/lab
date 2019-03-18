@@ -60,13 +60,6 @@ Use ``npm`` to install the latest version of Embetty server:
 Configuration
 =============
 
-Configure port
---------------
-
-Since Embetty uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Change the configuration
 ------------------------
 
@@ -82,9 +75,9 @@ Create ``~/etc/services.d/embetty.ini`` with the following content:
 
  [program:embetty]
  command=embetty start
- environment=PORT="<port>",TWITTER_ACCESS_TOKEN_KEY="<accesstoken>",TWITTER_ACCESS_TOKEN_SECRET="<accesstokensecret>",TWITTER_CONSUMER_KEY="<consumerkey>",TWITTER_CONSUMER_SECRET="<consumersecret>"
+ environment=TWITTER_ACCESS_TOKEN_KEY="<accesstoken>",TWITTER_ACCESS_TOKEN_SECRET="<accesstokensecret>",TWITTER_CONSUMER_KEY="<consumerkey>",TWITTER_CONSUMER_SECRET="<consumersecret>"
 
-.. note:: If you don't need Twitter support, you can leave out the ``TWITTER_`` variables and only set ``PORT``.
+.. note:: If you don't need Twitter support, you can leave out the ``TWITTER_`` variables.
 
 In our example this would be:
 
@@ -92,7 +85,7 @@ In our example this would be:
 
  [program:embetty]
  command=embetty start
- environment=PORT="9000",TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
+ environment=TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
@@ -108,29 +101,14 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 
 If it's not in state RUNNING, check your configuration.
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-Create a ``~/html/.htaccess`` file with the following content:
+.. note::
 
-.. warning:: Replace ``<yourport>`` with your port!
+    Embetty is running on port 3000. If you want to host Embetty on the same Uberspace as your website, use ``/embetty`` as URI.
 
-.. code-block:: none
- :emphasize-lines: 4
-
- DirectoryIndex disabled
-
- RewriteEngine On
- RewriteRule ^embetty/(.*) http://localhost:<yourport>/$1 [P]
-
-In our example this would be:
-
-.. code-block:: none
-
- DirectoryIndex disabled
-
- RewriteEngine On
- RewriteRule ^embetty/(.*) http://localhost:9000/$1 [P]
+.. include:: includes/web-backend.rst
 
 Usage
 =====

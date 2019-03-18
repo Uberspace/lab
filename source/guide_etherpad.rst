@@ -82,13 +82,6 @@ Then run the etherpad script, to install the dependencies:
 Configuration
 =============
 
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Set up a Database
 -----------------
 
@@ -102,16 +95,7 @@ Run the following code to create the database ``<username>_etherpad`` in MySQL:
 Change the configuration
 ------------------------
 
-You need to adjust your ``~/etherpad/settings.json`` with the new port. Find the following code block and change port 9001 to your own port:
-
-.. code-block:: none
- :emphasize-lines: 3
-
-  //IP and port which etherpad should bind at
-  "ip": "0.0.0.0",
-  "port" : 9001,
-
-You also need to set up the :manual:`MySQL <database-mysql>` database settings, therefore you should completely replace these codeblocks:
+You need to set up the MySQL_ database settings in ``~/etherpad/settings.json``. Replace the whole codeblocks:
 
 .. code-block:: none
 
@@ -139,20 +123,24 @@ with the following. Be sure to replace ``<username>`` with your username (2 time
 .. code-block:: none
  :emphasize-lines: 4,6,7
 
-  //MySQL Configuration
-  "dbType" : "mysql",
-  "dbSettings" : {
-                    "user"    : "<username>",
-                    "host"    : "localhost",
-                    "password": "<mysql_password>",
-                    "database": "<username>_etherpad",
-                    "charset" : "utf8mb4"
-                  },
+ //MySQL Configuration
+ "dbType" : "mysql",
+ "dbSettings" : {
+                   "user"    : "<username>",
+                   "host"    : "localhost",
+                   "password": "<mysql_password>",
+                   "database": "<username>_etherpad",
+                   "charset" : "utf8mb4"
+                 },
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-.. include:: includes/proxy-rewrite.rst
+.. note::
+
+    etherpad-lite is running on port 9001.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
