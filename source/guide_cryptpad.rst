@@ -28,19 +28,19 @@ After we're enrolled into the beta, we need to setup the Web Backends:
 
 ::
 
-  [isabell@stardust ~]$ uberspace web backend set isabell.uber.space --http --port 3000
-  Set backend for isabell.uber.space/ to port 3000; please make sure something is listening!
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 3000
+  Set backend for / to port 3000; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
 Now let's get started with Cryptpad.
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 6:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 6
- Selected Node.js version 6
+ [isabell@stardust ~]$ uberspace tools version use node 10
+ Selected Node.js version 10
  [isabell@stardust ~]$
 
 We also need `Bower`:
@@ -57,8 +57,8 @@ Start with cloning the Cryptpad source code from Github_ and be sure to replace 
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 2.18.0 https://github.com/xwiki-labs/cryptpad.git ~/html
-  Cloning into '~/html'...
+  [isabell@stardust ~]$ git clone --branch 2.18.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  Cloning into '~/cryptpad'...
   remote: Enumerating objects: 172, done.
   remote: Counting objects: 100% (172/172), done.
   remote: Compressing objects: 100% (105/105), done.
@@ -84,9 +84,9 @@ Now we need to install some dependencies:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust html]$ npm install
-  [isabell@stardust html]$ bower install
+  [isabell@stardust ~]$ cd ~/cryptpad
+  [isabell@stardust cryptpad]$ npm install
+  [isabell@stardust cryptpad]$ bower install
 
 
 Configuration
@@ -97,7 +97,7 @@ Copy example configuration
 
 .. code-block:: console
 
-  [isabell@stardust html]$ cp config.example.js config.js
+  [isabell@stardust cryptpad]$ cp config.example.js config.js
 
 Change the value of the variable ``_domain`` to match your newly created ``https://isabell.uber.space``.
 
@@ -113,7 +113,7 @@ Create ``~/etc/services.d/cryptpad.ini`` with the following content:
 .. code-block:: ini
 
  [program:cryptpad]
- directory=%(ENV_HOME)s/html
+ directory=%(ENV_HOME)s/cryptpad
  command=node server
  autostart=yes
  autorestart=yes
@@ -124,7 +124,6 @@ Now let's start the service:
 
  [isabell@stardust html]$ supervisorctl reread
  [isabell@stardust html]$ supervisorctl update
- [isabell@stardust html]$ supervisorctl start cryptpad
  [isabell@stardust html]$ supervisorctl status
  cryptpad                         RUNNING   pid 23323, uptime 0:07:29
 
@@ -144,19 +143,19 @@ If there is a new version available, you can get the code using git. Replace the
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust html]$ git pull origin 2.18.0
+  [isabell@stardust ~]$ cd ~/cryptpad
+  [isabell@stardust cryptpad]$ git pull origin 2.18.0
   From https://github.com/xwiki-labs/cryptpad
    * tag                 2.18.0     -> FETCH_HEAD
   Already up to date.
-  [isabell@stardust html]$
+  [isabell@stardust cryptpad]$
 
 Then you need to restart the service, so the new code is used by the webserver:
 
 .. code-block:: console
 
-  [isabell@stardust html]$ supervisorctl restart cryptpad
-  [isabell@stardust html]$
+  [isabell@stardust cryptpad]$ supervisorctl restart cryptpad
+  [isabell@stardust cryptpad]$
 
 .. _`Cryptpad`: https://cryptpad.fr/
 .. _`ChainPad`: https://github.com/xwiki-contrib/chainpad/
