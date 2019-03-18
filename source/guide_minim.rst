@@ -1,4 +1,4 @@
-.. author:: minim <https://minim.one/>
+.. author:: minim <https://github.com/minim-one/>
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -24,15 +24,15 @@ It'is ideal for simple travel blogs or publishing news. It has an easy administr
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.2:
+We're using :manual:`PHP <lang-php>` in the stable version 7.3:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
+ [isabell@stardust ~]$ uberspace tools version use php 7.3
+ Selected PHP version 7.3
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '7.3'
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -50,9 +50,10 @@ Use ``wget`` to download the latest release_.
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://minim.one/downloads/?latest -O minim-latest.zip
- [isabell@stardust html]$ unzip minim-latest.zip
- [isabell@stardust html]$ rm minim-latest.zip
+ [isabell@stardust html]$ wget https://github.com/minim-one/minim/archive/master.zip
+ [isabell@stardust html]$ unzip master.zip
+ [isabell@stardust html]$ rm master.zip
+ [isabell@stardust html]$ mv minim-master minim
  [isabell@stardust html]$
 
 Configuration
@@ -61,9 +62,9 @@ Configuration
 Customization
 -------------
 
-You can leave the configuration_ in ``config/config.php`` or do changes as you want to.
+You can leave the configuration_ in ``minim/config/config.php`` or do changes as you want to.
 
-Create your own theme in ``themes``. Just copy the default theme or create one from scratch.
+Create your own theme in ``minim/themes``. Just copy the default theme or create one from scratch.
 
 Finishing installation
 ======================
@@ -88,24 +89,24 @@ Check minim's feed_ for the latest version.
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://minim.one/downloads/?latest -O minim-latest.zip
+ [isabell@stardust html]$ wget https://github.com/minim-one/minim/archive/master.zip -O minim-master.zip
  [isabell@stardust html]$ cp -r minim minim-backup
- [isabell@stardust html]$ unzip minim-latest.zip -d minim-latest
- [isabell@stardust html]$ mv minim-latest/minim/config minim-latest/minim/config-new
- [isabell@stardust html]$ cp -r minim-latest/minim ./
- [isabell@stardust html]$ rm -rf minim-latest*
+ [isabell@stardust html]$ unzip minim-master.zip
+ [isabell@stardust html]$ mv minim-master/minim/config minim-master/minim/config-new
+ [isabell@stardust html]$ cp -r minim-master/minim ./
+ [isabell@stardust html]$ rm -rf minim-master*
  [isabell@stardust html]$
 
 Check if the configuration_ changed in ``config-new/config.php`` and your ``config/config.php`` (happens very rarely).
 If everything works alright you can delete the ``config-new`` directory.
 
-.. _minim: https://minim.one/
-.. _configuration: https://minim.one/docs/
-.. _feed: https://minim.one/rss/
-.. _release: https://minim.one/downloads/
+.. _minim: https://github.com/minim-one/minim
+.. _configuration: https://github.com/minim-one/minim
+.. _feed: https://github.com/minim-one/minim
+.. _release: https://github.com/minim-one/minim
 
 ----
 
-Tested with minim 0.9.2, Uberspace 7.1.14
+Tested with minim 0.9.4, Uberspace 7.2.4
 
 .. authors::
