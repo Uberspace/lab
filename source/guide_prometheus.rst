@@ -77,31 +77,26 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 Configuration
 =============
 
-Configure port
---------------
+Configure web server
+--------------------
 
-Prometheus_ uses its own webserver, so you'll need to find a free port and bind prometheus_ to it.
+.. note::
 
-.. include:: includes/generate-port.rst
+    prometheus is running on port 9090.
 
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
 
 Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 
-.. warning:: Replace ``<yourport>`` with your port!
-
 .. code-block:: ini
   :emphasize-lines: 3,7
 
   [program:prometheus]
   command=prometheus
-    --web.listen-address=localhost:<yourport>
+    --web.listen-address=localhost:9090
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
     --storage.tsdb.retention=15d
@@ -171,7 +166,7 @@ To quote the `prometheus security documentation <https://prometheus.io/docs/oper
 
 As stated in the security documentation, it is ok to make prometheus reachable for everyone as long as only you are able to change the configuration files and the CLI arguments.
 
-If this is something you do not want to do, you could hide it behind a basic auth. But keep in mind that by doing so, all other users of your uberspace host would still be able to access the prometheus webinterface!
+If this is something you do not want to do, you could hide it behind a basic auth.
 
 .. _Prometheus: https://prometheus.io/
 
