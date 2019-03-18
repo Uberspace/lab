@@ -240,15 +240,14 @@ Enter the virtual environment, initialize the database tables and exit the virtu
 Configuration
 =============
 
-Configure port
---------------
+Configure web server
+--------------------
 
-.. include:: includes/generate-port.rst
+.. note::
 
-Setup .htaccess
----------------
+    babybuddy is running on port 8000.
 
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Setup service
 -------------
@@ -256,7 +255,6 @@ Setup service
 To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/babybuddy.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
-.. warning:: Replace ``<yourport>`` with your port!
 
 .. note:: Find the location of the pipenv virtual environment for the ``virtualenv`` parameter with the following command:
 
@@ -266,7 +264,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   /home/isabell/.local/share/virtualenvs/public-xxxxxx
 
 .. code-block:: ini
-  :emphasize-lines: 5,12
+  :emphasize-lines: 5
 
   [uwsgi]
   project = babybuddy
@@ -279,7 +277,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   master = True
   vacuum = True
 
-  http = :<yourport>
+  http = :8000
 
   wsgi-file = %(base)/public/babybuddy/wsgi.py
   touch-reload = %(wsgi-file)
