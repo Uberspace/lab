@@ -115,7 +115,6 @@ Create ``~/etc/services.d/cryptpad.ini`` with the following content:
  [program:cryptpad]
  directory=%(ENV_HOME)s/cryptpad
  command=node server
- autostart=yes
  autorestart=yes
 
 Now let's start the service:
