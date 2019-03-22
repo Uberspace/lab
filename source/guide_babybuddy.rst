@@ -292,20 +292,9 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
 Finishing installation
 ======================
 
-Point your browser to https://isabell.uber.space and log in with the default credentials.
+Point your browser to https://isabell.uber.space and log in with the default credentials ``admin``/``admin``.
 
-.. note:: Default credentials:
-
- * username ``admin``
- * password ``admin``
-
-Best practices
-==============
-
-Security
---------
-
-Change all default passwords.
+.. warning:: Change the default credentials as soon as possible! Otherwise anyone knowing the URL of your instance can login to download, edit or delete your data.
 
 .. _`Baby Buddy`: https://github.com/cdubz/babybuddy
 .. _pipenv: https://github.com/pypa/pipenv
