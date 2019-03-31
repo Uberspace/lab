@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Marco Krage <marco@my-azur.de>
+.. author:: Marco Krage <https://my-azur.de>
 
 .. sidebar:: Logo
 
