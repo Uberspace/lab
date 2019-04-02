@@ -69,7 +69,7 @@ In this guide we are using the document root rather than an subfolder.
  [isabell@stardust html]$ rm -r processwire-master/
  [isabell@stardust html]$
 
-.. important:: Edit ``htaccess.txt`` and comment out the line ``Options +FollowSymLinks``. This option is not allowed on a Uberspace an will lead to a Internal Server Error.
+.. important:: Edit ``htaccess.txt`` and comment line ``Options +FollowSymLinks`` and uncomment ``Options +SymLinksIfOwnerMatch``.
 
 Configuration
 =============
