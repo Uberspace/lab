@@ -16,7 +16,7 @@ Cryptpad
 
 .. note:: For this guide you need some tools:
 
-  * `Web Backends`_ (You have to opt-in the Beta. Write an E-Mail to `hallo@uberspace.de`_
+  * :manual:`web backends <web-backends>`
   * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
@@ -24,7 +24,7 @@ Cryptpad
 Prerequisites
 =============
 
-After we're enrolled into the beta, we need to setup the Web Backends:
+Set up the backends:
 
 ::
 
@@ -53,11 +53,11 @@ We also need `Bower`:
 Installation
 ============
 
-Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``2.18.0`` with the current release number from the feed_:
+Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``2.19.0`` with the current release number from the feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 2.18.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 2.19.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
   remote: Enumerating objects: 172, done.
   remote: Counting objects: 100% (172/172), done.
@@ -99,16 +99,12 @@ Copy example configuration
 
   [isabell@stardust cryptpad]$ cp config.example.js config.js
 
-Change the value of the variable ``_domain`` to match your newly created ``https://isabell.uber.space``.
-
-Due to the Web Backends we don't need to mess with ``.htaccess`` or any other configuration.
+Edit ``config.js`` and change the value of the variable ``_domain`` to your domain.
 
 Setup daemon
 ------------
 
 Create ``~/etc/services.d/cryptpad.ini`` with the following content:
-
-.. warning:: Set ``directory`` to the directory of cryptpad!
 
 .. code-block:: ini
 
@@ -130,7 +126,7 @@ Now let's start the service:
 Customization
 =============
 
-For any futher configuration or customization you should have a look at the `Wiki`_.
+For any futher configuration or customization you should have a look at the `Cryptpad Wiki`_.
 
 Updates
 =======
@@ -138,14 +134,14 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the pseudo version number ``2.18.0`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the version number ``2.19.0`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
-  [isabell@stardust cryptpad]$ git pull origin 2.18.0
+  [isabell@stardust cryptpad]$ git pull origin 2.19.0
   From https://github.com/xwiki-labs/cryptpad
-   * tag                 2.18.0     -> FETCH_HEAD
+   * tag                 2.19.0     -> FETCH_HEAD
   Already up to date.
   [isabell@stardust cryptpad]$
 
@@ -158,15 +154,13 @@ Then you need to restart the service, so the new code is used by the webserver:
 
 .. _`Cryptpad`: https://cryptpad.fr/
 .. _`ChainPad`: https://github.com/xwiki-contrib/chainpad/
-.. _`Web Backends`: https://blog.uberspace.de/web-backends-websockets/
-.. _`hallo@uberspace.de`: hallo@uberspace.de
 .. _`Bower`: https://bower.io/
 .. _Github: https://github.com/xwiki-labs/cryptpad
 .. _feed: https://github.com/xwiki-labs/cryptpad/releases
-.. _`Wiki`: https://github.com/xwiki-labs/cryptpad/wiki/
+.. _`Cryptpad Wiki`: https://github.com/xwiki-labs/cryptpad/wiki/
 
 ----
 
-Tested with Cryptpad 2.18.0 and Uberspace 7.2.4.0
+Tested with Cryptpad 2.19.0 and Uberspace 7.2.4.0
 
 .. authors::
