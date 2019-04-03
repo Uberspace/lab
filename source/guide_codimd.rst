@@ -11,7 +11,7 @@ CodiMD
 ######
 
 CodiMD_ lets you create real-time collaborative markdown notes on all platforms.
-Inspired by Hackpad, with more focus on speed and flexibility, and build from HackMD_ source code.
+Inspired by Hackpad, with more focus on speed and flexibility, and built from HackMD_ source code.
 
 ----
 
@@ -361,7 +361,7 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 
 
 .. _HackMD: https://hackmd.io/
-.. _CodiMD: https://github.com/hackmdio/codimd
+.. _CodiMD: https://github.com/codimd
 .. _release: https://github.com/hackmdio/codimd/releases
 
 ----
