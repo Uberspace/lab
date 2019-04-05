@@ -17,7 +17,7 @@ Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
   * Ruby_
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
@@ -78,13 +78,6 @@ Create the folder for logs:
 Configuration
 =============
 
-Configure port
---------------
-
-You need to find a free port to bind Puma to it.
-
-.. include:: includes/generate-port.rst
-
 Puma configuration file
 -----------------------
 
@@ -98,7 +91,7 @@ Next, create a Puma configuration file:
 ... and add the following content. Adapt the highlighted lines to your setup.
 
 .. code-block:: none
-  :emphasize-lines: 4,7,10,13
+  :emphasize-lines: 4,7,13
 
   #!/usr/bin/env puma
 
@@ -139,19 +132,14 @@ Tell ``supervisord`` to refresh its configuration and start the service:
   puma: added process group
   [isabell@stardust ~]$ 
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-Create the file ``~/html/.htaccess`` with the following content to forward requests from the outside to Puma. Adapt the highlighted lines to your setup.
+.. note::
 
-.. code-block:: none
-  :emphasize-lines: 4
+    puma is running on port 9000.
 
-  DirectoryIndex disabled
-
-  RewriteEngine On
-  RewriteRule ^(.*) http://localhost:9000/$1 [P]
-
+.. include:: includes/web-backend.rst
 
 Test
 ----
@@ -188,7 +176,6 @@ Tested with Puma 3.12, Uberspace 7.1.17
 .. _Ruby: https://www.ruby-lang.org/
 .. _Puma: https://puma.io
 .. _Rack: https://rack.github.io
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _readme: https://github.com/puma/puma
 .. _configuration: https://github.com/puma/puma/blob/master/examples/config.rb
 .. _feed: https://github.com/puma/puma/releases

@@ -17,8 +17,8 @@ DokuWiki_ is a simple to use and highly versatile Open Source wiki_ software tha
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * Domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`Domains <web-domains>`
 
 License
 =======
@@ -33,7 +33,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -48,7 +48,7 @@ Your blog domain needs to be setup:
 Installation
 ============
 
-``cd`` to your `document root`_, then download and configure DokuWiki_.
+``cd`` to your :manual:`document root <web-documentroot>`, then download and configure DokuWiki_.
 
 ::
 
@@ -96,13 +96,10 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 
 
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _Domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: http://feeds.feedburner.com/dokuwiki
 .. _wiki: https://en.wikipedia.org/wiki/wiki
 .. _DokuWiki: https://www.dokuwiki.org
 .. _upgrade: https://www.dokuwiki.org/plugin:upgrade
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
 
 ----
 

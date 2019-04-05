@@ -91,7 +91,7 @@ Akaunting saves your data in a MySQL database. We suggest you use an :manual_anc
 
 Enter the following informations into the installer:
 
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * the name of your newly created Akaunting database (e.g. ``isabell_akaunting``)
 
 Step 3: Company and Admin Details

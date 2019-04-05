@@ -17,8 +17,8 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 
 .. note:: For this guide you should be familiar with the basic concepts of 
 
-  * supervisord_
-  * domains_
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -28,13 +28,6 @@ All relevant legal information can be found here
   * http://www.resilio.com/legal/privacy
   * http://www.resilio.com/legal/terms-of-use
   * http://www.resilio.com/legal/eula
-
-Prerequisites
-=============
-
-We need a free port that Resilio Sync can listen to. To discover a currently unoccupied port run:
-
-.. include:: includes/generate-port.rst
 
 Installation
 ============
@@ -49,45 +42,24 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ 
 
-Setup .htaccess
-===============
+Configure web server
+====================
 
-Create ``~/html/.htaccess`` with the following content:
+.. note::
 
-.. warning:: Replace ``<yourport>`` with your port!
+    Resilio is running on port 9000.
 
-.. code-block:: apacheconf
-
- RewriteEngine On
- RewriteRule (.*) http://localhost:<yourport>/$1 [P]
- DirectoryIndex disabled
-
-In our example this would be:
-
-.. code-block:: apacheconf
-
- RewriteEngine On
- RewriteRule (.*) http://localhost:9000/$1 [P]
- DirectoryIndex disabled
+.. include:: includes/web-backend.rst
 
 Configure ``supervisord``
 =========================
 
 Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 
-.. warning:: Replace ``<yourport>`` with your port!
-
 .. code-block:: ini
 
  [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:resilio-sync]
- command=%(ENV_HOME)s/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
 
 Start Service
 =============
@@ -118,8 +90,6 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$ 
 
 .. _Resilio: https://www.resilio.com
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

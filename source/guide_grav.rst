@@ -20,12 +20,12 @@ It was developed with a focus on speed, simplicity, and flexibility. Content can
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * domains_
+  * :manual:`domains <web-domains>`
 
 License
 =======
 
-Grav is released under the `MIT Licence`_. All relevant information can be found in the LICENSE.txt_ file in the repository of the project.
+Grav is released under the `MIT License`_. All relevant information can be found in the LICENSE.txt_ file in the repository of the project.
 
 Prerequisites
 =============
@@ -45,7 +45,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install Grav we use Composer_ to create a new project in our `document root`_.
+To install Grav we use Composer_ to create a new project in our :manual:`document root <web-documentroot>`.
 
 .. code-block:: console
  :emphasize-lines: 1,2
@@ -96,7 +96,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 To update Grav you can use the integrated Grav Package Manager (GPM).
-To update the Grav core navigate to your `document root`_ and use the ``selfupgrade`` command.
+To update the Grav core navigate to your :manual:`document root <web-documentroot>` and use the ``selfupgrade`` command.
 
 .. code-block:: console
  :emphasize-lines: 1,2
@@ -119,11 +119,8 @@ After updating the Grav core use the ``update`` command to update all plugins an
 .. _Grav: https://getgrav.org/
 .. _PHP: http://www.php.net/
 .. _Composer: https://getcomposer.org/
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/getgrav/grav/releases.atom
-.. _MIT Licence: https://opensource.org/licenses/MIT
+.. _MIT License: https://opensource.org/licenses/MIT
 .. _LICENSE.txt: https://github.com/getgrav/grav/blob/develop/LICENSE.txt
 .. _GitHub: https://github.com/getgrav/grav
 .. _Performance & Caching: https://learn.getgrav.org/advanced/performance-and-caching

@@ -17,8 +17,8 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_ and its package manager pip
-  * supervisord_
+  * :manual:`Python <lang-python>` and its package manager pip
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -74,17 +74,29 @@ Migrate database
 Configuration
 =============
 
-Configure port
---------------
+Configure Hostname
+------------------
 
-Since Django applications use their own webserver, you need to find a free port and bind your application to it.
+Edit ``~/MyDjangoProject/MyDjangoProject/settings.py`` and edit the line ``ALLOWED_HOSTS = []`` to add your host name.
 
-.. include:: includes/generate-port.rst
+::
 
-Setup .htaccess
----------------
+ ALLOWED_HOSTS = ['isabell.uber.space']
 
-.. include:: includes/proxy-rewrite-static.rst
+If you need to add multiple host names, seperate thim with commas like this:
+
+::
+
+ ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
+
+Configure web server
+--------------------
+
+.. note::
+
+    Django is running on port 8000.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
@@ -92,16 +104,15 @@ Setup daemon
 To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/myDjangoProject.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
-.. warning:: Replace ``<yourport>`` with your port!
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,5,16,17
+  :emphasize-lines: 2,3,16,17
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject
   chdir = /home/<username>/MyDjangoProject
 
-  http = :<yourport>
+  http = :8000
   master = true
   wsgi-file = %(base)/wsgi.py
   touch-reload = %(wsgi-file)
@@ -118,13 +129,11 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 Test installation
 -----------------
 
-Perform a CURL request to your custom port to see if your installation succeeded:
-
-.. warning:: Replace ``<yourport>`` with your port!
+Perform a CURL request to djangos port to see if your installation succeeded:
 
 ::
 
- [isabell@stardust ~]$ curl -I localhost:<yourport>
+ [isabell@stardust ~]$ curl -I localhost:8000
  HTTP/1.1 200 OK
  Content-Type: text/html
  X-Frame-Options: SAMEORIGIN
@@ -150,8 +159,6 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 
 .. _Django: https://www.djangoproject.com/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

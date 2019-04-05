@@ -16,9 +16,9 @@ Up1_ provides a very simple web interface to share files end-to-end encrypted vi
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
@@ -26,7 +26,7 @@ Prerequisites
 Node and npm
 ------------
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -85,7 +85,7 @@ Please be sure to replace the pseudo version number ``66.6`` here with the lates
   Switched to a new branch 'latest'
   [isabell@stardust up1]$
 
-Then run npm_ to install all the dependencies:
+Then run :manual_anchor:`npm <lang-nodejs.html#npm>` to install all the dependencies:
 
 ::
 
@@ -110,13 +110,6 @@ You probably got the error that there are vulnerabilities to fix, so follow the 
 Configuration
 =============
 
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Change the configuration
 ------------------------
 
@@ -129,7 +122,7 @@ Copy the example settings files to create your own configuration:
   [isabell@stardust up1]$ cp client/config.js.example client/config.js
   [isabell@stardust up1]$
 
-Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh portnumber you got earlier. Also set a random string for ``api_key`` and ``delete_key``:
+Now edit ``~/up1/server/server.conf`` and set a random string for ``api_key`` and ``delete_key``:
 
 .. note:: You can use the following code, for example, to create a random string: ``[isabell@stardust ~]$ head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20 ; echo ''``
 
@@ -148,14 +141,14 @@ Now edit ``~/up1/server/server.conf`` and replace ``<yourport>`` with the fresh 
 
   "http": {
     "enabled": true,
-    "listen": "localhost:<yourport>"
+    "listen": ":9002"
   },
 
 Then add the same ``api_key`` to the file ``~/up1/client/config.js``:
 
 .. code-block:: none
 
-  upload.config.api_key = '<any_random_string>'
+  upload.config.api_key = '<random_string_from_above>'
 
 If you want to, you can also edit the website footer and contact informations to your details in the same file:
 
@@ -163,11 +156,14 @@ If you want to, you can also edit the website footer and contact informations to
 
   upload.config.footer = '<a href="https://github.com/Upload/Up1" target="_blank">Source Code</a> - <a href="mailto:isabell@stardust.uber.space" id="contact" target="_blank">Contact</a>'
 
+Configure web server
+--------------------
 
-Setup .htaccess
----------------
+.. note::
 
-.. include:: includes/proxy-rewrite.rst
+    Up1 is running on port 9002.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
@@ -180,7 +176,7 @@ Create ``~/etc/services.d/up1.ini`` with the following content:
  directory=%(ENV_HOME)s/up1/server/
  command=node %(ENV_HOME)s/up1/server/server.js
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -200,10 +196,6 @@ Check Website
 Point your browser to your domain for example https://isabell.uber.space
 
 .. _Up1: https://github.com/Upload/Up1
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/Upload/Up1
 .. _feed: https://github.com/Upload/Up1/releases
 

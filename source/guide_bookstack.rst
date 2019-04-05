@@ -19,19 +19,19 @@ It is specially designed to allow new users with basic word-processing skills to
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
 
-BookStack is released under the `MIT Licence`_. All relevant information can be found in the LICENSE_ file in the repository of the project.
+BookStack is released under the `MIT License`_. All relevant information can be found in the LICENSE_ file in the repository of the project.
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -48,7 +48,7 @@ Your domain needs to be set up:
 Installation
 ============
 
-To install BookStack clone the release branch of the official repository one level above your DocumentRoot_ using Git.
+To install BookStack clone the release branch of the official repository one level above your :manual:`DocumentRoot <web-documentroot>` using Git.
 
 .. code-block:: console
 
@@ -74,7 +74,7 @@ To install BookStack clone the release branch of the official repository one lev
 Configuration
 =============
 
-We suggest you use an `additional database`_ for BookStack to save your data. You have to create this database first.
+We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` for BookStack to save your data. You have to create this database first.
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -82,7 +82,7 @@ We suggest you use an `additional database`_ for BookStack to save your data. Yo
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_bookstack"
  [isabell@stardust ~]$
 
-Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL credentials_ and save the file.
+Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and save the file.
 
 
 .. code-block:: console
@@ -106,7 +106,7 @@ To make your BookStack installation safe you need to create a unique application
  Application key [base64:xck2FdvKbm+edDy3mUJOlBFDz3S/jdG6DMWgcOVyYRY=] set successfully.
  [isabell@stardust ~]$
 
-Remove your unused DocumentRoot_ and create a new symbolic link to the ``BookStack/public`` directory.
+Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``BookStack/public`` directory.
 
 .. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any. You can also rename the folder to something that's not ``html``.
 
@@ -168,15 +168,10 @@ After updating your installation you should clean the cache to prevent errors.
  [isabell@stardust ~]$
 
 .. _BookStack: https://www.bookstackapp.com
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _Composer: https://getcomposer.org/
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/BookStackApp/BookStack/releases.atom
-.. _MIT Licence: https://opensource.org/licenses/MIT
+.. _MIT License: https://opensource.org/licenses/MIT
 .. _LICENSE: https://github.com/BookStackApp/BookStack/blob/master/LICENSE
-.. _additional database: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 .. _BookStack blog: https://www.bookstackapp.com/tags/releases/
 
 ----

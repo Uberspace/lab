@@ -15,7 +15,7 @@ Redis_ is a key-value store NoSQL database. It is primarily used because of its 
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of supervisord_.
+.. note:: For this guide you should be familiar with the basic concepts of :manual:`supervisord <daemons-supervisord>`.
 
 
 License
@@ -64,8 +64,8 @@ Build Redis
 .. code-block:: bash
 
  [isabell@stardust ~]$ cd redis-stable/
- [isabell@stardust ~]$ make
- cd src && make all
+ [isabell@stardust redis-stable]$ make
+ [isabell@stardust redis-stable]$ cd src && make all
  make[1]: Entering directory `/home/isabell/redis-stable/src'
      CC Makefile.dep
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
@@ -77,17 +77,16 @@ Build Redis
  Hint: It's a good idea to run 'make test' ;)
 
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
- [isabell@stardust redis-stable]$ 
+ [isabell@stardust src]$ 
 
-Try running ``src/redis-server`` to make sure everything works:
+Try running ``redis-server`` to make sure everything works:
 
 .. code-block:: bash
 
- [isabell@stardust redis-stable]$ src/redis-server --unixsocket ~/tmp/redis.sock
+ [isabell@stardust src]$ ./redis-server --unixsocket ~/tmp/redis.sock
  16813:C 03 Jan 2019 14:02:49.774 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
  16813:C 03 Jan 2019 14:02:49.774 # Redis version=5.0.3, bits=64, commit=00000000, modified=0, pid=16813, just started
- 16813:C 03 Jan 2019 14:02:49.774 # Warning: no config file specified, using the default config. In order to specify a config file use src/redis-server /path/to/re
- dis.conf
+ 16813:C 03 Jan 2019 14:02:49.774 # Configuration loaded
  16813:M 03 Jan 2019 14:02:49.775 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
  16813:M 03 Jan 2019 14:02:49.775 # Server can't set maximum open files to 10032 because of OS error: Operation not permitted.
  16813:M 03 Jan 2019 14:02:49.775 # Current maximum open files is 4096. maxclients has been reduced to 4064 to compensate for low ulimit. If you need higher maxcli
@@ -154,11 +153,11 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
 .. code-block:: ini
 
  [program:redis]
- command=%(ENV_HOME)s/bin/redis-server %(ENV_HOME)s/.redis/conf
+ command=redis-server %(ENV_HOME)s/.redis/conf
  autostart=yes
  autorestart=yes
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: bash
 
@@ -184,7 +183,6 @@ Use the Unix socket ``~/.redis/sock`` to access redis with other applications. Y
 
 .. _Redis: https://redis.io/
 .. _BSD license: https://github.com/antirez/redis/blob/unstable/COPYING
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

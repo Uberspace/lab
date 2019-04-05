@@ -79,7 +79,8 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-# Configure the `extlinks` extension to handle the `manual` directive.
+# Configure the `extlinks` extension to handle the `manual` and `lab`
+# directives.
 # By setting an empty string as the second tuple element, the display text
 # is the same as the target by default.
 extlinks = {
@@ -89,6 +90,14 @@ extlinks = {
     ),
     'manual_anchor': (
         'https://manual.uberspace.de/%s',
+        ''
+    ),
+    'lab': (
+        '%s.html',
+        ''
+    ),
+    'lab_anchor': (
+        '%s',
         ''
     ),
 }
@@ -126,6 +135,7 @@ html_favicon = '_static/favicon.ico'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_extra_path = ['_redirects']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.

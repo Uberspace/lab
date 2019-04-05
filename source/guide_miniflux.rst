@@ -17,9 +17,9 @@ Miniflux_ is a minimalist and opinionated feed reader.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PostgreSQL_
-  * domains_
-  * supervisord_
+  * :lab:`PostgreSQL <guide_postgresql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -29,7 +29,7 @@ The software is licensed under `Apache License 2.0`_. All relevant information c
 Prerequisites
 =============
 
-.. warning:: PostgreSQL has to be setup as shown in this Guide_! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
+.. warning:: PostgreSQL has to be setup as shown in this :lab_anchor:`Guide <guide_postgresql.html#database-and-user-management>`! Especially, you'll need to know your PostgreSQL Port ``MyPostgreSQLPort``
 
 You’ll need to create a user and a database in PostgreSQL first.
 
@@ -109,18 +109,14 @@ Make the file ``miniflux-linux-amd64`` executable
 Configuration
 =============
 
-Configure port
---------------
+Configure web server
+--------------------
 
-You need to find a free port and bind your application to it.
+.. note::
 
-.. include:: includes/generate-port.rst
+    Miniflux is running on port 9000.
 
-
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Finishing installation
 ======================
@@ -133,7 +129,7 @@ Define the environment variable ``DATABASE_URL`` first for temporary usage. Afte
 .. code-block:: console
  :emphasize-lines: 1
 
-  [isabell@stardust ~]$ export DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
+  [isabell@stardust ~]$ export DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost"
   [isabell@stardust ~]$ miniflux-linux-amd64 -migrate
   Current schema version: 0
   Latest schema version: 16
@@ -155,13 +151,13 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
 
  [program:miniflux]
  environment =
-  LISTEN_ADDR="127.0.0.1:9000",
+  LISTEN_ADDR="0.0.0.0:9000",
   BASE_URL="https://isabell.uber.space",
   DATABASE_URL="user=isabell password=MySuperSecretPassword dbname=miniflux2 sslmode=disable host=localhost port=MyPostgreSQLPort"
- command=%(ENV_HOME)s/bin/miniflux-linux-amd64
+ command=miniflux-linux-amd64
 
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 ::
 
@@ -230,10 +226,6 @@ Make the binary ``miniflux-linux-amd64`` executable, migrate the database and st
 
 Check the `Miniflux`_ website for news and/or breaking changes.
 
-.. _PostgreSQL: https://lab.uberspace.de/en/guide_postgresql.html
-.. _Guide: https://lab.uberspace.de/en/guide_postgresql.html#database-and-user-management
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _Miniflux: https://miniflux.app/
 .. _Github: https://github.com/miniflux/miniflux
 .. _Apache License 2.0: https://github.com/miniflux/miniflux/blob/master/LICENSE

@@ -5,7 +5,7 @@
 Jingo
 #####
 
-Jingo_ is a simple Wiki software that is based on Node.js_ and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
+Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
 
 At this time, Jingo is no longer actively developed but still supported for security issues.
 
@@ -13,14 +13,14 @@ At this time, Jingo is no longer actively developed but still supported for secu
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -86,14 +86,6 @@ You then have to configure the Git repository with name and email, if you haven'
 
 .. note:: You can of course set arbitrary informations here. If you want to share your data using Github for example, you might want to set the appropriate data.
 
-
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Change the configuration
 ------------------------
 
@@ -104,10 +96,10 @@ You first need to create a default config file using the ``jingo`` command:
   [isabell@stardust ~]$ ~/jingo/jingo -s > ~/jingo/config.yaml
   [isabell@stardust ~]$
 
-Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First of all, set the correct port and the repository folder. Be sure to replace ``<username>`` and ``<yourport>`` with the appropriate data:
+Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First of all, set repository folder. Be sure to replace ``<username>`` with your actual username:
 
 .. code-block:: yaml
-  :emphasize-lines: 6,11
+  :emphasize-lines: 6
 
   # Configuration sample file for Jingo (YAML)
   application:
@@ -116,12 +108,6 @@ Then you can adjust this file ``~/jingo/config.yaml`` with your settings. First 
     favicon: ''
     repository: '/home/<username>/jingo_data'
     docSubdir: ''
-  [...]
-  server:
-    hostname: localhost
-    port: <yourport>
-    localOnly: false
-    baseUrl: ''
   [...]
 
 You will also need to set up an account to login. You can choose multiple ways for authentication like *Github*, *Google*, *Ldap*.
@@ -151,11 +137,14 @@ Save the returned hash (here ``7dfd2a21e27be76896430ee382e268b362d812d7``) toget
 
 .. warning:: Of course you have to change the string ``MySuperSecretPassword`` to your personal password and use the corresponding hash!
 
+Configure web server
+--------------------
 
-Setup .htaccess
----------------
+.. note::
 
-.. include:: includes/proxy-rewrite.rst
+    Jingo is running on port 6067.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
@@ -167,7 +156,7 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
 
-Tell supervisord_ to refresh its configuration and start the service:
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
@@ -238,10 +227,6 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 .. _Jingo: https://github.com/claudioc/jingo
 .. _Github: https://github.com/claudioc/jingo
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/claudioc/jingo/releases.atom
 
 ----

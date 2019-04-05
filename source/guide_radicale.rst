@@ -27,9 +27,9 @@ Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Python_
-  * supervisord_
-  * domains_
+  * :manual:`Python <lang-python>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 
 Prerequisites
@@ -90,24 +90,16 @@ Configuration
 =============
 
 
-Configure port
---------------
-
-Since Radicale uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
-
 Create config files
 -------------------
 
-You need to enter this to ``~/.config/radicale/config`` and adjust the new port.
+Save the following as your radicale configuration in ``~/.config/radicale/config``.
 
 .. code-block:: ini
   :emphasize-lines: 2,6
 
   [server]
-  hosts = localhost:<port>
+  hosts = localhost:8000
 
   [auth]
   type = htpasswd
@@ -128,7 +120,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=%(ENV_HOME)s/.local/bin/radicale -f
+  command=radicale -f
 
 
 Finishing installation
@@ -163,7 +155,7 @@ For every following user use it without ``-c``:
 Configure web server
 --------------------
 
-In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the `document root`_ for details), with the following content:
+In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
 
 .. code-block:: ini
   :emphasize-lines: 3,9
@@ -176,9 +168,9 @@ In order for your Radicale instance to be reachable from the web, you need to pu
   DirectoryIndex disabled
 
   RewriteEngine On
-  RewriteRule ^(.*) http://localhost:<port>/$1 [P]
+  RewriteRule ^(.*) http://<username>.local.uberspace.de:8000/$1 [P]
 
-Again, don't forget to fill in your port number and username!
+Again, don't forget to fill in your username!
 
 
 Start Service
@@ -210,11 +202,6 @@ Updates
 .. _Radicale: https://radicale.org/
 .. _Changelog: https://radicale.org/news/
 .. _Config: https://radicale.org/configuration/
-.. _Python: https://manual.uberspace.de/en/lang-python.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 

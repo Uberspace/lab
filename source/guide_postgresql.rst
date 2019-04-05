@@ -190,35 +190,18 @@ Configuration
 
 After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via an Unix socket is not supported by every project.
 
-
-Step 1 - Configure Port
------------------------
-
-PostgreSQL's default port is not supported by Uberspace. Find a free port:
-
-::
-
- [isabell@stardust ~]$ FREEPORT=$(( $RANDOM % 4535 + 61000 )); ss -ln src :$FREEPORT | grep $FREEPORT && echo "try again" || echo $FREEPORT
- 9000
- [isabell@stardust ~]$
-
-Write down your new port number. In this example it is 9000, but in reality you’ll get a free port number between 61000 and 65535.
-
-
-Step 2 - Configure the Unix Socket
-----------------------------------
+Configure the Unix Socket
+-------------------------
 
 The Unix socket will be configured to the standard port. You must set the environment varables with your new port:
 
 Edit your ``~/.bashrc`` and add the following content:
 
-.. warning:: Replace the port number with the one you wrote down earlier.
-
 .. code-block:: bash
  :emphasize-lines: 2
 
  export PGHOST=localhost
- export PGPORT=9000
+ export PGPORT=5432
 
 Load the new settings:
 
@@ -226,8 +209,8 @@ Load the new settings:
 
  [isabell@stardust ~] source ~/.bashrc
 
-Step 3 - Maintain the PostgreSQL Configuration
-----------------------------------------------
+PostgreSQL Configuration
+------------------------
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
 
@@ -242,11 +225,11 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
  
  # - Connection Settings -
  
- listen_addresses = 'localhost'         # what IP address(es) to listen on;
+ listen_addresses = '*'         # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
                                         # (change requires restart)
- port = 9000                            # (change requires restart)
+ port = 5432                            # (change requires restart)
  max_connections = 100                  # (change requires restart)
  #superuser_reserved_connections = 3    # (change requires restart)
  unix_socket_directories = '/home/<username>/tmp'      # comma-separated list of directories
@@ -260,8 +243,8 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
                                         # (change requires restart)
 
 
-Step 4 - Setup Daemon
----------------------
+Setup Daemon
+------------
 
 Create ``~/etc/services.d/postgresql.ini`` with the following content:
 
@@ -309,7 +292,7 @@ To stop and start the daemon to perform maintenance tasks, you can use ``supervi
  postgresql: started
  [isabell@stardust ~]$
 
-Check out the `supervisord manual`_ for further details.
+Check out the :manual:`supervisord manual <daemons-supervisord>` for further details.
 
 
 Database and User Management
@@ -369,7 +352,6 @@ To configure your project with the PostgreSQL details, you should have the datab
 .. _PostgreSQL License: https://www.postgresql.org/about/licence/
 .. _documentation: https://www.postgresql.org/docs/9.6/static/install-procedure.html
 .. _download server: https://download.postgresql.org/pub/source/
-.. _supervisord manual: https://manual.uberspace.de/en/daemons-supervisord.html
 
 ----
 

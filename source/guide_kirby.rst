@@ -21,7 +21,7 @@ Kirby was released for the first time in 2009 and is actively developed by the B
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * PHP_
-  * domains_
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -126,8 +126,6 @@ If you've enabled the cache, you might need to empty the page cache directory to
 
 .. _Kirby: https://getkirby.com/
 .. _PHP: http://www.php.net/
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
 .. _releases: https://github.com/getkirby/kirby/releases
 .. _feed: https://github.com/getkirby/kirby/releases.atom
 .. _download: https://getkirby.com/docs/installation/download

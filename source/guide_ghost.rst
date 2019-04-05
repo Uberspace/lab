@@ -18,15 +18,15 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
 
 ::
 
@@ -64,15 +64,15 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
   * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
   * ``--no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
-  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use supervisord_ later instead.
-  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a htaccess_ file for apache_ later instead.
-  * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
+  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use :manual:`supervisord <daemons-supervisord>` later instead.
+  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a :manual_anchor:`htaccess <web-documentroot.html#own-configuration>` file for :manual_anchor:`apache <lang-nodejs.html#connection-to-webserver>` later instead.
+  * ``--no-setup-mysql``: Skips setup of :manual:`MySQL <database-mysql>`. You can't do that without root privileges.
 
 You will need to enter the following information:
 
   * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Ghost database name: we suggest you use a additional_ database. For example: isabell_ghost
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Ghost database name: we suggest you use a :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_ghost
   * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
@@ -108,38 +108,29 @@ You will need to enter the following information:
 Configuration
 =============
 
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
-Change the configuration
+Change network interface
 ------------------------
 
-You need to adjust your ``~/ghost/config.production.json`` with the new port. Find the following code block and change port 2369 to your own port:
+Edit ``~/ghost/config.production.json`` and change the host IP address to ``0.0.0.0``:
 
-::
+.. code-block:: none
+ :emphasize-lines: 5
 
- "server": {
-   "port": 2369,
-   "host": "127.0.0.1"
- },
+ {
+   "url": "https://isabell.uber.space",
+   "server": {
+     "port": 2368,
+     "host": "0.0.0.0"
+   },
 
-In our example this would be:
+Configure web server
+--------------------
 
-::
+.. note::
 
- "server": {
-   "port": 9000,
-   "host": "127.0.0.1"
- },
+    Ghost is running on port 2368.
 
-Setup .htaccess
----------------
-
-.. include:: includes/proxy-rewrite.rst
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
@@ -233,16 +224,7 @@ Again, replace the version number with the newest version.
 If it's not in state RUNNING, check your configuration.
 
 .. _Ghost: https://ghost.org
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _settings: https://docs.ghost.org/v1/docs/cli-install
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _htaccess: https://manual.uberspace.de/en/web-documentroot.html#own-configuration
-.. _apache: https://manual.uberspace.de/en/lang-nodejs.html#connection-to-webserver
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 .. _feed: https://github.com/TryGhost/Ghost/releases.atom
 
 ----
