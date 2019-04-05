@@ -13,19 +13,42 @@ Its core idea is to quickly analyze and view web server statistics in real time 
 Installation
 ============
 
-Choose one of the installation methods from the `GoAccess Installation page`_. This guide installs GoAccess by cloning the `GitHub repository`_.
+Step 1
+------
+
+Choose one of the installation methods from the `GoAccess Installation page`_. This guide installs GoAccess by cloning the latest testing version from the `GitHub repository`_.
 
 ::
 
   [isabell@stardust ~]$ git clone https://github.com/allinurl/goaccess.git
   [...]
   [isabell@stardust ~]$ cd goaccess
+  [isabell@stardust goaccess]$
+
+Alternatively, download the latest version via wget:
+
+::
+
+  [isabell@stardust ~]$ wget https://tar.goaccess.io/goaccess-1.3.tar.gz
+  [isabell@stardust ~]$ tar -xzvf goaccess-1.3.tar.gz
+  [isabell@stardust ~]$ cd goaccess-1.3/
+  [isabell@stardust goaccess-1.3]$
+
+.. warning:: This guide is created using Github, thus the path of the downloaded files is ``goaccess``. If you downloaded the tar archive, please note that this extracts to a folder containing the version number, currently being 1.3, so that the folder is ``goaccess-1.3``.
+
+Step 2
+------
+
+After downloading the sources, we need to build the executable.
+
+::
+
   [isabell@stardust goaccess]$ autoreconf --force --install
   [...]
   [isabell@stardust goaccess]$
 
 autoreconf adapts the build environment to your uberspace:
-  
+
   * ``--force``: consider all files obsolete
   * ``--install``: copy missing auxiliary files
 
