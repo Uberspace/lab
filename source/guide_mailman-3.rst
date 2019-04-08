@@ -243,8 +243,8 @@ After the REST backend has been configured, we need to configure the Django fron
 
  COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
-    ('text/x-scss', '/home/isabell/bin/sass {infile} {outfile}'),
-    ('text/x-sass', '/home/isabell/bin/sass {infile} {outfile}'),
+    ('text/x-scss', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
+    ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
 
  # Comment the following lines out to test sending mail
