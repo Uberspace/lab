@@ -373,7 +373,7 @@ You still need to make the script executable:
 
 ::
 
- [isabell@stardust ~]$ chmod +x ~/bin/mailman3-add-list.sh
+ [isabell@stardust ~]$ chmod +x ~/bin/mailman3-manage-qmail.sh
  [isabell@stardust ~]$
 
 After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-manage-qmail.sh add listname`` if you want to create aliases for a list ``listname``). To remove all .qmail-files, simply use ``mailman3-manage-qmail.sh del listname``.
