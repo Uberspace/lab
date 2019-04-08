@@ -84,8 +84,8 @@ Create the needed MySQL databases as the installer file won't work on uberspace.
 ::
 
  [isabell@stardust ~]$ mysql -e "create database ${USER}_ccnet character set = 'utf8';"
- [isabell@stardust ~]$ mysql -e "create database ${USER}_seafile character set = 'utf8';
- [isabell@stardust ~]$ mysql -e "create database ${USER}_seahub character set = 'utf8';
+ [isabell@stardust ~]$ mysql -e "create database ${USER}_seafile character set = 'utf8';"
+ [isabell@stardust ~]$ mysql -e "create database ${USER}_seahub character set = 'utf8';"
  [isabell@stardust ~]$
 
 Step 4
@@ -183,7 +183,7 @@ Step 7
 
     Seafile is running on multiple ports. You'll need a backed at ``/`` for
     gunicorn on port ``8000`` and another backend on ``/seafhttp`` for the
-    fileserver on port ``8082``.
+    fileserver on port ``8082``. The latter also needs the parameter ``--remove-prefix``.
 
 .. include:: includes/web-backend.rst
 
