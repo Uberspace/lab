@@ -173,6 +173,15 @@ As we want to make sure that Mailman is started automatically, we need to set it
  stdout_logfile = ~/var/logs/daemon_out.log
  stopsignal=TERM
 
+Afterwards, create necessary folders and files:
+
+::
+
+ [isabell@stardust ~]$ mkdir -p ~/var/logs
+ [isabell@stardust ~]$ touch ~/var/logs/daemon_err.log
+ [isabell@stardust ~]$ touch ~/var/logs/daemon_out.log
+ [isabell@stardust ~]$
+
 Now we can tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
@@ -323,7 +332,7 @@ Finally, to be able to call and execute our Django app, we need to create ``~/uw
  uid = isabell
  gid = isabell
  
- attach-daemon = ./manage.py qcluster
+ attach-daemon = python3.6 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
 
