@@ -45,8 +45,6 @@ Install :lab:`MongoDB <guide_mongodb>`.
 Subdomain & Web backends
 ------------------------
 
-Choose a (sub)domain or a path where you want xBrowserSync to be placed and - if needed, create the domain.
-
 Setup a web backend on port ``8080``
 
 ::
@@ -73,8 +71,10 @@ Get the xBrowserSync API source code from GitHub_ and clone it to ``~/xbrowsersy
 Creating MongoDB User & Tables
 --------------------------------
 
-Open a Mongo shell and create a user and the required tables.
-Replace ``<password>`` with a cleartext password of your choice.
+Open a Mongo shell and put mongo command listed below into it.
+This creates a new database user and the tables needed by xBrowserSync.
+Replace ``<password>`` with a cleartext password of your choice, which is used as password for a new created database user.
+Afterwards leave the shell with the ``exit`` command.
 
 ::
 
@@ -92,7 +92,8 @@ Replace ``<password>`` with a cleartext password of your choice.
 Installation
 ------------
 
-Install the dependencies anf for sure try to avoid vulnerabilities:
+Now you can install all the depenencies needed for xBrowserSync by using npm.
+Additionally you can let npm run a so called `security audit`_, which detects and updates insecure dependencies.
 
 ::
 
@@ -177,15 +178,7 @@ Furthermore you should change the log path:
 Create a service & start xBrowserSync
 -------------------------------------
 
-Create a service file:
-
-::
-
- [isabell@stardust ~]$ touch ~/etc/services.d/xbrowsersync.ini
- [isabell@stardust ~]$
-
-
-Edit the created service file and replace ``<username>`` with your Uberspace username:
+Create a service file under ``~/etc/services.d/xbrowsersync.ini`` and replace ``<username>`` with your Uberspace username:
 
  ::
 
@@ -233,6 +226,7 @@ If there is a new version available, update your branch according to the version
 .. _xBrowserSync: https://www.xbrowsersync.org/
 .. _GitHub: https://github.com/xbrowsersync/
 .. _feed: https://github.com/xbrowsersync/api/releases.atom
+.. _security audit https://docs.npmjs.com/cli/audit
 
 ----
 
