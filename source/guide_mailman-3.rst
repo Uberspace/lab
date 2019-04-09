@@ -352,7 +352,7 @@ for Mailman 2 and is based on the script provided in the official installation i
  then
    i=$2
    p=8024 
-   h=isabell.local.uberspace.de
+   h=${USER}.local.uberspace.de
  
    if [ $1 = "add" ]
    then
