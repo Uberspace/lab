@@ -7,10 +7,6 @@
   .. image:: _static/images/mailman.jpg
       :align: center
       
-.. important:: Due to changes in our network setup this guide is not working. 
-
-  See `issue 344 <https://github.com/Uberspace/lab/issues/344>`_ for discussion and a workaround.
-
 #########
 Mailman 3
 #########
@@ -121,16 +117,16 @@ At first, we need to configure the REST interface of the core component. Create 
 
  [mta]
  incoming: mailman.mta.null.NullMTA
- lmtp_host: localhost
+ lmtp_host: 0.0.0.0
  smtp_host: stardust.uberspace.de
- lmtp_port: 9000
+ lmtp_port: 8024 
  smtp_port: 587 
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
 
  [webservice]
- hostname: localhost
- port: 9001
+ hostname: 0.0.0.0
+ port: 8001
  use_https: no
  admin_user: restadmin
  admin_pass: restpass
@@ -221,11 +217,11 @@ After the REST backend has been configured, we need to configure the Django fron
      # And more...
  ]
 
- MAILMAN_REST_API_URL = 'http://localhost:9001' 
+ MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001' 
  MAILMAN_REST_API_USER = 'see_above'
  MAILMAN_REST_API_PASS = 'see_above'
  MAILMAN_ARCHIVER_KEY = '<SecretArchiverAPIKey>'
- MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
+ MAILMAN_ARCHIVER_FROM = ('0.0.0.0', '::')
  
  [...]
 
@@ -301,28 +297,14 @@ When Django is configured, we need to rename the example site to match our needs
 
  [isabell@stardust mailman-suite]$
 
-.. note::
-
-    mailman is running on port 9003.
-
-.. include:: includes/web-backend.rst
-
-Additionally, serve static files using apache:
-
-::
-
-  [isabell@stardust ~]$ uberspace web backend set /static --apache
-  Set backend for / to apache.
-  [isabell@stardust ~]$
-
-Finally, to be able to call and execute our Django app, we need to create ``~/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
+To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
 
 .. code :: ini
  
  [uwsgi]
  chdir = /home/isabell/mailman-suite
  
- http-socket = 0.0.0.0:9003
+ http-socket = 0.0.0.0:8000
  master = true
  process = 2
  threads = 2
@@ -342,6 +324,20 @@ Generally, it might be necessary to reload *uwsgi* after changing the config cha
  uwsgi: stopped
  uwsgi: started
  [isabell@stardust ~]$
+
+.. note::
+
+    mailman is running on port 8000.
+
+.. include:: includes/web-backend.rst
+
+Additionally, serve static files using apache:
+
+::
+
+  [isabell@stardust ~]$ uberspace web backend set /static --apache
+  Set backend for / to apache.
+  [isabell@stardust ~]$
  
 Setup .qmail-forwarder script
 -----------------------------
@@ -355,12 +351,13 @@ for Mailman 2 and is based on the script provided in the official installation i
  if [ $# = 2 ]
  then
    i=$2
-   p=61902 # Change this - first free port
+   p=8024 
+   h=isabell.local.uberspace.de
  
    if [ $1 = "add" ]
    then
      echo Making links to $i in home directory...
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i
+     echo "|/home/`whoami`/bin/qmail-lmtp $p 1 $h" > ~/.qmail-$i
    elif [ $1 = "del" ]
    then
      echo "Removing qmail files for $i"
