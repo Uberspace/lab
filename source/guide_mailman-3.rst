@@ -361,20 +361,10 @@ for Mailman 2 and is based on the script provided in the official installation i
    then
      echo Making links to $i in home directory...
      echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-admin
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-bounces
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-confirm
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-join
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-leave
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-owner
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-request
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-subscribe
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1" > ~/.qmail-$i-unsubscribe
    elif [ $1 = "del" ]
    then
      echo "Removing qmail files for $i"
      rm ~/.qmail-$i
-     rm ~/.qmail-$i-*
    else 
      echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
    fi
