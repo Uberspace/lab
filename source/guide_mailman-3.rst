@@ -6,6 +6,10 @@
 
   .. image:: _static/images/mailman.jpg
       :align: center
+      
+.. important:: Due to changes in our network setup this guide is not working. 
+
+  See `issue 344 <https://github.com/Uberspace/lab/issues/344>`_ for discussion and a workaround.
 
 #########
 Mailman 3
@@ -184,7 +188,7 @@ Now we can tell ``supervisord`` to refresh its configuration and start the servi
 Adjusting Django configuration
 ------------------------------
 
-After the REST backend has been configured, we need to configure the Django frontends for Postorius and HyperKitty. The configuration is stored in ``/home/isabell/mailman-suite/settings.py``. As the default configuration contains a lot of pre-defined options, only changed or important settings are mentioned below (in order of appearance in the configuration file). To reduce the amount of lines, comments have been left out but can be found in the original file for reference.
+After the REST backend has been configured, we need to configure the Django frontends for Postorius and HyperKitty. The configuration is stored in ``~/mailman-suite/settings.py``. As the default configuration contains a lot of pre-defined options, only changed or important settings are mentioned below (in order of appearance in the configuration file). To reduce the amount of lines, comments have been left out but can be found in the original file for reference.
 
 .. code :: python
 
@@ -243,8 +247,8 @@ After the REST backend has been configured, we need to configure the Django fron
 
  COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
-    ('text/x-scss', '/home/isabell/bin/sass {infile} {outfile}'),
-    ('text/x-sass', '/home/isabell/bin/sass {infile} {outfile}'),
+    ('text/x-scss', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
+    ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
 
  # Comment the following lines out to test sending mail
@@ -373,7 +377,7 @@ You still need to make the script executable:
 
 ::
 
- [isabell@stardust ~]$ chmod +x ~/bin/mailman3-add-list.sh
+ [isabell@stardust ~]$ chmod +x ~/bin/mailman3-manage-qmail.sh
  [isabell@stardust ~]$
 
 After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-manage-qmail.sh add listname`` if you want to create aliases for a list ``listname``). To remove all .qmail-files, simply use ``mailman3-manage-qmail.sh del listname``.
