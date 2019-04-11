@@ -377,7 +377,7 @@ If there are outdated packages, update the mailman packages and their dependenci
  [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
  [isabell@stardust ~]$ 
 
-.. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django==2.2`, and is nothing to worry about.
+.. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
 
 Acknowledgements
 ================
