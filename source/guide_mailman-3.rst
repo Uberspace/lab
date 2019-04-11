@@ -334,44 +334,18 @@ Additionally, serve static files using apache:
   Set backend for / to apache.
   [isabell@stardust ~]$
  
-Setup .qmail-forwarder script
+Setting up .qmail
 -----------------------------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman3-manage-qmail.sh`` with the following content (this code was created originally 
-for Mailman 2 and is based on the script provided in the official installation instructions). Make sure to change the ``p`` variable to your LMTP port:
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to adjust  ``~/.qmail-default`` to forward all incoming mails to our LMTP handler. Update it with the following content. Make sure that ``8024`` is the LMTP port your :lab_anchor:`Mailman Core <guide_mailman-3.html#configure-mailman-core>` is listening and change your username twice:
 
 .. code :: bash
 
- #!/bin/sh
- if [ $# = 2 ]
- then
-   i=$2
-   p=8024
-   h=${USER}.local.uberspace.de
- 
-   if [ $1 = "add" ]
-   then
-     echo Making links to $i in home directory...
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1 $h" > ~/.qmail-$i
-   elif [ $1 = "del" ]
-   then
-     echo "Removing qmail files for $i"
-     rm ~/.qmail-$i
-   else 
-     echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
-   fi
- else 
-   echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
- fi
+ |/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de
 
-You still need to make the script executable:
+.. warning:: This will forward all emails without an individually specified .qmail file (such as ``.qmail-info`` for ``info@isabell.uber.space``) to Mailman, possibly resulting in the loss of emails!
 
-::
-
- [isabell@stardust ~]$ chmod +x ~/bin/mailman3-manage-qmail.sh
- [isabell@stardust ~]$
-
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-manage-qmail.sh add listname`` if you want to create aliases for a list ``listname``). To remove all .qmail-files, simply use ``mailman3-manage-qmail.sh del listname``.
+.. note:: In case you want to keep the default configuration, create additional .qmail files such as ``~/.qmail-listname`` with the above code to forward only ``listname@isabell.uber.space`` to mailman. **This needs to be done manually for every list created in the web interface!**
 
 Install cronjobs
 ----------------
@@ -385,7 +359,7 @@ Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and
 
 Now you can create a new list using the Postorious web UI. 
 
-.. warning:: Don't forget to create the .qmail-aliases using the ``mailman3-manage-qmail.sh`` script afterwards!
+.. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
