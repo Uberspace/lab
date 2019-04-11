@@ -361,6 +361,26 @@ Now you can create a new list using the Postorious web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
+Updates
+=======
+As Mailman 3 consists of multiple independent projects, there is no single RSS feed. To check for updates, you can use ``pip`` on your uberspace:
+
+.. code :: bash
+
+ [isabell@stardust ~]$ pip3.6 list --outdated --user
+ [isabell@stardust ~]$ 
+
+If there are outdated packages, update the mailman packages and their dependencies using: 
+
+.. code :: bash
+
+ [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ 
+
+.. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django==2.2`, and is nothing to worry about.
+
+Acknowledgements
+================
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
 Tested with Django 2.1.7, HyperKitty 1.2.1, Mailman 3.2.0, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.2.2.
