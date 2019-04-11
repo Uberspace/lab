@@ -7,10 +7,6 @@
   .. image:: _static/images/mailman.jpg
       :align: center
       
-.. important:: Due to changes in our network setup this guide is not working. 
-
-  See `issue 344 <https://github.com/Uberspace/lab/issues/344>`_ for discussion and a workaround.
-
 #########
 Mailman 3
 #########
