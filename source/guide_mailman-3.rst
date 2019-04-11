@@ -20,6 +20,8 @@ Mailman 3
   * **HyperKitty**; the web-based archiver
   * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
+.. note:: This guide only focuses on mail distribution and is missing information on how to archive emails. Please see the `hyperkitty documentation <https://hyperkitty.readthedocs.io/en/latest/install.html#connecting-to-mailman>`_ for this and create a PR 🎉.
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
