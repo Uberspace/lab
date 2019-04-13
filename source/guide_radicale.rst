@@ -99,7 +99,7 @@ Save the following as your radicale configuration in ``~/.config/radicale/config
   :emphasize-lines: 2,6
 
   [server]
-  hosts = localhost:8000
+  hosts = 0.0.0.0:8000
 
   [auth]
   type = htpasswd
