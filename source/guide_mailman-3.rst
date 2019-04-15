@@ -227,6 +227,11 @@ After the REST backend has been configured, we need to configure the Django fron
  
  [...]
 
+ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # Uncomment
+ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_SCHEME', 'https') # Uncomment
+ 
+ [...]
+
  STATIC_ROOT = '/home/isabell/html/static/'
 
  [...]
