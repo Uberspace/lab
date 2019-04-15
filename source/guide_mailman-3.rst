@@ -348,9 +348,21 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
 
  |/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de
 
-.. warning:: This will forward all emails without an individually specified .qmail file (such as ``.qmail-info`` for ``info@isabell.uber.space``) to Mailman, possibly resulting in the loss of emails!
+.. warning:: This will forward **all** emails without an individually specified ``.qmail`` file to Mailman, possibly resulting in the loss of emails!
 
-.. note:: In case you want to keep the default configuration, create additional .qmail files such as ``~/.qmail-listname`` with the above code to forward only ``listname@isabell.uber.space`` to mailman. **This needs to be done manually for every list created in the web interface!**
+To enable mail delivery for non-mailman addresses (such as ``info@isabell.uber.space``) you need to create individual ``.qmail-emailadress`` files such as ``.qmail-info``. If you just want to forward incoming mail to another email address, simply write one email address per line (see example below):
+
+.. code :: bash
+ 
+ isabell@example.com
+
+If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, use the following as content of your .qmail file:
+
+.. code :: bash
+
+ |/usr/bin/vdeliver
+
+.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` to mailman. **This needs to be done manually for every list created in the web interface!**
 
 Install cronjobs
 ----------------
