@@ -20,6 +20,8 @@ Mailman 3
   * **HyperKitty**; the web-based archiver
   * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
+.. note:: This guide only focuses on mail distribution and is missing information on how to archive emails. Please see the `hyperkitty documentation <https://hyperkitty.readthedocs.io/en/latest/install.html#connecting-to-mailman>`_ for this and create a PR 🎉.
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -225,8 +227,6 @@ After the REST backend has been configured, we need to configure the Django fron
  
  [...]
 
- USE_X_FORWARDED_HOST = True # Uncomment
- 
  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # Uncomment
  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_SCHEME', 'https') # Uncomment
  
@@ -339,44 +339,30 @@ Additionally, serve static files using apache:
   Set backend for / to apache.
   [isabell@stardust ~]$
  
-Setup .qmail-forwarder script
+Setting up .qmail
 -----------------------------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman3-manage-qmail.sh`` with the following content (this code was created originally 
-for Mailman 2 and is based on the script provided in the official installation instructions). Make sure to change the ``p`` variable to your LMTP port:
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to adjust  ``~/.qmail-default`` to forward all incoming mails to our LMTP handler. Update it with the following content. Make sure that ``8024`` is the LMTP port your :lab_anchor:`Mailman Core <guide_mailman-3.html#configure-mailman-core>` is listening on and change your username twice:
 
 .. code :: bash
 
- #!/bin/sh
- if [ $# = 2 ]
- then
-   i=$2
-   p=8024
-   h=${USER}.local.uberspace.de
+ |/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de
+
+.. warning:: This will forward **all** emails without an individually specified ``.qmail`` file to Mailman, possibly resulting in the loss of emails!
+
+To enable mail delivery for non-mailman addresses (such as ``info@isabell.uber.space``) you need to create individual ``.qmail-emailadress`` files such as ``.qmail-info``. If you just want to forward incoming mail to another email address, simply write one email address per line (see example below):
+
+.. code :: bash
  
-   if [ $1 = "add" ]
-   then
-     echo Making links to $i in home directory...
-     echo "|/home/`whoami`/bin/qmail-lmtp $p 1 $h" > ~/.qmail-$i
-   elif [ $1 = "del" ]
-   then
-     echo "Removing qmail files for $i"
-     rm ~/.qmail-$i
-   else 
-     echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
-   fi
- else 
-   echo "Unkown parameters. Usage: mailman3-list [add, del] listname"
- fi
+ isabell@example.com
 
-You still need to make the script executable:
+If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, use the following as content of your .qmail file:
 
-::
+.. code :: bash
 
- [isabell@stardust ~]$ chmod +x ~/bin/mailman3-manage-qmail.sh
- [isabell@stardust ~]$
+ |/usr/bin/vdeliver
 
-After creating a list via the webinterface, you can then run this script to create the required .qmail-files (like ``mailman3-manage-qmail.sh add listname`` if you want to create aliases for a list ``listname``). To remove all .qmail-files, simply use ``mailman3-manage-qmail.sh del listname``.
+.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` to mailman. **This needs to be done manually for every list created in the web interface!**
 
 Install cronjobs
 ----------------
@@ -390,11 +376,31 @@ Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and
 
 Now you can create a new list using the Postorious web UI. 
 
-.. warning:: Don't forget to create the .qmail-aliases using the ``mailman3-manage-qmail.sh`` script afterwards!
+.. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
+Updates
+=======
+As Mailman 3 consists of multiple independent projects, there is no single RSS feed. To check for updates, you can use ``pip`` on your uberspace:
+
+.. code :: bash
+
+ [isabell@stardust ~]$ pip3.6 list --outdated --user
+ [isabell@stardust ~]$ 
+
+If there are outdated packages, update the mailman packages and their dependencies using: 
+
+.. code :: bash
+
+ [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ 
+
+.. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
+
+Acknowledgements
+================
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
-Tested with Django 2.1.7, HyperKitty 1.2.1, Mailman 3.2.0, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.2.2.
+Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.8.2.
 
 .. _Mailman 3: http://www.mailman3.org/en/latest/
 .. _Mailman: http://www.list.org/
