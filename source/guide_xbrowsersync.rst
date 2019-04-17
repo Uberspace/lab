@@ -71,7 +71,7 @@ Get the xBrowserSync API source code from GitHub_ and clone it to ``~/xbrowsersy
 Creating MongoDB User & Tables
 --------------------------------
 
-Open a Mongo shell and put mongo command listed below into it.
+Open a Mongo shell and enter the mongo command listed below.
 This creates a new database user and the tables needed by xBrowserSync.
 Replace ``<password>`` with a cleartext password of your choice, which is used as password for a new created database user.
 Afterwards leave the shell with the ``exit`` command.
