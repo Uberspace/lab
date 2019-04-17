@@ -342,7 +342,7 @@ Additionally, serve static files using apache:
 Setting up .qmail
 -----------------------------
 
-Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to adjust  ``~/.qmail-default`` to forward all incoming mails to our LMTP handler. Update it with the following content. Make sure that ``8024`` is the LMTP port your :lab_anchor:`Mailman Core <guide_mailman-3.html#configure-mailman-core>` is listening and change your username twice:
+Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to adjust  ``~/.qmail-default`` to forward all incoming mails to our LMTP handler. Update it with the following content. Make sure that ``8024`` is the LMTP port your :lab_anchor:`Mailman Core <guide_mailman-3.html#configure-mailman-core>` is listening on and change your username twice:
 
 .. code :: bash
 
