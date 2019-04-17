@@ -138,7 +138,7 @@ Configure web server
 
 .. note::
 
-    etherpad-lite is running on port 9001.
+    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed.
 
 .. include:: includes/web-backend.rst
 
