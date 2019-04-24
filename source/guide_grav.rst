@@ -2,6 +2,10 @@
 
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
 
+.. tag:: lang-nodejs
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/grav.svg
@@ -10,6 +14,8 @@
 ##########
 Grav
 ##########
+
+.. tag_list::
 
 Grav_ is an open source flat-file (no database) content management system written in PHP.
 

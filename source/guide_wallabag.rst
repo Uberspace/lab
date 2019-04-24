@@ -1,4 +1,8 @@
 .. author:: ezra <ezra@posteo.de>
+
+.. tag:: lang-php
+.. tag:: web
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +13,8 @@
 ########
 Wallabag
 ########
+
+.. tag_list::
 
 Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize articles between devices and make them available offline. This is the server-side application, it will fetch articles and save the content and images on the server when a link is provided. There is also client software for browsers and mobile devices available which can be used to download and read the fetched articles and add new articles to the server.
 

@@ -1,4 +1,8 @@
 .. author:: luto <luto.at>
+
+.. tag:: lang-go
+.. tag:: audience-developers
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +13,8 @@
 #####
 Gitea
 #####
+
+.. tag_list::
 
 Gitea_ is a painless self-hosted Git service written in Go and distributed under the MIT License, designed to provide
 similar core functionality as GitLab or GitHub, but at a much smaller resource footprint. The project started as a fork

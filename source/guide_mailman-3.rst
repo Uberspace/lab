@@ -2,6 +2,10 @@
 
 .. author:: Richard Kroegel <info@kroegel.org>
 
+.. tag:: lang-python
+.. tag:: django
+.. tag:: mail
+
 .. sidebar:: Logo
 
   .. image:: _static/images/mailman.jpg
@@ -10,6 +14,8 @@
 #########
 Mailman 3
 #########
+
+.. tag_list::
 
 `Mailman`_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
 

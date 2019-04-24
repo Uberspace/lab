@@ -1,6 +1,9 @@
 .. highlight:: console
 .. author:: stunkymonkey <stunkymonkey.de>
 
+.. tag:: lang-nodejs
+.. tag:: web
+
 .. sidebar:: Logo
 
   .. image:: _static/images/codimd.png
@@ -9,6 +12,8 @@
 ######
 CodiMD
 ######
+
+.. tag_list::
 
 CodiMD_ lets you create real-time collaborative markdown notes on all platforms.
 Inspired by Hackpad, with more focus on speed and flexibility, and built from HackMD_ source code.

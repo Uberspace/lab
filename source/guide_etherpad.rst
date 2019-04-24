@@ -1,4 +1,9 @@
 .. author:: ezra <ezra@posteo.de>
+
+.. tag:: lang-nodejs
+.. tag:: web
+.. tag:: collaborative-editing
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 #############
 Etherpad Lite
 #############
+
+.. tag_list::
 
 `Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
 

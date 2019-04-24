@@ -1,4 +1,9 @@
 .. author:: minim <https://github.com/minim-one/>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 #####
 minim
 #####
+
+.. tag_list::
 
 minim_ offers a super simple PHP Content Management System. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
 

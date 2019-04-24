@@ -1,6 +1,10 @@
 .. highlight:: console
 .. author:: GodMod <godmod@eqdkp-plus.eu>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/eqdkp-plus.svg
@@ -9,6 +13,8 @@
 ##########
 EQdkp Plus
 ##########
+
+.. tag_list::
 
 EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP and distributed unter the AGPLv3 licence.
 It is focused on supporting guilds and clans playing online games, especially MMORPGs. Therefore it brings tools for planning raids or distributing loot or points like DKP (Dragon Kill Points).

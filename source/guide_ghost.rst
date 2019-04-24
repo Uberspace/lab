@@ -1,4 +1,9 @@
 .. author:: nichtmax <https://moritz.in>
+
+.. tag:: lang-nodejs
+.. tag:: web
+.. tag:: blog
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 #####
 Ghost
 #####
+
+.. tag_list::
 
 Ghost_ is a open source blogging platform written in JavaScript and distributed under the MIT License, designed to simplify the process of online publishing for individual bloggers as well as online publications.
 

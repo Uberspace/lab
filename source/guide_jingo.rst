@@ -1,9 +1,15 @@
 .. author:: ezra <ezra@posteo.de>
+
+.. tag:: lang-nodejs
+.. tag:: web
+
 .. highlight:: console
 
 #####
 Jingo
 #####
+
+.. tag_list::
 
 Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
 

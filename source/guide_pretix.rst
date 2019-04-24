@@ -1,6 +1,9 @@
 .. highlight:: console
 
 .. author:: ezra <ezra@posteo.de>
+.. tag:: lang-python
+.. tag:: django
+.. tag:: web
 
 .. sidebar:: About
 
@@ -10,6 +13,8 @@
 ##########
 pretix
 ##########
+
+.. tag_list::
 
 pretix_ is an open source ticketing solution. It is written in Django_ and can be highly customized for the process of ticket sales.
 

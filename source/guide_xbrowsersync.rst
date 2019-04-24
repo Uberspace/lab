@@ -2,6 +2,8 @@
 
 .. author:: Phil <development@beph.de>
 
+.. tag:: lang-nodejs
+
 .. sidebar:: Logo
 
   .. image:: _static/images/xbrowsersync.svg
@@ -232,4 +234,4 @@ If there is a new version available, update your branch according to the version
 
 Tested with xBrowserSync 1.1.18, Uberspace 7.2.8.2
 
-.. authors::
+.. author_list::

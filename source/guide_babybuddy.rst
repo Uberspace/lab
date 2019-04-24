@@ -2,6 +2,9 @@
 
 .. author:: Christian <christian@kuntzsch.me>
 
+.. tag:: lang-python
+.. tag:: web
+
 .. sidebar:: About
 
   .. image:: _static/images/babybuddy.png
@@ -10,6 +13,8 @@
 ##########
 Baby Buddy
 ##########
+
+.. tag_list::
 
 `Baby Buddy`_ is an open source activity management system for your infant child. It is designed to keep track of sleep, feedings, diaper changes and tummy time "[...] to learn about and predict baby's needs without (as much) guess work".
 It is written in :manual:`Python <lang-python>` and based on the popular :lab:`Django-Framework <guide_django>`.

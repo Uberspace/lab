@@ -1,4 +1,10 @@
 .. author:: Nico Graf <hallo@uberspace.de>
+
+.. tag:: lang-php
+.. tag:: blog
+.. tag:: cms
+.. tag:: web
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +15,8 @@
 #########
 WordPress
 #########
+
+.. tag_list::
 
 WordPress_ is an open source blogging platform written in PHP and distributed under the GPLv2 licence.
 

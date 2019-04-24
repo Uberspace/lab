@@ -2,6 +2,9 @@
 
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
+.. tag:: lang-php
+.. tag:: audience-business
+
 .. sidebar:: Logo
 
   .. image:: _static/images/gsales2.png
@@ -11,6 +14,8 @@
 #########
 GSALES 2
 #########
+
+.. tag_list::
 
 GSALES 2 is a very flexible german billing application specialized for generating recurring invoices.
 Equipped with a well documentated SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.

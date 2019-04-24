@@ -1,4 +1,9 @@
 .. author:: Tobias Stahn <info@tstahn.io>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 #########
 TYPO3 CMS
 #########
+
+.. tag_list::
 
 `TYPO3 CMS`_ is an Open Source Enterprise Content Management System licensed under `GPL v2`_ and provides the basis for
 more than 500.000 websites, intranets and other web applications worldwide.

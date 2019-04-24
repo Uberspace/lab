@@ -2,6 +2,9 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-python
+.. tag:: web
+
 .. sidebar:: Logo
 
   .. image:: _static/images/limesurvey.png
@@ -10,6 +13,8 @@
 ##########
 LimeSurvey
 ##########
+
+.. tag_list::
 
 LimeSurvey_ is a free and open source survey web application.
 

@@ -2,6 +2,10 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-cpp
+.. tag:: database
+.. tag:: audience-developers
+
 .. sidebar:: Logo
 
   .. image:: _static/images/mongodb.svg
@@ -10,6 +14,8 @@
 ##########
 MongoDB
 ##########
+
+.. tag_list::
 
 MongoDB_ is a NoSQL database, developed by MongoDB Inc.
 

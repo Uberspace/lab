@@ -2,6 +2,10 @@
 
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/neos.png
@@ -10,6 +14,8 @@
 #########
 Neos
 #########
+
+.. tag_list::
 
 Neos_ is an open source Content Application Platform based on its own PHP framework Flow.
 

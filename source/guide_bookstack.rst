@@ -2,6 +2,10 @@
 
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: wiki
+
 .. sidebar:: Logo
 
   .. image:: _static/images/bookstack.svg
@@ -10,6 +14,8 @@
 ##########
 BookStack
 ##########
+
+.. tag_list::
 
 BookStack_ is a simple, self-hosted, easy-to-use platform for organising and storing information (wiki).
 
