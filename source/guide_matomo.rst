@@ -1,6 +1,9 @@
 .. highlight:: console
 .. author:: GodMod <godmod@eqdkp-plus.eu>
 
+.. tag:: lang-php
+.. tag:: web
+
 .. sidebar:: Logo
 
   .. image:: _static/images/matomo.png
@@ -9,6 +12,8 @@
 #########
 Matomo
 #########
+
+.. tag_list::
 
 Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
 

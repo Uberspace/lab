@@ -2,6 +2,10 @@
 
 .. author:: Marco Krage <https://my-azur.de>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/processwire.svg
@@ -10,6 +14,8 @@
 ###########
 ProcessWire
 ###########
+
+.. tag_list::
 
 Processwire_ is a free content management system (CMS) and framework (CMF) written in PHP.
 

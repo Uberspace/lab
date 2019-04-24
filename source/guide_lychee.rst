@@ -1,4 +1,8 @@
 .. author:: TheForcer <https://github.com/TheForcer>
+
+.. tag:: lang-php
+.. tag:: web
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +13,8 @@
 #########
 Lychee
 #########
+
+.. tag_list::
 
 Lychee_ is a open source photo-management software written in PHP and distributed under the MIT license. It allows you to easily upload, sort and manage your photos, all while presenting those with a beautiful web interface.
 

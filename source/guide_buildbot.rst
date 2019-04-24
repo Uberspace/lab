@@ -2,6 +2,8 @@
 
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>
 
+.. tag:: lang-python
+
 .. sidebar:: Logo
 
   .. image:: _static/images/buildbot.svg
@@ -10,6 +12,8 @@
 ########
 Buildbot
 ########
+
+.. tag_list::
 
 Buildbot is an open-source framework for automating software build, test, and release processes. At its core, Buildbot is a job scheduling system: it queues jobs, executes the jobs when the required resources are available, and reports the results. It can be easily installed and serve as a continuous integration platform to be used together with a variety of version control solutions, including gitea.
 

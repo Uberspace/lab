@@ -1,6 +1,8 @@
 .. highlight:: console
 
 .. author:: stratmaster <https://github.com/stratmaster>
+.. tag:: lang-go
+.. tag:: web
 
 .. sidebar:: Logo
 
@@ -10,6 +12,8 @@
 ########
 Miniflux
 ########
+
+.. tag_list::
 
 Miniflux_ is a minimalist and opinionated feed reader.
 

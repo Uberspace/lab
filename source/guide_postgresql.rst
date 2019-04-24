@@ -2,9 +2,14 @@
 
 .. author:: FM <git.fm@mmw9.de>
 
+.. tag:: lang-c
+.. tag:: database
+
 ##########
 PostgreSQL
 ##########
+
+.. tag_list::
 
 PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
 

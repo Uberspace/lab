@@ -1,8 +1,12 @@
 .. author:: Michael Stötzer <hallo@bytekeks.de>
+
+.. tag:: lang-go
+.. tag:: audience-developers
+
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/gitlab-logo.png
       :align: center
 
@@ -10,11 +14,13 @@
 Gitlab Runner
 #############
 
+.. tag_list::
+
 GitLab Runner is the open source project that is used to run your jobs and send the results back to `GitLab`_. It is used in conjunction with `GitLab`_ CI, the open-source continuous integration service included with `GitLab`_ that coordinates the jobs.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`supervisord <daemons-supervisord>`
 

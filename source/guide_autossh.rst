@@ -2,9 +2,14 @@
 
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>
 
+.. tag:: lang-c
+.. tag:: console
+
 #######
 autossh
 #######
+
+.. tag_list::
 
 autossh_ is a program to start an SSH session and monitor it, restarting it as necessary should it die or stop passing traffic.
 

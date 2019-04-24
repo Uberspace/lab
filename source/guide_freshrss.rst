@@ -2,6 +2,10 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: rss
+
 .. sidebar:: Logo
 
   .. image:: _static/images/freshrss.svg
@@ -10,6 +14,8 @@
 ########
 FreshRSS
 ########
+
+.. tag_list::
 
 FreshRSS_ is a multi-user self-hosted RSS feed aggregator.
 

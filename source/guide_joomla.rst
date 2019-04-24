@@ -1,4 +1,8 @@
 .. author:: Willi Mutschler <willi@mutschler.eu>
+
+.. tag:: lang-php
+.. tag:: web
+
 .. highlight:: console
 .. sidebar:: Logo
 
@@ -8,6 +12,8 @@
 #########
 Joomla!
 #########
+
+.. tag_list::
 
 Joomla_ is a free and open-source content management system (CMS) for publishing web content, developed by Open Source Matters, Inc. It is built on a model–view–controller web application framework that can be used independently of the CMS. Joomla_ is distributed under the GPLv2 license.
 

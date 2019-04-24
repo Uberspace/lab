@@ -1,4 +1,9 @@
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 #########
 Kirby
 #########
+
+.. tag_list::
 
 Kirby_ is a modern, fast, flexible, file-based (no database) content management system written in PHP.
 

@@ -1,4 +1,8 @@
 .. author:: roang <https://github.com/Roang-zero1>
+
+.. tag:: lang-nodejs
+.. tag:: web
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +13,8 @@
 ##########
 The Lounge
 ##########
+
+.. tag_list::
 
 `The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License, this self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
 

@@ -1,6 +1,11 @@
 .. highlight:: console
 .. author:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: file-storage
+.. tag:: collaborative-editing
+
 .. sidebar:: Logo
 
   .. image:: _static/images/nextcloud.png
@@ -9,6 +14,8 @@
 #########
 Nextcloud
 #########
+
+.. tag_list::
 
 Nextcloud_ is an open source cloud solution written in PHP and distributed under the AGPLv3 license.
 

@@ -1,6 +1,8 @@
 .. highlight:: console
 
 .. author:: Philipp Wensauer <mail@philippwensauer.com>
+.. tag:: lang-php
+.. tag:: web
 
 .. sidebar:: Logo
 
@@ -10,6 +12,8 @@
 ##########
 SimpleID
 ##########
+
+.. tag_list::
 
 SimpleID is a simple, personal OpenID provider written in PHP.
 

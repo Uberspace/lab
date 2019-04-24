@@ -1,4 +1,7 @@
 .. author:: Pascal Iske <info@pascal-iske.de>
+.. tag:: lang-php
+.. tag:: web
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +12,8 @@
 ##############
 Composer Satis
 ##############
+
+.. tag_list::
 
 To manage private composer packages you can either use a private packagist account or host it for free by yourself with composer satis.
 The latter is as easy as cloning the official composer satis repository and editing the config file.

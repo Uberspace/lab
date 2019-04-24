@@ -1,6 +1,8 @@
 .. highlight:: console
 
 .. author:: stratmaster <https://github.com/stratmaster>
+.. tag:: lang-php
+.. tag:: web
 
 .. sidebar:: Logo
 
@@ -10,6 +12,8 @@
 ########
 Kanboard
 ########
+
+.. tag_list::
 
 Kanboard_ is a free and open source Kanban project management software.
 

@@ -2,6 +2,10 @@
 
 .. author:: Pascal Nowak <pascal@nowak.app>
 
+.. tag:: lang-ruby
+.. tag:: blog
+.. tag:: cms
+
 .. sidebar:: Logo
 
 
@@ -12,6 +16,8 @@
 #########
 Jekyll
 #########
+
+.. tag_list::
 
 Jekyll_ is an easy to use static site generator that builds fast, blog-aware, responsive websites.
 

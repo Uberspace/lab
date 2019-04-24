@@ -2,6 +2,10 @@
 
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: forum
+
 .. sidebar:: Logo
 
   .. image:: _static/images/flatboard.png
@@ -10,6 +14,8 @@
 #########
 Flatboard
 #########
+
+.. tag_list::
 
 Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown [1]_ or BBcode.
 

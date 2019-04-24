@@ -2,6 +2,10 @@
 
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/october.svg
@@ -10,6 +14,8 @@
 ##########
 OctoberCMS
 ##########
+
+.. tag_list::
 
 October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ PHP Framework. It is especially known for its simplicity, flexibility and modern design.
 

@@ -1,5 +1,7 @@
 .. highlight:: console
 .. author:: stunkymonkey <stunkymonkey.de>
+.. tag:: lang-python
+.. tag:: web
 
 .. sidebar:: Logo
 
@@ -9,6 +11,8 @@
 ########
 Radicale
 ########
+
+.. tag_list::
 
 Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
 

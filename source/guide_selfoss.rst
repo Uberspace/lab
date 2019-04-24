@@ -2,6 +2,10 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: rss
+
 .. sidebar:: Logo
 
   .. image:: _static/images/selfoss.png
@@ -10,6 +14,8 @@
 #######
 selfoss
 #######
+
+.. tag_list::
 
 selfoss_ is a free and open source web-based news feed reader and
 aggregator.

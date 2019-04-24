@@ -1,4 +1,9 @@
 .. author:: xchs <https://github.com/xchs>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -9,6 +14,8 @@
 ######
 Contao
 ######
+
+.. tag_list::
 
 Contao_ is a free, web-based Open Source Content Management System (CMS) written in PHP and distributed under the LGPL 3.0 or later licence.
 

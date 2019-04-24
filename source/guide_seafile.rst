@@ -2,6 +2,11 @@
 
 .. author:: Finn <mail@f1nn.eu>
 
+.. tag:: lang-python
+.. tag:: web
+.. tag:: file-storage
+.. tag:: collaborative-editing
+
 .. sidebar:: Logo
 
   .. image:: _static/images/seafile.png
@@ -10,6 +15,8 @@
 ##########
 Seafile
 ##########
+
+.. tag_list::
 
 Seafile is an enterprise file hosting platform with high reliability and performance. Put files on your own server. Sync and share files across different devices, or access all the files as a virtual disk.
 

@@ -162,3 +162,12 @@ nav li {
 #hall-of-fame .autolink:after {
     content: ">";
 }
+
+.taglist .tag {
+    display: inline-block;
+}
+
+.taglist {
+    margin-top: -1.3em;
+    margin-bottom: 0.83em;
+}

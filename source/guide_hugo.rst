@@ -3,6 +3,10 @@
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 .. author:: luto <luto.at>
 
+.. tag:: lang-go
+.. tag:: blog
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/hugo-logo.png
@@ -11,6 +15,8 @@
 ####
 Hugo
 ####
+
+.. tag_list::
 
 Hugo is a fast and modern static site generator written in Go, and designed to make website creation fun again.
 
