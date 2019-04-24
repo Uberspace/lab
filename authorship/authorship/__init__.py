@@ -15,7 +15,7 @@ from sphinx.util.docutils import SphinxDirective
 import sphinx.addnodes as addnodes
 
 
-def comma_list(nodes_):
+def comma_list(nodes_, separator):
     """Return list of nodes seperated by `, ` text nodes."""
     elements = []
 
@@ -24,7 +24,7 @@ def comma_list(nodes_):
 
     for node in nodes_:
         elements.append(node)
-        elements.append(nodes.Text(', '))
+        elements.append(nodes.Text(separator))
 
     return elements[:-1]
 
@@ -56,9 +56,9 @@ class ListItem(SphinxDirective):
         return []
 
 
-class DocumentListDisplay(SphinxDirective):
+class AuthorListDisplay(SphinxDirective):
     """
-    Output the list of items (e.g. authors, tags) for the document.
+    Output the list of authors for the document.
 
     Like: `Written by: author1 <mail@some.org>, author2 <site.org>`
 
@@ -68,28 +68,51 @@ class DocumentListDisplay(SphinxDirective):
 
     """
 
-    marker_list_name = None
-    prefix_text = ''
-
     def run(self):
         env = self.state.document.settings.env
-        items = getattr(env, self.marker_list_name).get(env.docname, [])
+        items = env.author_list.get(env.docname, [])
+        item_nodes = (nodes.Text(a) for a in items)
 
         if items:
-            return [nodes.Text(self.prefix_text)] + comma_list(nodes.Text(a) for a in items) + [nodes.raw('', '<br>', format='html')]
+            return [nodes.Text('Written by: ')] + \
+                comma_list(item_nodes, ', ') + \
+                [nodes.raw('', '<br>', format='html')]
         else:
             return []
 
 
-def add_list_type(app, name, prefix=''):
+class TagListDisplay(SphinxDirective):
+    """
+    Output the list of tags for the document.
+
+    Like: `#lang-nodejs #web`
+
+    From rst markup like::
+
+
+    """
+
+    def run(self):
+        env = self.state.document.settings.env
+
+        container = nodes.container()
+        container.set_class('taglist')
+
+        for item in env.tag_list.get(env.docname, []):
+            elem = nodes.inline()
+            elem += nodes.reference('', '#' + item, refuri='/tag/' + item)
+            elem.set_class('tag')
+            container += elem
+            container += nodes.raw('', '&nbsp;', format='html')
+
+        return [container]
+
+
+def add_list_type(app, name, list_cls):
     list_name = name + '_list'
 
     class ListItemImpl(ListItem):
         marker_list_name = list_name
-
-    class DocumentListDisplayImpl(DocumentListDisplay):
-        marker_list_name = list_name
-        prefix_text = prefix
 
     def init_list(app):
         """Initialize environment."""
@@ -101,7 +124,7 @@ def add_list_type(app, name, prefix=''):
             getattr(env, list_name).pop(docname, None)
 
     directives.register_directive(name, ListItemImpl)
-    directives.register_directive(list_name, DocumentListDisplayImpl)
+    directives.register_directive(list_name, list_cls)
 
     app.connect('builder-inited', init_list)
     app.connect('env-purge-doc', purge)
@@ -178,10 +201,12 @@ def process_authorlists(app, doctree, fromdocname):
 
 
 def setup(app):
-    add_list_type(app, 'author', 'Written by: ')
+    add_list_type(app, 'author', AuthorListDisplay)
     app.add_node(allauthors)
     directives.register_directive('allauthors', AllAuthors)
     app.connect('doctree-resolved', process_authorlists)
+
+    add_list_type(app, 'tag', TagListDisplay)
 
     return {
         'version': '1.0.0',
