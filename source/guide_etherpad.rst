@@ -95,7 +95,7 @@ Run the following code to create the database ``<username>_etherpad`` in MySQL:
 Change the configuration
 ------------------------
 
-You need to set up the MySQL_ database settings in ``~/etherpad/settings.json``. Replace the whole codeblocks:
+You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Replace the whole codeblocks:
 
 .. code-block:: none
 
