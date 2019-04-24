@@ -215,4 +215,4 @@ If it's not in state RUNNING, check your configuration.
 
 Tested with The Lounge 2.7.1, Uberspace 7.1.13.0
 
-.. authors::
+.. author_list::

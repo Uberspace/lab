@@ -105,4 +105,4 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 Tested with DokuWiki 2018-04-22b "Greebo", Uberspace 7.2.1.0
 
-.. authors::
+.. author_list::

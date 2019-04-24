@@ -140,4 +140,4 @@ If you've enabled the cache, you might need to empty the page cache directory to
 
 Tested with Kirby 3.0.0 and Uberspace 7.2.1
 
-.. authors::
+.. author_list::

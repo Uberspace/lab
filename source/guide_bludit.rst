@@ -291,4 +291,4 @@ When you forgot the admin password, you can reset it manually.
 
 Tested with Bludit 3.8.0 "APA" (3.8.1 "APA" for update), Uberspace 7.2.2.2
 
-.. authors::
+.. author_list::

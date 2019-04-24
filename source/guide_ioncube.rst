@@ -131,4 +131,4 @@ Changes to the PHP configuration will take effect after reloading PHP:
 
 Tested with IonCube 10.2.7, Uberspace 7.1.16
 
-.. authors::
+.. author_list::

@@ -178,4 +178,4 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 
 Tested with TYPO3 9.5 LTS and Uberspace 7.2.2
 
-.. authors::
+.. author_list::

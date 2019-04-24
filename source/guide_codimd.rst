@@ -370,4 +370,4 @@ Manual derived from `this blog <https://w.h8.lv/s/how_to_install_hackmd_on_ubers
 
 Tested with CodiMD 1.2.1, Uberspace 7.1.13
 
-.. authors::
+.. author_list::

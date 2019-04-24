@@ -220,4 +220,4 @@ It might take a few minutes before your Etherpad comes back online because ``npm
 
 Tested with Etherpad Lite 1.7.0 and Uberspace 7.1.15.0
 
-.. authors::
+.. author_list::

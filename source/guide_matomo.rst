@@ -162,4 +162,4 @@ The easiest way to update Matomo is to use the web updater provided in the admin
 
 Tested with Matomo 3.5.0, Uberspace 7.1.3
 
-.. authors::
+.. author_list::

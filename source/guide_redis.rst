@@ -188,5 +188,5 @@ Use the Unix socket ``~/.redis/sock`` to access redis with other applications. Y
 
 Tested with Redis 5.0.3, Uberspace 7.2.1.0
 
-.. authors::
+.. author_list::
 

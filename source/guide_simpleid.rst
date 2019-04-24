@@ -223,4 +223,4 @@ Follow the steps described in the UPGRADE.txt shipped with the newest version. T
 
 Tested with SimpleID 1.0.2, Uberspace 7.1.13.0
 
-.. authors::
+.. author_list::

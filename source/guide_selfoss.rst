@@ -163,4 +163,4 @@ It is recommended to set up a cron job to automatically update your feeds. Edit 
 
 Tested with selfoss 2.18, Uberspace 7.1.12.0
 
-.. authors::
+.. author_list::

@@ -216,4 +216,4 @@ Check the `Kanboard documentation`_ if the configuration changed between ``confi
 
 Tested with Kanboard 1.2.6, Uberspace 7.1.14.0
 
-.. authors::
+.. author_list::

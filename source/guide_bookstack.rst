@@ -178,4 +178,4 @@ After updating your installation you should clean the cache to prevent errors.
 
 Tested with BookStack 0.24.1 Beta, Uberspace 7.1.15
 
-.. authors::
+.. author_list::

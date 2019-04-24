@@ -91,4 +91,4 @@ The easiest way to update Joomla! is to use the web updater provided in the admi
 
 Tested with Joomla! 3.8.12, Uberspace 7.1.12
 
-.. authors::
+.. author_list::

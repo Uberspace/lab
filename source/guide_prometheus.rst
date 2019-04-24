@@ -174,4 +174,4 @@ If this is something you do not want to do, you could hide it behind a basic aut
 
 Tested with Prometheus_ 2.7.1, Uberspace 7.2.2.2
 
-.. authors::
+.. author_list::

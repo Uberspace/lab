@@ -164,4 +164,4 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 Tested with Django 2.0.5, Uberspace 7.1.6
 
-.. authors::
+.. author_list::

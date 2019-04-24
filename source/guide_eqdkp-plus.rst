@@ -84,4 +84,4 @@ The easiest way to update EQdkp Plus is to use the web updater provided in the a
 
 Tested with EQdkp Plus 2.3.0.26, Uberspace 7.1.3
 
-.. authors::
+.. author_list::

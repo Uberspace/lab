@@ -129,4 +129,4 @@ After updating the Grav core use the ``update`` command to update all plugins an
 
 Tested with Grav 1.5.2, Uberspace 7.1.13
 
-.. authors::
+.. author_list::

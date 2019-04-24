@@ -233,4 +233,4 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 Tested with Jingo 1.8.5, Uberspace 7.1.1
 
-.. authors::
+.. author_list::

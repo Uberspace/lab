@@ -272,4 +272,4 @@ This guide is based on the `official Mailman 2.1 installation instructions <http
 .. _documentation: https://www.gnu.org/software/mailman/mailman-install.txt
 
 
-.. authors::
+.. author_list::

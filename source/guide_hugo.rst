@@ -172,4 +172,4 @@ If there is a new version available, update the ``hugo`` binary in ``~/bin`` (re
 
 Tested with Hugo 0.54, Uberspace 7.2.1.0
 
-.. authors::
+.. author_list::

@@ -119,4 +119,4 @@ That's it, you have successfully configured an automatically launching port forw
 
 .. _autossh: http://www.harding.motd.ca/autossh/
 
-.. authors::
+.. author_list::

@@ -410,4 +410,4 @@ Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and u
 .. _SASS: https://sass-lang.com/
 
 
-.. authors::
+.. author_list::

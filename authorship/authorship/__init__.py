@@ -29,13 +29,12 @@ def comma_list(nodes_):
     return elements[:-1]
 
 
-class Author(SphinxDirective):
+class ListItem(SphinxDirective):
     """
-    Store author information in the environment (``authors``).
+    Store a list of things (e.g. authors, tags) in the environment of each
+    document.
 
-    Append given author info to the list for the current document.
-
-    From rst markup like::
+    Usage::
 
         .. author:: YourName <YourURL/YourMail>
 
@@ -43,34 +42,69 @@ class Author(SphinxDirective):
     required_arguments = 1
     final_argument_whitespace = True
 
-    def run(self):
-        env = self.state.document.settings.env
+    marker_list_name = None
 
-        env.authors.setdefault(env.docname, [])
-        env.authors[env.docname].append(self.arguments[0])
+    def run(self):
+        assert self.marker_list_name
+
+        env = self.state.document.settings.env
+        l = getattr(env, self.marker_list_name)
+
+        l.setdefault(env.docname, [])
+        l[env.docname].append(self.arguments[0])
 
         return []
 
 
-class Authors(SphinxDirective):
+class DocumentListDisplay(SphinxDirective):
     """
-    Output the list of authors for the document.
+    Output the list of items (e.g. authors, tags) for the document.
 
     Like: `Written by: author1 <mail@some.org>, author2 <site.org>`
 
     From rst markup like::
 
-        .. authors::
+        .. author_list::
 
     """
+
+    marker_list_name = None
+    prefix_text = ''
+
     def run(self):
         env = self.state.document.settings.env
-        authors = env.authors.get(env.docname, [])
+        items = getattr(env, self.marker_list_name).get(env.docname, [])
 
-        if not authors:
-            return [nodes.Text('Written by: Uberspace')]
+        if items:
+            return [nodes.Text(self.prefix_text)] + comma_list(nodes.Text(a) for a in items) + [nodes.raw('', '<br>', format='html')]
+        else:
+            return []
 
-        return [nodes.Text('Written by: ')] + comma_list(nodes.Text(a) for a in authors)
+
+def add_list_type(app, name, prefix=''):
+    list_name = name + '_list'
+
+    class ListItemImpl(ListItem):
+        marker_list_name = list_name
+
+    class DocumentListDisplayImpl(DocumentListDisplay):
+        marker_list_name = list_name
+        prefix_text = prefix
+
+    def init_list(app):
+        """Initialize environment."""
+        setattr(app.builder.env, list_name, {})
+
+    def purge(app, env, docname):
+        """Remove possible stale info for updated documents."""
+        if hasattr(env, list_name):
+            getattr(env, list_name).pop(docname, None)
+
+    directives.register_directive(name, ListItemImpl)
+    directives.register_directive(list_name, DocumentListDisplayImpl)
+
+    app.connect('builder-inited', init_list)
+    app.connect('env-purge-doc', purge)
 
 
 class allauthors(nodes.General, nodes.Element):
@@ -91,25 +125,12 @@ class AllAuthors(SphinxDirective):
         return [allauthors('')]
 
 
-def builder_inited(app):
-    """Initialize environment."""
-    app.builder.env.authors = {}
-
-
-def purge_authors(app, env, docname):
-    """Remove possible stale info for updated documents."""
-    if not hasattr(env, 'authors'):
-        return
-
-    env.authors.pop(docname, None)
-
-
 def process_authorlists(app, doctree, fromdocname):
     """Build list of authors sorted by contribution count."""
     env = app.builder.env
-    authors = set(itertools.chain(*[authors for authors in env.authors.values()]))
+    authors = set(itertools.chain(*[authors for authors in env.author_list.values()]))
     guides_by_author = {
-        a: set(g for g, guide_authors in env.authors.items() if a in guide_authors)
+        a: set(g for g, guide_authors in env.author_list.items() if a in guide_authors)
         for a in authors
     }
     count_by_author = {a: len(guides_by_author[a]) for a in authors}
@@ -157,14 +178,9 @@ def process_authorlists(app, doctree, fromdocname):
 
 
 def setup(app):
+    add_list_type(app, 'author', 'Written by: ')
     app.add_node(allauthors)
-
-    directives.register_directive('author', Author)
-    directives.register_directive('authors', Authors)
     directives.register_directive('allauthors', AllAuthors)
-
-    app.connect('builder-inited', builder_inited)
-    app.connect('env-purge-doc', purge_authors)
     app.connect('doctree-resolved', process_authorlists)
 
     return {

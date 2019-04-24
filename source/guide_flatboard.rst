@@ -188,4 +188,4 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 Tested with Flatboard 2.1 "PIÉMONT", Uberspace 7.2.2.2
 
-.. authors::
+.. author_list::

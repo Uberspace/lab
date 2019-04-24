@@ -203,4 +203,4 @@ Point your browser to your domain for example https://isabell.uber.space
 
 Tested with Up1 1.0 and Uberspace 7.1.16.0
 
-.. authors::
+.. author_list::

@@ -187,4 +187,4 @@ Alternatively, the update can also be performed via the `Contao Manager`_ which 
 
 Tested with Contao 4.6.10 / Uberspace 7.1.18.0
 
-.. authors::
+.. author_list::

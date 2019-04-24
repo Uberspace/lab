@@ -207,4 +207,4 @@ Since Jekyll is a ruby gem, you can update Jekyll and every gem needed by your w
 
 Tested with Ruby 2.5.3, Jekyll 3.8.5, Uberspace 7.2.2
 
-.. authors::
+.. author_list::
