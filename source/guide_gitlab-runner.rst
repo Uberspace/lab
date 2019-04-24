@@ -125,3 +125,5 @@ If it’s not in state RUNNING, check your configuration.
 ----
 
 Tested with Gitlab Runner 11.1.0, Uberspace 7.1.7.0
+
+.. author_list::
