@@ -302,4 +302,4 @@ Point your browser to https://isabell.uber.space and log in with the default cre
 
 ----
 
-.. authors::
+.. author_list::

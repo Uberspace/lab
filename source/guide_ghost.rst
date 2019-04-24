@@ -231,4 +231,4 @@ If it's not in state RUNNING, check your configuration.
 
 Tested with Ghost 2.0.0, Uberspace 7.1.11
 
-.. authors::
+.. author_list::

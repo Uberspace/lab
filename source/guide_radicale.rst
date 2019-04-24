@@ -207,4 +207,4 @@ Updates
 
 Tested with Radicale 2.1.11, Uberspace 7.1.17
 
-.. authors::
+.. author_list::

@@ -139,7 +139,7 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * http://www.loremipsum.com/legal/privacy
 
@@ -221,7 +221,7 @@ Updates
 
 Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
-.. authors::
+.. author_list::
 
 ```
 

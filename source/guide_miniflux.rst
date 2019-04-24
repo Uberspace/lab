@@ -237,4 +237,4 @@ Check the `Miniflux`_ website for news and/or breaking changes.
 
 Tested with Miniflux 2.0.12, Uberspace 7.1.15.0
 
-.. authors::
+.. author_list::

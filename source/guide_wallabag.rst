@@ -152,4 +152,4 @@ If there is a new version available, you can update with the following command:
 
 Tested with Wallabag 2.3.2 and Uberspace 7.1.2
 
-.. authors::
+.. author_list::

@@ -138,4 +138,4 @@ Use ``npm`` to update Embetty:
 
 Tested with Embetty 1.0.0-beta.6, Uberspace 7.1.7.0
 
-.. authors::
+.. author_list::

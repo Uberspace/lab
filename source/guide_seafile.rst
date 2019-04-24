@@ -221,4 +221,4 @@ Updating seafile is pretty easy. Just untar the new package into the "seafile" d
 
 Tested with seafile-server-6.3.4, Uberspace 7.1.13.0
 
-.. authors::
+.. author_list::

@@ -133,4 +133,4 @@ To update October and your installed plugins you can use the ``october:update`` 
 
 Tested with OctoberCMS 1.0.443, Uberspace 7.1.14
 
-.. authors::
+.. author_list::

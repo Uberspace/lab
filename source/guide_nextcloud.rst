@@ -164,4 +164,4 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 
 Tested with Nextcloud 13.0.1, Uberspace 7.1.3
 
-.. authors::
+.. author_list::

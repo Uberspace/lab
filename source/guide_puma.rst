@@ -171,7 +171,7 @@ Further Reading
 Tested with Puma 3.12, Uberspace 7.1.17
 
 
-.. authors::
+.. author_list::
 
 .. _Ruby: https://www.ruby-lang.org/
 .. _Puma: https://puma.io

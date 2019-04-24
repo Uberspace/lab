@@ -225,5 +225,5 @@ Restart your MongoDB and login to check the version.
 
 Tested with MongoDB 4.0.5, Uberspace 7.2.1.0
 
-.. authors::
+.. author_list::
 

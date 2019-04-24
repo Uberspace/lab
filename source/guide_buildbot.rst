@@ -286,4 +286,4 @@ Congratulations! You now have an operational BuildBot_ installation on your Uber
 .. _BuildBot: https://buildbot.net/
 .. _git: https://git-scm.com/
 
-.. authors::
+.. author_list::

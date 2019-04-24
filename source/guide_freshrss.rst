@@ -131,4 +131,4 @@ This will overwrite any changed files while keeping your current configuration.
 
 Tested with FreshRSS 1.11.2, Uberspace 7.1.12.0
 
-.. authors::
+.. author_list::

@@ -215,6 +215,6 @@ If there is a new version available, update your branch according to the version
 
 Tested with pretix 2.1.0 and Uberspace 7.1.15.0
 
-.. authors::
+.. author_list::
 
 This guide was written with the help of a former text on "bullshit_", thanks to Nathan.

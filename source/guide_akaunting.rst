@@ -131,4 +131,4 @@ You can update the installation in the update wizzard which you can find in the 
 
 Tested with Akaunting 1.2.16, Uberspace 7.1.13
 
-.. authors::
+.. author_list::

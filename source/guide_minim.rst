@@ -109,4 +109,4 @@ If everything works alright you can delete the ``config-new`` directory.
 
 Tested with minim 0.9.4, Uberspace 7.2.4
 
-.. authors::
+.. author_list::

@@ -116,6 +116,6 @@ To update the satis tool you just have to pull the latest changes and run compos
 
 Tested with Satis 1.0.0, Uberspace 7.1.14.0
 
-.. authors::
+.. author_list::
 
 .. _composer: https://getcomposer.org

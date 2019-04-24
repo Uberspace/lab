@@ -357,4 +357,4 @@ To configure your project with the PostgreSQL details, you should have the datab
 
 Tested with Uberspace 7.1.15 and PostgreSQL 9.6.10
 
-.. authors:: 
+.. author_list::

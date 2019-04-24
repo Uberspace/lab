@@ -163,4 +163,4 @@ Then you need to restart the service, so the new code is used by the webserver:
 
 Tested with Cryptpad 2.19.0 and Uberspace 7.2.4.0
 
-.. authors::
+.. author_list::

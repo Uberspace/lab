@@ -167,4 +167,4 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 Tested with Gitea 1.7.2, Uberspace 7.1.16
 
-.. authors::
+.. author_list::
