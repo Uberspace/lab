@@ -135,7 +135,7 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
- 
+
  [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
  [isaball@stardust ~]$ php occ upgrade
  [isaball@stardust ~]$ restorecon -R .

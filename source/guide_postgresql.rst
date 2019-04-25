@@ -29,7 +29,7 @@ Create a working directory.
  [isabell@stardust ~]$ cd ~/postgres/
  [isabell@stardust ~]$
 
-Download version 9.6.10. A list of supported major and beta releases can be found on the PostgreSQL `download server`_. 
+Download version 9.6.10. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
 
 ::
 
@@ -109,7 +109,7 @@ Step 4 - The Database Cluster
 
 A database cluster is the base for all new single databases. We will define the location for the cluster and the user password. The user name for the cluster is automatically predefined to be your Uberspace name.
 
-To reduce the effort for the database cluster administration, we will define at first the password and save it to the file *.pgpass*.  
+To reduce the effort for the database cluster administration, we will define at first the password and save it to the file *.pgpass*.
 
 Create a ``~/.pgpass`` file with the following content:
 
@@ -119,7 +119,7 @@ Create a ``~/.pgpass`` file with the following content:
 
 .. code-block:: console
  :emphasize-lines: 1,2
- 
+
  #hostname:port:database:username:password (min 64 characters)
  *:*:*:<username>:1234567890123456789012345678901234567890123456789012345678901234
 
@@ -222,9 +222,9 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
  #------------------------------------------------------------------------------
- 
+
  # - Connection Settings -
- 
+
  listen_addresses = '*'         # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
@@ -318,8 +318,8 @@ To create a new database user, consider the following option:
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ createuser <username> -P
- Enter password for new role: 
- Enter it again: 
+ Enter password for new role:
+ Enter it again:
  [isabell@stardust ~]$
 
 

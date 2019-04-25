@@ -8,7 +8,7 @@
       :align: center
 
 ###########
-ProcessWire 
+ProcessWire
 ###########
 
 Processwire_ is a free content management system (CMS) and framework (CMF) written in PHP.

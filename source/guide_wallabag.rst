@@ -116,7 +116,7 @@ Change to that folder and run ``make install``. During the installation process,
 
 .. note:: You just need to set the highlighted values (as explained above), for the others just accept the default values with *enter*. You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file.
 
-To apply changes to parameters.yml, you have to clear your cache by deleting everything in ``~/var/cache`` with this command: 
+To apply changes to parameters.yml, you have to clear your cache by deleting everything in ``~/var/cache`` with this command:
 
 ``[isabell@stardust html]$ bin/console cache:clear -e=prod``.
 

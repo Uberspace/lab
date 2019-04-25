@@ -61,7 +61,7 @@ Since Contao uses the subdirectory ``web/`` as web root of your website you shou
 ``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**:
 
 .. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition <target> '42.23.*'``
-  
+
   Composer_ will install all necessary dependencies Contao needs to run. This can take some time though.
 
 .. warning:: You have to replace the ``<target>`` parameter with a path to a folder where the Contao project files should be created. If the target folder does not exist yet, it will be created automatically.
@@ -165,7 +165,7 @@ To update an existing Contao installation just perform a Composer Update in the 
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
  [...]
- 
+
  [isabell@stardust <target>]$
 
 Alternatively, the update can also be performed via the `Contao Manager`_ which can be downloaded from the official Contao download_ page.

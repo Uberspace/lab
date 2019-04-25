@@ -62,7 +62,7 @@ Page 1 - Configuration:
 Page 2 - Database Configuration:
   * Database Type: Set it to ``MySQLi``
   * Host Name: ``localhost``
-  * Username: ``isabell`` 
+  * Username: ``isabell``
   * Password: ``yourMySQLPassword`` (you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now; if you don't, start reading again at the top.)
   * Database Name: your Joomla! database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_joomla``
   * Table Prefix: just stick to the randomly generated one
@@ -73,7 +73,7 @@ Page 3 - Finalization
   * Email Configuration: up to you...
   * Check that all Pre-Installation Checks are fullfilled (a green ``Yes``)
   * Check that all Recommended Settings are fullfilled (for me the only difference was ``Output Buffering`` which is recommended to *off*, but is *on* in my case -- it does not matter, Joomla! will still operate)
-  
+
 Hit ``Install``!
 You should see a message ``Congratulations! Joomla! is now installed``
 You can also install optionally extra languages by clicking on ``Extra steps: Install languages``

@@ -20,7 +20,7 @@ MongoDB_ is a NoSQL database, developed by MongoDB Inc.
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://www.mongodb.com/community/licensing
 
@@ -40,10 +40,10 @@ Go to the MongoDB Community Server `download page`_ and select the current versi
  Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|13.35.198.38|:443... connected.
  HTTP request sent, awaiting response... 200 OK
  Length: 88063053 (84M) [application/x-gzip]
- Saving to: /home/isabell/mongodb.tgz’ 
- 
+ Saving to: /home/isabell/mongodb.tgz’
+
  100%[=============================================================>] 88,063,053  27.9MB/s   in 3.0s
- 
+
  2019-01-05 17:15:57 (27.9 MB/s) - ‘/home/isabell/mongodb.tgz’ saved [88063053/88063053]
  [isabell@stardust ~]$
 
@@ -87,7 +87,7 @@ Create the folder ``~/mongodb``. Your databases will be stored there.
 .. code-block:: bash
 
  [isabell@stardust ~]$ mkdir ~/mongodb
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Configuration
 =============
@@ -117,7 +117,7 @@ Tell supervisord to refresh its configuration and start the service:
  mongodb: available
  [isabell@stardust ~]$ supervisorctl update
  mongodb: added process group
- [isabell@stardust ~]$ supervisorctl status 
+ [isabell@stardust ~]$ supervisorctl status
  mongodb                          RUNNING   pid 24458, uptime 0:00:09
  [isabell@stardust ~]$
 
@@ -132,7 +132,7 @@ Choose an admin password or generate a random one one using this snippet:
 
  [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
  randompassword
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Create ``~/mongodb/setup.js``. Replace ``<username>`` with your Uberspace user name and ``<password>`` with the password you just chose or generated.
 
@@ -192,7 +192,7 @@ Stop your MongoDB
 
  [isabell@stardust ~]$ supervisorctl stop mongodb
  mongodb: stopped
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Download and extract
 --------------------

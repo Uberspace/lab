@@ -203,7 +203,7 @@ Migrate your database
  [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --init --mgpath ./versions/23.42.1/
  [2018-08-22 14:18:21] INFO Creating database backup
  […]
- [2018-08-22 16:18:23] INFO Finished database migration! 
+ [2018-08-22 16:18:23] INFO Finished database migration!
 
 Replace the ``current`` symlink and link to the newest version
 --------------------------------------------------------------

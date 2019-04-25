@@ -38,7 +38,7 @@ Download the latest version of autossh_ from the website http://www.harding.motd
  [isabell@stardust ~] wget http://www.harding.motd.ca/autossh/autossh-99.9f.tgz
  [isabell@stardust ~] tar zxf autossh-99.9f.tgz
  [isabell@stardust ~] cd autossh-99.9f
- [isabell@stardust autossh-99.9f] 
+ [isabell@stardust autossh-99.9f]
 
 Step 2
 ------
@@ -54,7 +54,7 @@ Run ``configure``, ``make`` and ``make install`` (the ``--prefix`` options tells
  [isabell@stardust autossh-99.9f] make install
  [...]
 
-After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors. 
+After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors.
 
 
 Configuration and Usage

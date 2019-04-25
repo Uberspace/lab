@@ -72,7 +72,7 @@ First get the Up1 source code from Github_:
   Note: checking out '059f199a6f94fc6c90cde1e4dab0b5b85b49533c'.
   [isabell@stardust ~]$
 
-You have now downloaded the master development branch, because this might behave like a beta version of the software, you should check out the latest release. 
+You have now downloaded the master development branch, because this might behave like a beta version of the software, you should check out the latest release.
 
 Please be sure to replace the pseudo version number ``66.6`` here with the latest version number from the release feed_:
 
@@ -95,7 +95,7 @@ Then run :manual_anchor:`npm <lang-nodejs.html#npm>` to install all the dependen
   added 131 packages from 90 contributors and audited 219 packages in 6.04s
   found 17 vulnerabilities (4 low, 8 moderate, 5 high)
   run `npm audit fix` to fix them, or `npm audit` for details
-  [isabell@stardust server]$ 
+  [isabell@stardust server]$
 
 You probably got the error that there are vulnerabilities to fix, so follow the instruction and run ``npm audit fix`` to install the latest package versions:
 

@@ -55,7 +55,7 @@ Extract Redis
  redis-stable/CONTRIBUTING
  redis-stable/redis.conf
  redis-stable/runtest-cluster
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Build Redis
@@ -77,7 +77,7 @@ Build Redis
  Hint: It's a good idea to run 'make test' ;)
 
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
- [isabell@stardust src]$ 
+ [isabell@stardust src]$
 
 Try running ``redis-server`` to make sure everything works:
 
@@ -124,7 +124,7 @@ Copy the ``redis-server`` and ``redis-cli`` binaries to your `~/bin` folder:
 
  [isabell@stardust ~]$ cp ~/redis-stable/src/redis-server ~/bin/
  [isabell@stardust ~]$ cp ~/redis-stable/src/redis-cli ~/bin/
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Configuration
 =============
@@ -134,7 +134,7 @@ Create the folder ``~/.redis/``:
 .. code-block:: bash
 
  [isabell@stardust ~]$ mkdir ~/.redis/
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now create the config file ``~/.redis/conf`` with an editor of your choice and enter these settings. Replace ``<user>`` with your user name.
 

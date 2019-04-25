@@ -135,7 +135,7 @@ Finishing installation
 Start prometheus
 ----------------
 
-To start prometheus via the previously created :manual:`supervisord <daemons-supervisord>` configuration, run the following command 
+To start prometheus via the previously created :manual:`supervisord <daemons-supervisord>` configuration, run the following command
 
 ::
 

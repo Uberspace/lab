@@ -6,7 +6,7 @@
 
   .. image:: _static/images/simpleid.png
       :align: center
-      
+
 ##########
 SimpleID
 ##########
@@ -38,7 +38,7 @@ Your URL needs to be setup for web:
  [isabell@stardust ~]$ uberspace web domain list
  isabell.uber.space
  [isabell@stardust ~]$
- 
+
 Installation
 ============
 
@@ -65,7 +65,7 @@ The folder containing the frontend needs to be accessible via web. To achieve th
 
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/simpleid/www/ ~/html/simpleid
  [isabell@stardust ~]$
- 
+
 Step 3 - Copy empty configuration
 ---------------------------------
 
@@ -80,7 +80,7 @@ Step 4 - Cleanup
 
  [isabell@stardust isabell]$ rm simpleid-42.23.1.tar.gz
  [isabell@stardust ~]$
- 
+
 Configuration
 =============
 
@@ -95,9 +95,9 @@ The only change you really have to do is changing the SIMPLEID_BASE_URL, the oth
 .. code-block:: php
 
  define('SIMPLEID_BASE_URL', 'https://<username>.uber.space/simpleid');
- 
+
 In our example this would be:
- 
+
 .. code-block:: php
 
  define('SIMPLEID_BASE_URL', 'https://isabell.uber.space/simpleid');
@@ -125,7 +125,7 @@ First we'll generate a random salt to make this secure as possible. You are free
  [isabell@stardust ~]$ head -c32 /dev/urandom | base64 | head -c 16 ; echo
  MySuperSecretSalt
  [isabell@stardust ~]$
- 
+
 With this generated hash and your password in mind we can create the SHA256 hash with 100,000 iterations for the identity file.
 
 .. warning:: Replace ``<password>`` with your password, and ``<salt>`` with the generated salt or the one you decided to chose.
@@ -156,19 +156,19 @@ In our example we would use this passline:
 .. code-block:: php
 
  pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:MySuperSecretSalt"
- 
+
 Since this is our first user, it should be set as administrator by changing
 
 .. code-block:: php
 
  ;administrator=1
- 
+
 to (remove the ``;``)
 
 .. code-block:: php
 
  administrator=1
- 
+
 The last thing is to set an `identifier <http://simpleid.koinic.net/docs/1/identity-requirements/#identifier>`_ using an unique URL.
 
 .. warning:: Replace ``<username>`` with your Uberspace username!

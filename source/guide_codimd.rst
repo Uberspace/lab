@@ -56,7 +56,7 @@ Create Database
 Download Sources
 ----------------
 
-go to the release_-site and download the latest version 
+go to the release_-site and download the latest version
 
 .. code-block:: console
 
@@ -72,9 +72,9 @@ go to the release_-site and download the latest version
   HTTP request sent, awaiting response... 200 OK
   Length: unspecified [application/zip]
   Saving to: ‘6.6.66.zip’
-  
-      [     <=>                                                                                                                                        ] 7,090,453   6.28MB/s   in 1.1s   
-  
+
+      [     <=>                                                                                                                                        ] 7,090,453   6.28MB/s   in 1.1s
+
   2018-10-17 18:50:31 (6.28 MB/s) - ‘6.6.66.zip’ saved [7090453]
   [isabell@stardust ~]$ unzip 6.6.66.zip
   [...]
@@ -192,7 +192,7 @@ enter your sql credetials in ``.sequelizerc``:
   :emphasize-lines: 7
 
   var path = require('path');
-  
+
   module.exports = {
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),
@@ -206,7 +206,7 @@ In our example this would be:
   :emphasize-lines: 7
 
   var path = require('path');
-  
+
   module.exports = {
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),

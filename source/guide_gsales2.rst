@@ -25,7 +25,7 @@ Equipped with a well documentated SOAP API you can easily attach tools and third
   * :manual:`MySQL <database-mysql>`
 
 
-  
+
 License
 =======
 
@@ -50,8 +50,8 @@ So we have to make sure that this PHP version is used on the server. Let's set i
 
 
 
-After setting the PHP version just make sure we are using the correct version: 
- 
+After setting the PHP version just make sure we are using the correct version:
+
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
@@ -85,24 +85,24 @@ Now download the latest release of GSALES 2 for PHP 7.1:
  [isabell@stardust html]$ wget https://www.gsales.de/download/latest71.tar.gz
  [isabell@stardust html]$
 
- 
+
 Extract the downloaded archive
 
 ::
 
  [isabell@stardust html]$ tar -xvzf latest71.tar.gz
- 
+
 After extracting the archive a new subdirectory with ``gsales2-revXXXX`` is created.
 For easier access rename this subdirectory to ``gsales2`` with the following command:
 
 ::
 
  [isabell@stardust html]$ mv gsales2-rev1123 gsales2
- 
+
 If you need to lookup the revision number simply list the contents of the directory with ``ls``.
 
- 
- 
+
+
 Next get rid of the GSALES 2 download archive:
 
 ::
@@ -113,7 +113,7 @@ Next get rid of the GSALES 2 download archive:
 
 
 Prepare the GSALES 2 configuration file which has to be in place to hold the paramters to access the database later:
- 
+
 ::
 
  [isabell@stardust html]$ cp gsales2/lib/inc.cfg.dist.php gsales2/lib/inc.cfg.php
