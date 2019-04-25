@@ -6,7 +6,7 @@
 
   .. image:: _static/images/mailman.jpg
       :align: center
-      
+
 #########
 Mailman 3
 #########
@@ -73,8 +73,8 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
  [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/9.99.9/dart-sass-9.99.9-linux-x64.tar.gz
  [isabell@stardust ~]$ tar xzvf dart-sass-9.99.9-linux-x64.tar.gz dart-sass
- [isabell@stardust ~]$ mv dart-sass ./bin/ 
- [isabell@stardust ~]$ rm dart-sass-9.99.9-linux-x64.tar.gz 
+ [isabell@stardust ~]$ mv dart-sass ./bin/
+ [isabell@stardust ~]$ rm dart-sass-9.99.9-linux-x64.tar.gz
  [isabell@stardust ~]$
 
 
@@ -88,7 +88,7 @@ To have a starting point for configuration, we use the mailman-suite_ example pr
  [isabell@stardust ~]$ mv mailman-suite/mailman-suite_project/ .
  [isabell@stardust ~]$ rm -rf mailman-suite
  [isabell@stardust ~]$ mv mailman-suite_project/ mailman-suite
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Get and enable uwsgi
@@ -122,7 +122,7 @@ At first, we need to configure the REST interface of the core component. Create 
  lmtp_host: 0.0.0.0
  smtp_host: stardust.uberspace.de
  lmtp_port: 8024
- smtp_port: 587 
+ smtp_port: 587
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
 
@@ -137,7 +137,7 @@ At first, we need to configure the REST interface of the core component. Create 
  [paths.custom]
  var_dir: /home/isabell/var
  bin_dir: /home/isabell/.local/bin
- 
+
  queue_dir: $var_dir/queue
  list_data_dir: $var_dir/lists
  log_dir: $var_dir/logs
@@ -201,21 +201,21 @@ After the REST backend has been configured, we need to configure the Django fron
 
  [...]
 
- BASE_DIR = '/home/isabell/var/' 
- 
+ BASE_DIR = '/home/isabell/var/'
+
  SECRET_KEY = 'change-this-on-your-production-server'
- 
+
  DEBUG = True # Leave to True while debugging, but change to False in production
- 
+
  ADMINS = (
-      ('Isabell', 'isabell@uber.space'), 
+      ('Isabell', 'isabell@uber.space'),
  )
 
  ALLOWED_HOSTS = [
      "localhost",  # Archiving API from Mailman, keep it.
      # "lists.your-domain.org",
      # Add here all production URLs you may have.
-     "isabell.uber.space", 
+     "isabell.uber.space",
      # And more...
  ]
 
@@ -224,20 +224,20 @@ After the REST backend has been configured, we need to configure the Django fron
  MAILMAN_REST_API_PASS = 'see_above'
  MAILMAN_ARCHIVER_KEY = '<SecretArchiverAPIKey>'
  MAILMAN_ARCHIVER_FROM = ('0.0.0.0', '::')
- 
+
  [...]
 
  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') # Uncomment
  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_SCHEME', 'https') # Uncomment
- 
+
  [...]
 
  STATIC_ROOT = '/home/isabell/html/static/'
 
  [...]
 
- DEFAULT_FROM_EMAIL = 'forwarder@isabell.uber.space' 
- 
+ DEFAULT_FROM_EMAIL = 'forwarder@isabell.uber.space'
+
  SERVER_EMAIL = 'isabell@uber.space'
 
  EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -266,7 +266,7 @@ Setting up Django
 
 After we have adjusted our configuration file, we need to compile and configure the Django project and create a super user to be used as web admin:
 
-:: 
+::
 
  [isabell@stardust ~]$ cd mailman-suite
  [isabell@stardust mailman-suite]$ python3.6 manage.py migrate
@@ -300,20 +300,20 @@ When Django is configured, we need to rename the example site to match our needs
 To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
 
 .. code :: ini
- 
+
  [uwsgi]
  chdir = /home/isabell/mailman-suite
- 
+
  http-socket = 0.0.0.0:8000
  master = true
  process = 2
  threads = 2
  wsgi-file = wsgi.py
- 
+
  # your user name
  uid = isabell
  gid = isabell
- 
+
  attach-daemon = python3.6 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
@@ -338,7 +338,7 @@ Additionally, serve static files using apache:
   [isabell@stardust ~]$ uberspace web backend set /static --apache
   Set backend for / to apache.
   [isabell@stardust ~]$
- 
+
 Setting up .qmail
 -----------------------------
 
@@ -353,7 +353,7 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
 To enable mail delivery for non-mailman addresses (such as ``info@isabell.uber.space``) you need to create individual ``.qmail-emailadress`` files such as ``.qmail-info``. If you just want to forward incoming mail to another email address, simply write one email address per line (see example below):
 
 .. code :: bash
- 
+
  isabell@example.com
 
 If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, use the following as content of your .qmail file:
@@ -372,9 +372,9 @@ Install cronjobs
 Using Mailman
 =============
 
-Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues. 
+Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues.
 
-Now you can create a new list using the Postorious web UI. 
+Now you can create a new list using the Postorious web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
@@ -385,14 +385,14 @@ As Mailman 3 consists of multiple independent projects, there is no single RSS f
 .. code :: bash
 
  [isabell@stardust ~]$ pip3.6 list --outdated --user
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
-If there are outdated packages, update the mailman packages and their dependencies using: 
+If there are outdated packages, update the mailman packages and their dependencies using:
 
 .. code :: bash
 
  [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
 

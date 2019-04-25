@@ -23,9 +23,9 @@ DokuWiki_ is a simple to use and highly versatile Open Source wiki_ software tha
 License
 =======
 
-DokuWiki_ are released under the GNU General Public License (GPL). 
+DokuWiki_ are released under the GNU General Public License (GPL).
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * http://www.gnu.org/licenses/gpl-faq.html
   * https://www.dokuwiki.org/start?id=faq:license
@@ -57,13 +57,13 @@ Installation
  [isabell@stardust html]$ tar -xzvf dokuwiki-stable.tgz --strip-components=1
  [isabell@stardust html]$ rm dokuwiki-stable.tgz
  [isabell@stardust html]$ cd ~
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Finishing installation
 ======================
 
-Now point your Browser to your installation URL ``https://isabell.uber.space/install.php``. 
+Now point your Browser to your installation URL ``https://isabell.uber.space/install.php``.
 Complete the form and follow the installation instructions.
 
 You will need to enter the following information:
@@ -76,9 +76,9 @@ You will need to enter the following information:
   * Password: The superduper secure password of the admin user.
   * Initial ACL policy: Choose the type of your wiki.
   * Allow users to register themselves: your decision
-  * Choose under which license your content will be published 
+  * Choose under which license your content will be published
 
-At least you have to delete the ``install.php``. 
+At least you have to delete the ``install.php``.
 
 Tuning
 ======

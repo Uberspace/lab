@@ -2,7 +2,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/embetty.png
       :align: center
 
@@ -14,7 +14,7 @@ Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to e
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Node.js <lang-nodejs>`
   * :manual:`supervisord <daemons-supervisord>`
@@ -55,7 +55,7 @@ Use ``npm`` to install the latest version of Embetty server:
   /home/isabell/bin/embetty -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty
   + @heise/embetty-server@1.0.0-beta.6
   added 182 packages in 10.878s
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Configuration
 =============
@@ -97,7 +97,7 @@ Tell ``supervisord`` to refresh its configuration and start the service:
  embetty: added process group
  [isabell@stardust ~]$ supervisorctl status
  embetty                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
 
@@ -125,7 +125,7 @@ Use ``npm`` to update Embetty:
 ::
 
 [isabell@stardust ~]$ npm upgrade -g @heise/embetty-server
-[isabell@stardust ~]$ 
+[isabell@stardust ~]$
 
 
 .. _Embetty: https://github.com/heiseonline/embetty

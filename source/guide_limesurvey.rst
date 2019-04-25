@@ -65,12 +65,12 @@ Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
  [...]
  2018-10-02 16:01:50 (10.0 MB/s) - ‘stable-release?download=4711:limesurvey4711%20180926targz’ saved [72359513/72359513]
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 
 Extract archive
@@ -79,7 +79,7 @@ Extract archive
 ::
 
  [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 Configuration
 =============
@@ -94,7 +94,7 @@ Edit .htaccess
 The default ``.htaccess`` includes a RewriteCond so that existing directories won't be rewritten, but for some reason it is commented out:
 
 .. code-block:: apacheconf
- 
+
      #RewriteCond %{REQUEST_FILENAME} !-d
 
 
@@ -102,25 +102,25 @@ The default ``.htaccess`` includes a RewriteCond so that existing directories wo
 Edit the ``.htaccess`` file and uncomment the line above, so the full ``.htaccess`` file should look like this:
 
 .. code-block:: apacheconf
- 
+
  <IfModule mod_rewrite.c>
      RewriteEngine on
- 
+
      # if a directory or a file exists, use it directly
      RewriteCond %{REQUEST_FILENAME} !-f
      RewriteCond %{REQUEST_FILENAME} !-d
- 
+
      # otherwise forward it to index.php
      RewriteRule . index.php
- 
+
      # deny access to hidden files and directories except .well-known
      RewriteCond %{REQUEST_URI} !^/\.well-known
      RewriteRule ^(.*/)?\.+ - [F]
  </IfModule>
- 
+
  # deny access to hidden files and directories without mod_rewrite
  RedirectMatch 403 ^/(?!\.well-known/)(.*/)?\.+
- 
+
  # General setting to properly handle LimeSurvey paths
  # AcceptPathInfo on
 
@@ -136,11 +136,11 @@ When a new version is released, copy the download link and download it as above,
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
  [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1 --overwrite  --exclude '/application/config/config.php' --exclude '/upload/*'
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 
 .. _LimeSurvey: https://www.limesurvey.org/

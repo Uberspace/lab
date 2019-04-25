@@ -58,9 +58,9 @@ Now download the latest version and extract it:
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
-  
+
  [...]
- 
+
  [isabell@stardust matomo]$
 
 This will create a ``piwik`` folder containing the files and directories. Now we will move the files from the ``piwik`` folder to the parent folder.
@@ -137,7 +137,7 @@ There are different ways to use Matomo for website tracking. The easiest way is 
 
 Moreover, Matomo provides Image Tracking and the importing of server logs. Also it offers a `Tracking HTTP API <https://developer.matomo.org/api-reference/tracking-api>`_, which lets you integrate the Matomo Tracking for example in your PHP application.
 
-  
+
 Privacy
 =======
 

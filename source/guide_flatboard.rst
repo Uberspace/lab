@@ -23,9 +23,9 @@ Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json
 License
 =======
 
-Flatboard_ are released under the MIT License. 
+Flatboard_ are released under the MIT License.
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://tldrlegal.com/license/mit-license
 
@@ -61,24 +61,24 @@ Installation
 
  2019-03-03 16:47:53 (19.0 MB/s) - ‘flatboard_latest.zip’ saved [1280825/1280825]
  [isabell@stardust html]$
- 
-Unzip the archive and then delete it. 
+
+Unzip the archive and then delete it.
 
 .. code-block:: console
  :emphasize-lines: 1,5
- 
- [isabell@stardust html]$ unzip flatboard_latest.zip 
+
+ [isabell@stardust html]$ unzip flatboard_latest.zip
  Archive:  flatboard_latest.zip
   inflating: flatboard.zip
   inflating: index.php
- [isabell@stardust html]$ rm flatboard_latest.zip 
- [isabell@stardust html]$ 
+ [isabell@stardust html]$ rm flatboard_latest.zip
+ [isabell@stardust html]$
 
 
 Finishing installation
 ======================
 
-Now point your Browser to your installation URL ``https://isabell.uber.space/index.php``. 
+Now point your Browser to your installation URL ``https://isabell.uber.space/index.php``.
 Complete the form and follow the installation instructions.
 
 You will need to enter the following information:
@@ -86,13 +86,13 @@ You will need to enter the following information:
   * language: the language you prefer (English, French, Russian).
 
 Then push the Unzip-Button.
-  
+
   * titel: titel of your forum
   * description: what is your forum about
   * E-Mail: your admin e-mail adress
   * administrator: set up your admin password
   * language: the language you prefer (English, French, German, Russian, Italiano) « Yes, the question is double.
-  
+
 At least you have to delete the ``install.php``.
 
 Updates
@@ -132,11 +132,11 @@ Updates
 
 3. Extract the zip file.
 
-Unzip the archive, copy new files and folders and then delete it. 
+Unzip the archive, copy new files and folders and then delete it.
 
 .. code-block:: console
  :emphasize-lines: 1,5,6,7,13,14,15,16
- 
+
  [isabell@stardust html]$ unzip flatboard_latest.zip -d UPDATE
  Archive:  flatboard_latest.zip
   inflating: flatboard.zip
@@ -154,25 +154,25 @@ Unzip the archive, copy new files and folders and then delete it.
  [isabell@stardust UPDATE]$ cd cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ rm -rf UPDATE
  [isabell@stardust html]$ rm install.php
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 4. Clear plugin and theme cache.
 
 Delete all files stocked in ``data/plugin`` folder and go to your plugins page to activate your plugins again.
 
 ::
- 
+
  [isabell@stardust html]$ cd /data/plugin
  [isabell@stardust plugin]$ rm -rf *
  [isabell@stardust plugin]$ cd /var/www/virtual/$USER/html/
- 
+
 Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` theme is used.
 
 ::
 
  [isabell@stardust html]$ cd /theme/bootstrap/
  [isabell@stardust bootstrap]$ rm -rf cache
- [isabell@stardust bootstrap]$ 
+ [isabell@stardust bootstrap]$
 
 5. Log into the admin area and check your settings.
 

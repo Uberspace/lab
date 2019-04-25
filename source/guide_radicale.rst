@@ -20,7 +20,7 @@ Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
 * Can limit access by authentication.
 * Can secure connections.
 * Works with many CalDAV and CardDAV clients.
-* Is GPLv3-licensed free software. 
+* Is GPLv3-licensed free software.
 
 
 ----
@@ -138,7 +138,7 @@ For the generation of the file with the user use this command:
   [isabell@stardust ~]$ htpasswd -B -c /var/www/virtual/$USER/htpasswd isabell
   New password:
   Re-type new password:
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 It will prompt you for a password now.
 
@@ -149,7 +149,7 @@ For every following user use it without ``-c``:
   [isabell@stardust ~]$ htpasswd -B /var/www/virtual/$USER/htpasswd isabell
   New password:
   Re-type new password:
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
 Configure web server

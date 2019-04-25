@@ -83,7 +83,7 @@ Now run the configure script, telling Mailman where to install and what user/gro
  config.status: creating build/cron/senddigests
  config.status: executing default commands
  configuration completed at Thu Nov 1 10:10:10 CET 2018
- [isabell@stardust mailman_source]$ 
+ [isabell@stardust mailman_source]$
 
 After configuration is finished, you may compile and install the package by running
 

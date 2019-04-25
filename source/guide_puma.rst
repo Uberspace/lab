@@ -2,7 +2,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/puma.png
       :align: center
 
@@ -14,7 +14,7 @@ Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for 
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * Ruby_
   * :manual:`supervisord <daemons-supervisord>`
@@ -46,16 +46,16 @@ Use ``gem`` to install the latest version of Puma:
   Building native extensions. This could take a while...
   Successfully installed puma-3.12.0
   1 gem installed
-  [isabell@stardust ~]$ 
-  
+  [isabell@stardust ~]$
+
 Create a directory, and inside the directory a file ``rubyapp.ru`` for the application:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/puma
   [isabell@stardust ~]$ touch ~/puma/rubyapp.ru
-  [isabell@stardust ~]$ 
-  
+  [isabell@stardust ~]$
+
 This file is the Rackup file for the application. Add the following content to ``~/puma/rubyapp.ru``, a simple Hello World application:
 
 .. code-block:: ruby
@@ -73,7 +73,7 @@ Create the folder for logs:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/logs/puma
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Configuration
 =============
@@ -103,7 +103,7 @@ Next, create a Puma configuration file:
 
   # Bind Puma to the port
   bind 'tcp://0.0.0.0:9000'
-  
+
   # Enable logging
   stdout_redirect '/home/isabell/logs/puma/out.log', '/home/isabell/logs/puma/err.log', true
 
@@ -130,7 +130,7 @@ Tell ``supervisord`` to refresh its configuration and start the service:
   puma: available
   [isabell@stardust ~]$ supervisorctl update
   puma: added process group
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Configure web server
 --------------------
@@ -144,7 +144,7 @@ Configure web server
 Test
 ----
 
-To validate the installation, open a browser and visit ``isabell.uber.space``. If everything is set up correctly, you will see "Hello World". 
+To validate the installation, open a browser and visit ``isabell.uber.space``. If everything is set up correctly, you will see "Hello World".
 
 
 Updates
@@ -158,13 +158,13 @@ Use ``gem`` to update Puma:
 
   [isabell@stardust ~]$ gem update puma
   (...)
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Further Reading
 ===============
 
 * Puma's readme_ on GitHub
-* An example configuration_ file 
+* An example configuration_ file
 
 ----
 

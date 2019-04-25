@@ -13,9 +13,9 @@
 Jekyll
 #########
 
-Jekyll_ is an easy to use static site generator that builds fast, blog-aware, responsive websites. 
+Jekyll_ is an easy to use static site generator that builds fast, blog-aware, responsive websites.
 
-The website is created with markdown and Jekyll generates the html files and deploys it to the webserver. 
+The website is created with markdown and Jekyll generates the html files and deploys it to the webserver.
 It is possible to connect Jekyll to git, so that the website can be created on a local machine and then pushed to git where it gets deployed automatically via git hooks.
 
 Jekyll is written in Ruby and licensed under the MIT license.
@@ -31,7 +31,7 @@ Jekyll is written in Ruby and licensed under the MIT license.
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://github.com/jekyll/jekyll/blob/master/LICENSE
 
@@ -160,7 +160,7 @@ The next thing we we want to do is creating a post-update rule in git to deploy 
 Therefor we have to enter our remote repository and create a post-update hook file ``~/website/hooks/post-update`` with the following content:
 
 .. code-block:: bash
-  
+
   GIT_REPO=$HOME/website
   TMP_GIT_CLONE=$(mktemp -d)
   GEMFILE=$TMP_GIT_CLONE/Gemfile

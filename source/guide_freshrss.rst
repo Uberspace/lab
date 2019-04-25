@@ -57,8 +57,8 @@ Installation
  --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’ 
-  
+ Saving to: ‘master.zip’
+
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
  2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
@@ -74,7 +74,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 .. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep in ``html``, you can also rename the folder instead of deleting it.
 
 ::
- 
+
  [isabell@stardust isabell]$ rm -rf html
  [isabell@stardust isabell]$ ln -s FreshRSS-master/p/ html
  [isabell@stardust isabell]$ ls -l
@@ -94,7 +94,7 @@ Cron job
 To automatically update your feeds every ten minutes, set up a cron job like this using the ``crontab -e`` command.
 
 ::
- 
+
  */10 * * * * php /var/www/virtual/$USER/FreshRSS-master/app/actualize_script.php > $HOME/logs/FreshRSS.log 2>&1
 
 Updates
@@ -103,15 +103,15 @@ Updates
 Keep an eye on the FreshRSS releases feed, which has automatically been added as your first subscription in FreshRSS. When a new version is released, remove the previously downloaded ZIP archive and download the current release, then unzip it:
 
 ::
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm master.zip
  [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/master.zip
  --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’ 
-  
+ Saving to: ‘master.zip’
+
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
  2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
@@ -120,7 +120,7 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
   inflating: FreshRSS-master/tests/app/Models/UserQueryTest.php
   inflating: FreshRSS-master/tests/bootstrap.php
   inflating: FreshRSS-master/tests/phpunit.xml
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 This will overwrite any changed files while keeping your current configuration.
 

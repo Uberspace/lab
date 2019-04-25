@@ -23,7 +23,7 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://www.djangoproject.com/trademarks/
 

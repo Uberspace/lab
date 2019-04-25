@@ -26,7 +26,7 @@ aggregator.
 License
 =======
 
-The software is licensed under GPLv3_. All relevant information can be found in the repository of the project. 
+The software is licensed under GPLv3_. All relevant information can be found in the repository of the project.
 
 Prerequisites
 =============
@@ -62,21 +62,21 @@ Check the selfoss_ website or `GitHub repo`_ for the `latest release`_ and copy 
  Saving to: ‘selfoss-47.11.zip’
 
  100%[========================================================================================================================>] 2,881,068    819KB/s   in 3.7s
- 
+
  2018-09-24 10:49:50 (766 KB/s) - ‘selfoss-47.11.zip’ saved [2881068/2881068]
 
 Unzip the archive to the ``html`` folder and then delete it. Replace the version in the file name with the one you downloaded.
 
 .. code-block:: console
  :emphasize-lines: 1,6
- 
+
  [isabell@stardust isabell]$ unzip -d html/ selfoss-47.11.zip
  […]
    inflating: html/common.php
    inflating: html/run.php
    inflating: html/cliupdate.php
  [isabell@stardust isabell]$ rm selfoss-47.11.zip
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Configuration
 =============
@@ -88,7 +88,7 @@ We recommend setting up a new database for selfoss.
 
 .. code-block:: console
  :emphasize-lines: 1
- 
+
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_selfoss"
 
 Configuration
@@ -97,16 +97,16 @@ Configuration
 Copy the ``default.ini`` to ``config.ini``:
 
 ::
- 
+
  [isabell@stardust isabell]$ cd html
  [isabell@stardust html]$ cp default.ini config.ini
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
-Now edit ``config.ini`` file, change the database type to ``mysql`` and provide your MySQL credentials. 
+Now edit ``config.ini`` file, change the database type to ``mysql`` and provide your MySQL credentials.
 
 .. code-block:: ini
  :emphasize-lines: 4,5,6
- 
+
  [globals]
  db_type=mysql
  db_host=localhost
@@ -118,14 +118,14 @@ Now edit ``config.ini`` file, change the database type to ``mysql`` and provide 
 We also recommend password protection for your installation. First, generate a random string to use as salt_.
 
 ::
- 
+
  [isabell@stardust html]$ head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20 ; echo ''
 
 Copy the output and set it as salt in your ``config.ini``.
 
 .. code-block:: ini
  :emphasize-lines: 1
- 
+
  salt=FqFvsGWABfpPK6zQnVzD
 
 Save the file and visit ``https://isabell.uber.space/password`` in your browser. Replace ``isabell.uber.space`` with your domain. Use the web form to generate a hash of your password and copy the hash.
@@ -134,7 +134,7 @@ Edit ``config.ini`` again and insert your user name and password hash:
 
 .. code-block:: ini
  :emphasize-lines: 1,2
- 
+
  username=isabell
  password=c6d064709111ff0a689f206524cec8952417b9f16121a06b4ec8c58a11b570cdb7df4d6912e49415d6c615c2961c35166f0ed98eb027425100a1ebdd55a97906
  salt=FqFvsGWABfpPK6zQnVzD
@@ -149,7 +149,7 @@ Cron job
 It is recommended to set up a cron job to automatically update your feeds. Edit your cron tab using the ``crontab -e`` command and insert this cron job to update every 15 minutes. Make sure to replace ``isabell.uber.space`` with your own domain.
 
 ::
- 
+
  */15 * * * * curl -so /dev/null https://isabell.uber.space/update
 
 .. _selfoss: https://selfoss.aditu.de/

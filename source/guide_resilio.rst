@@ -3,8 +3,8 @@
 .. author:: Martin Porsch <https://github.com/kubiac/>
 
 .. sidebar:: About
-  
-  .. image:: _static/images/resilio.png 
+
+  .. image:: _static/images/resilio.png
       :align: center
 
 ############
@@ -15,7 +15,7 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
@@ -23,7 +23,7 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * http://www.resilio.com/legal/privacy
   * http://www.resilio.com/legal/terms-of-use
@@ -40,7 +40,7 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
  [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust bin]$ 
+ [isabell@stardust bin]$
 
 Configure web server
 ====================
@@ -70,7 +70,7 @@ Now you need to load the changes and start your service:
 
  [isabell@stardust ~]$ supervisorctl reread
  [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example) and see if it works. Enjoy!
 
@@ -87,7 +87,7 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ supervisorctl start resilio-sync
- [isabell@stardust bin]$ 
+ [isabell@stardust bin]$
 
 .. _Resilio: https://www.resilio.com
 

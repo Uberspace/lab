@@ -23,7 +23,7 @@ pretix_ is an open source ticketing solution. It is written in Django_ and can b
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * https://pretix.eu/about/en/terms
 
@@ -61,8 +61,8 @@ Also, you need to create an extra data folder:
 ::
 
  [isabell@stardust ~]$ mkdir ~/pretix_data
- [isabell@stardust ~]$ 
- 
+ [isabell@stardust ~]$
+
 Step 2
 ------
 Install the requirements for pretix_:
@@ -75,8 +75,8 @@ Install the requirements for pretix_:
  Running setup.py install for vobject ... done
  Running setup.py install for vat-moss ... done
  [...]
- [isabell@stardust ~]$ 
- 
+ [isabell@stardust ~]$
+
 Step 3
 ------
 Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and insert the following content:
@@ -183,7 +183,7 @@ If it's not in state RUNNING, check your configuration.
 
 
 Step 9
-Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control``. 
+Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control``.
 ------
 
 Use ``admin@localhost`` as username and ``admin`` as password for your first login. You should change this password immediately after login!
