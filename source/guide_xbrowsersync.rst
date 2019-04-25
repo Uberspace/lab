@@ -226,7 +226,7 @@ If there is a new version available, update your branch according to the version
 .. _xBrowserSync: https://www.xbrowsersync.org/
 .. _GitHub: https://github.com/xbrowsersync/
 .. _feed: https://github.com/xbrowsersync/api/releases.atom
-.. _security audit https://docs.npmjs.com/cli/audit
+.. _security audit: https://docs.npmjs.com/cli/audit
 
 ----
 
