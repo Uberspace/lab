@@ -100,7 +100,7 @@ class TagListDisplay(SphinxDirective):
 
         for item in env.tag_list.get(env.docname, []):
             elem = nodes.inline()
-            elem += nodes.reference('', '#' + item, refuri='/tag/' + item)
+            elem += nodes.reference('', '#' + item, refuri='/tags/' + item)
             elem.set_class('tag')
             container += elem
             container += nodes.raw('', '&nbsp;', format='html')
@@ -210,7 +210,7 @@ def tag_pages(app):
 
     return [
         (
-            'tag/' + t,
+            'tags/' + t,
             {
                 'tag': t,
                 'title': '#' + t,
