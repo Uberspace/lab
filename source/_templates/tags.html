@@ -1,0 +1,12 @@
+{% extends "!layout.html" %}
+
+{% block body %}
+<h1>Tags</h1>
+<ul>
+{% for t in tags %}
+    <li>
+        <a href="/tags/{{ t }}.html">#{{ t }}</a>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
