@@ -213,6 +213,7 @@ def tag_pages(app):
             'tag/' + t,
             {
                 'tag': t,
+                'title': '#' + t,
                 'guides': guides_by_tag[t],
                 'titles': env.titles,
             },
