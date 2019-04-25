@@ -200,6 +200,28 @@ def process_authorlists(app, doctree, fromdocname):
         node.replace_self([author_list])
 
 
+def tag_pages(app):
+    env = app.builder.env
+    tags = set(itertools.chain(*[tags for tags in env.tag_list.values()]))
+    guides_by_tag = {
+        t: set(g for g, guide_tags in env.tag_list.items() if t in guide_tags)
+        for t in tags
+    }
+
+    return [
+        (
+            'tag/' + t,
+            {
+                'tag': t,
+                'guides': guides_by_tag[t],
+                'titles': env.titles,
+            },
+            'tag.html'
+        )
+        for t in guides_by_tag
+    ]
+
+
 def setup(app):
     add_list_type(app, 'author', AuthorListDisplay)
     app.add_node(allauthors)
@@ -207,6 +229,7 @@ def setup(app):
     app.connect('doctree-resolved', process_authorlists)
 
     add_list_type(app, 'tag', TagListDisplay)
+    app.connect('html-collect-pages', tag_pages)
 
     return {
         'version': '1.0.0',
