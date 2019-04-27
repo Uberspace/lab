@@ -127,6 +127,17 @@ Nextcloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
 
+PHP Memory
+----
+
+In order to increase the memory limit of php to the recomende value of 512 MB, go to $HOME/etc/php.d/ and create php.ini. Add the line:
+
+::
+
+ memory_limit = 512M
+
+Reload the PHP configuration as described above.
+
 Updates
 =======
 
