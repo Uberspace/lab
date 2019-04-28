@@ -1,0 +1,3 @@
+Most software running on uberspace takes part in the World Wide Web and is thus
+accessible via HTTPS. Feel free to look around, but make sure to check out the
+most specific tags like #cms or #blog, as this list is quite long.
