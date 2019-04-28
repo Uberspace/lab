@@ -2,11 +2,9 @@
 
 {% block body %}
 <h1>#{{ tag }}</h1>
-<ul>
+<div class="tagguides">
 {% for g in guides %}
-    <li>
-        <a href="{{ pathto(g) }}">{{ titles[g][0] }}</a>
-    </li>
+    <a href="{{ pathto(g) }}">{{ titles[g][0] }}</a>
 {% endfor %}
-</ul>
+</div>
 {% endblock %}
