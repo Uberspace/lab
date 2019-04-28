@@ -100,7 +100,7 @@ opcache
 
 Enable opcache to further optimise perfomance.
 
-To do that, add the following lines to $HOME/etc/php.d/opcache.ini
+To do that, add the following lines to ``$HOME/etc/php.d/opcache.ini``:
 
 ::
 
@@ -112,7 +112,19 @@ To do that, add the following lines to $HOME/etc/php.d/opcache.ini
  opcache.save_comments=1
  opcache.revalidate_freq=1
 
-After that you need to reload your PHP configuration:
+PHP Memory
+----------
+
+In order to increase the memory limit of php to the recomende value of 512 MB, go to ``$HOME/etc/php.d/``, create ``memory_limit.ini`` and add the following line:
+
+::
+
+ memory_limit = 512M
+
+PHP Reload
+----------
+
+After that you need to restart PHP configuration to load the last two changes:
 
 ::
 
@@ -126,17 +138,6 @@ HSTS
 Nextcloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
-
-PHP Memory
-----
-
-In order to increase the memory limit of php to the recomende value of 512 MB, go to $HOME/etc/php.d/ and create php.ini. Add the line:
-
-::
-
- memory_limit = 512M
-
-Reload the PHP configuration as described above.
 
 Updates
 =======
