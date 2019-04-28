@@ -8,6 +8,8 @@ of author names.
 """
 
 import itertools
+import os.path
+import re
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -216,6 +218,21 @@ def tag_list(app):
     ]
 
 
+def tag_intro(tag):
+    intro_file = os.path.normpath(os.path.join(os.path.dirname(__file__), '../../source/tags', tag + '.txt'))
+
+    try:
+        with open(intro_file) as f:
+            intro = f.read()
+
+        # replace #tags with links to their tag pages
+        intro = re.sub(r'#([a-z0-9]+)', r'<a href="/tags/\1">#\1</a>', intro)
+
+        return intro
+    except OSError:
+        return ""
+
+
 def tag_pages(app):
     env = app.builder.env
     tags = set(itertools.chain(*[tags for tags in env.tag_list.values()]))
@@ -235,6 +252,7 @@ def tag_pages(app):
                 'title': '#' + t,
                 'guides': guides_by_tag[t],
                 'titles': env.titles,
+                'intro': tag_intro(t),
             },
             'tag.html'
         )
