@@ -2,11 +2,9 @@
 
 {% block body %}
 <h1>Tags</h1>
-<ul>
+<div class="tagguides">
 {% for t in tags %}
-    <li>
-        <a href="/tags/{{ t }}">#{{ t }}</a>
-    </li>
+    <a href="/tags/{{ t }}">#{{ t }}</a>
 {% endfor %}
-</ul>
+</div>
 {% endblock %}
