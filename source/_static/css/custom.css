@@ -171,3 +171,16 @@ nav li {
     margin-top: -1.3em;
     margin-bottom: 0.83em;
 }
+
+.tagguides {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+}
+
+.tagguides a {
+    margin: 0.5em;
+    font-size: 1.2em;
+}
