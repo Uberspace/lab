@@ -1,0 +1,6 @@
+A content management system (CMS) enables to you create and modify the content
+of your website right in your browser. In most cases this can be done without
+any special knowledge like HTML or CSS. The majority of content management
+systems can be extended using their ecosystem of plugins. There are many
+different solutions for different usecases; read up on a few and choose one that
+suits yours!
