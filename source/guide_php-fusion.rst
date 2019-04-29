@@ -1,6 +1,10 @@
 .. author:: DwB <dirk@babig.de>
 .. highlight:: console
 
+.. tag:: lan-php
+.. tag:: web
+.. tag:: cms
+
 .. sidebar:: Logo
 
   .. image:: _static/images/php-fusion.png
