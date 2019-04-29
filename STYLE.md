@@ -114,6 +114,10 @@ Please use the following structure. Only document applicable steps, leave out he
 
 .. author:: YourName <YourURL/YourMail>
 
+.. categorize your guide! refer to the manual for the current list of tags: https://manual.uberspace.de/tags
+.. tag:: lang-php
+.. tag:: web
+
 .. sidebar:: About
 
   .. image:: _static/images/loremipsum.png
