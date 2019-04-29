@@ -288,6 +288,6 @@ As an alternative to this manual process of updating Ghost to a new version you 
 
 ----
 
-Tested with Ghost 2.0.0, Uberspace 7.1.11
+Tested with Ghost 2.15.0, Uberspace 7.2.4
 
 .. author_list::
