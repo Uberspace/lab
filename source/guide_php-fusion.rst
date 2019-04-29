@@ -20,14 +20,14 @@ PHP-Fusion_ is a CMS written in PHP and distributed under the GN AGPL v3 licence
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP
+  * PHP_
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.1:
+We're using PHP_ in the stable version 7.1:
 
 ::
 
