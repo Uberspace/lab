@@ -121,7 +121,9 @@ Configuration
 Change network interface
 ------------------------
 
-Edit ``~/ghost/config.production.json`` and change the host IP address to ``0.0.0.0``:
+You need to adjust your ``~/ghost/config.production.json`` to use the right
+network interface. Find the following block and change host ``127.0.0.1`` to
+``0.0.0.0``:
 
 .. code-block:: none
  :emphasize-lines: 5
