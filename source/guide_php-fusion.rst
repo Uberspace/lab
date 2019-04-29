@@ -35,6 +35,11 @@ We're using PHP_ in the stable version 7.1:
  Using 'PHP' version: '7.1'
  [isabell@stardust ~]$
 
+MySQL
+-----
+ 
+.. include:: includes/my-print-defaults.rst
+
 Domain
 ------
 
@@ -63,8 +68,8 @@ First get the PHP-Fusion source code from Github_:
 Finishing installation
 ======================
 
-Point your browser to your domain for example https://isabell.uber.space
-Complete the form and follow the installation instructions.
+Point your browser to your domain, for example https://isabell.uber.space,
+and follow the installation instructions.
 
 After finishing the installation and logging into PHP-Fusion you will see a red warning box.
 
