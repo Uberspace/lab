@@ -285,7 +285,7 @@ As an alternative to this manual process of updating Ghost to a new version you 
 
 
 .. _Ghost: https://ghost.org
-.. _settings: https://docs.ghost.org/v1/docs/cli-install
+.. _settings: https://docs.ghost.org/api/ghost-cli/
 .. _feed: https://github.com/TryGhost/Ghost/releases.atom
 
 ----
