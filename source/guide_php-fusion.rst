@@ -1,7 +1,7 @@
 .. author:: DwB <dirk@babig.de>
 .. highlight:: console
 
-.. tag:: lan-php
+.. tag:: lang-php
 .. tag:: web
 .. tag:: cms
 
