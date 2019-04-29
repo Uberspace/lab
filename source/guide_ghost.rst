@@ -212,7 +212,7 @@ Migrate your database
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/ghost
- [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --init --mgpath ./versions/23.42.1/
+ [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --mgpath ./versions/23.42.1/
  [2018-08-22 14:18:21] INFO Creating database backup
  […]
  [2018-08-22 16:18:23] INFO Finished database migration!
@@ -269,7 +269,7 @@ As an alternative to this manual process of updating Ghost to a new version you 
      npm install --production
      echo "Migrating ghost database ..."
      cd $GHOSTDIR
-     NODE_ENV=production knex-migrator migrate --init --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
+     NODE_ENV=production knex-migrator migrate --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
      ln -sfn $GHOSTDIR/versions/$CURRENT_GHOST $GHOSTDIR/current
      PACKAGE_VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $GHOSTDIR/current/package.json)
      echo "Ghost $PACKAGE_VERSION_OLD has been updated to version $PACKAGE_VERSION"
