@@ -231,4 +231,10 @@ Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 ```
 
+## Add your changes to the Uberspace Lab
+
+Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`. 
+
+If you already commited your changes without following this styleguide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
+
 When you're happy with your guide create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
