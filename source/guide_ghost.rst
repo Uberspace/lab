@@ -1,4 +1,5 @@
 .. author:: nichtmax <https://moritz.in>
+.. author:: Peleke <https://www.peleke.de>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -229,6 +230,55 @@ Again, replace the version number with the newest version.
  [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
+
+Update via script
+-----------------
+
+As an alternative to this manual process of updating Ghost to a new version you can also use the following script:
+
+.. code-block:: console
+ :emphasize-lines: 4
+
+ #!/bin/bash
+ #set -v
+ # created by peleke.de
+ GHOSTDIR=~/ghost
+ PACKAGE_VERSION_OLD=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $GHOSTDIR/current/package.json)
+ CURRENT_GHOST=$(curl -s https://api.github.com/repos/TryGhost/Ghost/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
+ CURRENT_GHOST_DOWNLOAD=$(curl -s https://api.github.com/repos/TryGhost/Ghost/releases/latest | grep browser_download_url | cut -d '"' -f 4)
+ CURRENT_GHOST_FILE=$(echo $CURRENT_GHOST_DOWNLOAD | sed 's:.*/::')
+ echo "installed version: $PACKAGE_VERSION_OLD"
+ echo "available version: $CURRENT_GHOST"
+ cd $GHOSTDIR
+ if [[ $CURRENT_GHOST != $PACKAGE_VERSION_OLD ]]
+ then
+   read -r -p "Do you want to update Ghost $PACKAGE_VERSION_OLD to version $CURRENT_GHOST? [Y/n] " response
+   if [[ $response =~ ^([yY]|"")$ ]]
+   then
+     echo "downloading and unpacking ghost $CURRENT_GHOST ..."
+     cd $GHOSTDIR/versions/
+     curl -LOk $CURRENT_GHOST_DOWNLOAD
+     unzip $GHOSTDIR/versions/$CURRENT_GHOST_FILE -d $CURRENT_GHOST
+     rm $GHOSTDIR/versions/$CURRENT_GHOST_FILE
+     echo "Updating ghost ..."
+     cd $GHOSTDIR/versions/$CURRENT_GHOST
+     npm install --production
+     echo "Migrating ghost database ..."
+     cd $GHOSTDIR
+     NODE_ENV=production knex-migrator migrate --init --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
+     ln -sfn $GHOSTDIR/versions/$CURRENT_GHOST $GHOSTDIR/current
+     PACKAGE_VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $GHOSTDIR/current/package.json)
+     echo "Ghost $PACKAGE_VERSION_OLD has been updated to version $PACKAGE_VERSION"
+     echo "Restarting Ghost. This may take a few seconds ..."
+     supervisorctl restart ghost
+     supervisorctl status
+     echo "If something seems wrong, please check the logs: 'supervisorctl tail ghost'"
+     echo "To revert to version $PACKAGE_VERSION_OLD run the following command: 'ln -sfn $GHOSTDIR/versions/$PACKAGE_VERSION_OLD $GHOSTDIR/current' and restart ghost using 'supervisorctl restart ghost'."
+   fi
+ else
+   echo "-> Ghost is already up-to-date, no update needed."
+ fi
+
 
 .. _Ghost: https://ghost.org
 .. _settings: https://docs.ghost.org/v1/docs/cli-install
