@@ -4,6 +4,8 @@
 
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
+.. tag:: lang-php
+
 .. sidebar:: Logo
 
   .. image:: _static/images/ioncube.png
