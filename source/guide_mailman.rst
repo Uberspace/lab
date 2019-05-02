@@ -5,6 +5,7 @@
 
 .. tag:: lang-python
 .. tag:: mail
+.. tag:: mailinglist
 
 .. sidebar:: Logo
 

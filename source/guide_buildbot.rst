@@ -3,6 +3,7 @@
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>
 
 .. tag:: lang-python
+.. tag:: continuous-integration
 
 .. sidebar:: Logo
 

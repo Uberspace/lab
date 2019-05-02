@@ -3,6 +3,7 @@
 
 .. tag:: lang-nodejs
 .. tag:: web
+.. tag:: collaborative-editing
 
 .. sidebar:: Logo
 
