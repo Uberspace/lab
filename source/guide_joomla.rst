@@ -2,6 +2,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: cms
 
 .. highlight:: console
 .. sidebar:: Logo

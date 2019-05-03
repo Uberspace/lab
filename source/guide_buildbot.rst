@@ -4,6 +4,7 @@
 
 .. tag:: lang-python
 .. tag:: continuous-integration
+.. tag:: automation
 
 .. sidebar:: Logo
 

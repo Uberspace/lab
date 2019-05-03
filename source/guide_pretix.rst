@@ -3,8 +3,9 @@
 .. author:: ezra <ezra@posteo.de>
 .. tag:: lang-python
 .. tag:: django
+.. tag:: ticketing
 .. tag:: web
-.. tag:: audience-business
+.. tag:: business
 
 .. sidebar:: About
 

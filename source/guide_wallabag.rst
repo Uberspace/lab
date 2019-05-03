@@ -2,6 +2,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: reading-list
 
 .. highlight:: console
 

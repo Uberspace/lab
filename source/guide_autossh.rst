@@ -4,6 +4,7 @@
 
 .. tag:: lang-c
 .. tag:: console
+.. tag:: automation
 
 #######
 autossh

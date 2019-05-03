@@ -3,6 +3,7 @@
 .. author:: stratmaster <https://github.com/stratmaster>
 .. tag:: lang-go
 .. tag:: web
+.. tag:: rss
 
 .. sidebar:: Logo
 

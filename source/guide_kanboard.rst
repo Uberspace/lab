@@ -2,6 +2,7 @@
 
 .. author:: stratmaster <https://github.com/stratmaster>
 .. tag:: lang-php
+.. tag:: project-management
 .. tag:: web
 
 .. sidebar:: Logo

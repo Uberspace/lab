@@ -3,6 +3,7 @@
 .. author:: Malte Krupa <http://nafn.de>
 
 .. tag:: lang-go
+.. tag:: monitoring
 
 .. sidebar:: About
 

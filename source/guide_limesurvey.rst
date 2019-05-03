@@ -4,6 +4,7 @@
 
 .. tag:: lang-python
 .. tag:: web
+.. tag:: survey
 
 .. sidebar:: Logo
 

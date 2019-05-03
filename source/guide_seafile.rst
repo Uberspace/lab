@@ -5,6 +5,7 @@
 .. tag:: lang-python
 .. tag:: web
 .. tag:: file-storage
+.. tag:: sync
 .. tag:: collaborative-editing
 
 .. sidebar:: Logo

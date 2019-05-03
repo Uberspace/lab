@@ -3,6 +3,8 @@
 .. author:: Phil <development@beph.de>
 
 .. tag:: lang-nodejs
+.. tag:: bookmarks
+.. tag:: sync
 
 .. sidebar:: Logo
 

@@ -2,6 +2,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: photo-management
 
 .. highlight:: console
 
