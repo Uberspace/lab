@@ -2,6 +2,7 @@
 
 .. tag:: lang-go
 .. tag:: audience-developers
+.. tag:: version-control
 
 .. highlight:: console
 

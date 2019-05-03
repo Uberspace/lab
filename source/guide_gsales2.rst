@@ -4,6 +4,8 @@
 
 .. tag:: lang-php
 .. tag:: audience-business
+.. tag:: business
+.. tag:: accounting
 
 .. sidebar:: Logo
 

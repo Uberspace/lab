@@ -3,6 +3,7 @@
 .. author:: Philipp Wensauer <mail@philippwensauer.com>
 .. tag:: lang-php
 .. tag:: web
+.. tag:: privacy
 
 .. sidebar:: Logo
 

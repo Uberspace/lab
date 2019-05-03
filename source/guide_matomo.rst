@@ -3,6 +3,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: analytics
 
 .. sidebar:: Logo
 

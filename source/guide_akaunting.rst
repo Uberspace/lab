@@ -4,7 +4,9 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: audience-business
+.. tag:: accounting
+.. tag:: customer-management
+.. tag:: business
 
 .. sidebar:: Logo
 

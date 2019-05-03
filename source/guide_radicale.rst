@@ -2,6 +2,8 @@
 .. author:: stunkymonkey <stunkymonkey.de>
 .. tag:: lang-python
 .. tag:: web
+.. tag:: groupware
+.. tag:: sync
 
 .. sidebar:: Logo
 

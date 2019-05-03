@@ -4,6 +4,7 @@
 
 .. tag:: web
 .. tag:: file-storage
+.. tag:: sync
 
 .. sidebar:: About
 

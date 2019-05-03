@@ -3,6 +3,7 @@
 .. tag:: lang-go
 .. tag:: audience-developers
 .. tag:: continuous-integration
+.. tag:: automation
 
 .. highlight:: console
 

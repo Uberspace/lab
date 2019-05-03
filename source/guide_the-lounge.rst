@@ -2,6 +2,7 @@
 
 .. tag:: lang-nodejs
 .. tag:: web
+.. tag:: irc
 
 .. highlight:: console
 

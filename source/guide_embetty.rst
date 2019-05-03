@@ -1,6 +1,7 @@
 .. author:: Nico Graf <hallo@uberspace.de>
 
 .. tag:: lang-nodejs
+.. tag:: privacy
 
 .. highlight:: console
 

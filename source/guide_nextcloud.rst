@@ -3,8 +3,11 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: photo-management
 .. tag:: file-storage
 .. tag:: collaborative-editing
+.. tag:: groupware
+.. tag:: sync
 
 .. sidebar:: Logo
 

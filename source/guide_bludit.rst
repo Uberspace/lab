@@ -5,6 +5,7 @@
 .. tag:: lang-php
 .. tag:: web
 .. tag:: cms
+.. tag:: blog
 
 .. sidebar:: Logo
 
