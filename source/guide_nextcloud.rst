@@ -8,6 +8,7 @@
 .. tag:: collaborative-editing
 .. tag:: groupware
 .. tag:: sync
+.. tag:: project-management
 
 .. sidebar:: Logo
 

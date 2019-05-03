@@ -3,9 +3,9 @@
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
-.. tag:: audience-business
 .. tag:: business
 .. tag:: accounting
+.. tag:: customer-management
 
 .. sidebar:: Logo
 
