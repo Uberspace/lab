@@ -14,20 +14,20 @@
 PHP-Fusion
 ##########
 
-PHP-Fusion_ is a CMS written in PHP and distributed under the GN AGPL v3 licence.
+PHP-Fusion <https://php-fusion.co.uk/>_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
+  * :manual:`PHP <lang-php>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -50,26 +50,27 @@ Your URL needs to be setup:
 Installation
 ============
 
-First get the PHP-Fusion source code from Github_:
+First get the PHP-Fusion source code from Sourceforge <https://sourceforge.net/projects/php-fusion/files/latest/download>_:
 
 ::
 
-  [isabell@stardust ~]$ git clone https://github.com/PHP-Fusion/PHP-Fusion html
-  Cloning into 'html'...
-  remote: Enumerating objects: 140, done.
-  remote: Counting objects: 100% (140/140), done.
-  remote: Compressing objects: 100% (121/121), done.
-  remote: Total 88715 (delta 54), reused 62 (delta 18), pack-reused 88575
-  Receiving objects: 100% (88715/88715), 111.94 MiB | 14.20 MiB/s, done.
-  Resolving deltas: 100% (61743/61743), done.
-  [isabell@stardust ~]$
+  [isabell@stardust ~]$ wget -O phpf9.zip https://sourceforge.net/projects/php-fusion/files/latest/download
+  [isabell@stardust ~]$ unzip phpf9.zip
+  [isabell@stardust ~]$ cd "PHP-Fusion 9.03.00/files"
+  [isabell@stardust files]$ mv * /var/www/virtual/$USER/html
+  [isabell@stardust files]$ cd ..
+  [isabell@stardust PHP-Fusion 9.03.00]$ rmdir files
+  [isabell@stardust PHP-Fusion 9.03.00]$ rm *.*
+  [isabell@stardust PHP-Fusion 9.03.00]$ cd ~
+  [isabell@stardust ~]$ rmdir "PHP-Fusion 9.03.00"
+  [isabell@stardust ~]$ rm phpf9.zip
+
 
   
 Finishing installation
 ======================
 
-Point your browser to your domain, for example https://isabell.uber.space,
-and follow the installation instructions.
+Point your browser to your domain, for example https://isabell.uber.space and follow the installation instructions.
 
 After finishing the installation and logging into PHP-Fusion you will see a red warning box.
 
@@ -83,6 +84,6 @@ To remove the file install.php enter
  
 ----
 
-Tested with PHP-Fusion v9.10.00 and Uberspace 7.2.8.2
+Tested with PHP-Fusion v9.03.00 and Uberspace 7.2.8.2
 
 .. authors::
