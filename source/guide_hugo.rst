@@ -164,7 +164,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-If there is a new version available, update the ``hugo`` binary in ``~/bin`` (repeat Step 3). It might be a good idea to rebuild your site, too, but that's not strictly neccessary.
+If there is a new version available, update the ``hugo`` binary in ``~/bin`` (repeat Step 2). It might be a good idea to rebuild your site, too, but that's not strictly neccessary.
 
 
 .. _Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
