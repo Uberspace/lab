@@ -3,6 +3,9 @@
 .. author:: Till Deeke <hallo@tilldeeke.de>
 
 .. tag:: lang-php
+.. tag:: accounting
+.. tag:: customer-management
+.. tag:: business 
 .. tag:: web
 
 .. sidebar:: Logo
