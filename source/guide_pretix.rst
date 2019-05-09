@@ -138,9 +138,8 @@ Initialize the pretix_ database tables and generate the static files:
 
 ::
 
- [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py rebuild
- [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py makemigrations
  [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py migrate
+ [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py rebuild
  [isabell@stardust ~]$
 
 Step 6
