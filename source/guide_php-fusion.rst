@@ -40,6 +40,14 @@ MySQL
  
 .. include:: includes/my-print-defaults.rst
 
+We advise you set up an additional database for PHP Fusion:
+
+::
+
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_phpfusion"
+ [isabell@stardust ~]$ 
+
+
 Domain
 ------
 
@@ -72,9 +80,8 @@ To remove the file install.php enter
 
 ::
 
- [isabell@stardust ~]$ cd html
- [isabell@stardust html]$ rm install.php
- [isabell@stardust html]$
+ [isabell@stardust ~]$ rm /var/www/virtual/$USER/html/install.php
+ [isabell@stardust ~]$
  
 ----
 
