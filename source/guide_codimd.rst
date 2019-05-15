@@ -1,5 +1,5 @@
 .. highlight:: console
-.. author:: stunkymonkey <stunkymonkey.de>
+.. author:: stunkymonkey <http://stunkymonkey.de>
 
 .. tag:: lang-nodejs
 .. tag:: web

@@ -1,4 +1,4 @@
-.. author:: luto <luto.at>
+.. author:: luto <http://luto.at>
 
 .. tag:: lang-go
 .. tag:: audience-developers
