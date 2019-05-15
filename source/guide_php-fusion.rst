@@ -56,14 +56,8 @@ First get the PHP-Fusion source code from Sourceforge <https://sourceforge.net/p
 
   [isabell@stardust ~]$ wget -O phpf9.zip https://sourceforge.net/projects/php-fusion/files/latest/download
   [isabell@stardust ~]$ unzip phpf9.zip
-  [isabell@stardust ~]$ cd "PHP-Fusion 9.03.00/files"
-  [isabell@stardust files]$ mv * /var/www/virtual/$USER/html
-  [isabell@stardust files]$ cd ..
-  [isabell@stardust PHP-Fusion 9.03.00]$ rmdir files
-  [isabell@stardust PHP-Fusion 9.03.00]$ rm *.*
-  [isabell@stardust PHP-Fusion 9.03.00]$ cd ~
-  [isabell@stardust ~]$ rmdir "PHP-Fusion 9.03.00"
-  [isabell@stardust ~]$ rm phpf9.zip
+  [isabell@stardust ~]$ mv PHP-Fusion\ 9.03.00/files/* /var/www/virtual/$USER/html
+  [isabell@stardust ~]$ rm -rf "PHP-Fusion 9.03.00" phpf9.zip
 
 
   
