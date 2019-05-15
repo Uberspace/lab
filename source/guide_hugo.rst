@@ -1,7 +1,7 @@
 .. highlight:: console
 
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
-.. author:: luto <luto.at>
+.. author:: luto <http://luto.at>
 
 .. tag:: lang-go
 .. tag:: blog
