@@ -25,8 +25,8 @@ Builds can be triggered by various means, for example by commit in a version con
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`supervisord <daemons-supervisord>`
-  * :manual:`web backends <web-backends>`
+  * :manual_anchor:`supervisord <daemons-supervisord>`
+  * :manual_anchor:`web backends <web-backends>`
 
 .. note:: Recommended reading to follow along and go beyond this guide:
 
@@ -38,6 +38,18 @@ License
 
 Jenkins_ is released under the `MIT License <https://github.com/jenkinsci/jenkins/blob/master/LICENSE.txt>`_.
 
+Prerequisites
+=============
+
+We're using java version 8 or 11 (9, 10 and 12 are currently not supported) `Supported Java Versionshttps://jenkins.io/doc/administration/requirements/java/`_.
+
+::
+
+ [isabell@stardust ~]$ java -version
+ openjdk version "1.8.0_212"
+ OpenJDK Runtime Environment (build 1.8.0_212-b04)
+ OpenJDK 64-Bit Server VM (build 25.212-b04, mixed mode)
+ [isabell@stardust ~]$
 
 Installation
 ============
@@ -50,8 +62,8 @@ jenkins_home will hold all your Jenkins's data.
 
 ::
 
- [user@server ~]$ mkdir ~/Jenkins/jenkins_home -p
- [user@server ~]$ cd ~/Jenkins
+ [isabell@stardust ~]$ mkdir ~/Jenkins/jenkins_home -p
+ [isabell@stardust ~]$
 
 
 Download Jenkins_
@@ -61,12 +73,16 @@ Next we download the current version of Jenkins_:
 
 ::
 
- [user@server Jenkins]$ wget http://mirrors.jenkins.io/war/latest/jenkins.war
+ [isabell@stardust ~]$ wget -O Jenkins/jenkins.war http://mirrors.jenkins.io/war/latest/jenkins.war
+ [isabell@stardust ~]$
 
 
 At this point you would already be able to run Jenkins_, but you wouldn't be able to connect to it and it would not run as a service.
 
 Speaking of service:
+
+Configurtation
+==============
 
 Install service
 ---------------
@@ -85,12 +101,13 @@ After that refresh and update the daemons and check if everything worked out:
 
 ::
 
- [user@server Jenkins]$ supervisorctl reread
+ [isabell@stardust ~]$ supervisorctl reread
  jenkins: available
- [user@server Jenkins]$ supervisorctl update
+ [isabell@stardust ~]$ supervisorctl update
  jenkins: added process group
- [user@server Jenkins]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  jenkins                          RUNNING   pid XXXXX, uptime X:XX:XX
+ [isabell@stardust ~]$
 
 Your Jenkins is now up and running as a service. If your service doesn't come up you might have a problem with your port. Go back one step and use another. Remember to have it between 1024 and 65535.
 
@@ -100,16 +117,15 @@ Setup Web backend
 -----------------
 
 For this we add an uberspace web backend for http and our chosen port.
-If you want to set a subdomain for Jenkins_ like jenkins.yourdomain.de or ci.yourdomain.de you'd have to add that before you can use it. 
+If you want to set a subdomain for Jenkins_ like jenkins.yourdomain.de or ci.yourdomain.de you'd have to add that before you can use it via :manual_anchor:`Domains <web-domains.html#setup>`. 
 
 ::
 
- # skip this if you don't want to use a subdomain for you jenkins
- [user@server Jenkins]$ uberspace web domain add ci.yourdomain.de
+ [isabell@stardust ~]$ uberspace web backend set ci.yourdomain.de --http --port [yourPort]
+ [isabell@stardust ~]$
 
-::
-
- [user@server Jenkins]$ uberspace web backend set ci.yourdomain.de --http --port [yourPort]
+Finishing Installation
+======================
 
 First connect and initial password
 ----------------------------------
@@ -118,8 +134,9 @@ Now you can go to ci.yourdomain.de and see the Jenkins_ asking for your initial 
 
 ::
 
- [user@server Jenkins]$ cat jenkins_home/secrets/initialAdminPassword
+ [isabell@stardust ~]$ cat jenkins_home/secrets/initialAdminPassword
  SOMEHEXTHATIWONTTELLYOU
+ [isabell@stardust ~]$
 
 Just copy and paste that and you'll be good to go. Just follow the setup and everything should work out.
 
