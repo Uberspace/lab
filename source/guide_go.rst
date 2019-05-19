@@ -27,6 +27,8 @@ All relevant legal information can be found here
 
   * https://golang.org/LICENSE
 
+.. note:: In most cases it will work totally fine to (cross-) compile your application for GOOS=linux and GOARCH="amd64" on your local device and upload the result to your uberspace as this wouldn't need a go installation on your uberspace (see `cross compiling go`_ for a guide). If that doesn't work for you, feel free to follow this guide.
+
 Installation
 ============
 
@@ -82,6 +84,7 @@ Updates
 
 .. _Go: https://golang.org/
 .. _download: https://golang.org/dl/
+.. _`cross compiling go`: https://golangcookbook.com/chapters/running/cross-compiling/
 
 To Update go you just need to delete ~/go and redo the installation without editing the .bashrc file (skip the step "Setup environment variables").
 
