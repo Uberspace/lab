@@ -61,11 +61,11 @@ We also need `Bower`:
 Installation
 ============
 
-Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``2.19.0`` with the current release number from the feed_:
+Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``2.21.0`` with the current release number from the feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 2.19.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 2.21.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
   remote: Enumerating objects: 172, done.
   remote: Counting objects: 100% (172/172), done.
@@ -73,7 +73,7 @@ Start with cloning the Cryptpad source code from Github_ and be sure to replace 
   remote: Total 43165 (delta 99), reused 109 (delta 67), pack-reused 42993
   Receiving objects: 100% (43165/43165), 85.51 MiB | 4.81 MiB/s, done.
   Resolving deltas: 100% (30989/30989), done.
-  Note: checking out 'dcabff7c08a10930692e13d3f82e2b7e7b764efa'.
+  Note: checking out '135182ea0a3500d27afe0146c94e112e1726ae7e'.
 
   You are in 'detached HEAD' state. You can look around, make experimental
   changes and commit them, and you can discard any commits you make in this
@@ -105,9 +105,16 @@ Copy example configuration
 
 .. code-block:: console
 
-  [isabell@stardust cryptpad]$ cp config.example.js config.js
+  [isabell@stardust cryptpad]$ cp config/config.example.js config/config.js
 
-Edit ``config.js`` and change the value of the variable ``_domain`` to your domain.
+Edit ``config/config.js`` and change the value of the variable ``_domain`` to your domain, like so:
+
+.. code-block:: js
+
+  /*
+      globals module
+  */
+  var _domain = 'https://isabell.uber.space/';
 
 Setup daemon
 ------------
