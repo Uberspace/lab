@@ -94,8 +94,15 @@ Now we need to install some dependencies:
 
   [isabell@stardust ~]$ cd ~/cryptpad
   [isabell@stardust cryptpad]$ npm install
+  (...)
+  added 168 packages from 186 contributors and audited 311 packages in 14.352s
+found 0 vulnerabilities
   [isabell@stardust cryptpad]$ bower install
-
+  (...)
+  bower install       open-sans-fontface#1.4.2
+  bower install       jquery#2.1.4
+  bower install       bootstrap#4.3.1
+  (...)
 
 Configuration
 =============
