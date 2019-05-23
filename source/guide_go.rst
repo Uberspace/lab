@@ -42,6 +42,17 @@ Check the download_ page for the newest version.
 ::
 
  [isabell@stardust ~]$ wget -O ~/go.tar.gz https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+ --2019-05-23 13:16:46--  https://dl.google.com/go/go1.12.5.linux-amd64.tar.gz
+ Resolving dl.google.com (dl.google.com)... 74.125.206.93, 74.125.206.190, 74.125.206.136, ...
+ Connecting to dl.google.com (dl.google.com)|74.125.206.93|:443... connected.
+ HTTP request sent, awaiting response... 200 OK
+ Length: 127938445 (122M) [application/octet-stream]
+ Saving to: ‘/home/isabell/go.tar.gz’
+ 
+ 100%[=====================================================>]  127,938,445  148MB/s   in 0.8s
+ 
+ 2019-05-23 13:16:47 (148 MB/s) - ‘/home/isabell/go.tar.gz’ saved [127938445/127938445]
+ 
  [isabell@stardust ~]$
 
 Extract Go archive
@@ -57,15 +68,15 @@ We extract the go archive to the home directory as it creates a directory called
 Setup environment variables
 ---------------------------
 
-To use go we need to add ~/go/bin to the path environment variable and persist that change for the next shell session (your next login to your uberspace).
+To use go we need to add ``~/go/bin`` to the path environment variable and persist that change for the next shell session (your next login to your uberspace).
 
-Add the following to the end of your ~/.bashrc:
+Add the following to the end of your ``~/.bashrc``:
 
 ::
 
  export PATH=$PATH:$HOME/go/bin
 
-After that reload your .bashrc:
+After that reload your ``.bashrc``:
 
 ::
 
@@ -76,6 +87,13 @@ Finishing installation
 ======================
 
 Now you can test your go installation by running "go version" and building a test program.
+
+::
+
+ [isabell@stardust ~]$ go version
+ go version go1.12.5 linux/amd64
+ [isabell@stardust ~]$
+
 
 Updates
 =======
