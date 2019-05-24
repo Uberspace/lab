@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/Jenkinslogo_with_title.svg
+  .. image:: _static/images/Jenkins_logo_with_title.svg
       :align: center
 
 ########
