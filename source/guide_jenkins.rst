@@ -51,13 +51,18 @@ We're using java version 8 or 11 (9, 10 and 12 are currently not supported) `Sup
  OpenJDK 64-Bit Server VM (build 25.212-b04, mixed mode)
  [isabell@stardust ~]$
 
+Your URL needs to be setup:
+
+.. include:: includes/web-domain-list.rst
+
+
 Installation
 ============
 
 Create Workspace
 ----------------
 
-First create a folder called Jenkins_ and a subfolder called jenkins_home.
+First create a folder called ``Jenkins`` and a subfolder called ``jenkins_home``.
 jenkins_home will hold all your Jenkins's data.
 
 ::
@@ -69,7 +74,7 @@ jenkins_home will hold all your Jenkins's data.
 Download Jenkins_
 -----------------
 
-Next we download the current version of Jenkins_:
+Next we download the current version of Jenkins:
 
 ::
 
@@ -77,7 +82,7 @@ Next we download the current version of Jenkins_:
  [isabell@stardust ~]$
 
 
-At this point you would already be able to run Jenkins_, but you wouldn't be able to connect to it and it would not run as a service.
+At this point you would already be able to run Jenkins, but you wouldn't be able to connect to it and it would not run as a service.
 
 Speaking of service:
 
@@ -87,15 +92,14 @@ Configurtation
 Install service
 ---------------
 
-We create the service file ~/etc/services.d/jenkins.ini and fill it with:
+We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
 ::
 
  [program:jenkins]
  directory=%(ENV_HOME)s/Jenkins/jenkins_home
- command=java -jar ../jenkins.war --httpPort=[yourPort]
+ command=java -jar ../jenkins.war
 
-Remember to replace [yourPort] with the port you want to use (8080 is the default, but you can really use anything you'd like between 1024 and 65535).
 
 After that refresh and update the daemons and check if everything worked out:
 
@@ -106,23 +110,21 @@ After that refresh and update the daemons and check if everything worked out:
  [isabell@stardust ~]$ supervisorctl update
  jenkins: added process group
  [isabell@stardust ~]$ supervisorctl status
- jenkins                          RUNNING   pid XXXXX, uptime X:XX:XX
+ jenkins                          RUNNING   pid 4711, uptime 0:47:11
  [isabell@stardust ~]$
 
-Your Jenkins is now up and running as a service. If your service doesn't come up you might have a problem with your port. Go back one step and use another. Remember to have it between 1024 and 65535.
+Your Jenkins is now up and running as a service. 
 
 Finally we'll setup our connection to the rest of the world.
 
 Setup Web backend
 -----------------
 
-For this we add an uberspace web backend for http and our chosen port.
-If you want to set a subdomain for Jenkins_ like jenkins.yourdomain.de or ci.yourdomain.de you'd have to add that before you can use it via :manual_anchor:`Domains <web-domains.html#setup>`. 
+.. note::
 
-::
+    Jenkins is running on port 8080. 
 
- [isabell@stardust ~]$ uberspace web backend set ci.yourdomain.de --http --port [yourPort]
- [isabell@stardust ~]$
+.. include:: includes/web-backend.rst
 
 Finishing Installation
 ======================
@@ -130,7 +132,7 @@ Finishing Installation
 First connect and initial password
 ----------------------------------
 
-Now you can go to ci.yourdomain.de and see the Jenkins_ asking for your initial password. Normally this would show up in the logs or stdout of the war, but we don't need that as it is also stored in ~/Jenkins/jenkins_home/secrets/initialAdminPassword.
+Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It is stored in ``~/Jenkins/jenkins_home/secrets/initialAdminPassword``.
 
 ::
 
