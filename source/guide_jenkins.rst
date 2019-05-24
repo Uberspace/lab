@@ -147,11 +147,11 @@ Finishing Installation
 First connect and initial password
 ----------------------------------
 
-Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It is stored in ``~/Jenkins/jenkins_home/secrets/initialAdminPassword``.
+Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It is stored in ``~/.jenkins/secrets/initialAdminPassword``.
 
 ::
 
- [isabell@stardust ~]$ cat jenkins_home/secrets/initialAdminPassword
+ [isabell@stardust ~]$ cat ~/.jenkins/secrets/initialAdminPassword
  SOMEHEXTHATIWONTTELLYOU
  [isabell@stardust ~]$
 
