@@ -79,6 +79,21 @@ Next we download the current version of Jenkins:
 ::
 
  [isabell@stardust ~]$ wget -O Jenkins/jenkins.war http://mirrors.jenkins.io/war/latest/jenkins.war
+ --2019-05-24 15:33:32--  http://mirrors.jenkins.io/war/latest/jenkins.war
+ Resolving mirrors.jenkins.io (mirrors.jenkins.io)... 52.202.51.185
+ Connecting to mirrors.jenkins.io (mirrors.jenkins.io)|52.202.51.185|:80... connected.
+ HTTP request sent, awaiting response... 302 Found
+ Location: http://ftp-nyc.osuosl.org/pub/jenkins/war/2.178/jenkins.war [following]
+ --2019-05-24 15:33:32--  http://ftp-nyc.osuosl.org/pub/jenkins/war/2.178/jenkins.war
+ Resolving ftp-nyc.osuosl.org (ftp-nyc.osuosl.org)... 64.50.233.100, 2600:3404:200:237::2
+ Connecting to ftp-nyc.osuosl.org (ftp-nyc.osuosl.org)|64.50.233.100|:80... connected.
+ HTTP request sent, awaiting response... 200 OK
+ Length: 77273755 (74M) [application/x-java-archive]
+ Saving to: ‘Jenkins/jenkins.war’
+ 
+ 100%[====================================================>]  77,273,755  21.4MB/s   in 3.7s
+ 
+ 2019-05-24 15:33:36 (20.1 MB/s) - ‘Jenkins/jenkins.war’ saved [77273755/77273755]
  [isabell@stardust ~]$
 
 
