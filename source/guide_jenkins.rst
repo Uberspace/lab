@@ -62,12 +62,12 @@ Installation
 Create Workspace
 ----------------
 
-First create a folder called ``Jenkins`` and a subfolder called ``Jenkinshome``.
-Jenkinshome will hold all your Jenkins's data.
+First create a folder called ``Jenkins`` and a subfolder called ``Jenkins_home``.
+Jenkins_home will hold all your Jenkins's data.
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/Jenkins/Jenkinshome -p
+ [isabell@stardust ~]$ mkdir ~/Jenkins/Jenkins_home -p
  [isabell@stardust ~]$
 
 
@@ -110,7 +110,7 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 ::
 
  [program:jenkins]
- directory=%(ENV_HOME)s/Jenkins/Jenkinshome
+ directory=%(ENV_HOME)s/Jenkins/Jenkins_home
  command=java -jar ../jenkins.war
 
 
