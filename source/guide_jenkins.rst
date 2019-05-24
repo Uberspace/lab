@@ -41,7 +41,7 @@ Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins
 Prerequisites
 =============
 
-We're using java version 8 or 11 (9, 10 and 12 are currently not supported) `Supported Java Versions <https://jenkins.io/doc/administration/requirements/java/>`_.
+We're using java version 8 or 11 `(9, 10 and 12 are currently not supported) <https://jenkins.io/doc/administration/requirements/java/>`_.
 
 ::
 
