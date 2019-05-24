@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/Jenkins_logo_with_title.svg
+  .. image:: _static/images/Jenkinslogo_with_title.svg
       :align: center
 
 ########
@@ -17,9 +17,9 @@ Jenkins
 
 .. tag_list::
 
-Jenkins_ is an open source automation server written in Java. Jenkins_ helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat. It supports version control tools, including AccuRev, CVS, Subversion, Git, Mercurial, Perforce, TD/OMS, ClearCase and RTC, and can execute Apache Ant, Apache Maven and sbt based projects as well as arbitrary shell scripts and Windows batch commands. The creator of Jenkins_ is Kohsuke Kawaguchi. Released under the MIT License, Jenkins_ is free software.
+Jenkins_ is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat. It supports version control tools, including AccuRev, CVS, Subversion, Git, Mercurial, Perforce, TD/OMS, ClearCase and RTC, and can execute Apache Ant, Apache Maven and sbt based projects as well as arbitrary shell scripts and Windows batch commands. The creator of Jenkins is Kohsuke Kawaguchi. Released under the MIT License, Jenkins is free software.
 
-Builds can be triggered by various means, for example by commit in a version control system, by scheduling via a cron-like mechanism and by requesting a specific build URL. It can also be triggered after the other builds in the queue have completed. Jenkins_ functionality can be extended with plugins.
+Builds can be triggered by various means, for example by commit in a version control system, by scheduling via a cron-like mechanism and by requesting a specific build URL. It can also be triggered after the other builds in the queue have completed. Jenkins functionality can be extended with plugins.
 
 ----
 
@@ -36,7 +36,7 @@ Builds can be triggered by various means, for example by commit in a version con
 License
 =======
 
-Jenkins_ is released under the `MIT License <https://github.com/jenkinsci/jenkins/blob/master/LICENSE.txt>`_.
+Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins/blob/master/LICENSE.txt>`_.
 
 Prerequisites
 =============
@@ -62,16 +62,16 @@ Installation
 Create Workspace
 ----------------
 
-First create a folder called ``Jenkins`` and a subfolder called ``jenkins_home``.
-jenkins_home will hold all your Jenkins's data.
+First create a folder called ``Jenkins`` and a subfolder called ``Jenkinshome``.
+Jenkinshome will hold all your Jenkins's data.
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/Jenkins/jenkins_home -p
+ [isabell@stardust ~]$ mkdir ~/Jenkins/Jenkinshome -p
  [isabell@stardust ~]$
 
 
-Download Jenkins_
+Download Jenkins
 -----------------
 
 Next we download the current version of Jenkins:
@@ -99,9 +99,7 @@ Next we download the current version of Jenkins:
 
 At this point you would already be able to run Jenkins, but you wouldn't be able to connect to it and it would not run as a service.
 
-Speaking of service:
-
-Configurtation
+Configuration
 ==============
 
 Install service
@@ -112,7 +110,7 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 ::
 
  [program:jenkins]
- directory=%(ENV_HOME)s/Jenkins/jenkins_home
+ directory=%(ENV_HOME)s/Jenkins/Jenkinshome
  command=java -jar ../jenkins.war
 
 
