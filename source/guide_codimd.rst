@@ -328,7 +328,7 @@ Configure web server
 
 .. note::
 
-    CodeiMD is running on port 60101.
+    CodiMD is running on port 60101.
 
 And you're done!
 
