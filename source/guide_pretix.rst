@@ -156,7 +156,7 @@ Step 7
 
 .. note::
 
-    Pretix is running on port 8000.
+    Pretix is running on port 9000.
 
 .. include:: includes/web-backend.rst
 
