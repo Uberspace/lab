@@ -89,7 +89,7 @@ Edit ``~/MyDjangoProject/MyDjangoProject/settings.py`` and edit the line ``ALLOW
 
  ALLOWED_HOSTS = ['isabell.uber.space']
 
-If you need to add multiple host names, seperate thim with commas like this:
+If you need to add multiple host names, separate them with commas like this:
 
 ::
 
