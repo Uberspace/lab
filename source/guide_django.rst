@@ -95,6 +95,28 @@ If you need to add multiple host names, seperate thim with commas like this:
 
  ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
 
+MySQL
+-----
+
+To be able to use django 2.2 you need to use MySQL instead of sqlite,
+since the sqlite provided by uberspace is not supported anymore. But since
+you can just use a MySQL provided by uberspace, this isn't so bad ;)
+
+Open ``~/MyDjangoProject/MyDjangoProject/settings.py`` and
+edit the database block to look like this 
+``
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+	      'NAME': 'DB_NAME',
+       	'USER': 'DB_USER',
+        'PASSWORD': 'DB_PASSWORD',
+       	'HOST': 'localhost',
+    }
+}
+
+Your MySQL credentials can be found in the uberspace datasheet.
+
 Configure web server
 --------------------
 
