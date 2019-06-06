@@ -103,7 +103,7 @@ since the sqlite provided by uberspace is not supported anymore. But since
 you can just use a MySQL provided by uberspace, this isn't so bad ;)
 
 Open ``~/MyDjangoProject/MyDjangoProject/settings.py`` and
-edit the database block to look like this 
+edit the database block to look like this
 ``
 DATABASES = {
     'default': {
@@ -114,6 +114,7 @@ DATABASES = {
        	'HOST': 'localhost',
     }
 }
+``
 
 Your MySQL credentials can be found in the uberspace datasheet.
 
