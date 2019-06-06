@@ -107,7 +107,7 @@ edit the database block to look like this
 
 ::
 
-DATABASES = {
+  DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
 	      'NAME': 'DB_NAME',
@@ -115,7 +115,7 @@ DATABASES = {
         'PASSWORD': 'DB_PASSWORD',
        	'HOST': 'localhost',
     }
-}
+  }
 
 
 Your MySQL credentials can be found in the uberspace datasheet.
