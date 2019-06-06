@@ -104,7 +104,9 @@ you can just use a MySQL provided by uberspace, this isn't so bad ;)
 
 Open ``~/MyDjangoProject/MyDjangoProject/settings.py`` and
 edit the database block to look like this
-``
+
+::
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -114,7 +116,7 @@ DATABASES = {
        	'HOST': 'localhost',
     }
 }
-``
+
 
 Your MySQL credentials can be found in the uberspace datasheet.
 
