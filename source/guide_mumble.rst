@@ -40,10 +40,6 @@ You need a database for mumble:
   [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_mumble"
   [isabell@stardust ~]$
 
-We need a free port that Mumble-Server can listen to. To discover a currently unoccupied port run:
-
-.. include:: includes/generate-port.rst
-
 Installation
 ============
 
