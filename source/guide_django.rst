@@ -44,6 +44,8 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
+.. include:: includes/my-print-defaults.rst
+
 Installation
 ============
 
@@ -94,6 +96,29 @@ If you need to add multiple host names, separate them with commas like this:
 ::
 
  ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
+
+MySQL
+-----
+
+It is recommended to run Django with a database other than the default
+SQLite once you go into production. Additionally, the SQLite version
+provided by the underlying CentOS 7 is too old for Django >=2.2. The
+following step changes the database engine to the better performing MySQL.
+
+Open ``~/MyDjangoProject/MyDjangoProject/settings.py`` and
+edit the database block to look like this
+
+::
+
+  DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+	    'NAME': 'DB_NAME',
+       	'USER': 'DB_USER',
+        'PASSWORD': 'DB_PASSWORD',
+       	'HOST': 'localhost',
+    }
+  }
 
 Configure web server
 --------------------
