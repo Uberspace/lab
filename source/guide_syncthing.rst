@@ -69,7 +69,7 @@ Configuration
 Generate the configuration
 --------------------------
 
-to generate a config start syncthing via
+generate a config start syncthing via
 
 .. code-block:: bash
 
@@ -81,7 +81,7 @@ to generate a config start syncthing via
 Change the configuration
 ------------------------
 
-You need to listen to all interfaces therefor you have to edit ``~/.config/syncthing/config.xml``
+Syncthing needs to listen to all interfaces therefore you have to edit ``~/.config/syncthing/config.xml``. Find the following block
 
 .. code-block:: xml
 
@@ -92,7 +92,7 @@ You need to listen to all interfaces therefor you have to edit ``~/.config/synct
   </gui>
 
 
-change it to 
+and change it to 
 
 .. code-block:: xml
   :emphasize-lines: 2
@@ -103,7 +103,9 @@ change it to
       <theme>default</theme>
   </gui>
 
-Syncthing provides many other configuration options. Take a look at the Documentation_ to learn more.
+.. note::
+
+  Syncthing provides many other configuration options. Take a look at the Documentation_ to learn more.
 
 Configure web server
 --------------------
@@ -117,14 +119,14 @@ Configure web server
 Setup daemon
 ------------
 
-Create ``~/etc/services.d/syncthing.ini`` with the following content:
+To start syncthing automatically and run it in the background, create ``~/etc/services.d/syncthing.ini`` with the following content:
 
 .. code-block:: ini
 
   [program:syncthing]
   command=%(ENV_HOME)s/syncthing/syncthing
 
-Tell ``supervisord`` to refresh its configuration and start the service:
+Then, tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
@@ -136,7 +138,9 @@ Tell ``supervisord`` to refresh its configuration and start the service:
  syncthing                        RUNNING   pid 26020, uptime 0:03:14
  [isabell@stardust ~]$
 
-If it's not in state RUNNING, check your configuration.
+.. note::
+
+  If syncthing is not ``RUNNING``, check your configuration and the logs using ``supervisorctl maintail``.
 
 Finishing installation
 ======================
@@ -144,9 +148,9 @@ Finishing installation
 Add password
 ------------
 
-.. warning:: without password everybody in the internet can load files from and to your uberspace account
+.. warning:: Without password everybody in the internet can load files from and to your uberspace account!
 
-to protect the access to your syncthing instance, visit your domain and set a username and password.
+To protect the access to your syncthing instance, visit your domain and set a username and password.
 
 Updates
 =======
