@@ -35,24 +35,10 @@ Prerequisites
 
 You need a database for mumble:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_mumble"
+  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_mumble"
   [isabell@stardust ~]$
-
-In our example this would be:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_mumble"
-  [isabell@stardust ~]$
-
-
-We need a free port that Mumble-Server can listen to. To discover a currently unoccupied port run:
-
-.. include:: includes/generate-port.rst
 
 Installation
 ============
@@ -147,19 +133,10 @@ Setup daemon
 
 Create ``~/etc/services.d/mumble.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
   [program:mumble]
-  command=/home/<username>/mumble/murmur.x86 -fg -ini /home/<username>/mumble/murmur.ini
-
-In our example this would be:
-
-.. code-block:: ini
-
-  [program:mumble]
-  command=/home/isabell/mumble/murmur.x86 -fg -ini /home/isabell/mumble/murmur.ini
+  command=%(ENV_HOME)s/mumble/murmur.x86 -fg -ini %(ENV_HOME)s/mumble/murmur.ini
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
