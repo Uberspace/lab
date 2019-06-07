@@ -181,10 +181,10 @@ Finishing installation
 
 Open Mumble with your URL and the port.
 
-Best practices
-==============
+.. Best practices
+  ==============
 
-TODO: get an valid ssl-certificate
+  TODO: get an valid ssl-certificate
 
 Updates
 =======
