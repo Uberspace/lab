@@ -136,7 +136,7 @@ Create ``~/etc/services.d/mumble.ini`` with the following content:
 .. code-block:: ini
 
   [program:mumble]
-  command=%(ENV_HOME)s/mumble/murmur.x86 -fg -ini /home/<username>/mumble/murmur.ini
+  command=%(ENV_HOME)s/mumble/murmur.x86 -fg -ini %(ENV_HOME)s/mumble/murmur.ini
 
 Tell ``supervisord`` to refresh its configuration and start the service:
 
