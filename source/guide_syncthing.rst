@@ -152,6 +152,35 @@ Add password
 
 To protect the access to your syncthing instance, visit your domain and set a username and password.
 
+Best practice
+=============
+
+right now the server will sync with your devices only via a relay-server, wich is not super fast. To improve performance you can open a port in the firewall
+
+::
+
+ [isabell@stardust ~]$ uberspace port add
+ Port 40200 will be open for TCP and UDP treffic in a few minutes.
+ [isabell@stardust ~]$
+
+remember this port.
+
+then open ``~/.config/syncthing/config.xml``, find the following block and chang it to:
+
+.. code-block:: xml
+  :emphasize-lines: 2
+
+  ...
+  <options>
+      <listenAddress>tcp://:$yourport$</listenAddress>
+      <globalAnnounceServer>default</globalAnnounceServer>
+      <globalAnnounceEnabled>true</globalAnnounceEnabled>
+      <localAnnounceEnabled>true</localAnnounceEnabled>
+      <localAnnouncePort>21027</localAnnouncePort>
+      <localAnnounceMCAddr>[ff12::8384]:21027</localAnnounceMCAddr>
+  ...
+
+
 Updates
 =======
 
