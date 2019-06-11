@@ -21,14 +21,14 @@ Framadate
 
 Framadate is an online service for planning an appointment or making a decision quickly and easily.
 
-This guide is based on `this guide<https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
+This guide is based on `this guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
 
 ----
 
 License
 =======
 
-Framadate is licensed under the `CeCILL-B License<http://www.cecill.info/>`_. The current license can always be found `here <https://framagit.org/framasoft/framadate/framadate/raw/develop/LICENSE.en.txt>`_.
+Framadate is licensed under the `CeCILL-B License <http://www.cecill.info/>`_. The current license can always be found `here <https://framagit.org/framasoft/framadate/framadate/raw/develop/LICENSE.en.txt>`_.
 
 Prerequisites
 =============
@@ -132,7 +132,7 @@ and create the .htpasswd file containing the authorized user and password:
   [isabell@stardust ~]$ htpasswd -bc ~/html/framadate/admin/.htpasswd admin "MySuperSecretPassword"
   [isabell@stardust ~]$
 
-As of writing this text, the **.htaccess** and **.htpasswd** files are protected from browser access by the default webserver configuration.
+As of writing this text, the ``.htaccess`` and ``.htpasswd`` files are protected from browser access by the default webserver configuration.
 
 URL rewriting
 -------------
@@ -146,6 +146,7 @@ Mail
 To allow Framadate to send Mails, enter your SMTP Server address/credentials in ``~/html/app/inc/config.php``:
 
 .. code-block:: php
+
   'smtp_options' => [
           'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
           'auth' => false,                    // Enable SMTP authentication
@@ -160,26 +161,3 @@ If you do not want to use the mail features, set ``'use_smtp' => false,``.
 Tested with Framadate 1.1.10, Uberspace 7.3.0.0
 
 .. author_list::
-  Marmo
-
-ccess.txt`` to ``~/html/framadate/.htaccess``.
-
-If you do not do this, you will not be able to access your polls, unless you set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php``.
-
-Mail
-----
-To allow Framadate to send Mails, enter your SMTP Server address/credentials in ``~/html/app/inc/config.php``:
-
-.. code-block:: php
-  'smtp_options' => [
-          'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
-          'auth' => false,                    // Enable SMTP authentication
-          'username' => '',                   // SMTP username
-          'password' => '',                   // SMTP password
-          'secure' => '',                     // Enable encryption (false, tls or ssl)
-          'port' => 25,                       // TCP port to connect to
-      ],
-
-If you do not want to use the mail features, set ``'use_smtp' => false,``.
-
-Tested with Framadate 1.1.10, Uberspace 7
