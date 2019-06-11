@@ -37,7 +37,7 @@ Configuration and Usage
 Step 1
 ------
 
-Each uberspace can open 20 ports. The port numbers are generated automatically in the range from 20.000 to 61.000 and cannot be chosen arbitrarily. 
+Each uberspace can open 20 ports. The port numbers are generated automatically in the range from 20.000 to 61.000 and cannot be chosen arbitrarily. You open a port in the firewall configuration of your uberspace with the command ``uberspace port add``.
 
 .. code-block:: bash
  
@@ -48,7 +48,7 @@ Each uberspace can open 20 ports. The port numbers are generated automatically i
 Step 2
 ------
 
-Remember the opened port after running ``uberspace port add``. If you are unsure what ports are opened than ``uberspace port list`` will list you all opened port. You need to thell the port your local mosh client to successfully connect to your Uberspace.
+Remember the opened port after running ``uberspace port add``. If you are unsure what ports are opened than ``uberspace port list`` will list you all opened port. You need to tell the port your local mosh client to successfully connect to your Uberspace.
 
 .. code-block:: bash
  
