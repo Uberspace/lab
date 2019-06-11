@@ -142,7 +142,7 @@ And change the permissions with:
  [isabell@stardust ~]$ chmod 0600 ~/.pgpass
  [isabell@stardust ~]$
 
-To use the pure password for the database cluster creation, create a temporary password file ``~/.pgpass.tmp``, containing only your password.
+To use the pure password for the database cluster creation, create a temporary password file ``~/pgpass.temp``, containing only your password.
 
 In our example this would be:
 
