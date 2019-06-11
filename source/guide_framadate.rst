@@ -36,6 +36,7 @@ Prerequisites
 We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
+
   [isabell@stardust ~]$ uberspace tools version show php
   Using 'PHP' version: '7.1'
   [isabell@stardust ~]$
@@ -43,6 +44,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
 
 ::
+
   [isabell@stardust ~]$ my_print_defaults client
   --default-character-set=utf8mb4
   --user=isabell
@@ -52,6 +54,7 @@ You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-cr
 Your Framadate URL needs to be setup:
 
 ::
+
   [isabell@stardust ~]$ uberspace web domain list
   isabell.uber.space
   [isabell@stardust ~]$
@@ -65,6 +68,7 @@ Step 1
 First download the files from the Framadate repository with Git into the folder ``~/html`` and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.10`` with the current version.
 
 ::
+
   [isabell@stardust ~]$ cd ~/html
   [isabell@stardust ~]$ git clone https://framagit.org/framasoft/framadate/framadate.git .
   ...
@@ -77,6 +81,7 @@ Step 2
 Import the necessary libraries with composer:
 
 ::
+
   [isabell@stardust ~]$ composer install
   ...
   [isabell@stardust ~]$
@@ -87,6 +92,7 @@ Step 3
 Create a database for Framadate:
 
 ::
+
   [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_framadate"
   [isabell@stardust ~]$
 
@@ -118,9 +124,10 @@ To restrict access, add basic authentication for the admin site by creating ``~/
 .. warning:: Be sure to replace ``<username>`` with your username!
 
 ::
+
   AuthType Basic
   AuthName "Administration"
-  AuthUserFile "/var/www/virtual/${USER}/html/admin/.htpasswd"
+  AuthUserFile "/var/www/virtual/<username>/html/admin/.htpasswd"
   Require valid-user
   Order allow,deny
   Allow from all
@@ -129,6 +136,7 @@ To restrict access, add basic authentication for the admin site by creating ``~/
 and create the .htpasswd file containing the authorized user and password:
 
 ::
+
   [isabell@stardust ~]$ htpasswd -bc ~/html/framadate/admin/.htpasswd admin "MySuperSecretPassword"
   [isabell@stardust ~]$
 
@@ -137,7 +145,12 @@ As of writing this text, the ``.htaccess`` and ``.htpasswd`` files are protected
 URL rewriting
 -------------
 
-To enable URL rewriting, to have links in the form ``https://domain.tld/a1b2c3d4e5f6g7h8`` instead of ``https://domain.tld/studs.php?sondage=a1b2c3d4e5f6g7h8`` rename the file ``~/html/framadate/htaccess.txt`` to ``~/html/framadate/.htaccess``.
+To enable URL rewriting, to have links in the form ``https://domain.tld/a1b2c3d4e5f6g7h8`` instead of ``https://domain.tld/studs.php?sondage=a1b2c3d4e5f6g7h8`` rename the file ``~/html/framadate/htaccess.txt`` to ``~/html/framadate/.htaccess``:
+
+::
+
+  [isabell@stardust ~]$ mv ~/html/framadate/htaccess.txt ~/html/framadate/.htaccess
+  [isabell@stardust ~]$
 
 If you do not do this, you will not be able to access your polls, unless you set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php``.
 
