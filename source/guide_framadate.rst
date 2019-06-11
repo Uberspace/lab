@@ -10,7 +10,7 @@
 
 .. sidebar:: About
 
-  .. image:: _static/images/guide_framadate.png
+  .. image:: _static/images/framadate.png
       :align: center
 
 ##########
@@ -21,14 +21,14 @@ Framadate
 
 Framadate is an online service for planning an appointment or making a decision quickly and easily.
 
-This guide is based on `this guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
+This guide is based on `this guide<https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
 
 ----
 
 License
 =======
 
-Framadate is licensed under the `CeCILL-B License <http://www.cecill.info/>`_. The current license can always be found `here <https://framagit.org/framasoft/framadate/framadate/raw/develop/LICENSE.en.txt>`_.
+Framadate is licensed under the `CeCILL-B License<http://www.cecill.info/>`_. The current license can always be found `here <https://framagit.org/framasoft/framadate/framadate/raw/develop/LICENSE.en.txt>`_.
 
 Prerequisites
 =============
