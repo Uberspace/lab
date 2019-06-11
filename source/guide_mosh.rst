@@ -23,7 +23,7 @@ Therefore you need to open a port in your Uberspace firewall.
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`SSH <basics-ssh>`
-  * :manual:`Firewall Ports <basic-ports>`
+  * :manual:`Firewall Ports <basics-ports>`
 
 License
 =======
