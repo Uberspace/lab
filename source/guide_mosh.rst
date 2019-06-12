@@ -43,7 +43,7 @@ Each uberspace can open 20 ports. The port numbers are generated automatically i
  
  [isabell@stardust ~] uberspace port add
  Port 40132 will be open for TCP and UDP traffic in a few minutes.
- 
+ [isabell@stardust ~]$
 
 Step 2
 ------
@@ -54,6 +54,7 @@ Remember the opened port after running ``uberspace port add``. If you are unsure
  
  [isabell@stardust ~] uberspace port list
  40132
+ [isabell@stardust ~]$
 
 Step 3
 ------
@@ -65,6 +66,7 @@ Connect via your local mosh client to your Uberspace via ``mosh -p 40132 stardus
  [isabell@localhost ~] mosh -p 40132 stardust.uberspace
  Welcome to Uberspace7!
  [...]
+ [isabell@stardust ~]$
 
 
 That's it, you have successfully configured your Uberspace to access it with Mosh_! Don't forget to close the port if you ever decide to discontinue to use Mosh_
