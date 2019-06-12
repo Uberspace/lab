@@ -168,7 +168,7 @@ Open webadmin
 
 If ZNC is running, you can find the web interface for further configuration here:
 
-  * https://isabell.uber.space:41680/
+  * https://isabell.uber.space:47680/
 
 Updates
 =======
