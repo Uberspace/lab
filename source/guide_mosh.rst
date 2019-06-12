@@ -31,11 +31,8 @@ License
 Mosh_ is free software, available for GNU/Linux, BSD, macOS, Solaris, Android, Chrome, and iOS under the OCB license.
 
 
-Configuration and Usage
-=======================
-
-Step 1
-------
+Configuration
+=============
 
 Each uberspace can open 20 ports. The port numbers are generated automatically in the range from 20.000 to 61.000 and cannot be chosen arbitrarily. You open a port in the firewall configuration of your uberspace with the command ``uberspace port add``.
 
@@ -45,9 +42,6 @@ Each uberspace can open 20 ports. The port numbers are generated automatically i
  Port 40132 will be open for TCP and UDP traffic in a few minutes.
  [isabell@stardust ~]$
 
-Step 2
-------
-
 Remember the opened port after running ``uberspace port add``. If you are unsure what ports are opened than ``uberspace port list`` will list you all opened port. You need to tell the port your local mosh client to successfully connect to your Uberspace.
 
 .. code-block:: bash
@@ -56,10 +50,10 @@ Remember the opened port after running ``uberspace port add``. If you are unsure
  40132
  [isabell@stardust ~]$
 
-Step 3
-------
+Best practices
+==============
 
-Connect via your local mosh client to your Uberspace via ``mosh -p 40132 stardust.uberspace``.
+Connect via your local mosh client to your Uberspace via ``mosh -p 40132 stardust.uberspace``. It's not necessary to configure Mosh as a daemon on your Uberspace.
 
 .. code-block:: bash
  
