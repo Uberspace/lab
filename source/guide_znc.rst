@@ -175,6 +175,8 @@ Updates
 
 .. note:: Check https://wiki.znc.in/ZNC regularly to stay informed about the newest version.
 
+To update an existing installation remove the ``~/znc`` directory (``rm -rf ~/znc``) and repeat the two **Installation** steps. Execute ``supervisorctl restart znc`` to make the changes take effect.
+
 .. _ZNC: https://znc.in/
 
 ----
