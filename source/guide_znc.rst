@@ -121,12 +121,10 @@ Setup daemon
 ------------
 Create ``~/etc/services.d/znc.ini`` with the following content:
 
-.. warning:: Replace ``isabell`` with your username!
-
 ::
 
  [program:znc]
- command=/home/isabell/.local/bin/znc --foreground
+ command=%(ENV_HOME)s/.local/bin/znc --foreground
  autostart=yes
  autorestart=yes
 
