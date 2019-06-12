@@ -23,7 +23,7 @@ ZNC is an advanced IRC bouncer that is left connected so an IRC client can disco
 License
 =======
 
-All relevant legal information can be found here
+All relevant legal information can be found here:
 
   * https://github.com/znc/znc/blob/master/LICENSE
 
@@ -37,6 +37,8 @@ We'll need an open port:
  [isabell@stardust ~]$ uberspace port add
  Port 47680 will be open for TCP and UDP traffic in a few minutes.
  [isabell@stardust ~]$
+ 
+.. note:: Always use your own port instead of ``47680`` for the rest of this manual.
 
 Installation
 ============
@@ -145,7 +147,9 @@ If it's not in state RUNNING, check your configuration.
 Open webadmin
 -------------
 
-If ZNC is running, you can find the web interface for further configuration here
+If ZNC is running, you can find the web interface for further configuration here:
+
+.. warning:: Replace ``isabell`` with your username, ``stardust`` with your host and ``47680`` with your port!
 
   * https://isabell.stardust.uberspace.de:47680
 
