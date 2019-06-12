@@ -70,7 +70,7 @@ Configuration
 =============
 
 Configure ZNC
--------------------
+-------------
 Run the following command to create a config file:
 
 ::
@@ -141,7 +141,7 @@ Run the following commands to reread and update the ``supervisord`` configuratio
 If the last command does not return RUNNING, the configuration is probably faulty.
 
 Open webadmin
-======================
+-------------
 
 If ZNC is running, you can find the web interface for further configuration here
 
