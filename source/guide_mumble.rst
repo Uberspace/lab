@@ -156,7 +156,11 @@ If it's not in state ``RUNNING``, check your configuration.
 Finishing installation
 ======================
 
-Open Mumble with your URL and the port.
+To connect to your server, open mumble on your computer or phone and add a new server:
+
+* Address: ``<username>.uber.space``
+* Port: your port
+* Username: any username you'd like
 
 Updates
 =======
