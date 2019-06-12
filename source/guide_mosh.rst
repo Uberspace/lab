@@ -2,9 +2,7 @@
 
 .. author:: Daniel Hannaske <https://github.com/dahanbn/>
 
-.. tag:: mosh
 .. tag:: console
-.. tag:: ssh
 
 #######
 Mosh
