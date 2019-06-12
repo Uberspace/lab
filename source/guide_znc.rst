@@ -11,7 +11,7 @@ ZNC
 
 .. tag_list::
 
-ZNC is an advanced IRC bouncer that is left connected so an IRC client can disconnect/reconnect without losing the chat session.
+ZNC_ is an advanced IRC bouncer that is left connected so an IRC client can disconnect/reconnect without losing the chat session.
 
 ----
 
@@ -157,6 +157,8 @@ Updates
 =======
 
 .. note:: Check https://wiki.znc.in/ZNC regularly to stay informed about the newest version.
+
+.. _ZNC: https://znc.in/
 
 ----
 
