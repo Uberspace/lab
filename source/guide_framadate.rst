@@ -104,7 +104,7 @@ Configure Framadate
 
 Now that the database is ready, you have to configure Framadate to use it.
 
-Go to the page ``https://domain.tld/admin/install.php`` and fill the form with the following string: ``mysql:host=localhost;dbname=<username>_framadate;port=3306``, your database user and your MariaDB-password.
+Go to the page ``https://isabell.uber.space/admin/install.php`` and fill the form with the following string: ``mysql:host=localhost;dbname=<username>_framadate;port=3306``, your database user and your MariaDB-password.
 
 .. warning:: Be sure to replace ``<username>`` with your username!
 
@@ -117,7 +117,7 @@ You are then redirected to the "migration" page which is used to check that the 
 Restrict access to Admin area
 -----------------------------
 
-Framadate has a management area for all polls in the folder ``admin``
+Framadate has a management area for all polls in the folder ``admin``.
 
 To restrict access, add basic authentication for the admin site by creating ``~/html/admin/.htaccess`` with the following content:
 
@@ -133,11 +133,11 @@ To restrict access, add basic authentication for the admin site by creating ``~/
   Allow from all
 
 
-and create the .htpasswd file containing the authorized user and password:
+Then create the file ``.htpasswd`` containing the authorized user and password:
 
 ::
 
-  [isabell@stardust ~]$ htpasswd -bc ~/html/framadate/admin/.htpasswd admin "MySuperSecretPassword"
+  [isabell@stardust ~]$ htpasswd -bc ~/html/admin/.htpasswd admin "MySuperSecretPassword"
   [isabell@stardust ~]$
 
 As of writing this text, the ``.htaccess`` and ``.htpasswd`` files are protected from browser access by the default webserver configuration.
@@ -145,18 +145,21 @@ As of writing this text, the ``.htaccess`` and ``.htpasswd`` files are protected
 URL rewriting
 -------------
 
-To enable URL rewriting, to have links in the form ``https://domain.tld/a1b2c3d4e5f6g7h8`` instead of ``https://domain.tld/studs.php?sondage=a1b2c3d4e5f6g7h8`` rename the file ``~/html/framadate/htaccess.txt`` to ``~/html/framadate/.htaccess``:
+To enable URL rewriting, to have links in the form ``https://isabell.uber.space/a1b2c3d4e5f6g7h8`` instead of ``https://isabell.uber.space/studs.php?sondage=a1b2c3d4e5f6g7h8`` rename the file ``~/html/htaccess.txt`` to ``~/html/.htaccess``:
 
 ::
 
-  [isabell@stardust ~]$ mv ~/html/framadate/htaccess.txt ~/html/framadate/.htaccess
+  [isabell@stardust ~]$ mv ~/html/htaccess.txt ~/html/.htaccess
   [isabell@stardust ~]$
 
-If you do not do this, you will not be able to access your polls, unless you set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php``.
+.. note::
+
+  If you choose not to do this, set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php`` or you won't be able to access your polls.
 
 Mail
 ----
-To allow Framadate to send Mails, enter your SMTP Server address/credentials in ``~/html/app/inc/config.php``:
+
+To allow Framadate to send mails, enter your SMTP Server address and credentials in ``~/html/app/inc/config.php``:
 
 .. code-block:: php
 
