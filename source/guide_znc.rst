@@ -18,6 +18,7 @@ ZNC_ is an advanced IRC bouncer that is left connected so an IRC client can disc
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Firewall Ports <basics-ports>`
+  * :manual:`HTTPS <web-https>` 
   * :manual:`supervisord <daemons-supervisord>`
 
 License
