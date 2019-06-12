@@ -47,14 +47,14 @@ Create a new directory, download the lastest version and enter the directory you
 
 ::
 
- [isabell@stardust ~]$ mkdir znc
- [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC $HOME/znc --strip-components=1
- [isabell@stardust ~]$ cd znc
+ [isabell@stardust ~]$ mkdir ~/znc
+ [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC ~/znc --strip-components=1
+ [isabell@stardust ~]$ cd ~/znc
  [isabell@stardust znc]$
 
 Step 2
 ------
-Run the comments below:
+Run ``configure``, ``make`` and ``make install`` (you need ``--prefix="$HOME/.local"`` to install to your home directory):
 
 ::
 
@@ -75,7 +75,7 @@ Run the following command to create a config file:
 
 ::
 
- [isabell@stardust ~]$ /home/isabell/.local/bin/znc --makeconf
+ [isabell@stardust ~]$ ~/.local/bin/znc --makeconf
  [ .. ] Checking for list of available modules...
  [ ** ]
  [ ** ] -- Global settings --
@@ -118,6 +118,8 @@ Run the following command to create a config file:
 Setup daemon
 ------------
 Create ``~/etc/services.d/znc.ini`` with the following content:
+
+.. warning:: Replace ``isabell`` with your username!
 
 ::
 
