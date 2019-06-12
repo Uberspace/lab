@@ -117,9 +117,9 @@ Run the following command to create a config file:
  [ ?? ] Launch ZNC now? (yes/no) [no]:
  [isabell@stardust ~]$
 
-Use your own certifikate
+Use your own certificate
 ------------------------
-ZNC ships with a self generated certifikate which will cause a warning in all modern browsers. To prevent this, we have to use our own certificate. Enter the ``~/.znc/configs`` directory and generate a ``dhparam.pem`` file:
+ZNC ships with a self generated certificate which will cause a warning in all modern browsers. To prevent this, we have to use our own certificate. Enter the ``~/.znc/configs`` directory and generate a ``dhparam.pem`` file:
 
 ::
 
