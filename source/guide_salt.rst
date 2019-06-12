@@ -49,7 +49,7 @@ Installation
 Install salt-master
 -------------------
 
-The `salt` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the `Developer installation` guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 2019.2.1
+The `salt` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the `Developer installation` guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 2019.2.0
 
 ::
 
@@ -59,7 +59,7 @@ The `salt` installation script requires root privileges and only supports virtua
  [user@host ~]$ cd salt
  [user@host ~]$ git remote add upstream https://github.com/saltstack/salt
  [user@host ~]$ git fetch --tags upstream
- [user@host ~]$ git branch 2019.2.1
+ [user@host ~]$ git checkout tags/v2019.2.0
  [user@host ~]$ virtualenv ~/salt/virtualenv
  [user@host ~]$ source ~/salt/virtualenv/bin/activate
  [user@host ~]$ pip install pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado
