@@ -126,7 +126,7 @@ Create ``~/etc/services.d/znc.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Run the following commands to reread and update the ``supervisord`` configuration:
+Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
@@ -138,7 +138,7 @@ Run the following commands to reread and update the ``supervisord`` configuratio
  znc                              RUNNING   pid 20669, uptime 0:00:18
  [isabell@stardust ~]$
 
-If the last command does not return RUNNING, the configuration is probably faulty.
+If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
