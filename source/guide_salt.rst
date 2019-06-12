@@ -89,7 +89,7 @@ Create ``~/etc/services.d/salt-master.ini`` with the following content:
 
  [program:salt-master]
  process_name=salt-master
- command=/home/<username>/salt/virtualenv/bin/salt-master
+ command=%(ENV_HOME)s/salt/virtualenv/bin/salt-master
  autostart=yes
  autorestart=yes
 
