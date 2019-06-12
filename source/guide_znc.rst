@@ -50,7 +50,7 @@ Create a new directory, download the lastest version and enter the directory you
  [isabell@stardust ~]$ mkdir znc
  [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC $HOME/znc --strip-components=1
  [isabell@stardust ~]$ cd znc
- [isabell@stardust ~]$
+ [isabell@stardust znc]$
 
 Step 2
 ------
@@ -58,13 +58,13 @@ Run the comments below:
 
 ::
 
- [isabell@stardust ~]$ ./configure --prefix="$HOME/.local"
+ [isabell@stardust znc]$ ./configure --prefix="$HOME/.local"
  [...]
- [isabell@stardust ~]$ make
+ [isabell@stardust znc]$ make
  [...]
- [isabell@stardust ~]$ make install
+ [isabell@stardust znc]$ make install
  [...]
- [isabell@stardust ~]$
+ [isabell@stardust znc]$
 
 Configuration
 =============
