@@ -117,6 +117,26 @@ Run the following command to create a config file:
  [ ?? ] Launch ZNC now? (yes/no) [no]:
  [isabell@stardust ~]$
 
+Use your own certifikate
+------------------------
+ZNC ships with a self generated certifikate which will cause a warning in all modern browsers. To prevent this, we have to use our own certificate. Enter the ``~/.znc/configs`` directory and generate a ``dhparam.pem`` file:
+
+::
+
+  [isabell@stardust ~]$ cd ~/.znc/configs
+  [isabell@stardust configs]$ openssl dhparam -out dhparam.pem 2048
+  [isabell@stardust configs]$
+  
+.. warning:: Replace ``isabell`` with your username!
+
+Add the following lines to ``~/.znc/configs/znc.conf`` above the line ``Version = 1.7.3`` (your version number may differ):
+
+::
+
+ SSLCertFile = /readonly/isabell/certificates/isabell.uber.space.crt
+ SSLKeyFile = /readonly/isabell/certificates/isabell.uber.space.key
+ SSLDHParamFile = /home/isabell/.znc/configs/dhparam.pem
+
 Setup daemon
 ------------
 Create ``~/etc/services.d/znc.ini`` with the following content:
@@ -144,12 +164,11 @@ If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
+.. warning:: Replace ``isabell`` with your username and ``47680`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 
-.. warning:: Replace ``isabell`` with your username, ``stardust`` with your host and ``47680`` with your port!
-
-  * https://isabell.stardust.uberspace.de:47680
+  * https://isabell.uber.space:41680/
 
 Updates
 =======
@@ -160,6 +179,6 @@ Updates
 
 ----
 
-Tested with ZNC 1.7.3, Uberspace 7.3.0.0
+Tested with ZNC 1.7.3, Uberspace 7.3.1.1
 
 .. author_list::
