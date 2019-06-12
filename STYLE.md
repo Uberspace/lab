@@ -93,7 +93,7 @@ This is a link to the Python manual: :manual:`Python <lang-python>`.
 
 This is a link to a section of the Python manual: :manual_anchor:`pip <lang-python.html#pip>`.
 
-This is a lik to another guide: :lab:`Django <guide_django>`.
+This is a link to another guide: :lab:`Django <guide_django>`.
 ```
 
 Please use the following structure. Only document applicable steps, leave out headlines you don't need.
