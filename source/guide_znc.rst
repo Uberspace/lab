@@ -126,6 +126,7 @@ ZNC ships with a self generated certificate which will cause a warning in all mo
 
   [isabell@stardust ~]$ cd ~/.znc/configs
   [isabell@stardust configs]$ openssl dhparam -out dhparam.pem 2048
+  [...]
   [isabell@stardust configs]$
   
 .. warning:: Replace ``isabell`` with your username!
