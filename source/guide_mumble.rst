@@ -107,7 +107,7 @@ Configure port
 edit config file ~/mumble/murmur.ini to specify the desired port, domain and mysql-database. Minimal config would look like this:
 
 .. code-block:: ini
-  :emphasize-lines: 1,3,4,12
+  :emphasize-lines: 1,3,4,7
   
   database=<username>_mumble
   dbDriver=QMYSQL
@@ -150,12 +150,16 @@ If it's not in state ``RUNNING``, check your configuration.
 Finishing installation
 ======================
 
-Open Mumble with your URL and the port.
+To connect to your server, open mumble on your computer or phone and add a new server:
+
+* Address: ``<username>.uber.space``
+* Port: your port
+* Username: any username you'd like
 
 Best practices
 ==============
 
-uberspace already already gets letsencrypt certificates. To add them append these lines and adjust your ``isabell`` and the domain.
+uberspace already already gets letsencrypt certificates. To add them append these lines to your ``murmur.ini`` and adjust your username and the domain.
 
 .. code-block:: ini
 
