@@ -152,10 +152,21 @@ Finishing installation
 
 Open Mumble with your URL and the port.
 
-.. Best practices
-  ==============
+Best practices
+==============
 
-  TODO: get an valid ssl-certificate
+uberspace already already gets letsencrypt certificates. To add them append these lines and adjust your ``isabell`` and the domain.
+
+.. code-block:: ini
+
+  sslCert=/home/isabell/etc/certificates/isabell.uber.space.crt
+  sslKey=/home/isabell/etc/certificates/isabell.uber.space.key
+
+Last we have to restart the server before expiry. Edit your cron tab using the ``crontab -e``.
+
+::
+
+  @weekly supervisorctl restart mumble
 
 Updates
 =======
