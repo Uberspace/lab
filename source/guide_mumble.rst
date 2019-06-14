@@ -113,20 +113,14 @@ edit config file ~/mumble/murmur.ini to specify the desired port, domain and mys
   dbDriver=QMYSQL
   dbUsername=<username>
   dbPassword=<mysql_password>
-  dbHost=localhost
-  dbPort=3306
-  dbPrefix=murmur_
   dbOpts="UNIX_SOCKET=/var/lib/mysql/mysql.sock"
-  dbus=session
-  icesecretwrite=
   welcometext="<br />Welcome to this server running <b>Murmur</b>.<br />Enjoy your stay!<br />"
   port=<your_port>
   serverpassword=
-  bandwidth=72000
-  users=20
-  [Ice]
-  Ice.Warn.UnknownProperties=1
-  Ice.MessageSizeMax=65536
+  allowping=true
+  bonjour=false
+
+For more configuration options look at the documentation_ site.
 
 Setup daemon
 ------------
@@ -183,6 +177,7 @@ If there is a new version repeat the Installation_ and execute:
 .. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _feed: https://github.com/mumble-voip/mumble/releases
+.. _documentation: https://wiki.mumble.info/wiki/Murmur.ini
 
 
 ----
