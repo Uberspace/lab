@@ -4,6 +4,6 @@
 
 Sorry, the page you're looking for was not found.
 
-Please select a page from the side menu or feel free to create a issue on github.com_.
+Please select a page from the side menu or feel free to create an issue on github.com_.
 
 .. _github.com: https://github.com/Uberspace/lab/issues
