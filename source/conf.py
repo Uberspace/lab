@@ -35,6 +35,7 @@ import sphinx_rtd_theme
 extensions = [
     'authorship',
     'sphinx.ext.extlinks',
+    'notfound.extension',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -149,6 +150,9 @@ html_sidebars = {
     ]
 }
 
+# sphinx-notfound-page
+# https://github.com/rtfd/sphinx-notfound-page
+notfound_no_urls_prefix = True
 
 # -- Options for HTMLHelp output ------------------------------------------
 
