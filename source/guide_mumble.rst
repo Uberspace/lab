@@ -170,7 +170,7 @@ Last we have to restart the server before expiry. Edit your cron tab using the `
 
 ::
 
-  @weekly supervisorctl restart mumble
+  @weekly supervisorctl restart mumble &> /dev/null
 
 Updates
 =======
