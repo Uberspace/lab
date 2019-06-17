@@ -14,6 +14,8 @@
 Mumble
 ######
 
+.. tag_list::
+
 Mumble_ is a voice over IP (VoIP) application primarily designed for use by gamers and is similar to programs such as TeamSpeak_.
 
 Mumble uses a client–server architecture which allows users to talk to each other via the same server (murmur). It has a very simple administrative interface and features high sound quality and low latency. All communication is encrypted to ensure user privacy.
