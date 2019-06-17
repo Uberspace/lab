@@ -41,15 +41,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
   Using 'PHP' version: '7.1'
   [isabell@stardust ~]$
 
-You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
-
-::
-
-  [isabell@stardust ~]$ my_print_defaults client
-  --default-character-set=utf8mb4
-  --user=isabell
-  --password=MySuperSecretPassword
-  [isabell@stardust ~]$
+.. include:: includes/my-print-defaults.rst
 
 Your Framadate URL needs to be setup:
 
