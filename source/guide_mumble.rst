@@ -1,6 +1,10 @@
 .. author:: Stunkymonkey <stunkymonkey.de>
 .. highlight:: console
 
+.. tag:: lang-cpp
+.. tag:: voip
+.. tag:: ports
+
 .. sidebar:: Logo
 
   .. image:: _static/images/mumble.svg
@@ -97,12 +101,7 @@ Configuration
 Configure port
 --------------
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace port add
-  Port 40200 will be open for TCP and UDP traffic in a few minutes.
-  [isabell@stardust ~]$
-
+.. include:: includes/open-port.rst
 
 edit config file ``~/mumble/murmur.ini`` to specify the desired port, domain and mysql-database. Minimal config would look like this:
 
