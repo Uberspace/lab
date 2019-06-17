@@ -21,7 +21,7 @@ Framadate
 
 Framadate is an online service for planning an appointment or making a decision quickly and easily.
 
-This guide is based on `this guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
+This guide is based on `the offical guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
 
 ----
 
@@ -70,7 +70,8 @@ First download the files from the Framadate repository with Git into the folder 
 
 Step 2
 ------
-Import the necessary libraries with composer:
+
+Install the necessary libraries with composer:
 
 ::
 
@@ -102,7 +103,7 @@ Go to the page ``https://isabell.uber.space/admin/install.php`` and fill the for
 
 .. note:: If the page does not appear, check that a folder ``~/html/tpl_c`` has been created with sufficient write permissions.
 
-Upon installation, the database tables and the file ``app/inc/config.php`` are created. The file ``app/inc/config.php`` contains parameters of optional configurations that you can modify.
+During installation, the database tables and the file ``app/inc/config.php`` are created. The file ``app/inc/config.php`` contains parameters of optional configuration that you can modify.
 
 You are then redirected to the "migration" page which is used to check that the tables and data are in the correct format. For future updates, you will have to go through this page after replacing the files.
 
