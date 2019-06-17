@@ -1,4 +1,4 @@
-.. author:: Stunkymonkey <stunkymonkey.de>
+.. author:: stunkymonkey <http://stunkymonkey.de>
 .. highlight:: console
 
 .. tag:: lang-cpp

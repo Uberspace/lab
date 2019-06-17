@@ -1,4 +1,4 @@
-.. author:: stunkymonkey <http://stunkymonkey.de
+.. author:: stunkymonkey <http://stunkymonkey.de>
 
 .. tag:: lang-go
 .. tag:: sync
