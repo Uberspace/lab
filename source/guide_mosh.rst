@@ -3,10 +3,11 @@
 .. author:: Daniel Hannaske <https://github.com/dahanbn/>
 
 .. tag:: console
+.. tag:: ssh
 
-#######
+####
 Mosh
-#######
+####
 
 .. tag_list::
 
@@ -32,30 +33,16 @@ Mosh_ is free software, available for GNU/Linux, BSD, macOS, Solaris, Android, C
 Configuration
 =============
 
-Each uberspace can open 20 ports. The port numbers are generated automatically in the range from 20.000 to 61.000 and cannot be chosen arbitrarily. You open a port in the firewall configuration of your uberspace with the command ``uberspace port add``.
-
-.. code-block:: bash
- 
- [isabell@stardust ~] uberspace port add
- Port 40132 will be open for TCP and UDP traffic in a few minutes.
- [isabell@stardust ~]$
-
-Remember the opened port after running ``uberspace port add``. If you are unsure what ports are opened than ``uberspace port list`` will list you all opened port. You need to tell the port your local mosh client to successfully connect to your Uberspace.
-
-.. code-block:: bash
- 
- [isabell@stardust ~] uberspace port list
- 40132
- [isabell@stardust ~]$
+.. include:: includes/open-port.rst
 
 Best practices
 ==============
 
-Connect via your local mosh client to your Uberspace via ``mosh -p 40132 stardust.uberspace``. It's not necessary to configure Mosh as a daemon on your Uberspace.
+It's not necessary to configure Mosh as a daemon on your Uberspace.
 
 .. code-block:: bash
  
- [isabell@localhost ~] mosh -p 40132 stardust.uberspace
+ [isabell@localhost ~] mosh -p <your_port> <username>.uber.space
  Welcome to Uberspace7!
  [...]
  [isabell@stardust ~]$
