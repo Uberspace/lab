@@ -87,4 +87,4 @@ To remove the file install.php enter
 
 Tested with PHP-Fusion v9.03.00 and Uberspace 7.2.8.2
 
-.. authors::
+.. author_list::

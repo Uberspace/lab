@@ -200,4 +200,4 @@ If there is a new version repeat the Installation_ and execute:
 
 Tested with Murmur 1.2.19, Uberspace 7.3.0.0
 
-.. authors::
+.. author_list::
