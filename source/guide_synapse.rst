@@ -278,44 +278,6 @@ allow users to be found by enabling the user directory in the config file ``~/sy
   user_directory:
     enabled: true
 
-
-Setup Daemon
-------------
-
-Create ``~/etc/services.d/synapse.ini`` with the following content:
-
-.. code-block:: ini
-
-    [program:synapse]
-    command=/home/matrites/synapse/env/bin/python -m synapse.app.homeserver -c /home/matrites/synapse/homeserver.yaml
-    autostart=yes
-    autorestart=yes
-
-The supervisor must be informed about the new service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- synapse: available
- [isabell@stardust ~]$
-
-The first run will be initialized with:
-
-::
-
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$
-
-Run ``supervisorctl status`` to check that the daemon is running:
-
-::
-
- [isabell@stardust ~]$ supervisorctl status
- synapse                       RUNNING   pid 15477, uptime 0:00:07
- [isabell@stardust ~]$
-
-
-
 Updates
 =======
 
@@ -330,6 +292,17 @@ If there is a update, use pip to update the installation:
 
 Administration
 ==============
+
+Starting or stopping the service
+--------------------------------
+
+Synapse brings it own managment tool called ``synctl`` which can be used to start and stop the server.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ source ~/synapse/env/bin/activate
+  (env) [isabell@stardust ~]$ synctl start
+  (env) [isabell@stardust ~]$
 
 Adding users
 ------------
