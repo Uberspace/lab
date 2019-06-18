@@ -31,15 +31,7 @@ All relevant legal information can be found here:
 Prerequisites
 =============
 
-We'll need an open port:
-
-::
-
- [isabell@stardust ~]$ uberspace port add
- Port 47680 will be open for TCP and UDP traffic in a few minutes.
- [isabell@stardust ~]$
- 
-.. note:: Always use your own port instead of ``47680`` for the rest of this manual.
+.. include:: includes/open-port.rst
 
 Installation
 ============
