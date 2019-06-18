@@ -287,10 +287,53 @@ If there is a update, use pip to update the installation:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ source ~/synapse/env/bin/activate
+  [isabell@stardust ~]$ source ~/synapse/env/bin/activate
   (env) [isabell@stardust ~]$ pip install -U matrix-synapse
   [isabell@stardust ~]$
 
+
+Administration
+==============
+
+Password reset
+--------------
+
+Passwords can be reset using the cli; first generate the hash of the new password:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ ~/synapse/env/bin/hash_password
+  Password:
+  Confirm password:
+  $2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02
+  [isabell@stardust ~]$
+
+
+
+Then add it to the USERS table:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ psql --user synapse
+  Password for user synapse:
+  psql (9.6.10)
+  Type "help" for help.
+
+  synapse=> UPDATE users SET password_hash='$2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02' WHERE name='matrites';
+  UPDATE 1
+  synapse=>
+  [isabell@stardust ~]$
+
+
+
+.. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
+.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+.. _Matrix: https://matrix.org/
+.. _Synapse: https://matrix.org/docs/projects/server/synapse
+
+----
+
+.. author_list::
 
 .. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
