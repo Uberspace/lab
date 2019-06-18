@@ -11,7 +11,7 @@ ZNC
 
 .. tag_list::
 
-ZNC_ is an advanced IRC bouncer that is left connected so an IRC client can disconnect/reconnect without losing the chat session.
+ZNC_ is an advanced IRC bouncer that stays connected to the server, so an IRC client can disconnect/reconnect without losing the chat session.
 
 ----
 
@@ -57,7 +57,8 @@ Create a new directory, download the lastest version and enter the directory you
 
 Step 2
 ------
-Run ``configure``, ``make`` and ``make install`` (you need ``--prefix="$HOME/.local"`` to install to your home directory):
+
+Compile and install ZNC to your home directory:
 
 ::
 
@@ -166,7 +167,7 @@ If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
-.. warning:: Replace ``isabell`` with your username and ``47680`` with your port!
+.. note:: Replace ``isabell`` with your username and ``47680`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 
@@ -177,7 +178,7 @@ Updates
 
 .. note:: Check https://wiki.znc.in/ZNC regularly to stay informed about the newest version.
 
-To update an existing installation remove the ``~/znc`` directory (``rm -rf ~/znc``) and repeat the two **Installation** steps. Execute ``supervisorctl restart znc`` to make the changes take effect.
+To update an existing installation remove the ``~/znc`` directory (``rm -rf ~/znc``) and repeat the **Installation** steps. Execute ``supervisorctl restart znc`` to start the new version.
 
 .. _ZNC: https://znc.in/
 
