@@ -295,6 +295,32 @@ If there is a update, use pip to update the installation:
 Administration
 ==============
 
+Adding users
+------------
+
+Users can be added from the CLI:
+Adding users
+------------
+
+Users can be added from the CLI:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ source ~/synapse/env/bin/activate
+  (env) [isabell@stardust ~]$ cd ~/synapse
+  (env) [isabell@stardust synape]$ register_new_matrix_user -c homeserver.yaml https://my.domain.name:PORT
+  New user localpart [isabell]: USER
+  Password:
+  Confirm password:
+  Make admin [no]: no
+  Sending registration request...
+  Success!
+  (env) [isabell@stardust synapse]$
+
+
+
+
+
 Password reset
 --------------
 
