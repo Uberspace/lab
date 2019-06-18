@@ -324,6 +324,8 @@ Then add it to the USERS table:
   synapse=>
   [isabell@stardust ~]$
 
+.. note:: ``SELECT name from users;`` returns a list of all usernames
+
 
 
 .. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
