@@ -152,7 +152,11 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 Mail
 ----
 
+<<<<<<< HEAD
 First create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-mailboxes>`:
+=======
+First create a :manual_anchor: new mailbox user <mail-mailboxes.html#additional-mailboxes>:
+>>>>>>> 6b32f1c73e2b77ad7cf38f495830ff50d9854d79
 ::
 
   [isabell@stardust ~]$ uberspace mail user add framadate
