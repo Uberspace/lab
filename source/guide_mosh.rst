@@ -27,7 +27,7 @@ Therefore you need to open a port in your Uberspace firewall.
 License
 =======
 
-Mosh_ is free software, available for GNU/Linux, BSD, macOS, Solaris, Android, Chrome, and iOS under the OCB license.
+Mosh_ is free software, available for GNU/Linux, BSD, macOS, Solaris, Android, Chrome, and iOS under the GPLv3 license.
 
 
 Configuration
