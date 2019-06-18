@@ -268,6 +268,17 @@ now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths 
             cp_min: 5
             cp_max: 10
 
+Enable user search
+------------------
+
+allow users to be found by enabling the user directory in the config file ``~/synapse/homeserver.yaml``:
+
+.. code-block:: yaml
+
+  user_directory:
+    enabled: true
+
+
 Setup Daemon
 ------------
 
