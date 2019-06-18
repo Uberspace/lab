@@ -165,6 +165,17 @@ If ZNC is running, you can find the web interface for further configuration here
 
   * https://isabell.uber.space:47680/
 
+Connect your client
+-------------------
+
+Add a new server in your local IRC client:
+
+* Hostname: `<username>.uber.space`
+* Port: your port
+* Username: ZNC nickname
+* Password: ZNC password
+* Encryption: yes
+
 Updates
 =======
 
