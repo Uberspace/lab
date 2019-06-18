@@ -152,18 +152,32 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 Mail
 ----
 
-To allow Framadate to send mails, enter your SMTP Server address and credentials in ``~/html/app/inc/config.php``:
+First create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-mailboxes>`:
+::
+
+  [isabell@stardust ~]$ uberspace mail user add framadate
+  Enter a password for the mailbox:
+  Please confirm your password:
+  New mailbox created for user: 'framadate', it will be live in a few minutes...
+  [isabell@stardust ~]$
+
+Then configure Framadate to use that just created mailbox. Edit the SMTP configuration in  ``~/html/app/inc/config.php``:
 
 .. code-block:: php
-
+  
+  'use_smtp' => true,
   'smtp_options' => [
-          'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
-          'auth' => false,                    // Enable SMTP authentication
-          'username' => '',                   // SMTP username
-          'password' => '',                   // SMTP password
-          'secure' => '',                     // Enable encryption (false, tls or ssl)
-          'port' => 25,                       // TCP port to connect to
+          'host' => 'stardust.uberspace.de',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
+          'auth' => true,                    // Enable SMTP authentication
+          'username' => 'framadate@isabell.uber.space',                   // SMTP username
+          'password' => 'MySuperSecretPassword',                   // SMTP password
+          'secure' => 'tls',                     // Enable encryption (false, tls or ssl)
+          'port' => 587,                       // TCP port to connect to
       ],
+
+.. note ::
+
+  You have to enter the password you assigned while creating the new mail user
 
 If you do not want to use the mail features, set ``'use_smtp' => false,``.
 
