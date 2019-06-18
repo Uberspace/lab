@@ -389,6 +389,7 @@ Then add it to the USERS table:
 .. note:: ``SELECT name from users;`` returns a list of all usernames
 
 
+Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
 .. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
@@ -399,11 +400,3 @@ Then add it to the USERS table:
 
 .. author_list::
 
-.. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _Matrix: https://matrix.org/
-.. _Synapse: https://matrix.org/docs/projects/server/synapse
-
-----
-
-.. author_list::
