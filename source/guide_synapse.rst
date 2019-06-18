@@ -198,10 +198,8 @@ but we start with creating a virtual environment for synapse to run in
 Configuration
 =============
 
-Configure port
---------------
-
-.. include:: includes/open-port.rst
+Generate standard config
+------------------------
 
 generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name with the real domain you want your matrix username to end in.
 
@@ -216,17 +214,44 @@ generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --report-stats=[yes|no]
   (env) [isabell@stardust ~]$
 
-now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates and the postgres database.
+Configure port
+--------------
+Add a port for the homeserver.
+
+.. include:: includes/open-port.rst
+
+and include the generated port in the config file ``~/synapse/homeserver.yaml``.
 
 .. code-block:: yaml
 
     listeners:
-      - port: 47740
+      - port: 40312
         type: http
         tls: true
+        bind_addresses: ['::','0.0.0.0']
         resources:
           - names: [client, federation]
-    ...
+
+      - port: 8008
+        type: http
+        tls: false
+        bind_addresses: ['::','0.0.0.0']
+        x_forwarded: true
+        resources:
+          - names: [client]
+
+for ease of use we will also forward 443 to the unsecure port ``8008``:
+
+.. include:: includes/web-backend.rst
+
+
+Configure Certificates
+----------------------
+
+now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
+
+.. code-block:: yaml
+
     tls_certificate_path: "/home/isabell/etc/certificates/my.domain.name.crt"
 
     tls_private_key_path: "/home/isabell/etc/certificates/my.domain.name.key"
