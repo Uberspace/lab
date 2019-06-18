@@ -128,8 +128,8 @@ Add the following lines to ``~/.znc/configs/znc.conf`` above the line ``Version 
 
 ::
 
- SSLCertFile = /readonly/isabell/certificates/isabell.uber.space.crt
- SSLKeyFile = /readonly/isabell/certificates/isabell.uber.space.key
+ SSLCertFile = /home/isabell/etc/certificates/isabell.uber.space.crt
+ SSLKeyFile = /home/isabell/etc/certificates/isabell.uber.space.key
  SSLDHParamFile = /home/isabell/.znc/configs/dhparam.pem
 
 Setup daemon
