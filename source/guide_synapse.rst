@@ -319,7 +319,7 @@ Then add it to the USERS table:
   psql (9.6.10)
   Type "help" for help.
 
-  synapse=> UPDATE users SET password_hash='$2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02' WHERE name='matrites';
+  synapse=> UPDATE users SET password_hash='$2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02' WHERE name='@isabell:my.domain.name';
   UPDATE 1
   synapse=>
   [isabell@stardust ~]$
