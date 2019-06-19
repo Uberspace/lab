@@ -137,7 +137,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 .. warning:: Replace ``<username>`` with your username! (4 times)
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,16,17
+  :emphasize-lines: 2,3,17,18
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject
@@ -147,6 +147,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
   master = true
   wsgi-file = %(base)/wsgi.py
   touch-reload = %(wsgi-file)
+  static-map = /static=%(base)/static
 
   app = wsgi
 
