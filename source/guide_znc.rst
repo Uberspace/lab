@@ -76,7 +76,7 @@ Run the following command to create a config file:
  [ ** ]
  [ ** ] -- Global settings --
  [ ** ]
- [ ?? ] Listen on port (1025 to 65534): 47680
+ [ ?? ] Listen on port (1025 to 65534): 40132
  [ ?? ] Listen using SSL (yes/no) [no]: yes
  [ ?? ] Listen using both IPv4 and IPv6 (yes/no) [yes]:
  [ .. ] Verifying the listener...
@@ -103,10 +103,10 @@ Run the following command to create a config file:
  [ ** ] as the IRC server password like this: user/network:pass.
  [ ** ]
  [ ** ] Try something like this in your IRC client...
- [ ** ] /server <znc_server_ip> +47680 myUsername:<pass>
+ [ ** ] /server <znc_server_ip> +40132 myUsername:<pass>
  [ ** ]
  [ ** ] To manage settings, users and networks, point your web browser to
- [ ** ] https://<znc_server_ip>:47680/
+ [ ** ] https://<znc_server_ip>:40132/
  [ ** ]
  [ ?? ] Launch ZNC now? (yes/no) [no]:
  [isabell@stardust ~]$
@@ -159,11 +159,11 @@ If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
-.. note:: Replace ``isabell`` with your username and ``47680`` with your port!
+.. note:: Replace ``isabell`` with your username and ``40132`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 
-  * https://isabell.uber.space:47680/
+  * https://isabell.uber.space:40132/
 
 Connect your client
 -------------------
