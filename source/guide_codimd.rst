@@ -46,6 +46,17 @@ Your blog URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
+Install the package manager ``yarn`` using the node.js package manager (``npm``):
+
+::
+
+ [isabell@stardust ~]$ npm install --global yarn
+ /home/isabell/bin/yarn -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
+ /home/isabell/bin/yarnpkg -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
+ + yarn@1.16.0
+ added 1 package in 1.08s
+ [isabell@stardust ~]$
+
 Installation
 ============
 
