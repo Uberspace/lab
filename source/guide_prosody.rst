@@ -31,7 +31,7 @@ Ports
 ------------
 First of all we need 3 free ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEPORT``) which should be public accessible:
 
-.. include:: includes/generate-port.rst
+.. include:: includes/open-port.rst
 
 Domains, DNS
 ------------
