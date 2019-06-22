@@ -372,7 +372,7 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 
 
 .. _HackMD: https://hackmd.io/
-.. _CodiMD: https://github.com/codimd
+.. _CodiMD: https://github.com/codimd/server
 .. _release: https://github.com/hackmdio/codimd/releases
 
 ----
