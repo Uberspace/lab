@@ -339,7 +339,7 @@ And you're done!
 
 Updates
 =======
-.. note:: Check the `changelog <https://github.com/hackmdio/codimd/releases>`_ regularly to stay informed about new updates and releases.
+.. note:: Check the release_ site regularly to stay informed about new updates and releases.
 
 .. code-block:: console
 
