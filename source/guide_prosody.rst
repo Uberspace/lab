@@ -21,17 +21,19 @@ Prosody is open source software under the permissive MIT/X11 license.
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * supervisord_
-  * MySQL_
+  * mysql_
   * domains_
-  * ports
+  * ports_
+  * tls_
 
 Prerequisites
 =============
 Ports
 ------------
-First of all we need 3 free ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEPORT``) which should be public accessible:
 
 .. include:: includes/open-port.rst
+
+We need three open tcp ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEPORT``) which should be public accessible.
 
 Domains, DNS
 ------------
@@ -68,7 +70,8 @@ Prosody is written in ``lua`` and has some dependencies. In order to install loc
 
 ::
 
- [isabell@stardust ~]$ grep -qF -- "$(luarocks path)" ~/.bash_profile || echo "$(luarocks path)" >> ~/.bash_profile && source ~/.bash_profile
+ [isabell@stardust ~]$ grep -qF -- "$(luarocks path)" ~/.bash_profile || \
+ echo "$(luarocks path)" >> ~/.bash_profile && source ~/.bash_profile
  [isabell@stardust ~]$
 
 Additionally we need to activate C99-mode as global setting for all packages compiled via luarocks ``~/.luarocks/config-5.1.lua``.
@@ -88,7 +91,7 @@ The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) 
  luarocks install luaexpat --local EXPAT_BINDIR="/usr/bin" EXPAT_INCDIR="/usr/include/" EXPAT_LIBDIR="/usr/lib64" && \
  luarocks install luafilesystem --local && \
  luarocks install luasec --local OPENSSL_BINDIR="/usr/bin" OPENSSL_INCDIR="/usr/include" OPENSSL_LIBDIR="/usr/lib64"
- (... Many output lines ...)
+ [...]
  [isabell@stardust ~]$
 
 .. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
@@ -100,7 +103,7 @@ Further _optional_ ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be
  [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64" && \
  luarocks install lua-zlib --local && \
  luarocks install luaevent --local
- TODO
+ [...]
  [isabell@stardust ~]$
 
 To list the installed packages with their versions use the command ``luarocks list``.
@@ -123,7 +126,7 @@ Install prosody with an (currently unofficial) ``.rockspec``-file:
 ::
 
  [isabell@stardust ~]$ luarocks install --tree=fapsi prosody --local
- (...)
+ [...]
  [isabell@stardust ~]$
 
 .. note:: Prosody only provides rockspecs for all modules individually (refer to: _prosodyrockspecs) and I am currently not listed as official maintainer on luarocks.
@@ -252,8 +255,10 @@ The easiest way to update prosody is via luarocks. Stop the deamon, reinstall up
 
 .. _prosody: https://prosody.im
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
+.. _mysql: https://manual.uberspace.de/en/database-mysql.html
 .. _domains: https://manual.uberspace.de/en/web-domains.html
+.. _ports: https://manual.uberspace.de/en/basics-ports.html
+.. _tls: https://manual.uberspace.de/en/web-https.html
 .. _dns: https://prosody.im/doc/dns
 .. _letsencrypt: https://manual.uberspace.de/en/web-security.html#id2
 .. _dependencies: https://prosody.im/doc/depends
