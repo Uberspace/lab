@@ -17,7 +17,7 @@ CodiMD
 .. tag_list::
 
 CodiMD_ lets you create real-time collaborative markdown notes on all platforms.
-Inspired by Hackpad, with more focus on speed and flexibility, and built from HackMD_ source code.
+Inspired by HackMD_ but with more focus on speed and flexibility.
 
 ----
 
