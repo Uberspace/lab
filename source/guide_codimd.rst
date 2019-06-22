@@ -77,26 +77,26 @@ go to the release_-site and download the latest version
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/hackmdio/codimd/archive/6.6.66.zip
-  --2018-10-17 18:50:29--  https://github.com/hackmdio/codimd/archive/6.6.66.zip
+  [isabell@stardust ~]$ wget https://github.com/codimd/server/archive/1.2.1.zip
+  --2018-10-17 18:50:29--  https://github.com/codimd/server/archive/1.2.1.zip
   Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
   Connecting to github.com (github.com)|192.30.253.112|:443... connected.
   HTTP request sent, awaiting response... 302 Found
-  Location: https://codeload.github.com/hackmdio/codimd/zip/1.2.1 [following]
-  --2018-10-17 18:50:29--  https://codeload.github.com/hackmdio/codimd/zip/1.2.1
+  Location: https://codeload.github.com/codimd/server/zip/1.2.1 [following]
+  --2018-10-17 18:50:29--  https://codeload.github.com/codimd/server/zip/1.2.1
   Resolving codeload.github.com (codeload.github.com)... 192.30.253.121, 192.30.253.120
   Connecting to codeload.github.com (codeload.github.com)|192.30.253.121|:443... connected.
   HTTP request sent, awaiting response... 200 OK
   Length: unspecified [application/zip]
-  Saving to: ‘6.6.66.zip’
+  Saving to: ‘1.2.1.zip’
 
-      [     <=>                                                                                                                                        ] 7,090,453   6.28MB/s   in 1.1s
+      [     <=>                                           ] 7,090,453   6.28MB/s   in 1.1s
 
-  2018-10-17 18:50:31 (6.28 MB/s) - ‘6.6.66.zip’ saved [7090453]
-  [isabell@stardust ~]$ unzip 6.6.66.zip
+  2018-10-17 18:50:31 (6.28 MB/s) - ‘1.2.1.zip’ saved [7090453]
+  [isabell@stardust ~]$ unzip 1.2.1.zip
   [...]
-  [isabell@stardust ~]$ mv codimd-6.6.66/ codimd
-  [isabell@stardust ~]$ rm 6.6.66.zip
+  [isabell@stardust ~]$ mv codimd-1.2.1/ codimd
+  [isabell@stardust ~]$ rm 1.2.1.zip
   [isabell@stardust ~]$ cd codimd
   [isabell@stardust codimd]$ bin/setup
   copy config files
@@ -373,7 +373,7 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 
 .. _HackMD: https://hackmd.io/
 .. _CodiMD: https://github.com/codimd/server
-.. _release: https://github.com/hackmdio/codimd/releases
+.. _release: https://github.com/codimd/server/releases
 
 ----
 
