@@ -296,7 +296,7 @@ In our example this would be:
 
 Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_DB_URL`` and you're good to go!
 
-See `here <https://github.com/hackmdio/codimd#environment-variables-will-overwrite-other-server-configs>`_ for a detailed look at what these options do.
+See `here <https://github.com/codimd/server/blob/master/docs/configuration-config-file.md>`_ for a detailed look at what these options do.
 
 
 Once you run the following step, this will create a CodiMD instance without reliance on third-party CDN servers, which is private to people who had an account created via CLI.
