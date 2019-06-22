@@ -377,8 +377,6 @@ if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` b
 
 ----
 
-Manual derived from `this blog <https://w.h8.lv/s/how_to_install_hackmd_on_uberspace>`_
-
 Tested with CodiMD 1.2.1, Uberspace 7.1.13
 
 .. author_list::
