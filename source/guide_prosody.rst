@@ -35,55 +35,56 @@ Ports
 
 We need three open tcp ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEPORT``) which should be public accessible.
 
-Domains, DNS
+Domains, dns
 ------------
-The following domains should be set up:
+The following domains should be set up (to set up prosody for the domain ``stardust.space``):
 
 ::
  
  [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- groups.isabell.uber.space
- files.isabell.uber.space
+ stardust.space
+ groups.stardust.space
+ files.stardust.space
  [isabell@stardust ~]$
 
-Additionally to the A-records we need some dns_ SRV-records (adapt the names, ports and change ``stardust`` accordingly in your providers settings):
+Additionally to the dns_ A-records we need the following SRV-records: 
 
-+---------------------------------------------+-------+-------+-----+----------+--------+--------------+-----------------------+
-|  _service._proto.name			      | TTL   | class | SRV | priority | weight | port         | target	               |
-+=============================================+=======+=======+=====+==========+========+==============+=======================+
-| _xmpp-client._tcp.isabell.uber.space	      | 18000 | IN    | SRV | 0        | 5      | CLIENTPORT   | stardust.uber.space   |
-+---------------------------------------------+-------+-------+-----+----------+--------+--------------+-----------------------+
-| _xmpp-server._tcp.isabell.uber.space	      | 18000 | IN    | SRV | 0        | 5      | SERVERPORT   | stardust.uber.space   |
-+---------------------------------------------+-------+-------+-----+----------+--------+--------------+-----------------------+
-| _xmpp-server._tcp.groups.isabell.uber.space | 18000 | IN    | SRV | 0        | 5      | SERVERPORT   | stardust.uber.space   |
-+---------------------------------------------+-------+-------+-----+----------+--------+--------------+-----------------------+
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+|  _service._proto.name			      | ttl   | class | type | priority | weight | port         | target                |
++=============================================+=======+=======+======+==========+========+==============+=======================+
+| _xmpp-client._tcp.stardust.space	      | 18000 | IN    | SRV  | 0        | 5      | CLIENTPORT   | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+| _xmpp-server._tcp.stardust.space	      | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+| _xmpp-server._tcp.groups.stardust.space     | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+
+.. note:: Adapt the port-numbers and change ``stardust`` as well as ``stardust.space`` accordingly in your dns settings of your prefered provider.
 
 TLS
 ---
 For simplicity we use the certificates created via letsencrypt_ for above domains which are already provided on the host.
 
-Lua-dependencies
-----------------
+Install lua-dependencies via luarocks
+-------------------------------------
 
-Prosody is written in ``lua`` and has some dependencies. In order to install local (per user) packages we have to provide some paths of the ``lua`` package-manager ``luarocks`` via the ``bash_profile`` file (if not already happend):
+Prosody is written in ``lua`` and has some dependencies which we install with the package manager ``luarocks``. In order to run the installed packages we have to adapt the path:
 
 ::
 
- [isabell@stardust ~]$ grep -qF -- "$(luarocks path)" ~/.bash_profile || \
- echo "$(luarocks path)" >> ~/.bash_profile && source ~/.bash_profile
+ PATH=$HOME/.luarocks/bin:$PATH
+ 
+ export $PATH
+
+Additionally we need to provide the paths ``LUA_PATH`` and ``LUA_CPATH`` to use ``luarocks`` accordingly:
+
+::
+
+ [isabell@stardust ~]$ echo "$(luarocks path)" >> ~/.bash_profile \
+ && source ~/.bash_profile
  [isabell@stardust ~]$
 
-Additionally we need to activate C99-mode as global setting for all packages compiled via luarocks ``~/.luarocks/config-5.1.lua``.
-::
-
- variables = {
- CC= "gcc -std=c99"
- }
-
-.. note:: This is a workaround since luarocks not allowing setting this flag via ``.rockspec``-file.
-
-The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) are _required_:
+The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) are required:
 
 ::
 
@@ -92,11 +93,15 @@ The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) 
  luarocks install luafilesystem --local && \
  luarocks install luasec --local OPENSSL_BINDIR="/usr/bin" OPENSSL_INCDIR="/usr/include" OPENSSL_LIBDIR="/usr/lib64"
  [...]
+ luasocket [...] is now built and installed in [...]
+ luaexpat [...] is now built and installed in [...]
+ luafilesystem [...] is now built and installed in [...]
+ luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
 .. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
-Further _optional_ ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be installed with these commands:
+Further optional ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be installed with these commands:
 
 ::
 
@@ -104,9 +109,25 @@ Further _optional_ ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be
  luarocks install lua-zlib --local && \
  luarocks install luaevent --local
  [...]
+ luadbi [...] is now built and installed in [...]
+ luadbi-mysql [...] is now built and installed in [...]
+ lua-zlib [...] is now built and installed in [...]
+ luaevent [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
 To list the installed packages with their versions use the command ``luarocks list``.
+
+Set c99 compilation flag
+------------------------
+In order to built prosody we have to activate C99-mode as global setting for all packages compiled via luarocks ``~/.luarocks/config-5.1.lua``.
+
+::
+
+ variables = {
+ CC= "gcc -std=c99"
+ }
+
+.. note:: This is a temporary workaround since luarocks not allowing setting this flag via ``.rockspec``-file.
 
 MySQL-database
 --------------
@@ -125,11 +146,14 @@ Install prosody with an (currently unofficial) ``.rockspec``-file:
 
 ::
 
- [isabell@stardust ~]$ luarocks install --tree=fapsi prosody --local
- [...]
+ [isabell@stardust ~]$ luarocks install --server=http://luarocks.org/manifests/fapsi prosody --local
+ [...] 
+ luabitop [...] is now built and installed in [...]
+ cqueues [...] is now built and installed in [...]
+ prosody [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
-.. note:: Prosody only provides rockspecs for all modules individually (refer to: _prosodyrockspecs) and I am currently not listed as official maintainer on luarocks.
+.. note:: Prosody only provides rockspecs for all modules individually (refer to `prosody rocks <https://packages.prosody.im/rocks>`_ ) and currently there isn't a up-to-date version on luarocks. Please make sure you want to install the provided unofficial rockspec file.
 
 Adapt the ``.bash_profile`` again :
 
@@ -262,8 +286,6 @@ The easiest way to update prosody is via luarocks. Stop the deamon, reinstall up
 .. _dns: https://prosody.im/doc/dns
 .. _letsencrypt: https://manual.uberspace.de/en/web-security.html#id2
 .. _dependencies: https://prosody.im/doc/depends
-.. _prosodyrockspecs: https://wiki.uberspace.de/development:lua#mysql
-
 
 
 ----
