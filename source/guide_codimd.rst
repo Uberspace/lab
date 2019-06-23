@@ -98,6 +98,13 @@ go to the release_-site and download the latest version
   [isabell@stardust ~]$ mv codimd-1.2.1/ codimd
   [isabell@stardust ~]$ rm 1.2.1.zip
   [isabell@stardust ~]$ cd codimd
+  [isabell@stardust codimd]$
+
+Install npm dependencies and create configs
+-------------------------------------------
+
+.. code-block:: console
+
   [isabell@stardust codimd]$ bin/setup
   copy config files
   install npm packages
@@ -306,7 +313,11 @@ Once you run the following step, this will create a CodiMD instance without reli
 Finishing installation
 ======================
 
+Register our new service and start it
+-------------------------------------
+
 .. include:: includes/supervisord.rst
+
 
 Add a user
 ----------
