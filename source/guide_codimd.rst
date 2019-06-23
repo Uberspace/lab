@@ -42,7 +42,7 @@ We're using :manual:`Node <lang-nodejs>` in the stable version 8:
  Using 'Node.js' version: '8'
  [isabell@stardust ~]$
 
-Your blog URL needs to be setup:
+Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
@@ -60,7 +60,7 @@ Install the package manager ``yarn`` using the node.js package manager (``npm``)
 Installation
 ============
 
-You need a special database for CodiMD_:
+You'll need a database for CodiMD_.
 
 Create Database
 ---------------
@@ -73,7 +73,7 @@ Create Database
 Download Sources
 ----------------
 
-go to the release_-site and download the latest version
+Go to the release_-site and download the latest version
 
 .. code-block:: console
 
@@ -115,7 +115,7 @@ Install npm dependencies and create configs
 Remove UglifyJS
 ---------------
 
-The UglifyJS plugin freezes the compilation step, because it tries to compile everything in parallel and then reaches the maximum memory-limit/user of uberspace. And since it's apparently not necessary, we'll just remove it.
+The UglifyJS plugin gets the compilation step terminated, because it tries to compile everything in parallel and then reaches the maximum memory-limit/user of Uberspace. Since it's optional, we'll remove it.
 
 Open ``webpack.production.js`` and comment out this line (currently line 6):
 
@@ -192,7 +192,7 @@ I don’t know why, but when I tried it, CodiMD ignored the config files. So we�
     "production": {}
   }
 
-That’s all. The actual configuration will be done through environment!
+That’s all. The actual configuration will be done via environment variables in ``codimd.ini`` below.
 
 Get Session Cookie
 ------------------
@@ -205,12 +205,12 @@ Generate random string to sign our session cookies with:
   extremerandom
   [isabell@stardust ~]$
 
-And remember it.
+Keep it at hand.
 
 Configure Database
 ------------------
 
-enter your sql credetials in ``.sequelizerc``:
+Enter your sql credetials in ``.sequelizerc``:
 
 .. code-block:: ini
   :emphasize-lines: 7
@@ -241,10 +241,10 @@ In our example this would be:
 Setup daemon
 ------------
 
-Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
+Create ``~/etc/services.d/codimd.ini`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7
+  :emphasize-lines: 6, 7, 20
 
   [supervisord]
   loglevel=warn
@@ -263,7 +263,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
   	CMD_SESSION_LIFE=1209600000,
   	CMD_EMAIL=true,
   	CMD_ALLOW_EMAIL_REGISTER=false,
-      CMD_IMAGE_UPLOAD_TYPE=filesystem,
+  	CMD_IMAGE_UPLOAD_TYPE=filesystem,
   	CMD_PROTOCOL_USESSL=true,
   	CMD_DB_URL="mysql://<username>:<mysql_pw>@localhost:3306/<username>_codimd",
 
@@ -273,7 +273,7 @@ Create a file ``~/etc/services.d/codimd.ini`` and put the following in it:
 In our example this would be:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7
+  :emphasize-lines: 6, 7, 20
 
   [supervisord]
   loglevel=warn
@@ -299,15 +299,9 @@ In our example this would be:
   directory=%(ENV_HOME)s/codimd
   command=node app.js
 
+Replace the placeholders in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_DB_URL``.
 
-
-Replace the values in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_DB_URL`` and you're good to go!
-
-See `here <https://github.com/codimd/server/blob/master/docs/configuration-config-file.md>`_ for a detailed look at what these options do.
-
-
-Once you run the following step, this will create a CodiMD instance without reliance on third-party CDN servers, which is private to people who had an account created via CLI.
-
+See the `official documentation <https://github.com/codimd/server/blob/master/docs/configuration-config-file.md>`_ for a description of what the environment variables are used for.
 
 
 Finishing installation
@@ -315,6 +309,8 @@ Finishing installation
 
 Register our new service and start it
 -------------------------------------
+
+Once you finish this step, a CodiMD instance will be created that does not rely on third-party CDN servers and can only be used by people that have an account that was created via CLI.
 
 .. include:: includes/supervisord.rst
 
@@ -346,15 +342,16 @@ Configure web server
 
     CodiMD is running on port 60101.
 
-And you're done!
+Congratulations! You're done.
+
 
 Updates
 =======
-.. note:: Check the release_ site regularly to stay informed about new updates and releases.
+.. note:: Check the release_ site regularly to stay informed about new releases.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~
+  [isabell@stardust codimd]$ cd ~
   [isabell@stardust ~]$ supervisorctl stop codimd
   codimd: stopped
   [isabell@stardust ~]$ mv codimd codimd-old
@@ -368,7 +365,7 @@ Redo these steps:
 - `Create config file`_
 - `Configure Database`_
 
-if everything is fine.
+If everything is fine:
 
 .. code-block:: console
 
@@ -379,7 +376,7 @@ if everything is fine.
   [isabell@stardust ~]$ rm codimd-old -rf
   [isabell@stardust ~]$
 
-if you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` back to its place.
+If you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` back to its place.
 
 
 .. _HackMD: https://hackmd.io/
