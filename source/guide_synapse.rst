@@ -240,7 +240,7 @@ and include the generated port in the config file ``~/synapse/homeserver.yaml``.
         resources:
           - names: [client]
 
-for ease of use we will also forward 443 to the unsecure port ``8008``:
+for ease of use we will make use of ``uberspace web backend`` and point it to 8008.
 
 .. include:: includes/web-backend.rst
 
