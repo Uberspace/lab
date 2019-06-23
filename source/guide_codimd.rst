@@ -1,5 +1,7 @@
 .. highlight:: console
+
 .. author:: stunkymonkey <http://stunkymonkey.de>
+.. author:: Matthias Kolja Miehl <https://makomi.net>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -28,80 +30,113 @@ Inspired by HackMD_ but with more focus on speed and flexibility.
   * :manual:`domains <web-domains>`
   * :manual:`Node <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
 
-
 Prerequisites
 =============
 
-.. include:: includes/my-print-defaults.rst
+Node version
+------------
 
 We're using :manual:`Node <lang-nodejs>` in the stable version 8:
 
-::
+.. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ uberspace tools version show node
+  Using 'Node.js' version: '8'
+  [isabell@stardust ~]$
 
-Your URL needs to be setup:
+MySQL credentials
+-----------------
+
+.. include:: includes/my-print-defaults.rst
+
+URL setup
+---------
+
+Your URL needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
-Install the package manager ``yarn`` using the node.js package manager (``npm``):
+See :manual:`domains <web-domains>` for setting up a custom URL like ``write.example.com``:
 
-::
+.. code-block:: console
 
- [isabell@stardust ~]$ npm install --global yarn
- /home/isabell/bin/yarn -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
- /home/isabell/bin/yarnpkg -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
- + yarn@1.16.0
- added 1 package in 1.08s
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ uberspace web domain add write.example.com
+  The webserver's configuration has been adapted.
+  Now you can use the following records for your dns:
+      A -> 35.195.215.42
+      AAAA -> 2a00:d0c0:200:0:b9:1a:9c:48
+  [isabell@stardust ~]$
+
+Required packages
+-----------------
+
+Install the package manager ``yarn`` using the node.js package manager (``npm``) as well as two additional missing packages ``webpack`` and ``cacache``:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ npm install --global yarn
+  /home/isabell/bin/yarn -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
+  /home/isabell/bin/yarnpkg -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
+  + yarn@1.17.3
+  added 1 package in 1.08s
+  [isabell@stardust ~]$ yarn cache clean
+  yarn cache v1.17.3
+  success Cleared cache.
+  Done in 0.06s.
+  [isabell@stardust ~]$ npm install --global webpack cacache
+  /home/isabell/bin/webpack -> /home/isabell/lib/node_modules/webpack/bin/webpack.js
+  + webpack@4.35.3
+  + cacache@12.0.0
+  added 378 packages from 197 contributors in 21.094s
+  [isabell@stardust ~]$
+
+See the `official yarn setup instructions <https://yarnpkg.com/en/docs/install>`_ for a variety of systems in case you have trouble.
 
 Installation
 ============
 
-You'll need a database for CodiMD_.
+Create a database
+-----------------
 
-Create Database
----------------
+You'll need a database for CodiMD_.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_codimd CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
   [isabell@stardust ~]$
 
-Download Sources
+Download sources
 ----------------
 
-Go to the release_-site and download the latest version
+Download the `latest release <https://github.com/codimd/server/releases/latest>`_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/codimd/server/archive/1.2.1.zip
-  --2018-10-17 18:50:29--  https://github.com/codimd/server/archive/1.2.1.zip
-  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
-  Connecting to github.com (github.com)|192.30.253.112|:443... connected.
+  [isabell@stardust ~]$ wget https://github.com/codimd/server/archive/1.4.0.zip
+  --2019-07-16 19:35:44--  https://github.com/codimd/server/archive/1.4.0.zip
+  Resolving github.com (github.com)... 140.82.118.4
+  Connecting to github.com (github.com)|140.82.118.4|:443... connected.
   HTTP request sent, awaiting response... 302 Found
-  Location: https://codeload.github.com/codimd/server/zip/1.2.1 [following]
-  --2018-10-17 18:50:29--  https://codeload.github.com/codimd/server/zip/1.2.1
-  Resolving codeload.github.com (codeload.github.com)... 192.30.253.121, 192.30.253.120
-  Connecting to codeload.github.com (codeload.github.com)|192.30.253.121|:443... connected.
+  Location: https://codeload.github.com/codimd/server/zip/1.4.0 [following]
+  --2019-07-16 19:35:45--  https://codeload.github.com/codimd/server/zip/1.4.0
+  Resolving codeload.github.com (codeload.github.com)... 140.82.113.9
+  Connecting to codeload.github.com (codeload.github.com)|140.82.113.9|:443... connected.
   HTTP request sent, awaiting response... 200 OK
   Length: unspecified [application/zip]
-  Saving to: ‘1.2.1.zip’
+  Saving to: ‘1.4.0.zip’
 
-      [     <=>                                           ] 7,090,453   6.28MB/s   in 1.1s
+      [     <=>                                           ] 7,329,912   6.28MB/s   in 1.1s
 
-  2018-10-17 18:50:31 (6.28 MB/s) - ‘1.2.1.zip’ saved [7090453]
-  [isabell@stardust ~]$ unzip 1.2.1.zip
+  2019-07-16 19:35:48 (2.32 MB/s) - ‘1.4.0.zip’ saved [7329912]
+  [isabell@stardust ~]$ unzip 1.4.0.zip
   [...]
-  [isabell@stardust ~]$ mv codimd-1.2.1/ codimd
-  [isabell@stardust ~]$ rm 1.2.1.zip
+  [isabell@stardust ~]$ rm 1.4.0.zip
+  [isabell@stardust ~]$ mv server-1.4.0/ codimd
   [isabell@stardust ~]$ cd codimd
   [isabell@stardust codimd]$
 
-Install npm dependencies and create configs
--------------------------------------------
+Install npm dependencies and create example configurations
+----------------------------------------------------------
 
 .. code-block:: console
 
@@ -111,65 +146,74 @@ Install npm dependencies and create configs
   [...]
   [isabell@stardust codimd]$
 
-
 Remove UglifyJS
 ---------------
 
-The UglifyJS plugin gets the compilation step terminated, because it tries to compile everything in parallel and then reaches the maximum memory-limit/user of Uberspace. Since it's optional, we'll remove it.
+The ``UglifyJS`` plugin causes the upcomming compilation step to terminate prematurely. It tries to compile everything in parallel and as a result exceeds the user's memory limit as allotted by Uberspace. Since ``UglifyJS`` is optional, we'll remove it.
 
-Open ``webpack.production.js`` and comment out this line (currently line 6):
+.. warning::
 
-.. code-block:: javascript
+  Removing ``UglifyJS`` will result in larger files for clients to download and will most likely make the application feel sluggish on (older) mobile devices. Perform the compilation on a separate computer to work around this issue.
 
-  var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+Open ``.babelrc`` and deactivate ``UglifyJS``:
 
-So that it looks like this:
+.. code-block:: JSON
+  :emphasize-lines: 6
 
-.. code-block:: javascript
-  :emphasize-lines: 1
+  {
+    "presets": [
+      ["env", {
+        "targets": {
+          "node": "8",
+          "uglify": true
+        }
+      }]
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  }
 
-  //var ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
+Result:
 
+.. code-block:: JSON
+  :emphasize-lines: 6
 
-And comment out this block (currently line 15 - 26):
+  {
+    "presets": [
+      ["env", {
+        "targets": {
+          "node": "8",
+          "uglify": false
+        }
+      }]
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  }
 
-.. code-block:: javascript
+Also, comment out each line of ``public/vendor/ot/compress.sh`` with a ``#``:
 
-    new ParallelUglifyPlugin({
-      uglifyJS: {
-        compress: {
-          warnings: false
-        },
-        output: {
-          max_line_len: 1000000
-        },
-        mangle: false,
-        sourceMap: false
-      }
-    }),
+.. code-block:: console
 
-So that it looks like this:
+  #uglifyjs --compress --mangle --output ot.min.js \
+  #./text-operation.js \
+  #./selection.js \
+  #./wrapped-operation.js \
+  #./undo-manager.js \
+  #./client.js \
+  #./codemirror-adapter.js \
+  #./socketio-adapter.js \
+  #./ajax-adapter.js \
+  #./editor-client.js
 
-.. code-block:: javascript
-  :emphasize-lines: 1, 12
+.. note:: This is how it worked at the time of writing and it might be different for the version you downloaded. If it is different, try commenting out everything related to ``UglifyJS``. If the compilation fails the first time due to RAM limitations, just start it again. For me, it always worked the second time.
 
-  /*new ParallelUglifyPlugin({
-      uglifyJS: {
-        compress: {
-          warnings: false
-        },
-        output: {
-          max_line_len: 1000000
-        },
-        mangle: false,
-        sourceMap: false
-      }
-    }),*/
+Compile the source
+------------------
 
-.. note:: The details were such at the time of writing, they might be different for the version you downloaded. If they are different, just comment out any blocks mentioning ``UglifyPlugin``.
-
-Compilation
------------
+Now, let's build the front-end bundle. This will take some time.
 
 .. code-block:: console
 
@@ -177,40 +221,75 @@ Compilation
   [...]
   [isabell@stardust codimd]$
 
-
 Configuration
 =============
 
 Create config file
 ------------------
-
-I don’t know why, but when I tried it, CodiMD ignored the config files. So we’ll make this very short and replace the content of ``config.json`` with this:
+Replace the content of ``config.json`` with the following, using your MySQL username and password from the previous step:
 
 .. code-block:: JSON
+  :emphasize-lines: 3,12,13,14
 
   {
-    "production": {}
+    "production": {
+          "domain": "<domain>",
+          "loglevel": "info",
+          "hsts": {
+              "enable": true,
+              "maxAgeSeconds": 31536000,
+              "includeSubdomains": true,
+              "preload": true
+          },
+          "db": {
+              "username": "<username>",
+              "password": "<mysql_pw>",
+              "database": "<username>_codimd",
+              "host": "localhost",
+              "port": "3306",
+              "dialect": "mysql"
+          }
+      }
   }
 
-That’s all. The actual configuration will be done via environment variables in ``codimd.ini`` below.
+Example:
 
-Get Session Cookie
+.. code-block:: JSON
+  :emphasize-lines: 3,12,13,14
+
+  {
+    "production": {
+          "domain": "isabell.uber.space",
+          "loglevel": "info",
+          "hsts": {
+              "enable": true,
+              "maxAgeSeconds": 31536000,
+              "includeSubdomains": true,
+              "preload": true
+          },
+          "db": {
+              "username": "isabell",
+              "password": "MySuperSecretPassword",
+              "database": "isabell_codimd",
+              "host": "localhost",
+              "port": "3306",
+              "dialect": "mysql"
+          }
+      }
+  }
+
+A backup of the original content can be found in ``config.json.example``.
+
+.. note::
+
+  ``config.json`` is read whenever the server is started via ``node app.js``. In order to make it use the the ``production`` section of ``config.json``, one has to set ``NODE_ENV`` accordingly: ``NODE_ENV=production node app.js``.
+
+  The final server configuration will be done separately in ``~/etc/services.d/codimd.ini`` as described in the next main section.
+
+Configure database
 ------------------
 
-Generate random string to sign our session cookies with:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;
-  extremerandom
-  [isabell@stardust ~]$
-
-Keep it at hand.
-
-Configure Database
-------------------
-
-Enter your sql credetials in ``.sequelizerc``:
+Open ``.sequelizerc`` and set the variable ``url`` as described below, again using your MySQL username and password:
 
 .. code-block:: ini
   :emphasize-lines: 7
@@ -224,7 +303,7 @@ Enter your sql credetials in ``.sequelizerc``:
       'url':             'mysql://<username>:<mysql_pw>@127.0.0.1:3306/<username>_codimd'
   }
 
-In our example this would be:
+Example:
 
 .. code-block:: ini
   :emphasize-lines: 7
@@ -238,13 +317,60 @@ In our example this would be:
       'url':             'mysql://isabell:MySuperSecretPassword@127.0.0.1:3306/isabell_codimd'
   }
 
-Setup daemon
-------------
+Finishing installation
+======================
+
+Add a user
+----------
+
+Since we don’t want to run a public instance and have disabled user registration via the web interface, we will use the command line to add a user.
+
+First, start the server once via ``node app.js`` to let it initialize/ migrate the database. Afterwards, terminate it using ``CTRL-C``.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~/codimd
+  [isabell@stardust codimd]$ NODE_ENV=production node app.js
+  [...]
+  [isabell@stardust codimd]$
+
+Then, add the first user. The username has to be formated like an email address.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~/codimd
+  [isabell@stardust codimd]$ NODE_ENV=production bin/manage_users --add isabell@uber.space
+  Password for isabell@uber.space:*************************
+  Created user with email isabell@uber.space
+  [isabell@stardust codimd]$
+
+.. note::
+
+  You can reset your password via the command line using ``NODE_ENV=production bin/manage_users --reset isabell@uber.space``.
+
+Add CodiMD as a service
+-----------------------
+
+We will run CodiMD as a service, so it runs in the background and is restarted automatically.
+
+Generate session cookie
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Generate a random string to sign your session cookies with:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;
+  extremerandom
+  [isabell@stardust ~]$
+
+Create service configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create ``~/etc/services.d/codimd.ini`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 20
+  :emphasize-lines: 6,7,20
 
   [supervisord]
   loglevel=warn
@@ -270,10 +396,10 @@ Create ``~/etc/services.d/codimd.ini`` with the following content:
   directory=%(ENV_HOME)s/codimd
   command=node app.js
 
-In our example this would be:
+Example:
 
 .. code-block:: ini
-  :emphasize-lines: 6, 7, 20
+  :emphasize-lines: 6,7,20
 
   [supervisord]
   loglevel=warn
@@ -299,42 +425,17 @@ In our example this would be:
   directory=%(ENV_HOME)s/codimd
   command=node app.js
 
-Replace the placeholders in ``CMD_SESSION_SECRET``, ``CMD_DOMAIN``, and ``CMD_DB_URL``.
-
-See the `official documentation <https://github.com/codimd/server/blob/master/docs/configuration-config-file.md>`_ for a description of what the environment variables are used for.
-
-
-Finishing installation
-======================
+See the `official documentation <https://github.com/codimd/server/blob/master/docs/configuration-config-file.md>`_ for a description of what each environment variable is used for.
 
 Register our new service and start it
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once you finish this step, a CodiMD instance will be created that does not rely on third-party CDN servers and can only be used by people that have an account that was created via CLI.
+Once you finish this step, a CodiMD instance will be created that does not rely on third-party CDN servers and can only be used by people that have an account that was created via command line. It will continue to run after you quit your current SSH session.
 
 .. include:: includes/supervisord.rst
 
-
-Add a user
-----------
-
-Since we don’t want to run a public instance and have disabled registration, we use the CLI to add a user:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ cd ~/codimd
-  [isabell@stardust codimd]$ CMD_DB_URL="mysql://<username>:<mysql_pw>@127.0.0.1:3306/<username>_codimd" bin/manage_users --add isabell@uber.space
-  [isabell@stardust codimd]$
-
-It will prompt you for a password now.
-
-.. warning::
-
-  Don’t forget your password, neither the site nor the CLI currently seem to offer a way to reset it!
-
-
-Configure web server
---------------------
+Configure web backend
+---------------------
 
 .. include:: includes/web-backend.rst
 
@@ -342,49 +443,78 @@ Configure web server
 
     CodiMD is running on port 60101.
 
-Congratulations! You're done.
-
-
-Updates
-=======
-.. note:: Check the release_ site regularly to stay informed about new releases.
+Use the following command, in case you are using a custom URL:
 
 .. code-block:: console
 
-  [isabell@stardust codimd]$ cd ~
+  [isabell@stardust ~]$ uberspace web backend set write.example.com --http --port 60101
+  Set backend for write.example.com/ to port 60101; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$
+
+Congratulations! You're done.
+
+Updates
+=======
+
+.. note:: Check the `release site <https://github.com/codimd/server/releases>`_ regularly to stay informed about the newest version. Subscribe to releases via the ``Watch`` button at the top, in case you have a GitHub account.
+
+Perform the following steps, to update your `CodiMD`_ installation.
+
+Stop the service and backup the old installation directory
+----------------------------------------------------------
+
+.. code-block:: console
+
+  [isabell@stardust codimd]$ cd ..
   [isabell@stardust ~]$ supervisorctl stop codimd
   codimd: stopped
   [isabell@stardust ~]$ mv codimd codimd-old
   [isabell@stardust ~]$
 
+Install the latest version
+--------------------------
+
 Redo these steps:
 
-- `Download Sources`_
+- `Download sources`_
 - `Remove UglifyJS`_
-- `Compilation`_
+- `Compile the source`_
 - `Create config file`_
-- `Configure Database`_
+- `Configure database`_
 
-If everything is fine:
+Make the switch
+---------------
+
+If you are having problems, remove ``~/codimd/`` and rename ``~/codimd-old/`` to ``codimd``:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ node_modules/.bin/sequelize db:migrate
-  [...]
+  [isabell@stardust codimd]$ cd ..
+  [isabell@stardust ~]$ rm codimd -rf
+  [isabell@stardust ~]$ mv codimd-old codimd
   [isabell@stardust ~]$ supervisorctl start codimd
   codimd: started
-  [isabell@stardust ~]$ rm codimd-old -rf
   [isabell@stardust ~]$
 
-If you are having problems remove the ``~/codimd/`` and move ``~/codimd-old/`` back to its place.
+If everything is fine, migrate the database and delete your backup:
+
+.. code-block:: console
+
+  [isabell@stardust codimd]$ node_modules/.bin/sequelize db:migrate
+  [...]
+  [isabell@stardust codimd]$ supervisorctl start codimd
+  codimd: started
+  [isabell@stardust codimd]$ cd ..
+  [isabell@stardust ~]$ rm codimd-old -rf
+  [isabell@stardust ~]$
 
 
 .. _HackMD: https://hackmd.io/
 .. _CodiMD: https://github.com/codimd/server
-.. _release: https://github.com/codimd/server/releases
 
 ----
 
-Tested with CodiMD 1.2.1, Uberspace 7.1.13
+Tested with CodiMD 1.4.0 and Uberspace 7.3.3.0
 
 .. author_list::
