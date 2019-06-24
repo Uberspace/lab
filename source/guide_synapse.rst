@@ -244,11 +244,24 @@ for ease of use we will make use of ``uberspace web backend`` and point it to 80
 
 .. include:: includes/web-backend.rst
 
+To enable federation as described _Matrix_Federation we need to announce it by setting a DNS record in the following format:
+
+.. code-block::
+
+   _matrix._tcp.<yourdomain.com> <ttl> IN SRV <priority> <weight> <port> <synapse.server.name>
+
+for example like this:
+
+.. code-block::
+
+  _matrix._tcp.my.domain.name 3600 IN SRV 10 5 40312 my.domain.name.
+
+.. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
 
 Configure Certificates
 ----------------------
 
-now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
+Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
 
 .. code-block:: yaml
 
@@ -380,7 +393,7 @@ Then add it to the USERS table:
 
 
 Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
-
+.. _Matrix_Federation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
 .. _Matrix_RSS: https://matrix.org/blog/feed
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _Matrix: https://matrix.org/
