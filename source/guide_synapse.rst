@@ -6,7 +6,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mumble.svg
+  .. image:: _static/images/matrix-logo.svg
       :align: center
 
 ######
