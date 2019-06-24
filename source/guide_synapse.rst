@@ -244,7 +244,12 @@ for ease of use we will make use of ``uberspace web backend`` and point it to 80
 
 .. include:: includes/web-backend.rst
 
-To enable federation as described _Matrix_Federation we need to announce it by setting a DNS record in the following format:
+To enable federation as described _Matrix_Federation we need to announce it either via DNS or via .well-known.
+
+DNS announcement
+----------------
+
+The port can can be announced by setting a DNS record in the following format:
 
 .. code-block::
 
@@ -257,6 +262,20 @@ for example like this:
   _matrix._tcp.my.domain.name 3600 IN SRV 10 5 40312 my.domain.name.
 
 .. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
+
+.well-known announcement
+------------------------
+
+The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
+
+.. code-block:: json
+  {
+    "m.server": "my.domain.name:47741"
+  }
+
+This has to be made available under ``/.well-known/matrix`` via the web backend:
+
+.. include:: includes/web-backend.rst
 
 Configure Certificates
 ----------------------
