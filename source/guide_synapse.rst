@@ -278,6 +278,39 @@ allow users to be found by enabling the user directory in the config file ``~/sy
   user_directory:
     enabled: true
 
+Setup daemon
+------------
+
+Create ``~/etc/services.d/synapse.ini`` with the following content:
+
+.. code-block:: ini
+
+ [program:synapse]
+ command=%(ENV_HOME)s/synapse/env/bin/python3.6 -m synapse.app.homeserver -c %(ENV_HOME)s/synapse/homeserver.yaml
+ autostart=yes
+ autorestart=yes
+ environment=
+        PATH="/home/matrites/synapse/env/bin:%(ENV_HOME)s/opt/postgresql/bin/:$PATH",
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/opt/postgresql/lib",
+        PGPASSFILE=%(ENV_HOME)s/.pgpass,
+        PGHOST=localhost,
+        PGPORT=5432
+
+
+Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl reread
+ synapse: available
+ [isabell@stardust ~]$ supervisorctl update
+ synapse: added process group
+ [isabell@stardust ~]$ supervisorctl status
+ synapse                            RUNNING   pid 26020, uptime 0:03:14
+ [isabell@stardust ~]$
+
+If it's not in state RUNNING, check your configuration.
+
 Updates
 =======
 
@@ -292,17 +325,6 @@ If there is a update, use pip to update the installation:
 
 Administration
 ==============
-
-Starting or stopping the service
---------------------------------
-
-Synapse brings it own managment tool called ``synctl`` which can be used to start and stop the server.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ source ~/synapse/env/bin/activate
-  (env) [isabell@stardust ~]$ synctl start
-  (env) [isabell@stardust ~]$
 
 Adding users
 ------------
