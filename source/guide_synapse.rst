@@ -35,7 +35,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-You need a running Postgresql_ database server, a dedicated user with a secure password and database for synape.
+You need a running :lab:`Postgresql <guide_postgresql>` database server, a dedicated user with a secure password and database for synape.
 
 .. code-block:: console
 
@@ -314,7 +314,7 @@ If it's not in state RUNNING, check your configuration.
 Updates
 =======
 
-If there is a update, use pip to update the installation:
+Watch _Matrix_RSS to be notified of upgrades and if there is a update, use pip to update the installation:
 
 .. code-block:: console
 
@@ -348,10 +348,6 @@ Users can be added from the CLI:
   Success!
   (env) [isabell@stardust synapse]$
 
-
-
-
-
 Password reset
 --------------
 
@@ -364,7 +360,6 @@ Passwords can be reset using the cli; first generate the hash of the new passwor
   Confirm password:
   $2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02
   [isabell@stardust ~]$
-
 
 
 Then add it to the USERS table:
@@ -386,7 +381,7 @@ Then add it to the USERS table:
 
 Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
-.. _PostgreSQL: https://lab.uberspace.de/guide_postgresql.html
+.. _Matrix_RSS: https://matrix.org/blog/feed
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
 .. _Matrix: https://matrix.org/
 .. _Synapse: https://matrix.org/docs/projects/server/synapse
