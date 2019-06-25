@@ -22,7 +22,7 @@ Matrix_ is federated chat protocol aiming to replace xmpp.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PostgreSQL_
+  * :lab:`Postgresql <guide_postgresql>`
   * supervisord_
 
 License
