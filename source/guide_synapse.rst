@@ -2,7 +2,6 @@
 .. highlight:: console
 
 .. tag:: python
-.. tag:: ports
 
 .. sidebar:: Logo
 
@@ -214,23 +213,9 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --report-stats=[yes|no]
   (env) [isabell@stardust ~]$
 
-Configure port
---------------
-Add a port for the homeserver.
-
-.. include:: includes/open-port.rst
-
-and include the generated port in the config file ``~/synapse/homeserver.yaml``.
+Set the Synapse_ to listen for federation and clients on port 8008 without encryption in the config file ``~/synapse/homeserver.yaml``.
 
 .. code-block:: yaml
-
-    listeners:
-      - port: 40312
-        type: http
-        tls: true
-        bind_addresses: ['::','0.0.0.0']
-        resources:
-          - names: [client, federation]
 
       - port: 8008
         type: http
@@ -238,13 +223,13 @@ and include the generated port in the config file ``~/synapse/homeserver.yaml``.
         bind_addresses: ['::','0.0.0.0']
         x_forwarded: true
         resources:
-          - names: [client]
+          - names: [client, federation]
 
-For ease of use we will make use of ``uberspace web backend`` and point it to 8008.
+And point the ``uberspace web backend`` to it.
 
 .. include:: includes/web-backend.rst
 
-To enable federation as described MatrixFederation_ we need to announce it either via DNS or via .well-known.
+To enable federation as described MatrixFederation_ we need to announcei, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
 
 DNS announcement
 ----------------
@@ -259,7 +244,7 @@ For example like this:
 
 .. code-block::
 
-  _matrix._tcp.my.domain.name 3600 IN SRV 10 5 40312 my.domain.name.
+  _matrix._tcp.my.domain.name 3600 IN SRV 10 5 443 my.domain.name.
 
 .. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
 
@@ -270,7 +255,7 @@ The federation port can also be announced via a file ``~/html/.well-known/matrix
 
 .. code-block:: json
   {
-    "m.server": "my.domain.name:47741"
+    "m.server": "my.domain.name:443"
   }
 
 This has to be made available under ``/.well-known/matrix`` via the web backend:
@@ -406,6 +391,12 @@ Then add it to the USERS table:
 
 .. note:: ``SELECT name from users;`` returns a list of all usernames
 
+Check federation
+----------------
+
+The Matrix_ project provides a federation checker at MatrixFederationChecker_ .
+
+
 
 Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
@@ -413,6 +404,7 @@ Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 .. _MatrixRSS: https://matrix.org/blog/feed
 .. _Matrix: https://matrix.org/
 .. _Synapse: https://matrix.org/docs/projects/server/synapse
+.. _MatrixFederationChecker: https://federationtester.matrix.org/
 
 ----
 
