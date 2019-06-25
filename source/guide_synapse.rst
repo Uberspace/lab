@@ -362,10 +362,6 @@ Adding users
 ------------
 
 Users can be added from the CLI:
-Adding users
-------------
-
-Users can be added from the CLI:
 
 .. code-block:: console
 
