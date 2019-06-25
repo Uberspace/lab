@@ -244,7 +244,7 @@ For ease of use we will make use of ``uberspace web backend`` and point it to 80
 
 .. include:: includes/web-backend.rst
 
-To enable federation as described _Matrix_Federation we need to announce it either via DNS or via .well-known.
+To enable federation as described MatrixFederation_ we need to announce it either via DNS or via .well-known.
 
 DNS announcement
 ----------------
@@ -346,7 +346,7 @@ If it's not in state RUNNING, check your configuration.
 Updates
 =======
 
-Watch _Matrix_RSS to be notified of upgrades and if there is a update, use pip to update the installation:
+Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to update the installation:
 
 .. code-block:: console
 
@@ -412,9 +412,9 @@ Then add it to the USERS table:
 
 
 Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
-.. _Matrix_Federation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
-.. _Matrix_RSS: https://matrix.org/blog/feed
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+
+.. _MatrixFederation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
+.. _MatrixRSS: https://matrix.org/blog/feed
 .. _Matrix: https://matrix.org/
 .. _Synapse: https://matrix.org/docs/projects/server/synapse
 
