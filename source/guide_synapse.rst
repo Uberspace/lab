@@ -201,7 +201,7 @@ Configuration
 Generate standard config
 ------------------------
 
-generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name with the real domain you want your matrix username to end in.
+Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name with the real domain you want your matrix username to end in.
 
 .. code-block:: console
 
@@ -240,7 +240,7 @@ and include the generated port in the config file ``~/synapse/homeserver.yaml``.
         resources:
           - names: [client]
 
-for ease of use we will make use of ``uberspace web backend`` and point it to 8008.
+For ease of use we will make use of ``uberspace web backend`` and point it to 8008.
 
 .. include:: includes/web-backend.rst
 
@@ -255,7 +255,7 @@ The port can can be announced by setting a DNS record in the following format:
 
    _matrix._tcp.<yourdomain.com> <ttl> IN SRV <priority> <weight> <port> <synapse.server.name>
 
-for example like this:
+For example like this:
 
 .. code-block::
 
@@ -303,7 +303,7 @@ Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths 
 Enable user search
 ------------------
 
-allow users to be found by enabling the user directory in the config file ``~/synapse/homeserver.yaml``:
+Allow users to be found by enabling the user directory in the config file ``~/synapse/homeserver.yaml``:
 
 .. code-block:: yaml
 
