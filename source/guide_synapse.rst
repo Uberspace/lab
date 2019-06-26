@@ -225,7 +225,7 @@ Set the Synapse_ to listen for federation and clients on port 8008 without encry
         resources:
           - names: [client, federation]
 
-And point the ``uberspace web backend`` to it.
+And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
 .. include:: includes/web-backend.rst
 
