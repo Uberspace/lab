@@ -219,13 +219,13 @@ Option A: DNS announcement
 
 The port can can be announced by setting a DNS record in the following format:
 
-.. code-block::
+.. code-block:: none
 
    _matrix._tcp.<yourdomain.com> <ttl> IN SRV <priority> <weight> <port> <synapse.server.name>
 
 For example like this:
 
-.. code-block::
+.. code-block:: none
 
   _matrix._tcp.my.domain.name 3600 IN SRV 10 5 443 my.domain.name.
 
