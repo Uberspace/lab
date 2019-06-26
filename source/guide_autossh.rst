@@ -107,16 +107,9 @@ With the information from step 1, it is time to configure :manual:`supervisord <
  autostart=true
  autorestart=false
 
-This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh not to send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection. After you have created the file, update the control daemon:
+This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh not to send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection.
 
-::
-
- [isabell@stardust ~] supervisorctl reread
- autossh: available
- [isabell@stardust ~] supervisorctl update
- autossh: added process group
- [isabell@stardust ~] supervisorctl status
- autossh                         RUNNING   pid 16184, uptime 0:00:02
+.. include:: includes/supervisord.rst
 
 Check the output of ``supervisorctl status``. If it's not in state ``RUNNING``, something went wrong.
 
