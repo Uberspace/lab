@@ -27,7 +27,6 @@ It is written in :manual:`Python <lang-python>` and based on the popular :lab:`D
   * :manual:`Python <lang-python>` and its package manager :manual_anchor:`pip <lang-python.html#pip>`
   * :lab:`Django-Framework <guide_django>`
   * :manual:`MySQL <database-mysql>`
-  * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
 
 License
