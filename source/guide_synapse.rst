@@ -234,6 +234,7 @@ For example like this:
 The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
 
 .. code-block:: json
+
   {
     "m.server": "my.domain.name:443"
   }
