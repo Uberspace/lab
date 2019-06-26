@@ -33,11 +33,11 @@ We need two open TCP ports for minions to communicate with the Salt master.
 
 ::
 
- [user@host ~]$ uberspace port add
+ [isabell@stardust ~]$ uberspace port add
  Port <high-port1> will be open for TCP and UDP traffic in a few minutes.
- [user@host ~]$ uberspace port add
+ [isabell@stardust ~]$ uberspace port add
  Port <high-port2> will be open for TCP and UDP traffic in a few minutes.
- [user@host ~]$ uberspace port list
+ [isabell@stardust ~]$ uberspace port list
  <high-port1>
  <high-port2>
 
@@ -53,18 +53,18 @@ The `salt` installation script requires root privileges and only supports virtua
 
 ::
 
- [user@host ~]$ mkdir -p ~/salt/src
- [user@host ~]$ cd ~/salt/src
- [user@host ~]$ git clone https://github.com/saltstack/salt
- [user@host ~]$ cd salt
- [user@host ~]$ git remote add upstream https://github.com/saltstack/salt
- [user@host ~]$ git fetch --tags upstream
- [user@host ~]$ git checkout tags/v2019.2.0
- [user@host ~]$ virtualenv ~/salt/virtualenv
- [user@host ~]$ source ~/salt/virtualenv/bin/activate
- [user@host ~]$ pip install pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado
- [user@host ~]$ MIMIC_SALT_INSTALL=1 pip install --global-option='--salt-root-dir=~/salt/virtualenv/' -e ~/salt/src/salt
- [user@host ~]$ cp ~/salt/src/salt/conf/master ~/salt/virtualenv/etc/salt/
+ [isabell@stardust ~]$ mkdir -p ~/salt/src
+ [isabell@stardust ~]$ cd ~/salt/src
+ [isabell@stardust ~]$ git clone https://github.com/saltstack/salt
+ [isabell@stardust ~]$ cd salt
+ [isabell@stardust ~]$ git remote add upstream https://github.com/saltstack/salt
+ [isabell@stardust ~]$ git fetch --tags upstream
+ [isabell@stardust ~]$ git checkout tags/v2019.2.0
+ [isabell@stardust ~]$ virtualenv ~/salt/virtualenv
+ [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
+ [isabell@stardust ~]$ pip install pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado
+ [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip install --global-option='--salt-root-dir=~/salt/virtualenv/' -e ~/salt/src/salt
+ [isabell@stardust ~]$ cp ~/salt/src/salt/conf/master ~/salt/virtualenv/etc/salt/
 
 
 Configuration
@@ -97,11 +97,11 @@ Tell ``supervisord`` to refresh its configuration and start the service:
 
 ::
 
- [user@host ~]$ supervisorctl reread
+ [isabell@stardust ~]$ supervisorctl reread
  salt-master: available
- [user@host ~]$ supervisorctl update
+ [isabell@stardust ~]$ supervisorctl update
  salt-master: added process group
- [user@host ~]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  salt-master                      RUNNING   pid 24968, uptime 0:00:05
 
 If it's not in state RUNNING, check your configuration.
@@ -116,7 +116,7 @@ Now you can connect a minion to the salt master. The minion configuration needs 
 
 .. code-block:: console
 
- [user@host ~]$ salt-key -L
+ [isabell@stardust ~]$ salt-key -L
  Accepted Keys:
  Denied Keys:
  Unaccepted Keys:
@@ -124,7 +124,7 @@ Now you can connect a minion to the salt master. The minion configuration needs 
  Rejected Keys:
 
 
- [user@host ~]$ salt-key -a <your-new-minion>
+ [isabell@stardust ~]$ salt-key -a <your-new-minion>
 
 Salt master is now setup with the first minion connected.
 
