@@ -57,8 +57,6 @@ The ``salt`` installation script requires root privileges and only supports virt
  [isabell@stardust ~]$ cd ~/salt/src
  [isabell@stardust ~]$ git clone https://github.com/saltstack/salt
  [isabell@stardust ~]$ cd salt
- [isabell@stardust ~]$ git remote add upstream https://github.com/saltstack/salt
- [isabell@stardust ~]$ git fetch --tags upstream
  [isabell@stardust ~]$ git checkout tags/v2019.2.0
  [isabell@stardust ~]$ virtualenv ~/salt/virtualenv
  [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
