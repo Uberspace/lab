@@ -141,13 +141,7 @@ Create the file ``~/etc/services.d/buildbot-master.ini`` with the following cont
  [program:buildbot-master]
  command=buildbot start --nodaemon %(ENV_HOME)s/bb-master/master
 
-After saving, update :manual:`supervisord <daemons-supervisord>` and check on the master's status:
-
-::
-
- [isabell@stardust bb-master] supervisorctl reread && supervisorctl update
- [isabell@stardust bb-master] supervisorctl status
- buildbot-master                  RUNNING   pid 3032, uptime 0 days, 0:06:35
+.. include:: includes/supervisord.rst
 
 If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors again.
 
