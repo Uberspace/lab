@@ -65,32 +65,12 @@ but we start with creating a virtual environment for synapse to run in.
     Also creating executable in /home/matrites/synapse/env/bin/python
     Installing setuptools, pip, wheel...done.
   [isabell@stardust ~]$ source ~/synapse/env/bin/activate
-  (env) [isabell@stardust ~]$ pip install --upgrade pip
-    Cache entry deserialization failed, entry ignored
-    Collecting pip
-      Using cached https://files.pythonhosted.org/packages/5c/e0/be401c003291b56efc55aeba6a80ab790d3d4cece2778288d65323009420/pip-19.1.1-py2.py3-none-any.whl
-    Installing collected packages: pip
-      Found existing installation: pip 9.0.1
-        Uninstalling pip-9.0.1:
-          Successfully uninstalled pip-9.0.1
-    Successfully installed pip-19.1.1
-  (env) [isabell@stardust ~]$ pip install --upgrade pip
-    Cache entry deserialization failed, entry ignored
-    Collecting pip
-      Using cached https://files.pythonhosted.org/packages/5c/e0/be401c003291b56efc55aeba6a80ab790d3d4cece2778288d65323009420/pip-19.1.1-py2.py3-none-any.whl
-    Installing collected packages: pip
-      Found existing installation: pip 9.0.1
-        Uninstalling pip-9.0.1:
-          Successfully uninstalled pip-9.0.1
-    Successfully installed pip-19.1.1
-  (env) [matrites@clark ~]$ pip install --upgrade setuptools
-    Collecting setuptools
-      Using cached https://files.pythonhosted.org/packages/ec/51/f45cea425fd5cb0b0380f5b0f048ebc1da5b417e48d304838c02d6288a1e/setuptools-41.0.1-py2.py3-none-any.whl
-    Installing collected packages: setuptools
-      Found existing installation: setuptools 28.8.0
-        Uninstalling setuptools-28.8.0:
-          Successfully uninstalled setuptools-28.8.0
-    Successfully installed setuptools-41.0.1
+  (env) [isabell@stardust ~]$ pip install jinja2
+    Collecting jinja2
+      Using cached https://files.pythonhosted.org/packages/1d/e7/fd8b501e7a6dfe492a433deb7b9d833d39ca74916fa8bc63dd1a4947a671/Jinja2-2.10.1-py2.py3-none-any.whl
+    Requirement already satisfied: MarkupSafe>=0.23 in ./synapse/env/lib/python3.6/site-packages (from jinja2) (1.1.1)
+    Installing collected packages: jinja2
+    Successfully installed jinja2-2.10.1
   (env) [isabell@stardust ~]$ pip install matrix-synapse
     Collecting matrix-synapse
     Collecting pyasn1-modules>=0.0.7 (from matrix-synapse)
