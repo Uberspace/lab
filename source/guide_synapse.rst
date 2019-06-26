@@ -229,7 +229,7 @@ And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
 .. include:: includes/web-backend.rst
 
-To enable federation as described MatrixFederation_ we need to announcei, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
+To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
 
 DNS announcement
 ----------------
