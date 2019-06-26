@@ -194,8 +194,7 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --report-stats=[yes|no]
   (env) [isabell@stardust ~]$
 
-Set the Synapse_ to listen for federation and clients on port 8008 without encryption in the config file ``~/synapse/homeserver.yaml``.
-
+Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the `listeners:` section and modify the entry with `port: 8008`:
 .. code-block:: yaml
 
       - port: 8008
@@ -205,6 +204,7 @@ Set the Synapse_ to listen for federation and clients on port 8008 without encry
         x_forwarded: true
         resources:
           - names: [client, federation]
+            compress: false
 
 And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
