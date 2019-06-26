@@ -236,6 +236,13 @@ Option B:.well-known announcement
 
 .. note:: This is the newer method, easier to implement but not supported on older servers.
 
+Setup the directory for the next step:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mkdir -p ~/html/.well-known/matrix
+  [isabell@stardust ~]$
+
 The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
 
 .. code-block:: json
