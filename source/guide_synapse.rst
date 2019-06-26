@@ -212,8 +212,10 @@ And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
 To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
 
-DNS announcement
-----------------
+Option A: DNS announcement
+--------------------------
+
+.. note:: This is the older method, harder to implement but supporting all servers.
 
 The port can can be announced by setting a DNS record in the following format:
 
@@ -229,8 +231,10 @@ For example like this:
 
 .. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
 
-.well-known announcement
-------------------------
+Option B:.well-known announcement
+---------------------------------
+
+.. note:: This is the newer method, easier to implement but not supported on older servers.
 
 The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
 
