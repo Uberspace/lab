@@ -236,7 +236,7 @@ DNS announcement
 
 The port can can be announced by setting a DNS record in the following format:
 
-.. code-block::
+.. code-block:: none
 
    _matrix._tcp.<yourdomain.com> <ttl> IN SRV <priority> <weight> <port> <synapse.server.name>
 
