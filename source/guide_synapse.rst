@@ -242,7 +242,7 @@ The port can can be announced by setting a DNS record in the following format:
 
 For example like this:
 
-.. code-block::
+.. code-block:: none
 
   _matrix._tcp.my.domain.name 3600 IN SRV 10 5 443 my.domain.name.
 
