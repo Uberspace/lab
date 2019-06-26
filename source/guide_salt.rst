@@ -17,7 +17,7 @@ SaltStack
 
 `SaltStack`_ (or simply `Salt`) is Python-based, open-source software for event-driven IT automation, remote task execution, and configuration management. Supporting the "Infrastructure as Code" approach to data center system and network deployment and management, configuration automation, SecOps orchestration, vulnerability remediation, and hybrid cloud control.
 
-The `salt-master` controls so called `salt-minions` through formulae, pillars and grains. The scope of this guide is to install a `salt-master`(without a co-located minion) on an Uberspace.
+The ``salt-master`` controls so called ``salt-minions`` through formulae, pillars and grains. The scope of this guide is to install a ``salt-master``(without a co-located minion) on an Uberspace.
 
 ----
 
@@ -49,7 +49,7 @@ Installation
 Install salt-master
 -------------------
 
-The `salt` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the `Developer installation` guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 2019.2.0
+The ``salt`` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the "Developer installation" guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 2019.2.0
 
 ::
 
@@ -70,7 +70,7 @@ The `salt` installation script requires root privileges and only supports virtua
 Configuration
 =============
 
-Edit `~/salt/virtualenv/etc/salt/master` and make at least the following changes:
+Edit ``~/salt/virtualenv/etc/salt/master`` and make at least the following changes:
 
 ::
 
@@ -112,7 +112,7 @@ Finishing installation
 Connect minions
 ---------------
 
-Now you can connect a minion to the salt master. The minion configuration needs the IP address of your Uberspace (or a hostname resolving to it) and the high-port you used as `ret_port` in the master configuration. An initial minion run will upload the minion private key to the master and you view and accept this key to establish communication:
+Now you can connect a minion to the salt master. The minion configuration needs the IP address of your Uberspace (or a hostname resolving to it) and the high-port you used as ``ret_port`` in the master configuration. An initial minion run will upload the minion private key to the master and you view and accept this key to establish communication:
 
 .. code-block:: console
 
