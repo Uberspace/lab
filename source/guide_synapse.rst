@@ -246,7 +246,9 @@ The federation port can also be announced via a file ``~/html/.well-known/matrix
 
 This has to be made available under ``/.well-known/matrix`` via the web backend:
 
-.. include:: includes/web-backend.rst
+.. code-block:: console
+
+  uberspace web backend set /.well-known/matrix --apache
 
 Configure Certificates
 ----------------------
