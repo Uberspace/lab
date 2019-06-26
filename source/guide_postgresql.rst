@@ -152,12 +152,10 @@ In our example this would be:
 
 Now create the database cluster:
 
-.. warning:: Replace ``<username>`` with your Uberspace name!
-
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ initdb --pwfile="/home/<username>/pgpass.temp" --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
+ [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
  The files belonging to this database system will be owned by user "".
  This user must also own the server process.
  The database cluster will be initialized with locale "de_DE.UTF-8".
