@@ -212,7 +212,7 @@ PostgreSQL Configuration
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
 
-.. warning:: Replace the port number with the one you wrote down earlier and replace ``<username>`` with your username!
+.. warning:: Replace the port number with the one you exported earlier (in our example 5432) and replace ``<username>`` with your username!
 
 .. code-block:: postgres
  :emphasize-lines: 7,11,14
