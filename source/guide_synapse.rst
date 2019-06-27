@@ -256,7 +256,9 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
 
 .. code-block:: console
 
-  uberspace web backend set /.well-known/matrix --apache
+  [isabell@stardust ~]$ uberspace web backend set /.well-known/matrix --apache
+  Set backend for /.well-known/matrix to apache.
+  [isabell@stardust ~]$
 
 Configure Certificates
 ----------------------
