@@ -194,9 +194,10 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --report-stats=[yes|no]
   (env) [isabell@stardust ~]$
 
-Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the `listeners:` section and modify the entry with `port: 8008`:
+Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the ``listeners:`` section and modify the entry with ``port: 8008``:
 
 .. code-block:: yaml
+  :emphasize-lines: 4
 
       - port: 8008
         type: http
