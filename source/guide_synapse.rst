@@ -65,12 +65,6 @@ but we start with creating a virtual environment for synapse to run in.
     Also creating executable in /home/matrites/synapse/env/bin/python
     Installing setuptools, pip, wheel...done.
   [isabell@stardust ~]$ source ~/synapse/env/bin/activate
-  (env) [isabell@stardust ~]$ pip install jinja2
-    Collecting jinja2
-      Using cached https://files.pythonhosted.org/packages/1d/e7/fd8b501e7a6dfe492a433deb7b9d833d39ca74916fa8bc63dd1a4947a671/Jinja2-2.10.1-py2.py3-none-any.whl
-    Requirement already satisfied: MarkupSafe>=0.23 in ./synapse/env/lib/python3.6/site-packages (from jinja2) (1.1.1)
-    Installing collected packages: jinja2
-    Successfully installed jinja2-2.10.1
   (env) [isabell@stardust ~]$ pip install matrix-synapse
     Collecting matrix-synapse
     Collecting pyasn1-modules>=0.0.7 (from matrix-synapse)
