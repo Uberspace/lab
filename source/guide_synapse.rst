@@ -183,7 +183,7 @@ Generate standard config
 Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name with the real domain you want your matrix username to end in.
 
 .. code-block:: console
-  :emphasize-lines: 7
+  :emphasize-lines: 4,7
 
   [isabell@stardust ~]$ source ~/synapse/env/bin/activate
   (env) [isabell@stardust ~]$ cd ~/synapse
