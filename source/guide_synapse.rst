@@ -55,7 +55,7 @@ We will install synapse using pip, which makes it quite easy,
 but we start with creating a virtual environment for synapse to run in.
 
 .. code-block:: console
-  :emphasize-lines: 1,2,8,18,27,37
+  :emphasize-lines: 1,2,8,9,18,25
 
   [isabell@stardust ~]$ mkdir -p ~/synapse
   [isabell@stardust ~]$ virtualenv -p python3.6 ~/synapse/env
