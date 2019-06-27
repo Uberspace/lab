@@ -41,7 +41,7 @@ verify the checksum specified in the respective ``.sha256`` file and finally ext
 ::
 
   [isabell@stardust ~]$ mkdir ~/syncthing
-  [isabell@stardust ~]$ wget -O syncthing/syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v1.1.3/syncthing-linux-amd64-v1.1.3.tar.gz
+  [isabell@stardust ~]$ wget -O syncthing/syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v1.1.4/syncthing-linux-amd64-v1.1.4.tar.gz
   --2019-05-30 19:16:10--  https://github.com/syncthing/syncthing/releases/download/v1.1.3/syncthing-linux-amd64-v1.1.3.tar.gz
   Resolving github.com (github.com)... 140.82.118.3
   Connecting to github.com (github.com)|140.82.118.3|:443... connected.
