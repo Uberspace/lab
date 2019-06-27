@@ -54,7 +54,7 @@ Installation
 We will install synapse using pip, which makes it quite easy:
 
 .. code-block:: console
-  :emphasize-lines: 1,2,8,9,19,26
+  :emphasize-lines: 1,2,8,18
 
   [isabell@stardust ~]$ mkdir -p ~/synapse
   [isabell@stardust ~]$ pip install jinja2
