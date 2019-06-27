@@ -8,9 +8,9 @@
   .. image:: _static/images/matrix-logo.svg
       :align: center
 
-######
+#######
 Synapse
-######
+#######
 
 .. tag_list::
 
