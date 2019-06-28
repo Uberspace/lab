@@ -1,5 +1,6 @@
 .. author:: nichtmax <https://moritz.in>
 .. author:: Peleke <https://www.peleke.de>
+.. author:: Noah <https://noahwagner.de>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -163,6 +164,49 @@ Finishing installation
 ======================
 
 Point your browser to your blog URL and create a user account.
+
+Changing internal uber.space URL to external URL
+================================================
+
+.. note::
+
+    You should already have set up your additional external URL as described in :manual:`domains <web-domains>`.
+
+Update URL with ghost-cli as followed. Change the URL to your external URL in the highlighted line.
+
+.. code-block:: console
+ :emphasize-lines: 2
+
+ [isabell@stardust ~]$ cd ~/ghost/
+ [isabell@stardust ghost]$ ghost config url https://my-domain.com
+ [isabell@stardust ghost]$
+
+You now need to readjust your ``~/ghost/config.production.json`` to use the right
+network interface and change the URL for Ghost. Find the following block and change host ``0.0.0.0`` to your Uberspace IPv4 address	e.g. 185.26.156.0 (You can find your IPv4 address in the your Uberspace admin panel under "Datasheet" > "IPv4 address"). Additionally change the URL to your external URL. Change the respective highlighted lines:
+
+.. code-block:: none
+ :emphasize-lines: 2,5
+
+ {
+   "url": "https://my-domain.com",
+   "server": {
+     "port": 2368,
+     "host": "185.26.156.0"
+   },
+
+Kill and restart Ghost (also check the restartet process with second command):
+
+.. code-block:: console
+ :emphasize-lines: 2,3
+ 
+ [isabell@stardust ~]$ supervisorctl restart ghost
+ ghost: stopped
+ ghost: started
+ [isabell@stardust ~]$ supervisorctl status
+ ghost                            RUNNING   pid 26020, uptime 0:00:56
+ [isabell@stardust ~]$ 
+
+Now the URLs in your Ghost installation always use your newly configured URL. This is especially seen in the RSS feeds which if this part is not run will always use the uber.space URL even though you access your blog via an external domain already. This is due to Ghost using the configured URL as a variable in some templates etc. which is the case for the RSS URLs for example in the main Casper theme.
 
 Updates
 =======
