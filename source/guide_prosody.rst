@@ -33,7 +33,7 @@ Ports
 
 .. include:: includes/open-port.rst
 
-We need three open tcp ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEPORT``) which should be public accessible.
+Altogether we need four open ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEUPLOADPORT`` ``FILETRANSFERPORT``) which should be public accessible.
 
 Domains, dns
 ------------
@@ -43,8 +43,9 @@ The following domains should be set up (to set up prosody for the domain ``stard
  
  [isabell@stardust ~]$ uberspace web domain list
  stardust.space
- groups.stardust.space
- files.stardust.space
+ groupchat.stardust.space
+ filetransfer.stardust.space
+ filupload.stardust.space
  [isabell@stardust ~]$
 
 Additionally to the dns_ A-records we need the following SRV-records: 
@@ -155,6 +156,9 @@ Install prosody with an (currently unofficial) ``.rockspec``-file:
 
 .. note:: Prosody only provides rockspecs for all modules individually (refer to `prosody rocks <https://packages.prosody.im/rocks>`_ ) and currently there isn't a up-to-date version on luarocks. Please make sure you want to install the provided unofficial rockspec file.
 
+Configuration
+=============
+
 Adapt the ``.bash_profile`` again :
 
 ::
@@ -167,75 +171,69 @@ Adapt the ``.bash_profile`` again :
 
 .. note:: Don't forget to replace the correct prosody and lua versions in the paths above.
 
-And create `$PROSODY_DATADIR`:
-
- mkdir $PROSODY_DATADIR
-
-Configuration
-=============
-
-First we have to copy the standard config file to a place outside:
+Now we copy the configuration and plugin files into reasonable locations, download the community plugins and create the prosody-data directory:
 
 ::
 
- [isabell@stardust ~]$ cp
- TODO
+ [isabell@stardust ~]$ cp -R $PROSODY_PATH/conf/ ~/etc/prosody
+ [isabell@stardust ~]$ cp -R $PROSODY_PATH/plugins/ ~/var/prosody/plugins
+ [isabell@stardust ~]$ mkdir ~/var/prosody/data
+ [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/prosody/community-plugins
  [isabell@stardust ~]$
 
-Then there are some settings which should be edited accordingly:
+Then there are many settings which should be edited accordingly:
 
 .. code-block:: lua
 
- modules_enabled = {"","","proxy65"}
- modules_disabled = {}
- plugin_paths = {"/home/isabell/var/prosody/prosody-modules-user-build/"}
- data_path = "/home/isabell/var/prosody/data";
- daemonize= false;
- pidfile = "/home/isabell/var/prosody/prosody.pid";
+ admins = { "isabell@uber.space" }
+ plugin_paths = {"/home/isabell/var/prosody/community-plugins/"}
+ -- uncomment proxy65 and in modules_enabled
  allow_registration = false
  c2s_require_encryption = true
+ c2s_ports = { CLIENTPORT }
  s2s_require_encryption = true
- s2s_secure_auth = false
+ s2s_secure_auth = true
+ s2s_ports = { SERVERPORT }
  authentication = "internal_hashed"
+ pidfile = "/home/isabell/var/prosody/prosody.pid";
+ daemonize= false;
  storage = "sql"
  sql = { 
    driver = "MySQL", 
    database = "prosody", 
-   username = "prosody", 
+   username = "isabell", 
    password = "secret", 
    host = "localhost" 
  }
  log = { info = "*console" }
- c2s_ports = { CLIENTPORT }
- s2s_ports = { SERVERPORT }
- proxy65_ports = { FILEPORT }
+ certificates = "/home/isabell/etc/certificates"
+ http_ports = {}
+ https_ports = { FILEUPLOADPORT }
+ proxy65_ports = { FILETRANSFERPORT }
+ VirtualHost "stardust.space" 
+ Component "groupchats.stardust.space" "muc"
+   modules_enabled = { "muc_mam" } 
+ Component "filetransfer.stardust.space" "proxy65"
+ Component "fileupload.prosody.uber.space" "http_upload"
 
- certificates = "/home/isabell/etc/prosody/certs"
-
- VirtualHost "isabell.uber.space"
- 
- Component "groups.isabell.uber.space" "muc"
- 
- Component "files.isabell.uber.space" "proxy65"
-
-.. warning:: Replace the placeholders ``CLIENTPORT``, ``SERVERPORT`` ``FILEPORT`` with the above obtained ports, adapt the domain-names and the sql settings! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs to see whats going on!  
-
-Finally we create a symlink:
+.. warning:: Replace the placeholders ``CLIENTPORT``, ``SERVERPORT``, ``FILEUPLOADPORT`` and ``FILETRANSFERPORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody!  
 
 Finishing Installation
 ======================
 
-deamon
--------
+supervisord
+-----------
 
-Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adaptit accordingly:
+Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adapt it accordingly:
 
 .. code-block:: console
 
  [program:prosody]
- command=/home/isabell/bin/prosody
+ command=/bin/bash -c "source /home/isabell/.bash_profile && prosody"
  autostart=yes
  autorestart=yes
+ startretries=1
+ stopasgroup=true
 
 
 First-Start
@@ -249,33 +247,47 @@ Reread:
  prosody: available
  [isabell@stardust ~]$
 
-And then start your daemon:
+And then update and start your new service:
 
 ::
 
  [isabell@stardust ~]$ supervisorctl update
  prosody: added process group
+ [isabell@stardust ~]$ supervisorctl start prosody
+ prosody: started
  [isabell@stardust ~]$
 
-Advanced
-========
+Best-Practise
+=============
 
-Community modules
------------------
+Keep an eye on the logs and look at the output of the commands below:
 
-Backup
-------
+::
 
-Tuning
-------
+ [isabell@stardust ~]$ supervisorctl status
+ [...]
+ [isabell@stardust ~]$ supervisorctl tail prosody
+ [...]
+ [isabell@stardust ~]$ prosodyctl about
+ [...]
+ [isabell@stardust ~]$ prosodyctl check
+ [...]
+ [isabell@stardust ~]$ prosodyctl status
+ [...]
+ [isabell@stardust ~]$
 
 
 Updates
 =======
 
-The easiest way to update prosody is via luarocks. Stop the deamon, reinstall updated dependencies and prosody itself. Note: this should also be done on openssl changes.
+The easiest way to update prosody is via luarocks with the same commands as in the prerequisites and installation step above. 
 
-.. note:: Check the `website <https://prosody.im/>`_ regularly to stay informed about new updates and releases.
+.. note:: This should also be done on changes to openssl on CentOS. Remember to comment out the C99 setting on problems. Also check the `website <https://prosody.im/>`_ regularly to stay informed about new config updates and releases.
+
+Acknowledgements
+================
+This guide uses many instructions and ideas of other developers. Refer especially to the guide from alex_ and persons mentioned there as well as the prosody developers for their input on naive questions and with bug fixes for the special uberspace environment.
+
 
 .. _prosody: https://prosody.im
 .. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
@@ -286,10 +298,10 @@ The easiest way to update prosody is via luarocks. Stop the deamon, reinstall up
 .. _dns: https://prosody.im/doc/dns
 .. _letsencrypt: https://manual.uberspace.de/en/web-security.html#id2
 .. _dependencies: https://prosody.im/doc/depends
-
+.. _alex: https://plaintext.blog/hosting/Uberspace/prosody.html
 
 ----
 
-Tested with Prosody 0.11.2, Uberspace 7.3.1
+Tested with Prosody 0.11.2, Uberspace 7.3.2.1
 
 .. author_list::
