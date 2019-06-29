@@ -27,7 +27,6 @@ Mailman_ is free software for managing electronic mail discussion and e-newslett
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>`
-  * :manual:`supervisord <daemons-supervisord>`
   * Folder/File Permissions
 
 License
