@@ -92,7 +92,7 @@ Syncthing needs to listen to all interfaces therefore you have to edit ``~/.conf
   </gui>
 
 
-and change it to 
+and change it to
 
 .. code-block:: xml
   :emphasize-lines: 2
@@ -126,17 +126,7 @@ To start syncthing automatically and run it in the background, create ``~/etc/se
   [program:syncthing]
   command=%(ENV_HOME)s/syncthing/syncthing
 
-Then, tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- syncthing: available
- [isabell@stardust ~]$ supervisorctl update
- syncthing: added process group
- [isabell@stardust ~]$ supervisorctl status
- syncthing                        RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 .. note::
 
