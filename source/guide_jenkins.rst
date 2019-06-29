@@ -115,6 +115,8 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
 .. include:: includes/supervisord.rst
 
+Your Jenkins is now up and running as a service.
+
 Finally we'll setup our connection to the rest of the world.
 
 Setup Web backend

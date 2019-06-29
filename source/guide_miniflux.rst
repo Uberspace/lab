@@ -164,6 +164,8 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
+If it's not in state ``RUNNING``, check your configuration.
+
 Go to ``https://isabell.uber.space/`` and log in to your installation with the login ``isabell`` and password given above.
 
 

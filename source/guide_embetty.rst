@@ -96,6 +96,8 @@ In our example this would be:
 
 .. include:: includes/supervisord.rst
 
+If it's not in state RUNNING, check your configuration.
+
 Configure web server
 --------------------
 
