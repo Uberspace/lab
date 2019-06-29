@@ -18,7 +18,7 @@ ZNC_ is an advanced IRC bouncer that stays connected to the server, so an IRC cl
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Firewall Ports <basics-ports>`
-  * :manual:`HTTPS <web-https>` 
+  * :manual:`HTTPS <web-https>`
   * :manual:`supervisord <daemons-supervisord>`
 
 License
@@ -121,7 +121,7 @@ ZNC ships with a self generated certificate which will cause a warning in all mo
   [isabell@stardust configs]$ openssl dhparam -out dhparam.pem 2048
   [...]
   [isabell@stardust configs]$
-  
+
 .. warning:: Replace ``isabell`` with your username!
 
 Add the following lines to ``~/.znc/configs/znc.conf`` above the line ``Version = 1.7.3`` (your version number may differ):
@@ -143,17 +143,7 @@ Create ``~/etc/services.d/znc.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- znc: available
- [isabell@stardust ~]$ supervisorctl update
- znc: added process group
- [isabell@stardust ~]$ supervisorctl status
- znc                              RUNNING   pid 20669, uptime 0:00:18
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
