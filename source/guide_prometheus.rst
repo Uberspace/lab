@@ -140,15 +140,7 @@ Finishing installation
 Start prometheus
 ----------------
 
-To start prometheus via the previously created :manual:`supervisord <daemons-supervisord>` configuration, run the following command
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- prometheus: available
- [isabell@stardust ~]$ supervisorctl update
- prometheus: added process group
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Now point your browser to your uberspace and you should see the prometheus webinterface.
 
