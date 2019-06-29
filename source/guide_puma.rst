@@ -127,15 +127,7 @@ Create ``~/etc/services.d/puma.ini`` with the following content. Adapt the highl
 
 The ``--config`` parameter provides the path to the configuration file.
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl reread
-  puma: available
-  [isabell@stardust ~]$ supervisorctl update
-  puma: added process group
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Configure web server
 --------------------
