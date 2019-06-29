@@ -183,17 +183,7 @@ Create ``~/etc/services.d/up1.ini`` with the following content:
  directory=%(ENV_HOME)s/up1/server/
  command=node %(ENV_HOME)s/up1/server/server.js
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- up1: available
- [isabell@stardust ~]$ supervisorctl update
- up1: added process group
- [isabell@stardust ~]$ supervisorctl status
- up1                            RUNNING   pid 26020, uptime 0:00:45
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
