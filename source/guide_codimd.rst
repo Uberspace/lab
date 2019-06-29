@@ -306,13 +306,7 @@ Once you run the following step, this will create a CodiMD instance without reli
 Finishing installation
 ======================
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl reread
-  codimd: available
-  [isabell@stardust ~]$ supervisorctl update
-  codimd: added process group
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Add a user
 ----------
