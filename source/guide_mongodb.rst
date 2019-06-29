@@ -115,17 +115,7 @@ Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` wi
  autostart=yes
  autorestart=yes
 
-Tell supervisord to refresh its configuration and start the service:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl reread
- mongodb: available
- [isabell@stardust ~]$ supervisorctl update
- mongodb: added process group
- [isabell@stardust ~]$ supervisorctl status
- mongodb                          RUNNING   pid 24458, uptime 0:00:09
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it’s not in state RUNNING, check your configuration.
 
