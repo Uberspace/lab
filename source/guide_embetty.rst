@@ -93,19 +93,8 @@ In our example this would be:
  command=embetty start
  environment=TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
 
-Tell ``supervisord`` to refresh its configuration and start the service:
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- embetty: available
- [isabell@stardust ~]$ supervisorctl update
- embetty: added process group
- [isabell@stardust ~]$ supervisorctl status
- embetty                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 Configure web server
 --------------------
