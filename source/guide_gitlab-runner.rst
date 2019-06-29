@@ -112,6 +112,8 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 
 .. include:: includes/supervisord.rst
 
+If it’s not in state RUNNING, check your configuration.
+
 .. _Gitlab: https://gitlab.com
 .. _Gitlab Runner docs: https://docs.gitlab.com/runner/
 .. _Gitlab Runner executors: https://docs.gitlab.com/runner/executors/README.html

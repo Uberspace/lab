@@ -111,7 +111,7 @@ This will make sure that autossh_ is automatically started if the host reboots b
 
 .. include:: includes/supervisord.rst
 
-Check the output of ``supervisorctl status``. If it's not in state ``RUNNING``, something went wrong.
+If it's not in state ``RUNNING``, something went wrong.
 
 That's it, you have successfully configured an automatically launching port forwarding tunnel between to hosts!
 

@@ -165,6 +165,8 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
+If it's not in state RUNNING, check your configuration.
+
 Best practices
 ==============
 
