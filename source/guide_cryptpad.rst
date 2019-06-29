@@ -137,12 +137,7 @@ Create ``~/etc/services.d/cryptpad.ini`` with the following content:
 
 Now let's start the service:
 
-.. code-block:: console
-
- [isabell@stardust html]$ supervisorctl reread
- [isabell@stardust html]$ supervisorctl update
- [isabell@stardust html]$ supervisorctl status
- cryptpad                         RUNNING   pid 23323, uptime 0:07:29
+.. include:: includes/supervisord.rst
 
 
 Customization
