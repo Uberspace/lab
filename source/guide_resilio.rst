@@ -70,13 +70,7 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 Start Service
 =============
 
-Now you need to load the changes and start your service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example) and see if it works. Enjoy!
 
