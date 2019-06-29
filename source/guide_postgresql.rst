@@ -251,28 +251,7 @@ Create ``~/etc/services.d/postgresql.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-The supervisor must be informed about the new service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- postgresql: available
- [isabell@stardust ~]$
-
-The first run will be initialized with:
-
-::
-
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$
-
-Run ``supervisorctl status`` to check that the daemon is running:
-
-::
-
- [isabell@stardust ~]$ supervisorctl status
- postgresql                       RUNNING   pid 15477, uptime 0:00:07
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 To stop and start the daemon to perform maintenance tasks, you can use ``supervisorctl stop`` and ``supervisorctl start``, respectively:
 
