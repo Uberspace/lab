@@ -163,19 +163,7 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- jingo: available
- [isabell@stardust ~]$ supervisorctl update
- jingo: added process group
- [isabell@stardust ~]$ supervisorctl status
- jingo                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 Best practices
 ==============
