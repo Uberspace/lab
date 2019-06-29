@@ -182,13 +182,7 @@ Again, don't forget to fill in your username!
 Start Service
 -------------
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl reread
-  radicale: available
-  [isabell@stardust ~]$ supervisorctl update
-  radicale: added process group
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 And you're done!
 
