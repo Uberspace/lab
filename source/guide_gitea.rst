@@ -118,19 +118,7 @@ Create ``~/etc/services.d/gitea.ini`` with the following content:
   [program:gitea]
   command=%(ENV_HOME)s/gitea/gitea web
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- gitea: available
- [isabell@stardust ~]$ supervisorctl update
- gitea: added process group
- [isabell@stardust ~]$ supervisorctl status
- gitea                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
