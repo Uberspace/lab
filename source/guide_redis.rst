@@ -163,17 +163,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
  autostart=yes
  autorestart=yes
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl reread
- redis: available
- [isabell@stardust ~]$ supervisorctl update
- redis: added process group
- [isabell@stardust ~]$ supervisorctl status
- redis                            RUNNING   pid 18943, uptime 0:00:47
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not inIf it’s not in state RUNNING, check your configuration.
 
