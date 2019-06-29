@@ -24,7 +24,6 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>` and its package manager pip
-  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
