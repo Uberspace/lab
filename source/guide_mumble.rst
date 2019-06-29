@@ -68,7 +68,7 @@ Check the Mumble_ website or GitHub_ for the feed_ and copy the download link to
   Length: 11939824 (11M) [application/octet-stream]
   Saving to: ‘murmur-static_x86-66.6.6.tar.bz2’
 
-  100%[======================================================================================================================================>] 11,939,824  7.45MB/s   in 1.5s   
+  100%[======================================================================================================================================>] 11,939,824  7.45MB/s   in 1.5s
 
   2018-10-06 21:14:37 (7.45 MB/s) - ‘murmur-static_x86-66.6.6.tar.bz2’ saved [11939824/11939824]
 
@@ -133,20 +133,7 @@ Create ``~/etc/services.d/mumble.ini`` with the following content:
   [program:mumble]
   command=%(ENV_HOME)s/mumble/murmur.x86 -fg -ini %(ENV_HOME)s/mumble/murmur.ini
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- mumble: available
- [isabell@stardust ~]$ supervisorctl update
- mumble: added process group
- [isabell@stardust ~]$ supervisorctl status
- mumble                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state ``RUNNING``, check your configuration.
-
+.. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
