@@ -192,13 +192,7 @@ Create a service file under ``~/etc/services.d/xbrowsersync.ini`` and replace ``
   autorestart=yes
 
 
-Then start your daemon:
-
-::
-
-  [isabell@stardust ~]$ supervisorctl reread
-  [isabell@stardust ~]$ supervisorctl update
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Using xBrowserSync
 ==================
