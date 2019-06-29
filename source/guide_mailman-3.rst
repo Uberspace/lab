@@ -187,17 +187,7 @@ Afterwards, create necessary folders and files:
  [isabell@stardust ~]$ touch ~/var/logs/daemon_out.log
  [isabell@stardust ~]$
 
-Now we can tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- mailman3: available
- [isabell@stardust ~]$ supervisorctl update
- mailman3: added process group
- [isabell@stardust ~]$ supervisorctl status
- mailman3                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Adjusting Django configuration
 ------------------------------
