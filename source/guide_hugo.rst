@@ -26,7 +26,6 @@ Hugo is a fast and modern static site generator written in Go, and designed to m
 
   * Git_
   * :manual:`Domains <web-domains>`
-  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
