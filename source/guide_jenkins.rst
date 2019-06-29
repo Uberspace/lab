@@ -90,9 +90,9 @@ Next we download the current version of Jenkins:
  HTTP request sent, awaiting response... 200 OK
  Length: 77273755 (74M) [application/x-java-archive]
  Saving to: ‘Jenkins/jenkins.war’
- 
+
  100%[====================================================>]  77,273,755  21.4MB/s   in 3.7s
- 
+
  2019-05-24 15:33:36 (20.1 MB/s) - ‘Jenkins/jenkins.war’ saved [77273755/77273755]
  [isabell@stardust ~]$
 
@@ -113,20 +113,7 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
  directory=%(ENV_HOME)s/Jenkins/Jenkins_home
  command=java -jar ../jenkins.war
 
-
-After that refresh and update the daemons and check if everything worked out:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- jenkins: available
- [isabell@stardust ~]$ supervisorctl update
- jenkins: added process group
- [isabell@stardust ~]$ supervisorctl status
- jenkins                          RUNNING   pid 4711, uptime 0:47:11
- [isabell@stardust ~]$
-
-Your Jenkins is now up and running as a service. 
+.. include:: includes/supervisord.rst
 
 Finally we'll setup our connection to the rest of the world.
 
@@ -135,7 +122,7 @@ Setup Web backend
 
 .. note::
 
-    Jenkins is running on port 8080. 
+    Jenkins is running on port 8080.
 
 .. include:: includes/web-backend.rst
 
