@@ -128,17 +128,7 @@ Create ``~/etc/services.d/thelounge.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardusts ~]$ supervisorctl reread
- thelounge: available
- [isabell@stardusts ~]$ supervisorctl update
- thelounge: added process group
- [isabell@stardusts ~]$ supervisorctl status
- thelounge                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardusts ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
