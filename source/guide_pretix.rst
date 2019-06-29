@@ -173,17 +173,7 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
  autorestart=true
  stopsignal=INT
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- pretix: available
- [isabell@stardust ~]$ supervisorctl update
- preitx: added process group
- [isabell@stardust ~]$ supervisorctl status
- pretix                            RUNNING   pid 26020, uptime 0:00:13
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
