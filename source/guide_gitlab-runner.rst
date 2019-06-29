@@ -110,21 +110,7 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
   [program:gitlab-runner]
   command=/home/$USER/bin/gitlab-runner.sh
 
-
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- gitlab-runner: available
- [isabell@stardust ~]$ supervisorctl update
- gitlab-runner: added process group
- [isabell@stardust ~]$ supervisorctl status
- gitlab-runner                   RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-
-If it’s not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 .. _Gitlab: https://gitlab.com
 .. _Gitlab Runner docs: https://docs.gitlab.com/runner/
