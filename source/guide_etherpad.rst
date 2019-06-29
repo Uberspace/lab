@@ -161,19 +161,8 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
  environment=NODE_ENV="production"
  autorestart=true
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- etherpad: available
- [isabell@stardust ~]$ supervisorctl update
- etherpad: added process group
- [isabell@stardust ~]$ supervisorctl status
- etherpad                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 Best practices
 ==============
