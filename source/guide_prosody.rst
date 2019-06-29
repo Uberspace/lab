@@ -44,8 +44,6 @@ The following domains should be set up (to set up prosody for the domain ``stard
  [isabell@stardust ~]$ uberspace web domain list
  stardust.space
  groupchat.stardust.space
- filetransfer.stardust.space
- filupload.stardust.space
  [isabell@stardust ~]$
 
 Additionally to the dns_ A-records we need the following SRV-records: 
@@ -57,17 +55,17 @@ Additionally to the dns_ A-records we need the following SRV-records:
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 | _xmpp-server._tcp.stardust.space	      | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
-| _xmpp-server._tcp.groups.stardust.space     | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
+| _xmpp-server._tcp.groupchat.stardust.space  | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 
 .. note:: Adapt the port-numbers and change ``stardust`` as well as ``stardust.space`` accordingly in your dns settings of your prefered provider.
 
 TLS
 ---
-For simplicity we use the certificates created via letsencrypt_ for above domains which are already provided on the host.
+For simplicity we use openssl and the certificates created via letsencrypt_ for above domains which are already provided on the host after adding the domains and visiting them.
 
-Install lua-dependencies via luarocks
--------------------------------------
+Configure luarocks
+------------------
 
 Prosody is written in ``lua`` and has some dependencies which we install with the package manager ``luarocks``. In order to run the installed packages we have to adapt the path:
 
@@ -84,6 +82,9 @@ Additionally we need to provide the paths ``LUA_PATH`` and ``LUA_CPATH`` to use 
  [isabell@stardust ~]$ echo "$(luarocks path)" >> ~/.bash_profile \
  && source ~/.bash_profile
  [isabell@stardust ~]$
+
+Install lua-dependencies
+------------------------
 
 The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) are required:
 
@@ -154,7 +155,7 @@ Install prosody with an (currently unofficial) ``.rockspec``-file:
  prosody [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
-.. note:: Prosody only provides rockspecs for all modules individually (refer to `prosody rocks <https://packages.prosody.im/rocks>`_ ) and currently there isn't a up-to-date version on luarocks. Please make sure you want to install the provided unofficial rockspec file.
+.. note:: Prosody only provides rockspecs for all modules individually (refer to `prosody rocks <https://packages.prosody.im/rocks>`_ ) and currently there isn't an official up-to-date version on luarocks. Please make sure you want to install the provided unofficial rockspec file by analysing it's content.
 
 Configuration
 =============
@@ -171,23 +172,23 @@ Adapt the ``.bash_profile`` again :
 
 .. note:: Don't forget to replace the correct prosody and lua versions in the paths above.
 
-Now we copy the configuration and plugin files into reasonable locations, download the community plugins and create the prosody-data directory:
+Now we copy the configuration and plugin files into reasonable locations, download the community plugins and create the prosody-data and http_upload directory:
 
 ::
 
  [isabell@stardust ~]$ cp -R $PROSODY_PATH/conf/ ~/etc/prosody
  [isabell@stardust ~]$ cp -R $PROSODY_PATH/plugins/ ~/var/prosody/plugins
- [isabell@stardust ~]$ mkdir ~/var/prosody/data
+ [isabell@stardust ~]$ mkdir -p ~/var/prosody/data/http_upload
  [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/prosody/community-plugins
  [isabell@stardust ~]$
 
-Then there are many settings which should be edited accordingly:
+Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``:
 
 .. code-block:: lua
 
  admins = { "isabell@uber.space" }
  plugin_paths = {"/home/isabell/var/prosody/community-plugins/"}
- -- uncomment proxy65 and in modules_enabled
+ -- uncomment/add "proxy65" and "http_upload" in modules_enabled
  allow_registration = false
  c2s_require_encryption = true
  c2s_ports = { CLIENTPORT }
@@ -200,21 +201,22 @@ Then there are many settings which should be edited accordingly:
  storage = "sql"
  sql = { 
    driver = "MySQL", 
-   database = "prosody", 
+   database = "isabell_prosody", 
    username = "isabell", 
-   password = "secret", 
+   password = "<Your Password>", 
    host = "localhost" 
  }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates"
+ https_certificate = "../certificates/stardust.space.crt"
  http_ports = {}
  https_ports = { FILEUPLOADPORT }
  proxy65_ports = { FILETRANSFERPORT }
+ proxy65_address = "stardust.space"
+ proxy65_acl = {"stardust.space"}
  VirtualHost "stardust.space" 
- Component "groupchats.stardust.space" "muc"
+ Component "groupchat.stardust.space" "muc"
    modules_enabled = { "muc_mam" } 
- Component "filetransfer.stardust.space" "proxy65"
- Component "fileupload.prosody.uber.space" "http_upload"
 
 .. warning:: Replace the placeholders ``CLIENTPORT``, ``SERVERPORT``, ``FILEUPLOADPORT`` and ``FILETRANSFERPORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody!  
 
