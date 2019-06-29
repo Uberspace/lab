@@ -155,19 +155,7 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
  directory=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ghost]$ supervisorctl reread
- ghost: available
- [isabell@stardust ghost]$ supervisorctl update
- ghost: added process group
- [isabell@stardust ~]$ supervisorctl status
- ghost                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
+.. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
