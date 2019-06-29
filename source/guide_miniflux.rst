@@ -162,19 +162,7 @@ Create ``~/etc/services.d/miniflux.ini`` with the following content:
  command=miniflux-linux-amd64
 
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- miniflux: available
- [isabell@stardust ~]$ supervisorctl update
- miniflux: added process group
- [isabell@stardust ~]$ supervisorctl status
- miniflux                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state ``RUNNING``, check your configuration.
+.. include:: includes/supervisord.rst
 
 Go to ``https://isabell.uber.space/`` and log in to your installation with the login ``isabell`` and password given above.
 
