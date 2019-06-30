@@ -95,7 +95,7 @@ Create a shell script (e.g. ``/home/$USER/bin/gitlab-runner.sh``) that keeps the
 ::
 
   #!/bin/bash
-  /home/$USER/bin/gitlab-runner-11.1.0 run --working-directory=/home/$USER/gitlab-runner/
+  /home/$USER/bin/gitlab-runner run --working-directory=/home/$USER/gitlab-runner/
 
 Make it executable:
 
