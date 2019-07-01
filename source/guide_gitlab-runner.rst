@@ -108,7 +108,7 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 ::
 
   [program:gitlab-runner]
-  command=/home/$USER/bin/gitlab-runner.sh
+  command=%(ENV_HOME)s/bin/gitlab-runner.sh
 
 .. include:: includes/supervisord.rst
 
