@@ -160,6 +160,7 @@ Setup the directory for the next step:
 The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
 
 .. code-block:: json
+  :emphasize-lines: 2
 
   {
     "m.server": "my.domain.name:443"
@@ -179,6 +180,7 @@ Configure Certificates
 Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
 
 .. code-block:: yaml
+  :emphasize-lines: 1,3,11,13
 
     tls_certificate_path: "/home/isabell/etc/certificates/my.domain.name.crt"
 
