@@ -194,7 +194,6 @@ The Unix socket will be configured to the standard port. You must set the enviro
 Edit your ``~/.bashrc`` and add the following content:
 
 .. code-block:: bash
- :emphasize-lines: 2
 
  export PGHOST=localhost
  export PGPORT=5432
@@ -210,10 +209,10 @@ PostgreSQL Configuration
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
 
-.. warning:: Replace the port number with the one you opened earlier (in our example 5432) and replace ``<username>`` with your username!
+.. warning:: Replace replace ``<username>`` with your username!
 
 .. code-block:: postgres
- :emphasize-lines: 7,11,14
+ :emphasize-lines: 7,14
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
