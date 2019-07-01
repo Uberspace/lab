@@ -63,7 +63,7 @@ We will install synapse using pip, which makes it quite easy:
     Requirement already satisfied: MarkupSafe>=0.23 in ./synapse/env/lib/python3.6/site-packages (from jinja2) (1.1.1)
     Installing collected packages: jinja2
     Successfully installed jinja2-2.10.1
-  [isabell@stardust ~]$ pip3.6 install matrix-synapse
+  [isabell@stardust ~]$ pip3.6 install --user matrix-synapse
     Collecting matrix-synapse
     Collecting pyasn1-modules>=0.0.7 (from matrix-synapse)
       Using cached https://files.pythonhosted.org/packages/91/f0/b03e00ce9fddf4827c42df1c3ce10c74eadebfb706231e8d6d1c356a4062/pyasn1_modules-0.2.5-py2.py3-none-any.whl
