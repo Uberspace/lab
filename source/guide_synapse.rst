@@ -99,7 +99,7 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
   :emphasize-lines: 3,6
 
   [isabell@stardust ~]$ cd ~/synapse
-  [isabell@stardust synapse]$  python -m synapse.app.homeserver \
+  [isabell@stardust synapse]$  python3.6 -m synapse.app.homeserver \
     --server-name my.domain.name \
     --config-path homeserver.yaml \
     --generate-config \
