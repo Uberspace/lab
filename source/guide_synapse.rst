@@ -17,6 +17,7 @@ Synapse
 
 Synapse_ is the reference implementation of a matrix server.
 Matrix_ is federated chat protocol aiming to replace xmpp.
+This guide was inspired by https://janw.xyz/blog/installing-a-matrix-org-synapse-server-on-uberspace/.
 
 ----
 
