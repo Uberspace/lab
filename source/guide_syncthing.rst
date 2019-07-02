@@ -42,7 +42,9 @@ verify the checksum specified in the respective ``.sha256`` file and finally ext
 
   [isabell@stardust ~]$ mkdir ~/syncthing
   [isabell@stardust ~]$ wget -O syncthing/syncthing.tar.gz https://github.com/syncthing/syncthing/releases/download/v1.1.4/syncthing-linux-amd64-v1.1.4.tar.gz
-[...]
+  [...]
+  100%[===============================================================================>] 8,690,658   8.17MB/s   in 1.0s
+  2019-05-30 19:16:12 (8.17 MB/s) - ‘syncthing/syncthing.tar.gz’ saved [8690658/8690658]
   [isabell@stardust ~]$ sha256sum syncthing/syncthing.tar.gz
   bb27b94d236276aac87088c554ec30fbecf2478a05f54d4ac23f801144583445 gitea/gitea
   [isabell@stardust ~]$ tar --strip-components=1 -xzf syncthing/syncthing.tar.gz -C syncthing/
