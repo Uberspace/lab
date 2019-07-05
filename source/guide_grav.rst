@@ -2,7 +2,7 @@
 
 .. author:: Daniel Kratz <uberlab@danielkratz.com>
 
-.. tag:: lang-nodejs
+.. tag:: lang-php
 .. tag:: web
 .. tag:: cms
 
