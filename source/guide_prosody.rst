@@ -98,31 +98,33 @@ The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) 
 
 ::
 
- [isabell@stardust ~]$ luarocks install luasocket --local && \
- luarocks install luaexpat --local EXPAT_BINDIR="/usr/bin" EXPAT_INCDIR="/usr/include/" EXPAT_LIBDIR="/usr/lib64" && \
- luarocks install luafilesystem --local && \
- luarocks install luasec --local OPENSSL_BINDIR="/usr/bin" OPENSSL_INCDIR="/usr/include" OPENSSL_LIBDIR="/usr/lib64"
- [...]
+ [isabell@stardust ~]$ luarocks install luasocket --local
  luasocket [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luaexpat --local EXPAT_BINDIR="/usr/bin" EXPAT_INCDIR="/usr/include/" EXPAT_LIBDIR="/usr/lib64"
  luaexpat [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luafilesystem --local
  luafilesystem [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luasec --local OPENSSL_BINDIR="/usr/bin" OPENSSL_INCDIR="/usr/include" OPENSSL_LIBDIR="/usr/lib64"
  luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
 .. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
-Further optional ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be installed with these commands:
+Further optional ones (``luadbi-mysql``, ``lua-zlib``, ``luaevent``, ``luabitop`` and ``csqueues``) can be installed with these commands:
 
 ::
 
- [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64" && \
- luarocks install lua-zlib --local && \
- luarocks install luaevent --local
- [...]
+ [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64"
  luadbi [...] is now built and installed in [...]
  luadbi-mysql [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install lua-zlib --local 
  lua-zlib [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luaevent --local
  luaevent [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luabitop --local
+ luabitop [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install csqueues --local
+ cqueues [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
 To list the installed packages with their versions use the command ``luarocks list``.
