@@ -146,7 +146,7 @@ Create a separate db for prosody data:
 
 ::
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_prosody CHARACTER SET utf8"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_prosody CHARACTER SET utf8mb4"
  [isabell@stardust ~]$
 
 Installation
