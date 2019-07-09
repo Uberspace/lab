@@ -37,7 +37,7 @@ Altogether we need four open ports (referred to as: ``CLIENTPORT``, ``SERVERPORT
 
 Domains, dns
 ------------
-The following domains should be set up (to set up prosody for the domain ``stardust.space``):
+The following domains should be configured (to set up prosody for the domain ``stardust.space``):
 
 ::
  
@@ -46,7 +46,7 @@ The following domains should be set up (to set up prosody for the domain ``stard
  groupchat.stardust.space
  [isabell@stardust ~]$
 
-Additionally to the dns_ A-records we need the following SRV-records: 
+Then we need the following dns_ `A`,`AAAA` and `SRV` dns_-records: 
 
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 |  (_service._proto.)name		      | ttl   | class | type | priority | weight | port         | target                |
