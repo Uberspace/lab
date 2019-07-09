@@ -127,18 +127,6 @@ Further optional ones (``luadbi-mysql``, ``lua-zlib`` and ``luaevent``) can be i
 
 To list the installed packages with their versions use the command ``luarocks list``.
 
-Set c99 compilation flag
-------------------------
-In order to built prosody we have to activate C99-mode as global setting for all packages compiled via luarocks ``~/.luarocks/config-5.1.lua``.
-
-::
-
- variables = {
- CC= "gcc -std=c99"
- }
-
-.. note:: This is a temporary workaround since luarocks not allowing setting this flag via ``.rockspec``-file.
-
 MySQL-database
 --------------
 
@@ -152,33 +140,31 @@ Create a separate db for prosody data:
 Installation
 ============
 
-Install prosody with an (currently unofficial) ``.rockspec``-file:
+Fetch current source code:
 
 ::
 
- [isabell@stardust ~]$ luarocks install --server=http://luarocks.org/manifests/fapsi prosody --local
- [...] 
- luabitop [...] is now built and installed in [...]
- cqueues [...] is now built and installed in [...]
- prosody [...] is now built and installed in [...]
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ mkdir -p ~/var/lib/prosody/sources
+ [isabell@stardust ~]$ cd ~/var/lib/prosody/sources
+ [isabell@stardust sources]$ wget https://prosody.im/downloads/source/prosody-x.x.x.tar.gz
+ [isabell@stardust sources]$ tar xzf prosody-x.x.x.tar.gz
+ [isabell@stardust sources]$ cd ~/var/lib/prosody/prosody-x.x.x
+ [isabell@stardust prosody-x.x.x]$
 
-.. note:: Prosody only provides rockspecs for all modules individually (refer to `prosody rocks <https://packages.prosody.im/rocks>`_ ) and currently there isn't an official up-to-date version on luarocks. Please make sure you want to install the provided unofficial rockspec file by analysing it's content.
+Now from there configure, build and install prosody:
+
+::
+
+ [isabell@stardust prosody-x.x.x]$ ./configure --ostype=linux --prefix=$HOME
+ [...] 
+ [isabell@stardust prosody-x.x.x]$ make
+ [...] 
+ [isabell@stardust prosody-x.x.x]$ make install
+ [...] 
+ [isabell@stardust prosody-x.x.x]$ 
 
 Configuration
 =============
-
-Adapt the ``.bash_profile`` again :
-
-::
-
- PROSODY_PATH=$HOME/.luarocks/lib64/luarocks/rocks/prosody/<Version PROSODY>
- export PROSODY_SRCDIR="$HOME/.luarocks/share/lua/<Version LUA>"
- export PROSODY_CFGDIR="$PROSODY_PATH/conf"
- export PROSODY_PLUGINDIR="$PROSODY_PATH/plugins"
- export PROSODY_DATADIR="$HOME/var/prosody/data"
-
-.. note:: Don't forget to replace the correct prosody and lua versions in the paths above.
 
 Now we copy the configuration and plugin files into reasonable locations, download the community plugins and create the prosody-data and http_upload directory:
 
@@ -290,9 +276,9 @@ Keep an eye on the logs and look at the output of the commands below:
 Updates
 =======
 
-The easiest way to update prosody is via luarocks with the same commands as in the prerequisites and installation step above. 
+The easiest way to update prosody is with the same commands as in the prerequisites and installation step above. 
 
-.. note:: This should also be done on changes to openssl on CentOS. Remember to comment out the C99 setting on problems. Also check the `website <https://prosody.im/>`_ regularly to stay informed about new config updates and releases.
+.. note:: This should also be done on changes to openssl on CentOS. Don't forget to check the `website <https://prosody.im/>`_ regularly to stay informed about new config updates, security vulnerabilites and new releases.
 
 Acknowledgements
 ================
