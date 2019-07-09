@@ -49,8 +49,16 @@ The following domains should be set up (to set up prosody for the domain ``stard
 Additionally to the dns_ A-records we need the following SRV-records: 
 
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
-|  _service._proto.name			      | ttl   | class | type | priority | weight | port         | target                |
+|  (_service._proto.)name		      | ttl   | class | type | priority | weight | port         | target                |
 +=============================================+=======+=======+======+==========+========+==============+=======================+
+| stardust.space			      | 3600  | IN    | A    |          |        |              | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+| stardust.space			      | 3600  | IN    | AAAA |          |        |              | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+| groupchat.stardust.space		      | 3600  | IN    | A    |          |        |              | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
+| groupchat.stardust.space		      | 3600  | IN    | AAAA |          |        |              | stardust.uber.space   |
++---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 | _xmpp-client._tcp.stardust.space	      | 18000 | IN    | SRV  | 0        | 5      | CLIENTPORT   | stardust.uber.space   |
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 | _xmpp-server._tcp.stardust.space	      | 18000 | IN    | SRV  | 0        | 5      | SERVERPORT   | stardust.uber.space   |
