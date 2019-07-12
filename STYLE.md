@@ -7,7 +7,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Guides have to be written in [reST](http://www.sphinx-doc.org/en/stable/rest.html).
  * Use English language. You don't have to be a native speaker or a poet.
  * Upload a logo to `_static/images/`, preferably SVG, a PNG file with transparent background is also fine.
- * If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not avaiaible, use the newest version instead.
+ * If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not available, use the newest version instead.
  * Always use the same username `isabell`.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
