@@ -1,4 +1,4 @@
-.in. author:: fm0de <https://fm0.de>
+.. author:: fm0de
 
 .. tag:: XMPP
 .. tag:: Jabber
