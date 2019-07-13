@@ -33,7 +33,7 @@ Ports
 
 .. include:: includes/open-port.rst
 
-Altogether we need four open ports (referred to as: ``CLIENTPORT``, ``SERVERPORT`` and ``FILEUPLOADPORT`` ``FILETRANSFERPORT``) which should be public accessible.
+Altogether we need four open ports (referred to as: ``CLIENTPORT``, ``SERVERPORT``, ``FILEUPLOADPORT`` and ``FILETRANSFERPORT``) which should be public accessible.
 
 Domains, dns
 ------------
@@ -46,7 +46,7 @@ The following domains should be configured (to set up prosody for the domain ``s
  groupchat.stardust.space
  [isabell@stardust ~]$
 
-Then we need the following dns_ `A`,`AAAA` and `SRV` dns_-records: 
+Then we need the following dns_ ``A``, ``AAAA`` and ``SRV`` dns_-records: 
 
 +---------------------------------------------+-------+-------+------+----------+--------+--------------+-----------------------+
 |  (_service._proto.)name		      | ttl   | class | type | priority | weight | port         | target                |
@@ -70,29 +70,29 @@ Then we need the following dns_ `A`,`AAAA` and `SRV` dns_-records:
 
 TLS
 ---
-For simplicity we use openssl and the certificates created via letsencrypt_ for above domains which are already provided on the host after adding the domains and visiting them.
+For simplicity we use openssl and the certificates created via letsencrypt_ for above domains which are already provided on the uberspace host after adding the domains and visiting them.
 
 Configure luarocks
 ------------------
 
-Prosody is written in ``lua`` and has some dependencies which we install with the package manager ``luarocks``. In order to run the installed packages we have to adapt the path:
+Prosody is written in ``lua`` and has some runtime dependencies which we install with the package manager ``luarocks``. In order to run the installed packages we have to adapt the path-variable in ``~/.bash_profile``:
 
 ::
 
  PATH=$HOME/.luarocks/bin:$PATH
  
- export $PATH
+ export PATH
 
-Additionally we need to provide the paths ``LUA_PATH`` and ``LUA_CPATH`` to use ``luarocks`` accordingly:
+Additionally we need to provide the paths ``LUA_PATH`` as well as ``LUA_CPATH`` and have to reload to use ``luarocks`` accordingly:
 
 ::
 
- [isabell@stardust ~]$ echo "$(luarocks path)" >> ~/.bash_profile \
- && source ~/.bash_profile
+ [isabell@stardust ~]$ echo "$(luarocks path)" >> ~/.bash_profile
+ [isabell@stardust ~]$ source ~/.bash_profile
  [isabell@stardust ~]$
 
-Install lua-dependencies
-------------------------
+Install runtime lua-dependencies
+--------------------------------
 
 The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) are required:
 
@@ -100,32 +100,29 @@ The following dependencies_ (``luasocket``, ``luaexpat`` and ``luafilesystem``) 
 
  [isabell@stardust ~]$ luarocks install luasocket --local
  luasocket [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install luaexpat --local EXPAT_BINDIR="/usr/bin" EXPAT_INCDIR="/usr/include/" EXPAT_LIBDIR="/usr/lib64"
+ [isabell@stardust ~]$ luarocks install luaexpat --local
  luaexpat [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luafilesystem --local
  luafilesystem [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install luasec --local OPENSSL_BINDIR="/usr/bin" OPENSSL_INCDIR="/usr/include" OPENSSL_LIBDIR="/usr/lib64"
+ [isabell@stardust ~]$ luarocks install luasec --local
  luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
-.. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
-Further optional ones (``luadbi-mysql``, ``lua-zlib``, ``luaevent``, ``luabitop`` and ``csqueues``) can be installed with these commands:
+Further optional ones (``luadbi-mysql``, ``luabitop`` and ``luaevent``) can be installed with these commands:
 
 ::
 
  [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64"
  luadbi [...] is now built and installed in [...]
  luadbi-mysql [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install lua-zlib --local 
- lua-zlib [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install luaevent --local
- luaevent [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luabitop --local
  luabitop [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install csqueues --local
- cqueues [...] is now built and installed in [...]
+ [isabell@stardust ~]$ luarocks install luaevent --local
+ luaevent [...] is now built and installed in [...]
  [isabell@stardust ~]$
+
+.. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
 To list the installed packages with their versions use the command ``luarocks list``.
 
@@ -157,8 +154,10 @@ Now from there configure, build and install prosody:
 
 ::
 
- [isabell@stardust prosody-x.x.x]$ ./configure --ostype=linux --prefix=$HOME
- [...] 
+ [isabell@stardust prosody-x.x.x]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
+ [...]
+ Done. You can now run 'make' to build.
+
  [isabell@stardust prosody-x.x.x]$ make
  [...] 
  [isabell@stardust prosody-x.x.x]$ make install
@@ -168,14 +167,12 @@ Now from there configure, build and install prosody:
 Configuration
 =============
 
-Now we copy the configuration and plugin files into reasonable locations, download the community plugins and create the prosody-data and http_upload directory:
+Now we create the http_upload folder and download the community plugins:
 
 ::
 
- [isabell@stardust ~]$ cp -R $PROSODY_PATH/conf/ ~/etc/prosody
- [isabell@stardust ~]$ cp -R $PROSODY_PATH/plugins/ ~/var/prosody/plugins
- [isabell@stardust ~]$ mkdir -p ~/var/prosody/data/http_upload
- [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/prosody/community-plugins
+ [isabell@stardust ~]$ mkdir -p ~/var/lib/prosody/http_upload
+ [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/lib/prosody/community-plugins
  [isabell@stardust ~]$
 
 Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``:
@@ -183,7 +180,7 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
 .. code-block:: lua
 
  admins = { "isabell@uber.space" }
- plugin_paths = {"/home/isabell/var/prosody/community-plugins/"}
+ plugin_paths = {"/home/isabell/var/lib/prosody/community-plugins/"}
  -- uncomment/add "proxy65" and "http_upload" in modules_enabled
  allow_registration = false
  c2s_require_encryption = true
@@ -192,7 +189,7 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
  s2s_secure_auth = true
  s2s_ports = { SERVERPORT }
  authentication = "internal_hashed"
- pidfile = "/home/isabell/var/prosody/prosody.pid";
+ pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize= false;
  storage = "sql"
  sql = { 
@@ -204,7 +201,7 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
  }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates"
- https_certificate = "../certificates/stardust.space.crt"
+ https_certificate = "/home/isabell/etc/certificates/stardust.space.crt"
  http_ports = {}
  https_ports = { FILEUPLOADPORT }
  proxy65_ports = { FILETRANSFERPORT }
@@ -232,28 +229,10 @@ Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adapt it accordingly
  autorestart=yes
  startretries=1
  stopasgroup=true
+ killasgroup=true
+ stopsignal=INT
 
-
-First-Start
------------
-
-Reread:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- prosody: available
- [isabell@stardust ~]$
-
-And then update and start your new service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl update
- prosody: added process group
- [isabell@stardust ~]$ supervisorctl start prosody
- prosody: started
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Best-Practise
 =============
@@ -280,7 +259,7 @@ Updates
 
 The easiest way to update prosody is with the same commands as in the prerequisites and installation step above. 
 
-.. note:: This should also be done on changes to openssl on CentOS. Don't forget to check the `website <https://prosody.im/>`_ regularly to stay informed about new config updates, security vulnerabilites and new releases.
+.. note:: This should also be done on changes to openssl on CentOS. Don't forget to check the `prosody website <https://prosody.im/>`_ regularly to stay informed about new config updates, security vulnerabilites and new releases.
 
 Acknowledgements
 ================
@@ -300,6 +279,6 @@ This guide uses many instructions and ideas of other developers. Refer especiall
 
 ----
 
-Tested with Prosody 0.11.2, Uberspace 7.3.2.1
+Tested with Prosody 0.11.2, Uberspace 7.3.3
 
 .. author_list::
