@@ -17,12 +17,12 @@ Dropshare
 
 .. tag_list::
 
-_Dropshare is a customizable, flexible file sharing tool for macOS and iOS and offers, among various popular cloud hosting services, to use a custom SCP/SSH endpoint as file storage. It works well with Uberspace.
+Dropshare_ is a customizable, flexible file sharing tool for macOS and iOS and offers, among various popular cloud hosting services, to use a custom SCP/SSH endpoint as file storage. It works well with Uberspace.
 
 Prerequisites
 =============
 
-Dropshare supports password or SSH key authentication. Please make sure to set up either in the _Dashboard before continuing.
+Dropshare supports password or SSH key authentication. Please make sure to set up either in the Dashboard_ before continuing.
 
 Password
 --------
@@ -34,14 +34,14 @@ When using a password, open the Dropshare connection preferences and select *New
 +-----------------+-------------------------------------------------------+
 | **Username**    | Your Uberspace username, e.g. *isabell*               |
 +-----------------+-------------------------------------------------------+
-| **Password**    | The password you set in the _Dashboard                |
+| **Password**    | The password you set in the Dashboard_                |
 +-----------------+-------------------------------------------------------+
 | **Upload Path** | Your DocumentRoot (found                              |
-|                 | in the _Datasheet, can also be a sub folder but must  |
+|                 | in the Datasheet_, can also be a sub folder but must  |
 |                 | be created on the server first), e.g.                 |
 |                 | /home/isabell/html/                                   |
 +-----------------+-------------------------------------------------------+
-| **URL to Path** | Your HTTPS URL (found in the _Datasheet, if you use   |
+| **URL to Path** | Your HTTPS URL (found in the Datasheet_, if you use   |
 |                 | sub folders, append them to the URL), usually         |
 |                 | https://isabell.uber.space.                           |
 +-----------------+-------------------------------------------------------+
@@ -61,11 +61,11 @@ When using a SSH key, open the Dropshare connection preferences and select *New 
 | **SSH Key Pair**| Select your SSH Private and Public Key                |
 +-----------------+-------------------------------------------------------+
 | **Upload Path** | Your DocumentRoot (found                              |
-|                 | in the _Datasheet, can also be a sub folder but must  |
+|                 | in the Datasheet_, can also be a sub folder but must  |
 |                 | be created on the server first), e.g.                 |
 |                 | /home/isabell/html/                                   |
 +-----------------+-------------------------------------------------------+
-| **URL to Path** | Your HTTPS URL (found in the _Datasheet, if you use   |
+| **URL to Path** | Your HTTPS URL (found in the Datasheet_, if you use   |
 |                 | sub folders, append them to the URL), usually         |
 |                 | https://isabell.uber.space.                           |
 +-----------------+-------------------------------------------------------+
