@@ -119,10 +119,10 @@ Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` wi
 
 If it’s not in state RUNNING, check your configuration.
 
-Create admin user
+Create root user
 -----------------
 
-Choose an admin password or generate a random one one using this snippet:
+Choose an root password or generate a random one one using this snippet:
 
 .. code-block:: bash
 
@@ -137,7 +137,7 @@ Create ``~/mongodb/setup.js``. Replace ``<username>`` with your Uberspace user n
 
  db.createUser(
     {
-      user: "<username>_mongoadmin",
+      user: "<username>_mongoroot",
       pwd: "<password>",
       roles: [ "root" ]
     }
@@ -153,7 +153,7 @@ Use ``mongo`` to run ``setup.js``.
  connecting to: mongodb://127.0.0.1:63325/admin?gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("0ddef66e-e716-4ef2-bbc2-a50dfc3fad7e") }
  MongoDB server version: 4.0.5
- Successfully added user: { "user" : "isabell_mongoadmin", "roles" : [ "root" ] }
+ Successfully added user: { "user" : "isabell_mongoroot", "roles" : [ "root" ] }
  [isabell@stardust ~]$
 
 .mongorc.js (optional)
@@ -163,7 +163,7 @@ To make CLI access using the ``mongo`` command easier, you can create a ``~/.mon
 
 .. code-block:: none
 
- db = connect("mongodb://<username>_mongoadmin:<password>@127.0.0.1:27017/admin")
+ db = connect("mongodb://<username>_mongoroot:<password>@127.0.0.1:27017/admin")
 
 Now you can just run ``mongo`` to connect to your MongoDB instance:
 
