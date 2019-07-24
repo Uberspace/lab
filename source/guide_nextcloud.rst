@@ -126,7 +126,7 @@ To do that, add the following lines to ``$HOME/etc/php.d/opcache.ini``:
 PHP Memory
 ----------
 
-In order to increase the memory limit of php to the recomende value of 512 MB, go to ``$HOME/etc/php.d/``, create ``memory_limit.ini`` and add the following line:
+In order to increase the memory limit of php to the recommended value of 512 MB, go to ``$HOME/etc/php.d/``, create ``memory_limit.ini`` and add the following line:
 
 ::
 
