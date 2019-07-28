@@ -200,7 +200,7 @@ Also, comment out each line of ``public/vendor/ot/compress.sh`` with a ``#``:
   #./ajax-adapter.js \
   #./editor-client.js
 
-.. note:: This is how it worked at the time of writing and it might be different for the version you downloaded. If it is different, try commenting out everything related to ``UglifyJS``. If the compilation fails the first time due to RAM limitations, just start it again. For me, it always worked the second time.
+.. note:: This is how it worked at the time of writing and it might be different for the version you downloaded. If it is different, try commenting out everything related to ``UglifyJS``. If the compilation fails the first time due to RAM limitations, just start it again. It tends to work the second time.
 
 Compile the source
 ------------------
