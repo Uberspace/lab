@@ -25,10 +25,11 @@ Inspired by HackMD_ but with more focus on speed and flexibility.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`MySQL <database-mysql>`
-  * :manual:`supervisord <daemons-supervisord>`
-  * :manual:`domains <web-domains>`
   * :manual:`Node <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`web backends <web-backends>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
@@ -56,16 +57,7 @@ Your URL needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
-See :manual:`domains <web-domains>` for setting up a custom URL like ``write.example.com``:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace web domain add write.example.com
-  The webserver's configuration has been adapted.
-  Now you can use the following records for your dns:
-      A -> 35.195.215.42
-      AAAA -> 2a00:d0c0:200:0:b9:1a:9c:48
-  [isabell@stardust ~]$
+See section "setup" in the :manual:`domains <web-domains>` manual, in case you want to set up a custom URL like ``isabell.example``.
 
 Required packages
 -----------------
@@ -443,14 +435,7 @@ Configure web backend
 
     CodiMD is running on port 60101.
 
-Use the following command, in case you are using a custom URL:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace web backend set write.example.com --http --port 60101
-  Set backend for write.example.com/ to port 60101; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
+See section "specific domain" in the :manual:`web-backends <web-backends>` manual, in case you want to set up the web backend for a custom URL like ``isabell.example``.
 
 Congratulations! You're done.
 
