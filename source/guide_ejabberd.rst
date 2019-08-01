@@ -55,7 +55,7 @@ Easy installation of Erlang is done via `kerl <https://github.com/kerl/kerl>`_:
     100 66523  100 66523    0     0   331k      0 --:--:-- --:--:-- --:--:--  333k
     [isabell@stardust bin]$ chmod +x kerl
     [isabell@stardust ~]$ cd
-    [isabell@stardust ~]$ ./kerl build 21.2
+    [isabell@stardust ~]$ kerl build 21.2
     Downloading otp_src_21.2.tar.gz to /home/isabell/.kerl/archives
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                    Dload  Upload   Total   Spent    Left  Speed
@@ -83,7 +83,7 @@ Easy installation of Erlang is done via `kerl <https://github.com/kerl/kerl>`_:
     * Using fakefop to generate placeholder PDF files.
 
     Erlang/OTP 21.2 (21.2) has been successfully built
-    [isabell@stardust ~]$ ./kerl install 21.2 ~/erlang/builds/21.2/
+    [isabell@stardust ~]$ kerl install 21.2 ~/erlang/builds/21.2/
     Installing Erlang/OTP 21.2 (21.2) in /home/isabell/erlang/builds/21.2...
     You can activate this installation running the following command:
     . /home/isabell/erlang/builds/21.2/activate
