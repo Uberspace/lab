@@ -30,7 +30,7 @@ Guillotine is released under the `MIT License`_.
 Prerequisites
 =============
 
-We're using :manual:`Ruby <lang-ruby>` in the stable version 10:
+We're using :manual:`Ruby <lang-ruby>` in the stable version 2.6:
 
 .. code-block:: console
 
@@ -83,15 +83,6 @@ Use ``gem`` to install the latest versions of the Guillotine, Sequel and mysql2 
 
 Create App File
 ---------------
-
-Create a directory, and inside the directory a file ``app.rb`` for the application:
-
-.. code-block:: console
-  :emphasize-lines: 1-2
-
-  [isabell@stardust ~]$ mkdir ~/guillotine
-  [isabell@stardust ~]$ touch ~/guillotine/app.rb
-  [isabell@stardust ~]$
 
 Add the following content to ``~/guillotine/app.rb`` to set up the connection to the MySQL database using the Sequel adapter. Make sure to adapt your MySQL credentials.
 
@@ -264,7 +255,29 @@ Use :manual_anchor:`gem <lang-ruby.html#gem>` to update dependencies like so:
   Gems updated: addressable public_suffix bigdecimal csv fileutils io-console json rack rack-protection rdoc rexml rss mustermann sinatra
   [isabell@stardust ~]$
 
+Restart the Service for the update to take effect.
 
+.. code-block:: console
+  :emphasize-lines: 1
+
+  [isabell@stardust ~]$ supervisorctl restart guillotine
+  guillotine: stopped
+  guillotine: started
+  [isabell@stardust ~]$
+
+Check the status and logs to verify that Guillotine started successfully after the update.
+
+.. code-block:: console
+  :emphasize-lines: 1,3
+
+  [isabell@stardust ~]$ supervisorctl status guillotine
+  guillotine                       RUNNING   pid 26020, uptime 0:03:14
+  [isabell@stardust ~]$ supervisorctl tail -5000 guillotine stderr
+  [2019-08-01 16:48:56] INFO  WEBrick::HTTPServer#start done.
+  [2019-08-01 16:48:56] INFO  WEBrick 1.4.2
+  [2019-08-01 16:48:56] INFO  ruby 2.6.2 (2019-03-13) [x86_64-linux]
+  [2019-08-01 16:48:56] INFO  WEBrick::HTTPServer#start: pid=26020 port=9292
+  [isabell@stardust ~]$
 
 
 .. _Guillotine: https://github.com/technoweenie/guillotine
