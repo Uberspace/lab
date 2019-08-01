@@ -84,6 +84,14 @@ Use ``gem`` to install the latest versions of the Guillotine, Sequel and mysql2 
 Create App File
 ---------------
 
+Create a directory for the application:
+
+.. code-block:: console
+  :emphasize-lines: 1-2
+
+  [isabell@stardust ~]$ mkdir ~/guillotine
+  [isabell@stardust ~]$
+
 Add the following content to ``~/guillotine/app.rb`` to set up the connection to the MySQL database using the Sequel adapter. Make sure to adapt your MySQL credentials.
 
 .. code-block:: ruby
