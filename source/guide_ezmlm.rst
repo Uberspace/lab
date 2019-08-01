@@ -94,7 +94,16 @@ Then run
  [isabell@stardust ezmlm-idx-7.2.2]
 
 
-The test call should show that everything is OK. Also ``man ezmlm-make`` should work.
+The test call should show that everything is OK. Now create directories and install everything in the correct locations
+
+::
+
+ [isabell@stardust ezmlm-idx-7.2.2] mkdir -p /home/isabell/lib /home/isabell/etc
+ [isabell@stardust ezmlm-idx-7.2.2] make install
+ [...]
+ [isabell@stardust ezmlm-idx-7.2.2]
+
+You can run ezmlm-test again if you wish. Now also ``man ezmlm-make`` should work.
 If not, check the output of the respective commands for errors.
 
 
