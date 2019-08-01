@@ -234,9 +234,9 @@ Installation
 Provide the LibYAML path to the compiler:
 ::
 
-    [isabell@stardust ~]$ export CFLAGS=-I/home/$USER/ejabberd/include
-    [isabell@stardust ~]$ export CPPFLAGS=-I/home/$USER/ejabberd/include
-    [isabell@stardust ~]$ export LDFLAGS=-L/home/$USER/ejabberd/lib
+    [isabell@stardust ~]$ export CFLAGS=-I$HOME/ejabberd/include
+    [isabell@stardust ~]$ export CPPFLAGS=-I$HOME/ejabberd/include
+    [isabell@stardust ~]$ export LDFLAGS=-L$HOME/ejabberd/lib
     [isabell@stardust ~]$
 
 Download and install ejabberd:
