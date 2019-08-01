@@ -48,11 +48,13 @@ ejabberd is written in Erlang see the `ejabberd documentation <https://docs.ejab
 Easy installation of Erlang is done via `kerl <https://github.com/kerl/kerl>`_:
 ::
 
-    [isabell@stardust ~]$ curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
+    [isabell@stardust ~]$ cd ~/bin
+    [isabell@stardust bin]$ curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
     100 66523  100 66523    0     0   331k      0 --:--:-- --:--:-- --:--:--  333k
-    [isabell@stardust ~]$ chmod +x kerl
+    [isabell@stardust bin]$ chmod +x kerl
+    [isabell@stardust ~]$ cd
     [isabell@stardust ~]$ ./kerl build 21.2
     Downloading otp_src_21.2.tar.gz to /home/isabell/.kerl/archives
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
