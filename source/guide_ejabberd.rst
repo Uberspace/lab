@@ -234,10 +234,10 @@ Installation
 Provide the LibYAML path to the compiler:
 ::
 
-    [isabell@stardust ejabberd-19.05]$ export CFLAGS=-I/home/isabell/ejabberd/include
-    [isabell@stardust ejabberd-19.05]$ export CPPFLAGS=-I/home/isabell/ejabberd/include
-    [isabell@stardust ejabberd-19.05]$ export LDFLAGS=-L/home/isabell/ejabberd/lib
-    [isabell@stardust ejabberd-19.05]$
+    [isabell@stardust ~]$ export CFLAGS=-I/home/isabell/ejabberd/include
+    [isabell@stardust ~]$ export CPPFLAGS=-I/home/isabell/ejabberd/include
+    [isabell@stardust ~]$ export LDFLAGS=-L/home/isabell/ejabberd/lib
+    [isabell@stardust ~]$
 
 Download and install ejabberd:
 ::
@@ -304,7 +304,7 @@ ejabberd needs 4 open ports for c2s, s2s, http and proxy connections.
 
 .. include:: includes/open-port.rst
 
-As standard ports can not always be used on uberspace an external domain is needed and SRV records must be set for c2s and s2s connections. Refer to the `XMPP wiki <https://wiki.xmpp.org/web/SRV_Records>`_ for setup and point them to the corresponding ports.
+As standard ports cannot be used on uberspace an external domain is needed and SRV records must be set for c2s and s2s connections. Refer to the `XMPP wiki <https://wiki.xmpp.org/web/SRV_Records>`_ for setup and point them to the corresponding ports.
 
 Change the configuration
 ------------------------
