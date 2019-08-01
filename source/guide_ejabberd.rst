@@ -210,8 +210,23 @@ ejabberd needs `LibYAML <https://pyyaml.org/wiki/LibYAML>`_ for compilation:
     config.status: creating include/config.h
     config.status: executing depfiles commands
     config.status: executing libtool commands
-    [isabell@stardust yaml-0.2.2]$ make
+    [isabell@stardust yaml-0.2.2]$ make    
+    Making all in include                                                                                                           [...]
+    mv -f .deps/run-emitter-test-suite.Tpo .deps/run-emitter-test-suite.Po
+    /bin/sh ../libtool  --tag=CC   --mode=link gcc  -g -O2   -o run-emitter-test-suite run-emitter-test-suite.o ../src/libyaml.la 
+    libtool: link: gcc -g -O2 -o .libs/run-emitter-test-suite run-emitter-test-suite.o  ../src/.libs/libyaml.so -Wl,-rpath -Wl,/home/ejabberd/ejabberd/lib
+    make[1]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
     [isabell@stardust yaml-0.2.2]$ make install
+    Making install in include
+    [...]
+    Making install in tests
+    make[1]: Entering directory `/home/ejabberd/yaml-0.2.2/tests'
+    make[2]: Entering directory `/home/ejabberd/yaml-0.2.2/tests'
+    make[2]: Nothing to be done for `install-exec-am'.
+    make[2]: Nothing to be done for `install-data-am'.
+    make[2]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
+    make[1]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
+    [ejabberd@stardust yaml-0.2.2]$ 
 
 Installation
 ============
