@@ -449,7 +449,7 @@ Configure web backend
 
 .. note::
 
-    ejabberd is listening on  ``<http-port>``.
+    ejabberd is listening on  port ``5443``.
 
 .. include:: includes/web-backend.rst
 
