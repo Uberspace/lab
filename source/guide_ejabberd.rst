@@ -45,7 +45,7 @@ Erlang
 ------
 
 ejabberd is written in Erlang see the `ejabberd documentation <https://docs.ejabberd.im/admin/installation/#requirements>`_ for the recomended version.
-Easy installation of Erlang is done via `kerl <https://github.com/kerl/kerl>`_:
+Install the `kerl <https://github.com/kerl/kerl>`_ tool:
 ::
 
     [isabell@stardust ~]$ cd ~/bin
@@ -55,6 +55,10 @@ Easy installation of Erlang is done via `kerl <https://github.com/kerl/kerl>`_:
     100 66523  100 66523    0     0   331k      0 --:--:-- --:--:-- --:--:--  333k
     [isabell@stardust bin]$ chmod +x kerl
     [isabell@stardust ~]$ cd
+
+Now, use kerl to install Erlang:
+::
+
     [isabell@stardust ~]$ kerl build 21.2
     Downloading otp_src_21.2.tar.gz to /home/isabell/.kerl/archives
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
