@@ -122,7 +122,7 @@ ejabberd needs `LibYAML <https://pyyaml.org/wiki/LibYAML>`_ for compilation:
 
     [isabell@stardust ~]$ tar xf yaml-0.2.2.tar.gz
     [isabell@stardust ~]$ cd yaml-0.2.2/
-    [isabell@stardust yaml-0.2.2]$./configure --prefix=/home/$USER/ejabberd
+    [isabell@stardust yaml-0.2.2]$./configure --prefix=$HOME/ejabberd
     checking for a BSD-compatible install... /usr/bin/install -c
     checking whether build environment is sane... yes
     checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
@@ -266,7 +266,7 @@ Download and install ejabberd:
     [isabell@stardust ~]$ tar xf 19.05.tar.gz
     [isabell@stardust ~]$ cd ejabberd-19.05/
     [isabell@stardust ejabberd-19.05]$./autogen.sh
-    [isabell@stardust ejabberd-19.05]$ ./configure --enable-user=$USER --prefix=/home/$USER/ejabberd
+    [isabell@stardust ejabberd-19.05]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd
     checking whether make sets $(MAKE)... yes
     checking for a BSD-compatible install... /usr/bin/install -c
     checking for a sed that does not truncate output... /usr/bin/sed
@@ -461,7 +461,7 @@ Create ``~/etc/services.d/ejabberd.ini`` with the following content:
 .. code-block:: ini
 
   [program:ejabberd]
-  command=/home/isabell/ejabberd/sbin/ejabberdctl foreground
+  command=%(ENV_HOME)s/ejabberd/sbin/ejabberdctl foreground
   autostart=yes
   autorestart=yes
   stopasgroup=true
