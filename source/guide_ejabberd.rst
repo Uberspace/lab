@@ -354,13 +354,13 @@ Change the port numbers to your open ports according to your SRV records:
       module: ejabberd_s2s_in
       max_stanza_size: 524288
 
-Change the ``<http-port>`` and disable TLS as it is going to be provided through web backends and disable the last two listeners:
+Disable TLS for HTTP as it is going to be provided through web backends and disable the last two listeners:
 
 .. code-block:: ini
- :emphasize-lines: 2,5,13-23
+ :emphasize-lines: 5,13-23
 
     -
-      port: <http-port>
+      port: 5443
       ip: "::"
       module: ejabberd_http
     #  tls: true
