@@ -304,7 +304,7 @@ Configuration
 
 Open Firewall Ports
 -------------------
-ejabberd needs 4 open ports for c2s, s2s, http and proxy connections.
+ejabberd needs three open ports for c2s, s2s, and proxy connections. HTTP connections are handled by a web backend.
 
 .. include:: includes/open-port.rst
 
