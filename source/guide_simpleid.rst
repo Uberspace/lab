@@ -154,13 +154,13 @@ Search for the pass line and edit it as described.
 
 .. code-block:: php
 
- pass="<hash>:pbkdf2:sha256:<salt>"
+ pass="<hash>:pbkdf2:sha256:100000:<salt>"
 
 In our example we would use this passline:
 
 .. code-block:: php
 
- pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:MySuperSecretSalt"
+ pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:100000:MySuperSecretSalt"
 
 Since this is our first user, it should be set as administrator by changing
 
