@@ -487,7 +487,11 @@ If everything is fine, migrate the database and delete your backup:
 .. code-block:: console
 
   [isabell@stardust codimd]$ node_modules/.bin/sequelize db:migrate
-  [...]
+  
+  Sequelize CLI [Node: 8.13.0, CLI: 5.5.0, ORM: 5.8.12]
+  
+  Parsed url mysql://isabell:*****@localhost:3306/isabell_codimd
+  No migrations were executed, database schema was already up to date.
   [isabell@stardust codimd]$ supervisorctl start codimd
   codimd: started
   [isabell@stardust codimd]$ cd ..
