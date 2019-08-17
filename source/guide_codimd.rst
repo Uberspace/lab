@@ -272,6 +272,8 @@ Example:
 
 A backup of the original content can be found in ``config.json.example``.
 
+.. note:: In case you are performing an update, use ``rm config.json && cp ../codimd-old/config.json .``.
+
 .. note::
 
   ``config.json`` is read whenever the server is started via ``node app.js``. In order to make it use the the ``production`` section of ``config.json``, one has to set ``NODE_ENV`` accordingly: ``NODE_ENV=production node app.js``.
