@@ -500,6 +500,6 @@ If everything is fine, migrate the database and delete your backup:
 
 ----
 
-Tested with CodiMD 1.4.0 and Uberspace 7.3.3.0
+Tested with CodiMD 1.5.0 and Uberspace 7.3.4.2
 
 .. author_list::
