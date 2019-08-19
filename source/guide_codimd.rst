@@ -448,6 +448,11 @@ Updates
 
 Perform the following steps, to update your `CodiMD`_ installation.
 
+Make a backup of your data
+--------------------------
+
+Backup your notes by opening the main page at ``isabell.example`` and selecting "Export user data" from the top right user menu. In order to also backup notes from other users, have a look at section "Working with dumps" in the :manual:`MySQL <database-mysql>` manual.
+
 Stop the service and backup the old installation directory
 ----------------------------------------------------------
 
