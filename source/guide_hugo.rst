@@ -2,6 +2,7 @@
 
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 .. author:: luto <http://luto.at>
+.. author:: Julian Oster <https://jlnostr.de>
 
 .. tag:: lang-go
 .. tag:: blog
@@ -63,22 +64,22 @@ Check the Hugo_ website or `Github Repository`_ for the latest release and copy 
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.57.2/hugo_0.57.2_Linux-64bit.tar.gz
  […]
- Saving to: ‘hugo_0.54.0_Linux-64bit.tar.gz’
+ Saving to: ‘hugo_0.57.2_Linux-64bit.tar.gz’
 
  100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
 
- 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.54.0_Linux-64bit.tar.gz’ saved [7750708/7750708]
- [isabell@stardust hugo_render]$
+ 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.57.2_Linux-64bit.tar.gz’ saved [7750708/7750708]
+ [isabell@stardust ~]$
 
 Get the hugo binary from the archive, delete the archive and enable hugo to be executed easily. Replace the version in the archive file name with the one you just downloaded.
 
 ::
 
- [isabell@stardust ~]$ tar -xvf hugo_0.54.0_Linux-64bit.tar.gz hugo
+ [isabell@stardust ~]$ tar -xvf hugo_0.57.2_Linux-64bit.tar.gz hugo
  hugo
- [isabell@stardust ~]$ rm hugo_0.54.0_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ rm hugo_0.57.2_Linux-64bit.tar.gz
  [isabell@stardust ~]$ mv hugo ~/bin
  [isabell@stardust ~]$
 
@@ -87,7 +88,7 @@ After setting up, test if Hugo works. The output is the version number of Hugo.
 ::
 
  [isabell@stardust ~]$ hugo version
- Hugo Static Site Generator v0.54.0-B1A82C61 linux/amd64 BuildDate: 2019-02-01T09:40:34Z
+ Hugo Static Site Generator v0.57.2-A849CB2D linux/amd64 BuildDate: 2019-08-17T17:54:13Z
  [isabell@stardust ~]$
 
 
@@ -114,7 +115,7 @@ Hugo is now installed on your Uberspace. This means you're ready to create your 
  Visit https://gohugo.io/ for quickstart guide and full documentation.
  [isabell@stardust hugo_websites]$
 
-Step 5
+Step 4
 ------
 
 Since Hugo is delivered without a theme, this must now be installed. To do so, look for a theme you like at https://themes.gohugo.io/ and install it into the ``themes`` directory of your site. This example uses the theme FutureImperfect_, but you are free to use any other theme. Then copy the sample files into the project root, to quickly bootstrap you new site.
@@ -175,6 +176,6 @@ If there is a new version available, update the ``hugo`` binary in ``~/bin`` (re
 
 ----
 
-Tested with Hugo 0.54, Uberspace 7.2.1.0
+Tested with Hugo 0.57.2, Uberspace 7.3.5.1
 
 .. author_list::
