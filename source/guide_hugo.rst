@@ -137,6 +137,7 @@ Deploying your site
 ===================
 
 Hugo is a static site generator. It will build a bunch of HTML and CSS files, which can be served by any web server. In our case, there is a httpd set up to serve files in ``~/html``, so we tell hugo to drop the files there. This step needs to be repeated each time you change something about your site. Using the ``--destination`` parameter, you can also deploy the files to a different directory or domain for testing.
+Before that, the `HUGO_CACHEDIR` environment variable is set to the local `tmp` directory. Otherwise the build will fail, because Hugo is trying to access the global `/tmp` folder, which is not allowed.
 
 .. warning::
 
@@ -146,7 +147,7 @@ Hugo is a static site generator. It will build a bunch of HTML and CSS files, wh
 ::
 
   [isabell@stardust ~]$ cd ~/hugo_websites/hugo_web
-  [isabell@stardust hugo_web]$ hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
+  [isabell@stardust hugo_web]$ HUGO_CACHEDIR=/home/$USER/tmp hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
 
 Finishing installation
 ======================
