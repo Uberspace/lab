@@ -110,7 +110,6 @@ Use your favourite editor to create the file ``~/etc/services.d/mongodb.ini`` wi
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
    --auth
-   --smallfiles
    --unixSocketPrefix %(ENV_HOME)s/mongodb
  autostart=yes
  autorestart=yes
