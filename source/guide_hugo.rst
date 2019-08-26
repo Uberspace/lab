@@ -147,7 +147,7 @@ Before that, the `HUGO_CACHEDIR` environment variable is set to the local `tmp` 
 ::
 
   [isabell@stardust ~]$ cd ~/hugo_websites/hugo_web
-  [isabell@stardust hugo_web]$ HUGO_CACHEDIR=/home/$USER/tmp hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
+  [isabell@stardust hugo_web]$ HUGO_CACHEDIR=$HOME/tmp hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
 
 Finishing installation
 ======================
