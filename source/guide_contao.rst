@@ -65,7 +65,36 @@ Installation
 
 Since Contao uses the subdirectory ``web/`` as web root of your website you should **not** install Contao in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
 
-``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**:
+``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use either Contao Manager or the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**.
+
+Contao Manager
+--------------
+
+Create a folder for Contao Manager, download it and make it accessible:
+
+.. code-block:: console
+ :emphasize-lines: 1,8
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ mkdir -p <target>/web
+ [isabell@stardust web]$ cd <target>/web
+ [isabell@stardust web]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
+ [isabell@stardust web]$ mv contao-manager.phar contao-manager.phar.php
+ [isabell@stardust web]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rm -rf html/
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/<target>/web/ html
+ [isabell@stardust isabell]$
+
+Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.example/contao-manager.phar.php``) to run the Contao Manager.
+
+Follow the steps to install Contao. Make sure to use the Cloud Resolver as it will resolve the dependencies in the cloud, rather on the local Uberspace host.
+
+When the setup is done, continue with the `Configuration`_. section in this guide.
+
+Composer
+--------
+
+.. warning:: Your ``php`` command line processes might not be able to allocate enough memory to complete the expensive ``composer`` call.
 
 .. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition <target> '42.23.*'``
 
