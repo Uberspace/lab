@@ -209,7 +209,7 @@ Now, let's build the front-end bundle. This will take some time.
 
 .. code-block:: console
 
-  [isabell@stardust codimd]$ npm run build
+  [isabell@stardust codimd]$ NODE_OPTIONS=--max_old_space_size=1024 npm run build
   [...]
   [isabell@stardust codimd]$
 
