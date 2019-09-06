@@ -24,6 +24,10 @@ flat files. For using a database and the web see the detailed docs.
   * Mailing lists
   * Compiling a C program using Makefiles
 
+
+.. note:: When adding yourself to the list and test sending emails, be aware that GMail silently drops mails sent by yourself when they arrive again via the mailing list. One could think that there is a flaw in the uberspace qmail configuration sending out emails!
+
+
 License
 =======
 
@@ -164,5 +168,6 @@ ezmlm_ can do many more things such as subscriber only lists, list moderation et
 
 
 .. _ezmlm: https://untroubled.org/ezmlm/
+
 
 .. author_list::
