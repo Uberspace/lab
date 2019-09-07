@@ -100,7 +100,7 @@ Configure web server
 
 .. note::
 
-    CHANGEME is running on port 3000.
+    grafana is running on port 3000.
 
 .. include:: includes/web-backend.rst
 
