@@ -127,7 +127,7 @@ Create the file ``~/etc/grafana/grafana.ini`` with the following content:
   admin_user = admin
   admin_password = password123
 
-.. note:: The ``admin_password`` can later be changed via the web interface when grafana is running.
+.. note:: The ``admin_password`` MUST later be changed via the web interface when grafana is running.
 
 Setup daemon
 ------------
@@ -161,6 +161,14 @@ Start grafana
 Now point your browser at your uberspace and you should see the grafana web interface.
 
 .. _grafana: https://grafana.com
+
+Best practices
+==============
+
+Security
+--------
+
+Change the default password which we configured in the configuration file ``~/etc/grafana/grafana.ini``!
 
 ----
 
