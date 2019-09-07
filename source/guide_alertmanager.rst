@@ -95,23 +95,10 @@ Setup daemon
 Create the file ``~/etc/services.d/alertmanager.ini`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 3
 
   [program:alertmanager]
   command=alertmanager
     --web.listen-address="127.0.0.1:9093"
-    --config.file=%(ENV_HOME)s/etc/alertmanager/alertmanager.yml
-    --storage.path=%(ENV_HOME)s/var/lib/alertmanager/
-  autostart=yes
-  autorestart=yes
-
-In our example this would be:
-
-.. code-block:: ini
-
-  [program:alertmanager]
-  command=alertmanager
-    --web.listen-address="127.0.0.1:9000"
     --config.file=%(ENV_HOME)s/etc/alertmanager/alertmanager.yml
     --storage.path=%(ENV_HOME)s/var/lib/alertmanager/
   autostart=yes
@@ -148,7 +135,7 @@ On option to access the web interface is via a SSH tunnel:
 
 ::
 
- [isabell@localhost ~]$ ssh -L 8080:localhost:9000 isabell@stardust.uberspace.de
+ [isabell@localhost ~]$ ssh -L 8080:localhost:9093 isabell@stardust.uberspace.de
  [isabell@stardust ~]$
 
 Now you can access the web interface via ``http://localhost:8080`` on your workstation.
