@@ -130,7 +130,7 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
 
 This will overwrite any changed files while keeping your current configuration.
 
-.. _FreshRSS: https://freshrss.github.io/FreshRSS
+.. _FreshRSS: https://freshrss.org/
 .. _GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
 
 ----
