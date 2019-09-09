@@ -13,7 +13,7 @@
       :align: center
 
 #############
-Gitlab Runner
+GitLab Runner
 #############
 
 .. tag_list::
@@ -29,12 +29,12 @@ GitLab Runner is the open source project that is used to run your jobs and send 
 Prerequisites
 =============
 
-gitlab project
+GitLab project
 --------------
 
-You need to have a project in gitlab that you want to deploy using Gitlab Runner.
+You need to have a project in GitLab that you want to deploy using GitLab Runner.
 
-For further information please refer to the official `Gitlab Runner docs`_
+For further information please refer to the official `GitLab Runner docs`_
 
 Obtain registration token
 --------------------------
@@ -49,7 +49,7 @@ Installation
 Download latest version
 -----------------------
 
-Use ``wget`` to download the latest version of Gitlab Runner:
+Use ``wget`` to download the latest version of GitLab Runner:
 
 ::
 
@@ -81,7 +81,7 @@ Register the runner
 
 .. note:: You need your registration token you copied above.
 
-  This basic setup uses the **shell executor**. See: `Gitlab Runner Executors`_
+  This basic setup uses the **shell executor**. See: `GitLab Runner Executors`_
 
 ::
 
@@ -114,12 +114,12 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 
 If it’s not in state RUNNING, check your configuration.
 
-.. _Gitlab: https://gitlab.com
-.. _Gitlab Runner docs: https://docs.gitlab.com/runner/
-.. _Gitlab Runner executors: https://docs.gitlab.com/runner/executors/README.html
+.. _GitLab: https://gitlab.com
+.. _GitLab Runner docs: https://docs.gitlab.com/runner/
+.. _GitLab Runner executors: https://docs.gitlab.com/runner/executors/README.html
 
 ----
 
-Tested with Gitlab Runner 11.1.0, Uberspace 7.1.7.0
+Tested with GitLab Runner 11.1.0, Uberspace 7.1.7.0
 
 .. author_list::
