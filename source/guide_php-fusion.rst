@@ -14,7 +14,7 @@
 PHP-Fusion
 ##########
 
-PHP-Fusion <https://php-fusion.co.uk/>_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
+PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
 
 ----
 
@@ -58,7 +58,7 @@ Your URL needs to be setup:
 Installation
 ============
 
-First get the PHP-Fusion source code from Sourceforge <https://sourceforge.net/projects/php-fusion/files/latest/download>_:
+First get the PHP-Fusion source code from Sourceforge_:
 
 ::
 
@@ -87,4 +87,6 @@ To remove the file install.php enter
 
 Tested with PHP-Fusion v9.03.00 and Uberspace 7.2.8.2
 
+.. _PHP-Fusion: https://php-fusion.co.uk
+.. _Sourceforge: https://sourceforge.net/projects/php-fusion/files/latest/download
 .. author_list::
