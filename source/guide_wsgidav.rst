@@ -56,7 +56,7 @@ Add additional folders you want to access via webdav with:
 
  [isabell@stardust ~]$ mkdir ~/webdav/<newfoldername>
 
-config file
+Config file
 ======================
 
 .. note::
