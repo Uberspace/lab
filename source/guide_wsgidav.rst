@@ -64,51 +64,28 @@ config file
     Only use spaces to indent in the config file! No tabs!
 
 
-The following template is the minimum to get wsgidav up and running. You have to change provider_mapping, user_mapping and the port (if another service is already running on 8080).
-If you miss some functionality or want more information, take a look at the sample file and the explanation of the configuration options:
-https://wsgidav.readthedocs.io/en/latest/user_guide_configure.html#sample-wsgidav-yaml
+We will modify this example config (YAML): https://wsgidav.readthedocs.io/en/latest/user_guide_configure.html#sample-wsgidav-yaml
 
 
-Config file path:
-
+Change the port if something is already running on 8080:
 ::
 
- ~/.wsgidav/wsgidav.yaml
- 
-
-
-Config file:
-
-::
-
- server: "cheroot"
- server_args:
-     numthreads: 256
  host: 0.0.0.0
- port: 8080
- block_size: 8192
- add_header_MS_Author_Via: true
- hotfixes:
-     winxp_accept_root_share_login: false
-     win_accept_anonymous_options: false
-     unquote_path_info: false
-     re_encode_path_info: null
-     emulate_win32_lastmod: true
- 
- middleware_stack:
-     - wsgidav.debug_filter.WsgiDavDebugFilter
-     - wsgidav.error_printer.ErrorPrinter
-     - wsgidav.http_authenticator.HTTPAuthenticator
-     - wsgidav.dir_browser.WsgiDavDirBrowser
-     - wsgidav.request_resolver.RequestResolver
- 
- 
+ port: 8080 
+
+
+
+Define which folder should be accessible:
+::
  mount_path: null
  provider_mapping:
      "/": "/home/isabell/webdav/"
      "/firstpath": "/home/isabell/webdav/<newpath>"
  # Adds folder "/home/isabell/webdav/<newpath>" to URL https://isabell.uber.space/firstpath
-	
+
+
+Add user and password for every path:
+::
  simple_dc:
      user_mapping:
          "*":  # default (used for all shares that are not explicitly listed). Keep this one!
@@ -118,48 +95,16 @@ Config file:
          "/firstpath": # The mount_path this user has access to.
              "isabellscousin": # Username
                  password: "<password>" # Password. Change it!
- # Here you can add additional users (same indent)
+ # You can add multiple users for every path.
 
- http_authenticator:
-     accept_basic: true
-     accept_digest: true
-     default_to_digest: true
-     trusted_auth_header: null
-     domain_controller: null
- 
- nt_dc:
-     preset_domain: null
-     preset_server: null
- pam_dc:
-     service: "login"
-     encoding: "utf-8"
-     resetcreds: true
- verbose: 3
- logger_format: "%(asctime)s.%(msecs)03d - <%(thread)05d> %(name)-27s %(levelname)-8s: %(message)s"
- logger_date_format: "%H:%M:%S"
- error_printer:
-     catch_all: false
- debug_methods: []
- debug_litmus: []
- dir_browser:
-     enable: true
-     ignore:
-         - ".DS_Store"  # macOS folder meta data
-         - "Thumbs.db"  # Windows image previews
-         - "._*"  # macOS hidden data files
-     icon: true
-     response_trailer: true
-     show_user: true
-     show_logout: true
-     davmount: false
-     ms_mount: false
-     ms_sharepoint_support: true
- 
- property_manager: true
- mutable_live_props:
-     - "{DAV:}getlastmodified"
- lock_manager: true
 
+
+Save the file here:
+
+::
+
+~/etc/wsgidav.yaml
+ 
 
 
 
@@ -180,8 +125,8 @@ Create ``~/etc/services.d/wsgidav.ini`` with the following content:
 .. code-block:: ini
 
  [program:wsgidav]
- command=wsgidav -c /home/isabell/.wsgidav/wsgidav.yaml
- directory = /home/isabell/webdav
+ command=wsgidav -c /home/%(ENV_HOME)s/etc/wsgidav.yaml
+ directory = /home/%(ENV_HOME)s/webdav
  autostart=yes
  autorestart=yes
 
