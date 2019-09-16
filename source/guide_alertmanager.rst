@@ -80,15 +80,6 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/alertmanager`
 Configuration
 =============
 
-Configure web server
---------------------
-
-.. note::
-
-    alertmanager is running on port 9093.
-
-.. include:: includes/web-backend.rst
-
 Setup daemon
 ------------
 
@@ -126,12 +117,14 @@ Best practices
 Security
 --------
 
-The alertmanager web interface MUST not be reachable from the public internet without authentication. It allows everyone to create and silence alarms which is probably not what you want.
+We did not configure a web backend because the alertmanager web interface should not be reachable from the public internet.
+
+Everyone with access to the web interface is able to create and silence alarms.
 
 Accessing the webinterface
 --------------------------
 
-On option to access the web interface is via a SSH tunnel:
+One option to access the web interface is via a SSH tunnel:
 
 ::
 
