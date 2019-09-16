@@ -40,14 +40,14 @@ The first directory is for storing the notification log and the alert silences:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p var/lib/alertmanager
+ [isabell@stardust ~]$ mkdir -p ~/var/lib/alertmanager
  [isabell@stardust ~]$
 
 The second directory is for storing the configuration files:
 
 ::
 
- [isabell@stardust ~]$ mkdir etc/alertmanager
+ [isabell@stardust ~]$ mkdir ~/etc/alertmanager
  [isabell@stardust ~]$
 
 
@@ -61,7 +61,7 @@ Find the latest version of alertmanager_ for the operating system ``linux`` and 
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/alertmanager/alertmanager/releases/download/v0.19.0/alertmanager-0.19.0.linux-amd64.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/prometheus/alertmanager/releases/download/v0.19.0/alertmanager-0.19.0.linux-amd64.tar.gz
  [isabell@stardust ~]$ tar xvzf alertmanager-0.19.0.linux-amd64.tar.gz
  [isabell@stardust ~]$ cd alertmanager-0.19.0.linux-amd64
  [isabell@stardust alertmanager-0.19.0.linux-amd64]$
