@@ -58,6 +58,14 @@ Taskd listens on a port (by default 53589). We need to open a port in the firewa
  [isabell@stardust ~]$
 
 remember this port.
+We also need to know the hostname:
+
+::
+
+ [isabell@stardust ~]$ hostname -f
+ stardust.uberspace.de
+ [isabell@stardust ~]$
+
 
 We need a directory where the taskd files are stored.
 ::
@@ -80,10 +88,10 @@ Download the latest version and build it.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ curl -LO https://taskwarrior.org/download/taskd-latest.tar.gz
+  [isabell@stardust ~]$ curl -LO https://taskwarrior.org/download/taskd-1.1.0.tar.gz
   ...
-  [isabell@stardust ~]$ tar xzf taskd-latest.tar.gz
-  [isabell@stardust ~]$ cd taskd-latest
+  [isabell@stardust ~]$ tar xzf taskd-1.1.0.tar.gz
+  [isabell@stardust ~]$ cd taskd-1.1.0
   [isabell@stardust ~]$ cmake -DCMAKE_BUILD_TYPE=release .
   ...
   [isabell@stardust ~]$ make
@@ -94,8 +102,8 @@ Install Required taskd Binaries
 -------------------------------
 ::
 
- [isabell@stardust ~]$ cp /home/isabell/taskd-lates/src/taskd /home/isabell/bin
- [isabell@stardust ~]$ cp /home/isabell/taskd-lates/src/taskdctl /home/isabell/bin
+ [isabell@stardust ~]$ cp /home/isabell/taskd-1.1.0/src/taskd /home/isabell/bin
+ [isabell@stardust ~]$ cp /home/isabell/taskd-1.1.0/src/taskdctl /home/isabell/bin
  [isabell@stardust ~]$
 
 Verify installation:
@@ -148,7 +156,8 @@ Initialization of taskd
  You must specify the 'server' variable, for example:
  taskd config server localhost:53589
  
- Created /var/taskd
+ Created /home/isabell/.var/taskddata/config
+
  [isabell@stardust ~]$
 
 Create Server PKI Certificates and key
@@ -157,7 +166,7 @@ Create Server PKI Certificates and key
 The taskd bundles scripts for generating reuqired keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step andy copy the pki directory to the TASKDDATA directory so we have everything in one place.
 ::
 
- [isabell@stardust ~]$ cp -r /home/isabell/taskd-lates/pki $TASKDDATA
+ [isabell@stardust ~]$ cp -r /home/isabell/taskd-1.1.0/pki $TASKDDATA
  [isabell@stardust ~]$ cd $TASKDDATA/pki
  [isabell@stardust ~]$
 
@@ -168,17 +177,17 @@ Now edit the vars file in $TASKDDATA/pki/vars as required. E.g.:
  BITS=4096
  EXPIRATION_DAYS=365
  ORGANIZATION="isabellorganization"
- CN=isabell.uber.space
+ CN=stardust.uberspace.de
  COUNTRY=DE
  STATE="Saxony"
  LOCALITY="Dresden"
 
 Note: Make sure the CN matches the domain you are going to use for synchronization! Taskwarrior clients are strict with that if you do not switch off certificate checking.
-In our case subdomain.isabell.uber.space will not work and lead to a certificate error in the client.
+In our case isabell.uber.space will not work and lead to a certificate error in the client. User whatever hostname -f yields!
 
 ::
 
- [isabell@stardust ~]$ ./gernerate
+ [isabell@stardust ~]$ ./generate
  ...
  [isabell@stardust ~]$
 
@@ -233,8 +242,8 @@ Create a file ``~/etc/services.d/taskd.ini`` and put the following in it:
   [program:taskd]
   command=taskd server --data /home/isabell/.var/taskddata
 
-
-  [isabell@stardust ~]$ supervisorctl start taskd
+  [isabell@stardust ~]$ supervisorctl reread
+  [isabell@stardust ~]$ supervisorctl update
   [isabell@stardust ~]$
 
 
@@ -244,6 +253,7 @@ Clients are gathered in organizations. In general one organization will suffice 
 ::
 
  [isabell@stardust ~]$ taskd add org Public
+ Created organization 'Public'
  [isabell@stardust ~]$ 
 
 Now add as many users as you like. Spaces are ok as long you quote the name.
@@ -256,14 +266,14 @@ Now add as many users as you like. Spaces are ok as long you quote the name.
  [isabell@stardust ~]$
 
 Mind the user key! This identifies the user (as the name is not neccessary unique).
-Lets put this information in a file just to make things easier especially on Android where you can then copy paste the information. Create a file 'Isabell_task_info'
+Lets put this information in a file just to make things easier especially on Android where you can then copy paste the information. Create a file  ``~/Isabell_task_info`` and put this in:
 
 ::
 
  org Public
  key cf31f287-ee9e-43a8-843e-e8bbd5de4294
  name Isabell Smith
- server isabell.uber.space:40200
+ server stardust.uberspace.de:40200
 
 
 
@@ -273,7 +283,7 @@ As we have a user we need a key and a cert. The correctness of the name is not i
 ::
 
  [isabell@stardust ~]$ cd $TASKDDATA/pki
- [isabell@stardust ~]$ ./gernerate.client Isabell_Smith
+ [isabell@stardust ~]$ ./generate.client Isabell_Smith
  ...
  [isabell@stardust ~]$
 
@@ -294,10 +304,10 @@ Configuring the Client
 Now Isabell want to sync all her devices. Copy four files to all her divices:
 ::
 
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/ca.cert.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/Isabell_Smith.cert.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/Isabell_Smith.key.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/Isabell_task_info isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/ca.cert.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.cert.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.key.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_task_info isabell@othermachine:~/.task/
  [isabell@othermachine ~]$ 
 
 
@@ -307,8 +317,8 @@ On your linux machine configure taskwarrior
  [isabell@othermachine ~]$ task config taskd.certificate -- ~/.task/Isabell_Smith.cert.pem
  [isabell@othermachine ~]$ task config taskd.key -- ~/.task/Isabell_Smith.key.pem
  [isabell@othermachine ~]$ task config taskd.ca -- ~/.task/ca.cert.pem
- [isabell@othermachine ~]$ task config taskd.server      -- isabell.uber.space:40200
- [isabell@othermachine ~]$ task config taskd.credentials -- Public/First Last/cf31f287-ee9e-43a8-843e-e8bbd5de4294
+ [isabell@othermachine ~]$ task config taskd.server      -- stardust.uberspace.de:40200
+ [isabell@othermachine ~]$ task config taskd.credentials -- Public/Isabell Smith/cf31f287-ee9e-43a8-843e-e8bbd5de4294
  [isabell@othermachine ~]$ 
 
 
@@ -317,7 +327,7 @@ Edit the configuration on Android in settings in the menu and add some lines (of
 
 ::
 
- taskd.server=isabell.uber.space:40200 
+ taskd.server=stardust.uberspace.de:40200 
  taskd.credentials=Public\/isabell smith\/a472ac30-137d-4a6f-aee1-7da6ca10c8da
  taskd.certificate=\/home\/you\/.task\/isabell_smith.cert.pem                              
  taskd.key=\/path\/to\/isabell_smith.key.pem                                       
@@ -325,7 +335,7 @@ Edit the configuration on Android in settings in the menu and add some lines (of
 
 
 
-Sync!
+Sync
 =====
 
 First time sync (upload current task status):
@@ -333,7 +343,7 @@ First time sync (upload current task status):
 
  [isabell@othermachine ~]$ task sync init
  Please confirm that you wish to upload all your pending tasks to the Task Server (yes/no) yes
- Syncing with isabell.uber.space:20400 Sync successful.  2 changes uploaded.
+ Syncing with stardust.uberspace.de:40200 Sync successful.  2 changes uploaded.
 
 
 After that:
@@ -358,6 +368,4 @@ Then from now on use like this:
  [isabell@othermachine ~]$ tas add write guide for uberlab prio:M due:3d
  [isabell@othermachine ~]$ 
 
-Tested with task-1.1.0, Uberspace 7.1.17
-
-.. author_list::
+.. author_list:: seeq
