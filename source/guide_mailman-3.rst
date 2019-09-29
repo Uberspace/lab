@@ -263,6 +263,22 @@ Setting up Django
 
 After we have adjusted our configuration file, we need to compile and configure the Django project and create a super user to be used as web admin:
 
+.. note:: In case you get an error message when like ``django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).``, when running those `manage.py` commands, then you need a newer version of the sqlite library. Install ``pysqlite3-binary`` and create a symlink in order to override ``sqlite3``:
+
+ .. code :: bash
+
+  [isabell@stardust ~]$ pip3.6 install --user pysqlite-binary
+  [...]
+  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.6/site-packages/sqlite3
+  [isabell@stardust ~]$
+
+ Now add this ``~/mailman-suite/settings.py`` in order to have use that version of the ``sqlite3`` instead of the built-in one.
+
+ .. code :: python
+
+  import sys
+  sys.path = ['/home/isabell/.local/lib/python3.6/site-packages'] + sys.path
+
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
