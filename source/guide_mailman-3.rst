@@ -333,7 +333,7 @@ Additionally, serve static files using apache:
 ::
 
   [isabell@stardust ~]$ uberspace web backend set /static --apache
-  Set backend for / to apache.
+  Set backend for /static to apache.
   [isabell@stardust ~]$
 
 Setting up .qmail
@@ -359,7 +359,7 @@ If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, 
 
  |/usr/bin/vdeliver
 
-.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` and ``~/.qmail-listname-dafault`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` and the related email commands (e.g. ``listname-subscribe@isabell.uber.space``) to mailman. **This needs to be done manually for every list created in the web interface!**
+.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` and ``~/.qmail-listname-default`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` and the related email commands (e.g. ``listname-subscribe@isabell.uber.space``) to mailman. **This needs to be done manually for every list created in the web interface!**
 
 Install cronjobs
 ----------------
