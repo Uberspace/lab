@@ -124,8 +124,8 @@ Create ``~/etc/services.d/wsgidav.ini`` with the following content:
 .. code-block:: ini
 
  [program:wsgidav]
- command=wsgidav -c /home/%(ENV_HOME)s/etc/wsgidav.yaml
- directory = /home/%(ENV_HOME)s/webdav
+ command=wsgidav -c %(ENV_HOME)s/etc/wsgidav.yaml
+ directory = %(ENV_HOME)s/webdav
  autostart=yes
  autorestart=yes
 
