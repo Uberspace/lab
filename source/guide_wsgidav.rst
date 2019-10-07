@@ -67,11 +67,10 @@ Config file
 We will modify this example config (YAML): https://wsgidav.readthedocs.io/en/latest/user_guide_configure.html#sample-wsgidav-yaml
 
 
-Change the port if something is already running on 8080:
+Change the host, so the web backend can connect to the service:
 ::
 
  host: 0.0.0.0
- port: 8080 
 
 
 
