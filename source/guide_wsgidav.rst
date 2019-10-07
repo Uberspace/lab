@@ -17,7 +17,7 @@ WsgiDAV
 
 .. tag_list::
 
-
+A generic and extendable WebDAV server written in Python and based on WSGI. It can be used to share files between across your various devices or with friends.
 
 ----
 
