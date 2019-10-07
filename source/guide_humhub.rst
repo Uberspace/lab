@@ -22,7 +22,7 @@ HumHub
 
 HumHub_ is a free social network software and framework built to give you the tools to make teamwork easy and successful. 
 
-The software is based on top of the Yii_ framework and therefore written in PHP_.
+The software is based on top of the Yii_ framework and therefore written in PHP.
 
 ----
 
@@ -35,11 +35,7 @@ The software is based on top of the Yii_ framework and therefore written in PHP_
 License
 =======
 
-HumHub is released under a dual license, on one hand the AGPL V3 license and on the other hand a commercial license. The licence_ and terms can be found on the Humhub website.
-
-  * 
-  * 
-
+HumHub is released under a dual license, on one hand the AGPL V3 license and on the other hand a commercial license. The license_ and terms_ can be found on the Humhub website.
 
 Prerequisites
 =============
@@ -71,7 +67,6 @@ Installation
  […]
  [isabell@stardust isabell]$ unzip humhub.zip
  [isabell@stardust isabell]$ cd humhub-1.3.15
- […]
  [isabell@stardust humhub-1.3.15]$ mv * /var/www/virtual/$USER/html/
  [isabell@stardust humhub-1.3.15]$
 
@@ -81,7 +76,6 @@ Database Setup
 Humhub saves your data in a MySQL database. Please use an :manual_anchor:`additional database <database-mysql.html#additional-databases>`. You need to create this database before you enter the database credentials in the web-installer.
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_humhub"
  [isabell@stardust ~]$
@@ -95,10 +89,7 @@ Point your browser to your domain (e.g. isabell.uber.space) to set up and config
 Updates
 =======
 
-.. note:: Check the news_ regularly to stay informed about the newest version.
-
-You will be additionally notified about available updates in the built in humhub update module.
-You can update the installation via the update module which can be found in the humhub administration menue.
+Check the news_ regularly to stay informed about the newest version. You will be additionally notified about available updates in the built in humhub update module. You can update the installation via the update module which can be found in the humhub administration menue.
 
 
 .. _HumHub: https://humhub.org
