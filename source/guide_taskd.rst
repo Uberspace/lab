@@ -37,19 +37,19 @@ Taskwarrior is Free and Open Source Software that manages your TODO list from th
 Prerequisites
 =============
 
-Before you sync anything make a backup of your local task data. You don't know.
+Before you sync anything, make a backup of your local task data. You never know what might happen.
 ::
 
  [isabell@othermachine ~]$ tar czf task-backup-$(date +'%Y%m%d').tar.gz *
  [isabell@othermachine ~]$
 
-Move this file somewhere save.
+Move this file somewhere safe.
 
-Your taskd URL needs to be setup:
+Your taskd domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-Taskd listens on a port (by default 53589). We need to open a port in the firewall that our client can connect to the task server.
+Taskd listens on a port (by default ``53589``). We need to open a port in the firewall that our client can connect to the task server.
 
 ::
 
@@ -57,8 +57,7 @@ Taskd listens on a port (by default 53589). We need to open a port in the firewa
  Port 40200 will be open for TCP and UDP treffic in a few minutes.
  [isabell@stardust ~]$
 
-remember this port.
-We also need to know the hostname:
+remember this port. To connect later, we'll also need to know the hostname:
 
 ::
 
@@ -71,10 +70,10 @@ We need a directory where the taskd files are stored.
 ::
 
  [isabell@stardust ~]$ export TASKDDATA=/home/isabell/.var/taskddata
- [isabell@stardust ~]$ mkdir -p TASKDDATA
+ [isabell@stardust ~]$ mkdir -p $TASKDDATA
  [isabell@stardust ~]$
 
-The TASKDDATA environment variable is expected by the taskdctl binary we are going to install now. 
+The ``$TASKDDATA`` environment variable is expected by the taskdctl binary we are going to install now. 
 
 
 Installation
@@ -152,7 +151,7 @@ Initialization of taskd
 -----------------------
 ::
 
- [isabell@stardust ~] $taskd init
+ [isabell@stardust ~]$ taskd init
  You must specify the 'server' variable, for example:
  taskd config server localhost:53589
  
@@ -208,7 +207,7 @@ But first we move the required files to the TASKDDATA directory:
 Configure the server
 --------------------
  
-Make ethe crypto files known to the server:
+Make the crypto files known to the server:
 ::
 
  [isabell@stardust ~]$ taskd config --force client.cert $TASKDDATA/client.cert.pem
@@ -240,7 +239,7 @@ Create a file ``~/etc/services.d/taskd.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:taskd]
-  command=taskd server --data /home/isabell/.var/taskddata
+  command=taskd server --data $(ENV_HOME)s/.var/taskddata
 
   [isabell@stardust ~]$ supervisorctl reread
   [isabell@stardust ~]$ supervisorctl update
@@ -265,8 +264,8 @@ Now add as many users as you like. Spaces are ok as long you quote the name.
  Created user 'First Last' for organization 'Public'
  [isabell@stardust ~]$
 
-Mind the user key! This identifies the user (as the name is not neccessary unique).
-Lets put this information in a file just to make things easier especially on Android where you can then copy paste the information. Create a file  ``~/Isabell_task_info`` and put this in:
+Remember the user key! This identifies the user (as the name is not neccessary unique).
+Let's put this information in a file just to make things easier especially on Android where you can then copy paste the information. Create a file ``~/Isabell_task_info`` and put this in:
 
 ::
 
@@ -279,7 +278,7 @@ Lets put this information in a file just to make things easier especially on And
 
 Generate Client Certificates and Keys
 -------------------------------------
-As we have a user we need a key and a cert. The correctness of the name is not important. It is only used for the output file names and ignored in authentication.
+As we have a user, we need a key and a cert. The correctness of the name is not important. It is only used for the output file names and ignored in authentication.
 ::
 
  [isabell@stardust ~]$ cd $TASKDDATA/pki
@@ -301,7 +300,7 @@ For every new user the steps to take are:
 Configuring the Client
 ----------------------
 
-Now Isabell want to sync all her devices. Copy four files to all her divices:
+Now Isabell wants to sync all her devices. Copy four files to all her divices:
 ::
 
  [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/ca.cert.pem isabell@othermachine:~/.task/
@@ -338,7 +337,7 @@ Edit the configuration on Android in settings in the menu and add some lines (of
 Sync
 =====
 
-First time sync (upload current task status):
+Initial sync (upload current task status):
 ::
 
  [isabell@othermachine ~]$ task sync init
