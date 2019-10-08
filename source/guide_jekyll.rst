@@ -143,7 +143,7 @@ Since we just need an empty repository to upload our website to, we need to add 
 Clone that repository on your local machine, enter the parent folder and create a new website by typing:
 ::
 
- [user@localhost ~]$ jekyll new website
+ [user@localhost ~]$ jekyll new website --force
  [user@localhost ~]$
 
 .. note:: By entering the parent folder and using the same name for your website as the cloned repository you can create the website directly insite the repository folder. If you give your website a different name, you have to copy your website into your repository.
