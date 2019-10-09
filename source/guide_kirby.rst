@@ -1,4 +1,4 @@
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
 
 .. tag:: lang-php
 .. tag:: web
