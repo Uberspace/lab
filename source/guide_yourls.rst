@@ -84,7 +84,7 @@ To configure YOURLS you need to setup your configuration file. Copy the sample c
 Edit the following parts of your configuration file:
  * change the values of ``YOURLS_DB_USER``, ``YOURLS_DB_PASS``, ``YOURLS_DB_NAME`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
  * change the value of ``YOURLS_SITE`` to your previously set up domain including the protocol (in this case ``https://isabell.uber.space``)
- * change the value of ``YOURLS_COOKIEKEY`` with a long random string which is used to secure cookies. You can generate a string using this webservice_ and copy it from there.
+ * replace the value of ``YOURLS_COOKIEKEY`` with a long random string which is used to secure cookies. You can generate a string using this webservice_ and copy it from there.
  * setup an admin account by editing the username and passwort in the ``yourls_user_passwords`` variable. Don't worry, YOURLS will hash these plain text passwords on the next login attempt. Please don't use ``admin`` as your username and set yourself a strong password.
 
 Save the configuration file and point your browser to your website URL and append /admin (e.g. ``isabell.uber.space/admin``) to visit the YOURLS admin interface. On your first visit there is only one button called ``Install YOURLS``. CLick this button and the application will finish the setup. 
