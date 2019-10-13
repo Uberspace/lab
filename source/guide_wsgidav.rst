@@ -33,7 +33,6 @@ MIT license.
 
   * https://github.com/mar10/wsgidav/blob/master/LICENSE
 
-
 Installation
 ============
 
@@ -66,9 +65,10 @@ Config file
 
 We will modify this example config (YAML): https://wsgidav.readthedocs.io/en/latest/user_guide_configure.html#sample-wsgidav-yaml
 
-
 Define which folder should be accessible:
+
 ::
+
  mount_path: null
  provider_mapping:
      "/": "/home/isabell/webdav/"
@@ -77,7 +77,9 @@ Define which folder should be accessible:
 
 
 Add user and password for every path:
+
 ::
+
  simple_dc:
      user_mapping:
          "*":  # default (used for all shares that are not explicitly listed). Keep this one!
@@ -89,17 +91,12 @@ Add user and password for every path:
                  password: "<password>" # Password. Change it!
  # You can add multiple users for every path.
 
-
-
 Save the file here:
 
 ::
 
 ~/etc/wsgidav.yaml
  
-
-
-
 Configure web server
 ====================
 
