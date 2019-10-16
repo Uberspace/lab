@@ -267,7 +267,7 @@ After we have adjusted our configuration file, we need to compile and configure 
 
  .. code :: bash
 
-  [isabell@stardust ~]$ pip3.6 install --user pysqlite-binary
+  [isabell@stardust ~]$ pip3.6 install --user pysqlite3-binary
   [...]
   [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.6/site-packages/sqlite3
   [isabell@stardust ~]$
