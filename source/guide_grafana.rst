@@ -140,7 +140,7 @@ Create the file ``~/etc/services.d/grafana.ini`` with the following content:
   command=grafana-server
     -config %(ENV_HOME)s/etc/grafana/grafana.ini
     -homepath %(ENV_HOME)s/usr/share/grafana
-    cfg:default.paths.logs %(ENV_HOME)s/var/log/grafana
+    cfg:default.paths.logs=%(ENV_HOME)s/var/log/grafana
   autostart=yes
   autorestart=yes
 
