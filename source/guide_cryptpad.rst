@@ -41,6 +41,8 @@ Set up the backends:
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
+You need to use ``/`` or ``domain.example/`` in the domain part since subfolders are not allowed in cryptpad.
+
 Now let's get started with Cryptpad.
 
 We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
