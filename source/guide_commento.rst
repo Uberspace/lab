@@ -152,4 +152,4 @@ The form to sign up will still be visisble, but cannot be submitted.
 
 Tested with Commento 1.7.0 / Uberspace 7.3.6.1
 
-.. author_lsit::
+.. author_list::
