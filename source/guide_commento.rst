@@ -26,7 +26,7 @@ Installation
 
 Since Commento_ provides pre-compiled binaries, we can use those:
 
-.. warning:: Check the `releases page<https://docs.commento.io/getting-started/self-hosting/releases.html>`_ before you continue.
+.. warning:: Check the `releases page <https://docs.commento.io/getting-started/self-hosting/releases.html>`_ before you continue.
 
 .. code-block:: console
 
