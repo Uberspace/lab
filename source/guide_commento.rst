@@ -1,6 +1,6 @@
 .. author:: hendrikmaus <https://github.com/hendrikmaus>
 
-.. tag:: lang-golang
+.. tag:: lang-go
 .. tag:: web
 .. tag:: blog
 
