@@ -61,7 +61,7 @@ Configure web server
 Configure firewall port
 =======================
 
-Resilio Sync will work without this step, however, all connections will be routet through a relay server, since direct connections are blocked by the firewall.
+Resilio Sync will work without this step, however, all connections will be routed through a relay server, since direct connections are blocked by the firewall.
 
 .. include:: includes/open-port.rst
 
