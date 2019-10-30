@@ -35,7 +35,7 @@ Run ``uberspace tools version show ruby`` to show which Ruby version is currentl
 active on your Uberspave and ``uberspace tools version list ruby`` to list all
 available ones.
 
-To set Ruby version 2.5 you could run:
+To set Ruby version 2.5 you could run (but there is no need to do so if one of the above is already active):
 
 .. code-block:: console
 
@@ -63,7 +63,7 @@ Your domain needs to be setup:
 Installation
 ============
 
-You may follow the official installation_ guide of Redmine for almost all steps,
+This instruction follows the official installation_ guide of Redmine for almost all steps,
 except for the step “Test the installation / Installing web server”.
 
 Download_ and extract Redmine in the desired version. Ruby should not be stored
@@ -78,7 +78,7 @@ all files in there.
   [isabell@stardust redmine]$
 
 Copy the file ``config/database.yml.example`` to ``config/database.yml`` and edit
-the new file in order to configure your database settings for the "production" environment.
+the new file in order to configure your database settings for the "production" environment. You'll find your mysql password in ~/.my.cnf.
 
 .. code-block:: yaml
   :emphasize-lines: 3,5,6
@@ -99,7 +99,7 @@ and exclude the gem with the following command:
 
 .. code-block:: console
 
-  [isabell@stardust redmine]$ bundle install --path vendor/bundle --without development test
+  [isabell@stardust redmine]$ bundle install --path vendor/bundle --without development test rmagick
   Bundle complete!
   Gems in the groups development, test and rmagick were not installed.
   Bundled gems are installed into `./vendor/bundle`
@@ -163,28 +163,9 @@ structure. Adapt the highlighted lines to your setup.
   # Bind Puma to a port
   bind 'tcp://0.0.0.0:9000'
 
-To connect the appserver with the Apache webserver create the file
-``public/.htaccess`` with the following content. Change the port as needed.
+And point the ``uberspace web backend`` on ``/`` to the listener on port 9000.
 
-.. code-block:: none
-  :emphasize-lines: 4
-
-  DirectoryIndex disabled
-
-  RewriteEngine On
-  RewriteRule ^(.*) http://localhost:9000/$1 [P]
-
-Depending on the domain you have choosen above you will now need to tell Apache
-about the new `DocumentRoot`_. For the default domain you need to change the
-`html` symlink like this:
-
-.. code-block:: none
-  :emphasize-lines: 1,3
-
-  [isabell@stardust redmine]$ cd /var/www/virtual/isabell/
-  [isabell@stardust isabell]$ rm -rf html
-  [isabell@stardust isabell]$ ln -s /home/isabell/redmine/public/ html
-  [isabell@stardust isabell]$
+.. include:: includes/web-backend.rst
 
 You could now start Puma manually and everything would work. But to start it
 automatically Uberspace offers the service supervisord_.
@@ -240,7 +221,7 @@ the same steps as the installation guide above, plus backup and restore of exist
 
 ----
 
-Tested with Redmine 4.0.1, Ruby 2.5, Uberspace 7.2.2.0
+Tested with Redmine 4.0.5, Ruby 2.6, Uberspace 7.3.6.2
 
 .. authors::
 
