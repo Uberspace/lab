@@ -65,7 +65,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 87.1.4 --depth 1 https://github.com/kevinpapst/kimai2.git
+ [isabell@stardust isabell]$ git clone -b 1.5 --depth 1 https://github.com/kevinpapst/kimai2.git
  Cloning into 'kimai2'...
  […]
  [isabell@stardust ~]$
@@ -124,7 +124,7 @@ Please don't use ``admin`` as your username and set yourself a strong password.
  :emphasize-lines: 2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
- [isabell@stardust kimai2]$ bin/console kimai:create-user username admin@example.com ROLE_SUPER_ADMIN
+ [isabell@stardust kimai2]$ bin/console kimai:create-user <username> <admin@example.com> ROLE_SUPER_ADMIN
  Please enter the password: ****
  […]
  [isabell@stardust ~]$
@@ -207,6 +207,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.4.1 and Uberspace 7.3.6
+Tested with Kimai 1.5 and Uberspace 7.3.6
 
 .. author_list::
