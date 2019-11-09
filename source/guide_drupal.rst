@@ -17,22 +17,26 @@ Drupal
 
 .. tag_list::
 
-Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework written in PHP and distributed under the GPL 2.0 or later licence.
+Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework 
+written in PHP and distributed under the GPL 2.0 (or later) licence.
 
 According to  W3Techs (2011-07-15), at least 2.3% of all websites worldwide are running with Drupal.
 
-As of Drupal 8, it is based on Symfony_, a popular high performance PHP framework for web development. 
+Drupal 8 is based on Symfony_, a popular high performance PHP framework for web development. 
 
 Drupal was released for the first time in 2000 by Dries Buytaert. Since then it has been continuously developed and it is actively maintained by various contributors.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of
+.. note:: This guide is about installing Drupal 8 via `Drupal Composer Template`_.
+
+ You should be familiar with the basic concepts of
 
   * PHP_
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
   * Composer_
+  * Vim_
 
 
 Prerequisites
@@ -70,34 +74,25 @@ Your :manual_anchor:`website domain <web-domains.html#setup>` needs to be set up
  isabell.uber.space
  [isabell@stardust ~]$
 
-Create Database
----------------
+Database
+--------
 
 Create an :manual_anchor:`additional <database-mysql.html#additional-databases>` database, for example: ``isabell_drupal``.
-
-
-Installation
-============
-
-Since Drupal installation via Composer_ uses the subdirectory ``web/`` as web root of your website you should **not** install Drupal in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
-
-``cd`` into the directory above your document root ``/var/www/virtual/$USER/``
-
-:: 
- 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
 
 Composer
 --------
 
-.. note:: The given Composer_ command uses the  `Drupal Composer Template`_  and  command always installs the latest stable release. 
+.. note:: The given Composer_ command uses the  `Drupal Composer Template`_  and installs the latest stable release. 
    
-  You might replace target parameter, here drupal with something more suitable.
+  You might replace target parameter ``drupal`` with something more suitable.
 
+
+``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` to run to ``composer`` command:
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project drupal-composer/drupal-project:8.x-dev drupal --no-interaction
    - Installing drupal-composer/drupal-project (8.x-dev bdaa8fd): Cloning bdaa8fd53b from cache
  Created project in drupal
@@ -114,35 +109,111 @@ Composer
 Symlinks 
 --------
 
-tbd
+Since Drupal installation via Composer_ uses the subdirectory ``web/`` 
+as web root of your website you should **not** install Drupal in your default Uberspace 
+:manual:`DocumentRoot <web-documentroot>`. 
+Instead, we install it next to that and then use a symbolic link to make it accessible to the web.
 
-install.php
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust isabell]$ rmdir  html
+ [isabell@stardust isabell]$ ln -s drupal/web/ html
+ [isabell@stardust isabell]$ ln -s drupal/web/ isabell.example
+
+RewriteBase
 -----------
- 
+
+Search for ``# RewriteBase /`` and remove the leading ``#`` to activate this statement.
+
+::
+
+  [isabell@stardust isabell]$ vi drupal/web/.htaccess
+  RewriteBase /
+
+
+SCM
+---
+
+It is a very good time to initialise a repository witin the ``drupal`` directory.
+This step is optional but highly recommended ;-D 
+
+Installation
+=============
+
+There are at least two different ways to install Drupal:
+
+
+Interactive Installer
+---------------------
+
+Open a browser and visit the URL of your domain.
+It is self-explanatory, for specific steps and screenshots checkout `Running the Interactive Installer`_.
+
+
+drush site:install
+------------------
+
+Do it via Drush at the command line, see `drush site\:install`_ for details.
+
 
 Configuration
 =============
 
-tbd
+Trusted Host setting
+--------------------
+
+For Drupals protection against HTTP HOST Header attacks,
+you need to configure `Trusted host security setting`_ in ``settings.php``, which was introduced in Drupal 8.
+
+::
+
+  [isabell@stardust isabell]$ vi html/sites/default/settings.php  
+
+
+Insert this configuration for the domains given above:
+
+::
+
+  $settings['trusted_host_patterns'] = [
+    '^isabell\.example$',
+    '^isabell\.uber\.space$',
+  ];
+
 
 
 Updates
 =======
 
-tbd
+.. note:: For Drupal core and contrib updates, configure ``Reports > Available updates > Settings`` within your site
+ and subscribe `Security advisories`_ and public service announcements too!
 
+Core Updates
+------------
+
+In case of Core updates see the `Updating Drupal Core` section of `Drupal Composer Template`_.
+
+Contrib Updates
+---------------
+
+Updates of contributed modules work like this, e.g. for the ``geofield`` contrib:
+
+::
+  
+  [isabell@stardust drupal]$ composer update drupal/geofield --with-dependencies
 
 
 .. _Drupal: https://drupal.org/
 .. _Symfony: https://symfony.com/
 .. _PHP: http://www.php.net/
 .. _Composer: https://getcomposer.org/
+.. _Vim: https://www.vim.org/
+.. _Running the Interactive Installer: https://www.drupal.org/docs/user_guide/en/install-run.html
+.. _drush site\:install: https://drushcommands.com/drush-9x/site/site:install/
+.. _Trusted host security setting: https://www.drupal.org/docs/8/install/trusted-host-settings
 .. _Drupal Composer Template: https://github.com/drupal-composer/drupal-project
-.. _News: https://www.drupal.org/news
-.. _Planet Drupal: https://www.drupal.org/planet
 .. _Security advisories: https://www.drupal.org/security
-.. _download: https://www.drupal.org/download
-.. _Git: https://git-scm.com/
+.. _Updating Drupal Core: https://github.com/drupal-composer/drupal-project#updating-drupal-core
 
 ----
 
