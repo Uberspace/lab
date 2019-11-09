@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/contao.svg
+  .. image:: _static/images/Drupal-wordmark.svg
       :align: center
 
 ######
