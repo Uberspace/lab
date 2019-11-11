@@ -42,7 +42,7 @@ It's not necessary to configure Mosh as a daemon on your Uberspace.
 
 .. code-block:: bash
  
- [isabell@localhost ~] mosh -p <your_port> <username>.uber.space
+ [isabell@localhost ~] mosh -p <your_port> <username>@<username>.uber.space
  Welcome to Uberspace7!
  [...]
  [isabell@stardust ~]$
