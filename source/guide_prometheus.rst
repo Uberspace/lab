@@ -134,6 +134,9 @@ What the arguments for prometheus_ mean:
   * ``--web.external-url``: The URL under which prometheus is reachable.
   * ``--web.route-prefix``: The path under which promtheus is reachable.
 
+.. note::
+   When using web backends, the address to listen to has to be ``0.0.0.0``. In the example above, the corresponding line has to be changed to ``--web.listen-address=0.0.0.0:9090``.
+
 Finishing installation
 ======================
 
