@@ -138,8 +138,20 @@ SCM
 It is a very good time to initialise a repository witin the ``drupal`` directory.
 This step is optional but highly recommended ;-D 
 
+drush-launcher
+--------------
+
+In order to make use  of `Drupal Composer Template`_'s drush, you will need to install the `drush-launcher`_:
+
+
+::
+
+  [isabell@stardust isabell]$ wget -O ~/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
+  [isabell@stardust isabell]$ chmod +x ~/bin/drush
+  
+
 Installation
-=============
+============
 
 There are at least two different ways to install Drupal:
 
@@ -214,6 +226,7 @@ Updates of contributed modules work like this, e.g. for the ``geofield`` contrib
 .. _Drupal Composer Template: https://github.com/drupal-composer/drupal-project
 .. _Security advisories: https://www.drupal.org/security
 .. _Updating Drupal Core: https://github.com/drupal-composer/drupal-project#updating-drupal-core
+.. _drush_launcher: https://github.com/drush-ops/drush-launcher
 
 ----
 
