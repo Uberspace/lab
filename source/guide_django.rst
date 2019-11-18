@@ -139,7 +139,7 @@ Perform a CURL request to djangos port to see if your installation succeeded:
 
 ::
 
- [isabell@stardust ~]$ curl -I isabell.uber.space
+ [isabell@stardust ~]$ curl -I https://isabell.uber.space
  HTTP/1.1 200 OK
  Content-Type: text/html
  X-Frame-Options: SAMEORIGIN
