@@ -37,6 +37,7 @@ Drupal was released for the first time in 2000 by Dries Buytaert. Since then it 
   * :manual:`domains <web-domains>`
   * Composer_
   * Vim_
+  * :manual:`Cronjobs <daemons-cron>`
 
 
 Prerequisites
@@ -193,11 +194,27 @@ Insert this configuration for the domains given above:
   ];
 
 
+Cronjob
+-------
+
+For executing periodical tasks like e.g. updatíng the search index, purging old logs or checking for updates,
+you will need to create a cronjob. 
+
+Get your cron url for your site at ``Administration > Configuration > System > Cron (/admin/config/system/cron)``.
+We create a cronjob with above url which runs once a day:
+
+::
+
+  [isabell@stardust isabell]$ crontab -e 
+
+::
+  
+  4 0 * * * wget -O - -q -t 1 https://isabell.example/cron/CsUKMfKtaFI8P3CaFpWy6iMIJPjjAwnm-Svs6wXb_LSrxqLnlbv85qy5us0YSnK3iQpthKoIrQ
 
 Updates
 =======
 
-.. note:: For Drupal core and contrib updates, configure ``Reports > Available updates > Settings`` within your site
+.. note:: For Drupal core and contrib updates, configure ``Reports > Available updates > Settings (/admin/reports/updates/settings)`` within your site
  and subscribe `Security advisories`_ and public service announcements too!
 
 Core Updates
