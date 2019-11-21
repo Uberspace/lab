@@ -162,9 +162,9 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 ::
 
  [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
- [isaball@stardust ~]$ php occ upgrade
- [isaball@stardust ~]$ restorecon -R .
- [isabell@stardust ~]$
+ [isaball@stardust html]$ php occ upgrade
+ [isaball@stardust html]$ restorecon -R .
+ [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
