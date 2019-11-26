@@ -62,7 +62,7 @@ download the latest version and install bcrypt for storing hashed passwords.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ python3 -m pip install --user --upgrade radicale radicale bcrypt passlib
+  [isabell@stardust ~]$ python3 -m pip install --user --upgrade radicale bcrypt passlib
   Collecting radicale
   Using cached https://files.pythonhosted.org/packages/be/50/b5094950d53f11e56eb17932469e0e313275da0c5e633590c939863f3c37/Radicale-2.1.11.tar.gz
   Requirement already up-to-date: bcrypt in ./.local/lib/python3.4/site-packages
