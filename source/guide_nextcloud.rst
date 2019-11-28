@@ -103,7 +103,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 
  [...]
     'dbuser' => 'isabell',
-    'dbpassword' => 'eeCae1ahx6angai',
+    'dbpassword' => 'MySuperSecretPassword',
     'installed' => true,
     'memcache.local' => '\OC\Memcache\APCu',
   );
