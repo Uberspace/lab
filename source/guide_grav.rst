@@ -91,6 +91,18 @@ Navigate to your installation directory and install the admin plugin. The packag
 
 After the installation you need to open isabell.uber.space/admin in your browser to create an admin account (please don't use ``admin`` as your username).
 
+
+Setup domain
+-------------------
+If you are setup Grav not in the :manual:`document root <web-documentroot>`, you have to change the `.htaccess` file from:
+```
+# RewriteBase /
+```
+to this:
+```
+RewriteBase /
+```
+
 Tuning
 ======
 
