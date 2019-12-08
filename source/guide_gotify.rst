@@ -107,8 +107,6 @@ Create ``~/etc/services.d/gotify.ini`` with the following content.
   command=%(ENV_HOME)/gotify/gotify-linux-amd64
   directory=%(ENV_HOME)/gotify/
   environment=GOTIFY_SERVER_PORT=52111
-  autostart=yes
-  autorestart=yes
 
 .. include:: includes/supervisord.rst
 
