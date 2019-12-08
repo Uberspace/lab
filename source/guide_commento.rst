@@ -91,8 +91,6 @@ Create ``~/etc/services.d/commento.ini`` with the following content:
 
  [program:commento]
  command=%(ENV_HOME)s/bin/commento_daemon
- autostart=yes
- autorestart=yes
 
 .. include:: includes/supervisord.rst
 
