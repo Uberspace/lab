@@ -30,7 +30,6 @@ Since Commento_ provides pre-compiled binaries, we can use those:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /home/$USER/
  [isabell@stardust ~]$ https://commento-release.s3.amazonaws.com/commento-linux-amd64-v1.7.0.tar.gz
  [isabell@stardust ~]$
 
