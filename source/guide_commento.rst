@@ -73,7 +73,7 @@ Create ``~/bin/commento_daemon`` and add the following content:
  export COMMENTO_PORT=31380
  export COMMENTO_BIND_ADDRESS="0.0.0.0"
  export COMMENTO_POSTGRES=postgres://<username>:<password>@<host>:<port>/<database>?sslmode=disable
- exec /home/isabell/commento/commento
+ exec ~/commento/commento
 
 Make your script executable:
 
