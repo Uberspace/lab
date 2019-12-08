@@ -140,7 +140,7 @@ The taskd bundles scripts for generating reuqired keys and certificates for ever
  [isabell@stardust ~]$ cd $TASKDDATA/pki
  [isabell@stardust ~]$
 
-Now edit the vars file in $TASKDDATA/pki/vars as required. E.g.:
+Now edit the vars file in ``$TASKDDATA/pki/vars`` as required. E.g.:
 
 .. code-block:: ini
 
