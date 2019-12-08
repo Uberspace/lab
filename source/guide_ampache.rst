@@ -63,13 +63,13 @@ You will need to enter the following information:
 
   * Database Name:	<username>_ampache
   * MySQL Hostname: localhost
-  * MySQL Port (optional): leave this blanc
+  * MySQL Port (optional): leave this blank
   * MySQL Username: <username>
   * MySQL Password: <SQL-Password from above>
 
 * Installation Type: default
 
-After klicking the "create config" button you can create an admin account and start a possible update.
+After clicking the "create config" button you can create an admin account and start a possible update.
 
 Now you can login as admin to create users with different roles, add catalogues, import audio files stored in your uberspace, include external webradios, install addons and brand your instance.
 
