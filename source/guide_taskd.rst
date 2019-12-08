@@ -336,4 +336,12 @@ Then from now on use like this:
  [isabell@othermachine ~]$ tas add write guide for uberlab prio:M due:3d
  [isabell@othermachine ~]$ 
 
+
+Updates
+=======
+
+To update taskd, repeat the Installation steps followed by a restart using ``supervisorctl restart taskd``. Periodically check the changelog_ to learn about new versions.
+
+.. _changelog: https://github.com/GothenburgBitFactory/taskserver/blob/master/ChangeLog
+
 .. author_list:: seeq
