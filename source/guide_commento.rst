@@ -121,7 +121,7 @@ Configure Web Backend
 
 .. include:: includes/web-backend.rst
 
-Now you should be able to access Commento at your defined domain on port ``80`` in your browser.
+Now you should be able to access Commento at your defined domain in your browser.
 
 Additional Notes
 ----------------
