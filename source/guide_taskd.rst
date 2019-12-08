@@ -211,10 +211,9 @@ Create a file ``~/etc/services.d/taskd.ini`` and put the following in it:
   [program:taskd]
   command=taskd server --data $(ENV_HOME)s/.var/taskddata
 
-  [isabell@stardust ~]$ supervisorctl reread
-  [isabell@stardust ~]$ supervisorctl update
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
+If it's not in state RUNNING, check your logs.
 
 Setup Clients
 -------------------------------------
