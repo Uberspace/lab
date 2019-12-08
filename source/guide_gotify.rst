@@ -104,8 +104,8 @@ Create ``~/etc/services.d/gotify.ini`` with the following content.
 .. code-block:: ini
 
   [program:gotify]
-  command=%(ENV_HOME)/gotify/gotify-linux-amd64
-  directory=%(ENV_HOME)/gotify/
+  command=%(ENV_HOME)s/gotify/gotify-linux-amd64
+  directory=%(ENV_HOME)s/gotify/
   environment=GOTIFY_SERVER_PORT=52111
 
 .. include:: includes/supervisord.rst
