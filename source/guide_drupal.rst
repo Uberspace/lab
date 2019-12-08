@@ -30,13 +30,12 @@ Drupal was released for the first time in 2000 by Dries Buytaert. Since then it 
 
 .. note:: This guide is about installing Drupal 8 via `Drupal Composer Template`_.
 
- You should be familiar with the basic concepts of
+.. note::  You should be familiar with the basic concepts of
 
   * PHP_
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
   * Composer_
-  * Vim_
   * :manual:`Cronjobs <daemons-cron>`
 
 
@@ -91,7 +90,7 @@ Composer
 ``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` to run to ``composer`` command:
 
 .. code-block:: console
- :emphasize-lines: 1,2
+ :emphasize-lines: 1,2,12
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project drupal-composer/drupal-project:8.x-dev drupal --no-interaction
@@ -125,30 +124,49 @@ Instead, we install it next to that and then use a symbolic link to make it acce
 RewriteBase
 -----------
 
-Search for ``# RewriteBase /`` and remove the leading ``#`` to activate this statement.
+Edit ``/var/www/virtual/isabell/drupal/web/.htaccess``, search for ``# RewriteBase /`` and remove the leading ``#`` to activate this statement.
 
 ::
 
-  [isabell@stardust isabell]$ vi drupal/web/.htaccess
   RewriteBase /
 
 
 SCM
 ---
 
-It is a very good time to initialise a repository witin the ``drupal`` directory.
+It is a very good time to initialise a repository within the ``drupal`` directory.
 This step is optional but highly recommended ;-D 
 
-drush-launcher
---------------
+drush
+-----
 
-In order to make use  of `Drupal Composer Template`_'s drush, you will need to install the `drush-launcher`_:
+In order to make use  of Drupal Composer Template's drush_, 
+you will add the path of your Drupal Composer Template's bin directory, 
+which contains drush´s executable to the PATH environment variable. 
+It will detect *DRUPAL_ROOT*.
 
+Place the following statement to the startup file of your shell, e.g. ``~/.bashrc`` or ``~/.zshrc``:
 
 ::
 
-  [isabell@stardust isabell]$ wget -O ~/bin/drush https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar
-  [isabell@stardust isabell]$ chmod +x ~/bin/drush
+  export PATH=$PATH:/var/www/virtual/$USER/drupal/vendor/bin
+
+Create a configuration file for drush.
+
+::
+
+  mkdir ~/.drush
+  cp /var/www/virtual/$USER/drupal/vendor/drush/drush/examples/example.drush.yml ~/.drush/drush.yml
+
+Add *uri* option to your drush configuration.
+
+This is useful for some commands which generate urls, like ``drush uli``. Edit ``~/.drush/drush.yml``, search for ``uri:`` and place the following statement below the matching line.
+
+::
+
+  uri: 'https://isabell.example'
+
+If you use more than one codebase, you will need install drush_launcher_.
   
 
 Installation
@@ -178,11 +196,6 @@ Trusted Host setting
 
 For Drupals protection against HTTP HOST Header attacks,
 you need to configure `Trusted host security setting`_ in ``settings.php``, which was introduced in Drupal 8.
-
-::
-
-  [isabell@stardust isabell]$ vi html/sites/default/settings.php  
-
 
 Insert this configuration for the domains given above:
 
@@ -243,6 +256,7 @@ Updates of contributed modules work like this, e.g. for the ``geofield`` contrib
 .. _Drupal Composer Template: https://github.com/drupal-composer/drupal-project
 .. _Security advisories: https://www.drupal.org/security
 .. _Updating Drupal Core: https://github.com/drupal-composer/drupal-project#updating-drupal-core
+.. _drush: https://www.drush.org/
 .. _drush_launcher: https://github.com/drush-ops/drush-launcher
 
 ----
