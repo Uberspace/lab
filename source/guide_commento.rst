@@ -56,7 +56,7 @@ Create Commento Start Script
 
 Make sure to have your PostgreSQL credentials ready. You will need an existing ``database``, ``port``, ``username`` and ``password``.
 
-Create ``~/commento_daemon`` and add the following content:
+Create ``~/bin/commento_daemon`` and add the following content:
 
 .. warning:: Replace replace all placeholders ``<*>`` with your values!
 
@@ -75,7 +75,7 @@ Make your script executable:
 
 .. code-block:: bash
 
- [isabell@stardust ~]$ chmod +x commento_daemon
+ [isabell@stardust ~]$ chmod +x ~/bin/commento_daemon
  [isabell@stardust ~]$
 
 Setup Supervisor
@@ -86,7 +86,7 @@ Create ``~/etc/services.d/commento.ini`` with the following content:
 .. code-block:: ini
 
  [program:commento]
- command=%(ENV_HOME)s/commento_daemon
+ command=%(ENV_HOME)s/bin/commento_daemon
  autostart=yes
  autorestart=yes
 
