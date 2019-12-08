@@ -57,7 +57,7 @@ You will need to enter the following information:
 
 * Various
 
-  * Web Path: /empache
+  * Web Path: /ampache
 
 * Database Connection
 
