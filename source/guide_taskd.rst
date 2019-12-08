@@ -133,7 +133,7 @@ Initialization of taskd
 Create Server PKI Certificates and key
 --------------------------------------
 
-The taskd bundles scripts for generating reuqired keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step andy copy the pki directory to the TASKDDATA directory so we have everything in one place.
+The taskd bundles scripts for generating reuqired keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step andy copy the pki directory to the ``$TASKDDATA`` directory so we have everything in one place.
 ::
 
  [isabell@stardust ~]$ cp -r /home/isabell/taskd-1.1.0/pki $TASKDDATA
@@ -153,7 +153,7 @@ Now edit the vars file in $TASKDDATA/pki/vars as required. E.g.:
  LOCALITY="Dresden"
 
 Note: Make sure the CN matches the domain you are going to use for synchronization! Taskwarrior clients are strict with that if you do not switch off certificate checking.
-In our case isabell.uber.space will not work and lead to a certificate error in the client. User whatever hostname -f yields!
+In our case ``isabell.uber.space`` will not work and lead to a certificate error in the client. User whatever ``hostname -f`` yields!
 
 ::
 
@@ -162,8 +162,8 @@ In our case isabell.uber.space will not work and lead to a certificate error in 
  [isabell@stardust ~]$
 
 
-Note that the client.* files are not used for the clients connecting to the server! We will generate coresponding files in the next section. The client files here are for the API.
-But first we move the required files to the TASKDDATA directory:
+Note that the ``client.*`` files are not used for the clients connecting to the server! We will generate coresponding files in the next section. The client files here are for the API.
+But first we move the required files to the ``$TASKDDATA`` directory:
 ::
 
  [isabell@stardust ~]$ cp client.cert.pem $TASKDDATA
