@@ -30,8 +30,10 @@ Since Commento_ provides pre-compiled binaries, we can use those:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ wget https://commento-release.s3.amazonaws.com/commento-linux-amd64-v1.7.0.tar.gz
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ mkdir commento
+ [isabell@stardust ~]$ cd commento
+ [isabell@stardust commento]$ wget https://commento-release.s3.amazonaws.com/commento-linux-amd64-v1.7.0.tar.gz
+ [isabell@stardust commento]$
 
 To extract the tar archive, use the following options:
 
@@ -42,17 +44,17 @@ To extract the tar archive, use the following options:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ tar -xvzf commento-linux-amd64-v1.7.0.tar.gz
- [isabell@stardust ~]$
+ [isabell@stardust commento]$ tar -xvzf commento-linux-amd64-v1.7.0.tar.gz
+ [isabell@stardust commento]$
 
 We do not need the tarball any longer:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ rm commento-linux-amd64-v1.7.0.tar.gz
- [isabell@stardust ~]$
+ [isabell@stardust commento]$ rm commento-linux-amd64-v1.7.0.tar.gz
+ [isabell@stardust commento]$
 
-You will be left with a single executable binary, called ``commento``.
+You will be left with a single executable binary, called ``commento`` as well as supporting files.
 
 Create Commento Start Script
 ----------------------------
@@ -72,7 +74,7 @@ Create ``~/commento_daemon`` and add the following content:
  export COMMENTO_PORT=31380
  export COMMENTO_BIND_ADDRESS="0.0.0.0"
  export COMMENTO_POSTGRES=postgres://<username>:<password>@<host>:<port>/<database>?sslmode=disable
- exec /home/isabell/commento
+ exec /home/isabell/commento/commento
 
 Make your script executable:
 
@@ -126,7 +128,7 @@ Additional Notes
 ----------------
 
 If you are the only user of the Commento instance, it would be adviseable to disable the new owner sign up, after you registered your site.
-Add this to your ``commento_daemon`` above the ``/home/isabell/commento`` call:
+Add this to your ``commento_daemon`` above the ``/home/isabell/commento/commento`` call:
 
 .. note:: This doe not impact the commenting users of your site!
 
