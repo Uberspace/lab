@@ -323,9 +323,9 @@ After that:
  [isabell@othermachine ~]$ 
 
 Hint:
-I added a function to my ~/.bashrc:
+I added a function to my ``~/.bashrc``:
 
-::
+.. code-block:: bash
 
  function tas() {
  	task "$@"
