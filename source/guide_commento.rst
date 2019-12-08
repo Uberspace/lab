@@ -35,19 +35,14 @@ Since Commento_ provides pre-compiled binaries, we can use those:
  [isabell@stardust commento]$ wget https://commento-release.s3.amazonaws.com/commento-linux-amd64-v1.7.0.tar.gz
  [isabell@stardust commento]$
 
-To extract the tar archive, use the following options:
-
- * ``-x``: To extract files and directories.
- * ``-v``: To have a verbose output.
- * ``-z``: To consider gzip.
- * ``-f``: And as last option the file to extract.
+Extract the tar archive:
 
 .. code-block:: console
 
- [isabell@stardust commento]$ tar -xvzf commento-linux-amd64-v1.7.0.tar.gz
+ [isabell@stardust commento]$ tar -xf commento-linux-amd64-v1.7.0.tar.gz
  [isabell@stardust commento]$
 
-We do not need the tarball any longer:
+We do not need the tarball any longer, so delete it:
 
 .. code-block:: console
 
