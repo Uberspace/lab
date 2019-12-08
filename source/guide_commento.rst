@@ -6,6 +6,11 @@
 
 .. highlight:: console
 
+.. sidebar:: Logo
+
+  .. image:: _static/images/commento.png
+      :align: center
+
 ########
 Commento
 ########
