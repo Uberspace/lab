@@ -264,6 +264,7 @@ We now have two file more in the directory:
 
 
 For every new user the steps to take are:
+
 * Genererate an ID (see 'Setup Clients')
 * Generate key and cert
 
