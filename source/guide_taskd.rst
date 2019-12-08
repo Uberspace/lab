@@ -25,6 +25,7 @@ Taskwarrior is Free and Open Source Software that manages your TODO list from th
 * Andorid App available (also in FDroid)
 * Is MIT-licensed free software.
 
+.. _Taskd: https://taskwarrior.org/
 
 ----
 
