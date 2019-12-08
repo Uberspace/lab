@@ -41,14 +41,12 @@ The subpath option looks like this:
 
 ::
 
-  [isabell@stardust ~]$ uberspace web backend set /gotify/ --http --port <port>
-  Set backend for / to port <port>; please make sure something is listening!
+  [isabell@stardust ~]$ uberspace web backend set /gotify/ --http --port 52111
+  Set backend for / to port 52111; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
 .. _webbackend: https://manual.uberspace.de/web-backends.html
-
-Replace ``<port>`` with a port number above 1000 of your choice and remember it.
 
 
 Installation
@@ -86,7 +84,7 @@ Configuration
 Config file
 -----------
 
-Without configuration, gotify will listen on port 80. To change that to our previously choosen ``<port>``,
+Without configuration, gotify will listen on port 80. To change that to our previously choosen ``52111``,
 we will use an environment variable. It is also possible to use a config file. To download the
 example config, run:
 
@@ -101,15 +99,14 @@ Documentation for the config file can be found on the `gotify website <https://g
 Setup daemon
 ------------
 
-Create ``~/etc/services.d/gotify.ini`` with the following content and replace
-``<port>`` with the actual port:
+Create ``~/etc/services.d/gotify.ini`` with the following content.
 
 .. code-block:: ini
 
   [program:gotify]
   command=%(ENV_HOME)/gotify/gotify-linux-amd64
   directory=%(ENV_HOME)/gotify/
-  environment=GOTIFY_SERVER_PORT=<port>
+  environment=GOTIFY_SERVER_PORT=52111
   autostart=yes
   autorestart=yes
 
