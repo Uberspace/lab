@@ -54,11 +54,11 @@ Replace ``<port>`` with a port number above 1000 of your choice and remember it.
 Installation
 ============
 
-Like a lot of Go software, gotify is distributed as a single binary. Download Gitea's latests `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
+Like a lot of Go software, gotify is distributed as a single binary. Download gotify's latests `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
 
 ::
 
-  [isabell@stardust ~]$ mkdir ~/gitea && cd ~/gitea
+  [isabell@stardust ~]$ mkdir ~/gotify && cd ~/gotify
   [isabell@stardust gotify]$ wget https://github.com/gotify/server/releases/download/v2.0.10/gotify-linux-amd64.zip
   Resolving github.com (github.com)... 140.82.118.4
   Connecting to github.com (github.com)|140.82.118.4|:443... connected.
@@ -128,10 +128,10 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check Gitea's `releases <https://github.com/gotify/server/releases/latest>`_ for the latest version. If a newer
+Check gotify's `releases <https://github.com/gotify/server/releases/latest>`_ for the latest version. If a newer
 version is available, stop daemon by ``supervisorctl stop gotify`` and repeat the "Installation" step followed by ``supervisorctl start gotify`` to restart gotify.
 
-.. _Gitea: https://gotify.net/
+.. _Gotify: https://gotify.net/
 .. _Documentation: https://gotify.net/docs/
 .. _feed: https://github.com/gotify/server/releases.atom
 .. _Dashboard: https://uberspace.de/dashboard/authentication
