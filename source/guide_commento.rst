@@ -18,8 +18,12 @@ Commento_ is an open source, fast, privacy-focused commenting platform written i
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :lab:`Postgresql <guide_postgresql>`
   * :manual:`supervisord <daemons-supervisord>`
+
+Prerequisites
+=============
+
+Install and configure a :lab:`Postgresql <guide_postgresql>` server.
 
 Installation
 ============
