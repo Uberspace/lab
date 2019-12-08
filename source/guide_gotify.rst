@@ -77,6 +77,7 @@ Like a lot of Go software, gotify is distributed as a single binary. Download go
     inflating: licenses/github.com_gotify_plugin-api
   [...]
     inflating: licenses/golang.org_x_crypto
+  [isabell@stardust gotify]$
 
 
 Configuration
@@ -92,6 +93,7 @@ example config, run:
 ::
 
   [isabell@stardust gotify]$ wget -O config.yml https://raw.githubusercontent.com/gotify/server/master/config.example.yml
+  [isabell@stardust gotify]$
 
 Documentation for the config file can be found on the `gotify website <https://gotify.net/docs/config>`_.
 
