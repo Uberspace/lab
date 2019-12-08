@@ -77,7 +77,6 @@ Like a lot of Go software, gotify is distributed as a single binary. Download go
     inflating: licenses/github.com_gotify_plugin-api
   [...]
     inflating: licenses/golang.org_x_crypto
-  [isabell@stardust gotify]$ chmod +x gotify-linux-amd64
 
 
 Configuration
