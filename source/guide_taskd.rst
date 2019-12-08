@@ -114,36 +114,6 @@ Verify installation:
  [isabell@stardust ~]$
 
 
-Install certtool
-----------------
-Ther server uses the gnutls-certtool for generating certificates and keys for a PKI, which is not available on uberspace7.
-As workaround we can manually download the required libs and binaries. We use yumdownloader to download rpms. Then we extract the content with rpm2cpio and cpio.
-If you have linux machine at home with root access you can of course skip this step and generate your certificates at home after installing gnutls-bin or simlilar (apt search certtool, yum search certtool, pacman -Ss certtool, etc.)
-::
-
- [isabell@stardust ~]$ mkdir ~/gnutls
- [isabell@stardust ~]$ cd ~/gnutls
- [isabell@stardust ~]$ yumdownloader autogen-libopts.x86_64 gnutls.x86_64 gnutls-utils.x86_64
- [isabell@stardust ~]$ rpm2cpio autogen-libopts-5.18-5.el7.x86_64.rpm | cpio -idv
- [isabell@stardust ~]$ rpm2cpio gnutls-utils-3.3.29-9.el7_6.x86_64.rpm | cpio -idv
- [isabell@stardust ~]$ rpm2cpio gnutls-3.3.29-9.el7_6.x86_64.rpm | cpio -idv
- [isabell@stardust ~]$
-
-Now we need to make the libs known:
-::
-
- [isabell@stardust ~]$ export LD_LIBRARY_PATH=/home/isabell/gnutls/usr/lib64
- [isabell@stardust ~]$ echo "LD_LIBRARY_PATH=/home/isabell/gnutls/usr/lib64" >> ~/.bashrc
- [isabell@stardust ~]$
-
-...and make the binary available:
-::
-
- [isabell@stardust ~]$ cp /home/isabell/gnutls/usr/bin/certtool ~/bin/
- [isabell@stardust ~]$
-
-
-
 Configuration
 =============
 
