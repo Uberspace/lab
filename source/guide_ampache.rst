@@ -56,9 +56,11 @@ Now point your browser to your uberspace URL and follow the instructions.
 You will need to enter the following information:
 
 * Various
+
   * Web Path: /empache
 
 * Database Connection
+
   * Database Name:	<username>_ampache
   * MySQL Hostname: localhost
   * MySQL Port (optional): leave this blanc
