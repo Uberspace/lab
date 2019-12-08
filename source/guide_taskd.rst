@@ -346,4 +346,4 @@ To update taskd, repeat the Installation steps followed by a restart using ``sup
 
 .. _changelog: https://github.com/GothenburgBitFactory/taskserver/blob/master/ChangeLog
 
-.. author_list:: seeq
+.. author_list::
