@@ -60,6 +60,9 @@ Install django
  [isabell@stardust ~]$ pip3.6 install django --user
  [isabell@stardust ~]$
 
+.. hint::
+
+  Depening on your database configuration, additional modules like ``mysqlclient`` might be required.
 
 Create a django project. We will use "MyDjangoProject" during this guide.
 
