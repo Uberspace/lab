@@ -41,12 +41,14 @@ The subpath option looks like this:
 
 ::
 
-  [isabell@stardust ~]$ uberspace web backend set /gotify/ --http --port 52111
+  [isabell@stardust ~]$ uberspace web backend set /gotify/ --http --port 52111 --remove-prefix
   Set backend for / to port 52111; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
 .. _webbackend: https://manual.uberspace.de/web-backends.html
+
+Note the `--remove-prefix` option here. Without it, gotify will not work behind a sub path (e.g. `isabell.uber.space/gotify/`).
 
 
 Installation
@@ -85,8 +87,8 @@ Config file
 -----------
 
 Without configuration, gotify will listen on port 80. To change that to our previously choosen ``52111``,
-we will use an environment variable. It is also possible to use a config file. To download the
-example config, run:
+we will use an environment variable. It is also possible to use a config file, but we will ignore that for now.
+If you still want to change values in the config, download the example config and adjust it to your needs:
 
 ::
 
