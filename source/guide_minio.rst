@@ -41,7 +41,7 @@ Download the latest MinIO binary into your bin folder and make it executable:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ wget https://dl.min.io/server/minio/release/linux-amd64/minio -O ~/bin
+    [isabell@stardust ~]$ wget https://dl.min.io/server/minio/release/linux-amd64/minio -O ~/bin/minio
     [isabell@stardust ~]$ chmod +x ~/bin/minio
     [isabell@stardust ~]$
 
@@ -63,7 +63,7 @@ Run Minio once to get the master AccessKey and SecretKey:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ /home/isabell/bin/minio server /home/isabell/minio
+    [isabell@stardust ~]$ minio server ~/minio
     [...]
     AccessKey: 2MN0QSZJS104ROKHYKNC
     SecretKey: rozZqplprT+PZrYb4Mr5GNxeeh+CegYiMBvrvwfD
@@ -87,7 +87,7 @@ Create the configuration ``~/etc/services.d/minio.ini``:
 .. code-block:: ini
 
     [program:minio]
-    command=minio server ~/minio
+    command=minio server %(ENV_HOME)s/minio
     autostart=yes
     autorestart=yes
 
