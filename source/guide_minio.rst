@@ -41,15 +41,15 @@ Download the latest MinIO binary into your bin folder and make it executable:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ wget https://dl.min.io/server/minio/release/linux-amd64/minio -O /home/isabell/bin/minio
-    [isabell@stardust ~]$ chmod +x /home/isabell/bin/minio
+    [isabell@stardust ~]$ wget https://dl.min.io/server/minio/release/linux-amd64/minio -O ~/bin
+    [isabell@stardust ~]$ chmod +x ~/bin/minio
     [isabell@stardust ~]$
 
 Create a folder for your data:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ mkdir /home/isabell/minio
+    [isabell@stardust ~]$ mkdir minio
     [isabell@stardust ~]$
 
 .. include:: includes/web-backend.rst
@@ -87,7 +87,7 @@ Create the configuration ``~/etc/services.d/minio.ini``:
 .. code-block:: ini
 
     [program:minio]
-    command=~/bin/minio server ~/minio
+    command=minio server ~/minio
     autostart=yes
     autorestart=yes
 
