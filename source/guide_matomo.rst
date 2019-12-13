@@ -54,29 +54,27 @@ If you want to install Matomo into a subfolder of your domain, create a new fold
  [isabell@stardust html]$ cd matomo/
  [isabell@stardust matomo]$
 
-If you want to install matomo into your :manual:`document root <web-documentroot>`, just navigate with ``cd`` to your :manual:`document root <web-documentroot>`.
+Matomo can also be installed directly into your :manual:`document root <web-documentroot>`, which makes it accessible as ``https://isabell.uber.space`` directly. In that case, skip the last two commands. Your prompt will read ``[isabell@stardust html]$ `` for the following steps.
 
 Now download the latest version and extract it:
 
 ::
 
- [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip && rm matomo.zip
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
+ [isabell@stardust matomo]$ wget https://builds.matomo.org/piwik.tar.gz
+ --2019-12-13 11:25:58--  https://builds.matomo.org/piwik.tar.gz
+ Resolving builds.matomo.org (builds.matomo.org)... 2a00:b6e0:1:200:177::1, 185.31.40.177
+ Connecting to builds.matomo.org (builds.matomo.org)|2a00:b6e0:1:200:177::1|:443... connected.
+ HTTP request sent, awaiting response... 200 OK
+ Length: 19309516 (18M) [application/gzip]
+ Saving to: piwik.tar.gz
 
  [...]
 
+ [isabell@stardust matomo]$ tar --strip-components=1 -xf piwik.tar.gz
+ [isabell@stardust matomo]$ rm piwik.tar.gz
  [isabell@stardust matomo]$
 
-This will create a ``piwik`` folder containing the files and directories. Now we will move the files from the ``piwik`` folder to the parent folder.
-
-::
-
- [isabell@stardust matomo]$ cd piwik/ && mv * .. && cd .. && rm piwik -rf
- [isabell@stardust matomo]$
-
-Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. After that, follow the instructions of the Installer.
+Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo`` or ``https://isabell.uber.space/``. Follow the instructions in your browser.
 
 You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
