@@ -16,7 +16,7 @@ Matomo
 
 .. tag_list::
 
-Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
+Matomo_ (formerly known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
 
 ----
 
@@ -39,7 +39,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 .. include:: includes/my-print-defaults.rst
 
-If you want to use Matomo with your own domain you need to setup your domain first:
+If you want to use Matomo with your own domain you need to add it first:
 
 .. include:: includes/web-domain-list.rst
 
