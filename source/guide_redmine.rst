@@ -1,5 +1,9 @@
 .. author:: Dan Untenzu <mail@pixelbrackets.de>
 .. highlight:: console
+.. tag:: lang-ruby
+.. tag:: web
+.. tag:: customer-management
+.. tag:: business
 
 .. sidebar:: Logo
 
@@ -60,6 +64,9 @@ Your domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
+.. include:: includes/my-print-defaults.rst
+
+
 Installation
 ============
 
@@ -73,12 +80,14 @@ all files in there.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir ~/redmine
-  [isabell@stardust ~]$ cd ~/redmine
+  [isabell@stardust ~]$ wget https://redmine.org/releases/redmine-4.0.5.tar.gz
+  [isabell@stardust ~]$ tar xfv redmine-4.0.5.tar.gz
+  [isabell@stardust ~]$ mv redmine-4.0.5 redmine
+  [isabell@stardust ~]$ cd redmine
   [isabell@stardust redmine]$
 
 Copy the file ``config/database.yml.example`` to ``config/database.yml`` and edit
-the new file in order to configure your database settings for the "production" environment. You'll find your mysql password in ~/.my.cnf.
+the new file in order to configure your database settings for the "production" environment. You'll find your mysql password using ``my_print_defauls client``.
 
 .. code-block:: yaml
   :emphasize-lines: 3,5,6
@@ -92,14 +101,10 @@ the new file in order to configure your database settings for the "production" e
 
 Redmine uses Bundler to manage dependencies. Install Bundler running ``gem install bundler``.
 
-Install all dependencies running ``bundle install --without development test --path vendor/bundle``.
-It may happen that the gem ``rmagick`` can not be installed or that the target
-directory is not writable. In this case you can select a custom target directory
-and exclude the gem with the following command:
-
+Install all dependencies running ``bundle install --without development test rmagick --path vendor/bundle``:
 .. code-block:: console
 
-  [isabell@stardust redmine]$ bundle install --path vendor/bundle --without development test rmagick
+  [isabell@stardust redmine]$ bundle install --without development test rmagick --path vendor/bundle
   Bundle complete!
   Gems in the groups development, test and rmagick were not installed.
   Bundled gems are installed into `./vendor/bundle`
@@ -142,15 +147,11 @@ in the UberLab as well.
   as suggested in the Redmine installation guide, since this may trigger a
   `bug <https://github.com/seuros/capistrano-puma/issues/237>`_.
 
-You need to find a free port to bind Puma to it.
-
-.. include:: includes/generate-port.rst
-
 Create a configuration file for Puma called ``config.rb`` and add the following
 structure. Adapt the highlighted lines to your setup.
 
 .. code-block:: none
-  :emphasize-lines: 4,7,10
+  :emphasize-lines: 4,7
 
   #!/usr/bin/env puma
 
@@ -160,24 +161,21 @@ structure. Adapt the highlighted lines to your setup.
   # The path to the Redmine rackup file
   rackup '/home/isabell/redmine/config.ru'
 
-  # Bind Puma to a port
-  bind 'tcp://0.0.0.0:9000'
+.. note::
 
-And point the ``uberspace web backend`` on ``/`` to the listener on port 9000.
+    puma is running on port 9292.
 
 .. include:: includes/web-backend.rst
 
 You could now start Puma manually and everything would work. But to start it
 automatically Uberspace offers the service supervisord_.
 
-Create a supervisord configuration file running ``touch /home/isabell/etc/services.d/redmine-deamon.ini``
-and add the following content to it.
+Create and edit the file ``~/etc/services.d/redmine-deamon.ini`` and add the following content to it.
 
 .. code-block:: ini
-  :emphasize-lines: 2
 
   [program:redmine-daemon]
-  command=/opt/uberspace/etc/isabell/binpaths/ruby/puma --config %(ENV_HOME)s/redmine/config.rb --environment production
+  command=/opt/uberspace/etc/%(ENV_USER)s/binpaths/ruby/puma --config %(ENV_HOME)s/redmine/config.rb --environment production
   autostart=yes
   autorestart=yes
 
@@ -185,8 +183,7 @@ The ``--config`` parameter provides the path to the Puma configuration file.
 Be aware that the ``%(ENV_X)s`` is a Python syntax, which will expand to
 ``/home/isabell`` (so the »s« is part of the syntax, not of your path).
 
-Lastly restart supervisord running ``supervisorctl update`` to refresh its
-configuration and start Redmine.
+Lastly, tell supervisord to refresh its configuration and start new services by running ``supervisorctl update``.
 
 Redmine should now be available on your configured domain.
 
@@ -221,7 +218,7 @@ the same steps as the installation guide above, plus backup and restore of exist
 
 ----
 
-Tested with Redmine 4.0.5, Ruby 2.6, Uberspace 7.3.6.2
+Tested with Redmine 4.0.5, Ruby 2.6, Uberspace 7.3.9.2
 
 .. authors::
 
