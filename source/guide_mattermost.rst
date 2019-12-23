@@ -84,7 +84,7 @@ Run the following code to create the database ``<username>_mattermost`` in MySQL
 Change the configuration
 ------------------------
 
-You need to set up your URL, MySQL and mail settings in ``~/mattermost/config/config.json``. 
+You need to set up your URL, and MySQL settings in ``~/mattermost/config/config.json``. 
 
 First, set your site URL:
 
