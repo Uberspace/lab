@@ -32,12 +32,12 @@ The Lounge is based on the project Shout_ from which it is a community driven fo
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in version 11:
 
 ::
 
- [isabell@stardusts ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ [isabell@stardusts ~]$ uberspace tools version use node 11
+ Selected Node.js version 11
  [isabell@stardusts ~]$
 
 Your The Lounge URL needs to be setup:
