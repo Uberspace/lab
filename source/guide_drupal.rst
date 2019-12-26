@@ -124,7 +124,7 @@ Instead, we install it next to that and then use a symbolic link to make it acce
 RewriteBase
 -----------
 
-Edit ``/var/www/virtual/isabell/drupal/web/.htaccess``, search for ``# RewriteBase /`` and remove the leading ``#`` to activate this statement.
+Edit ``/var/www/virtual/$USER/drupal/web/.htaccess``, search for ``# RewriteBase /`` and remove the leading ``#`` to activate this statement.
 
 ::
 
