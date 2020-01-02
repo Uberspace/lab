@@ -75,8 +75,8 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
   * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
   * ``--no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
-  * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use :manual:`supervisord <daemons-supervisord>` later instead.
-  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a :manual_anchor:`htaccess <web-documentroot.html#own-configuration>` file for :manual_anchor:`apache <lang-nodejs.html#connection-to-webserver>` later instead.
+  * ``--no-setup-systemd``, ``--no-start``, ``--no-enable``: Skips creation of a systemd unit file. We'll use :manual:`supervisord <daemons-supervisord>` later instead.
+  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a :manual_anchor:`web backend <web-backends>` later instead.
   * ``--no-setup-mysql``: Skips setup of :manual:`MySQL <database-mysql>`. You can't do that without root privileges.
 
 You will need to enter the following information:
