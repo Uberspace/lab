@@ -1,4 +1,5 @@
 .. author:: nichtmax <https://moritz.in>
+.. author:: Nico Graf <hallo@uberspace.de>
 .. author:: Peleke <https://www.peleke.de>
 .. author:: Noah <https://noahwagner.de>
 
@@ -87,18 +88,20 @@ You will need to enter the following information:
   * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
- :emphasize-lines: 1,2,3,12,13,14,15,16,25
+ :emphasize-lines: 1,2,3,14,16,17,18
 
  [isabell@stardust ~]$ mkdir ~/ghost
  [isabell@stardust ~]$ cd ~/ghost
- [isabell@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql
+ [isabell@stardust ghost]$ ghost install --no-stack --no-setup-linux-user --no-setup-systemd --no-setup-nginx --no-setup-mysql --no-start --no-enable
  ✔ Checking system Node.js version
+ ✔ Checking logged in user
  ✔ Checking current folder permissions
  ℹ Checking operating system compatibility [skipped]
  ✔ Checking for a MySQL installation
+ ✔ Checking memory availability
  ✔ Checking for latest Ghost version
  ✔ Setting up install directory
- ✔ Downloading and installing Ghost v2.0.0
+ ✔ Downloading and installing Ghost v3.2.0
  ✔ Finishing install process
  ? Enter your blog URL: https://isabell.uber.space
  ? Enter your MySQL hostname: localhost
@@ -107,14 +110,16 @@ You will need to enter the following information:
  ? Enter your Ghost database name: isabell_ghost
  ✔ Configuring Ghost
  ✔ Setting up instance
- ℹ Setting up "ghost" mysql user [skipped]
- ℹ Setting up Nginx [skipped]
- Task ssl depends on the 'nginx' stage, which was skipped.
  ℹ Setting up SSL [skipped]
- ℹ Setting up Systemd [skipped]
- ✔ Running database migrations
- ? Do you want to start Ghost? No
- [isabell@stardust ghost]$
+ 
+ Ghost uses direct mail by default. To set up an alternative email method read our docs at https://ghost.org/docs/concepts/config/#mail
+ 
+ ------------------------------------------------------------------------------
+ 
+ Ghost was installed successfully! To complete setup of your publication, visit:
+ 
+ https://isabell.uber.space/ghost/
+
 
 Configuration
 =============
