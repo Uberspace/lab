@@ -161,9 +161,9 @@ If you have installed Nextcloud on a subdomain it can happen that the update fai
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
 
- [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
- [isaball@stardust html]$ php occ upgrade
- [isaball@stardust html]$ restorecon -R .
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ php occ upgrade
+ [isabell@stardust html]$ restorecon -R .
  [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
