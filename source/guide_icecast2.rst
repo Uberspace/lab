@@ -152,7 +152,8 @@ If it is running without errors, close it with ``ctrl``+``c``. Otherwise most li
 
 Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini`` with the following content. Be sure to place your username.
 
-::
+.. code-block:: ini
+
   [program:icecast]
   command=%(ENV_HOME)s/bin/icecast -c %(ENV_HOME)s/etc/icecast.xml
   autostart=yes
