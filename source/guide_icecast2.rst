@@ -147,7 +147,7 @@ Try to manually run icecast with your config to print out possible errors.
   [isabell@stardust ~]$ ~/bin/icecast -c ~/etc/icecast.xml
   [isabell@stardust ~]$ 
 
-If it is running without errors, close it with ``ctrl``+``c``. Otherwise most likely you need to fix them in your config.
+If it is running without errors, close it with ``Ctrl+C``. Otherwise most likely you need to fix them in your config.
 
 Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini`` with the following content. Be sure to place your username.
 
