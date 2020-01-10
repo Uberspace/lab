@@ -10,7 +10,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/icecast2.png
+  .. image:: _static/images/icecast.svg
       :align: center
 
 ########
