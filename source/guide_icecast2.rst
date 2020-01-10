@@ -48,20 +48,20 @@ Installation
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/tmp
-  [isabell@stardust ~/tmp]$ wget http://downloads.xiph.org/releases/icecast/icecast-2.4.4.tar.gz
-  [isabell@stardust ~/tmp]$ tar -xzf icecast-2.4.4.tar.gz
-  [isabell@stardust ~/tmp]$ cd icecast-2.4.4
-  [isabell@stardust ~/tmp]$ ./configure --prefix=$HOME
-  [isabell@stardust ~/tmp]$ make
-  [isabell@stardust ~/tmp]$ make install
+  [isabell@stardust tmp]$ wget http://downloads.xiph.org/releases/icecast/icecast-2.4.4.tar.gz
+  [isabell@stardust tmp]$ tar -xzf icecast-2.4.4.tar.gz
+  [isabell@stardust tmp]$ cd icecast-2.4.4
+  [isabell@stardust icecast-2.4.4]$ ./configure --prefix=$HOME
+  [isabell@stardust icecast-2.4.4]$ make
+  [isabell@stardust icecast-2.4.4]$ make install
 
 If there were no errors, you can safely remove the installation directory and archive:
 
 .. code-block:: console
 
-  [isabell@stardust ~/tmp]$ rm -r icecast-2.4.4
-  [isabell@stardust ~/tmp]$ rm icecast-2.4.4.tar.gz
-  [isabell@stardust ~/tmp]$
+  [isabell@stardust icecast-2.4.4]$ cd ..
+  [isabell@stardust tmp]$ rm -r icecast-*
+  [isabell@stardust tmp]$
 
 As ``--prefix=$HOME`` was used, components of icecast are in the home directory now:
 
