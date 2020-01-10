@@ -35,25 +35,12 @@ Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-Aquire one of your 20 listening ports from uberspace with
+Configure port
+--------------
 
-.. code-block:: console
- :emphasize-lines: 1
+.. include:: includes/open-port.rst
 
-  [isabell@stardust ~]$ uberspace port add
-  Port 40132 will be open for TCP and UDP traffic in a few minutes.
-  [isabell@stardust ~]$
-
-Here it is ''40132''. Note it down for later. Below it will be referenced with ``$yourlisteningport``.
-It may take a few minutes for the port to be accessible from the Internet.
-
-You can check on your Linux machine if the port is open with
-
-.. code-block:: console
-
-  [you@yourmachine ~]$ nmap isabell.uber.space -p 40132 | grep 40132
-  40132/tcp open  unknown
-  [you@yourmachine ~]$ 
+Write down your port.
 
 Installation
 ============
@@ -98,17 +85,13 @@ You can then later compare your config with the default one with ``diff``.
   [isabell@stardust ~]$ diff ~/etc/icecast.xml ~/etc/icecast.xml.dist
   [isabell@stardust ~]$ 
 
-Time to choose a couple of passwords for different users. On your own Linux machine you may want to generate them. Maybe you have to install ``pwgen``. Generate at least three and note it down for the next step.
+Use this snippet to generate random passwords:
 
 .. code-block:: console
 
- [you@yourmachine ~]$ pwgen -syc 12 1
- y0uRS3cR3t_1!
- [you@yourmachine ~]$ pwgen -syc 12 1
- y0uRS3cR3t_2!
- [you@yourmachine ~]$ pwgen -syc 12 1
- y0uRS3cR3t_3!
- [you@yourmachine ~]$ 
+ [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo
+ topsecretrandompassword
+
 
 Edit ``~/etc/icecast.xml`` and change the following entries:
 
@@ -144,6 +127,8 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
      <shoutcast-mount>/stream</shoutcast-mount>
   </listen-socket>
 
+Use the port you were assigned by ``uberspace port add`` above.
+
 Save and exit.
 
 Create the directory for the log files.
@@ -151,7 +136,7 @@ Create the directory for the log files.
 .. code-block:: console
  :emphasize-lines: 1
 
-  [isabell@stardust ~]$ mkdir -p /home/isabell/var/log/icecast/
+  [isabell@stardust ~]$ mkdir -p ~/var/log/icecast/
   [isabell@stardust ~]$ 
 
 
@@ -160,7 +145,7 @@ Try to manually run icecast with your config to print out possible errors.
 .. code-block:: console
  :emphasize-lines: 1
 
-  [isabell@stardust ~]$ /home/isabell/bin/icecast -c /home/isabell/etc/icecast.xml
+  [isabell@stardust ~]$ ~/bin/icecast -c ~/etc/icecast.xml
   [isabell@stardust ~]$ 
 
 If it is running without errors, close it with ``ctrl``+``c``. Otherwise most likely you need to fix them in your config.
@@ -169,7 +154,7 @@ Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini
 
 ::
   [program:icecast]
-  command=/home/isabell/bin/icecast -c /home/isabell/etc/icecast.xml
+  command=%(ENV_HOME)s/bin/icecast -c %(ENV_HOME)s/etc/icecast.xml
   autostart=yes
   autorestart=yes
 
@@ -188,21 +173,14 @@ Check the status of your icecast2 service.
 
 If your service is not running, check your config.
 
-Finally configure the backend with your listening port from above.
+Configure web server
+--------------------
 
-.. code-block:: console
- :emphasize-lines: 1
+.. note::
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port $yourlisteningport
-  [isabell@stardust ~]$ 
+    Use the port you were assigned by ``uberspace port add`` above.
 
-Check if that went well
-
-.. code-block:: console
- :emphasize-lines: 1
-
-  [isabell@stardust ~]$ uberspace web backend list
-  [isabell@stardust ~]$ 
+.. include:: includes/web-backend.rst
 
 Find more configuration possibilities in the configdocu_.
 
@@ -217,32 +195,10 @@ On the icecast website you can find a list of other possible clients_.
 Administration
 ==============
 
-To view streams, kick clients or view statistics open your web-domain in a browser and login with your chosen admin credentials.
-
-If you need to stop, start or restart your icecast service use:
-
-.. code-block:: console
- :emphasize-lines: 1
-
-  [isabell@stardust ~]$ supervisorctl restart icecast
-  [isabell@stardust ~]$ 
-
-.. code-block:: console
- :emphasize-lines: 1
-
-  [isabell@stardust ~]$ supervisorctl start icecast
-  [isabell@stardust ~]$ 
-
-.. code-block:: console
- :emphasize-lines: 1
-
-  [isabell@stardust ~]$ supervisorctl stop icecast
-  [isabell@stardust ~]$ 
-
 You can find your logs here:
 
-``/home/isabell/var/log/icecast/error.log``
-``/home/isabell/var/log/icecast/access.log``
+``~/var/log/icecast/error.log``
+``~/var/log/icecast/access.log``
 
 You may want to change the log level from Info ``3`` to Debug ``4`` for debugging.
 
@@ -267,6 +223,6 @@ Updates
 .. _mixxx: https://mixxx.org/
 ----
 
-Tested with icecast-2.4.1 and Uberspace 7
+Tested with icecast-2.4.1 and Uberspace 7.3.10
 
 .. author_list::
