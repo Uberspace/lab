@@ -50,7 +50,7 @@ Installation
   [isabell@stardust ~]$ cd ~/tmp
   [isabell@stardust ~/tmp]$ wget http://downloads.xiph.org/releases/icecast/icecast-2.4.4.tar.gz
   [isabell@stardust ~/tmp]$ tar -xzf icecast-2.4.4.tar.gz
-  [isabell@stardust ~/tmp]$ icecast-2.4.4
+  [isabell@stardust ~/tmp]$ cd icecast-2.4.4
   [isabell@stardust ~/tmp]$ ./configure --prefix=$HOME
   [isabell@stardust ~/tmp]$ make
   [isabell@stardust ~/tmp]$ make install
