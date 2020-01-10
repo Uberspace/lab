@@ -55,7 +55,7 @@ Installation
   [isabell@stardust ~/tmp]$ make
   [isabell@stardust ~/tmp]$ make install
 
-If there were not errors, you can safely remove the installation directory and archive:
+If there were no errors, you can safely remove the installation directory and archive:
 
 .. code-block:: console
 
