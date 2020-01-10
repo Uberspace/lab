@@ -54,6 +54,11 @@ Installation
   [isabell@stardust ~/tmp]$ ./configure --prefix=$HOME
   [isabell@stardust ~/tmp]$ make
   [isabell@stardust ~/tmp]$ make install
+
+If there were not errors, you can safely remove the installation directory and archive:
+
+.. code-block:: console
+
   [isabell@stardust ~/tmp]$ rm -r icecast-2.4.4
   [isabell@stardust ~/tmp]$ rm icecast-2.4.4.tar.gz
   [isabell@stardust ~/tmp]$
@@ -72,7 +77,6 @@ Configuration
 Before editing a config, it's best practice to copy the untouched config file to a *.dist file.
 
 .. code-block:: console
- :emphasize-lines: 1
 
   [isabell@stardust ~]$ cp ~/etc/icecast.xml ~/etc/icecast.xml.dist
   [isabell@stardust ~]$ 
@@ -80,7 +84,6 @@ Before editing a config, it's best practice to copy the untouched config file to
 You can then later compare your config with the default one with ``diff``.
 
 .. code-block:: console
- :emphasize-lines: 1
 
   [isabell@stardust ~]$ diff ~/etc/icecast.xml ~/etc/icecast.xml.dist
   [isabell@stardust ~]$ 
@@ -129,12 +132,9 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
 
 Use the port you were assigned by ``uberspace port add`` above.
 
-Save and exit.
-
 Create the directory for the log files.
 
 .. code-block:: console
- :emphasize-lines: 1
 
   [isabell@stardust ~]$ mkdir -p ~/var/log/icecast/
   [isabell@stardust ~]$ 
@@ -143,7 +143,6 @@ Create the directory for the log files.
 Try to manually run icecast with your config to print out possible errors.
 
 .. code-block:: console
- :emphasize-lines: 1
 
   [isabell@stardust ~]$ ~/bin/icecast -c ~/etc/icecast.xml
   [isabell@stardust ~]$ 
@@ -167,7 +166,6 @@ Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini
 Check the status of your icecast2 service.
 
 .. code-block:: console
- :emphasize-lines: 1
 
   [isabell@stardust ~]$ supervisorctl status
   [isabell@stardust ~]$ 
@@ -183,6 +181,9 @@ Configure web server
 
 .. include:: includes/web-backend.rst
 
+Additional configuration
+------------------------
+
 Find more configuration possibilities in the configdocu_.
 
 With this basic setup you can already stream audio from a source client like mixxx_ to your icecast server by providing 
@@ -196,10 +197,7 @@ On the icecast website you can find a list of other possible clients_.
 Administration
 ==============
 
-You can find your logs here:
-
-``~/var/log/icecast/error.log``
-``~/var/log/icecast/access.log``
+You can find your logs in ``~/var/log/icecast/``.
 
 You may want to change the log level from Info ``3`` to Debug ``4`` for debugging.
 
