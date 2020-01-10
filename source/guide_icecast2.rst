@@ -41,7 +41,7 @@ Aquire one of your 20 listening ports from uberspace with
  :emphasize-lines: 1
 
   [isabell@stardust ~]$ uberspace port add
-Port 40132 will be open for TCP and UDP traffic in a few minutes.
+  Port 40132 will be open for TCP and UDP traffic in a few minutes.
   [isabell@stardust ~]$
 
 Here it is ''40132''. Note it down for later. Below it will be referenced with ``$yourlisteningport``.
@@ -102,15 +102,15 @@ Time to choose a couple of passwords for different users. On your own Linux mach
 
 .. code-block:: console
 
-[you@yourmachine ~]$ pwgen -syc 12 1
-y0uRS3cR3t_1!
-[you@yourmachine ~]$ pwgen -syc 12 1
-y0uRS3cR3t_2!
-[you@yourmachine ~]$ pwgen -syc 12 1
-y0uRS3cR3t_3!
-[you@yourmachine ~]$ 
+ [you@yourmachine ~]$ pwgen -syc 12 1
+ y0uRS3cR3t_1!
+ [you@yourmachine ~]$ pwgen -syc 12 1
+ y0uRS3cR3t_2!
+ [you@yourmachine ~]$ pwgen -syc 12 1
+ y0uRS3cR3t_3!
+ [you@yourmachine ~]$ 
 
-Edit ``~/etc/icecast.xml`` and change the following entrees:
+Edit ``~/etc/icecast.xml`` and change the following entries:
 
 ::
 
@@ -186,18 +186,7 @@ Check the status of your icecast2 service.
   [isabell@stardust ~]$ supervisorctl status
   [isabell@stardust ~]$ 
 
-If your service is not running start it with
-
-.. code-block:: console
- :emphasize-lines: 1
-
-  [isabell@stardust ~]$ supervisorctl start icecast
-  [isabell@stardust ~]$ 
-
-If it is still not running check your error log.
-
-``/home/isabell/var/log/icecast/error.log``
-
+If your service is not running, check your config.
 
 Finally configure the backend with your listening port from above.
 
