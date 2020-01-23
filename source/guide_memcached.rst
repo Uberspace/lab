@@ -158,7 +158,7 @@ The official documentation_ lists the possible options.
 Updates
 =======
 
-To update memcached, repeat the Installation steps followed by a restart using supervisorctl restart memcached. Periodically check the changelog_ to learn about new versions.
+To update memcached, repeat the Installation steps followed by a restart using ``supervisorctl restart memcached``. Periodically check the changelog_ to learn about new versions.
 
 
 .. _memcached: https://memcached.org/
