@@ -90,7 +90,7 @@ Try running ``memcached`` to make sure everything works:
 
 .. code-block::
 
- [isabell@stardust src]$ ./memcached -vvvv
+ [isabell@stardust memcached-1.x.x]$ ./memcached -vvvv
  slab class   1: chunk size        96 perslab   10922
  slab class   2: chunk size       120 perslab    8738
  slab class   3: chunk size       152 perslab    6898
@@ -109,8 +109,8 @@ Copy the ``memcached`` binari to your `~/bin` folder:
 
 .. code-block::
 
- [isabell@stardust ~]$ cp ~/memcached-1.x.x/memcached ~/bin/
- [isabell@stardust ~]$
+ [isabell@stardust memcached-1.x.x]$ cp memcached ~/bin/
+ [isabell@stardust memcached-1.x.x]$
 
 Configuration
 =============
