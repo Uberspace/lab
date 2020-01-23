@@ -35,7 +35,7 @@ Installation
 Download memcached
 ------------------
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ wget https://memcached.org/latest -O ~/memcached-latest.tar.gz
  --2020-01-17 17:41:28--  https://memcached.org/latest
@@ -57,7 +57,7 @@ Download memcached
 
 Extract memcached
 --------------------------
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ tar -zxvf memcached-latest.tar.gz
  memcached-1.5.20/
@@ -72,7 +72,7 @@ Extract memcached
 Build memcached
 ---------------
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ cd memcached-1.x.x/
  [isabell@stardust memcached-1.x.x]$ make
@@ -89,7 +89,7 @@ Build memcached
 
 Try running ``memcached`` to make sure everything works:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust src]$ ./memcached -vvvv
  slab class   1: chunk size        96 perslab   10922
@@ -108,7 +108,7 @@ If no errors occur, then everything should be fine and you can exit the program 
 
 Copy the ``memcached`` binari to your `~/bin` folder:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ cp ~/memcached-1.x.x/memcached ~/bin/
  [isabell@stardust ~]$
@@ -137,7 +137,7 @@ Testing memcached
 
 Test if memcached is responing on it's assigned port by issuing the following command to display the current configuration parameters.
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ echo "stats settings" | nc localhost 11211
  STAT maxbytes 67108864
