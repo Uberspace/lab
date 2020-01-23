@@ -123,7 +123,7 @@ Use your favourite editor to create ``~/etc/services.d/memcached.ini`` with the 
 .. code-block:: ini
 
  [program:memcached]
- command=memcached --port 11211
+ command=memcached --port 11211 --listen=127.0.0.1
  autostart=yes
  autorestart=yes
 
