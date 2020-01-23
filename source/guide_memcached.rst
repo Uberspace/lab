@@ -75,7 +75,6 @@ Build memcached
 .. code-block::
 
  [isabell@stardust ~]$ cd memcached-1.x.x/
- [isabell@stardust memcached-1.x.x]$ make
  [isabell@stardust memcached-1.x.x]$ ./configure && make && make test
  checking build system type... x86_64-pc-linux-gnu
  checking host system type... x86_64-pc-linux-gnu
