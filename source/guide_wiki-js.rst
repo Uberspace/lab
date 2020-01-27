@@ -86,8 +86,8 @@ Configuration
 ::
 
   [isabell@stardust ~]$ cd ~/wiki
-  [isabell@stardust ~]$ cp config.sample.yml config.yml
-  [isabell@stardust ~]$
+  [isabell@stardust wiki]$ cp config.sample.yml config.yml
+  [isabell@stardust wiki]$
 
 Now edit the ``config.yml`` file. In the section ``db`` change ``user``,
 ``pass`` and ``db`` according to your credentials and database name.
