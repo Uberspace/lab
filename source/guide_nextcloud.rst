@@ -79,6 +79,19 @@ Additionally, you can choose where Nextcloud is going to store your data files. 
 
 Tuning
 ======
+Onlyoffice (Community Edition)
+-------
+To edit text and spreadsheet documents, install these apps from the admin interface: 
+
+* Onlyoffice (the bridge to the Onlyoffice server)
+* Community Document Server (a light version of the Onlyoffice server)
+
+The installation of the Community Document Server probably doesn't work from the admin panel. Then install it from the shell:
+
+::
+
+[isabell@stardust ~]$ cd apps
+[isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
 
 cronjob
 -------
