@@ -81,17 +81,20 @@ Tuning
 ======
 Onlyoffice (Community Edition)
 -------
-To edit text and spreadsheet documents, install these apps from the admin interface: 
+To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
 
-* Onlyoffice (the bridge to the Onlyoffice server)
 * Community Document Server (a light version of the Onlyoffice server)
+* Onlyoffice (the connector to the Onlyoffice server)
 
-The installation of the Community Document Server probably doesn't work from the admin panel. Then install it from the shell:
+Both apps can be installed optional during the main install, but the huge document server may fail. Then install it manually from the shell:
 
 ::
 
-[isabell@stardust ~]$ cd apps
+[isabell@stardust html]$ cd apps
 [isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
+
+Reload the admin panel and enable the Community Document Server. 
+A click on a text/spreadsheet document should now start the Onlyoffice Editor. 
 
 cronjob
 -------
