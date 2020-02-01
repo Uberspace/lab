@@ -155,8 +155,8 @@ Create a configuration file for drush.
 
 ::
 
-  mkdir ~/.drush
-  cp /var/www/virtual/$USER/drupal/vendor/drush/drush/examples/example.drush.yml ~/.drush/drush.yml
+  [isabell@stardust isabell]$ mkdir ~/.drush
+  [isabell@stardust isabell]$ cp /var/www/virtual/$USER/drupal/vendor/drush/drush/examples/example.drush.yml ~/.drush/drush.yml
 
 Add *uri* option to your drush configuration.
 
