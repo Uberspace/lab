@@ -75,7 +75,7 @@ Start the installer and follow the instructions.
 
 Step 2
 ------
-Open ShareX and navigate to "**Destinations** > **Destinations settings** > **FTP / FTPS / SFTP**".
+Open ShareX and navigate to ":menuselection:`Destinations settings --> FTP / FTPS / SFTP`"
 Now click "**Add**" to create a new destination for our pictures.
 
 Step 3
@@ -101,7 +101,7 @@ Step 4
 To setup your Workflow do the following:
 
 
- 1. Navigate to "**Destinations** > **Image Uploader**" and check **FTP**.
+ 1. Navigate to ":menuselection:`Destinations --> Image Uploader`" and check **FTP**.
  2. Navigate to "**After Capture tasks**" and be sure to activate "**Open in image editor**", "**Save image to file**" and finaly "**Upload image to host**".
  3. Navigate to "**After upload tasks**" and be sure to activate "**Copy URL to clipboard**".
 
@@ -111,17 +111,18 @@ Step 5
 Now it’s time to setup your Hotkeys:
 
 
- Navigate to "**Hotkeys**" then:
+ Navigate to ":menuselection:`Destinations --> Hotkeys`" then do the following:
+
   1. Remove all Hotkeys.
   2. Click "**Add**"
-  3. Select "**Task: None**" and navigate to: "**Screen capture** > **capture region**"
+  3. Select "**Task: None**" and navigate to: ":menuselection:`Screen capture --> capture region`"
   4. Close the Task settings window and click on **None** and press your Hotkey (for example "**PRINT SCREEN**")
 
 
 Step 6 (Optional)
 -----------------
 Optional you can change the filename to something fancier.
-To do so, navigate to "**Task settings** > **File naming**" and change the two text fields to:
+To do so, navigate to ":menuselection:`Task settings --> File nameing`" and change the two text fields to:
 ::
  
   %y-%mo-%d_%h-%mi-%s
