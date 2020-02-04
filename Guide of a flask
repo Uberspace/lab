@@ -1,0 +1,12 @@
+In python first install flask 
+command - pip3 install Flask in linux and for windows pip install Flask
+Then create a virtual enviornment 
+pip install virtualenv 
+command -> virtualenv . for linux and (virtualenv myenv) for windows
+then (source bin/activate) in linux and myenv\Scripts\activate
+
+Then finally import flask in your project 
+from flask import Flask
+then do what ever 
+source https://flask.palletsprojects.com/en/1.1.x/
+ 
