@@ -23,74 +23,43 @@ License information can be found here
 
   * https://github.com/aptly-dev/aptly/blob/master/LICENSE
 
-Prerequisites
-=============
-
-First of all, you'll need to install Homebrew_. This tool will be used to install aptly.
-
-.. code-block:: console
- :emphasize-lines: 28
-
- [isabell@stardust ~]$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
- ==> This script will install:
- /home/isabell/.linuxbrew/bin/brew
- /home/isabell/.linuxbrew/share/doc/homebrew
- /home/isabell/.linuxbrew/share/man/man1/brew.1
- /home/isabell/.linuxbrew/share/zsh/site-functions/_brew
- /home/isabell/.linuxbrew/etc/bash_completion.d/brew
- /home/isabell/.cache/Homebrew/
- /home/isabell/.linuxbrew/Homebrew
- ==> The following new directories will be created:
- /home/isabell/.linuxbrew/bin
- /home/isabell/.linuxbrew/etc
- /home/isabell/.linuxbrew/include
- /home/isabell/.linuxbrew/lib
- /home/isabell/.linuxbrew/sbin
- /home/isabell/.linuxbrew/share
- /home/isabell/.linuxbrew/var
- /home/isabell/.linuxbrew/opt
- /home/isabell/.linuxbrew/share/zsh
- /home/isabell/.linuxbrew/share/zsh/site-functions
- /home/isabell/.linuxbrew/var/homebrew
- /home/isabell/.linuxbrew/var/homebrew/linked
- /home/isabell/.linuxbrew/Cellar
- /home/isabell/.linuxbrew/Caskroom
- /home/isabell/.linuxbrew/Homebrew
- /home/isabell/.linuxbrew/Frameworks
-
- Press RETURN to continue or any other key to abort
-
- [...]
-
- [isabell@stardust ~]$
-
-To be able to use the ``brew`` command, you can add the following line to ``~/.bash_profile``:
-
-.. warning:: Replace ``isabell`` with your username!
-
-::
-
- eval $(/home/isabell/.linuxbrew/bin/brew shellenv)
-
-To make this change effective for the current session, you can use:
-
-::
-
- [isabell@stardust ~]$ source ~/.bash_profile
- [isabell@stardust ~]$
 
 Installation
 ============
 
-To install aptly, you can simply use brew:
+To install aptly, you first need to download the latest binary distribution of aptly for 64-bit Linux.
+You can find the download link at https://www.aptly.info/download/.
+
+.. warning:: This example shows the download for version 1.4.0. Make sure to use the latest version!
 
 ::
 
- [isabell@stardust ~]$ brew install aptly
+ [isabell@stardust ~]$ wget https://github.com/aptly-dev/aptly/releases/download/v1.4.0/aptly_1.4.0_linux_amd64.tar.gz
 
  [...]
 
  [isabell@stardust ~]$
+
+
+Then, you need to unpack the files to ``~/bin``.
+
+
+.. warning:: This example shows the file name for version 1.4.0. Make sure to use the file name of the file you downloaded!
+
+::
+
+ [isabell@stardust ~]$ tar xzf aptly_1.4.0_linux_amd64.tar.gz -C ~/bin
+ [isabell@stardust ~]$
+
+
+Finally, you have to create a symlink, so that you can use aptly without specifying to full path.
+Again, make sure to use the correct filename according to the version you use.
+
+::
+
+ [isabell@stardust ~]$ ln -s ~/bin/aptly_1.4.0_linux_amd64/aptly ~/bin/aptly
+ [isabell@stardust ~]$
+
 
 Basic Configuration and Usage
 =============================
@@ -325,15 +294,14 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-You can use ``brew upgrade`` to update aptly.
+To update aptly, follow the installation procedure described above.
 
 
 .. _aptly: https://aptly.info
-.. _Homebrew: https://docs.brew.sh/Homebrew-on-Linux
 .. _feed: https://github.com/aptly-dev/aptly/releases.atom
 
 ----
 
-Tested with aptly 1.4.0, Uberspace 7.3.10
+Tested with aptly 1.4.0, Uberspace 7.4
 
 .. author_list::
