@@ -1,4 +1,4 @@
-.. author:: `cblte <https://twitter.com/cblte>` <https://cbrueggenolte.de>
+.. author:: cblte <https://cbrueggenolte.de>
 
 .. highlight:: console
 
@@ -231,7 +231,7 @@ Additional Notes
 Gaining Admin Rights
 --------------------
 
-When you connect to your teamspeak server for the first time, you will need the token generated on first start of the server. If you have not taken a copy of the *token* and/or the *admin/password* combination, then you can get them from the log files located in the ``logs`` folder of your teamspeak installation. 
+When you connect to your teamspeak server for the first time, you will need the token that got generated on first start of the server. If you have not taken a copy of the *token* and/or the *admin/password* combination, then you can get them from the log files located in the ``logs`` folder of your teamspeak installation. 
 
 Start and Stopping the Server
 -----------------------------
