@@ -2,6 +2,10 @@
 
 .. author:: FM <git.fm@mmw9.de>
 
+.. tag:: lang-c
+.. tag:: audience-admins
+.. tag:: analytics
+
 ########
 GoAccess
 ########
@@ -21,31 +25,27 @@ Installation
 Step 1 - Download and Extract the Source Code
 ---------------------------------------------
 
-Create a working directory.
+Download and extract the tarball containing the source code into a temporary
+directory:
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/filebase/
- [isabell@stardust ~]$ cd ~/filebase/
- [isabell@stardust ~]$
-
-Download the actual source code from GitHub. 
-
-::
-
- [isabell@stardust ~]$ git clone https://github.com/allinurl/goaccess.git
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd ~/tmp
+ [isabell@stardust ~/tmp]$ curl https://tar.goaccess.io/goaccess-1.3.tar.gz | tar -xvz
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                  Dload  Upload   Total   Spent    Left  Speed
+   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+ goaccess-1.3/
+ goaccess-1.3/ChangeLog
+ goaccess-1.3/resources/
+ (...)
+ goaccess-1.3/m4/lib-link.m4
+ goaccess-1.3/m4/nls.m4
+ goaccess-1.3/m4/po.m4
+ [isabell@stardust ~/tmp]$
 
 Step 2 - Source Code Configuration, Compiling and Installation
 --------------------------------------------------------------
-
-Prepare the compile environment.
-
-::
-
- [isabell@stardust ~]$ cd ~/filebase/goaccess/
- [isabell@stardust ~]$ autoreconf -fiv
- [isabell@stardust ~]$
 
 Configure and compile the source code with the commands ``configure``, ``make`` and finally install it with ``make install``.
 
@@ -53,21 +53,19 @@ Configure and compile the source code with the commands ``configure``, ``make`` 
 
 Before we start, we have to consider some aspects, especially a shared hosting environment like Uberspace:
 
- * ``--prefix=/home/isabell``: Installation target for your personal Uberspace.
+ * ``--prefix=$HOME``: Put the resulting binary in ~/bin.
  * ``--enable-utf8``: Compile with wide character support.
  * ``--enable-geoip=legacy``: Compile with GeoLocation support, legacy will utilize the original GeoIP databases.
 
 Other options can be found in the GoAccess `installation documentation`_.
 
-.. warning:: Replace ``isabell`` with your Uberspace name!
-
 ::
 
- [isabell@stardust ~]$ cd ~/filebase/goaccess/
- [isabell@stardust ~]$ ./configure --enable-utf8 --enable-geoip=legacy --prefix=/home/isabell
- [isabell@stardust ~]$ make
- [isabell@stardust ~]$ make install
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd ~/tmp/goaccess-1.3/
+ [isabell@stardust ~/tmp/goaccess-1.3]$ ./configure --enable-utf8 --enable-geoip=legacy --prefix=$HOME
+ [isabell@stardust ~/tmp/goaccess-1.3]$ make
+ [isabell@stardust ~/tmp/goaccess-1.3]$ make install
+ [isabell@stardust ~/tmp/goaccess-1.3]$
 
 Configuration
 =============
@@ -77,7 +75,7 @@ After the installation of GoAccess, it is necessary to enable the web server log
 Step 1 - Enable the Web Server Log
 ----------------------------------
 
-Please follow the instructions by the Uberspace manual_ to enable the web server logs.
+Please follow the instructions in :manual:`the uberspace manual <web-logs>` to enable the web server logs.
 
 .. note:: Please consider, after the web server log enabling, it needs some time to have some entries in your new log files. Depends on the web traffic.
 
@@ -87,7 +85,7 @@ Step 2 - GoAccess Configuration
 Edit the configuration file ``~/etc/goaccess/goaccess.conf`` and reach out for the following parameters to uncomment these.
 
 .. code-block:: bash
- :emphasize-lines: 2,4,6,8
+ :emphasize-lines: 2,5,8,11
 
  # Time Format Options (required)
  time-format %H:%M:%S
@@ -111,15 +109,9 @@ To get first results, to check that everthing is maintained, please enter:
 
 ::
 
- [isabell@stardust ~]$ goaccess -a -p ~/etc/goaccess/goaccess.conf -f ~/logs/webserver/access_log
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log
 
 Scroll with your cursor keys up and down. With "q" you can quit GoAccess.
-
-The used parameters are:
-
- * ``-a``: Enable a list of user-agents by hosts.
- * ``-p``: Config file location.
- * ``-f``: Web server log file location.
 
 Step 2 - HTML Output
 --------------------
@@ -128,40 +120,35 @@ This is the graphical variant as static HTML web page. I consider a new folder i
 
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust ~]$ mkdir statistics
+ [isabell@stardust ~]$ mkdir ~/html/statistics
  [isabell@stardust ~]$
 
 The command to create a static file with GoAccess is:
 
 ::
 
- [isabell@stardust ~]$ goaccess -a -p ~/etc/goaccess/goaccess.conf -f ~/logs/webserver/access_log -o ~/html/statistics/report.html
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
 
-The additional parameter is:
+.. warning:: The content of ``~/html`` is publicly accessible. To protect it from unintended visitors, set up HTTP basic authentication using an ``.htaccess`` file.
 
- * ``-o``: To define the output file.
-
-.. note:: The target folder ``statistics`` and file name ``report.html`` are examples. If you want more privacy after this publication, please use other names for boths.
-
-To visit your new file, please use your browser (https://your-uberspace/statistics/report.html).
+To view the statistics, point your browser to your uberspace URL, e.g. ``https://isabell.uber.space/statistics/report.html``.
 
 Step 3 - Script File
 --------------------
 
-To create a GoAccess file with a cron job every hour as example, a script is helpful. The location and name for the script file is: ~/bin/script_goaccess.sh
+To create a GoAccess file with a cron job every hour as example, a script is helpful. The location and name for the script file is: ``~/bin/goaccess_generate_statistics.sh``
 
 .. code-block:: bash
 
  #!/bin/bash
 
- goaccess -a -p ~/etc/goaccess/goaccess.conf -f ~/logs/webserver/access_log -o ~/html/statistics/report.html
+ goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
 
 Make your script file executable with:
 
 ::
 
- [isabell@stardust ~]$ chmod 0774 ~/bin/script_goaccess.sh
+ [isabell@stardust ~]$ chmod +x ~/bin/goaccess_generate_statistics.sh
  [isabell@stardust ~]$
 
 Step 4 - Cron Job
@@ -178,7 +165,7 @@ and content:
 
 .. code-block:: bash
 
- 0 * * * * $HOME/bin/script_goaccess.sh >/dev/null 2>&1
+ 0 * * * * $HOME/bin/goaccess_generate_statistics.sh >/dev/null 2>&1
 
 Best Practices
 ==============
@@ -196,4 +183,4 @@ The actual readable web log file is valid for one day. Uberspace consider a roll
 
 Tested with Uberspace 7.3.10 and GoAccess 1.3
 
-.. authors::
+.. author_list::
