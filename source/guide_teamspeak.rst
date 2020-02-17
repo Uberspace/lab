@@ -208,17 +208,8 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/ts3server-daemon.ini``
   autostart=yes
   autorestart=yes
 
-After creating the configuration, tell supervisord to refresh its configuration and start the service:
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl reread
-  ts3server: available
-  [isabell@stardust ~]$ supervisorctl update
-  ts3server: added process group
-  [isabell@stardust ~]$ supervisorctl status
-  ts3server                        RUNNING   pid 4447, uptime 0:00:13
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it’s not in state RUNNING after 10 seconds, check your configuration and the log file in ``$HOME/logs/supervisord.log``.
 
@@ -236,19 +227,7 @@ When you connect to your teamspeak server for the first time, you will need the 
 Start and Stopping the Server
 -----------------------------
 
-To stop and start the teamspeak to perform maintenance tasks, you can use supervisorctl stop and supervisorctl start, respectively:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl stop ts3server
-  ts3server: stopped
-  [isabell@stardust ~]$
-
-.. code-block:: console 
-
-  [isabell@stardust ~]$ supervisorctl start ts3server
-  ts3server: started
-  [isabell@stardust ~]$
+To stop and start the teamspeak to perform maintenance tasks, you can use the supervisorctl command which is documented in the :manual:`supervisord <daemons-supervisord>`.
 
 Backup The Server
 -----------------
