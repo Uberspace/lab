@@ -79,12 +79,13 @@ Generate an OpenPGP key:
 
 Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
 .. code-block:: console
- :emphasize-lines: 2,3,4
+ :emphasize-lines: 3,4
 
+ [isabell@stardust ~]$ mkdir -p passbolt/config
  [isabell@stardust ~]$ gpg --gen-key
  [isabell@stardust ~]$ gpg --list-keys --fingerprint
- [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > /var/www/virtual/$USER/html/config/gpg/serverkey_private.asc
- [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > /var/www/virtual/$USER/html/config/gpg/serverkey.asc
+ [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > /home/$USER/html/config/gpg/serverkey_private.asc
+ [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > /home/$USER/html/config/gpg/serverkey.asc
  [isabell@stardust ~]$
 
 Install the dependencies:
@@ -98,7 +99,7 @@ Edit following settings in ``config/passbolt.php``:
  * username, password and database in ``Datasources``: manual_anchor:`credentials <database-mysql.html#login-credentials>`
  * username and password in ``EmailTransport``
  * fingerprint in ``passbolt - gpg - serverKey``: Insert your gpg fingerprint without spaces (!)
- * Uncomment public and private path under fingerprint
+ * Uncomment public and private path under fingerprint and set it to /home/isabell/passbolt/config/
 
 Finish the installation and fill in your email and name when asked for:
  [isabell@stardust html]$ ./bin/cake passbolt healthcheck
