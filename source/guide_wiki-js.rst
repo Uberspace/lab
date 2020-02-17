@@ -66,7 +66,7 @@ which resolves to the latest archive file, which also comes in handy later for :
 
 ::
 
-  [isabell@stardust ~]$ wget https://gitreleases.dev/gh/Requarks/wiki/latest/wiki-js.tar.gz
+  [isabell@stardust ~]$ wget https://github.com/Requarks/wiki/releases/download/2.1.113/wiki-js.tar.gz
   [...]
   Saving to: ‘wiki-js.tar.gz’
   [isabell@stardust ~]$
@@ -234,6 +234,6 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
 
 ----
 
-Tested with Wiki.js 2.0.12, Uberspace 7.3.11.0
+Tested with Wiki.js 2.1.113, Uberspace 7.3.11.0
 
 .. author_list::
