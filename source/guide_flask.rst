@@ -121,14 +121,11 @@ Once you're done playing with it, deactivate it with the following command:
 Setup nginx
 -----------
 
-Create an endpoint where the app will be served from. I chose that my application should be served using http under ``/`` using port ``1024``.
-On uberspace you'll want to use the built-in ``uberspace`` tool.
+.. note::
 
-::
+    Flask is running on port 1024.
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 1024
-  [isabell@stardust ~]$
-
+.. include:: includes/web-backend.rst
 
 
 Start your application
