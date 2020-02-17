@@ -97,8 +97,9 @@ You definitely want to create a isolated python environment. That way the requir
 
   [isabell@stardust ~]$ cd basic_flask_template
   [isabell@stardust basic_flask_template]$ virtualenv -p python3 ENV
-  [isabell@stardust basic_flask_template]$ pip install Click==7.0 Flask==1.1.1 itsdangerous==1.1.0 Jinja2==2.10.3 MarkupSafe==1.1.1 uWSGI==2.0.18 Werkzeug==0.16.0
-  [isabell@stardust basic_flask_template]$
+  [isabell@stardust basic_flask_template]$ source ENV/bin/activate
+  (ENV) [isabell@stardust basic_flask_template]$ pip install Click==7.0 Flask==1.1.1 itsdangerous==1.1.0 Jinja2==2.10.3 MarkupSafe==1.1.1 uWSGI==2.0.18 Werkzeug==0.16.0
+  (ENV) [isabell@stardust basic_flask_template]$
 
 You can activate your new python environment like this:
 
