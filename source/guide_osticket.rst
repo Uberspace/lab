@@ -61,7 +61,7 @@ To install osTicket we clone the current version using Git. ``cd`` to your :manu
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ git clone https://github.com/osTicket/osTicket.git .
  Cloning into '.'...
- […]
+ (...)
  [isabell@stardust ~]$
 
 Configuration
@@ -115,7 +115,7 @@ Backup your ``config/ost-config.php`` file, delete everything else in your ``htm
  [isabell@stardust html]$ rm -rf * .*
  [isabell@stardust html]$ git clone https://github.com/osTicket/osTicket.git .
  Cloning into '.'...
- […]
+ (...)
  [isabell@stardust html]$ mv ~/ost-config.php config/
  [isabell@stardust html]$
 
