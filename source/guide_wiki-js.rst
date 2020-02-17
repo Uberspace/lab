@@ -168,7 +168,7 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
 
 .. warning:: As ``~/tmp/`` is **not persistent**, the rollback can only be used immediately after a failed update, not after a long period of time.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 4
 
  #!/bin/bash
