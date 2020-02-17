@@ -55,7 +55,7 @@ Create the database:
 
 ::
 
- [isabell@stardust ~]$ echo "CREATE DATABASE isabell_passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" | mysql
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
  [isabell@stardust ~]$
 
 Installation
