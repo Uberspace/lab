@@ -129,7 +129,8 @@ Create ``~/etc/services.d/wiki.ini`` with the following content:
 
  [program:wiki]
  directory=%(ENV_HOME)s/wiki
- command=env NODE_ENV=production /bin/node server
+ environment=NODE_ENV=production
+ command=/bin/node server
 
 .. include:: includes/supervisord.rst
 
