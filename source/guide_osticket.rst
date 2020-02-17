@@ -83,7 +83,7 @@ Fill out your system settings, admin user and edit the following database settin
 
 ::
 
- [isabell@stardust html]$ chmod 0644 include/ost-config.php
+ [isabell@stardust html]$ chmod 0444 include/ost-config.php
  [isabell@stardust html]$
 
 Best practices
