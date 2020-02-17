@@ -94,7 +94,7 @@ Now edit the ``config.yml`` file. In the section ``db`` change ``user``,
 ``type`` can be set to **mariadb** because your Uberspace is using MariaDB.
 
 .. code-block:: none
- :emphasize-lines: 3,6,7,8
+ :emphasize-lines: 3,5,6,7,8
 
  [...]
  db:
