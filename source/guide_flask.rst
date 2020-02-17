@@ -192,3 +192,18 @@ To serve your application via uWSGI execute the following commands. Stop it by p
   ℹ spawned uWSGI worker 1 (pid: 23455, cores: 1)
   [isabell@stardust basic_flask_template]$ ^C
   [isabell@stardust basic_flask_template]$
+
+Setup daemon
+^^^^^^^^^^^^
+
+Create ``~/etc/services.d/flask.ini`` with the following content:
+
+.. code-block:: ini
+
+ [program:flask]
+ directory=%(ENV_HOME)s/basic_flask_template
+ command=%(ENV_HOME)s/basic_flask_template/ENV/bin/uwsgi uwsgi.ini
+
+Now let's start the service:
+
+.. include:: includes/supervisord.rst
