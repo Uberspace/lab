@@ -201,7 +201,7 @@ Since teamspeak does come with a start-stop script, all we need to do is to crea
 
 Create supervisord ini (e.g. ``/home/$USER/etc/services.d/ts3server-daemon.ini``):
 
-::
+.. code-block:: ini
   
   [program:ts3server]
   directory=%(ENV_HOME)s/ts3server/
