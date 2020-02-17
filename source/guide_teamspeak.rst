@@ -36,7 +36,7 @@ License
 
 All relevant legal information can be found here
 
-  * https://www.teamspeak.com/en/features/licensing/
+  * Teamspeak-License_ models
 
 
 Prerequisites
@@ -93,7 +93,9 @@ Configuration
 Step 1: Setup license agreement
 -------------------------------
 
-Before starting the server for the first time you should read the ``LICENSE``file that is part of the teamspeak server archive you just unpacked. To agree to the license you need to create a file named ``.ts3server_license_accepted`` in the teamspeak server directory. It is enough to create the file. No need to add content. 
+Before starting the server for the first time you should either read the ``LICENSE`` file that is part of the teamspeak server archive you just unpacked or go to the Teamspeak-License_ website. 
+
+If you agree to the license you need to create a file named ``.ts3server_license_accepted`` in the teamspeak server directory. It is enough to create the file. No need to add content. 
 
 Step 2: Create a default config file, admin password and admin token
 --------------------------------------------------------------------
