@@ -282,5 +282,5 @@ Tested with Teamspeak 3.11.0 64-bit, Uberspace 7.1.1
 
 .. _Teamspeak: https://www.teamspeak.com/
 .. _Teamspeak-Downloads: https://teamspeak.com/en/downloads/#server
-.. _Teamspeak-License: https://www.teamspeak.com/en/features/licensing/
+.. _Teamspeak-License: https://support.teamspeak.com/hc/en-us/articles/360002710757-What-license-models-are-available-for-TeamSpeak-3-
 .. _Mumble: https://mumble.info/
