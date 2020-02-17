@@ -69,6 +69,8 @@ Configuration
 
 Copy the configuration template.
 
+::
+
  [isabell@stardust html]$ cp include/ost-sampleconfig.php include/ost-config.php
  [isabell@stardust html]$
 
@@ -91,6 +93,9 @@ Security
 --------
 
 Remove the setup directory.
+
+::
+
  [isabell@stardust html]$ rm -rf setup/
  [isabell@stardust html]$
 
@@ -102,6 +107,8 @@ Updates
 Check osTicket's `stable releases`_ for the latest versions. If a newer version is available, you should manually update your installation.
 
 Backup your ``config/ost-config.php`` file, delete everything else in your ``html`` directory.
+
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp config/ost-config.php ~
