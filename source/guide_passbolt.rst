@@ -84,8 +84,8 @@ Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
  [isabell@stardust ~]$ mkdir -p passbolt/config
  [isabell@stardust ~]$ gpg --gen-key
  [isabell@stardust ~]$ gpg --list-keys --fingerprint
- [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > /home/$USER/html/config/gpg/serverkey_private.asc
- [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > /home/$USER/html/config/gpg/serverkey.asc
+ [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > /home/$USER/passbolt/config/serverkey_private.asc
+ [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > /home/$USER/passbolt/config/serverkey.asc
  [isabell@stardust ~]$
 
 Install the dependencies:
