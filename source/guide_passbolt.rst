@@ -69,7 +69,7 @@ To install Passbolt we clone the current version using Git. ``cd`` to your :manu
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ git clone https://github.com/passbolt/passbolt_api.git .
  Cloning into '.'...
- […]
+ (...)
  [isabell@stardust ~]$
 
 Configuration
@@ -111,7 +111,7 @@ Finish the installation and fill in your email and name when asked for:
 ::
 
  [isabell@stardust html]$ ./bin/cake passbolt healthcheck
- […]
+ (...)
  No error found. Nice one sparky!
  [isabell@stardust html]$ ./bin/cake passbolt install
  [isabell@stardust html]$
