@@ -79,7 +79,7 @@ Generate an OpenPGP key:
 
 Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
 .. code-block:: console
- :emphasize-lines: 3,4
+ :emphasize-lines: 4,5
 
  [isabell@stardust ~]$ mkdir -p passbolt/config
  [isabell@stardust ~]$ gpg --gen-key
