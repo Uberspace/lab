@@ -22,50 +22,7 @@ GoAccess is released under the `MIT License`_
 Installation
 ============
 
-Step 1 - Download and Extract the Source Code
----------------------------------------------
-
-Download and extract the tarball containing the source code into a temporary
-directory:
-
-::
-
- [isabell@stardust ~]$ cd ~/tmp
- [isabell@stardust ~/tmp]$ curl https://tar.goaccess.io/goaccess-1.3.tar.gz | tar -xvz
-    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                  Dload  Upload   Total   Spent    Left  Speed
-   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
- goaccess-1.3/
- goaccess-1.3/ChangeLog
- goaccess-1.3/resources/
- (...)
- goaccess-1.3/m4/lib-link.m4
- goaccess-1.3/m4/nls.m4
- goaccess-1.3/m4/po.m4
- [isabell@stardust ~/tmp]$
-
-Step 2 - Source Code Configuration, Compiling and Installation
---------------------------------------------------------------
-
-Configure and compile the source code with the commands ``configure``, ``make`` and finally install it with ``make install``.
-
-.. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
-
-Before we start, we have to consider some aspects, especially a shared hosting environment like Uberspace:
-
- * ``--prefix=$HOME``: Put the resulting binary in ~/bin.
- * ``--enable-utf8``: Compile with wide character support.
- * ``--enable-geoip=legacy``: Compile with GeoLocation support, legacy will utilize the original GeoIP databases.
-
-Other options can be found in the GoAccess `installation documentation`_.
-
-::
-
- [isabell@stardust ~]$ cd ~/tmp/goaccess-1.3/
- [isabell@stardust ~/tmp/goaccess-1.3]$ ./configure --enable-utf8 --enable-geoip=legacy --prefix=$HOME
- [isabell@stardust ~/tmp/goaccess-1.3]$ make
- [isabell@stardust ~/tmp/goaccess-1.3]$ make install
- [isabell@stardust ~/tmp/goaccess-1.3]$
+GoAccess is already pre-installed on uberspace. This guide describes how to use it effectively.
 
 Configuration
 =============
@@ -82,7 +39,13 @@ Please follow the instructions in :manual:`the uberspace manual <web-logs>` to e
 Step 2 - GoAccess Configuration
 -------------------------------
 
-Edit the configuration file ``~/etc/goaccess/goaccess.conf`` and reach out for the following parameters to uncomment these.
+Copy the default configuration:
+
+::
+
+ [isabell@stardust ~]$ cp /etc/goaccess.conf ~/etc/goaccess.conf
+
+Edit the configuration file and uncomment the following parameters:
 
 .. code-block:: bash
  :emphasize-lines: 2,5,8,11
@@ -109,7 +72,7 @@ To get first results, to check that everthing is maintained, please enter:
 
 ::
 
- [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log
 
 Scroll with your cursor keys up and down. With "q" you can quit GoAccess.
 
@@ -127,7 +90,7 @@ The command to create a static file with GoAccess is:
 
 ::
 
- [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
 
 .. warning:: The content of ``~/html`` is publicly accessible. To protect it from unintended visitors, set up HTTP basic authentication using an ``.htaccess`` file.
 
@@ -142,7 +105,7 @@ To create a GoAccess file with a cron job every hour as example, a script is hel
 
  #!/bin/bash
 
- goaccess --agent-list --config-file ~/etc/goaccess/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
+ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
 
 Make your script file executable with:
 
