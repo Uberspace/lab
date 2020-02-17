@@ -152,7 +152,8 @@ To start Werkzeug execute the following commands. It enables the virtual python 
    ℹ * Restarting with stat
    ℹ * Debugger is active!
    ℹ * Debugger PIN: 000-000-000
-  [isabell@stardust basic_flask_template]$ ^C
+  ^C
+  [isabell@stardust basic_flask_template]$
   [isabell@stardust basic_flask_template]$
 
 
