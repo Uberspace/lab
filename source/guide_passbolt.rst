@@ -66,7 +66,7 @@ To install Passbolt we clone the current version using Git. ``cd`` to your :manu
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd ~/html/
  [isabell@stardust html]$ git clone https://github.com/passbolt/passbolt_api.git .
  Cloning into '.'...
  (...)
@@ -87,15 +87,15 @@ Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
  [isabell@stardust ~]$ mkdir -p passbolt/config
  [isabell@stardust ~]$ gpg --gen-key
  [isabell@stardust ~]$ gpg --list-keys --fingerprint
- [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > /home/$USER/passbolt/config/serverkey_private.asc
- [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > /home/$USER/passbolt/config/serverkey.asc
+ [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > ~/passbolt/config/serverkey_private.asc
+ [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > ~/passbolt/config/serverkey.asc
  [isabell@stardust ~]$
 
 Install the dependencies:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd ~/html/
  [isabell@stardust html]$ composer install --no-dev
  [isabell@stardust html]$ cp config/passbolt.default.php config/passbolt.php
  [isabell@stardust html]$
