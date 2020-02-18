@@ -84,7 +84,7 @@ Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
 .. code-block:: console
  :emphasize-lines: 4,5
 
- [isabell@stardust ~]$ mkdir -p passbolt/config
+ [isabell@stardust ~]$ mkdir -p ~/passbolt/config
  [isabell@stardust ~]$ gpg --gen-key
  [isabell@stardust ~]$ gpg --list-keys --fingerprint
  [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > ~/passbolt/config/serverkey_private.asc
