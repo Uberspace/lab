@@ -111,10 +111,10 @@ Finish the installation and fill in your email and name when asked for:
 
 ::
 
+ [isabell@stardust html]$ ./bin/cake passbolt install
  [isabell@stardust html]$ ./bin/cake passbolt healthcheck
  (...)
  No error found. Nice one sparky!
- [isabell@stardust html]$ ./bin/cake passbolt install
  [isabell@stardust html]$
 
 Updates
