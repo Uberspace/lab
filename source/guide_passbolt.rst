@@ -58,6 +58,17 @@ Create the database:
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_passbolt CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
  [isabell@stardust ~]$
 
+
+Create an email user:
+
+::
+
+ [isabell@stardust ~]$ uberspace mail user add passbolt
+ Enter a password for the mailbox: (...)
+ Please confirm your password: (...)
+ New mailbox created for user: 'passbolt', it will be live in a few minutes...
+ [isabell@stardust ~]$
+
 Installation
 ============
 
@@ -103,7 +114,8 @@ Install the dependencies:
 Edit following settings in ``config/passbolt.php``:
  * ``fullBaseUrl`` in ``App``: ``https://isabell.uber.space``
  * ``username``, ``password`` and ``database`` in ``Datasources``: :manual_anchor:`credentials <database-mysql.html#login-credentials>`
- * ``username`` and ``password in ``EmailTransport``
+ * ``port`` in ``EmailTransport``: ``587``
+ * ``username`` and ``password`` in ``EmailTransport``: ``passbolt@isabell.uber.space`` and the password
  * ``fingerprint`` in ``passbolt - gpg - serverKey``: Insert your gpg fingerprint without spaces (!)
  * ``public`` and ``private`` under fingerprint: ``/home/isabell/passbolt/config/``
 
@@ -116,6 +128,13 @@ Finish the installation and fill in your email and name when asked for:
  (...)
  No error found. Nice one sparky!
  [isabell@stardust html]$
+
+Finally, configure a cronjob so mails get sent automatically: Add the following
+line to your crontab using the ``crontab -e`` command:
+
+::
+
+ * * * * * ~/html/bin/cake EmailQueue.sender >> ~/logs/passbolt_mails.log
 
 Updates
 =======
