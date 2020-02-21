@@ -184,11 +184,18 @@ Configure Certificates
 Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
 
 .. code-block:: yaml
-  :emphasize-lines: 1,3,11,13
 
     tls_certificate_path: "/home/isabell/etc/certificates/my.domain.name.crt"
 
     tls_private_key_path: "/home/isabell/etc/certificates/my.domain.name.key"
+
+Configure Database Access
+-------------------------
+
+Modify the config file again to give synapse access to the database:
+
+.. code-block:: yaml
+  :emphasize-lines: 6,7,8,9
 
     database:
         # The database engine name
@@ -225,10 +232,7 @@ Create ``~/etc/services.d/synapse.ini`` with the following content:
  autorestart=yes
  environment=
         PATH="%(ENV_HOME)s/opt/postgresql/bin/:%(ENV_PATH)s",
-        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/opt/postgresql/lib",
-        PGPASSFILE=%(ENV_HOME)s/.pgpass,
-        PGHOST=localhost,
-        PGPORT=5432
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/opt/postgresql/lib"
 
 .. include:: includes/supervisord.rst
 
