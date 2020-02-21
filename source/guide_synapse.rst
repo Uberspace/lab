@@ -45,6 +45,8 @@ You need a running :lab:`Postgresql <guide_postgresql>` database server, a dedic
   Enter it again:
   [isabell@stardust ~]$ createdb \
     --encoding=UTF8 \
+    ----lc-collate=C \
+    ----lc-ctype=C \
     --owner="synapse" \
     --template=template0 \
     synapse
