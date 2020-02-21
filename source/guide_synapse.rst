@@ -223,10 +223,7 @@ Create ``~/etc/services.d/synapse.ini`` with the following content:
  autorestart=yes
  environment=
         PATH="%(ENV_HOME)s/opt/postgresql/bin/:%(ENV_PATH)s",
-        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/opt/postgresql/lib",
-        PGPASSFILE=%(ENV_HOME)s/.pgpass,
-        PGHOST=localhost,
-        PGPORT=5432
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/opt/postgresql/lib"
 
 .. include:: includes/supervisord.rst
 
