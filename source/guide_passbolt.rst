@@ -72,7 +72,7 @@ Create an email user:
 Installation
 ============
 
-To install Passbolt we clone the current version using Git. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the cloned folder will under your ``html``.
+To install Passbolt we clone the current version using Git. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the cloned folder will be under your ``html``.
 
 .. code-block:: console
  :emphasize-lines: 2
