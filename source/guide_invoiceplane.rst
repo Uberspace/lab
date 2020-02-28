@@ -102,7 +102,7 @@ Backup your ``ipconfig.php`` file, delete everything else in your ``html`` direc
 
 Proceed with the installation steps from here and move back your config file.
 
- [isabell@stardust html]$ mv ~/ipconfig ./
+ [isabell@stardust html]$ mv ~/ipconfig.php ./
  [isabell@stardust html]$
 
 Finish the update by open https://isabell.uber.space/index.php/setup in your browser.
