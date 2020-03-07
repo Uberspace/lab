@@ -149,6 +149,11 @@ You can now log in to your installation and start adding and reading feeds.
 
 Check out the official `selfoss documentation`_ for explanation of further configuration parameters.
 
+Subdomain
+---------
+
+Just in addition that want to install selfoss under a subdomain (e.g. ``/var/www/virtual/USERNAME/SUBDOMAIN.DOMAIN.TLD/``), change the line ``#RewriteBase /selfoss`` to ``RewriteBase /``.
+
 Cron job
 ========
 
