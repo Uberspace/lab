@@ -53,7 +53,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install osTicket we clone the current version using Git. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the cloned folder will under your ``html``.
+To install osTicket we clone the current version using Git. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the cloned folder will be under your ``html``.
 
 .. code-block:: console
  :emphasize-lines: 2
