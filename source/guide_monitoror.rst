@@ -28,7 +28,7 @@ Prerequisites
 
 First we create an installation directory and then we need to configure the `web backend <webbackend_>`_.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ mkdir monitoror
   [isabell@stardust ~]$ uberspace web backend set / --http --port 8080
@@ -43,7 +43,7 @@ Installation
 
 Like a lot of Go software, Monitoror is distributed as a single binary. Download Monitoror's latests `release with the following command.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ cd monitoror
   [isabell@stardust monitoror]$ curl -sL -o monitoror $(curl -s https://api.github.com/repos/monitoror/monitoror/releases/latest | grep 'browser_download_url.*monitoror-linux-amd64' | cut -d: -f2,3 | tr -d \")
@@ -58,7 +58,7 @@ Config file
 
 Documentation for the config file can be found on the Monitoror's documentation_ site.
 
-::
+.. code-block:: console
 
   [isabell@stardust monitoror]$ touch config.json
   [isabell@stardust monitoror]$
