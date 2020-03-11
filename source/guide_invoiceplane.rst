@@ -32,7 +32,7 @@ Prerequisites
 
 We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version use php 7.2
  Selected PHP version 7.2
@@ -63,6 +63,8 @@ Configuration
 =============
 
 Create the database, copy the configuration template, rename the ``htaccess`` file and add your URL ``https://isabell.uber.space`` in the ``ipconfig.php`` file under ``IP_URL``.
+
+.. code-block:: console
 
  [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_ip"
  [isabell@stardust html]$ cp ipconfig.php.example ipconfig.php
