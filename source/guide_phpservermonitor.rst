@@ -31,7 +31,7 @@ Prerequisites
 
 We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version use php 7.2
  Selected PHP version 7.2
@@ -49,6 +49,8 @@ Installation
 
 To install PHP Server Monitor we download the current version from the github release. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``.
 
+.. code-block:: console
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget https://github.com/phpservermon/phpservermon/releases/download/v3.4.5/phpservermon-3.4.5.zip
  [isabell@stardust html]$ unzip phpservermon-3.4.5.zip
@@ -61,6 +63,8 @@ Configuration
 =============
 
 Create the database, copy the configuration template and edit the ``config.php`` file with your SQL credentials.
+
+.. code-block:: console
 
  [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_psm"
  [isabell@stardust html]$ cp config.php.sample config.php
@@ -86,13 +90,15 @@ Check PHP Server Monitor's `stable releases`_ for the latest versions. If a newe
 
 Backup your ``config.php`` file, delete everything else in your ``html`` directory.
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp config.php ~
  [isabell@stardust html]$ rm -rf * .*
 
 Proceed with the installation steps from here and move back your config file.
+
+.. code-block:: console
 
  [isabell@stardust html]$ mv ~/config.php ./
  [isabell@stardust html]$
