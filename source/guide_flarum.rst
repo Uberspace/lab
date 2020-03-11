@@ -32,7 +32,7 @@ Prerequisites
 
 We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version use php 7.2
  Selected PHP version 7.2
@@ -49,6 +49,8 @@ Installation
 ============
 
 We create the database and install Flarum using composer.
+
+.. code-block:: console
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_flarum"
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
