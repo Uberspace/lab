@@ -77,8 +77,6 @@ Fill out your system settings, admin user and edit the following database settin
  * Password from your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
  * Database: ``isabell_ip``
 
-::
-
 Best practices
 ==============
 
@@ -103,6 +101,8 @@ Backup your ``ipconfig.php`` file, delete everything else in your ``html`` direc
 
 Proceed with the installation steps from here and move back your config file.
 
+::
+
  [isabell@stardust html]$ mv ~/ipconfig.php ./
  [isabell@stardust html]$
 
@@ -113,6 +113,6 @@ Finish the update by open https://isabell.uber.space/index.php/setup in your bro
 
 ----
 
-Tested with osTicket 1.5.10 and Uberspace 7.4
+Tested with InvoicePlane 1.5.10 and Uberspace 7.4
 
 .. author_list::
