@@ -45,8 +45,8 @@ You need a running :lab:`Postgresql <guide_postgresql>` database server, a dedic
   Enter it again:
   [isabell@stardust ~]$ createdb \
     --encoding=UTF8 \
-    ----lc-collate=C \
-    ----lc-ctype=C \
+    --lc-collate=C \
+    --lc-ctype=C \
     --owner="synapse" \
     --template=template0 \
     synapse
@@ -311,4 +311,3 @@ Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 ----
 
 .. author_list::
-
