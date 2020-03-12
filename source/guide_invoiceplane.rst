@@ -30,13 +30,12 @@ InvoicePlane_ is a self-hosted open source application for managing your quotes,
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
+We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
- The new configuration is adapted immediately. Patch updates will be applied automatically.
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '7.2'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
