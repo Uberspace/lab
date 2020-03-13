@@ -79,23 +79,6 @@ Additionally, you can choose where Nextcloud is going to store your data files. 
 
 Tuning
 ======
-Onlyoffice (Community Edition)
--------
-To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
-
-* Community Document Server (a light version of the Onlyoffice server)
-* Onlyoffice (the connector to the Onlyoffice server)
-
-Both apps can be installed optional during the main install, but the huge document server may fail. Then install it manually from the shell:
-
-::
-
-[isabell@stardust html]$ cd apps
-[isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
-
-Reload the admin panel and enable the Community Document Server. 
-A click on a text/spreadsheet document should now start the Onlyoffice Editor. 
-
 cronjob
 -------
 
@@ -129,7 +112,7 @@ opcache
 
 Enable opcache to further optimise perfomance.
 
-To do that, add the following lines to ``$HOME/etc/php.d/opcache.ini``:
+To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
 
 ::
 
@@ -144,7 +127,7 @@ To do that, add the following lines to ``$HOME/etc/php.d/opcache.ini``:
 PHP Memory
 ----------
 
-In order to increase the memory limit of php to the recommended value of 512 MB, go to ``$HOME/etc/php.d/``, create ``memory_limit.ini`` and add the following line:
+In order to increase the memory limit of php to the recommended value of 512 MB, create ``$HOME/etc/php.d/memory_limit.ini`` with the following content:
 
 ::
 
@@ -161,12 +144,40 @@ After that you need to restart PHP configuration to load the last two changes:
  Your php configuration has been loaded.
  [isabell@stardust ~]$
 
+Database maintenance
+--------------------
+
+To adapt some database configs to make Nextcloud run smoother execute these commands:
+
+::
+ 
+ [isabell@stardust ~] cd html
+ [isabell@stardust html]$ php occ db:add-missing-indices
+ [isabell@stardust html]$ php occ db:convert-filecache-bigint
+
 HSTS
 ----
 
 Nextcloud will complain about your HSTS settings in the admin interface.
 
 At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
+
+Onlyoffice (Community Edition)
+-------
+To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
+
+* Community Document Server (a light version of the Onlyoffice server)
+* Onlyoffice (the connector to the Onlyoffice server)
+
+Both apps can be installed optional during the main install, but the huge document server may fail. Then install it manually from the shell:
+
+::
+
+[isabell@stardust html]$ cd apps
+[isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
+
+Reload the admin panel and enable the Community Document Server. 
+A click on a text/spreadsheet document should now start the Onlyoffice Editor. 
 
 Updates
 =======
@@ -191,6 +202,6 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 
 ----
 
-Tested with Nextcloud 13.0.1, Uberspace 7.1.3
+Tested with Nextcloud 18.0.2, Uberspace 7.4.3.0
 
 .. author_list::
