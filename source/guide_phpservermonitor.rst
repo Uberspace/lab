@@ -76,14 +76,11 @@ Fill out your system settings, admin user and edit the following database settin
  * PSM_DB_PASS from your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
  * PSM_DB_NAME: ``isabell_psm``
 
+Finally, configure a cronjob: Add the following line to your crontab using the crontab -e command:
 
 ::
 
-Finally, configure a cronjob: Add the following line to your crontab using the crontab -e command:
-
-.. code-block:: console
-
-* * * * * /usr/bin/php /var/www/virtual/$USER/html/cron/status.cron.php
+  * * * * * /usr/bin/php /var/www/virtual/$USER/html/cron/status.cron.php
 
 Updates
 =======
