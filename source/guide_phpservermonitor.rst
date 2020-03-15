@@ -16,7 +16,7 @@ PHP Server Monitor
 
 .. tag_list::
 
-PHP Server Monitor_ is an open source tool to monitor your servers and websites.
+`PHP Server Monitor`_ is an open source tool to monitor your servers and websites.
 
 ----
 
