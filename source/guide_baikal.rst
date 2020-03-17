@@ -4,6 +4,8 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: sync
+.. tag:: calendar
 
 .. sidebar:: Logo
 
@@ -43,22 +45,22 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install Baïkal we download the current version from the github release. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``.
+Remove your ``html`` directory and download the current version of Baïkal from the github release. Link the Baïkal ``html`` directory as your new 
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
- [isabell@stardust html]$ unzip baikal-0.6.1.zip
- [isabell@stardust html]$ rm baikal-0.6.1.zip
- [isabell@stardust html]$ mv baikal/* ./
- [isabell@stardust html]$ rmdir baikal
- [isabell@stardust html]$ 
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rmdir html 
+ [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
+ [isabell@stardust isabell]$ unzip baikal-0.6.1.zip
+ [isabell@stardust isabell]$ rm baikal-0.6.1.zip
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/baikal/html /var/www/virtual/$USER/html
+ [isabell@stardust isabell]$ 
 
 Configuration
 =============
 
-After the installation you need to open isabell.uber.space/html in your browser to finish your setup.
+After the installation you need to open isabell.uber.space in your browser to finish your setup.
 
 Fill out your system settings, admin user and database settings, you can use the included SQLite database or :manual_anchor:`MySQL <database-mysql.html#login-credentials>`.
 
@@ -91,6 +93,6 @@ Finish the update by open isabell.uber.space/html in your browser.
 
 ----
 
-Tested with _Baïkal 0.6.1 and Uberspace 7.4.3
+Tested with Baïkal_ 0.6.1 and Uberspace 7.4.3
 
 .. author_list::
