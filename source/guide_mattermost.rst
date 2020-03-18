@@ -110,6 +110,14 @@ Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, `
       "QueryTimeout": 30
     },
 
+To configure plugins you have to change the plugin path under ``PluginSettings``:
+
+.. code-block:: json
+ :emphasize-lines: 1,2
+ 
+      "Directory": "/home/isabell/mattermost/plugins",
+      "ClientDirectory": "/home/isabell/mattermost/client/plugins",
+
 Configure web server
 --------------------
 
