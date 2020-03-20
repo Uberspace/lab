@@ -29,7 +29,7 @@ Matomo_ (formerly known as Piwik) is an open source website tracking tool (like 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.2:
 
 ::
 
