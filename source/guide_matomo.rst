@@ -29,12 +29,12 @@ Matomo_ (formerly known as Piwik) is an open source website tracking tool (like 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.2:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.2'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -60,19 +60,9 @@ Now download the latest version and extract it:
 
 ::
 
- [isabell@stardust matomo]$ wget https://builds.matomo.org/piwik.tar.gz
- --2019-12-13 11:25:58--  https://builds.matomo.org/piwik.tar.gz
- Resolving builds.matomo.org (builds.matomo.org)... 2a00:b6e0:1:200:177::1, 185.31.40.177
- Connecting to builds.matomo.org (builds.matomo.org)|2a00:b6e0:1:200:177::1|:443... connected.
- HTTP request sent, awaiting response... 200 OK
- Length: 19309516 (18M) [application/gzip]
- Saving to: piwik.tar.gz
-
- [...]
-
- [isabell@stardust matomo]$ tar --strip-components=1 -xf piwik.tar.gz
- [isabell@stardust matomo]$ rm piwik.tar.gz
- [isabell@stardust matomo]$
+ [isabell@stardust matomo]$ wget https://builds.matomo.org/matomo.zip
+ [isabell@stardust matomo]$ unzip matomo.zip
+ [isabell@stardust matomo]$ rm matomo.zip
 
 Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo`` or ``https://isabell.uber.space/``. Follow the instructions in your browser.
 
