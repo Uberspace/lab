@@ -82,40 +82,105 @@ Installation
   - Installing squizlabs/php_codesniffer (3.5.4): Downloading (100%)
  Generating optimized autoload files
 
+
+Configuration
+=============
+
 Wordpress-Configuration is done using .env-Files:
 
 .. code-block:: console
+ :emphasize-lines: 1,2
+
  [isabell@stardust isabell]$ cd /var/www/virtual/$USER/bedrock/
  [isabell@stardust bedrock]$ nano .env
 
+In here you need to enter your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` Database connection parameters. 
+We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_wp.
   
- 
- 
- 
+ .. code-block:: ini
+ :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
 
-You will need to enter the following information:
+ DB_NAME='isabell_wp'
+ DB_USER='isabell'
+ DB_PASSWORD='MySuperSecretPassword'
 
-  * your blog URL: The URL for your blog. For example: isabell.uber.space
-  * your MySQL username and password: you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
-  * your WordPress database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_wordpress
-  * Admin User: The name and the email address of the admin user.
+ # Optionally, you can use a data source name (DSN)
+ # When using a DSN, you can remove the DB_NAME, DB_USER, DB_PASSWORD, and DB_HO$
+ # DATABASE_URL='mysql://database_user:database_password@database_host:database_$
+
+ # Optional variables
+ DB_HOST='localhost'
+ # DB_PREFIX='wp_'
+
+ WP_ENV='development'
+ WP_HOME='isabell.uber.space'
+ WP_SITEURL="${WP_HOME}/wp"
+
+ # Generate your keys here: https://roots.io/salts.html
+ AUTH_KEY='generateme'
+ SECURE_AUTH_KEY='generateme'
+ LOGGED_IN_KEY='generateme'
+ NONCE_KEY='generateme'
+ AUTH_SALT='generateme'
+ SECURE_AUTH_SALT='generateme'
+ LOGGED_IN_SALT='generateme'
+ NONCE_SALT='generateme'
+
+You can use Roots' `Salt-Creator <https://roots.io/salts.html>`_ to generate the Salts.
+
+.. note:: You can leave the ``WP_ENV`` Setting on ``development`` for now, but don't forget to set it on `production` when launching your site.
+  See the _Bedrock-Documentation for more Info on Environment-Settings
+
+You now need to set your :manual:`document root <web-documentroot>` to the ``bedrock/web/`` directory. To do this, we delete the standard document root folder and create a symlink instead.
 
 .. code-block:: console
- :emphasize-lines: 1,6,10
+ [isabell@stardust ~]$ rm -r /var/www/virtual/$USER/html
+ [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wp core download
- Downloading WordPress 23.42.1 (en_US)...
- md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
- Success: WordPress downloaded.
- [isabell@stardust html]$ wp config create --dbname=isabell_wordpress --dbuser=isabell --dbpass=MySuperSecretPassword
- Success: Generated 'wp-config.php' file.
- [isabell@stardust html]$ wp db create
- Success: Database created.
- [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
- Admin password: SuperSecretSecurePassword
- Success: WordPress installed successfully.
- [isabell@stardust html]$
+Point your browser to your domain, ``https://isabell.uber.space/wp/wp-admin`` in this example, to start the wordpress installation process. Here you will
+ * set a language
+ * Choose a Site title
+ * Set a administrative account and password
+
+Your site is now ready to use. 
+
+Installing Plugins and themes
+=============================
+
+Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Themes or Plugins (or edit Code) via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
+Instead you can use composer to manage Themes and Plugins. Every Plugin or Theme listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
+
+To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) from the `Wordpress Plugin Directory <https://wordpress.org/plugins/>`_ and get it via composer:
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
+ [isabell@stardust bedrock]$ composer require wpackagist-plugin/simple-page-ordering
+ Using version ^2.3 for wpackagist-plugin/simple-page-ordering
+ ./composer.json has been updated
+ Loading composer repositories with package information
+ Updating dependencies (including require-dev)
+ Package operations: 1 install, 0 updates, 0 removals
+  - Installing wpackagist-plugin/simple-page-ordering (2.3.3): Downloading (100%)
+ Writing lock file
+ Generating optimized autoload files
+
+You can do the same thing with themes, using ``wpackagist-theme``:
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
+ [isabell@stardust bedrock]$ composer require wpackagist-theme/twentytwenty
+ Using version ^1.1 for wpackagist-theme/twentytwenty
+ ./composer.json has been updated
+ Loading composer repositories with package information
+ Updating dependencies (including require-dev)
+ Package operations: 1 install, 0 updates, 0 removals
+  - Installing wpackagist-theme/twentytwenty (1.1): Downloading (100%)
+ Writing lock file
+ Generating optimized autoload files
 
 
 Updates
@@ -133,9 +198,11 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 .. _PHP: http://www.php.net/
 .. _automatically updates: https://codex.wordpress.org/Configuring_Automatic_Background_Updates
 .. _Bedrock: https://roots.io/bedrock/
+.. _Bedrock-Documentation: https://roots.io/docs/bedrock/
+.. _WPackagist-Repository: https://wpackagist.org/
 
 ----
 
-Tested with WordPress 4.9.6, Uberspace 7.1.2
+Tested with Bedrock 1.13.1, Uberspace 7.4.4
 
 .. author_list::
