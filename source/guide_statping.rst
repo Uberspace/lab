@@ -34,14 +34,9 @@ It is published under the GNU General Public License v3.0.
 Prerequisites
 =============
 
-Set up the backends:
+.. include:: includes/my-print-defaults.rst
 
-::
-
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 8080
-  Set backend for / to port 8080; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
+.. include:: includes/web-backend.rst
 
 Create a directory for the configuration.
 
