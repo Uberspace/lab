@@ -1,4 +1,4 @@
-.. author:: Lukas Herzog <uber@lukasherzog.de>
+.. author:: Lukas Herzog <hallo@lukasherzog.de>
 
 .. tag:: lang-php
 .. tag:: blog
@@ -13,9 +13,9 @@
   .. image:: _static/images/bedrock.png
       :align: center
 
-#########
+######################
 WordPress with Bedrock
-#########
+######################
 
 .. tag_list::
 
@@ -94,10 +94,10 @@ Wordpress-Configuration is done using .env-Files:
  [isabell@stardust isabell]$ cd /var/www/virtual/$USER/bedrock/
  [isabell@stardust bedrock]$ nano .env
 
-In here you need to enter your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` Database connection parameters. 
-We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_wp.
-  
- .. code-block:: ini
+In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` Database connection parameters. 
+We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_wp``.
+
+.. code-block:: ini
  :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
 
  DB_NAME='isabell_wp'
@@ -128,16 +128,20 @@ We suggest using an :manual_anchor:`additional <database-mysql.html#additional-d
 
 You can use Roots' `Salt-Creator <https://roots.io/salts.html>`_ to generate the Salts.
 
-.. note:: You can leave the ``WP_ENV`` Setting on ``development`` for now, but don't forget to set it on `production` when launching your site.
+.. note:: You can leave the ``WP_ENV`` Setting on ``development`` for now, but don't forget to set it on ``production`` when launching your site.
   See the _Bedrock-Documentation for more Info on Environment-Settings
 
 You now need to set your :manual:`document root <web-documentroot>` to the ``bedrock/web/`` directory. To do this, we delete the standard document root folder and create a symlink instead.
 
 .. code-block:: console
+ :emphasize-lines: 1,2
+
  [isabell@stardust ~]$ rm -r /var/www/virtual/$USER/html
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
 
+
 Point your browser to your domain, ``https://isabell.uber.space/wp/wp-admin`` in this example, to start the wordpress installation process. Here you will
+
  * set a language
  * Choose a Site title
  * Set a administrative account and password
@@ -148,6 +152,7 @@ Installing Plugins and themes
 =============================
 
 Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Themes or Plugins (or edit Code) via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
+
 Instead you can use composer to manage Themes and Plugins. Every Plugin or Theme listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
 
 To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) from the `Wordpress Plugin Directory <https://wordpress.org/plugins/>`_ and get it via composer:
