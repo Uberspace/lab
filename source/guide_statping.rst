@@ -54,7 +54,7 @@ Create a database
 
 ::
 
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE eliza_statping"
+  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_statping"
 
 
 Installation
