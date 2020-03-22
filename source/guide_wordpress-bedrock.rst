@@ -23,7 +23,9 @@ WordPress_ is an open source blogging platform written in PHP and distributed un
 
 WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
 
-Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer
+Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer. Since Bedrock separates the non-web files from the document root, it is also more secure. 
+
+It is maintained by roots.io and released and distributed under MIT Licence.
 
 ----
 
@@ -94,7 +96,7 @@ Wordpress-Configuration is done using .env-Files:
  [isabell@stardust isabell]$ cd /var/www/virtual/$USER/bedrock/
  [isabell@stardust bedrock]$ nano .env
 
-In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` Database connection parameters. 
+In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters. 
 We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_wp``.
 
 .. code-block:: ini
@@ -129,12 +131,11 @@ We suggest using an :manual_anchor:`additional <database-mysql.html#additional-d
 You can use Roots' `Salt-Creator <https://roots.io/salts.html>`_ to generate the Salts.
 
 .. note:: You can leave the ``WP_ENV`` Setting on ``development`` for now, but don't forget to set it on ``production`` when launching your site.
-  See the _Bedrock-Documentation for more Info on Environment-Settings
+  See the Bedrock-Documentation_ for more Info on Environment-Settings
 
 You now need to set your :manual:`document root <web-documentroot>` to the ``bedrock/web/`` directory. To do this, we delete the standard document root folder and create a symlink instead.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ rm -r /var/www/virtual/$USER/html
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
@@ -142,13 +143,15 @@ You now need to set your :manual:`document root <web-documentroot>` to the ``bed
 
 Point your browser to your domain, ``https://isabell.uber.space/wp/wp-admin`` in this example, to start the wordpress installation process. Here you will
 
- * set a language
+ * Set a language
  * Choose a Site title
  * Set a administrative account and password
 
 Your site is now ready to use. 
 
-Installing Plugins and themes
+.. note:: Your Website will be available in your root-directory (e.g. ``https://isabell.uber.space/``). Unlike a standard WordPress-Installation, the Backend will be available in the ``/wp`` subdirectory. To get there point your browser to ``https://isabell.uber.space/wp/wp-admin``.
+
+Installing Plugins and Themes
 =============================
 
 Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Themes or Plugins (or edit Code) via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
@@ -191,13 +194,48 @@ You can do the same thing with themes, using ``wpackagist-theme``:
 Updates
 =======
 
-By default, WordPress `automatically updates`_ itself to the latest stable minor version. Use ``wp-cli`` to update all plugins:
+Whilst using Wordpress with bedrock it does **not** update itself automatically by default. Also updating via the wordpress Admin-Backend is not possible.
 
-::
+Updating Plugins and Themes
+---------------------------
 
- [isabell@stardust ~]$ wp plugin update --all --path=/var/www/virtual/$USER/html/
- Success: Plugin already updated.
- [isabell@stardust ~]$
+For Plugins and themes you can simply use ``composer update`` in the ``bedrock`` directory:
+
+.. code-block:: console
+ :emphasize-lines: 1,2
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
+ [isabell@stardust bedrock]$ composer update
+ Loading composer repositories with package information
+ Updating dependencies (including require-dev)
+ Package operations: 0 installs, 3 updates, 0 removals
+  - Updating phpoption/phpoption (1.7.2 => 1.7.3): Downloading (100%)
+  - Updating vlucas/phpdotenv (v4.1.0 => v4.1.2): Downloading (100%)
+  - Updating roave/security-advisories (dev-master 0365bf2 => dev-master b81a572)
+ Writing lock file
+ Generating optimized autoload files
+
+Updating Wordpress core
+-----------------------
+
+To update Wordpress itself you have several options:
+
+ - Requiring the new version with ``composer require``. In this example we want to update to version ``5.3.2``:
+
+  .. code-block:: console
+  
+   [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
+   [isabell@stardust bedrock]$ composer require roots/wordpress 5.3.2
+
+ - Editing ``composer.json`` to always update wordpress when running ``composer update``:
+
+  .. code-block:: console
+  
+   [isabell@stardust ~]$ nano /var/www/virtual/$USER/bedrock/composer.json
+
+  Change the line ``"roots/wordpress": "5.3.2"`` to ``"roots/wordpress": "^5.3.2"`` (your version number might vary) and safe. Then run ``composer update`` as for plugins.
+
+
 
 .. _Wordpress: https://wordpress.org
 .. _PHP: http://www.php.net/
