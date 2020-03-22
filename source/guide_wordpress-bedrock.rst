@@ -150,12 +150,12 @@ Your site is now ready to use.
 
 .. note:: Your Website will be available in your root-directory (e.g. ``https://isabell.uber.space/``). Unlike a standard WordPress-Installation, the Backend will be available in the ``/wp`` subdirectory. To get there point your browser to ``https://isabell.uber.space/wp/wp-admin``.
 
-Installing Plugins and Themes
+Installing Plugins
 =============================
 
-Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Themes or Plugins (or edit Code) via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
+Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Plugins or edit Code via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
 
-Instead you can use composer to manage Themes and Plugins. Every Plugin or Theme listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
+Instead you can use composer to manage Plugins. Every Plugin (or Theme) listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
 
 To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) from the `Wordpress Plugin Directory <https://wordpress.org/plugins/>`_ and get it via composer:
 
@@ -195,12 +195,12 @@ You can do the same thing with themes, using ``wpackagist-theme``:
 Updates
 =======
 
-.. warning:: Whilst using Wordpress with bedrock it does **not** update itself automatically by default. Also updating via the wordpress Admin-Backend is not possible. Checkout the `Wordpress-Blog`_ for Updates.
+.. warning:: Whilst using Wordpress with bedrock it does **not** update itself automatically by default. Also updating via the wordpress Admin-Backend is not possible as soon as your environment is set to ``production``. Checkout the `Wordpress-Blog`_ for Updates.
 
-Updating Plugins and Themes
+Updating Plugins
 ---------------------------
 
-For Plugins and themes you can simply use ``composer update`` in the ``bedrock`` directory:
+For Plugins and themes installed with composer, you can simply use ``composer update`` in the ``bedrock`` directory:
 
 .. code-block:: console
  :emphasize-lines: 1,2
