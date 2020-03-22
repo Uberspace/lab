@@ -46,6 +46,7 @@ Wordpress recommends PHP_ in version 7.3:
  Using 'PHP' version: '7.2'
  [isabell@stardust ~]$ uberspace tools version use php 7.3
  Selected PHP version 7.3
+ [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
@@ -83,18 +84,13 @@ Installation
   - Installing roave/security-advisories (dev-master 0365bf2)
   - Installing squizlabs/php_codesniffer (3.5.4): Downloading (100%)
  Generating optimized autoload files
+ [isabell@stardust isabell]$
 
 
 Configuration
 =============
 
-Wordpress-Configuration is done using .env-Files:
-
-.. code-block:: console
- :emphasize-lines: 1,2
-
- [isabell@stardust isabell]$ cd /var/www/virtual/$USER/bedrock/
- [isabell@stardust bedrock]$ nano .env
+Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/bedrock/.env``
 
 In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters. 
 We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_wp``.
@@ -135,10 +131,13 @@ You can use Roots' `Salt-Creator <https://roots.io/salts.html>`_ to generate the
 
 You now need to set your :manual:`document root <web-documentroot>` to the ``bedrock/web/`` directory. To do this, we delete the standard document root folder and create a symlink instead.
 
+.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files.
+
 .. code-block:: console
 
  [isabell@stardust ~]$ rm -r /var/www/virtual/$USER/html
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
+ [isabell@stardust ~]$
 
 
 Point your browser to your domain, ``https://isabell.uber.space/wp/wp-admin`` in this example, to start the wordpress installation process. Here you will
@@ -173,6 +172,7 @@ To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) 
   - Installing wpackagist-plugin/simple-page-ordering (2.3.3): Downloading (100%)
  Writing lock file
  Generating optimized autoload files
+ [isabell@stardust bedrock]$
 
 You can do the same thing with themes, using ``wpackagist-theme``:
 
@@ -189,12 +189,13 @@ You can do the same thing with themes, using ``wpackagist-theme``:
   - Installing wpackagist-theme/twentytwenty (1.1): Downloading (100%)
  Writing lock file
  Generating optimized autoload files
+ [isabell@stardust bedrock]$
 
 
 Updates
 =======
 
-Whilst using Wordpress with bedrock it does **not** update itself automatically by default. Also updating via the wordpress Admin-Backend is not possible.
+.. warning:: Whilst using Wordpress with bedrock it does **not** update itself automatically by default. Also updating via the wordpress Admin-Backend is not possible. Checkout the `Wordpress-Blog`_ for Updates.
 
 Updating Plugins and Themes
 ---------------------------
@@ -214,6 +215,7 @@ For Plugins and themes you can simply use ``composer update`` in the ``bedrock``
   - Updating roave/security-advisories (dev-master 0365bf2 => dev-master b81a572)
  Writing lock file
  Generating optimized autoload files
+ [isabell@stardust bedrock]$
 
 Updating Wordpress core
 -----------------------
@@ -227,11 +229,7 @@ To update Wordpress itself you have several options:
    [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
    [isabell@stardust bedrock]$ composer require roots/wordpress 5.3.2
 
- - Editing ``composer.json`` to always update wordpress when running ``composer update``:
-
-  .. code-block:: console
-  
-   [isabell@stardust ~]$ nano /var/www/virtual/$USER/bedrock/composer.json
+ - Editing ``/var/www/virtual/$USER/bedrock/composer.json`` to always update wordpress when running ``composer update``.
 
   Change the line ``"roots/wordpress": "5.3.2"`` to ``"roots/wordpress": "^5.3.2"`` (your version number might vary) and safe. Then run ``composer update`` as for plugins.
 
@@ -243,6 +241,7 @@ To update Wordpress itself you have several options:
 .. _Bedrock: https://roots.io/bedrock/
 .. _Bedrock-Documentation: https://roots.io/docs/bedrock/
 .. _WPackagist-Repository: https://wpackagist.org/
+.. _Wordpress-Blog: https://wordpress.org/news/
 
 ----
 
