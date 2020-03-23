@@ -52,15 +52,6 @@ Check your chat URL setup:
 
 .. include:: includes/web-domain-list.rst
 
-Set up the backend:
-
-::
-
- [isabell@stardust ~]$ uberspace web backend set / --http --port 3000
- Set backend for / to port 3000; please make sure something is listening!
- You can always check the status of your backend using "uberspace web backend list".
- [isabell@stardust ~]$
-
 Installation
 ============
 
@@ -230,6 +221,13 @@ Remove the ``~/rocket.chat-user-setup.js`` file
 
  [isabell@stardust ~]$ rm ~/rocket.chat-user-setup.js
  [isabell@stardust ~]$
+
+Configure Webserver
+-------------------
+
+.. note:: Rocket.Chat is running on port 3000 by default. You'll set this in the `daemon setup <#setup-daemon>`_.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
