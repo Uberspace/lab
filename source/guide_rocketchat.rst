@@ -242,7 +242,10 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content (don't fo
 
  [program:rocket.chat]
  command=node %(ENV_HOME)s/rocket.chat/main.js
- environment=MONGO_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",MONGO_OPLOG_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",ROOT_URL="https://<username>.uber.space/",PORT=3000
+ environment=
+        MONGO_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",
+        MONGO_OPLOG_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",
+        ROOT_URL="https://<username>.uber.space/",PORT=3000
  autostart=yes
  autorestart=yes
 
