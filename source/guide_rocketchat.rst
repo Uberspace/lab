@@ -136,7 +136,8 @@ This is required because Rocket.Chat uses Meteor Oplog Tailing for performance i
 Then tell supervisord to update and start the service:
 
 ::
-
+ [isabell@stardust ~]$ supervisorctl reread
+ mongodb: changed
  [isabell@stardust ~]$ supervisorctl update
  mongodb: stopped
  mongodb: updated process group
