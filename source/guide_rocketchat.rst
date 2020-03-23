@@ -139,7 +139,7 @@ Now initiate the replica set:
 
 ::
 
- [isabell@stardust ~]$ mongo --username <username>_mongoroot --eval "printjson(rs.initiate())"
+ [isabell@stardust ~]$ mongo --username ${USER}_mongoroot --eval "printjson(rs.initiate())"
  MongoDB shell version v4.2.3
  Enter password: 
  connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
@@ -187,7 +187,7 @@ Use mongo to add the user:
 
 ::
 
- [isabell@stardust ~]$ mongo admin --username <username>_mongoroot ~/rocket.chat-user-setup.js
+ [isabell@stardust ~]$ mongo admin --username ${USER}_mongoroot ~/rocket.chat-user-setup.js
  MongoDB shell version v4.2.3
  Enter password: 
  connecting to: mongodb://127.0.0.1:27017/admin?compressors=disabled&gssapiServiceName=mongodb
