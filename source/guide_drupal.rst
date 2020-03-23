@@ -93,7 +93,7 @@ Composer
  :emphasize-lines: 1,2,12
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project drupal-composer/drupal-project:8.x-dev drupal --no-interaction
+ [isabell@stardust isabell]$ composer create-project drupal-composer/recommended-project drupal --no-interaction
    - Installing drupal-composer/drupal-project (8.x-dev bdaa8fd): Cloning bdaa8fd53b from cache
  Created project in drupal
  > DrupalProject\composer\ScriptHandler::checkComposerVersion
