@@ -27,6 +27,7 @@ Rocket.Chat_ is an self hostable, open source chat software written in JavaScrip
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
   * :manual:`web backends <web-backends>`
+  * :lab:`MongoDB <guide_mongodb>`
 
 License
 =======
@@ -239,14 +240,14 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content (don't fo
  [program:rocket.chat]
  command=node %(ENV_HOME)s/rocket.chat/main.js
  environment=
-        MONGO_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",
-        MONGO_OPLOG_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",
-        ROOT_URL="https://<username>.uber.space/",
+        MONGO_URL="mongodb://%(ENV_USER)s_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",
+        MONGO_OPLOG_URL="mongodb://%(ENV_USER)s_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",
+        ROOT_URL="https://%(ENV_USER)s.uber.space/",
         PORT=3000
  autostart=yes
  autorestart=yes
 
-.. note:: Don't forget to replace all occurences of ``<username>`` and ``<password>``!
+.. note:: Don't forget to replace all occurences of ``<password>``!
 
 Now let's start the service:
 
