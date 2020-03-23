@@ -50,11 +50,7 @@ We'll also need :lab:`MongoDB <guide_mongodb>`, so follow the MongoDB guide and 
 
 Check your chat URL setup:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
+.. include:: includes/web-domain-list.rst
 
 Set up the backend:
 
