@@ -74,6 +74,7 @@ And then extract the archive, use ``--strip-components=1`` to remove the ``bundl
 
  [isabell@stardust ~]$ mkdir ~/rocket.chat
  [isabell@stardust ~]$ tar -xzf rocket.chat.tgz -C ~/rocket.chat --strip-components=1
+ [isabell@stardust ~]$
  
 You can delete the archive now:
 
@@ -216,7 +217,7 @@ Use mongo to add the user:
 .. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
  But if you add it then don't forget to replace ``<username>`` with your username.
 
-Remove the ``~/rocket.chat-user-setup.js`` file
+Remove the ``~/rocket.chat-user-setup.js`` file:
 
 ::
 
@@ -233,7 +234,7 @@ Configure Webserver
 Setup daemon
 ------------
 
-Create ``~/etc/services.d/rocket.chat.ini`` with the following content (don't forget to use your URL for ``ROOT_URL``):
+Create ``~/etc/services.d/rocket.chat.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -247,7 +248,7 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content (don't fo
  autostart=yes
  autorestart=yes
 
-.. note:: Don't forget to replace all occurences of ``<password>``!
+.. note:: Don't forget to replace all occurences of ``<password>`` and to set your ``ROOT_URL`` if you don't use your default uberspace domain!
 
 Now let's start the service:
 
