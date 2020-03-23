@@ -136,6 +136,7 @@ This is required because Rocket.Chat uses Meteor Oplog Tailing for performance i
 Then tell supervisord to update and start the service:
 
 ::
+
  [isabell@stardust ~]$ supervisorctl reread
  mongodb: changed
  [isabell@stardust ~]$ supervisorctl update
@@ -242,7 +243,8 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content (don't fo
  environment=
         MONGO_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",
         MONGO_OPLOG_URL="mongodb://<username>_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",
-        ROOT_URL="https://<username>.uber.space/",PORT=3000
+        ROOT_URL="https://<username>.uber.space/",
+        PORT=3000
  autostart=yes
  autorestart=yes
 
