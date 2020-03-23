@@ -54,7 +54,7 @@ Remove your ``html`` directory and download the current version of Baïkal from 
  [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
  [isabell@stardust isabell]$ unzip baikal-0.6.1.zip
  [isabell@stardust isabell]$ rm baikal-0.6.1.zip
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/baikal/html /var/www/virtual/$USER/html
+ [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$ 
 
 Configuration
