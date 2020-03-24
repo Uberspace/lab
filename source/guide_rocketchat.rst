@@ -178,7 +178,6 @@ Now initiate the replica set:
  [isabell@stardust ~]$
 
 .. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
- But if you add it then don't forget to replace ``<username>`` with your username.
 
 As last part of the MongoDB configuration we need a user for Rocket.Chat.
 Generate a random password:
@@ -238,7 +237,6 @@ Use mongo to add the user:
  [isabell@stardust ~]$ 
 
 .. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
- But if you add it then don't forget to replace ``<username>`` with your username.
 
 Remove the ``~/rocket.chat-user-setup.js`` file:
 
