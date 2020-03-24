@@ -64,7 +64,6 @@ After the installation you need to open isabell.uber.space in your browser to fi
 
 Fill out your system settings, admin user and database settings, you can use the included SQLite database or :manual_anchor:`MySQL <database-mysql.html#login-credentials>`.
 
-::
 
 Updates
 =======

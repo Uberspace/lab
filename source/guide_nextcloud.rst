@@ -163,7 +163,7 @@ Nextcloud will complain about your HSTS settings in the admin interface.
 At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
 
 Onlyoffice (Community Edition)
--------
+------------------------------
 To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
 
 * Community Document Server (a light version of the Onlyoffice server)

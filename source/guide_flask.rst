@@ -1,10 +1,14 @@
 .. highlight:: console
+
 .. author:: Benjamin Wießneth <bwiessneth@gmail.com>
+
 .. tag:: lang-python
 .. tag:: web
-.. sidebar:: About
 
+.. sidebar:: Logo
 
+  .. image:: _static/images/flask-logo.png
+      :align: center
 
 #####
 Flask
