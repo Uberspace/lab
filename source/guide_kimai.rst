@@ -65,7 +65,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.5 --depth 1 https://github.com/kevinpapst/kimai2.git
+ [isabell@stardust isabell]$ git clone -b 1.8 --depth 1 https://github.com/kevinpapst/kimai2.git
  Cloning into 'kimai2'...
  […]
  [isabell@stardust ~]$
@@ -98,6 +98,7 @@ Configuration
 To configure Kimai you need to edit the main configuration file ``/var/www/virtual/$USER/kimai2/.env``. Open this file with a text editor of your choice.
 
 Edit the following parts of your configuration file:
+ * replace the secret in the line starting with ``APP_SECRET`` by a random string
  * comment out the line starting with ``DATABASE_URL=sqlite`` (prefix the line with a ``#``)
  * comment in the line starting with ``DATABASE_URL=mysql`` (remove the ``#``)
  * in the same line replace the placeholders ``db_user``, ``db_password`` and ``db_name`` with your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
@@ -109,7 +110,7 @@ Save the changed file and start the installation using the Kimai console.
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
  [isabell@stardust kimai2]$ bin/console kimai:install -n
- Kimai installer - v87.1.4
+ Kimai installation running ...
  […]
  [isabell@stardust ~]$
 
@@ -173,7 +174,7 @@ To update your installation fetch the new release tags from GitHub and checkout 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
  [isabell@stardust kimai2]$ git fetch --tags
- [isabell@stardust kimai2]$ git checkout 87.2.0
+ [isabell@stardust kimai2]$ git checkout 1.8
  [isabell@stardust kimai2]$ composer install --no-dev --optimize-autoloader
  [isabell@stardust ~]$
 
@@ -207,6 +208,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.5 and Uberspace 7.3.6
+Tested with Kimai 1.8 and Uberspace 7.5.0
 
 .. author_list::
