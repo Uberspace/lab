@@ -74,7 +74,7 @@ As ``--prefix=$HOME`` was used, components of icecast are in the home directory 
 Configuration
 =============
 
-Before editing a config, it's best practice to copy the untouched config file to a *.dist file.
+Before editing a config, it's best practice to copy the untouched config file to a ``*.dist`` file.
 
 .. code-block:: console
 
@@ -220,6 +220,7 @@ Updates
 .. _configdocu: https://icecast.org/docs/icecast-2.4.1/config-file.html
 .. _clients: https://icecast.org/apps/
 .. _mixxx: https://mixxx.org/
+
 ----
 
 Tested with icecast-2.4.1 and Uberspace 7.3.10

@@ -54,7 +54,7 @@ If you want to install Matomo into a subfolder of your domain, create a new fold
  [isabell@stardust html]$ cd matomo/
  [isabell@stardust matomo]$
 
-Matomo can also be installed directly into your :manual:`document root <web-documentroot>`, which makes it accessible as ``https://isabell.uber.space`` directly. In that case, skip the last two commands. Your prompt will read ``[isabell@stardust html]$ `` for the following steps.
+Matomo can also be installed directly into your :manual:`document root <web-documentroot>`, which makes it accessible as ``https://isabell.uber.space`` directly. In that case, skip the last two commands. Your prompt will read ``[isabell@stardust html]$`` for the following steps.
 
 Now download the latest version and extract it:
 
