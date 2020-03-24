@@ -94,7 +94,30 @@ Now we install the required dependencies:
  [...]
  [isabell@stardust server]$ cd ~
  [isabell@stardust ~]$
- 
+
+As long as  `this issue in Rocket.Chat <https://github.com/RocketChat/Rocket.Chat/issues/7465>`_ is not fixed, we need a little modification to get file uploads to work.
+
+Make ``~/rocket.chat/programs/server/packages/jalik_ufs.js`` writable:
+
+::
+
+ [isabell@stardust ~]$ chmod +w ~/rocket.chat/programs/server/packages/jalik_ufs.js
+ [isabell@stardust ~]$
+
+Edit ``~/rocket.chat/programs/server/packages/jalik_ufs.js`` and replace the line ``tmpDir: '/tmp/ufs',`` with ``tmpDir: process.env.HOME+'/tmp/ufs',``.
+
+Remove the write permission:
+::
+
+ [isabell@stardust ~]$ chmod -w ~/rocket.chat/programs/server/packages/jalik_ufs.js
+ [isabell@stardust ~]$
+
+.. note:: Alternatively you can do this in one step with ``sed``:
+ ::
+
+  [isabell@stardust ~]$ sed -i "s#tmpDir: '/tmp/ufs',#tmpDir: process\.env\.HOME+'/tmp/ufs',#g" ~/rocket.chat/programs/server/packages/jalik_ufs.js
+  [isabell@stardust ~]$
+
 
 Configuration
 =============
