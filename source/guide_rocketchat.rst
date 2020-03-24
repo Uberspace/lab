@@ -60,7 +60,7 @@ Download the latest Rocket.Chat release:
 
 ::
 
- [isabell@stardust ~]$ curl -L https://releases.rocket.chat/latest/download -o rocket.chat.tgz
+ [isabell@stardust ~]$ curl -L https://releases.rocket.chat/latest/download -o ~/rocket.chat.tgz
  curl -L https://releases.rocket.chat/latest/download -o rocket.chat.tgz
    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                   Dload  Upload   Total   Spent    Left  Speed
@@ -73,14 +73,14 @@ And then extract the archive, use ``--strip-components=1`` to remove the ``bundl
 ::
 
  [isabell@stardust ~]$ mkdir ~/rocket.chat
- [isabell@stardust ~]$ tar -xzf rocket.chat.tgz -C ~/rocket.chat --strip-components=1
+ [isabell@stardust ~]$ tar -xzf ~/rocket.chat.tgz -C ~/rocket.chat --strip-components=1
  [isabell@stardust ~]$
  
 You can delete the archive now:
 
 ::
 
- [isabell@stardust ~]$ rm rocket.chat.tgz
+ [isabell@stardust ~]$ rm ~/rocket.chat.tgz
  [isabell@stardust ~]$
 
 Now we install the required dependencies:
