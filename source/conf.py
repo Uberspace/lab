@@ -160,5 +160,7 @@ notfound_no_urls_prefix = True
 htmlhelp_basename = 'Uberspace7labdoc'
 
 
+exclude_patterns = ['404.rst', 'includes/proxy-rewrite-static.rst']
+
 def setup(app):
     app.add_javascript('js/custom.js')
