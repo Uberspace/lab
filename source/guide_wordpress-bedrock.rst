@@ -129,11 +129,10 @@ You can use Roots' `Salt-Creator <https://roots.io/salts.html>`_ to generate the
 
 You now need to set your :manual:`document root <web-documentroot>` to the ``bedrock/web/`` directory. To do this, we delete the standard document root folder and create a symlink instead.
 
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files.
-
 .. code-block:: console
 
- [isabell@stardust ~]$ rm -r /var/www/virtual/$USER/html
+ [isabell@stardust ~]$ rmdir /var/www/virtual/$USER/html
+
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
  [isabell@stardust ~]$
 
