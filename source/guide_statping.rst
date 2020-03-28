@@ -81,8 +81,6 @@ Create ``~/etc/services.d/statping.ini`` with the following content:
    autostart=yes
    autorestart=yes
 
-Now let's start the service:
-
 .. include:: includes/supervisord.rst
 
 
