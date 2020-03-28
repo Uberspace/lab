@@ -102,13 +102,7 @@ you set up.
 Select the Database Connection :manual:`MYSQL <database-mysql>`  and type in your your username and password.
 The database runs on localhost, the port is 3306.
 
-If you don't remember your password use
-
-.. code-block:: console
-
-   [eliza@dolittle ~]$ my_print_defaults client
-   --user=eliza
-   --password=SomeStrongPassword
+.. include:: includes/my-print-defaults.rst
 
 Also add a Project Name and add your domain <username>.uber.space or any other domain you want to
 use to reach statping.
