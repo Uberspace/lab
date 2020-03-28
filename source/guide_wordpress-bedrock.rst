@@ -42,8 +42,6 @@ Wordpress recommends PHP_ in version 7.3:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
  [isabell@stardust ~]$ uberspace tools version use php 7.3
  Selected PHP version 7.3
  [isabell@stardust ~]$
