@@ -36,8 +36,6 @@ Prerequisites
 
 .. include:: includes/my-print-defaults.rst
 
-.. include:: includes/web-backend.rst
-
 Create a directory for the configuration.
 
 ::
@@ -83,6 +81,14 @@ Create ``~/etc/services.d/statping.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
+Configure web server
+--------------------
+
+.. note::
+
+    Statping is running on port 8080.
+
+.. include:: includes/web-backend.rst
 
 Configuration
 =============
