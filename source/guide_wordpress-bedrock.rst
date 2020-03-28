@@ -48,6 +48,12 @@ Wordpress recommends PHP_ in version 7.3:
 
 .. include:: includes/my-print-defaults.rst
 
+We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. Create one with:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_wp"
+
 Your blog domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
@@ -90,8 +96,7 @@ Configuration
 
 Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/bedrock/.env``
 
-In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters. 
-We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_wp``.
+In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``). 
 
 .. code-block:: ini
  :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
