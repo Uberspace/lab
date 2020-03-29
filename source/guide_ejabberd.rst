@@ -1,4 +1,5 @@
 .. author:: fm0de
+.. author:: jo-mei
 
 .. tag:: XMPP
 .. tag:: Jabber
@@ -29,274 +30,108 @@ ejabberd
   * :manual:`firewall ports <basics-ports>`
   * :manual:`web backends <web-backends>`
 
+This guide is based on the initial `pull request <https://github.com/Uberspace/lab/pull/444>`_ from `fm0de <https://github.com/fm0de>`_ and the `work from clerie <https://blog.clerie.de/ejabberd-auf-uberspace-installieren/>`_.
+
 Prerequisites
 =============
 
 Domain
 ------
 
-Your ejabberd domain needs to be setup. ejabberd defaults to the subomains
+Your ejabberd domain ``isabell.example``needs to be setup. ejabberd then defaults to the subomains
 ``upload.isabell.example``, ``conference.isabell.example`` , ``pubsub.isabell.example`` and ``proxy.isabell.example``
-
-.. include:: includes/web-domain-list.rst
-
-
-Erlang
-------
-
-ejabberd is written in Erlang see the `ejabberd documentation <https://docs.ejabberd.im/admin/installation/#requirements>`_ for the recomended version.
-Install the `kerl <https://github.com/kerl/kerl>`_ tool:
 ::
+ [isabell@stardust ~]$ uberspace web domain add isabell.example
+ [isabell@stardust ~]$ uberspace web domain add conference.isabell.example
+ [isabell@stardust ~]$ uberspace web domain add upload.isabell.example
+ [isabell@stardust ~]$ uberspace web domain add pubsub.isabell.example
+ [isabell@stardust ~]$ uberspace web domain add proxy.isabell.example
 
-    [isabell@stardust ~]$ cd ~/bin
-    [isabell@stardust bin]$ curl -O https://raw.githubusercontent.com/kerl/kerl/master/kerl
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-    100 66523  100 66523    0     0   331k      0 --:--:-- --:--:-- --:--:--  333k
-    [isabell@stardust bin]$ chmod +x kerl
-    [isabell@stardust ~]$ cd
-
-Now, use kerl to install Erlang:
+Also we need the SSL Certificates:
 ::
-
-    [isabell@stardust ~]$ kerl build 21.2
-    Downloading otp_src_21.2.tar.gz to /home/isabell/.kerl/archives
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                   Dload  Upload   Total   Spent    Left  Speed
-    100   162  100   162    0     0    749      0 --:--:-- --:--:-- --:--:--   753
-    100 81.3M  100 81.3M    0     0  2437k      0  0:00:34  0:00:34 --:--:-- 2401k
-    Getting checksum file from erlang.org...
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                    Dload  Upload   Total   Spent    Left  Speed
-    100   162  100   162    0     0    677      0 --:--:-- --:--:-- --:--:--   677
-    100 32058  100 32058    0     0  69397      0 --:--:-- --:--:-- --:--:-- 69397
-    Verifying archive checksum...
-    Checksum verified (8a797dfe4cfb1bbf1b007f01b2f5a1ad)
-    Extracting source code
-    Building Erlang/OTP 21.2 (21.2), please wait...
-    APPLICATIONS DISABLED (See: /home/isabell/.kerl/builds/21.2/otp_build_21.2.log)
-    * jinterface     : No Java compiler found
-    * odbc           : ODBC library - link check failed
-
-    APPLICATIONS INFORMATION (See: /home/isabell/.kerl/builds/21.2/otp_build_21.2.log)
-    * wx             : wxWidgets not found, wx will NOT be usable
-
-    DOCUMENTATION INFORMATION (See: /home/isabell/.kerl/builds/21.2/otp_build_21.2.log)
-    * documentation  :
-    * fop is missing.
-    * Using fakefop to generate placeholder PDF files.
-
-    Erlang/OTP 21.2 (21.2) has been successfully built
-    [isabell@stardust ~]$ kerl install 21.2 ~/erlang/builds/21.2/
-    Installing Erlang/OTP 21.2 (21.2) in /home/isabell/erlang/builds/21.2...
-    You can activate this installation running the following command:
-    . /home/isabell/erlang/builds/21.2/activate
-    Later on, you can leave the installation typing:
-    kerl_deactivate
-    [isabell@stardust ~]$. ~/erlang/builds/21.2/activate
-    [isabell@stardust ~]$
-
-Add your erlang installation to your .bash_profile:
-::
-
-    [isabell@stardust ~]$ echo ". ~/erlang/builds/21.2/activate #activate Erlang on shell" >> .bash_profile
-    [isabell@stardust ~]$
-
+ [isabell@stardust ~]$ curl https://isabell.example
+ [isabell@stardust ~]$ curl https://conference.isabell.example
+ [isabell@stardust ~]$ curl https://upload.isabell.example
+ [isabell@stardust ~]$ curl https://pubsub.isabell.example
+ [isabell@stardust ~]$ curl https://proxy.isabell.example
 
 LibYAML
 -------
-ejabberd needs `LibYAML <https://pyyaml.org/wiki/LibYAML>`_ for compilation:
+ejabberd needs `LibYAML <https://pyyaml.org/wiki/LibYAML>`_ for compilation.
+
+Create a working directory.
+
 ::
 
-    [isabell@stardust ~]$ wget https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
-    --2019-07-10 09:28:21--  https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
-    Auflösen des Hostnamen »pyyaml.org (pyyaml.org)«... 185.199.109.153, 185.199.108.153
-    Verbindungsaufbau zu pyyaml.org (pyyaml.org)|185.199.109.153|:443... verbunden.
-    HTTP-Anforderung gesendet, warte auf Antwort... 200 OK
-    Länge: 609359 (595K) [application/gzip]
-    In »»yaml-0.2.2.tar.gz«« speichern.
+ [isabell@stardust ~]$ mkdir ~/src/
+ [isabell@stardust ~]$ cd ~/src/
+ [isabell@stardust ~]$
 
-    100%[====================================================================================>] 609.359     --.-K/s   in 0,008s
+Download the latest version from https://pyyaml.org/download/libyaml/.
 
-    2019-07-10 09:28:21 (77,1 MB/s) - »»yaml-0.2.2.tar.gz«« gespeichert [609359/609359]
+::
 
-    [isabell@stardust ~]$ tar xf yaml-0.2.2.tar.gz
-    [isabell@stardust ~]$ cd yaml-0.2.2/
-    [isabell@stardust yaml-0.2.2]$./configure --prefix=$HOME/ejabberd
-    checking for a BSD-compatible install... /usr/bin/install -c
-    checking whether build environment is sane... yes
-    checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
-    checking for gawk... gawk
-    checking whether make sets $(MAKE)... yes
-    checking whether make supports nested variables... yes
-    checking for gcc... gcc
-    checking whether the C compiler works... yes
-    checking for C compiler default output file name... a.out
-    checking for suffix of executables...
-    checking whether we are cross compiling... no
-    checking for suffix of object files... o
-    checking whether we are using the GNU C compiler... yes
-    checking whether gcc accepts -g... yes
-    checking for gcc option to accept ISO C89... none needed
-    checking whether gcc understands -c and -o together... yes
-    checking for style of include used by make... GNU
-    checking dependency style of gcc... gcc3
-    checking how to run the C preprocessor... gcc -E
-    checking whether ln -s works... yes
-    checking whether make sets $(MAKE)... (cached) yes
-    checking build system type... x86_64-pc-linux-gnu
-    checking host system type... x86_64-pc-linux-gnu
-    checking how to print strings... printf
-    checking for a sed that does not truncate output... /usr/bin/sed
-    checking for grep that handles long lines and -e... /usr/bin/grep
-    checking for egrep... /usr/bin/grep -E
-    checking for fgrep... /usr/bin/grep -F
-    checking for ld used by gcc... /usr/bin/ld
-    checking if the linker (/usr/bin/ld) is GNU ld... yes
-    checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
-    checking the name lister (/usr/bin/nm -B) interface... BSD nm
-    checking the maximum length of command line arguments... 1572864
-    checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
-    checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
-    checking for /usr/bin/ld option to reload object files... -r
-    checking for objdump... objdump
-    checking how to recognize dependent libraries... pass_all
-    checking for dlltool... no
-    checking how to associate runtime and link libraries... printf %s\n
-    checking for ar... ar
-    checking for archiver @FILE support... @
-    checking for strip... strip
-    checking for ranlib... ranlib
-    checking command to parse /usr/bin/nm -B output from gcc object... ok
-    checking for sysroot... no
-    checking for a working dd... /usr/bin/dd
-    checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
-    checking for mt... no
-    checking if : is a manifest tool... no
-    checking for ANSI C header files... yes
-    checking for sys/types.h... yes
-    checking for sys/stat.h... yes
-    checking for stdlib.h... yes
-    checking for string.h... yes
-    checking for memory.h... yes
-    checking for strings.h... yes
-    checking for inttypes.h... yes
-    checking for stdint.h... yes
-    checking for unistd.h... yes
-    checking for dlfcn.h... yes
-    checking for objdir... .libs
-    checking if gcc supports -fno-rtti -fno-exceptions... no
-    checking for gcc option to produce PIC... -fPIC -DPIC
-    checking if gcc PIC flag -fPIC -DPIC works... yes
-    checking if gcc static flag -static works... no
-    checking if gcc supports -c -o file.o... yes
-    checking if gcc supports -c -o file.o... (cached) yes
-    checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
-    checking whether -lc should be explicitly linked in... no
-    checking dynamic linker characteristics... GNU/Linux ld.so
-    checking how to hardcode library paths into programs... immediate
-    checking whether stripping libraries is possible... yes
-    checking if libtool supports shared libraries... yes
-    checking whether to build shared libraries... yes
-    checking whether to build static libraries... yes
-    checking for doxygen... true
-    checking for ANSI C header files... (cached) yes
-    checking for stdlib.h... (cached) yes
-    checking for an ANSI C-conforming const... yes
-    checking for size_t... yes
-    checking that generated files are newer than configure... done
-    configure: creating ./config.status
-    config.status: creating yaml-0.1.pc
-    config.status: creating include/Makefile
-    config.status: creating src/Makefile
-    config.status: creating Makefile
-    config.status: creating tests/Makefile
-    config.status: creating include/config.h
-    config.status: executing depfiles commands
-    config.status: executing libtool commands
-    [isabell@stardust yaml-0.2.2]$ make    
-    Making all in include                                                                                                           [...]
-    mv -f .deps/run-emitter-test-suite.Tpo .deps/run-emitter-test-suite.Po
-    /bin/sh ../libtool  --tag=CC   --mode=link gcc  -g -O2   -o run-emitter-test-suite run-emitter-test-suite.o ../src/libyaml.la 
-    libtool: link: gcc -g -O2 -o .libs/run-emitter-test-suite run-emitter-test-suite.o  ../src/.libs/libyaml.so -Wl,-rpath -Wl,/home/ejabberd/ejabberd/lib
-    make[1]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
-    [isabell@stardust yaml-0.2.2]$ make install
-    Making install in include
-    [...]
-    Making install in tests
-    make[1]: Entering directory `/home/ejabberd/yaml-0.2.2/tests'
-    make[2]: Entering directory `/home/ejabberd/yaml-0.2.2/tests'
-    make[2]: Nothing to be done for `install-exec-am'.
-    make[2]: Nothing to be done for `install-data-am'.
-    make[2]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
-    make[1]: Leaving directory `/home/ejabberd/yaml-0.2.2/tests'
-    [ejabberd@stardust yaml-0.2.2]$ 
+ [isabell@stardust ~]$ wget https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
+ [isabell@stardust ~]$ tar xf yaml-0.2.2.tar.gz
+ [isabell@stardust ~]$ cd yaml-0.2.2/
+ [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/libyaml
+ [isabell@stardust ~]$ make install
+ [isabell@stardust ~]$
+
+Add the following lines to your ``~/.bash_profile`` to make libyaml known for future installations:
+
+.. code-block:: bash
+
+ # Add exports to find libyaml
+ if [[ -z "${CPATH}" ]]; then
+   export CPATH=$HOME/opt/libyaml/include
+ else
+   export CPATH=$HOME/opt/libyaml/include:$CPATH
+ fi
+ if [[ -z "${LIBRARY_PATH}" ]]; then
+   export LIBRARY_PATH=$HOME/opt/libyaml/lib
+ else
+   export LIBRARY_PATH=$HOME/opt/libyaml/lib:$LIBRARY_PATH
+ fi
+ if [[ -z "${LIBRARY_PATH}" ]]; then
+  export LD_LIBRARY_PATH=$HOME/opt/libyaml/lib
+ else
+  export LD_LIBRARY_PATH=$HOME/opt/libyaml/lib:$LD_LIBRARY_PATH
+ fi
+
+Reload the ``.bash_profile`` with:
+
+::
+
+ [isabell@stardust ~]$ source ~/.bash_profile
+ [isabell@stardust ~]$
+
 
 Installation
 ============
 
-Provide the LibYAML path to the compiler:
+Download, configure, compile and install ejabberd.
+Use the following options for ``./configure``:
+  * ``--prefix=$HOME/opt/ejabberd/``: Install to your personal uberspace
+  * ``--enable-user=$USER``: Allow execution of ejabberd as $USER
+  * ``--enable-mysql --enable-new-sql-schema``: optionally compile with mysql support
+
 ::
 
-    [isabell@stardust ~]$ export CFLAGS=-I$HOME/ejabberd/include
-    [isabell@stardust ~]$ export CPPFLAGS=-I$HOME/ejabberd/include
-    [isabell@stardust ~]$ export LDFLAGS=-L$HOME/ejabberd/lib
-    [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd $HOME/src/
+ [isabell@stardust ~]$ wget https://github.com/processone/ejabberd/archive/20.03.tar.gz
+ [isabell@stardust ~]$ tar xf 20.03.tar.gz
+ [isabell@stardust ~]$ cd ejabberd-20.03/
+ [isabell@stardust ejabberd-19.09.1]$ ./autogen.sh
+ [isabell@stardust ejabberd-19.09.1]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd --enable-mysql --enable-new-sql-schema
+ [isabell@stardust ejabberd-19.05]$ make install
 
-Download and install ejabberd:
-::
+Make the control script available through ``.bash_profile``:
 
-    [isabell@stardust ~]$ wget https://github.com/processone/ejabberd/archive/19.05.tar.gz
-    --2019-07-10 09:48:53--  https://github.com/processone/ejabberd/archive/19.05.tar.gz
-    Auflösen des Hostnamen »github.com (github.com)«... 140.82.118.4
-    Verbindungsaufbau zu github.com (github.com)|140.82.118.4|:443... verbunden.
-    HTTP-Anforderung gesendet, warte auf Antwort... 302 Found
-    Platz: https://codeload.github.com/processone/ejabberd/tar.gz/19.05[folge]
-    --2019-07-10 09:48:53--  https://codeload.github.com/processone/ejabberd/tar.gz/19.05
-    Auflösen des Hostnamen »codeload.github.com (codeload.github.com)«... 140.82.114.10
-    Verbindungsaufbau zu codeload.github.com (codeload.github.com)|140.82.114.10|:443... verbunden.
-    HTTP-Anforderung gesendet, warte auf Antwort... 200 OK
-    Länge: nicht spezifiziert [application/x-gzip]
-    In »»19.05.tar.gz«« speichern.
+.. code-block:: bash
 
-        [    <=>                                                                              ] 1.865.845   1,51MB/s   in 1,2s
-
-    2019-07-10 09:48:55 (1,51 MB/s) - »19.05.tar.gz« gespeichert [1865845]
-
-    [isabell@stardust ~]$ tar xf 19.05.tar.gz
-    [isabell@stardust ~]$ cd ejabberd-19.05/
-    [isabell@stardust ejabberd-19.05]$./autogen.sh
-    [isabell@stardust ejabberd-19.05]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd
-    checking whether make sets $(MAKE)... yes
-    checking for a BSD-compatible install... /usr/bin/install -c
-    checking for a sed that does not truncate output... /usr/bin/sed
-    checking for erl... /home/isabell/erlang/builds/21.2/bin/erl
-    checking for erlc... /home/isabell/erlang/builds/21.2/bin/erlc
-    checking for epmd... /home/isabell/erlang/builds/21.2/bin/epmd
-    checking for erl... /home/isabell/erlang/builds/21.2/bin/erl
-    checking for erlc... /home/isabell/erlang/builds/21.2/bin/erlc
-    checking Erlang/OTP version... ok
-    checking for Erlang/OTP root directory... /home/isabell/erlang/builds/21.2
-    checking for escript... /home/isabell/erlang/builds/21.2/bin/escript
-    checking for make... make
-    allow this system user to start ejabberd: isabell
-    configure: creating ./config.status
-    config.status: creating Makefile
-    config.status: creating vars.config
-    config.status: creating src/ejabberd.app.src
-    [isabell@stardust ejabberd-19.05]$
-
-Install it:
-::
-
-    [isabell@stardust ejabberd-19.05]$ make install
-
-Make the controll script available:
-
-.. code-block:: console
-
-   [isabell@stardust ~]$ ln -s ~/ejabberd/sbin/ejabberdctl ~/bin/ejabberdctl
-   [isabell@stardust ~]$
+ # Add ejabberd binaries to PATH
+ export PATH=$HOME/opt/ejabberd/sbin:$PATH
 
 
 Configuration
@@ -304,16 +139,25 @@ Configuration
 
 Open Firewall Ports
 -------------------
-ejabberd needs three open ports for c2s, s2s, and proxy connections. HTTP connections are handled by a web backend.
+ejabberd needs five open ports: 2 for c2s, 2 for s2s, and 1 for proxy connections. HTTP connections are handled by a web backend.
 
 .. include:: includes/open-port.rst
 
-As standard ports cannot be used on uberspace an external domain is needed and SRV records must be set for c2s and s2s connections. Refer to the `XMPP wiki <https://wiki.xmpp.org/web/SRV_Records>`_ for setup and point them to the corresponding ports.
+Add SRV records
+---------------
+As standard ports cannot be used on uberspace SRV records must be set for c2s and s2s connections. Refer to the `XMPP wiki <https://wiki.xmpp.org/web/SRV_Records>`_ for setup and point them to the corresponding ports.
+
+::
+
+ _xmpp-client._tcp.isabell.example. 86400 IN SRV 5 0 <port-1> isabell.example.
+ _xmpps-client._tcp.isabell.example. 86400 IN SRV 4 0 <port-2> isabell.example.
+ _xmpp-server._tcp.isabell.example. 86400 IN SRV 5 0 <port-3> isabell.example.
+ _xmpps-server._tcp.isabell.example. 86400 IN SRV 4 0 <port-4> isabell.example.
 
 Change the configuration
 ------------------------
 
-A standard config file is provided at ``~/ejabberd/etc/ejabberd/ejabberd.yaml`` where the ports, domain and administrator need to be set:
+A standard config file is provided at ``~/opt/ejabberd/etc/ejabberd/ejabberd.yaml`` where the ports, domain and administrator need to be set:
 
 Change the host configuration to listen for the correct domain:
 
@@ -325,33 +169,54 @@ Change the host configuration to listen for the correct domain:
 
 Provide location of your keys and certificates for TLS transport:
 
-.. note:: The list can be expanded with certfiles for each domain and subdomain.
 .. code-block:: ini
- :emphasize-lines: 2,3
+ :emphasize-lines: 2-11
 
   certfiles:
     - "/home/isabell/etc/certificates/isabell.example.crt"
     - "/home/isabell/etc/certificates/isabell.example.key"
+    - "/home/isabell/etc/certificates/conference.isabell.example.crt"
+    - "/home/isabell/etc/certificates/conference.isabell.example.key"
+    - "/home/isabell/etc/certificates/upload.isabell.example.crt"
+    - "/home/isabell/etc/certificates/upload.isabell.example.key"
+    - "/home/isabell/etc/certificates/proxy.isabell.example.crt"
+    - "/home/isabell/etc/certificates/proxy.isabell.example.key"
+    - "/home/isabell/etc/certificates/pubsub.isabell.example.crt"
+    - "/home/isabell/etc/certificates/pubsub.isabell.example.key"
 
 
 Change the port numbers to your open ports according to your SRV records:
 
 .. code-block:: ini
- :emphasize-lines: 3,11
+ :emphasize-lines: 3,11,19,24
 
   listen:
-    -
-      port: <c2s-port>
+    - # c2s
+      port: <port-1>
       ip: "::"
       module: ejabberd_c2s
       max_stanza_size: 262144
       shaper: c2s_shaper
       access: c2s
       starttls_required: true
-    -
-      port: <s2s-port>
+    - # 'secure' c2s
+      port: <port-2>
+      ip: "::"
+      module: ejabberd_c2s
+      tls: true
+      max_stanza_size: 262144
+      shaper: c2s_shaper
+      access: c2s
+    - # s2s
+      port: <port-3>
       ip: "::"
       module: ejabberd_s2s_in
+      max_stanza_size: 524288
+    - # 'secure' s2s
+      port: <port-4>
+      ip: "::"
+      module: ejabberd_s2s_in
+      tls: true
       max_stanza_size: 524288
 
 Disable TLS for HTTP as it is going to be provided through web backends and disable the last two listeners:
@@ -432,7 +297,7 @@ Configure mod_proxy65:
       host: "proxy.isabell.example"
       name: "File Transfer Proxy"
       ip: "::"
-      port: <proxy-port>
+      port: <port-5>
 
 ejabberd defaults to plain text passwords so the following two lines need to be added to enable scram:
 
@@ -451,7 +316,12 @@ Configure web backend
 
     ejabberd is listening on  port ``5443``.
 
-.. include:: includes/web-backend.rst
+::
+
+ [isabell@stardust ~]$ uberspace web backend set upload.isabell.example/ --http --port 5443
+ Set backend for upload.isabell.example/ to port 5443; please make sure something is listening!
+ You can always check the status of your backend using "uberspace web backend list".
+ [isabell@stardust ~]$
 
 Setup daemon
 ------------
@@ -461,7 +331,7 @@ Create ``~/etc/services.d/ejabberd.ini`` with the following content:
 .. code-block:: ini
 
   [program:ejabberd]
-  command=%(ENV_HOME)s/ejabberd/sbin/ejabberdctl foreground
+  command=%(ENV_HOME)s/opt/ejabberd/sbin/ejabberdctl foreground
   autostart=yes
   autorestart=yes
   stopasgroup=true
@@ -498,6 +368,6 @@ version is available, stop daemon by ``supervisorctl stop ejabberd`` and repeat 
 
 ----
 
-Tested with ejabberd 19.05, erlang 21.2 and Uberspace 7.3.3.0
+Tested with ejabberd 20.02 and Uberspace 7.4.5.0
 
 .. author_list::
