@@ -220,7 +220,7 @@ the same steps as the installation guide above, plus backup and restore of exist
 
 Tested with Redmine 4.0.5, Ruby 2.6, Uberspace 7.3.9.2
 
-.. authors::
+.. author_list::
 
 .. _Redmine: https://www.redmine.org/
 .. _domains: https://manual.uberspace.de/en/web-domains.html

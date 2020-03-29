@@ -146,6 +146,7 @@ Then press "**enter**" to upload your screenshot and copy the corresponding URL 
 
 
 .. _ShareX: https://getsharex.com/
+
 ----
 
 That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!

@@ -162,6 +162,19 @@ If there is a new version available, you can get the code using git. Replace the
   From https://github.com/xwiki-labs/cryptpad
    * tag                 2.19.0     -> FETCH_HEAD
   Already up to date.
+
+  [isabell@stardust cryptpad]$
+
+Now updated dependecies:
+
+.. code-block:: console
+
+  [isabell@stardust cryptpad]$ npm i
+  removed 1 package and audited 313 packages in 14.535s
+  found 0 vulnerabilities
+
+  [isabell@stardust cryptpad]$ bower update
+  {... bower output ...}
   [isabell@stardust cryptpad]$
 
 Then you need to restart the service, so the new code is used by the webserver:
