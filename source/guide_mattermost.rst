@@ -94,7 +94,7 @@ First, set your site URL:
 
 Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the databse you created earlier:
 
-.. code-block:: json
+.. code-block:: javascript
  :emphasize-lines: 3
 
     "SqlSettings": {
@@ -112,7 +112,7 @@ Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, `
 
 To configure plugins you have to change the plugin path under ``PluginSettings``:
 
-.. code-block:: json
+.. code-block:: javascript
  :emphasize-lines: 1,2
  
       "Directory": "/home/isabell/mattermost/plugins",
