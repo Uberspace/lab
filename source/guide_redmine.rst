@@ -14,6 +14,8 @@
 Redmine
 #######
 
+.. tag_list::
+
 Redmine_ is an Open Source, web-based project management and issue tracking service.
 
 It is written using the Ruby on Rails framework and licensed under `GNU General Public License v2 <https://www.gnu.org/licenses/gpl-2.0.html>`_
