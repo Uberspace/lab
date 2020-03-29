@@ -142,7 +142,7 @@ By default Kimai allows any visitor of your domain to register a new user accoun
 
 Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration: 
 
-.. code-block:: yml
+.. code-block:: yaml
 
  kimai:
     user:
