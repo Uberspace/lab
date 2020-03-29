@@ -164,7 +164,7 @@ First create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-
 Then configure Framadate to use that just created mailbox. Edit the SMTP configuration in  ``~/html/app/inc/config.php``:
 
 .. code-block:: php
-  
+
   'use_smtp' => true,
   'smtp_options' => [
           'host' => 'stardust.uberspace.de',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator

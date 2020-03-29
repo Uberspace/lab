@@ -13,9 +13,9 @@ Mosh
 
 Mosh_ (mobile shell) is a replacement for interactive SSH terminals. It's more robust and responsive, especially over Wi-Fi, cellular, and long-distance links. In short if you want to connect to your Uberspace from cellular networks in most cases it's more fun fun via Mosh_.
 
-Mosh_ is already available in your Uberspace environment and you don't need to install it. You don't need to launch it as a daemon. Mosh_ doesn't listen on network ports or authenticate users. The client logs in to the server via SSH, and users present the same credentials (e.g., password, public key) as before. Then Mosh_ runs the mosh-server remotely and connects to it over UDP. 
+Mosh_ is already available in your Uberspace environment and you don't need to install it. You don't need to launch it as a daemon. Mosh_ doesn't listen on network ports or authenticate users. The client logs in to the server via SSH, and users present the same credentials (e.g., password, public key) as before. Then Mosh_ runs the mosh-server remotely and connects to it over UDP.
 
-Therefore you need to open a port in your Uberspace firewall. 
+Therefore you need to open a port in your Uberspace firewall.
 
 ----
 
@@ -41,7 +41,7 @@ Best practices
 It's not necessary to configure Mosh as a daemon on your Uberspace.
 
 .. code-block:: bash
- 
+
  [isabell@localhost ~] mosh -p <your_port> <username>@<username>.uber.space
  Welcome to Uberspace7!
  [...]

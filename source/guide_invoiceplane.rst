@@ -56,7 +56,7 @@ To install InvoicePlane we download the current version from the official websit
  [isabell@stardust html]$ wget https://www.invoiceplane.org/download/v1.5.10
  [isabell@stardust html]$ unzip v1.5.10
  [isabell@stardust html]$ rm v1.5.10
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 Configuration
 =============

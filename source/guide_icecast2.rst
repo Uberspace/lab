@@ -79,14 +79,14 @@ Before editing a config, it's best practice to copy the untouched config file to
 .. code-block:: console
 
   [isabell@stardust ~]$ cp ~/etc/icecast.xml ~/etc/icecast.xml.dist
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 You can then later compare your config with the default one with ``diff``.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ diff ~/etc/icecast.xml ~/etc/icecast.xml.dist
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Use this snippet to generate random passwords:
 
@@ -137,7 +137,7 @@ Create the directory for the log files.
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir -p ~/var/log/icecast/
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
 Try to manually run icecast with your config to print out possible errors.
@@ -145,7 +145,7 @@ Try to manually run icecast with your config to print out possible errors.
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/bin/icecast -c ~/etc/icecast.xml
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 If it is running without errors, close it with ``Ctrl+C``. Otherwise most likely you need to fix them in your config.
 
@@ -168,7 +168,7 @@ Check the status of your icecast2 service.
 .. code-block:: console
 
   [isabell@stardust ~]$ supervisorctl status
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 If your service is not running, check your config.
 
@@ -186,7 +186,7 @@ Additional configuration
 
 Find more configuration possibilities in the configdocu_.
 
-With this basic setup you can already stream audio from a source client like mixxx_ to your icecast server by providing 
+With this basic setup you can already stream audio from a source client like mixxx_ to your icecast server by providing
 
   * the listening port,
   * ``source`` as username and the source-password,

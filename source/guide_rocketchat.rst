@@ -66,7 +66,7 @@ Download the latest Rocket.Chat release:
                                   Dload  Upload   Total   Spent    Left  Speed
  100   223  100   223    0     0    333      0 --:--:-- --:--:-- --:--:--   333
  100  146M  100  146M    0     0  13.0M      0  0:00:11  0:00:11 --:--:-- 14.0M
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 And then extract the archive, use ``--strip-components=1`` to remove the ``bundle`` prefix from the path:
 
@@ -75,7 +75,7 @@ And then extract the archive, use ``--strip-components=1`` to remove the ``bundl
  [isabell@stardust ~]$ mkdir ~/rocket.chat
  [isabell@stardust ~]$ tar -xzf ~/rocket.chat.tgz -C ~/rocket.chat --strip-components=1
  [isabell@stardust ~]$
- 
+
 You can delete the archive now:
 
 ::
@@ -147,7 +147,7 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
  autostart=yes
  autorestart=yes
 
-This is required because Rocket.Chat uses Meteor Oplog Tailing for performance improvements (see `the docs <https://rocket.chat/docs/installation/manual-installation/mongo-replicas/>`_ for further information). 
+This is required because Rocket.Chat uses Meteor Oplog Tailing for performance improvements (see `the docs <https://rocket.chat/docs/installation/manual-installation/mongo-replicas/>`_ for further information).
 
 Then tell supervisord to update and start the service:
 
@@ -158,7 +158,7 @@ Then tell supervisord to update and start the service:
  [isabell@stardust ~]$ supervisorctl update
  mongodb: stopped
  mongodb: updated process group
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now initiate the replica set:
 
@@ -166,7 +166,7 @@ Now initiate the replica set:
 
  [isabell@stardust ~]$ mongo --username ${USER}_mongoroot --eval "printjson(rs.initiate())"
  MongoDB shell version v4.2.3
- Enter password: 
+ Enter password:
  connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("d0f22c61-382c-4178-9a6d-09b42674c14d") }
  MongoDB server version: 4.2.3
@@ -213,7 +213,7 @@ Use mongo to add the user:
 
  [isabell@stardust ~]$ mongo admin --username ${USER}_mongoroot ~/rocket.chat-user-setup.js
  MongoDB shell version v4.2.3
- Enter password: 
+ Enter password:
  connecting to: mongodb://127.0.0.1:27017/admin?compressors=disabled&gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("de28d438-1b38-4c59-964b-8a2f7f88d2d9") }
  MongoDB server version: 4.2.3
@@ -234,7 +234,7 @@ Use mongo to add the user:
  		}
  	]
  }
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
 
@@ -293,14 +293,14 @@ Stop Rocket.Chat:
 
  [isabell@stardust ~]$ supervisorctl stop rocket.chat
  rocket.chat: stopped
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Remove the old installation:
 
 ::
 
  [isabell@stardust ~]$ rm -rf ~/rocket.chat
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Follow the `Installation <#installation>`_ procedure to install the new release.
 
@@ -310,7 +310,7 @@ Start Rocket.Chat again after the installation is finished:
 
  [isabell@stardust ~]$ supervisorctl start rocket.chat
  rocket.chat: started
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. note:: it may take a minute or so until Rocket.Chat is fully loaded, so don't worry if you see a *502 bad gateway* for a while after starting Rocket.Chat
 

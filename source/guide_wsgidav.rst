@@ -96,7 +96,7 @@ Save the file here:
 ::
 
 ~/etc/wsgidav.yaml
- 
+
 Configure web server
 ====================
 

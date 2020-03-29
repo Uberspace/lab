@@ -5,7 +5,7 @@
 .. tag:: lang-php
 .. tag:: accounting
 .. tag:: customer-management
-.. tag:: business 
+.. tag:: business
 .. tag:: web
 
 .. sidebar:: Logo
@@ -56,7 +56,7 @@ Your domain needs to be set up:
 Installation
 ============
 
-We will be installing Invoice Ninja using composer. 
+We will be installing Invoice Ninja using composer.
 ``cd`` to your :manual:`DocumentRoot <web-documentroot>`, download the latest release, and install the dependencies using ``composer``:
 
 .. code-block:: console
@@ -146,14 +146,14 @@ Sending emails in the background
 --------------------------------
 
 Invoice Ninja sends emails in the current request by default, which can lead to slow response times. You can add a background service that takes care of sending the emails:
- 
+
 Add this to the ``.env`` file in the application directory:
 
 ::
 
  QUEUE_DRIVER=database
 
-After that you can :manual_anchor:`add a new supervisord service <daemons-supervisord.html#create-a-service>` with 
+After that you can :manual_anchor:`add a new supervisord service <daemons-supervisord.html#create-a-service>` with
 
 ::
 
@@ -220,7 +220,7 @@ The ``--force`` arguments are needed to prevent warnings about the application r
  [isabell@stardust invoiceninja]$ git pull
  [isabell@stardust invoiceninja]$ composer install
  Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file 
+ Installing dependencies (including require-dev) from lock file
  […]
  [isabell@stardust invoiceninja]$ php artisan optimize --force
  Generating optimized class loader

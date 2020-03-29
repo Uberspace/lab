@@ -55,7 +55,7 @@ If you want to use your Roundcube with your own domain you need to setup your do
 
 
 .. include:: includes/my-print-defaults.rst
- 
+
 
 
 
@@ -74,7 +74,7 @@ Installation
  [isabell@stardust html]$ tar xf roundcubemail-*.tar.gz --strip-components=1
  [isabell@stardust html]$ rm -r roundcubemail-*.tar.gz
  [isabell@stardust html]$
- 
+
 
 Configuration
 =============
@@ -127,7 +127,7 @@ IMAP & SMTP Settings
   * default_host (use *ssl://„server“.uberspace.de*, e.g. ``ssl://stardust.uberspace.de``)
   * default_port (use ``993``)
   * username_domain - This is a convenience option for email providers that use a full email address as the username. **This field is optional.** Entering a domain — not the full email — will allow you to login to Roundcube with just your name, before the @, instead of the whole email. For example, ``domain.tld`` in the field will allow ``user@domain.tld`` to log into Roundcube with ``user``.
-  
+
 This, however, doesn't restrict access if somebody enters the full email address. If you want to **restrict** the users access to Roundcube to a specific domain have a look at `Restrict Access`_ in the Secuity-Section.
 
   * Make sure the *auto_create_user* check box is checked. If it’s unchecked, Roundcube won’t create a user in its own database, which will prevent you from logging in.
@@ -138,9 +138,9 @@ This, however, doesn't restrict access if somebody enters the full email address
 .. warning:: Make sure to add the prefixes (``ssl://`` / ``tls://``) as mentioned above, otherwise you won't be able to receive or sent mails. Uberspace does not support :manual_anchor:`insecure access <mail-access.html#client-settings>`.
 
 
-  
+
 .. note:: We'll adjust the default setting ``Junk`` to ``Spam`` to refer to the default :manual_anchor:`default Spamfolder <mail-spam.html#configure-spam-folder>`.
- 
+
 
 ``Activate`` the option *Use the current IMAP username and password for SMTP authentication*.
 
@@ -155,7 +155,7 @@ Plugins
 ^^^^^^^
 
 If you want to add Plugins to your configuration check the corresponding checkboxes.
-  
+
 When you're done click *CONTINUE*. The configuration file will be created and stored in ``/var/www/virtual/$USER/html/config``.
 
 Finishing installation
@@ -185,7 +185,7 @@ Remove Installer-Directory
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ rm -r installer/
  [isabell@stardust html]$
- 
+
 Restrict Access
 ^^^^^^^^^^^^^^^
 
@@ -205,7 +205,7 @@ If you want to specify *multiple domains* you'll have to create an array like th
    'mail.domain.tld' => 'domain.tld',
    'othermail.domain2.tld' => 'domain2.tld',
  );
- 
+
 Login Pattern
 -------------
 
@@ -239,9 +239,9 @@ Get the latest version
  [isabell@stardust isabell]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.4.3/roundcubemail-1.4.3-complete.tar.gz
  [isabell@stardust isabell]$ tar xf roundcubemail-*.tar.gz
  [isabell@stardust isabell]$
- 
+
 Read the ``UPGRADING`` and ``INSTALL`` files and check system requirements of the new version before continuing.
- 
+
 Update your existing Roundcube installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -264,7 +264,7 @@ Update your existing Roundcube installation
  ✔ Have fun!
  ✔ All done.
  [isabell@stardust roundcubemail-1.4.3]$
- 
+
 Finishing updating
 ^^^^^^^^^^^^^^^^^^
 

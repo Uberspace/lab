@@ -19,7 +19,7 @@ Kimai
 
 .. tag_list::
 
-Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers. 
+Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers.
 
 The times tracked in the software can be directly priced, aggregated, invoiced and integrated in automated processes utilizing the RESTful API.
 
@@ -130,7 +130,7 @@ Please don't use ``admin`` as your username and set yourself a strong password.
  […]
  [isabell@stardust ~]$
 
-That's it! You can now visit your website domain and login using your new account. 
+That's it! You can now visit your website domain and login using your new account.
 
 Best practices
 ==============
@@ -140,7 +140,7 @@ Security
 
 By default Kimai allows any visitor of your domain to register a new user account. You might want to diable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
 
-Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration: 
+Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
 
 .. code-block:: yaml
 
@@ -148,7 +148,7 @@ Create a new configuration file called ``local.yml`` in ``config/packages/`` and
     user:
         registration: false
 
-Save the new file and clear the cache so the changes become active. 
+Save the new file and clear the cache so the changes become active.
 
 ::
 
@@ -157,7 +157,7 @@ Save the new file and clear the cache so the changes become active.
  [isabell@stardust kimai2]$ bin/console cache:warmup --env=prod
  [isabell@stardust ~]$
 
-To be sure if everything works check if the registration link is gone from your login page. 
+To be sure if everything works check if the registration link is gone from your login page.
 
 Updates
 =======
@@ -193,7 +193,7 @@ And last but not least: upgrade your database (you need to confirm the migration
 
  [isabell@stardust kimai2]$ bin/console doctrine:migrations:migrate
  Application Migrations
- WARNING! You are about to execute a database migration that could result in schema changes and data loss. 
+ WARNING! You are about to execute a database migration that could result in schema changes and data loss.
  Are you sure you wish to continue? (y/n)
  [isabell@stardust ~]$
 

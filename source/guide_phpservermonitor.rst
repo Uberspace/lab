@@ -56,7 +56,7 @@ To install PHP Server Monitor we download the current version from the github re
  [isabell@stardust html]$ rm phpservermon-3.4.5.zip
  [isabell@stardust html]$ mv phpservermon-3.4.5/* phpservermon-3.4.5/.* ./
  [isabell@stardust html]$ rmdir phpservermon-3.4.5
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 Configuration
 =============
