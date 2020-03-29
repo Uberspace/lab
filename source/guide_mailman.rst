@@ -72,8 +72,8 @@ Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ an
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/isabell
- [isabell@stardust isabell]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
- [isabell@stardust isabell]$ tar xzvf mailman-99.9.9.tgz -C mailman_source --strip-components=1
+ [isabell@stardust isabell]$ wget https://ftp.gnu.org/gnu/mailman/mailman-2.1.29.tgz
+ [isabell@stardust isabell]$ tar xzvf mailman-2.1.29.tgz -C mailman_source --strip-components=1
  [isabell@stardust isabell]$
 
 Now run the configure script, telling Mailman where to install and what user/groups to use for its binaries. You need to change your Uberspace account name for each parameter (you can find a declaration for the parameters in the Mailman documentation_):

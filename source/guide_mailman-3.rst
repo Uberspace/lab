@@ -78,10 +78,10 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/9.99.9/dart-sass-9.99.9-linux-x64.tar.gz
- [isabell@stardust ~]$ tar xzvf dart-sass-9.99.9-linux-x64.tar.gz dart-sass
+ [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
+ [isabell@stardust ~]$ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
  [isabell@stardust ~]$ mv dart-sass ./bin/
- [isabell@stardust ~]$ rm dart-sass-9.99.9-linux-x64.tar.gz
+ [isabell@stardust ~]$ rm dart-sass-1.17.2-linux-x64.tar.gz
  [isabell@stardust ~]$
 
 
