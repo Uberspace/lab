@@ -4,6 +4,7 @@
 
 .. tag:: lang-go
 .. tag:: monitoring
+.. tag:: audience-admins
 
 .. sidebar:: About
 

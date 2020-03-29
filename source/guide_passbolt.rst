@@ -4,6 +4,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: password-manager
 
 .. sidebar:: Logo
 

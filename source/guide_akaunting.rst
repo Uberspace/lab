@@ -6,7 +6,7 @@
 .. tag:: web
 .. tag:: accounting
 .. tag:: customer-management
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 

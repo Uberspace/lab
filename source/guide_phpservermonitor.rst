@@ -4,6 +4,8 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: monitoring
+.. tag:: audience-admins
 
 .. sidebar:: Logo
 

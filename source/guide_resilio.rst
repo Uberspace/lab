@@ -5,6 +5,7 @@
 .. tag:: web
 .. tag:: file-storage
 .. tag:: sync
+.. tag:: proprietary
 
 .. sidebar:: About
 

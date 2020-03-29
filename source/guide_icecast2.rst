@@ -1,5 +1,6 @@
 .. author:: benks <uberspace@benks.io>
 
+.. tag:: lang-c
 .. tag:: web
 .. tag:: streaming
 .. tag:: radio

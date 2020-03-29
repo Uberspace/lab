@@ -4,10 +4,10 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: social-intranet
-.. tag:: social-collaboration
+.. tag:: intranet
+.. tag:: collaboration
 .. tag:: teamwork
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 

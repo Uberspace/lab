@@ -7,6 +7,7 @@
 .. categorize your guide! refer to the manual for the current list of tags: https://manual.uberspace.de/tags
 .. tag:: lang-php
 .. tag:: web
+.. tag:: audience-business
 
 .. sidebar:: About
 

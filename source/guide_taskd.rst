@@ -2,6 +2,8 @@
 
 .. author:: seeq
 
+.. tag:: lang-cpp
+.. tag:: lang-python
 .. tag:: activity-tracking
 .. tag:: console
 .. tag:: sync

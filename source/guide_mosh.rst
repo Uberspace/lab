@@ -2,6 +2,7 @@
 
 .. author:: Daniel Hannaske <https://github.com/dahanbn/>
 
+.. tag:: lang-cpp
 .. tag:: console
 .. tag:: ssh
 

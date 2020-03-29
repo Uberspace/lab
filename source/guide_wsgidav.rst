@@ -2,6 +2,7 @@
 
 .. author:: Sebastian Burschel <https://github.com/SeBaBu/>
 
+.. tag:: lang-python
 .. tag:: web
 .. tag:: file-storage
 .. tag:: webdav

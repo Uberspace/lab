@@ -3,7 +3,7 @@
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
-.. tag:: business
+.. tag:: audience-business
 .. tag:: accounting
 .. tag:: customer-management
 

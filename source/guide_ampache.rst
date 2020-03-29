@@ -1,5 +1,6 @@
 .. author:: benks <uberspace@benks.io>
 
+.. tag:: lang-php
 .. tag:: web
 .. tag:: mediaplayer
 .. tag:: streaming

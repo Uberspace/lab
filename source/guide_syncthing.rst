@@ -2,6 +2,7 @@
 
 .. tag:: lang-go
 .. tag:: sync
+.. tag:: file-storage
 
 .. highlight:: console
 
@@ -16,7 +17,7 @@ Syncthing
 
 .. tag_list::
 
-Syncthing_ replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
+Syncthing_ replaces proprietary file sync services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
 
 ----
 

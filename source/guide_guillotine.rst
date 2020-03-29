@@ -3,6 +3,7 @@
 .. author:: Jan Philip Bernius <https://janphilip.bernius.net>
 
 .. tag:: lang-ruby
+.. tag:: web
 
 ##########
 Guillotine

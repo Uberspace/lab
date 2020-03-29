@@ -4,6 +4,7 @@
 
 .. tag:: voip
 .. tag:: ports
+.. tag:: proprietary
 
 
 .. sidebar:: About

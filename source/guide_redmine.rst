@@ -3,7 +3,7 @@
 .. tag:: lang-ruby
 .. tag:: web
 .. tag:: customer-management
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 

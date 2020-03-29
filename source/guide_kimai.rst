@@ -4,7 +4,7 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: business
+.. tag:: audience-business
 .. tag:: accounting
 .. tag:: time-tracking
 

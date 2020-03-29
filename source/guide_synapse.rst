@@ -2,7 +2,8 @@
 .. author:: luto <http://luto.at>
 .. highlight:: console
 
-.. tag:: python
+.. tag:: lang-python
+.. tag:: chat
 
 .. sidebar:: Logo
 
