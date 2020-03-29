@@ -3,6 +3,7 @@
 .. author:: Thomas Kammerer <https://kammerer.tk/>
 
 .. tag:: lang-php
+.. tag:: accounting
 .. tag:: web
 .. tag:: audience-business
 
