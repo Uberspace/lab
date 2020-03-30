@@ -65,39 +65,27 @@ Create a working directory.
 
  [isabell@stardust ~]$ mkdir ~/src/
  [isabell@stardust ~]$ cd ~/src/
- [isabell@stardust ~]$
+ [isabell@stardust src]$
 
 Download the latest version from https://pyyaml.org/download/libyaml/.
 
 ::
 
- [isabell@stardust ~]$ wget https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
- [isabell@stardust ~]$ tar xf yaml-0.2.2.tar.gz
- [isabell@stardust ~]$ cd yaml-0.2.2/
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/libyaml
- [isabell@stardust ~]$ make install
- [isabell@stardust ~]$
+ [isabell@stardust src]$ wget https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
+ [isabell@stardust src]$ tar xf yaml-0.2.2.tar.gz
+ [isabell@stardust src]$ cd yaml-0.2.2/
+ [isabell@stardust yaml-0.2.2]$ ./configure --prefix=$HOME/opt/libyaml
+ [isabell@stardust yaml-0.2.2]$ make install
+ [isabell@stardust yaml-0.2.2]$
 
 Add the following lines to your ``~/.bash_profile`` to make libyaml known for future installations:
 
 .. code-block:: bash
 
  # Add exports to find libyaml
- if [[ -z "${CPATH}" ]]; then
-   export CPATH=$HOME/opt/libyaml/include
- else
-   export CPATH=$HOME/opt/libyaml/include:$CPATH
- fi
- if [[ -z "${LIBRARY_PATH}" ]]; then
-   export LIBRARY_PATH=$HOME/opt/libyaml/lib
- else
-   export LIBRARY_PATH=$HOME/opt/libyaml/lib:$LIBRARY_PATH
- fi
- if [[ -z "${LIBRARY_PATH}" ]]; then
-  export LD_LIBRARY_PATH=$HOME/opt/libyaml/lib
- else
-  export LD_LIBRARY_PATH=$HOME/opt/libyaml/lib:$LD_LIBRARY_PATH
- fi
+ export CPATH=${CPATH:+${CPATH}:}$HOME/opt/libyaml/include
+ export LIBRARY_PATH=${LIBRARY_PATH:+${LIBRARY_PATH}:}$HOME/opt/libyaml/lib
+ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$HOME/opt/libyaml/lib
 
 Reload the ``.bash_profile`` with:
 
@@ -119,12 +107,12 @@ Use the following options for ``./configure``:
 ::
 
  [isabell@stardust ~]$ cd $HOME/src/
- [isabell@stardust ~]$ wget https://github.com/processone/ejabberd/archive/20.03.tar.gz
- [isabell@stardust ~]$ tar xf 20.03.tar.gz
- [isabell@stardust ~]$ cd ejabberd-20.03/
- [isabell@stardust ejabberd-19.09.1]$ ./autogen.sh
- [isabell@stardust ejabberd-19.09.1]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd --enable-mysql --enable-new-sql-schema
- [isabell@stardust ejabberd-19.05]$ make install
+ [isabell@stardust src]$ wget https://github.com/processone/ejabberd/archive/20.03.tar.gz
+ [isabell@stardust src]$ tar xf 20.03.tar.gz
+ [isabell@stardust src]$ cd ejabberd-20.03/
+ [isabell@stardust ejabberd-20.03]$ ./autogen.sh
+ [isabell@stardust ejabberd-20.03]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd --enable-mysql --enable-new-sql-schema
+ [isabell@stardust ejabberd-20.03]$ make install
 
 Make the control script available through ``.bash_profile``:
 
