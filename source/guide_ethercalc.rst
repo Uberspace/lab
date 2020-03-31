@@ -101,11 +101,15 @@ Setup daemon
 
 Use your favourite editor to create ``~/etc/services.d/ethercalc.ini`` with the following content:
 
+.. note:: Ethercalc tries to connect to Redis via TCP/IP, which will accepts connections on both TCP/IP and UNIX socket. If you configured redis by following the :lab:`guide <guide_redis>` it is currently configured *for UNIX socket only* as this is also the more stylish, secure and faster version. So by now the connection between Ethercalc and Redis won't be established.
+Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-socket to the ``supervisord``-config forces Ethercalc to connect to Redis through the UNIX socket.
+
+
 .. code-block:: ini
 
  [program:ethercalc]
  command=%(ENV_HOME)s/node_modules/ethercalc/bin/ethercalc
- environment=NODE_ENV="production"
+ environment=NODE_ENV="production",REDIS_SOCKPATH ="%(ENV_HOME)s/.redis/sock"
  autorestart=true
 
 .. include:: includes/supervisord.rst
@@ -139,7 +143,6 @@ To get the latest version of Ethercalc you can use the ``npm`` package manager:
 Restart your supervisorctl afterwards. If it's not in state RUNNING, check your configuration.
 
 It might take a few minutes before your Ethercalc comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f ethercalc``.
-
 
 .. _issue: https://github.com/audreyt/ethercalc/issues/542
 .. _Ethercalc: https://ethercalc.net/
