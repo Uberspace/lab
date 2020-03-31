@@ -2,6 +2,8 @@
 
 .. author:: seeq
 
+.. tag:: lang-cpp
+.. tag:: lang-python
 .. tag:: activity-tracking
 .. tag:: console
 .. tag:: sync
@@ -18,7 +20,7 @@ Taskd
 .. tag_list::
 
 Taskd_ is a Free and Open-Source Taskwarrior Server for synchronization between multiple Taskwarrior clients.
-Taskwarrior is Free and Open Source Software that manages your TODO list from the command line. It is flexible, fast, and unobtrusive. It does its job then gets out of your way. 
+Taskwarrior is Free and Open Source Software that manages your TODO list from the command line. It is flexible, fast, and unobtrusive. It does its job then gets out of your way.
 
 * Multiple clients
 * TLS secured
@@ -74,7 +76,7 @@ We need a directory where the taskd files are stored.
  [isabell@stardust ~]$ mkdir -p $TASKDDATA
  [isabell@stardust ~]$
 
-The ``$TASKDDATA`` environment variable is expected by the taskdctl binary we are going to install now. 
+The ``$TASKDDATA`` environment variable is expected by the taskdctl binary we are going to install now.
 
 
 Installation
@@ -125,7 +127,7 @@ Initialization of taskd
  [isabell@stardust ~]$ taskd init
  You must specify the 'server' variable, for example:
  taskd config server localhost:53589
- 
+
  Created /home/isabell/.var/taskddata/config
 
  [isabell@stardust ~]$
@@ -177,7 +179,7 @@ But first we move the required files to the ``$TASKDDATA`` directory:
 
 Configure the server
 --------------------
- 
+
 Make the crypto files known to the server:
 ::
 
@@ -223,7 +225,7 @@ Clients are gathered in organizations. In general one organization will suffice 
 
  [isabell@stardust ~]$ taskd add org Public
  Created organization 'Public'
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now add as many users as you like. Spaces are ok as long you quote the name.
 
@@ -278,7 +280,7 @@ Now Isabell wants to sync all her devices. Copy four files to all her divices:
  [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.cert.pem isabell@othermachine:~/.task/
  [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.key.pem isabell@othermachine:~/.task/
  [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_task_info isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ 
+ [isabell@othermachine ~]$
 
 
 On your linux machine configure taskwarrior
@@ -289,7 +291,7 @@ On your linux machine configure taskwarrior
  [isabell@othermachine ~]$ task config taskd.ca -- ~/.task/ca.cert.pem
  [isabell@othermachine ~]$ task config taskd.server      -- stardust.uberspace.de:40200
  [isabell@othermachine ~]$ task config taskd.credentials -- Public/Isabell Smith/cf31f287-ee9e-43a8-843e-e8bbd5de4294
- [isabell@othermachine ~]$ 
+ [isabell@othermachine ~]$
 
 
 Android:
@@ -297,11 +299,11 @@ Edit the configuration on Android in settings in the menu and add some lines (of
 
 ::
 
- taskd.server=stardust.uberspace.de:40200 
+ taskd.server=stardust.uberspace.de:40200
  taskd.credentials=Public\/isabell smith\/a472ac30-137d-4a6f-aee1-7da6ca10c8da
- taskd.certificate=\/home\/you\/.task\/isabell_smith.cert.pem                              
- taskd.key=\/path\/to\/isabell_smith.key.pem                                       
- taskd.ca=\/home\/you\/.task\/ca.cert.pem                                                    
+ taskd.certificate=\/home\/you\/.task\/isabell_smith.cert.pem
+ taskd.key=\/path\/to\/isabell_smith.key.pem
+ taskd.ca=\/home\/you\/.task\/ca.cert.pem
 
 
 
@@ -320,7 +322,7 @@ After that:
 ::
 
  [isabell@othermachine ~]$ task sync
- [isabell@othermachine ~]$ 
+ [isabell@othermachine ~]$
 
 Hint:
 I added a function to my ``~/.bashrc``:
@@ -336,7 +338,7 @@ Then from now on use like this:
 ::
 
  [isabell@othermachine ~]$ tas add write guide for uberlab prio:M due:3d
- [isabell@othermachine ~]$ 
+ [isabell@othermachine ~]$
 
 
 Updates

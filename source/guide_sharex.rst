@@ -124,7 +124,7 @@ Step 6 (Optional)
 Optional you can change the filename to something fancier.
 To do so, navigate to ":menuselection:`Task settings --> File nameing`" and change the two text fields to:
 ::
- 
+
   %y-%mo-%d_%h-%mi-%s
 
 Usage
@@ -146,6 +146,7 @@ Then press "**enter**" to upload your screenshot and copy the corresponding URL 
 
 
 .. _ShareX: https://getsharex.com/
+
 ----
 
 That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!

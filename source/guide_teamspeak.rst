@@ -3,7 +3,8 @@
 .. highlight:: console
 
 .. tag:: voip
-.. tag:: ports  
+.. tag:: ports
+.. tag:: proprietary
 
 
 .. sidebar:: About
@@ -66,12 +67,12 @@ Download the Teamspeak Server for Linux. Get the latest download-URL from the Te
   HTTP-Anforderung gesendet, warte auf Antwort... 200 OK
   Länge: 9245357 (8,8M) [application/x-tar]
   In »»teamspeak3-server_linux_amd64-3.11.0.tar.bz2«« speichern.
-  
-  100%[======================================================================================================>] 9.245.357   32,4MB/s   in 0,3s   
-  
+
+  100%[======================================================================================================>] 9.245.357   32,4MB/s   in 0,3s
+
   2020-02-14 21:23:12 (32,4 MB/s) - »»teamspeak3-server_linux_amd64-3.11.0.tar.bz2«« gespeichert [9245357/9245357]
-  
-  [isabell@stardust ts3server]$ 
+
+  [isabell@stardust ts3server]$
 
 Step 2
 ------
@@ -93,9 +94,9 @@ Configuration
 Step 1: Setup license agreement
 -------------------------------
 
-Before starting the server for the first time you should either read the ``LICENSE`` file that is part of the teamspeak server archive you just unpacked or go to the Teamspeak-License_ website. 
+Before starting the server for the first time you should either read the ``LICENSE`` file that is part of the teamspeak server archive you just unpacked or go to the Teamspeak-License_ website.
 
-If you agree to the license you need to create a file named ``.ts3server_license_accepted`` in the teamspeak server directory. It is enough to create the file. No need to add content. 
+If you agree to the license you need to create a file named ``.ts3server_license_accepted`` in the teamspeak server directory. It is enough to create the file. No need to add content.
 
 Step 2: Create a default config file, admin password and admin token
 --------------------------------------------------------------------
@@ -107,33 +108,33 @@ To create a configuration file execute the minimal runscript with the ``createin
   [isabell@stardust ts3server]$ ./ts3server_minimal_runscript.sh createinifile=1
   2020-02-14 21:04:49.238119|INFO    |ServerLibPriv |   |TeamSpeak 3 Server 3.11.0 (2020-01-13 08:12:37)
   [...]
-  
+
   ------------------------------------------------------------------
-                        I M P O R T A N T                           
+                        I M P O R T A N T
   ------------------------------------------------------------------
-                 Server Query Admin Account created                 
+                 Server Query Admin Account created
            loginname= "serveradmin", password= "superSecretPassword"
   ------------------------------------------------------------------
-  
+
   [...]
-  
+
   ------------------------------------------------------------------
-                        I M P O R T A N T                           
+                        I M P O R T A N T
   ------------------------------------------------------------------
-        ServerAdmin privilege key created, please use it to gain 
+        ServerAdmin privilege key created, please use it to gain
         serveradmin rights for your virtualserver. please
-        also check the doc/privilegekey_guide.txt for details. 
-  
+        also check the doc/privilegekey_guide.txt for details.
+
          token=MKopgBVlbZm6r+8RLuKZGbiHVuNKPfH5gKcPMk+Y
   ------------------------------------------------------------------
-  
+
   2020-02-14 21:04:50.025184|INFO    |Query         |   |listening for query on 0.0.0.0:10011, [::]:10011
   2020-02-14 21:04:50.025653|INFO    |Query         |   |listening for query ssh on 0.0.0.0:10022, [::]:10022
   2020-02-14 21:04:50.025748|INFO    |Query         |   |creating QUERY_SSH_RSA_HOST_KEY file: ssh_host_rsa_key
-  2020-02-14 21:04:59.245200|INFO    |CIDRManager   |   |updated query_ip_whitelist ips: 127.0.0.1/32, ::1/128, 
+  2020-02-14 21:04:59.245200|INFO    |CIDRManager   |   |updated query_ip_whitelist ips: 127.0.0.1/32, ::1/128,
 
 
-You can now press **CTRL+C** to kill the server and to continue with the configuration. 
+You can now press **CTRL+C** to kill the server and to continue with the configuration.
 
 .. note:: Make a copy of **Server Query Admin Account** ``loginname``, ``password`` and **ServerAdmin** ``token``. You vill need this when you connect to your teamspeak server for the first time to gain administrator rights.
 
@@ -143,12 +144,12 @@ Step 3: Edit configuration file
 Now edit the ``ts3server.ini`` and change the following entries. Use the four ports you were assigned by ``uberspace port add`` above.
 
 ::
-  
+
   machine_id=0
 
 ::
-  
-  default_voice_port=40132   
+
+  default_voice_port=40132
 
 ::
 
@@ -170,7 +171,7 @@ Now edit the ``ts3server.ini`` and change the following entries. Use the four po
 Step 4: Test server start
 -------------------------
 
-You can test your configuration by executing the minimal runscript. Use the paramater ``inifile`` with the argument ´´ts3server.ini`` to start the server with your configuration. 
+You can test your configuration by executing the minimal runscript. Use the paramater ``inifile`` with the argument ´´ts3server.ini`` to start the server with your configuration.
 
 .. code-block:: console
 
@@ -179,12 +180,12 @@ You can test your configuration by executing the minimal runscript. Use the para
   [...]
   2020-02-14 22:17:31.884829|INFO    |              |   |Puzzle precompute time: 703
   2020-02-14 22:17:31.885977|INFO    |FileManager   |   |listening on 0.0.0.0:47304, [::]:47304
-  2020-02-14 22:17:31.895316|INFO    |VirtualServerBase|1  |listening on 
+  2020-02-14 22:17:31.895316|INFO    |VirtualServerBase|1  |listening on
   2020-02-14 22:17:31.896826|INFO    |Query         |   |listening for query on 0.0.0.0:47305, [::]:47305
   2020-02-14 22:17:31.897214|INFO    |Query         |   |listening for query ssh on 0.0.0.0:47306, [::]:47306
   2020-02-14 22:17:31.897479|INFO    |CIDRManager   |   |updated query_ip_whitelist ips: 127.0.0.1/32, ::1/128,
 
-.. note:: If this does not work right now, it might be, that the ports are not yet open. Try again in a couple minutes. 
+.. note:: If this does not work right now, it might be, that the ports are not yet open. Try again in a couple minutes.
 
 If you want, you can also try to connect to the teamspeak server with your local teamspeak client software. Please use the IP address of your server the the default_voice_port (<IPofYourServer>:<default_voice_port>)
 
@@ -202,7 +203,7 @@ Since teamspeak does come with a start-stop script, all we need to do is to crea
 Create supervisord ini (e.g. ``/home/$USER/etc/services.d/ts3server-daemon.ini``):
 
 .. code-block:: ini
-  
+
   [program:ts3server]
   directory=%(ENV_HOME)s/ts3server/
   command=%(ENV_HOME)s/ts3server/ts3server inifile=ts3server.ini
@@ -224,7 +225,7 @@ Additional Notes
 Gaining Admin Rights
 --------------------
 
-When you connect to your teamspeak server for the first time, you will need the token that got generated on first start of the server. If you have not taken a copy of the *token* and/or the *admin/password* combination, then you can get them from the log files located in the ``logs`` folder of your teamspeak installation. 
+When you connect to your teamspeak server for the first time, you will need the token that got generated on first start of the server. If you have not taken a copy of the *token* and/or the *admin/password* combination, then you can get them from the log files located in the ``logs`` folder of your teamspeak installation.
 
 Start and Stopping the Server
 -----------------------------
@@ -234,7 +235,7 @@ To stop and start the teamspeak to perform maintenance tasks, you can use the su
 Backup The Server
 -----------------
 
-You should make a regular backup of your server. To do this, you need to backup at least the following files and folder: 
+You should make a regular backup of your server. To do this, you need to backup at least the following files and folder:
 
   * files/
   * query_ip_blacklist.txt
@@ -251,7 +252,7 @@ To update the server download the latest linux teamspeak server release from the
 
   * libts3db_sqlite3.so
   * ts3server
-  
+
 
 
 ---

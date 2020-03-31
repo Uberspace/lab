@@ -2,6 +2,7 @@
 
 .. author:: Sebastian Burschel <https://github.com/SeBaBu/>
 
+.. tag:: lang-python
 .. tag:: web
 .. tag:: file-storage
 .. tag:: webdav
@@ -96,7 +97,7 @@ Save the file here:
 ::
 
 ~/etc/wsgidav.yaml
- 
+
 Configure web server
 ====================
 

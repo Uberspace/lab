@@ -17,12 +17,12 @@ Drupal
 
 .. tag_list::
 
-Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework 
+Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework
 written in PHP and distributed under the GPL 2.0 (or later) licence.
 
 According to  W3Techs (2011-07-15), at least 2.3% of all websites worldwide are running with Drupal.
 
-Drupal 8 is based on Symfony_, a popular high performance PHP framework for web development. 
+Drupal 8 is based on Symfony_, a popular high performance PHP framework for web development.
 
 Drupal was released for the first time in 2000 by Dries Buytaert. Since then it has been continuously developed and it is actively maintained by various contributors.
 
@@ -82,8 +82,8 @@ Create an :manual_anchor:`additional <database-mysql.html#additional-databases>`
 Composer
 --------
 
-.. note:: The given Composer_ command uses the  `Drupal Composer Template`_  and installs the latest stable release. 
-   
+.. note:: The given Composer_ command uses the  `Drupal Composer Template`_  and installs the latest stable release.
+
   You might replace target parameter ``drupal`` with something more suitable.
 
 
@@ -103,15 +103,15 @@ Composer
  > DrupalProject\composer\ScriptHandler::createRequiredFiles
  Created a sites/default/settings.php file with chmod 0666
  Created a sites/default/files directory with chmod 0777
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 
-Symlinks 
+Symlinks
 --------
 
-Since Drupal installation via Composer_ uses the subdirectory ``web/`` 
-as web root of your website you should **not** install Drupal in your default Uberspace 
-:manual:`DocumentRoot <web-documentroot>`. 
+Since Drupal installation via Composer_ uses the subdirectory ``web/``
+as web root of your website you should **not** install Drupal in your default Uberspace
+:manual:`DocumentRoot <web-documentroot>`.
 Instead, we install it next to that and then use a symbolic link to make it accessible to the web.
 
 .. code-block:: console
@@ -135,14 +135,14 @@ SCM
 ---
 
 It is a very good time to initialise a repository within the ``drupal`` directory.
-This step is optional but highly recommended ;-D 
+This step is optional but highly recommended ;-D
 
 drush
 -----
 
-In order to make use  of Drupal Composer Template's drush_, 
-you will add the path of your Drupal Composer Template's bin directory, 
-which contains drush´s executable to the PATH environment variable. 
+In order to make use  of Drupal Composer Template's drush_,
+you will add the path of your Drupal Composer Template's bin directory,
+which contains drush´s executable to the PATH environment variable.
 It will detect *DRUPAL_ROOT*.
 
 Place the following statement to the startup file of your shell, e.g. ``~/.bashrc`` or ``~/.zshrc``:
@@ -167,7 +167,7 @@ This is useful for some commands which generate urls, like ``drush uli``. Edit `
   uri: 'https://isabell.example'
 
 If you use more than one codebase, you will need install drush_launcher_.
-  
+
 
 Installation
 ============
@@ -211,17 +211,17 @@ Cronjob
 -------
 
 For executing periodical tasks like e.g. updatíng the search index, purging old logs or checking for updates,
-you will need to create a cronjob. 
+you will need to create a cronjob.
 
 Get your cron url for your site at ``Administration > Configuration > System > Cron (/admin/config/system/cron)``.
 We create a cronjob with above url which runs once a day:
 
 ::
 
-  [isabell@stardust isabell]$ crontab -e 
+  [isabell@stardust isabell]$ crontab -e
 
 ::
-  
+
   4 0 * * * wget -O - -q -t 1 https://isabell.example/cron/CsUKMfKtaFI8P3CaFpWy6iMIJPjjAwnm-Svs6wXb_LSrxqLnlbv85qy5us0YSnK3iQpthKoIrQ
 
 Updates
@@ -241,7 +241,7 @@ Contrib Updates
 Updates of contributed modules work like this, e.g. for the ``geofield`` contrib:
 
 ::
-  
+
   [isabell@stardust drupal]$ composer update drupal/geofield --with-dependencies
 
 

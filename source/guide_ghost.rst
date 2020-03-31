@@ -111,13 +111,13 @@ You will need to enter the following information:
  ✔ Configuring Ghost
  ✔ Setting up instance
  ℹ Setting up SSL [skipped]
- 
+
  Ghost uses direct mail by default. To set up an alternative email method read our docs at https://ghost.org/docs/concepts/config/#mail
- 
+
  ------------------------------------------------------------------------------
- 
+
  Ghost was installed successfully! To complete setup of your publication, visit:
- 
+
  https://isabell.uber.space/ghost/
 
 
@@ -201,13 +201,13 @@ You now need to readjust your ``~/ghost/config.production.json`` to change the U
 Kill and restart Ghost (also check the restartet process with second command):
 
 .. code-block:: console
- 
+
  [isabell@stardust ~]$ supervisorctl restart ghost
  ghost: stopped
  ghost: started
  [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:00:56
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now the URLs in your Ghost installation always use your newly configured URL. This is especially seen in the RSS feeds which if this part is not run will always use the uber.space URL even though you access your blog via an external domain already. This is due to Ghost using the configured URL as a variable in some templates etc. which is the case for the RSS URLs for example in the main Casper theme.
 

@@ -5,6 +5,8 @@
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
+.. tag:: lang-c
+.. tag:: proprietary
 
 .. sidebar:: Logo
 

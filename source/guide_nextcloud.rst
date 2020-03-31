@@ -150,7 +150,7 @@ Database maintenance
 To adapt some database configs to make Nextcloud run smoother execute these commands:
 
 ::
- 
+
  [isabell@stardust ~] cd html
  [isabell@stardust html]$ php occ db:add-missing-indices
  [isabell@stardust html]$ php occ db:convert-filecache-bigint
@@ -163,8 +163,8 @@ Nextcloud will complain about your HSTS settings in the admin interface.
 At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
 
 Onlyoffice (Community Edition)
--------
-To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
+------------------------------
+To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface:
 
 * Community Document Server (a light version of the Onlyoffice server)
 * Onlyoffice (the connector to the Onlyoffice server)
@@ -176,8 +176,8 @@ Both apps can be installed optional during the main install, but the huge docume
 [isabell@stardust html]$ cd apps
 [isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
 
-Reload the admin panel and enable the Community Document Server. 
-A click on a text/spreadsheet document should now start the Onlyoffice Editor. 
+Reload the admin panel and enable the Community Document Server.
+A click on a text/spreadsheet document should now start the Onlyoffice Editor.
 
 Updates
 =======

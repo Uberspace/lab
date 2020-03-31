@@ -4,10 +4,10 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: social-intranet
-.. tag:: social-collaboration
+.. tag:: intranet
+.. tag:: collaboration
 .. tag:: teamwork
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 
@@ -20,7 +20,7 @@ HumHub
 
 .. tag_list::
 
-HumHub_ is a free social network software and framework built to give you the tools to make teamwork easy and successful. 
+HumHub_ is a free social network software and framework built to give you the tools to make teamwork easy and successful.
 
 The software is based on top of the Yii_ framework and therefore written in PHP.
 

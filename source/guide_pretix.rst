@@ -5,7 +5,7 @@
 .. tag:: django
 .. tag:: ticketing
 .. tag:: web
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: About
 

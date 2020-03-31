@@ -2,6 +2,7 @@
 
 .. author:: no-one <https://github.com/no-one>
 
+.. tag:: lang-cpp
 .. tag:: irc
 .. tag:: bouncer
 

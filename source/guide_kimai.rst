@@ -4,7 +4,7 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: business
+.. tag:: audience-business
 .. tag:: accounting
 .. tag:: time-tracking
 
@@ -19,7 +19,7 @@ Kimai
 
 .. tag_list::
 
-Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers. 
+Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers.
 
 The times tracked in the software can be directly priced, aggregated, invoiced and integrated in automated processes utilizing the RESTful API.
 
@@ -65,7 +65,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.5 --depth 1 https://github.com/kevinpapst/kimai2.git
+ [isabell@stardust isabell]$ git clone -b 1.8 --depth 1 https://github.com/kevinpapst/kimai2.git
  Cloning into 'kimai2'...
  […]
  [isabell@stardust ~]$
@@ -98,6 +98,7 @@ Configuration
 To configure Kimai you need to edit the main configuration file ``/var/www/virtual/$USER/kimai2/.env``. Open this file with a text editor of your choice.
 
 Edit the following parts of your configuration file:
+ * replace the secret in the line starting with ``APP_SECRET`` by a random string
  * comment out the line starting with ``DATABASE_URL=sqlite`` (prefix the line with a ``#``)
  * comment in the line starting with ``DATABASE_URL=mysql`` (remove the ``#``)
  * in the same line replace the placeholders ``db_user``, ``db_password`` and ``db_name`` with your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
@@ -109,7 +110,7 @@ Save the changed file and start the installation using the Kimai console.
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
  [isabell@stardust kimai2]$ bin/console kimai:install -n
- Kimai installer - v87.1.4
+ Kimai installation running ...
  […]
  [isabell@stardust ~]$
 
@@ -129,7 +130,7 @@ Please don't use ``admin`` as your username and set yourself a strong password.
  […]
  [isabell@stardust ~]$
 
-That's it! You can now visit your website domain and login using your new account. 
+That's it! You can now visit your website domain and login using your new account.
 
 Best practices
 ==============
@@ -139,15 +140,15 @@ Security
 
 By default Kimai allows any visitor of your domain to register a new user account. You might want to diable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
 
-Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration: 
+Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
 
-.. code-block:: yml
+.. code-block:: yaml
 
  kimai:
     user:
         registration: false
 
-Save the new file and clear the cache so the changes become active. 
+Save the new file and clear the cache so the changes become active.
 
 ::
 
@@ -156,7 +157,7 @@ Save the new file and clear the cache so the changes become active.
  [isabell@stardust kimai2]$ bin/console cache:warmup --env=prod
  [isabell@stardust ~]$
 
-To be sure if everything works check if the registration link is gone from your login page. 
+To be sure if everything works check if the registration link is gone from your login page.
 
 Updates
 =======
@@ -173,7 +174,7 @@ To update your installation fetch the new release tags from GitHub and checkout 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
  [isabell@stardust kimai2]$ git fetch --tags
- [isabell@stardust kimai2]$ git checkout 87.2.0
+ [isabell@stardust kimai2]$ git checkout 1.8
  [isabell@stardust kimai2]$ composer install --no-dev --optimize-autoloader
  [isabell@stardust ~]$
 
@@ -192,7 +193,7 @@ And last but not least: upgrade your database (you need to confirm the migration
 
  [isabell@stardust kimai2]$ bin/console doctrine:migrations:migrate
  Application Migrations
- WARNING! You are about to execute a database migration that could result in schema changes and data loss. 
+ WARNING! You are about to execute a database migration that could result in schema changes and data loss.
  Are you sure you wish to continue? (y/n)
  [isabell@stardust ~]$
 
@@ -207,6 +208,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.5 and Uberspace 7.3.6
+Tested with Kimai 1.8 and Uberspace 7.5.0
 
 .. author_list::

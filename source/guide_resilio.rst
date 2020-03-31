@@ -5,6 +5,7 @@
 .. tag:: web
 .. tag:: file-storage
 .. tag:: sync
+.. tag:: proprietary
 
 .. sidebar:: About
 
@@ -72,7 +73,7 @@ Create a config file ``~/.sync/resilio-sync.conf`` with the follwoing contents:
 
 .. warning:: Replace ``<username>`` with your username and ``<port>`` with the apropiate port number, which was opened in the previous step (would be 40132 in our example).
 
-.. code-block:: text 
+.. code-block:: text
 
  {
    "device_name": "Uberspace",

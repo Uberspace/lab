@@ -5,6 +5,7 @@
 .. tag:: lang-php
 .. tag:: web
 .. tag:: shop
+.. tag:: audience-business
 
 .. sidebar:: Logo
 
