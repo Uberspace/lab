@@ -73,9 +73,7 @@ Then install the dependencies with ``npm install``:
 Configure storage
 =============
 
-.. note::
-
-  `Haste server`_ currently supports six storage solutions, of which four are supported by Uberspace.
+`Haste server`_ currently supports six storage solutions, of which four are supported by Uberspace.
 
 File
 ----
@@ -107,8 +105,6 @@ Once you've done that, your config section should look like:
     "db": 2
   }
 
-You can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
-All of which are optional except ``type`` with very logical default values.
 If your Redis server is configured for password authentification, use the ``password`` field.
 
 Postgres
@@ -133,9 +129,6 @@ You will have to manually add a table to your postgres database:
 
   [isabell@stardust ~]$ create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
 
-You can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
-All of which are optional except ``type`` with very logical default values.
-
 Memcached
 -------
 
@@ -151,8 +144,9 @@ Once you've done that, your config section should look like:
     "port": 11211
   }
 
-You can also set an ``expire`` option to the number of seconds to expire keys in. This behaves just like the redis expirations, but does not push expirations forward on GETs.
-All of which are optional except ``type`` with very logical default values.
+.. note:: 
+
+  When using a storage solution except for the file storage, you can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
 
 Configure web server
 ====================
