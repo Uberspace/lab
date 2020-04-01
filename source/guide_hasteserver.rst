@@ -99,6 +99,8 @@ Redis
 
 To use redis storage you must setup redis as specified :lab:`here <guide_redis>`, then install the ``redis`` package in npm with ``npm install redis``.
 
+Make sure to also change the port in ``~/.redis/conf`` to something accessible, like ``6379``.
+
 Once you've done that, your config section should look like:
 
 .. code-block:: json
@@ -107,7 +109,7 @@ Once you've done that, your config section should look like:
     "type": "redis",
     "host": "localhost",
     "port": 6379,
-    "db": 2
+    "db": 0
   }
 
 If your Redis server is configured for password authentification, use the ``password`` field.
@@ -117,22 +119,45 @@ Postgres
 
 To use postgres storage you must setup postgres as specified :lab:`here <guide_postgresql>`, then install the ``pg`` package in npm with ``npm install pg``.
 
+Once you've done that, create a new user for haste-server_ and set a password.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ createuser haste -P
+  Enter password for new role:
+  Enter it again:
+  [isabell@stardust ~]$
+
+After that, create a database owned by the created user.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=haste --template=template0 haste
+  [isabell@stardust ~]$
+
+You will have to manually add a table to your postgres database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ pqsl haste haste
+  Password for user haste: 
+  psql (9.6.17)
+  Type "help" for help.
+
+  haste=> create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
+  CREATE table
+  haste=> \q
+
 Once you've done that, your config section should look like:
 
 .. code-block:: json
 
   {
     "type": "postgres",
-    "connectionUrl": "postgres://user:password@localhost:5432/database"
+    "connectionUrl": "postgres://haste:password@localhost:5432/haste"
   }
 
-You can also just set the environment variable for ``DATABASE_URL`` to your database connection url.
-
-You will have to manually add a table to your postgres database:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
+Replace ``password`` with the password of user haste.
 
 .. note:: 
 
@@ -198,6 +223,12 @@ It might take a few minutes before Haste server comes back online because ``npm`
 
 ----
 
-Tested with haste-server and Uberspace 7.5.1.
+Tested with haste-server and
+
+* File storage
+* :lab:`Redis 5.0.8 <guide_redis>`,
+* :lab:`PostgreSQL 9.6.17 <guide_postgres>`,
+
+on Uberspace 7.5.1.
 
 .. author_list::
