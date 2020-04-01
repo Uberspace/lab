@@ -134,21 +134,6 @@ You will have to manually add a table to your postgres database:
 
   [isabell@stardust ~]$ create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
 
-Memcached
--------------
-
-To use memcache storage you must setup Memcached as specified :lab:`here <guide_memchached>`, then install the ``memcached`` package in npm with ``npm install memcached``.
-
-Once you've done that, your config section should look like:
-
-.. code-block:: json
-
-  {
-    "type": "memcached",
-    "host": "127.0.0.1",
-    "port": 11211
-  }
-
 .. note:: 
 
   When using a storage solution except for the file storage, you can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
@@ -213,6 +198,6 @@ It might take a few minutes before Haste server comes back online because ``npm`
 
 ----
 
-Tested with haste-server using file storage and Uberspace 7.5.1.
+Tested with haste-server and Uberspace 7.5.1.
 
 .. author_list::
