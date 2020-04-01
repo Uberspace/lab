@@ -73,7 +73,7 @@ Then install the dependencies with ``npm install``:
 Configure storage
 ===================
 
-`Haste server`_ currently supports six storage solutions, of which four are supported by Uberspace.
+haste-server_ currently supports six storage solutions, of which four are supported by Uberspace.
 
 File
 ------
@@ -147,13 +147,14 @@ Once you've done that, your config section should look like:
 .. note:: 
 
   When using a storage solution except for the file storage, you can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
+  For other configuration options, check the README_ file of haste-server_.
 
 Configure web server
 ==========================
 
 .. note::
 
-    haste-server is running on port 7777 in the default configuration.
+    haste-server_ is running on port 7777 in the default configuration.
 
 .. include:: includes/web-backend.rst
 
@@ -199,9 +200,10 @@ Then you need to restart the service daemon, so the new code is used by the webs
 It might take a few minutes before Haste server comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f haste-server``.
 
 .. _Haste: https://github.com/seejohnrun/haste-server
-.. _`Haste server`: https://github.com/seejohnrun/haste-server
+.. _haste-server: https://github.com/seejohnrun/haste-server
 .. _hastebin.com: https://hastebin.com
 .. _GitHub: https://github.com/seejohnrun/haste-server
+.. _README: https://github.com/seejohnrun/haste-server/blob/master/README.md
 
 ----
 
