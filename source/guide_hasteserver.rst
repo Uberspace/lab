@@ -205,6 +205,6 @@ It might take a few minutes before Haste server comes back online because ``npm`
 
 ----
 
-Tested with haste-server and Uberspace 7.5.1.
+Tested with haste-server using file storage and Uberspace 7.5.1.
 
 .. author_list::
