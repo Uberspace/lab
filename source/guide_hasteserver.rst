@@ -43,7 +43,7 @@ Setup your URL:
 .. include:: includes/web-domain-list.rst
 
 Installation
-============
+=============
 
 First clone the GitHub_ repository:
 
@@ -71,12 +71,12 @@ Then install the dependencies with ``npm install``:
 
 
 Configure storage
-=============
+===================
 
 `Haste server`_ currently supports six storage solutions, of which four are supported by Uberspace.
 
 File
-----
+------
 
 To use file storage change the storage section in ``config.js`` to something like:
 
@@ -90,7 +90,7 @@ To use file storage change the storage section in ``config.js`` to something lik
 where ``path`` represents where you want the files stored.
 
 Redis
--------
+--------
 
 To use redis storage you must setup redis as specified :lab:`here <guide_redis>`, then install the ``redis`` package in npm with ``npm install redis``.
 
@@ -108,7 +108,7 @@ Once you've done that, your config section should look like:
 If your Redis server is configured for password authentification, use the ``password`` field.
 
 Postgres
--------
+-----------
 
 To use postgres storage you must setup postgres as specified :lab:`here <guide_postgresql>`, then install the ``pg`` package in npm with ``npm install pg``.
 
@@ -130,7 +130,7 @@ You will have to manually add a table to your postgres database:
   [isabell@stardust ~]$ create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
 
 Memcached
--------
+-------------
 
 To use memcache storage you must setup Memcached as specified :lab:`here <guide_memchached>`, then install the ``memcached`` package in npm with ``npm install memcached``.
 
@@ -149,7 +149,7 @@ Once you've done that, your config section should look like:
   When using a storage solution except for the file storage, you can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
 
 Configure web server
-====================
+==========================
 
 .. note::
 
