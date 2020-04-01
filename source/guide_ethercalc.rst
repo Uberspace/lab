@@ -14,7 +14,7 @@
       :align: center
 
 #########
-Ethercalc
+EtherCalc
 #########
 
 .. tag_list::
@@ -35,7 +35,7 @@ EtherCalc_ is a web spreadsheet based on node-js and redis. People can edit the 
 License
 =======
 
-Redis is distributed under different licenses, including `Common Public Attribution License (Socialtext Inc.)`_, `Apache License 2.0 (SheetJS)`_ and `MIT License`_.
+EtherCalc is distributed under different licenses, including `Common Public Attribution License (Socialtext Inc.)`_, `Apache License 2.0 (SheetJS)`_ and `MIT License`_.
 
 Prerequisites
 =============
@@ -61,18 +61,20 @@ Installation
 Install node module
 -------------------
 
-Install the node module using the provided node packet manager `npm`: 
+Create a directory, ``cd`` into it and install the node module using the provided node packet manager `npm`: 
 
 .. code-block:: console
 
- [isabell@stardust ~]$ npm install ethercalc
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ mkdir ethercalc
+ [isabell@stardust ~]$ cd ethercalc
+ [isabell@stardust ethercalc]$ npm install ethercalc
+ [isabell@stardust ethercalc]$
 
-.. warning:: Make sure that you installed and configured :lab:`Redis <guide_redis>` as described in the guide before, otherwise Ethercalc will crash immediately.
+.. warning:: Make sure that you installed and configured :lab:`Redis <guide_redis>` as described in the guide before, otherwise EtherCalc will crash immediately.
 
 Fixing Path Issue
 ^^^^^^^^^^^^^^^^^
-.. note:: At the time of creating this guide there is an issue_ of Ethercalc trying to access the Nodemule `Socialcalc` in an outdatet directory. You **can** skip this step, but if you ran into issues i recommend to set the following symlink to fix it:
+.. note:: At the time of creating this guide there is an issue_ of EtherCalc trying to access the Nodemule `Socialcalc` in an outdatet directory. You **can** skip this step, but if you ran into issues i recommend to set the following symlink to fix it:
 
 ::
 
@@ -91,7 +93,7 @@ Setup web backend
 
 .. note::
 
-    Ethercalc is running on port 8000.
+    EtherCalc is running on port 8000.
 
 .. include:: includes/web-backend.rst
 
@@ -101,15 +103,15 @@ Setup daemon
 
 Use your favourite editor to create ``~/etc/services.d/ethercalc.ini`` with the following content:
 
-.. note:: Ethercalc tries to connect to Redis via TCP/IP, which will accepts connections on both TCP/IP and UNIX socket. If you configured redis by following the :lab:`guide <guide_redis>` it is currently configured *for UNIX socket only* as this is also the more stylish, secure and faster version. So by now the connection between Ethercalc and Redis won't be established.
-Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-socket to the ``supervisord``-config forces Ethercalc to connect to Redis through the UNIX socket.
+.. note:: EtherCalc tries to connect to Redis via TCP/IP, which will accepts connections on both TCP/IP and UNIX socket. If you configured redis by following the :lab:`guide <guide_redis>` it is currently configured *for UNIX socket only* as this is also the more stylish, secure and faster version. So by now the connection between EtherCalc and Redis won't be established.
+Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-socket to the ``supervisord``-config forces EtherCalc to connect to Redis through the UNIX socket.
 
 
 .. code-block:: ini
 
  [program:ethercalc]
  command=%(ENV_HOME)s/node_modules/ethercalc/bin/ethercalc
- environment=NODE_ENV="production",REDIS_SOCKPATH ="%(ENV_HOME)s/.redis/sock"
+ environment=NODE_ENV="production",REDIS_SOCKPATH="%(ENV_HOME)s/.redis/sock"
  autorestart=true
 
 .. include:: includes/supervisord.rst
@@ -121,7 +123,7 @@ Finishing installation
 ======================
 
 Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and
-start collaborating in your shiny new Ethercalc!
+start collaborating in your shiny new EtherCalc!
 
 Generating a new Spreadsheet by pointing to the URL ``https://isabell.uber.space/_new``.
 
@@ -131,7 +133,7 @@ Update
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-To get the latest version of Ethercalc you can use the ``npm`` package manager:
+To get the latest version of EtherCalc you can use the ``npm`` package manager:
 
 ::
 
@@ -142,10 +144,10 @@ To get the latest version of Ethercalc you can use the ``npm`` package manager:
 
 Restart your supervisorctl afterwards. If it's not in state RUNNING, check your configuration.
 
-It might take a few minutes before your Ethercalc comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f ethercalc``.
+It might take a few minutes before your EtherCalc comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f ethercalc``.
 
 .. _issue: https://github.com/audreyt/ethercalc/issues/542
-.. _Ethercalc: https://ethercalc.net/
+.. _EtherCalc: https://ethercalc.net/
 .. _Github: https://github.com/audreyt/ethercalc
 .. _feed: https://github.com/audreyt/ethercalc/releases
 .. _Common Public Attribution License (Socialtext Inc.): https://github.com/audreyt/ethercalc#common-public-attribution-license-socialtext-inc
@@ -157,7 +159,7 @@ It might take a few minutes before your Ethercalc comes back online because ``np
 
 ----
 
-Tested with Ethercalc 0.20200306.0, Uberspace 7.5.0.0
+Tested with EtherCalc 0.20200306.0, Uberspace 7.5.0.0
 
 .. author_list::
 
