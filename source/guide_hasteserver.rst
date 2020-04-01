@@ -147,6 +147,7 @@ You will have to manually add a table to your postgres database:
   haste=> create table entries (id serial primary key, key varchar(255) not null, value text not null, expiration int, unique(key));
   CREATE table
   haste=> \q
+  [isabell@stardust ~]$
 
 Once you've done that, your config section should look like:
 
