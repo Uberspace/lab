@@ -71,7 +71,6 @@ Build Redis
 
  [isabell@stardust ~]$ cd redis-stable/
  [isabell@stardust redis-stable]$ make
- [isabell@stardust redis-stable]$ cd src && make all
  make[1]: Entering directory `/home/isabell/redis-stable/src'
      CC Makefile.dep
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
@@ -83,12 +82,13 @@ Build Redis
  Hint: It's a good idea to run 'make test' ;)
 
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
- [isabell@stardust src]$
+ [isabell@stardust redis-stable]$
 
 Try running ``redis-server`` to make sure everything works:
 
 .. code-block:: bash
 
+ [isabell@stardust redis-stable]$ cd src
  [isabell@stardust src]$ ./redis-server --unixsocket ~/tmp/redis.sock
  16813:C 03 Jan 2019 14:02:49.774 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
  16813:C 03 Jan 2019 14:02:49.774 # Redis version=5.0.3, bits=64, commit=00000000, modified=0, pid=16813, just started
