@@ -171,7 +171,7 @@ Create ``~/etc/services.d/haste-server.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
-If it's not in state RUNNING, check your configuration.
+If it's not in state ``RUNNING``, check your configuration.
 
 Updates
 =======
