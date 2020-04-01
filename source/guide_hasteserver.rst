@@ -26,6 +26,11 @@ Haste_  is an open-source pastebin software written in :manual:`Node.js <lang-no
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
 
+License
+=======
+
+haste-server_ is released under the `MIT License`_.
+
 Prerequisites
 =============
 
@@ -204,6 +209,7 @@ It might take a few minutes before Haste server comes back online because ``npm`
 .. _hastebin.com: https://hastebin.com
 .. _GitHub: https://github.com/seejohnrun/haste-server
 .. _README: https://github.com/seejohnrun/haste-server/blob/master/README.md
+.. _MIT License: https://github.com/seejohnrun/haste-server/blob/master/README.md#license
 
 ----
 
