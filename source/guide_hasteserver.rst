@@ -78,7 +78,7 @@ Then install the dependencies with ``npm install``:
 Configure storage
 ===================
 
-haste-server_ currently supports six storage solutions, of which four are supported by Uberspace.
+haste-server_ currently supports six storage solutions, of which the following are supported by Uberspace.
 
 File
 ------
