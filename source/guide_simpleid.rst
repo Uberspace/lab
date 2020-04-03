@@ -52,7 +52,7 @@ Step 1 - Download & Extract
 
 ``cd`` to your :manual:`document root <web-documentroot>`, respectively the folder above, because not all files must/should be accessable via web, then download the latest release of *SimpleID* and extract it:
 
-.. note:: The link to the lastest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases/>`_.
+.. note:: The link to the latest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases/>`_.
 
 ::
 

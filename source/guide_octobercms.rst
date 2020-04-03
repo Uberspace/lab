@@ -63,7 +63,7 @@ We will install October using the official command-line interface (CLI). To do t
  OctoberCMS successfully installed to: /var/www/virtual/$USER/html
  [isabell@stardust ~]$
 
-The installer script will download all necessary files including the CLI so you can directly continue with the configuation of your October installation afterwards.
+The installer script will download all necessary files including the CLI so you can directly continue with the configuration of your October installation afterwards.
 
 Configuration
 =============
@@ -93,7 +93,7 @@ The following list contains information on what you need to enter in the CLI set
     #. Database name: ``isabell_october`` (the name of the database you just created)
     #. MySQL login: ``isabell`` (your username)
     #. MySQL password: your MySQL password that you've got from ``my_print_defaults client``
-    #. First name, Last name, Email adress: your account information
+    #. First name, Last name, Email address: your account information
     #. Admin login: your admin username (to follow security best practices please don't use ``admin`` here)
     #. Admin password: your admin password (please choose a strong, secure password to prevent hacking of your installation)
     #. Confirm that the entered information is correct
@@ -107,7 +107,7 @@ You can now visit your domain and you will see the frontend of the installed dem
 Best practices
 ==============
 
-You can use the October CLI which we used to setup your instace also to e.g. install plugins. See the `Console command list`_ to explore all possibilities.
+You can use the October CLI which we used to setup your instance also to e.g. install plugins. See the `Console command list`_ to explore all possibilities.
 
 Updates
 =======

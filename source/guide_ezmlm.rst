@@ -149,7 +149,7 @@ To remove the list simply delete the directory ``~/lists/mylist`` and the ``.qma
 Subscribing / Unsubscribing
 ---------------------------
 
-Users can either subscribe thenselves to a list by writing an email to ``mylist-subscribe@isabell.uber.space`` or can be added from the command line:
+Users can either subscribe themselves to a list by writing an email to ``mylist-subscribe@isabell.uber.space`` or can be added from the command line:
 
 ::
 

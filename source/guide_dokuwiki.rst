@@ -78,7 +78,7 @@ You will need to enter the following information:
   * ACL: It´s recommended that ACL is enable.
   * Superuser: The login name of the admin user.
   * Real Name: Your name, nickname or something else (don´t use superuser name!)
-  * E-Mail: The e-mail adresse of the admin user.
+  * E-Mail: The e-mail address of the admin user.
   * Password: The superduper secure password of the admin user.
   * Initial ACL policy: Choose the type of your wiki.
   * Allow users to register themselves: your decision

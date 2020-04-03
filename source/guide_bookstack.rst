@@ -65,7 +65,7 @@ To install BookStack clone the release branch of the official repository one lev
  […]
  [isabell@stardust ~]$
 
-``cd`` into your BookStack directory and install the neccessary dependencies using Composer_.
+``cd`` into your BookStack directory and install the necessary dependencies using Composer_.
 
 .. code-block:: console
 

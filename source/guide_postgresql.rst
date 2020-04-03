@@ -189,7 +189,7 @@ After the installation of PostgreSQL, it is necessary to configure the network e
 Configure the Unix Socket
 -------------------------
 
-The Unix socket will be configured to the standard port. You must set the environment varables with your new port:
+The Unix socket will be configured to the standard port. You must set the environment variables with your new port:
 
 Edit your ``~/.bashrc`` and add the following content:
 

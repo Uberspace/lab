@@ -24,8 +24,8 @@ Taskwarrior is Free and Open Source Software that manages your TODO list from th
 
 * Multiple clients
 * TLS secured
-* Andorid App available (also in FDroid)
-* Is MIT-licensed free software.
+* Android-App available (also in FDroid)
+* MIT-licensed free software.
 
 .. _Taskd: https://taskwarrior.org/
 
@@ -135,7 +135,7 @@ Initialization of taskd
 Create Server PKI Certificates and key
 --------------------------------------
 
-The taskd bundles scripts for generating reuqired keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step andy copy the pki directory to the ``$TASKDDATA`` directory so we have everything in one place.
+The taskd bundles scripts for generating required keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step and copy the pki directory to the ``$TASKDDATA`` directory so we have everything in one place.
 ::
 
  [isabell@stardust ~]$ cp -r /home/isabell/taskd-1.1.0/pki $TASKDDATA
@@ -164,7 +164,7 @@ In our case ``isabell.uber.space`` will not work and lead to a certificate error
  [isabell@stardust ~]$
 
 
-Note that the ``client.*`` files are not used for the clients connecting to the server! We will generate coresponding files in the next section. The client files here are for the API.
+Note that the ``client.*`` files are not used for the clients connecting to the server! We will generate corresponding files in the next section. The client files here are for the API.
 But first we move the required files to the ``$TASKDDATA`` directory:
 ::
 
@@ -236,7 +236,7 @@ Now add as many users as you like. Spaces are ok as long you quote the name.
  Created user 'First Last' for organization 'Public'
  [isabell@stardust ~]$
 
-Remember the user key! This identifies the user (as the name is not neccessary unique).
+Remember the user key! This identifies the user (as the name is not necessary unique).
 Let's put this information in a file just to make things easier especially on Android where you can then copy paste the information. Create a file ``~/Isabell_task_info`` and put this in:
 
 ::
@@ -295,7 +295,7 @@ On your linux machine configure taskwarrior
 
 
 Android:
-Edit the configuration on Android in settings in the menu and add some lines (of course adopt the respective fields like the port of your server and the user-id). Also it may be neccessary to escapt slashes.
+Edit the configuration on Android in settings in the menu and add some lines (of course adopt the respective fields like the port of your server and the user-id). Also it may be necessary to escape slashes.
 
 ::
 

@@ -48,7 +48,7 @@ Installation
 
 ``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of *Joomla!* and extract it:
 
-.. note:: The link to the lastest version can be found at Joomla!'s `download page <https://downloads.joomla.org/>`_.
+.. note:: The link to the latest version can be found at Joomla!'s `download page <https://downloads.joomla.org/>`_.
 
 ::
 
@@ -78,8 +78,8 @@ Page 2 - Database Configuration:
 Page 3 - Finalization
   * Install Sample Data: up to you...
   * Email Configuration: up to you...
-  * Check that all Pre-Installation Checks are fullfilled (a green ``Yes``)
-  * Check that all Recommended Settings are fullfilled (for me the only difference was ``Output Buffering`` which is recommended to *off*, but is *on* in my case -- it does not matter, Joomla! will still operate)
+  * Check that all Pre-Installation Checks are fulfilled (a green ``Yes``)
+  * Check that all Recommended Settings are fulfilled (for me the only difference was ``Output Buffering`` which is recommended to *off*, but is *on* in my case -- it does not matter, Joomla! will still operate)
 
 Hit ``Install``!
 You should see a message ``Congratulations! Joomla! is now installed``

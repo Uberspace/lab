@@ -269,7 +269,7 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-.. note:: Don't forget to replace all occurences of ``<password>`` and to set your ``ROOT_URL`` if you don't use your default uberspace domain!
+.. note:: Don't forget to replace all occurrences of ``<password>`` and to set your ``ROOT_URL`` if you don't use your default uberspace domain!
 
 Now let's start the service:
 

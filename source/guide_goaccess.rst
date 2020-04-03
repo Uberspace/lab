@@ -70,7 +70,7 @@ Launch
 Step 1 - First Try (or Realtime Analysis in the Shell)
 ------------------------------------------------------
 
-To get first results, to check that everthing is maintained, please enter:
+To get first results, to check that everything is maintained, please enter:
 
 ::
 

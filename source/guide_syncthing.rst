@@ -134,7 +134,7 @@ To protect the access to your syncthing instance, visit your domain and set a us
 Best practice
 =============
 
-right now the server will sync with your devices only via a relay-server, wich is not super fast. To improve performance, you can connect directly by opening a port in the firewall
+Right now the server will sync with your devices only via a relay-server, which is not super fast. To improve performance, you can connect directly by opening a port in the firewall
 
 ::
 

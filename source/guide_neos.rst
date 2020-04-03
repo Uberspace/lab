@@ -61,7 +61,7 @@ Since Neos uses the subdirectory Web/ as web root you should not install Neos in
 
 ``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the dependency manager Composer to create a new project based on the Neos base distribution:
 
-.. note:: Composer will install all neccessary dependencies Neos needs to run. This can take some time.
+.. note:: Composer will install all necessary dependencies Neos needs to run. This can take some time.
 
 ::
 

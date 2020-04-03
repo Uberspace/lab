@@ -20,7 +20,7 @@ GSALES 2
 .. tag_list::
 
 GSALES 2 is a very flexible german billing application specialized for generating recurring invoices.
-Equipped with a well documentated SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.
+Equipped with a well documented SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.
 
 
 

@@ -174,7 +174,7 @@ Personalization
 
 Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there.
 
-You can also personalize the look of your installation by including custom css- oder js-files. See `Custom static files`_ in the documentation for further information.
+You can also personalize the look of your installation by including custom css- or js-files. See `Custom static files`_ in the documentation for further information.
 
 **Important**: You need to place your custom-files in ``~/etherpad/node_modules/ep_etherpad-lite/static/custom`` **not** ``~/etherpad/static/custom`` for being recognized by your installation.
 

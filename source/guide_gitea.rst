@@ -48,7 +48,7 @@ Your gitea URL needs to be setup:
 Installation
 ============
 
-Like a lot of Go software, gitea is distributed as a single binary. Download Gitea's latests `release <https://github.com/go-gitea/gitea/releases/latest>`_,
+Like a lot of Go software, gitea is distributed as a single binary. Download Gitea's latest `release <https://github.com/go-gitea/gitea/releases/latest>`_,
 verify the checksum specified in the respective ``.sha256`` file and finally
 make sure that the file can be executed.
 

@@ -107,7 +107,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Your first plugin you have to install, is the **Version** plugin. It will show you in the admin panel the current used version of bludit. When there will be a new version of bludit, the plugin show you an info and a link to the bludit site.
-To install log into admin panel and go to **Plugins**. The last plugin at the list ist **Version**. Only click activate and wait a moment. There it is.
+To install log into admin panel and go to **Plugins**. The last plugin at the list is **Version**. Only click activate and wait a moment. There it is.
 
 Update
 ------
