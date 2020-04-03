@@ -36,7 +36,7 @@ Your syncthing URL needs to be setup:
 Installation
 ============
 
-Like a lot of Go software, Syncthing is distributed as a single binary. Download Syncthing's latests release_,
+Like a lot of Go software, Syncthing is distributed as a single binary. Download Syncthing's latest release_,
 verify the checksum specified in the respective ``.sha256`` file and finally extract the files.
 
 ::

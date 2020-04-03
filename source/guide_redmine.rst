@@ -38,7 +38,7 @@ is supported by your desired version of Redmine. Redmine version 4 for example
 expects Ruby 2.2, 2.3, 2.4, 2.5 or 2.6.
 
 Run ``uberspace tools version show ruby`` to show which Ruby version is currently
-active on your Uberspave and ``uberspace tools version list ruby`` to list all
+active on your Uberspace and ``uberspace tools version list ruby`` to list all
 available ones.
 
 To set Ruby version 2.5 you could run (but there is no need to do so if one of the above is already active):

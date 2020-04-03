@@ -138,7 +138,7 @@ Best practices
 Security
 --------
 
-By default Kimai allows any visitor of your domain to register a new user account. You might want to diable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
+By default Kimai allows any visitor of your domain to register a new user account. You might want to disable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
 
 Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
 

@@ -146,7 +146,7 @@ Clone that repository on your local machine, enter the parent folder and create 
  [user@localhost ~]$ jekyll new website --force
  [user@localhost ~]$
 
-.. note:: By entering the parent folder and using the same name for your website as the cloned repository you can create the website directly insite the repository folder. If you give your website a different name, you have to copy your website into your repository.
+.. note:: By entering the parent folder and using the same name for your website as the cloned repository you can create the website directly inside the repository folder. If you give your website a different name, you have to copy your website into your repository.
 
 After Jekyll created the website you can enter it and run the local webserver for testing:
 ::
