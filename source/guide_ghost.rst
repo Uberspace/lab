@@ -198,7 +198,7 @@ You now need to readjust your ``~/ghost/config.production.json`` to change the U
      "host": "0.0.0.0"
    },
 
-Kill and restart Ghost (also check the restartet process with second command):
+Kill and restart Ghost (also check the restarted process with second command):
 
 .. code-block:: console
 

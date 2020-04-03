@@ -55,7 +55,7 @@ Firstly we need to add a domain(in this case a subdomain).
 Step 2
 ------
 
-Now we need to create the coresponding directory for our subdomain.
+Now we need to create the corresponding directory for our subdomain.
 
 ::
 
@@ -80,7 +80,7 @@ Now click "**Add**" to create a new destination for our pictures.
 
 Step 3
 ------
-Now write the following in the coresponding fields.
+Now write the following in the corresponding fields.
 
 ::
 
@@ -102,7 +102,7 @@ To setup your Workflow do the following:
 
 
  1. Navigate to ":menuselection:`Destinations --> Image Uploader`" and check **FTP**.
- 2. Navigate to "**After Capture tasks**" and be sure to activate "**Open in image editor**", "**Save image to file**" and finaly "**Upload image to host**".
+ 2. Navigate to "**After Capture tasks**" and be sure to activate "**Open in image editor**", "**Save image to file**" and finally "**Upload image to host**".
  3. Navigate to "**After upload tasks**" and be sure to activate "**Copy URL to clipboard**".
 
 

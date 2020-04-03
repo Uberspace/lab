@@ -22,7 +22,7 @@ TeamSpeak_ is a proprietary voice-over-Internet Protocol (VoIP) application for 
 
 The target audience for TeamSpeak is gamers, who can use the software to communicate with other players on the same team of a multiplayer video game. Communicating by voice gives a competitive advantage by enabling players to keep their hands on the controls.
 
-Teamspeak is an alternativ to Mumble_ and needs a license to run. This can be optained from the the Teamspeak-License_ website and from the ``LICENSE`` file which is part of the downloadable teamspeak file.
+Teamspeak is an alternative to Mumble_ and needs a license to run. This can be obtained from the the Teamspeak-License_ website and from the ``LICENSE`` file which is part of the downloadable teamspeak file.
 
 ----
 
@@ -45,7 +45,7 @@ Prerequisites
 
 .. include:: includes/open-port.rst
 
-Run the commmand four times to retrieve four ports. One open port for the ``default_voice_port``, ``filetransfer_port``, ``query_port`` and ``query_ssh_port``.
+Run the command four times to retrieve four ports. One open port for the ``default_voice_port``, ``filetransfer_port``, ``query_port`` and ``query_ssh_port``.
 
 
 Installation
@@ -171,7 +171,7 @@ Now edit the ``ts3server.ini`` and change the following entries. Use the four po
 Step 4: Test server start
 -------------------------
 
-You can test your configuration by executing the minimal runscript. Use the paramater ``inifile`` with the argument ´´ts3server.ini`` to start the server with your configuration.
+You can test your configuration by executing the minimal runscript. Use the parameter ``inifile`` with the argument ´´ts3server.ini`` to start the server with your configuration.
 
 .. code-block:: console
 

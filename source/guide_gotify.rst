@@ -54,7 +54,7 @@ Note the `--remove-prefix` option here. Without it, gotify will not work behind 
 Installation
 ============
 
-Like a lot of Go software, gotify is distributed as a single binary. Download gotify's latests `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
+Like a lot of Go software, gotify is distributed as a single binary. Download gotify's latest `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
 
 ::
 

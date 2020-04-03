@@ -62,7 +62,7 @@ Install django
 
 .. hint::
 
-  Depening on your database configuration, additional modules like ``mysqlclient`` might be required.
+  Depending on your database configuration, additional modules like ``mysqlclient`` might be required.
 
 Create a django project. We will use "MyDjangoProject" during this guide.
 

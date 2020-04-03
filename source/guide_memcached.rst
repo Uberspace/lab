@@ -105,7 +105,7 @@ Try running ``memcached`` to make sure everything works:
 
 If no errors occur, then everything should be fine and you can exit the program with ``Ctrl`` + ``C``.
 
-Copy the ``memcached`` binari to your `~/bin` folder:
+Copy the ``memcached`` binary to your `~/bin` folder:
 
 .. code-block:: console
 
@@ -134,7 +134,7 @@ If it’s not in state RUNNING, check your configuration.
 Testing memcached
 -----------------
 
-Test if memcached is responing on it's assigned port by issuing the following command to display the current configuration parameters.
+Test if memcached is responding on it's assigned port by issuing the following command to display the current configuration parameters.
 
 .. code-block:: console
 

@@ -228,7 +228,7 @@ Get the latest version
 
 ``cd`` to your :manual:`home directory <basics-home>` (e.g. ``/home/isabell``), download the latest release of Roundcube and extract it.
 
-.. warning:: Make sure to download and extract the tarball to a different location as your active roundcube installation to prevent an accidetalliy override!
+.. warning:: Make sure to download and extract the tarball to a different location as your active roundcube installation to prevent an accidental override!
 
 .. note:: Check the Roundcube_ website or `Github Repository`_ for the latest stable release and copy the download link to the Complete.tar.gz file. Then use ``wget`` to download it. Replace the URL with the one you just got from GitHub/Website.
 
@@ -247,7 +247,7 @@ Update your existing Roundcube installation
 
 ``cd`` to the downloaded and extracted roundcube directory and execute the ``installto.sh``-Script bundled with Roundcube to easily update your installation. The script first copies all updated files to the target directory and then runs the update script that will update/migrate your local configuration files and update the database schema if necessary.
 
-.. note:: Make sure to change the directory folloewd by the script-call to your active roundcube directory ``bin/installto.sh **<your-existing-roundcube-directory>**``. The Output of the Updatescript can vary depening of your your version and which files have been changed.
+.. note:: Make sure to change the directory followed by the script-call to your active roundcube directory ``bin/installto.sh **<your-existing-roundcube-directory>**``. The Output of the Updatescript can vary depending of your your version and which files have been changed.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3

@@ -77,7 +77,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``Would you like to create a new admin user (recommended)?:`` yes
 * ``Username:`` admin *- or you can also choose any other name, that could increase security*
 * ``Password:`` *choose a good password here*
-* ``Email:`` set in a mailadress to use with this admin account
+* ``Email:`` set in a mailaddress to use with this admin account
 
 .. code-block:: console
  :emphasize-lines: 1,2,10,11,12,17,23,25,26,28,30,31,32,33

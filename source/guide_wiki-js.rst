@@ -71,7 +71,7 @@ which resolves to the latest archive file, which also comes in handy later for :
   Saving to: ‘wiki-js.tar.gz’
   [isabell@stardust ~]$
 
-Extract the dowloaded archive to the ``wiki`` directory you created earlier.
+Extract the downloaded archive to the ``wiki`` directory you created earlier.
 
 ::
 

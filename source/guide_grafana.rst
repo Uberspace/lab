@@ -73,7 +73,7 @@ Installation
 Step 1
 ------
 
-Find the latest version of grafana_ for the plattform ``linux`` from the `download page <https://grafana.com/grafana/download?platform=linux>`_, download and extract it and enter the extracted directory:
+Find the latest version of grafana_ for the platform ``linux`` from the `download page <https://grafana.com/grafana/download?platform=linux>`_, download and extract it and enter the extracted directory:
 
 ::
 

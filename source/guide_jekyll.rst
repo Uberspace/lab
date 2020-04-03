@@ -123,7 +123,7 @@ Now open a browser and navigate to your URL where you can see your beautiful res
 
 Best practices
 ======================
-If you dont want to create and modify your website on your uberspace, you can install Ruby, Jekyll and git on your local machine and then push it to your uberspace where it gets deployed automatically. This is an easy way to work with an editor of your choice and you can test your website befor publishing it.
+If you don't want to create and modify your website on your uberspace, you can install Ruby, Jekyll and git on your local machine and then push it to your uberspace where it gets deployed automatically. This is an easy way to work with an editor of your choice and you can test your website before publishing it.
 
 To install Ruby, Windows users should use RubyInstaller_, Linux and Mac users could use RVM_.
 
