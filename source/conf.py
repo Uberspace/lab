@@ -36,7 +36,12 @@ extensions = [
     'authorship',
     'sphinx.ext.extlinks',
     'notfound.extension',
+    'sphinxcontrib.spelling'
 ]
+
+# Add spelling settings
+tokenizer_lang='en_GB'
+spelling_word_list_filename='dict.txt'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
