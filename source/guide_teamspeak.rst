@@ -136,7 +136,7 @@ To create a configuration file execute the minimal runscript with the ``createin
 
 You can now press **CTRL+C** to kill the server and to continue with the configuration.
 
-.. note:: Make a copy of **Server Query Admin Account** ``loginname``, ``password`` and **ServerAdmin** ``token``. You vill need this when you connect to your teamspeak server for the first time to gain administrator rights.
+.. note:: Make a copy of **Server Query Admin Account** ``loginname``, ``password`` and **ServerAdmin** ``token``. You will need this when you connect to your teamspeak server for the first time to gain administrator rights.
 
 Step 3: Edit configuration file
 -------------------------------

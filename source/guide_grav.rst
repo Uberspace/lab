@@ -67,7 +67,7 @@ To install Grav we use Composer_ to create a new project in our :manual:`documen
  [...]
  [isabell@stardust isabell]$
 
-Visit your previously set up domain isabell.uber.space and you will see a page confirming that the installation was successfull.
+Visit your previously set up domain isabell.uber.space and you will see a page confirming that the installation was successful.
 
 Install admin panel
 -------------------

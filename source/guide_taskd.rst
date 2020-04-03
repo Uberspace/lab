@@ -267,13 +267,13 @@ We now have two file more in the directory:
 
 For every new user the steps to take are:
 
-* Genererate an ID (see 'Setup Clients')
+* Generate an ID (see 'Setup Clients')
 * Generate key and cert
 
 Configuring the Client
 ----------------------
 
-Now Isabell wants to sync all her devices. Copy four files to all her divices:
+Now Isabell wants to sync all her devices. Copy four files to all her devices:
 ::
 
  [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/ca.cert.pem isabell@othermachine:~/.task/

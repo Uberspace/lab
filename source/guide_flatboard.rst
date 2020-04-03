@@ -93,7 +93,7 @@ You will need to enter the following information:
 
 Then push the Unzip-Button.
 
-  * titel: titel of your forum
+  * title: title of your forum
   * description: what is your forum about
   * E-Mail: your admin e-mail address
   * administrator: set up your admin password

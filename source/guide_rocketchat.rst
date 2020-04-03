@@ -17,7 +17,7 @@ Rocket.Chat
 
 .. tag_list::
 
-Rocket.Chat_ is an self hostable, open source chat software written in JavaScript.
+Rocket.Chat_ is an self hosted, open source chat software written in JavaScript.
 
 ----
 

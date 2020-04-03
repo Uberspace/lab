@@ -119,7 +119,7 @@ Next get rid of the GSALES 2 download archive:
 
 
 
-Prepare the GSALES 2 configuration file which has to be in place to hold the paramters to access the database later:
+Prepare the GSALES 2 configuration file which has to be in place to hold the parameters to access the database later:
 
 ::
 

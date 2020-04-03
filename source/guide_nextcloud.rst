@@ -110,7 +110,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 opcache
 -------
 
-Enable opcache to further optimise perfomance.
+Enable opcache to further optimise performance.
 
 To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
 
