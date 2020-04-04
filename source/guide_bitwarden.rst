@@ -252,6 +252,78 @@ Finishing installation
 
 Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user.
 
+Best practices
+==============
+
+Backing up your vault manually
+------------------------------
+
+You can create a backup of the database manually. ``cd`` to your project folder, create a folder to sotre the backup in and use the given sqlite3 backup command. This will ensure the database does not become corrupted if the backup happens during a database write.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/bitwarden_rs/data
+ [isabell@stardust data]$ mkdir db-backup
+ [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '~/bitwarden_rs/data/db-backup/backup.sqlite3'"
+ 
+.. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time.
+
+Restore up your vault manually
+------------------------------
+
+Before you restore a database backup make sure to stop the service:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl stop bitwarden_rs
+
+To restore your database simply overwrite ``db.sqlite3`` with ``backup.sqlite3``. After replacing the file successfully you can restart the service again.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart bitwarden_rs
+
+
+Hardening
+---------
+
+Disable registration and invitations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default, bitwarden_rs allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your bitwarden_rs server.
+
+Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the the following content:
+
+.. code-block:: ini
+
+ SIGNUPS_ALLOWED=false
+
+.. note :: While through this setting users can't register on their own, they can still be invited by already registered users to create accounts on the server and join their organizations. This does not pose an immediate risk (as long as you trust your users), but it can be disabled in the admin panel or with the following environment variable:
+
+.. code-block:: ini
+
+ INVITATIONS_ALLOWED=false
+
+In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific domains. Make sure to sue this setting only in addition to ``SIGNUPS_ALLOWED=false``!
+
+.. code-block:: ini
+
+ SIGNUPS_DOMAINS_WHITELIST=example.com # single domain
+ SIGNUPS_DOMAINS_WHITELIST=example.com,example.net,example.org # multiple domains
+ 
+.. warning ::  be careful using this feature. `At the moment`_ the emails are currently not checked, meaning that anyone could still register, by providing a fake email address that has the proper domain. So at the moment this is more security by obscurity. This seems to be fixedd in an upcoming release, so make sure to check the feed_ regularly to stay informed about the newest version.
+
+Disable password hint display
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+bitwarden_rs displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
+
+Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the the following content:
+
+.. code-block:: ini
+
+ SHOW_PASSWORD_HINT=false
+
 
 Update
 ======
@@ -280,7 +352,7 @@ Acknowledgements
 ================
 This guide is based on the official `bitwarden_rs documentation`_ as well as the `bitwarden_rs guide from Tom Schneider <https://vigonotion.com/blog/install-bitwarden-rs-on-uberspace/>`_.
 
-
+.. _At the moment: https://github.com/dani-garcia/bitwarden_rs/pull/728
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases):
 .. _rust toolchain: https://rustup.rs/
 .. _isn't supported: https://wiki.uberspace.de/faq#docker)
