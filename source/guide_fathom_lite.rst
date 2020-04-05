@@ -22,6 +22,13 @@ Fathom Lite
   * :manual:`Go <lang-go>`
   * :manual:`supervisord <daemons-supervisord>`
 
+Prerequisites
+=============
+Your webseite domain or subdomain needs to be setup up:
+
+.. include:: includes/web-domain-list.rst
+
+
 Installation
 ============
 
@@ -38,7 +45,7 @@ Get the current binary from Github Releases_. Use the fathom_x.x.x_linux_amd64.t
   LICENSE
   README.md
   fathom
-  [isabella@stardust ~]$ 
+  [isabella@stardust ~]$
 
 You can now check if fathom is working properly by checking it's version.
 
@@ -74,22 +81,12 @@ Create ``~/etc/services.d/fathom.ini`` with the following content:
 
   [program:fathom]
   directory=%(ENV_HOME)s/fathom
-  command=%(ENV_HOME)s/fathom/fathom server  
+  command=%(ENV_HOME)s/fathom/fathom server
   autostart=true
   autorestart=true
   stopsignal=INT
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- fathom: available
- [isabell@stardust ~]$ supervisorctl update
- fathom: added process group
- [isabell@stardust ~]$ supervisorctl status
- fathom                           RUNNING   pid 22545, uptime 0:00:03
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
