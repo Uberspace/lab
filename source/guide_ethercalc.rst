@@ -137,8 +137,8 @@ To get the latest version of EtherCalc you can use the ``npm`` package manager:
 
 ::
 
- [isabell@stardusts ~]$ npm update ethercalc
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$ npm update ethercalc
+ [isabell@stardust ~]$
 
 .. include:: includes/supervisord.rst
 
