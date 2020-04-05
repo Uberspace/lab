@@ -361,7 +361,7 @@ This guide is based on the official `bitwarden_rs documentation`_ as well as the
 .. _Bitwarden: https://bitwarden.com/
 .. _Github: https://github.com/dani-garcia/bitwarden_rs
 .. _feed: https://github.com/dani-garcia/bitwarden_rs/releases
-.. _GNU General Public License: https://roundcube.net/license/
+.. _GNU General Public License: https://github.com/dani-garcia/bitwarden_rs/blob/master/LICENSE.txt
 
 ----
 
