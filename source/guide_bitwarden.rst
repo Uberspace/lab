@@ -162,7 +162,7 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust bitwarden_rs]$ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.11.0/bw_web_v2.13.2.tar.gz
+ [isabell@stardust bitwarden_rs]$ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.13.2/bw_web_v2.13.2.tar.gz
  [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.13.2.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
