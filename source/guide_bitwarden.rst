@@ -147,6 +147,7 @@ In order to build bitwarden_rs  sucessfully you'll need to set an environment va
  [isabell@stardust bitwarden_rs]$ 
 
 Build the server executable:
+
 .. note :: If that doesn't work the first time, just try again.
 
 .. code-block:: console
@@ -193,6 +194,7 @@ Replace the mail placeholder variables with your valid IMAP credentials, otherwi
 ``SMTP_USERNAME`` and ``SMTP_PASSWORD`` must be the login data from a valid mail account. Replace the server domain with your final URL.
 
 .. note :: You can configure any type of service here, you're not limited to an uberspace IMAP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_Port`` etc. accordingly.
+
 You can edit other options, look into .env.template to see a list of available options.
 
 
@@ -202,9 +204,8 @@ Configuration
 Setup web backend
 -----------------
 
-.. note::
+.. note:: Enter the port you configured in the ``env`` file before.
 
-    Enter the port you configured in the ``env`` file before.
 If you want to use a subdomain refer to the :manual:`web-backend manual <web-backends>`.
 
 .. include:: includes/web-backend.rst
@@ -283,7 +284,6 @@ To restore your database simply overwrite ``db.sqlite3`` with ``backup.sqlite3``
 
  [isabell@stardust ~]$ supervisorctl restart bitwarden_rs
 
-
 Hardening
 ---------
 
@@ -324,7 +324,6 @@ Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the the follow
 
  SHOW_PASSWORD_HINT=false
 
-
 Update
 ======
 
@@ -364,10 +363,8 @@ This guide is based on the official `bitwarden_rs documentation`_ as well as the
 .. _feed: https://github.com/dani-garcia/bitwarden_rs/releases
 .. _GNU General Public License: https://roundcube.net/license/
 
-
 ----
 
 Tested with Bitwarden_rs 2.13.2, Uberspace 7.5.1.0
 
 .. author_list::
-
