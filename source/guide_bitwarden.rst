@@ -18,7 +18,7 @@ Bitwarden_rs
 
 .. tag_list::
 
-Bitwarden_ is an open source password manager. Your vault is encrypted with your master key, so even if your server is compromised the hacker will only get some unreadable gibberish. Hosting your own Bitwarden server can be usefull if you are paranoid about the server security and want to be in full control, or want the premium features for free because you have a webspace anyway.
+Bitwarden_ is an open source password manager. Your vault is encrypted with your master key, so even if your server is compromised the hacker will only get some unreadable gibberish. Hosting your own Bitwarden server can be useful if you are paranoid about the server security and want to be in full control, or want the premium features for free because you have a webspace anyway.
 
 .. note :: The installation of the official `bitwarden server repository`_ via docker is heavy, difficult and relies on docker, which `isn't supported`_ at uberspace due to the fact of shared hosting. In this guide we'll use the Rust implementation `Bitwarden_rs`_ of the Bitwarden API, so you can still use the official clients.
 
@@ -35,7 +35,7 @@ Bitwarden_ is an open source password manager. Your vault is encrypted with your
 License
 =======
 
-Roundcube is released under the GNU General Public License_ version 3 or any later version.
+Bitwarden_rs is released under the GNU General Public License_ version 3 or any later version.
 
 Prerequisites
 =============
@@ -118,11 +118,11 @@ To compile the project, we need to install the `rust toolchain`_. Install it via
  Rust is installed now. Great!
 
 
-To finish the setup, logout and login again or run
+To finish the setup, **logout and login** again or run
 
 .. code-block:: console
 
- [isabell@stardust ~]$ source $HOME/.cargo/env.
+ [isabell@stardust ~]$ source $HOME/.cargo/env
 
 Install Bitwarden_rs
 --------------------
@@ -148,7 +148,7 @@ In order to build bitwarden_rs  sucessfully you'll need to set an environment va
 
 Build the server executable:
 
-.. note :: If that doesn't work the first time, just try again.
+.. note :: If that doesn't work the first time and the build failed, **just try again**.
 
 .. code-block:: console
 
