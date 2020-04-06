@@ -38,9 +38,10 @@ Prerequisites
 Domain
 ------
 
-Your ejabberd domain ``isabell.example``needs to be setup. ejabberd then defaults to the subomains
+Your ejabberd domain ``isabell.example`` needs to be setup. ejabberd then defaults to the subomains
 ``upload.isabell.example``, ``conference.isabell.example`` , ``pubsub.isabell.example`` and ``proxy.isabell.example``
 ::
+
  [isabell@stardust ~]$ uberspace web domain add isabell.example
  [isabell@stardust ~]$ uberspace web domain add conference.isabell.example
  [isabell@stardust ~]$ uberspace web domain add upload.isabell.example
@@ -49,6 +50,7 @@ Your ejabberd domain ``isabell.example``needs to be setup. ejabberd then default
 
 Also we need the SSL Certificates:
 ::
+
  [isabell@stardust ~]$ curl https://isabell.example
  [isabell@stardust ~]$ curl https://conference.isabell.example
  [isabell@stardust ~]$ curl https://upload.isabell.example
@@ -100,6 +102,7 @@ Installation
 
 Download, configure, compile and install ejabberd.
 Use the following options for ``./configure``:
+
   * ``--prefix=$HOME/opt/ejabberd/``: Install to your personal uberspace
   * ``--enable-user=$USER``: Allow execution of ejabberd as $USER
   * ``--enable-mysql --enable-new-sql-schema``: optionally compile with mysql support
@@ -300,16 +303,14 @@ For additional options visit the `ejabberd documentation <https://docs.ejabberd.
 Configure web backend
 ---------------------
 
+.. include:: includes/web-backend.rst
+
+Configure the web backend for the domain ``upload.isabell.example`` to listen on the ejabberd_http port.
+
 .. note::
 
     ejabberd is listening on  port ``5443``.
 
-::
-
- [isabell@stardust ~]$ uberspace web backend set upload.isabell.example/ --http --port 5443
- Set backend for upload.isabell.example/ to port 5443; please make sure something is listening!
- You can always check the status of your backend using "uberspace web backend list".
- [isabell@stardust ~]$
 
 Setup daemon
 ------------
