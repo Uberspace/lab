@@ -98,7 +98,7 @@ Afterwards leave the shell with the ``exit`` command.
 Installation
 ------------
 
-Now you can install all the depenencies needed for xBrowserSync by using npm.
+Now you can install all the dependencies needed for xBrowserSync by using npm.
 Additionally you can let npm run a so called `security audit`_, which detects and updates insecure dependencies.
 
 ::

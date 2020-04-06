@@ -70,7 +70,7 @@ Check the current `stable release`_ and copy the version number which you have t
  […]
  [isabell@stardust ~]$
 
-Install all neccessary dependencies using Composer. This can take some time.
+Install all necessary dependencies using Composer. This can take some time.
 
 ::
 
@@ -117,7 +117,7 @@ Save the changed file and start the installation using the Kimai console.
 Finishing installation
 ======================
 
-Finish the installation by creating an admin user with the Kimai console. Insert your username and email adress in the shell command. You will be prompted to insert a password afterwards.
+Finish the installation by creating an admin user with the Kimai console. Insert your username and email address in the shell command. You will be prompted to insert a password afterwards.
 
 Please don't use ``admin`` as your username and set yourself a strong password.
 
@@ -138,7 +138,7 @@ Best practices
 Security
 --------
 
-By default Kimai allows any visitor of your domain to register a new user account. You might want to diable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
+By default Kimai allows any visitor of your domain to register a new user account. You might want to disable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
 
 Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
 

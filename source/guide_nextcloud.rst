@@ -56,7 +56,7 @@ Installation
 
 ``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
 
-.. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
+.. note:: The link to the latest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
 ::
 
@@ -93,7 +93,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 Memcaching
 ----------
 
-To further enhance perfomance, enable Memcaching.
+To further enhance performance, enable Memcaching.
 
 To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
 
@@ -110,7 +110,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 opcache
 -------
 
-Enable opcache to further optimise perfomance.
+Enable opcache to further optimise performance.
 
 To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
 

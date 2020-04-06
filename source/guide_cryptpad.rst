@@ -145,7 +145,7 @@ Now let's start the service:
 Customization
 =============
 
-For any futher configuration or customization you should have a look at the `Cryptpad Wiki`_.
+For any further configuration or customization you should have a look at the `Cryptpad Wiki`_.
 
 Updates
 =======
@@ -165,7 +165,7 @@ If there is a new version available, you can get the code using git. Replace the
 
   [isabell@stardust cryptpad]$
 
-Now updated dependecies:
+Now updated dependencies:
 
 .. code-block:: console
 

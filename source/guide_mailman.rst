@@ -130,7 +130,7 @@ In case errors are found, you should definitely fix them before continuing.
 Step 4
 ------
 
-If you want the webinterface to be available publically, we need to create a couple of SymLinks and an htaccess-file:
+If you want the webinterface to be public available, we need to create a couple of SymLinks and an htaccess-file:
 
 ::
 

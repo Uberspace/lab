@@ -76,7 +76,7 @@ Configuration
 
 Visit your domain followed by ``/panel`` (e.g. ``isabell.uber.space/panel``) to visit the admin panel and create your admin account. Please use a strong password for this.
 
-When you're ready to launch your website with Kirby you need to purchase a license_. To register your license login to the admin panel, click register in the upper right corner and enter the neccessary information.
+When you're ready to launch your website with Kirby you need to purchase a license_. To register your license login to the admin panel, click register in the upper right corner and enter the necessary information.
 
 Please make sure to deactivate the debug mode for your site when going live. Edit the ``site/config/config.php`` file and set the ``debug`` option to ``false`` to achieve that.
 

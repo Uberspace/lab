@@ -17,7 +17,7 @@ Mattermost
 
 .. tag_list::
 
-`Mattermost`_ is an open-source, self-hostable online chat service written in Go and JavaScript.
+`Mattermost`_ is an open-source, self-hosted online chat service written in Go and JavaScript.
 
 ----
 
@@ -92,7 +92,7 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the databse you created earlier:
+Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the database you created earlier:
 
 .. code-block:: javascript
  :emphasize-lines: 3

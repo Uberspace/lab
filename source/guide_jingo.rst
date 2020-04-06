@@ -91,7 +91,7 @@ You then have to configure the Git repository with name and email, if you haven'
   [isabell@stardust jingo_data]$ git config user.email "$USER@uber.space"
   [isabell@stardust jingo_data]$
 
-.. note:: You can of course set arbitrary informations here. If you want to share your data using Github for example, you might want to set the appropriate data.
+.. note:: You can of course set arbitrary information here. If you want to share your data using Github for example, you might want to set the appropriate data.
 
 Change the configuration
 ------------------------

@@ -210,7 +210,7 @@ Insert this configuration for the domains given above:
 Cronjob
 -------
 
-For executing periodical tasks like e.g. updatíng the search index, purging old logs or checking for updates,
+For executing periodical tasks like e.g. updating the search index, purging old logs or checking for updates,
 you will need to create a cronjob.
 
 Get your cron url for your site at ``Administration > Configuration > System > Cron (/admin/config/system/cron)``.

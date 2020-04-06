@@ -154,7 +154,7 @@ Your site is now ready to use.
 Installing Plugins
 =============================
 
-Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Plugins or edit Code via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
+Unlike a "normal" Wordpress-Installation, with bedrock, you cannot install Plugins or edit Code via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
 
 Instead you can use composer to manage Plugins. Every Plugin (or Theme) listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
 

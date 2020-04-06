@@ -92,7 +92,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 Configuration
 =============
 
-Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, we recommend to use a seperate database such as ``<username>_freshrss``. Replace ``<username>`` with your actual user name.
+Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, we recommend to use a separate database such as ``<username>_freshrss``. Replace ``<username>`` with your actual user name.
 
 Cron job
 --------
