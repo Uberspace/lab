@@ -12,7 +12,7 @@ coturn
 
 .. tag_list::
 
-The TURN Server is a VoIP media traffic NAT traversal server and gateway. It can be used as a general-purpose network traffic TURN server and gateway, too.
+The `TURN Server <https://github.com/coturn/coturn>`_ is a VoIP media traffic NAT traversal server and gateway. It can be used as a general-purpose network traffic TURN server and gateway, too.
 On-line management interface (over telnet or over HTTPS) for the TURN server is available.
 The implementation also includes some extra experimental features.
 
@@ -28,10 +28,12 @@ Installation
 
 Download, configure, compile and install coturn to your uberspace home directory.
 Use the following options for ``./configure``:
+
   * ``--prefix=$HOME/opt/turnserver/``: Install to separate folder in your personal uberspace
-  
-.. note:: Coturn supports sqlite, mysql,, postgresql, mongodb and redis as database backends.
-  Sqlite and mysql work out of the box. 
+
+.. note::
+  Coturn supports sqlite, mysql, postgresql, mongodb and redis as database backends.
+  Sqlite and mysql work out of the box.
   If you want the others you must install them before and set ``CPATH`` and ``LIBRARY_PATH`` accoringly.
 
 ::
@@ -44,12 +46,12 @@ Use the following options for ``./configure``:
  [isabell@stardust turnserver-4.5.0.8]$ ./configure --prefix=$HOME/opt/turnserver
  [isabell@stardust turnserver-4.5.0.8]$ make
  [isabell@stardust turnserver-4.5.0.8]$ make install
- 
- Make the binaries and man pages available through ``.bash_profile``:
+
+Make the binaries and man pages available through ``.bash_profile``:
 
 .. code-block:: bash
 
- # Turnserver Environement
+ # Turnserver Environment
  export PATH=$HOME/opt/turnserver/bin:$PATH
  export MANPATH=${MANPATH:+${MANPATH}:}$HOME/opt/turnserver/man
 
@@ -65,22 +67,23 @@ So lets open 5 ports.
 
 
 Create a configuration
--------------------
+----------------------
 The default configuration can be found at ``$HOME/opt/turnserver/etc/turnserver.conf.default``.
-So have a look there for all options.
+So have a look there or at the documantation_ for all options.
 
-Create a new config file at ``$HOME/etc/coturn/turnserver.conf``
-For some ciphers we also nee a DH-file. So lets create that as well.
+For some ciphers we need a DH-file:.
 
 ::
- [isabell@stardust ~]$ mkdir -p $HOME/etc/coturn
- [isabell@stardust ~]$ cd $HOME/etc/coturn
- [isabell@stardust coturn]$ openssl dhparam -out dhparam-2066.pem 2066
- [isabell@stardust coturn]$ nano turnserver.conf
 
+  [isabell@stardust ~]$ mkdir -p $HOME/etc/coturn
+  [isabell@stardust ~]$ cd $HOME/etc/coturn
+  [isabell@stardust coturn]$ openssl dhparam -out dhparam-2066.pem 2066
+
+Create a new config file at ``$HOME/etc/coturn/turnserver.conf``
 Replace values in brackets ``<value>`` with your values.
 
 ::
+
  listening-port=<port-1>
  tls-listening-port=<port-1>
  alt-listening-port=<port-2>
@@ -94,7 +97,7 @@ Replace values in brackets ``<value>`` with your values.
  fingerprint
  lt-cred-mech
  use-auth-secret
- static-auth-secret=<YOURSUPERLONGSUPERSECRETSTATICPASSPHRASE>
+ static-auth-secret=<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>
  realm=isabell.uber.space
  total-quota=100
  bps-capacity=0
@@ -120,3 +123,57 @@ Create ``~/etc/services.d/coturn.ini`` with the following content:
 .. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
+
+Finishing installation
+======================
+
+There are a multiple applications that can use your turnserver.
+
+Nextcloud Talk
+--------------
+If you are using :lab:`Nextcloud<guide_nextcloud>`, the Talk app can use coturn as STUN and TURN server.
+Therefore in Nextcloud go to ``Settings`` and select the ``Talk`` Tab.
+
+  * Add ``isabell.uber.space:<port-1>`` as STUN Server.
+  * Add ``isabell.uber.space:<port-1>`` with ``<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>`` as TURN Server for ``UDP and TCP``
+  * Test your server (the little heart beat symbol next to it)
+
+The test should result in a checkmark symbol. If not check your Nextcloud and coturn logs.
+
+Synapse
+-------
+The :lab:`Synapse<guide_synapse>` homeserver can be configured to offer your coturn server for webRTC calls.
+Therefore edit your ``homeserver.yaml`` config:
+
+.. code-block:: yaml
+  :emphasize-lines: 5-8,11
+
+  ## TURN ##
+
+  # The public URIs of the TURN server to give to clients
+  turn_uris:
+    - "turns:isabell.uber.space:<port-1>?transport=udp"
+    - "turns:isabell.uber.space:<port-1>?transport=tdp"
+    - "turn:isabell.uber.space:<port-1>?transport=udp"
+    - "turn:isabell.uber.space:<port-1>?transport=tdp"
+
+  # The shared secret used to compute passwords for the TURN server
+  turn_shared_secret: "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
+
+
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+Check coturn's `releases <https://github.com/coturn/coturn/releases>`_ for the latest version. If a newer
+version is available, stop daemon with ``supervisorctl stop coturn`` and repeat the "Installation" step followed by ``supervisorctl start coturn`` to restart coturn.
+
+.. _documantation: https://github.com/coturn/coturn/wiki/turnserver
+.. _feed: https://github.com/coturn/coturn/releases.atom
+
+----
+
+Tested with coturn 4.5.1.1 and Uberspace 7.5.1
+
+.. author_list::
