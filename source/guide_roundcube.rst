@@ -165,7 +165,7 @@ On the last tab *Test config* click on **initialize database** to initialize the
 
 .. note:: Optionally you can check your SMTP & IMAP config by entering valid credentials down here, but it's not necessary.
 
-Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and
+You're done. Point your Browser to your installation URL ``https://isabell.uber.space`` and
 admire your shiny new Roundcube!
 
 
