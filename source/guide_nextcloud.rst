@@ -190,7 +190,7 @@ If the web installation fails, install the app manually in your shell:
 ::
 
   [isabell@stardust html]$ cd apps
-  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/latest/download/spreed.tar.gz | tar -xvzf -
+  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
 
 Reload the page and press the talk icon in the top menu bar.
 
