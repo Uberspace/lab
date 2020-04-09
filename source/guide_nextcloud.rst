@@ -9,6 +9,8 @@
 .. tag:: groupware
 .. tag:: sync
 .. tag:: project-management
+.. tag:: voip
+.. tag:: video-chat
 
 .. sidebar:: Logo
 
@@ -178,6 +180,19 @@ Both apps can be installed optional during the main install, but the huge docume
 
 Reload the admin panel and enable the Community Document Server.
 A click on a text/spreadsheet document should now start the Onlyoffice Editor.
+
+Nextcloud Talk
+--------------
+
+To can enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
+If the web installation fails, install the app manually in your shell:
+
+::
+
+  [isabell@stardust html]$ cd apps
+  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/latest/download/spreed.tar.gz | tar -xvzf -
+
+Reload the page and press the talk icon in the top menu bar.
 
 Updates
 =======
