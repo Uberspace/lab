@@ -118,7 +118,7 @@ Create ``~/etc/services.d/coturn.ini`` with the following content:
 .. code-block:: ini
 
   [program:coturn]
-  command=%(ENV_HOME)s/opt/coturn/bin/turnserver -c %(ENV_HOME)s/etc/coturn/turnserver.conf
+  command=%(ENV_HOME)s/opt/turnserver/bin/turnserver -c %(ENV_HOME)s/etc/coturn/turnserver.conf
 
 .. include:: includes/supervisord.rst
 
@@ -153,9 +153,9 @@ Therefore edit your ``homeserver.yaml`` config:
   # The public URIs of the TURN server to give to clients
   turn_uris:
     - "turns:isabell.uber.space:<port-1>?transport=udp"
-    - "turns:isabell.uber.space:<port-1>?transport=tdp"
+    - "turns:isabell.uber.space:<port-1>?transport=tcp"
     - "turn:isabell.uber.space:<port-1>?transport=udp"
-    - "turn:isabell.uber.space:<port-1>?transport=tdp"
+    - "turn:isabell.uber.space:<port-1>?transport=tcp"
 
   # The shared secret used to compute passwords for the TURN server
   turn_shared_secret: "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
