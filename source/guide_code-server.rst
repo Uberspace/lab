@@ -24,6 +24,7 @@ code-server_  is `VS Code`_ running on a remote server, in this guide your Ubers
 
   * :manual:`web backends <web-backends>`
   * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -40,12 +41,11 @@ Setup your Domain:
 Installation
 =============
 
-Create a new folder for code-server_ in your home directory and switch into it. We are also gonna create a user directory in which our projects will be saved.
+Create a new folder for code-server_ in your home directory and switch into it.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/code-server && cd ~/code-server
-  [isabell@stardust code-server]$ mkdir ~/code-projects
   [isabell@stardust code-server]$ 
 
 
