@@ -18,7 +18,7 @@ code-server
 
 .. tag_list::
 
-code-server_  is `VS Code`_ running on a remote server, in this guide your Uberspace, accessible through the browser.
+code-server_  is `VS Code`_ running on a remote server, in this guide your Uberspace, accessible through the browser. `VS Code `_ is a modern code editor with integrated Git support, a code debugger, smart autocompletion, and customizable and extensible features. This means that you can use various devices running different operating systems, and always have a consistent development environment on hand.
 
 ----
 
@@ -80,7 +80,7 @@ Setup daemon
 
 .. note::
 
-    Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file.
+    Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file. You can see all available command line arguments when running code-server_ with the ``--help`` argument.
 
 Create ``~/etc/services.d/code-server.ini`` with the following content. 
 Make sure to `<password>` with your password.
