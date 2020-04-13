@@ -80,7 +80,7 @@ Setup daemon
 
 .. note::
 
-    Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file. You can see all available command line arguments when running code-server_ with the ``--help`` argument.
+    Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file. You can see all available command line arguments when running code-server_ with the ``--help`` argument. For example, you can disable telemetry by adding ``--disable-telemetry``.
 
 Create ``~/etc/services.d/code-server.ini`` with the following content. 
 Make sure to `<password>` with your password.
