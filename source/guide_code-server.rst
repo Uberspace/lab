@@ -2,6 +2,8 @@
 
 .. tag:: lang-nodejs
 .. tag:: web
+.. tag:: ide
+.. tag:: collaborative-editing 
 
 .. highlight:: console
 
