@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/code-server.svg
+  .. image:: _static/images/code-server.png
       :align: center
 
 #############
