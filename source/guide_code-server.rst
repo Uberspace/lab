@@ -83,9 +83,10 @@ Setup daemon
     Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file.
 
 Create ``~/etc/services.d/code-server.ini`` with the following content. 
-Replace `<password>` with your password.
+Make sure to `<password>` with your password.
 
 .. code-block:: ini
+  :emphasize-lines: 3
 
   [program:code-server]
   command=%(ENV_HOME)s/code-server/code-server --host 127.0.0.1 --port 8080 --user-data-dir %(ENV_HOME)s/code-server --auth password
