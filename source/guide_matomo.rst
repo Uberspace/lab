@@ -46,25 +46,15 @@ If you want to use Matomo with your own domain you need to add it first:
 Installation
 ============
 
-If you want to install Matomo into a subfolder of your domain, create a new folder and navigate to it:
+If you want to install Matomo into a subfolder of your domain, download and unzip it in your :manual:`document root <web-documentroot>`:
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ mkdir matomo
- [isabell@stardust html]$ cd matomo/
- [isabell@stardust matomo]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ wget https://builds.matomo.org/matomo.zip
+ [isabell@stardust html]$ unzip matomo.zip
+ [isabell@stardust html]$ rm matomo.zip
 
-Matomo can also be installed directly into your :manual:`document root <web-documentroot>`, which makes it accessible as ``https://isabell.uber.space`` directly. In that case, skip the last two commands. Your prompt will read ``[isabell@stardust html]$`` for the following steps.
-
-Now download the latest version and extract it:
-
-::
-
- [isabell@stardust matomo]$ wget https://builds.matomo.org/matomo.zip
- [isabell@stardust matomo]$ unzip matomo.zip
- [isabell@stardust matomo]$ rm matomo.zip
-
-Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo`` or ``https://isabell.uber.space/``. Follow the instructions in your browser.
+Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. Follow the instructions in your browser.
 
 You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
