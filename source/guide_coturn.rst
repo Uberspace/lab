@@ -103,7 +103,7 @@ Replace values in brackets ``<value>`` with your values.
  bps-capacity=0
  stale-nonce
  cert=/home/isabell/etc/certificates/isabell.uber.space.crt
- key=/home/isabell/etc/certificates/isabell.uber.space.key
+ pkey=/home/isabell/etc/certificates/isabell.uber.space.key
  dh-file=/home/isabell/etc/coturn/dhparam-2066.pem
  cipher-list="ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AES:RSA+3DES:!ADH:!AECDH:!MD5"
  no-cli
