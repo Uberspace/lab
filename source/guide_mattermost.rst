@@ -157,7 +157,7 @@ Updates
 -------
 
 Stop your service, backup your ``/home/isabell/mattermost/client``, ``/home/isabell/mattermost/config`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
-Proceed with the installation steps and restore these directories. Then you can start your service again.
+Proceed with the installation steps and restore the ``client``, ``config`` and ``plugins`` directories. Then you can start your service again.
 
 .. _`Mattermost website`: https://mattermost.com/download/
 
