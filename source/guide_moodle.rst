@@ -82,8 +82,7 @@ Step 1
 ------
 First, we're going to download Moodle and extract it. For this, we should first change into the html directory of your account.
 
-Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the downloadlink on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: https://download.moodle.org/download.php/direct/...
-I will show an example below:
+Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the downloadlink on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
 
 ::
 
@@ -93,7 +92,7 @@ I will show an example below:
  [isabell@stardust html]$ rm moodle.tgz
  [isabell@stardust html]$
 
-The --strip-components=1 option will unpack the contents of the moodle folder inside the archive into the current folder. You could also unpack the archive with its subdirectory if you plan to use it with your own domain:
+The ``--strip-components=1`` option will unpack the contents of the moodle folder inside the archive into the current folder. You could also unpack the archive with its subdirectory if you plan to use it with your own domain:
 
 ::
 
