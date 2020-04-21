@@ -45,7 +45,7 @@ Copy the default configuration:
 
 ::
 
- [isabell@stardust ~]$ cp /etc/goaccess.conf ~/etc/goaccess.conf
+ [isabell@stardust ~]$ cp /etc/goaccess/goaccess.conf ~/etc/goaccess.conf
 
 Edit the configuration file and uncomment the following parameters:
 
