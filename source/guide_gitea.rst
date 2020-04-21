@@ -146,6 +146,27 @@ Add your key in gitea and then change the line in ``.ssh/authorized_keys`` to th
 
 .. warning:: Replace ``<username>`` with your username and put your public key after ``ssh-``!
 
+Tuning
+======
+
+You can easily add AsciiDoc rendering to Gitea. Install asciidoctor via ruby gems:
+
+::
+
+ [isabell@stardust ~]$ gem install asciidoctor
+
+Edit your config file at ``~/gitea/custom/conf/app.ini`` to enable asciidoctor in Gitea:
+
+.. code-block:: ini
+
+  [markup.asciidoc]
+  ENABLED = true
+  FILE_EXTENSIONS = .adoc,.asciidoc
+  RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
+  IS_INPUT_FILE = false
+
+At least stop (``supervisorctl stop gitea``) and restart (``supervisorctl stop gitea``) Gitea. Try it with a .adoc or .asciidoc file
+
 Updates
 =======
 
@@ -162,6 +183,6 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 ----
 
-Tested with Gitea 1.7.2, Uberspace 7.1.16
+Tested with Gitea 1.11.4, Uberspace 7.6.0
 
 .. author_list::
