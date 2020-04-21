@@ -55,18 +55,18 @@ make sure that the file can be executed.
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.7.2/gitea-1.7.2-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.11.4/gitea-1.11.4-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
-  Length: 52960072 (51M) [application/octet-stream]
+  Length: 83144088 (79M) [application/octet-stream]
   Saving to: gitea/gitea’
 
-  100%[=======================================================>] 52,960,072  9.99MB/s   in 5.8s
+  100%[=======================================================>]  83.144.088  23,7MB/s   in 3,9s
 
-  2018-09-16 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [60473144/60473144]
+  2020-04-21 10:36:36 (20.6 MB/s) - gitea/gitea’ saved [83144088/83144088]
   [isabell@stardust ~]$ sha256sum gitea/gitea
-  b84098f0b0018071aa1ba5522078820494def29e6385c25c581c4362a4e463b3 gitea/gitea
+  4408c781069c36cbb1b5923ae924e67ceee661ba9c9bd6c73cd7408c9cd62af6 gitea/gitea
   [isabell@stardust ~]$ chmod +x gitea/gitea
   [isabell@stardust ~]$
 
@@ -153,6 +153,8 @@ Updates
 
 Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If a newer
 version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the "Installation" step followed by ``supervisorctl start gitea`` to restart gitea.
+
+.. note:: If you are skipping some versions, Gitea might need to make some migrations to the database. During that time the instance is not reachable and you don't see any progress. To avoid this run ``gitea migrate`` before restarting the service.
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
