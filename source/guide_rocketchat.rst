@@ -144,6 +144,7 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
    --auth
    --unixSocketPrefix %(ENV_HOME)s/mongodb
    --replSet rs01
+ startsecs=60
  autostart=yes
  autorestart=yes
 

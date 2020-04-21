@@ -162,6 +162,7 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
 
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
+  startsecs=60
 
 .. include:: includes/supervisord.rst
 
