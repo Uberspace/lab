@@ -134,7 +134,7 @@ Edit ``config/config.js`` and edit following lines:
 .. code-block:: console
 
   [isabell@stardust cryptpad]$ uberspace web backend list
-/ http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
+  / http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
 
 
 3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
@@ -168,7 +168,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the version number ``2.19.0`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the version number ``3.16.0`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
