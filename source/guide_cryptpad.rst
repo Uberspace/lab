@@ -45,12 +45,12 @@ You need to use ``/`` or ``domain.example/`` in the domain part since subfolders
 
 Now let's get started with Cryptpad.
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 10
- Selected Node.js version 10
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Selected Node.js version 12
  [isabell@stardust ~]$
 
 We also need `Bower`:
@@ -58,24 +58,27 @@ We also need `Bower`:
 ::
 
  [isabell@stardust ~]$ npm install -g bower
- [isabell@stardust ~]$
+ npm WARN deprecated bower@1.8.8: We don't recommend using Bower for new projects. Please consider Yarn and Webpack or Parcel. You can read how to migrate legacy project here: https://bower.io/blog/2017/how-to-migrate-away-from-bower/
+
+Please ignore Bower's warning. As of this writing, CryptPad still uses Bower (not Yarn, not Parcel), and so will you.
 
 Installation
 ============
 
-Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``2.21.0`` with the current release number from the feed_:
+Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``3.16.0`` with the current release number from the feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 2.21.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 3.16.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
-  remote: Enumerating objects: 172, done.
-  remote: Counting objects: 100% (172/172), done.
-  remote: Compressing objects: 100% (105/105), done.
-  remote: Total 43165 (delta 99), reused 109 (delta 67), pack-reused 42993
-  Receiving objects: 100% (43165/43165), 85.51 MiB | 4.81 MiB/s, done.
-  Resolving deltas: 100% (30989/30989), done.
-  Note: checking out '135182ea0a3500d27afe0146c94e112e1726ae7e'.
+  remote: Enumerating objects: 136, done.
+  remote: Counting objects: 100% (136/136), done.
+  remote: Compressing objects: 100% (86/86), done.
+  remote: Total 75814 (delta 79), reused 93 (delta 50), pack-reused 75678
+  Receiving objects: 100% (75814/75814), 171.23 MiB | 21.62 MiB/s, done.
+  Resolving deltas: 100% (48757/48757), done.
+  Note: checking out 'b0b4029556d89d8b6b0c30e9dfab528edb65813b'.
+
 
   You are in 'detached HEAD' state. You can look around, make experimental
   changes and commit them, and you can discard any commits you make in this
@@ -97,13 +100,14 @@ Now we need to install some dependencies:
   [isabell@stardust ~]$ cd ~/cryptpad
   [isabell@stardust cryptpad]$ npm install
   (...)
-  added 168 packages from 186 contributors and audited 311 packages in 14.352s
+  added 212 packages from 231 contributors and audited 375 packages in 9.467s
+  (...)
   found 0 vulnerabilities
   [isabell@stardust cryptpad]$ bower install
   (...)
   bower install       open-sans-fontface#1.4.2
-  bower install       jquery#2.1.4
-  bower install       bootstrap#4.3.1
+  bower install       jquery#2.2.4
+  bower install       bootstrap#4.4.1
   (...)
 
 Configuration
@@ -116,14 +120,18 @@ Copy example configuration
 
   [isabell@stardust cryptpad]$ cp config/config.example.js config/config.js
 
-Edit ``config/config.js`` and change the value of the variable ``_domain`` to your domain, like so:
+Edit ``config/config.js`` and edit following lines:
+
+1. Uncomment the line beginning with ``//httpSafeOrigin:`` by removing the two slashes, and replace your instance URL like so:
 
 .. code-block:: js
 
-  /*
-      globals module
-  */
-  var _domain = 'https://isabell.uber.space/';
+  httpSafeOrigin: "https://isabell.uber.space/",
+
+
+2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value `::` remains as it is.
+
+3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
 
 Setup daemon
 ------------
@@ -159,9 +167,9 @@ If there is a new version available, you can get the code using git. Replace the
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
-  [isabell@stardust cryptpad]$ git pull origin 2.19.0
+  [isabell@stardust cryptpad]$ git pull origin 3.16.0
   From https://github.com/xwiki-labs/cryptpad
-   * tag                 2.19.0     -> FETCH_HEAD
+   * tag                 3.16.0     -> FETCH_HEAD
   Already up to date.
 
   [isabell@stardust cryptpad]$
@@ -194,6 +202,6 @@ Then you need to restart the service, so the new code is used by the webserver:
 
 ----
 
-Tested with Cryptpad 2.19.0 and Uberspace 7.2.4.0
+Tested with Cryptpad 3.16.0 and Uberspace 7.6.0.0
 
 .. author_list::
