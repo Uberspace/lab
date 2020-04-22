@@ -129,7 +129,13 @@ Edit ``config/config.js`` and edit following lines:
   httpSafeOrigin: "https://isabell.uber.space/",
 
 
-2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value `::` remains as it is.
+2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.
+   If you forget to make this change, the command ``uberspace web backend list`` will later complain as follows:
+.. code-block:: console
+
+  [isabell@stardust cryptpad]$ uberspace web backend list
+/ http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
+
 
 3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
 
