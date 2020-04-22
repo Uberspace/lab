@@ -165,7 +165,7 @@ Edit your config file at ``~/gitea/custom/conf/app.ini`` to enable asciidoctor i
   RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
   IS_INPUT_FILE = false
 
-At least stop (``supervisorctl stop gitea``) and restart (``supervisorctl stop gitea``) Gitea. Try it with a .adoc or .asciidoc file
+At least stop (``supervisorctl stop gitea``) and restart (``supervisorctl stop gitea``) Gitea. Try it with a .adoc or .asciidoc file.
 
 Updates
 =======
