@@ -2,6 +2,7 @@
 .. author:: Nico Graf <hallo@uberspace.de>
 .. author:: Peleke <https://www.peleke.de>
 .. author:: Noah <https://noahwagner.de>
+.. author:: tobimori <tobias@moeritz.cc>
 
 .. tag:: lang-nodejs
 .. tag:: web
