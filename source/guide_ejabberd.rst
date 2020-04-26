@@ -48,7 +48,7 @@ Your ejabberd domain ``isabell.example`` needs to be setup. ejabberd then defaul
  [isabell@stardust ~]$ uberspace web domain add pubsub.isabell.example
  [isabell@stardust ~]$ uberspace web domain add proxy.isabell.example
 
-Also we need the SSL Certificates:
+Also we need the SSL Certificates. Visit the domains in a browser or run:
 ::
 
  [isabell@stardust ~]$ curl https://isabell.example
@@ -56,45 +56,6 @@ Also we need the SSL Certificates:
  [isabell@stardust ~]$ curl https://upload.isabell.example
  [isabell@stardust ~]$ curl https://pubsub.isabell.example
  [isabell@stardust ~]$ curl https://proxy.isabell.example
-
-LibYAML
--------
-ejabberd needs `LibYAML <https://pyyaml.org/wiki/LibYAML>`_ for compilation.
-
-Create a working directory.
-
-::
-
- [isabell@stardust ~]$ mkdir ~/src/
- [isabell@stardust ~]$ cd ~/src/
- [isabell@stardust src]$
-
-Download the latest version from https://pyyaml.org/download/libyaml/.
-
-::
-
- [isabell@stardust src]$ wget https://pyyaml.org/download/libyaml/yaml-0.2.2.tar.gz
- [isabell@stardust src]$ tar xf yaml-0.2.2.tar.gz
- [isabell@stardust src]$ cd yaml-0.2.2/
- [isabell@stardust yaml-0.2.2]$ ./configure --prefix=$HOME/opt/libyaml
- [isabell@stardust yaml-0.2.2]$ make install
- [isabell@stardust yaml-0.2.2]$
-
-Add the following lines to your ``~/.bash_profile`` to make libyaml known for future installations:
-
-.. code-block:: bash
-
- # Add exports to find libyaml
- export CPATH=${CPATH:+${CPATH}:}$HOME/opt/libyaml/include
- export LIBRARY_PATH=${LIBRARY_PATH:+${LIBRARY_PATH}:}$HOME/opt/libyaml/lib
- export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$HOME/opt/libyaml/lib
-
-Reload the ``.bash_profile`` with:
-
-::
-
- [isabell@stardust ~]$ source ~/.bash_profile
- [isabell@stardust ~]$
 
 
 Installation
@@ -106,6 +67,9 @@ Use the following options for ``./configure``:
   * ``--prefix=$HOME/opt/ejabberd/``: Install to your personal uberspace
   * ``--enable-user=$USER``: Allow execution of ejabberd as $USER
   * ``--enable-mysql --enable-new-sql-schema``: optionally compile with mysql support
+  * ``--enable-sqlite``: optionally compile with sqlite support
+
+Run ``./configure --help`` to see all options.
 
 ::
 
@@ -114,7 +78,7 @@ Use the following options for ``./configure``:
  [isabell@stardust src]$ tar xf 20.03.tar.gz
  [isabell@stardust src]$ cd ejabberd-20.03/
  [isabell@stardust ejabberd-20.03]$ ./autogen.sh
- [isabell@stardust ejabberd-20.03]$ ./configure --enable-user=$USER --prefix=$HOME/ejabberd --enable-mysql --enable-new-sql-schema
+ [isabell@stardust ejabberd-20.03]$ ./configure --enable-user=$USER --prefix=$HOME/opt/ejabberd --enable-mysql --enable-new-sql-schema
  [isabell@stardust ejabberd-20.03]$ make install
 
 Make the control script available through ``.bash_profile``:
@@ -148,7 +112,9 @@ As standard ports cannot be used on uberspace SRV records must be set for c2s an
 Change the configuration
 ------------------------
 
-A standard config file is provided at ``~/opt/ejabberd/etc/ejabberd/ejabberd.yaml`` where the ports, domain and administrator need to be set:
+A standard config file is provided at ``~/opt/ejabberd/etc/ejabberd/ejabberd.yml``.
+Copy it to ``~/etc/ejabberd/ejabberd.yml`` so it survives updates.
+Than adjust it with correct ports, domain and administrator settings:
 
 Change the host configuration to listen for the correct domain:
 
@@ -247,7 +213,7 @@ Add your admin user:
   acl:
     admin:
       user:
-        - "admin@isabell.uber.space"
+        - "admin@isabell.example"
     local:
       user_regexp: ""
     loopback:
@@ -320,7 +286,7 @@ Create ``~/etc/services.d/ejabberd.ini`` with the following content:
 .. code-block:: ini
 
   [program:ejabberd]
-  command=%(ENV_HOME)s/opt/ejabberd/sbin/ejabberdctl foreground
+  command=%(ENV_HOME)s/opt/ejabberd/sbin/ejabberdctl --config-dir %(ENV_HOME)s/etc/ejabberd foreground
   autostart=yes
   autorestart=yes
   stopasgroup=true
@@ -353,10 +319,9 @@ version is available, stop daemon by ``supervisorctl stop ejabberd`` and repeat 
 
 .. _Documentation: https://docs.ejabberd.im/
 .. _feed: https://github.com/processone/ejabberd/releases.atom
-.. _Dashboard: https://uberspace.de/dashboard/authentication
 
 ----
 
-Tested with ejabberd 20.02 and Uberspace 7.4.5.0
+Tested with ejabberd 20.03 and Uberspace 7.6.0
 
 .. author_list::
