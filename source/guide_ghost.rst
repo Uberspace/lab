@@ -55,17 +55,19 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Install ghost-cli and knex-migrator
+Install ghost-cli, knex-migrator and yarn
 -----------------------------------
 
-Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally:
+Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally.
+In order to avoid issues and bugs with Ghost_, we need to also install the package manager ``yarn`` to use for further updates.
 
 ::
 
- [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator
+ [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator yarn
  [...]
  + ghost-cli@1.9.1
  + knex-migrator@3.2.3
+ + yarn@1.22.4
  added 690 packages in 31.543s
  [isabell@stardust ~]$
 
@@ -231,14 +233,14 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
 
-Install the required ``node`` modules
+Install the required ``node`` modules with ``yarn``
 -------------------------------------
 
 .. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd ~/ghost/versions/23.42.1/content
- [isabell@stardust content]$ npm install --production
+ [isabell@stardust content]$ yarn install --production
  [...]
  added 91 packages, removed 134 packages and updated 544 packages in 27.303s
  [isabell@stardust content]$
@@ -304,7 +306,7 @@ As an alternative to this manual process of updating Ghost to a new version you 
      rm $GHOSTDIR/versions/$CURRENT_GHOST_FILE
      echo "Updating ghost ..."
      cd $GHOSTDIR/versions/$CURRENT_GHOST
-     npm install --production
+     yarn install --production
      echo "Migrating ghost database ..."
      cd $GHOSTDIR
      NODE_ENV=production knex-migrator migrate --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
