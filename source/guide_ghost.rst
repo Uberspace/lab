@@ -243,7 +243,7 @@ Install the required ``node`` modules with ``yarn``
  [isabell@stardust ~]$ cd ~/ghost/versions/23.42.1/content
  [isabell@stardust content]$ yarn install --production
  [...]
- added 91 packages, removed 134 packages and updated 544 packages in 27.303s
+ Done in 121.15s.
  [isabell@stardust content]$
 
 Migrate your database
