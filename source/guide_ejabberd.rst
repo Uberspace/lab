@@ -73,6 +73,7 @@ Run ``./configure --help`` to see all options.
 
 ::
 
+ [isabell@stardust ~]$ mkdir $HOME/src/
  [isabell@stardust ~]$ cd $HOME/src/
  [isabell@stardust src]$ wget https://github.com/processone/ejabberd/archive/20.03.tar.gz
  [isabell@stardust src]$ tar xf 20.03.tar.gz
@@ -81,13 +82,10 @@ Run ``./configure --help`` to see all options.
  [isabell@stardust ejabberd-20.03]$ ./configure --enable-user=$USER --prefix=$HOME/opt/ejabberd --enable-mysql --enable-new-sql-schema
  [isabell@stardust ejabberd-20.03]$ make install
 
-Make the control script available through ``.bash_profile``:
+Now link the ejabberdctl to $HOME/bin
 
-.. code-block:: bash
-
- # Add ejabberd binaries to PATH
- export PATH=$HOME/opt/ejabberd/sbin:$PATH
-
+::
+ [isabell@stardust ~]$ ln -s $HOME/opt/ejabberd/sbin/ejabberdctl $HOME/bin/
 
 Configuration
 =============
