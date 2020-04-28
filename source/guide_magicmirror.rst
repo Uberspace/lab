@@ -86,7 +86,7 @@ Create ``~/etc/services.d/magicmirror.ini`` with the following content:
 
  [program:magicmirror]
  directory=%(ENV_HOME)s/MagicMirror
- command=npm start
+ command=npm run server
  autostart=yes
  autorestart=yes
 
