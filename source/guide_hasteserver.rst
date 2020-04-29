@@ -10,9 +10,9 @@
   .. image:: _static/images/haste.png
       :align: center
 
-#############
+#####
 Haste
-#############
+#####
 
 .. tag_list::
 
@@ -48,7 +48,7 @@ Setup your URL:
 .. include:: includes/web-domain-list.rst
 
 Installation
-=============
+============
 
 First clone the GitHub_ repository:
 
@@ -75,13 +75,20 @@ Then install the dependencies with ``npm install``:
   [isabell@stardust ~]$
 
 
-Configure storage
-===================
+Configuration
+=============
 
-haste-server_ currently supports six storage solutions, of which the following are supported by Uberspace.
+Storage
+-------
 
+haste-server_ currently supports six storage solutions, of which File, Redis and Postgres are supported by Uberspace. The File backend is the most basic option and does not require additional sofware, Redis and Postgres do require additional steps. With Redis and Postgres you can set the ``expire`` option. This is off by default, but will constantly kick back expirations on each view or post.
+
+.. note:: 
+
+  Pick only one. 
+  
 File
-------
+^^^^
 
 To use file storage change the storage section in ``config.js`` to something like:
 
@@ -95,11 +102,19 @@ To use file storage change the storage section in ``config.js`` to something lik
 where ``path`` represents where you want the files stored.
 
 Redis
---------
+^^^^^
 
-To use redis storage you must setup redis as specified :lab:`here <guide_redis>`, then install the ``redis`` package in npm with ``npm install redis``.
+To use redis storage you must setup redis as specified :lab:`here <guide_redis>`, then install the ``redis`` package in npm with ``npm install redis``:
 
-Make sure to also change the port in ``~/.redis/conf`` to something accessible, like ``6379``.
+.. code-block:: console
+
+  [isabell@stardust ~]$ npm install redis
+  [...]
+  + redis@3.0.2
+  added 5 packages from 7 contributors and audited 6 packages in 1.312s
+  [isabell@stardust ~]$ 
+
+Make sure to also change the port in ``~/.redis/conf`` to something accessible, like ``6379`` and restart redis.
 
 Once you've done that, your config section should look like:
 
@@ -115,9 +130,17 @@ Once you've done that, your config section should look like:
 If your Redis server is configured for password authentification, use the ``password`` field.
 
 Postgres
------------
+^^^^^^^^
 
-To use postgres storage you must setup postgres as specified :lab:`here <guide_postgresql>`, then install the ``pg`` package in npm with ``npm install pg``.
+To use postgres storage you must setup postgres as specified :lab:`here <guide_postgresql>`, then install the ``pg`` package in npm with ``npm install pg``:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ npm install pg
+  [...]
+  + pg@8.0.3
+  added 17 packages from 9 contributors and audited 28 packages in 1.56s
+  [isabell@stardust ~]$ 
 
 Once you've done that, create a new user for haste-server_ and set a password.
 
@@ -160,13 +183,10 @@ Once you've done that, your config section should look like:
 
 Replace ``password`` with the password of user haste.
 
-.. note:: 
-
-  When using a storage solution except for the file storage, you can also set an ``expire`` option to the number of seconds to expire keys in. This is off by default, but will constantly kick back expirations on each view or post.
-  For other configuration options, check the README_ file of haste-server_.
+For other configuration options, check the README_ file of haste-server_.
 
 Configure web server
-==========================
+--------------------
 
 .. note::
 
@@ -175,7 +195,7 @@ Configure web server
 .. include:: includes/web-backend.rst
 
 Setup daemon
-====================
+------------
 
 Create ``~/etc/services.d/haste-server.ini`` with the following content:
 
