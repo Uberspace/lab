@@ -79,7 +79,7 @@ enter crontab with
 
 and enter: (more configuration-details about :manual:`cron <daemons-cron>`)
 
-.. code-block:: guess
+.. code-block::
 
   5 * * * * /usr/bin/php /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
 

@@ -57,7 +57,7 @@ Installation
 ============
 
 Install ghost-cli, knex-migrator and yarn
------------------------------------
+-----------------------------------------
 
 Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally.
 In order to avoid issues and bugs with Ghost_, we need to also install the package manager ``yarn`` to use for further updates.
@@ -235,7 +235,7 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  [isabell@stardust versions]$
 
 Install the required ``node`` modules with ``yarn``
--------------------------------------
+---------------------------------------------------
 
 .. code-block:: console
  :emphasize-lines: 1
