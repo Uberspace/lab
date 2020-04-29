@@ -77,11 +77,11 @@ enter crontab with
 
   [isabell@stardust ~]$ crontab -e
 
-and enter: (more configuration-details about :manual:`cron <daemons-cron>`)
+and enter with your url (more configuration-details about :manual:`cron <daemons-cron>`):
 
 .. code-block:: guess
 
-  5 * * * * /usr/bin/php /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+  5 * * * * /usr/bin/php /home/$USER/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
 
 
 Tracking
