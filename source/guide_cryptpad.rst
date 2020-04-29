@@ -38,12 +38,12 @@ Your webseite domain or subdomain needs to be setup up:
 .. include:: includes/web-domain-list.rst
 
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 10
- Selected Node.js version 10
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Selected Node.js version 12
  [isabell@stardust ~]$
 
 We also need `Bower`:
