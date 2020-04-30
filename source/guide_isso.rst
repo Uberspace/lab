@@ -51,12 +51,13 @@ We're using :manual:`Python <lang-python>` in the version 3.6.8:
  Python 3.6.8
  [isabell@stardust ~]$
 
-Your commenting server URL needs to be setup:
+The host domain and a subdomain for isso need to be setup:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
  isabell.uber.space
+ comments.isabell.uber.space
  [isabell@stardust ~]$
 
 Installation
@@ -80,7 +81,7 @@ Configuration
 Configure Isso
 --------------
 
-Create and open the file ``~/isso/user.cfg`` and configure it according to your needs. Check out the Isso server-manual_ for explanations of all possibilities. Replace ``<username>`` with your Uberspace username and ``<host>`` with your domain:
+Create and open the file ``~/isso/user.cfg`` and configure it according to your needs. Check out the Isso server-manual_ for explanations of all possibilities. Replace ``<username>`` with your Uberspace username and ``<domain>`` with your domain:
 
 ::
 
@@ -91,7 +92,7 @@ Create and open the file ``~/isso/user.cfg`` and configure it according to your 
  [server]
  listen = http://0.0.0.0:1234/
 
-The minimum settings are a link to the sqlite database as well as the host domain and the ip of the local host. The host domain is from where you want to access the isso server - be aware that the comment domain has to be a sub domain of the blog domain (read about CORS_ for more information).
+The minimum settings are a link to the sqlite database as well as the host domain and the ip of the local host. The host domain is from where you want to access the isso server - be aware that the comment domain has to be a sub domain of the main domain (read about CORS_ for more information).
 The port can be any free port of your uberspace (you have chosen that port during the web backend configuration, mentioned above).
 
 .. note:: Currently Isso has an issue with the latest version of the module ``werkzeug``. If the code from above fails with the error message ``"ImportError: cannot import name 'SharedDataMiddleware'"`` you can use the following workaround until the issue gets fixed.
@@ -143,9 +144,14 @@ Configure web server
 
 .. note::
 
-    Isso is running on port 1234, as defined in ``~/isso/user.cfg``. 
+    Isso is running on port 1234, as defined in ``~/isso/user.cfg``. Be aware that the comment domain has to be a subdomain of the main domain (read about CORS_ for more information). Replace ``comments.isabell.uber.space`` with your own subdomain for isso that you configured in the first step.
+    
+::
 
-.. include:: includes/web-backend.rst
+  [isabell@stardust ~]$ uberspace web backend set comments.isabell.uber.space --http --port <port>
+  Set backend for comments.isabell.uber.space to port <port>; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$
 
 Finishing installation
 ======================
