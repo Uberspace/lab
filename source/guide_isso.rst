@@ -12,9 +12,9 @@
   .. image:: _static/images/isso.svg
       :align: center
 
-##########
+####
 Isso
-##########
+####
 
 .. tag_list::
 
@@ -59,19 +59,10 @@ Your commenting server URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-
-Connect a web backend to the Isso Server port you want to use and which will be created later in this guide:
-
-::
-
- [isabell@stardust ~]$ uberspace web backend set comments.isabell.uber.space --http --port 1234
- [isabell@stardust ~]$
-
-
 Installation
 ============
 
-Install Isso:
+Install Isso and create a folder for the database and config file:
 
 ::
 
@@ -80,39 +71,28 @@ Install Isso:
  [...]
  Successfully installed Jinja2-2.11.1 MarkupSafe-1.1.1 bleach-3.1.4 cffi-1.14.0 html5lib-1.0.1 isso-0.12.2 itsdangerous-1.1.0 misaka-2.1.1 pycparser-2.20 six-1.14.0 webencodings-0.5.1 werkzeug-1.0.1
 
- [isabell@stardust ~]$
-
+ [isabell@stardust ~]$ mkdir ~/isso
+ [isabell@stardust ~]$ 
 
 Configuration
 =============
 
 Configure Isso
--------------------
+--------------
 
-Create and open the file ``~/etc/isso/user.cfg`` and configure it according to your needs. Check out the Isso server-manual_ for explanations of all possibilities:
+Create and open the file ``~/isso/user.cfg`` and configure it according to your needs. Check out the Isso server-manual_ for explanations of all possibilities. Replace ``<username>`` with your Uberspace username and ``<host>`` with your domain:
 
 ::
 
  [general]
- dbpath = /home/isabell/etc/isso/comments.db
- host = https://isabell.uber.space/
+ dbpath = /home/isabell/<username>/comments.db
+ host = https://<domain>/
 
  [server]
- listen = http://0.0.0.:1234/
+ listen = http://0.0.0.0:1234/
 
 The minimum settings are a link to the sqlite database as well as the host domain and the ip of the local host. The host domain is from where you want to access the isso server - be aware that the comment domain has to be a sub domain of the blog domain (read about CORS_ for more information).
 The port can be any free port of your uberspace (you have chosen that port during the web backend configuration, mentioned above).
-
-
-Run ``isso -c ~/etc/isso/user.cfg run`` to let Isso check and load the configurations. If everything is set up correctly you should see the following output:
-
-::
-
- [isabell@stardust ~]$ isso -c ~/etc/isso/user.cfg run
- 2020-04-04 13:27:56,086 INFO: connected to https://isabell.uber.space/
- [isabell@stardust ~]$
-
-If you get any error message your configation settings are not correct.
 
 .. note:: Currently Isso has an issue with the latest version of the module ``werkzeug``. If the code from above fails with the error message ``"ImportError: cannot import name 'SharedDataMiddleware'"`` you can use the following workaround until the issue gets fixed.
 
@@ -133,30 +113,39 @@ If you get any error message your configation settings are not correct.
      [isabell@stardust ~]$
 
 
+Run ``isso -c ~/isso/user.cfg run`` to let Isso check and load the configurations. If everything is set up correctly you should see the following output:
+
+::
+
+ [isabell@stardust ~]$ isso -c ~/isso/user.cfg run
+ 2020-04-04 13:27:56,086 INFO: connected to https://isabell.uber.space/
+ [isabell@stardust ~]$
+
+If you get any error message your configation settings are not correct.
 
 Setup daemon
 ------------
-Create and open the file ``~/etc/services.d/isso.ini`` to enter the following lines:
+Create ``~/etc/services.d/isso.ini`` with the following content:
 
-::
+.. code-block:: ini
 
  [program:isso]
- command = /home/isabell/.local/bin/isso -c /home/isabell/etc/isso/user.cfg run
+ command = %(ENV_HOME)s/.local/bin/isso -c %(ENV_HOME)s/isso/user.cfg run
  autostart = true
  autorestart = true
 
-Afterwards tell supervisord to read and load the updated configuration:
+.. include:: includes/supervisord.rst
 
-::
+If it's not in state RUNNING, check your configuration.
 
- [isabell@stardust ~]$ supervisorctl reread
- isso: available
- [isabell@stardust ~]$ supervisorctl update
- isso: added process group
- [isabell@stardust ~]$ supervisorctl status
- isso                             RUNNING   pid 12882, uptime 0:01:18
- [isabell@stardust ~]$
+Configure web server
+--------------------
 
+.. note::
+
+    Isso is running on port 1234, as defined in ``~/isso/user.cfg``. 
+
+.. include:: includes/web-backend.rst
 
 Finishing installation
 ======================
