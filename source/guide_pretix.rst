@@ -98,6 +98,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     url=https://isabell.uber.space
     currency=EUR
     datadir=/home/isabell/pretix_data
+    trust_x_forwarded_proto=on
 
     [database]
     backend=mysql
