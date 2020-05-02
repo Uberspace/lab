@@ -43,11 +43,11 @@ Setup your Domain:
 Installation
 =============
 
-Create a new folder for code-server_ in your home directory and switch into it.
+Create a new folder for code-server_ & its data in your home directory and switch into it.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir ~/code-server && cd ~/code-server
+  [isabell@stardust ~]$ mkdir ~/code-server-data && mkdir ~/code-server && cd ~/code-server
   [isabell@stardust code-server]$ 
 
 
@@ -86,10 +86,10 @@ Create ``~/etc/services.d/code-server.ini`` with the following content.
 Make sure to `<password>` with your password.
 
 .. code-block:: ini
-  :emphasize-lines: 3
+  :emphasize-lines: 2,3
 
   [program:code-server]
-  command=%(ENV_HOME)s/code-server/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server
+  command=%(ENV_HOME)s/code-server/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server-data
   environment=PASSWORD=<password>
   autorestart=true
   autostart=true
