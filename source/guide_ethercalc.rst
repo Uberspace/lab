@@ -74,7 +74,7 @@ Create a directory, ``cd`` into it and install the node module using the provide
 
 Fixing Path Issue
 ^^^^^^^^^^^^^^^^^
-.. note:: At the time of creating this guide there is an issue_ of EtherCalc trying to access the Nodemule `Socialcalc` in an outdatet directory. You **can** skip this step, but if you ran into issues i recommend to set the following symlink to fix it:
+.. note:: At the time of creating this guide there is an issue_ of EtherCalc trying to access the Nodemule `Socialcalc` in an outdated directory. You **can** skip this step, but if you ran into issues, set the following symlink to fix it:
 
 ::
 
@@ -118,10 +118,10 @@ If it's not in state RUNNING, check your configuration.
 Finishing installation
 ======================
 
-Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and
+You're done. Point your Browser to your installation URL ``https://isabell.uber.space`` and
 start collaborating in your shiny new EtherCalc!
 
-Generating a new Spreadsheet by pointing to the URL ``https://isabell.uber.space/_new``.
+To get started, create a new Spreadsheet by visiting the URL ``https://isabell.uber.space/_new``.
 
 
 Update
