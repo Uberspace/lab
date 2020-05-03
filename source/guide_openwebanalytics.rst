@@ -47,7 +47,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-Create the database and download the latest version_ into the subdirectory ``owa`` under your :manual:`DocumentRoot <web-documentroot>`.
+Create the database and download the `latest version`_ into the subdirectory ``owa`` under your :manual:`DocumentRoot <web-documentroot>`.
 
 .. code-block:: console
 
@@ -95,7 +95,7 @@ Backup your ``owa/owa-config.php`` file, delete everything else in your ``owa`` 
 Finish the update by open isabell.uber.space in your browser.
 
 .. _Open Web Analytics: http://www.openwebanalytics.com/
-.. _latest: https://github.com/Open-Web-Analytics/Open-Web-Analytics/releases
+.. _latest version: https://github.com/Open-Web-Analytics/Open-Web-Analytics/releases
 .. _feed: https://github.com/Open-Web-Analytics/Open-Web-Analytics/releases.atom
 .. _stable releases: https://github.com/Open-Web-Analytics/Open-Web-Analytics/releases
 
