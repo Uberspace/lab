@@ -78,12 +78,8 @@ Fixing Path Issue
 
 ::
 
- [isabell@stardust ~]$ ln -s /home/isabell/node_modules /home/isabell/node_modules/ethercalc/node_modules
+ [isabell@stardust ~]$ ln -s ~/ethercalc/node_modules/ ~/ethercalc/node_modules/ethercalc/node_modules
  [isabell@stardust ~]$
- 
-Make sure to replace ``isabell`` with your own username!
-
-
 
 Configuration
 =============
@@ -110,7 +106,7 @@ Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-sock
 .. code-block:: ini
 
  [program:ethercalc]
- command=%(ENV_HOME)s/node_modules/ethercalc/bin/ethercalc
+ command=%(ENV_HOME)s/ethercalc/node_modules/ethercalc/bin/ethercalc
  environment=NODE_ENV="production",REDIS_SOCKPATH="%(ENV_HOME)s/.redis/sock"
  autorestart=true
 
@@ -137,8 +133,9 @@ To get the latest version of EtherCalc you can use the ``npm`` package manager:
 
 ::
 
- [isabell@stardust ~]$ npm update ethercalc
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd ethercalc
+ [isabell@stardust ethercalc]$ npm update ethercalc
+ [isabell@stardust ethercalc]$
 
 .. include:: includes/supervisord.rst
 
