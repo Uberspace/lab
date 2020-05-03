@@ -206,6 +206,7 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ php occ upgrade
  [isabell@stardust html]$ restorecon -R .
+ [isabell@stardust html]$ php occ maintenance:mode --off
  [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
