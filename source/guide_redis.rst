@@ -70,7 +70,7 @@ Build Redis
 .. code-block:: bash
 
  [isabell@stardust ~]$ cd redis-stable/
- [isabell@stardust redis-stable]$ make
+ [isabell@stardust redis-stable]$ CC=clang make
  make[1]: Entering directory `/home/isabell/redis-stable/src'
      CC Makefile.dep
  make[1]: Leaving directory `/home/isabell/redis-stable/src'
