@@ -148,7 +148,7 @@ In order to build bitwarden_rs  sucessfully you'll need to set an environment va
 
 Build the server executable:
 
-.. note :: If that doesn't work the first time and the build failed, **just try again**.
+.. note :: If that doesn't work the first time and the build failed, **just try again until it's done**.
 
 .. code-block:: console
 
@@ -162,7 +162,7 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust bitwarden_rs]$ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.13.2/bw_web_v2.13.2.tar.gz
+ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.13.2/bw_web_v2.13.2.tar.gz
  [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.13.2.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
@@ -172,7 +172,7 @@ Generate an ``openssl -base64`` key now and save it temporarily, you'll need it 
 .. code-block:: console
 
  [isabell@stardust bitwarden_rs]$  openssl rand -base64 48
- [isabell@stardust bitwarden_rs]$  Ig/8bZXhqVFK11F2tQZTfODO/6QpCHE3DGyCH/2Eh40xUWMFC13J6nJVPLlyU3nO
+ Ig/8bZXhqVFK11F2tQZTfODO/6QpCHE3DGyCH/2Eh40xUWMFC13J6nJVPLlyU3nO
 
 Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following content:
 
@@ -188,7 +188,7 @@ Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following c
  SMTP_USERNAME=isabell@uber.space
  SMTP_PASSWORD=MySuperSecretPassword
  
- DOMAIN=https://isabell.uber.space:8443
+ DOMAIN=https://isabell.uber.space
 
 Replace the mail placeholder variables with your valid IMAP credentials, otherwise the bitwarden_rs server will not be able to send you mail notifications or tokens to verify newly created user accounts.
 ``SMTP_USERNAME`` and ``SMTP_PASSWORD`` must be the login data from a valid mail account. Replace the server domain with your final URL.
@@ -239,7 +239,7 @@ Use your favourite editor to create ``~/etc/services.d/bitwarden_rs.ini`` with t
 
  [program:bitwarden_rs]
 	directory=%(ENV_HOME)s/bitwarden_rs
-	command=node %(ENV_HOME)s/bitwarden_rs/target/release/bitwarden_rs
+	command=%(ENV_HOME)s/bitwarden_rs/target/release/bitwarden_rs
 	autostart=yes
 	autorestart=yes
 
@@ -352,7 +352,7 @@ Acknowledgements
 This guide is based on the official `bitwarden_rs documentation`_ as well as the `bitwarden_rs guide from Tom Schneider <https://vigonotion.com/blog/install-bitwarden-rs-on-uberspace/>`_.
 
 .. _At the moment: https://github.com/dani-garcia/bitwarden_rs/pull/728
-.. _this page: https://github.com/dani-garcia/bw_web_builds/releases):
+.. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _rust toolchain: https://rustup.rs/
 .. _isn't supported: https://wiki.uberspace.de/faq#docker)
 .. _bitwarden server repository: https://github.com/bitwarden/server
