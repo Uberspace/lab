@@ -29,21 +29,14 @@ Cryptpad
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
 
+
 Prerequisites
 =============
 
-Set up the backends:
+Your webseite domain or subdomain needs to be setup up:
 
-::
+.. include:: includes/web-domain-list.rst
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 3000
-  Set backend for / to port 3000; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
-
-You need to use ``/`` or ``domain.example/`` in the domain part since subfolders are not allowed in cryptpad.
-
-Now let's get started with Cryptpad.
 
 We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
@@ -69,16 +62,15 @@ Start with cloning the Cryptpad source code from Github_ and be sure to replace 
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 3.16.0 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 3.16.0 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
-  remote: Enumerating objects: 136, done.
-  remote: Counting objects: 100% (136/136), done.
-  remote: Compressing objects: 100% (86/86), done.
-  remote: Total 75814 (delta 79), reused 93 (delta 50), pack-reused 75678
-  Receiving objects: 100% (75814/75814), 171.23 MiB | 21.62 MiB/s, done.
-  Resolving deltas: 100% (48757/48757), done.
+  remote: Enumerating objects: 15111, done.
+  remote: Counting objects: 100% (15111/15111), done.
+  remote: Compressing objects: 100% (11685/11685), done.
+  remote: Total 15111 (delta 3527), reused 14548 (delta 3359), pack-reused 0
+  Receiving objects: 100% (15111/15111), 84.83 MiB | 16.52 MiB/s, done.
+  Resolving deltas: 100% (3527/3527), done.
   Note: checking out 'b0b4029556d89d8b6b0c30e9dfab528edb65813b'.
-
 
   You are in 'detached HEAD' state. You can look around, make experimental
   changes and commit them, and you can discard any commits you make in this
@@ -87,28 +79,25 @@ Start with cloning the Cryptpad source code from Github_ and be sure to replace 
   If you want to create a new branch to retain commits you create, you may
   do so (now or later) by using -b with the checkout command again. Example:
 
-    git checkout -b <new-branch-name>
+  git checkout -b <new-branch-name>
 
-  Checking out files: 100% (4319/4319), done.
+  Checking out files: 100% (19152/19152), done.
   [isabell@stardust ~]$
 
 
-Now we need to install some dependencies:
+Now we need to install the dependencies:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
   [isabell@stardust cryptpad]$ npm install
-  (...)
-  added 212 packages from 231 contributors and audited 375 packages in 9.467s
+  added 212 packages from 231 contributors and audited 375 packages in 4.828s
   (...)
   found 0 vulnerabilities
   [isabell@stardust cryptpad]$ bower install
   (...)
-  bower install       open-sans-fontface#1.4.2
-  bower install       jquery#2.2.4
-  bower install       bootstrap#4.4.1
-  (...)
+  [isabell@stardust cryptpad]$ 
+
 
 Configuration
 =============
@@ -118,9 +107,15 @@ Copy example configuration
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ cd ~/cryptpad/
   [isabell@stardust cryptpad]$ cp config/config.example.js config/config.js
+  [isabell@stardust cryptpad]$
 
-Edit ``config/config.js`` and edit following lines:
+
+Update configuration
+--------------------
+
+Open ``config/config.js`` in an editor and edit following lines:
 
 1. Uncomment the line beginning with ``//httpSafeOrigin:`` by removing the two slashes, and replace your instance URL like so:
 
@@ -129,15 +124,20 @@ Edit ``config/config.js`` and edit following lines:
   httpSafeOrigin: "https://isabell.uber.space/",
 
 
-2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.
-   If you forget to make this change, the command ``uberspace web backend list`` will later complain as follows:
-.. code-block:: console
-
-  [isabell@stardust cryptpad]$ uberspace web backend list
-  / http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
-
+2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.  
 
 3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
+
+.. note::
+  If you forget to make change 2, the command ``uberspace web backend list`` will later complain as follows:
+  
+  .. code-block:: console
+
+   [isabell@stardust ~]$ uberspace web backend list
+   / http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
+
+
+
 
 Setup daemon
 ------------
@@ -156,6 +156,15 @@ Now let's start the service:
 
 .. include:: includes/supervisord.rst
 
+	
+Configure web server
+--------------------
+
+.. note::
+
+    Cryptpad is running on port 3000. You need to use ``/`` or a sub-domain since subfolders are not allowed in cryptpad.
+
+.. include:: includes/web-backend.rst
 
 Customization
 =============
@@ -180,16 +189,16 @@ If there is a new version available, you can get the code using git. Replace the
 
   [isabell@stardust cryptpad]$
 
-Now updated dependencies:
+Now update the dependencies:
 
 .. code-block:: console
 
-  [isabell@stardust cryptpad]$ npm i
+  [isabell@stardust cryptpad]$ npm install
   removed 1 package and audited 313 packages in 14.535s
   found 0 vulnerabilities
 
   [isabell@stardust cryptpad]$ bower update
-  {... bower output ...}
+  (...)
   [isabell@stardust cryptpad]$
 
 Then you need to restart the service, so the new code is used by the webserver:
