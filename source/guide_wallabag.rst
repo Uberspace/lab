@@ -30,13 +30,15 @@ Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize a
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.3'
  [isabell@stardust ~]$
+
+.. warning:: Wallabag 2.3.x does not work with PHP 7.4
 
 .. include:: includes/my-print-defaults.rst
 
