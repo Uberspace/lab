@@ -12,7 +12,7 @@
 
 .. sidebar:: About
 
-  .. image:: _static/images/loremipsum.png
+  .. image:: _static/images/maildrop_autoreply.svg
       :align: center
 
 ######################
@@ -21,7 +21,7 @@ Maildrop Autoresponder
 
 .. tag_list::
 
-The following guide allows you to enable a custom autoresponder for a specific mail adress by using the built-in maildrop_ in addition to mailbot_, qmail_ and some tweaks.
+The following guide allows you to enable a custom autoresponder for a specific mail address by using the built-in maildrop_ in addition to mailbot_, qmail_ and some tweaks.
 
 
 ----
@@ -41,26 +41,17 @@ If you're planning to use your own domain for mail with your Uberspace, you need
 Installation
 ============
 
-For this guide, let's assume that you have created a mail user ``email``. We'll also assume that your E-Mail-Adress is therefore ``email@stardust.uber.space``. If you're using an external domain, e.g. ``domain.tld``, refer to it accordingly. Make sure to replace these placeholder tags with your own credentials and usernames.
-
-Create the qmail
-----------------
-
-Use your favourite editor to create  ``~/.qmail-email`` with the following content (including the pipe):
-
-.. code-block:: ini
-
-	|maildrop $HOME/.autoreply-filter
-	
-All incoming mails will now be forwarded to ``maildrop``, which executes the filterfile ``~/.autoreply-filter`` that we will create in the next step. 
-
-.. note::  Make sure that you use UNIX line-endings_ in this file, **otherwise it won't work.**
-
+For this guide, let's assume that you have created a mail user ``email``. We'll also assume that your EMail address is therefore ``email@stardust.uber.space``. If you're using an external domain, e.g. ``domain.tld``, refer to it accordingly. Make sure to replace these placeholder tags with your own credentials and usernames.
 
 Create the autoreply-filter
 ---------------------------
 
-Use your favourite editor to create ``~/.autoreply-filter`` with the following content. We'll split the content in multiple parts to explain what they're doing. Make sure you don't miss one, otherwise the filter won't work!
+Create a directory to store your configurations and keep your home directory nice and clean. Use your favourite editor to create ``~/autoresponder/.autoreply-filter`` with the following content. We'll split the content in multiple parts to explain what they're doing. Make sure you don't miss one, otherwise the filter won't work!
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ mkdir autoresponder
+ [isabell@stardust autoresponder]$  
 
 .. code-block:: ini
 
@@ -86,18 +77,18 @@ The variable ``$MAILDIR`` defines where maildrop finds the maildir and what it i
 .. code-block:: ini
 
 	# If you want to debug the autoresponder, turn on logging by uncommenting the following line.
-	# logfile "$HOME/autoreply-filter.log"
+	logfile "$HOME/autoresponder/autoreply-filter.log"
 	
-When activated the logfile ``~/autoreply-filter.log`` will be created showing the sender, date, subject and final destination for each mail processed by the filter.
+We strongly recommend enabling logging. If everything works you can safely disable this afterwards. The logfile ``~/autoresponder/autoreply-filter.log`` will be created showing the sender, date, subject and final destination for each mail processed by the filter.
 
 .. code-block:: ini
 
 	# Set the sender for the autoreply-email
 	FROM="email@stardust.uber.space"
 	
-Configure the email-adress shown as sender from your generated mails.
+Configure the email-address shown as sender from your generated mails.
 
-.. note:: I recommend to create one filter file for each autoresponder to prevent the use of generic sender adresses, but it's not necessary though.
+.. note:: I recommend to create one filter file for each autoresponder to prevent the use of generic sender addresses, but it's not necessary though.
 
 .. code-block:: ini
 
@@ -108,49 +99,28 @@ We don't want to reply to Spam-Mails, therefore we hand over the incoming mails 
 	
 .. code-block:: ini
 
-	# Option A - reply to mail with the following text and given parameters
-	# cc "| mailbot -t $HOME/autoresponses/autoresponse.txt -N -A 'From: $FROM' -d $HOME/autoresponses/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
-	
-	# Option B - using the mail stored in the referenced IMAP-Folder to reply
-	# cc "| mailbot -T replydraft -l '$MAILDIR/.Autorespond' -N  -A 'From: $FROM' -d $HOME/autoresponses/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
-
-**This is the place to configure the autoresponder.**
-There are two different approaches to realize the autoresponder.
+	# reply to mail with the following text and given parameters
+	cc "| mailbot -t $HOME/autoresponder/autoresponse.txt -N -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
 
 
-  * **Option A:** setting a reference to a ``reply-message.txt`` (or any other named)-file somewhere on your uberspace. ``mailbot`` will take the content of the specified file and use it as text for the reply-mail without further adjustments.
+**This is the place to configure the autoresponder.** We`ll set a reference to a ``reply-message.txt`` (or any other named)-file somewhere on your uberspace. ``mailbot`` will take the content of the specified file and use it as text for the reply-mail without further adjustments.
   
-This method is the simple and efficient if you use it for yourself. But if you're planning to use this solution to handle multiple users with their own mailboxes and you aren't willing to give everyone access to the server by SSH, SFTP etc. to modify their response-messages there is also ... 
-
-  * **Option B:** setting a reference to a specific IMAP-folder in the user's mailbox. ``mailbot`` will take the most recent message in there and send it as a reply to the sender.
-
-This solution makes handling the autoresponder very easy, especially for not-so-techie users. The stored email can be both plaintext and HTML. If there's no mail stored in the specified folder mailbot won't do anything. The only downside of this solution to be mentioned: mailbot takes the incoming mail and will add it as an attachment to the replied message. Unfortunately there is no way to disable this behaviour
-
-.. note :: In order to streamline this guide i'll continue with **Option A**. Head over to the `Configure reply message via IMAP-maildir`_-Section if you want to configure it for **Option B**.
-
-.. warning :: If you're using Option A (*as well as B*) **make sure to un-comment the command, otherwise nothing will happen.**
+.. note:: This method is simple and efficient if you use it for yourself. But if you're planning to use this solution to handle multiple users with their own mailboxes and you aren't willing to give everyone access to the server by SSH, SFTP etc. to modify their response-messages head over to `One more thing`_ for an additional method.
 
 ``mailbot`` requires some additional parameters:
 
-  * ``-t $HOME/autoresponses/autoresponse.txt``: Read the text for the autoresponse from the referenced file. 
+  * ``-t $HOME/autoresponder/autoresponse.txt``: Read the text for the autoresponse from the referenced file. 
   * ``-A 'From: $FROM'``: Adds a header to the response. In our case, we'll set the ``From:`` header in the autogenerated response.
   * ``-N``: Disables quoting the original message
-  * ``-d $HOME/autoresponses/bouncedb``: Creates a small database ``bouncedb`` in the specified path, that keeps track of senders' E-mail addresses, and prevent duplicate autoresponses going to the same address. Another autoresponse to the same address will not be mailed until at least the amount of time specified by the -D option has elapsed.
+  * ``-d $HOME/autoresponder/bouncedb``: Creates a small database ``bouncedb`` in the specified path, that keeps track of senders' E-mail addresses, and prevent duplicate autoresponses going to the same address. Another autoresponse to the same address will not be mailed until at least the amount of time specified by the -D option has elapsed.
   * ``-D 3``: Do not send duplicate autoresponses (see the -d flag) for at least ``3`` days (default: 1 day).
   * ``/var/qmail/bin/qmail-inject -f ''``: utility to send the mail
   
 .. note:: Refer to the `mailbot documentation`_ for more detailed informations how to use flags.
   
-We have to make sure that all referenced directories files exist, otherwise mailbot will abort immediately. Since we referred the ``autoresponse.txt`` file in the configuration above we 'll create the directory containing it as well as the file itself. To make things easier we have used use this directory also for saving known recipients (see flag ``-d`` above):
+We have to make sure that all referenced directories and files exist, otherwise mailbot will abort immediately. Since we referred the ``autoresponse.txt`` file in the configuration above we 'll create it.
 
-.. code-block:: console
-
- [isabell@stardust ~]$ mkdir autoresponses
- [isabell@stardust ~]$  
- 
-  
-
-Finally, add this last block to your ``~/.autoreply-filter``:
+Finally, add this last block to your ``~/autoresponder/.autoreply-filter``:
 
 .. code-block:: ini
 
@@ -164,47 +134,21 @@ This line makes sure that the email is delivered to your ``$MAILDIR`` in any cas
 
 .. code-block:: console
 
- [isabell@stardust ~]$ chmod 600 ~/.autoreply-filter
+ [isabell@stardust ~]$ chmod 600 ~/autoresponder/.autoreply-filter
  
+Create the qmail
+----------------
 
-Configuration
-=============
-
-If you stay within **Option A**, you're done!
-
-
-Configure reply message via IMAP-maildir
-----------------------------------------
-
-This solution comes in handy especially with multiple users or if its not possible (or recommendable) giving each user file access to the server by e.g. SFTP.
-
-In the ``~/.autoreply-filter`` the only thing that changes is the ``cc`` command. You can use the template below and customize it to your needs. Make sure to un-comment the command!
+Use your favourite editor to create ``~/.qmail-email`` with the following content (including the pipe):
 
 .. code-block:: ini
 
-	# Option B - using the mail stored in the referenced IMAP-Folder to reply
-	# cc "| mailbot -T replydraft -l '$MAILDIR/.Autorespond' -N  -A 'From: $FROM' -d $HOME/autoresponses/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
+	|maildrop $HOME/autoresponder/.autoreply-filter
 	
-``mailbot`` requires some additional parameters:
+All incoming mails will now be forwarded to ``maildrop``, which executes the filterfile ``~/autoresponder/.autoreply-filter`` that we will create in the next step. 
 
-  * ``-T replydraft``: Specifies the type of reply
-  * ``-l '$MAILDIR/.Autorespond'``: Specifies the ``IMAP``-Folder in the ``$MAILDIR`` (aka. mailbox). Mailbox will use the most recent message in this folder and reply it to the sender
-  * ``-N``: Disables quoting the original message
-  * ``-A 'From: $FROM'``: Adds a header to the response. In our case, we'll set the ``From:`` header in the autogenerated response.
-  * ``-d $HOME/autoresponses/bouncedb``: Creates a small database ``bouncedb`` in the specified path, that keeps track of senders' E-mail addresses, and prevent duplicate autoresponses going to the same address. Another autoresponse to the same address will not be mailed until at least the amount of time specified by the -D option has elapsed.
-  * ``-D 3``: Do not send duplicate autoresponses (see the -d flag) for at least ``3`` days (default: 1 day).
-  * ``/var/qmail/bin/qmail-inject -f ''``: utility to send the mail	
-  
-.. note :: ``-N`` is useless when using ``-T replydraft``. Unfortunately there is no way to disable this behaviour. Nevertheless is set to prevent syntax issues.
-
-Since we refer to the ``IMAP``-Folder ``Autorespond`` in the users mailbox tell them to create them and store a message there.
-
-Use your favorite IMAP-Client to create & save a new draft. Afterwards move the draft to the ``Autorespond`` folder. Its not necessary to enter any recipients, mailbot will delete them anyway.
-
-Now you're done!
-
-.. note :: You can choose a different name for the IMAP-Folder. Make sure to change the reference in the ``~/.autoreply-filter`` file then accordingly.
-
+.. warning::  Make sure that you use UNIX Line-endings_ in this file, **otherwise it won't work.** 
+ 
 Usage
 =====
 
@@ -213,14 +157,67 @@ Disabling and Enabling
 
 You can easily disable and enable the autoresponse at any given time. There are multiple solutions:
 
-  * **works for A & B** - Un-/Comment the ``cc`` Command in the ``~/.autoreply-filter``-file
-  * **only Option A** - remove or rename / add the specified ``txt``-message
-  * **only Option B** - remove / add the mail from the specified ``IMAP``-Folder
+  * Un-/comment the ``cc`` command in the ``~/.autoreply-filter``-file
+  * remove or rename / add the specified ``txt``-message
 
 
 Behaviour by mailing lists
 --------------------------
 By default ``mailbot`` won't reply to mails that are marked correctly as part of a mailing list. The default behavior is to send an autoresponse unless the original message has the ``Precedence: junk``or the ``Precedence: bulk`` header, or the ``Precedence: list`` header, or the ``List-ID:`` header, or if its MIME content type is ``multipart/report`` (this is the MIME content type for delivery status notifications).
+
+
+One more thing
+==============
+
+.. note :: In Addition to the method described above there is another way, making the handling of the autoresponder very easy, especially for not-so-techie users. This solution comes in handy especially with multiple users or if its not possible (or recommendable) giving each user file access to the server by e.g. SFTP.
+
+You can set a reference to a specific IMAP-Folder in the user's mailbox. ``mailbot`` will take the most recent message in there and send it as a reply to the sender. 
+
+The stored email can be both plaintext and HTML. If there's no mail stored in the specified folder mailbot won't do anything. The only downside of this solution to be mentioned: mailbot takes the incoming mail and will add it as an attachment to the replied message. Unfortunately there is no way to disable this behaviour.
+
+Installation
+------------
+
+In the ``~/autoresponder/.autoreply-filter`` the only thing that changes is the ``cc`` command. 
+
+Use your favourite editor to edit ``~/autoresponder/.autoreply-filter``. Remove these lines
+
+.. code-block:: ini
+
+	# reply to mail with the following text and given parameters
+	cc "| mailbot -t $HOME/autoresponder/autoresponse.txt -N -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
+
+and replace them with the following lines:
+
+	# using the mail stored in the referenced IMAP-Folder to reply
+	cc "| mailbot -T replydraft -l '$MAILDIR/.Autoresponder' -N  -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
+	
+You can customize the ``cc``-command to your needs:
+
+Configuration
+------------
+
+``mailbot`` requires some additional parameters:
+
+  * ``-T replydraft``: Specifies the type of reply
+  * ``-l '$MAILDIR/.Autoresponder'``: Specifies the ``IMAP``-Folder in the ``$MAILDIR`` (aka. mailbox). Mailbox will use the most recent message in this folder and reply it to the sender
+  * ``-N``: Disables quoting the original message
+  * ``-A 'From: $FROM'``: Adds a header to the response. In our case, we'll set the ``From:`` header in the autogenerated response.
+  * ``-d $HOME/autoresponses/bouncedb``: Creates a small database ``bouncedb`` in the specified path, that keeps track of senders' E-mail addresses, and prevent duplicate autoresponses going to the same address. Another autoresponse to the same address will not be mailed until at least the amount of time specified by the -D option has elapsed.
+  * ``-D 3``: Do not send duplicate autoresponses (see the -d flag) for at least ``3`` days (default: 1 day).
+  * ``/var/qmail/bin/qmail-inject -f ''``: utility to send the mail	
+  
+.. note :: ``-N`` is useless when using ``-T replydraft``. Unfortunately there is no way to disable this behaviour. Nevertheless is set to prevent syntax issues.
+
+Since we refer to the ``IMAP``-Folder ``Autorespond`` in the users mailbox tell them to create them and store a message there. Use your favorite IMAP-Client to create & save a new draft. Afterwards move the draft to the ``Autoresponder`` folder. Its not necessary to enter any recipients, mailbot will delete them anyway. Now you're done!
+
+.. note :: You can choose a different name for the IMAP-Folder. Make sure to change the reference in the ``~/.autoreply-filter`` file then accordingly.
+
+Usage
+-----
+
+When you're using the IMAP method you can additionally disable or enable the autoresponder by removing or adding a mail in the specified ``IMAP``-Folder. 
+
 
 Common Issues
 =============
@@ -228,11 +225,11 @@ In case you configured the autoresponder as described above but it doesn't work,
 
 Line-endings
 ------------
-Maildrop necessarily expects Unix line breaks (\n). If the filter file is encoded with Windows (\r\n) or traditional Mac line breaks (\r), all kinds of bizarre behavior may occur.
+Maildrop necessarily expects Unix line breaks ``\n``. If the filter file is encoded with Windows ``\r\n`` or traditional Mac line breaks ``\r``, all kinds of bizarre behavior may occur.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ dos2unix ~/.autoreply-filter
+ [isabell@stardust ~]$ dos2unix ~/autoresponder/.autoreply-filter
  
 
 File permissions
@@ -241,13 +238,15 @@ The configuration must only be readable by the user who executes the maildrop co
 
 .. code-block:: console
 
- [isabell@stardust ~]$ chmod 600 ~/.autoreply-filter
+ [isabell@stardust ~]$ chmod 600 ~/autoresponder/.autoreply-filter
  
 Acknowledgements
 ================
-This guide is based on the official `mailbot documentation`_ and the `IMAP reply script by tpraxl <https://gist.github.com/tpraxl/6d5be3527490fb51f33ae5eafe747714>`_.
+ * This guide is based on the official `mailbot documentation`_ and the `IMAP reply script by tpraxl <https://gist.github.com/tpraxl/6d5be3527490fb51f33ae5eafe747714>`_.
+ * The envelope icon is made by `pixel perfect`_ from Flaticon_.
 
- 
+.. _Flaticon: https://www.flaticon.com/
+.. _pixel perfect: https://www.flaticon.com/authors/pixel-perfect 
 .. _mailbot documentation: https://www.courier-mta.org/maildrop/mailbot.html
 .. _qmail: https://cr.yp.to/qmail.html
 .. _maildrop: https://www.courier-mta.org/maildrop/
