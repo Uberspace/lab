@@ -68,7 +68,7 @@ Since Sulu CMS uses the subdirectory ``public/`` as document root of your websit
    - Installing sulu/skeleton (2.0.7): Loading from cache
  Created project in /var/www/virtual/ckrack/sulucms
  […]
- [isabell@stardust ~]$
+ [isabell@stardust isabell]$
 
 Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``sulucms/public`` directory.
 
@@ -77,10 +77,9 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/sulucms/public html
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/sulucms
+ [isabell@stardust isabell]$ cd ~
  [isabell@stardust ~]$
 
 
@@ -121,7 +120,8 @@ When you’re done with the configuration, populate the database with Sulu’s d
 .. code-block:: console
  :emphasize-lines: 31
 
- [isabell@stardust ~]$ bin/adminconsole sulu:build dev
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/sulucms
+ [isabell@stardust sulucms]$ ./bin/adminconsole sulu:build dev
  Build Targets
  =============
 
