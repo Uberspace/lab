@@ -184,7 +184,7 @@ Now we are ready to launch PhantomBot again. You can run the bot with:
 .. _GitHub: https://github.com/PhantomBot/PhantomBot/releases/latest
 .. _GNU General Public License v3 (GPL-3): https://www.gnu.org/licenses/gpl-3.0.html
 
-----`
+----
 
 Tested with PhantomBot 3.1.2 on Uberspace 7.6.2.
 
