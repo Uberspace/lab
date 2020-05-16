@@ -110,7 +110,7 @@ Create ``~/etc/services.d/phantombot.ini`` with the following content:
 .. code-block:: ini
 
   [program:phantombot]
-  command=%(ENV_HOME)s/phantombot/launch-service.sh
+  command=%(ENV_HOME)s/phantombot/launch.sh
   autorestart=true
   autostart=true
   startsecs=30
