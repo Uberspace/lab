@@ -105,7 +105,7 @@ During the setup process you need to configure an ``.env.local`` file with datab
   +-----------------+
  [isabell@stardust ~]$
 
-Review the sample configuration file ``.env``. Then edit the ``.env.local`` file and change the values of ``APP_ENV`` and ``DATABASE_URL``, to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and save the file.
+Review the sample configuration file ``.../sulucms/.env``. Then edit the ``.env.local`` file and change the values of ``APP_ENV`` and ``DATABASE_URL``, to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and save the file.
 
 .. code-block:: ini
 
