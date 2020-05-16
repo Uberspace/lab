@@ -136,17 +136,9 @@ Then rename the old folder:
   [isabell@stardust ~]$ mv phantombot phantombot-old
   [isabell@stardust ~]$
 
-If you receive an error that the phantombot-old directory already contains a file, then either remove the phantombot-old directory or rename it:
+.. note::
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ rm -rf phantombot-old
-  [isabell@stardust ~]$ 
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ mv phantombot-old new_directory_name_of_your_choosing
-  [isabell@stardust ~]$ 
+  If you receive an error that the phantombot-old directory already contains a file, then either remove the phantombot-old directory or rename it.
 
 Get the latest PhantomBot_ release from GitHub_:
 
