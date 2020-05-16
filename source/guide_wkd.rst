@@ -49,7 +49,7 @@ Create the directories and the empty files:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ mkdir -p openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/hu/
  [isabell@stardust isabell]$ touch openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/policy
  [isabell@stardust isabell]$ touch openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/.htaccess
@@ -77,14 +77,14 @@ Create the directories and symlinks
 
  [isabell@stardust ~]$ cd ~/
  [isabell@stardust ~]$ mkdir -p html/.well-known
- [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/ /var/www/virtual/isabell/html/.well-known/openpgpkey
+ [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/ /var/www/virtual/$USER/html/.well-known/openpgpkey
  [isabell@stardust ~]$
  
 Create another symlink to facilitate uploading keys via scp:
 
 ::
 
- [isabell@stardust ~]$ ln -s /var/www/virtual/isabell/openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/hu/ ./
+ [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/openpgpkey.stardust.uberspace.de/.well-known/openpgpkey/stardust.uberspace.de/hu/ ./
  [isabell@stardust ~]$
 
 Upload GPG keys
