@@ -177,15 +177,17 @@ Copy your ``config`` folder to your new folder:
 The last thing we need to do is to assign the right privileges to make the launch.sh, launch-service.sh & java runtime files executable.
 
 .. code-block:: console
+
   [isabell@stardust ~]$ cd phantombot
   [isabell@stardust phantombot]$ chmod u+x launch-service.sh launch.sh ./java-runtime-linux/bin/java
 
 Now we are ready to launch PhantomBot again. You can run the bot with:
 
 .. code-block:: console
+
   [isabell@stardust phantombot]$ supervisorctl start phantombot
   [isabell@stardust phantombot]$
-  
+
 .. _PhantomBot: https://phantom.bot/
 .. _GitHub: https://github.com/PhantomBot/PhantomBot/releases/latest
 .. _GNU General Public License v3 (GPL-3): https://www.gnu.org/licenses/gpl-3.0.html
