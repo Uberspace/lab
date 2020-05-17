@@ -89,7 +89,13 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Stop your service and repeat the installation step.
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl stop docusaurus
+ [isabell@stardust ~]$ cd docusaurus
+ [isabell@stardust docusaurus]$ npm update docusaurus
+ [isabell@stardust docusaurus]$ supervisorctl start docusaurus
+ [isabell@stardust docusaurus]$
 
 .. _Docusaurus: https://docusaurus.io/
 .. _feed: https://github.com/facebook/docusaurus/releases
