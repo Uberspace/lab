@@ -192,6 +192,6 @@ Credits
 
 ----
 
-Tested with Uberspace 7.6.0.0
+Tested with Uberspace 7.6.1.2 and gpg (GnuPG) 2.2.4
 
 .. author_list::
