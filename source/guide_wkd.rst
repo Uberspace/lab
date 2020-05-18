@@ -20,13 +20,13 @@ Web Key Directories provide an easy way to discover public keys through HTTPS. T
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * e-mail encryption with GnuPG / OpenPGP 
+  * e-mail encryption with GnuPG_ / OpenPGP_ 
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-You need the public keys for the e-mail identities you want to provide via WKD (e.g. isabell@example.org). This guide does not explain how to generate GnuPG / OpenPGP keys.
+You need the public keys for the e-mail identities you want to provide via WKD (e.g. isabell@example.org). This guide does not explain how to generate GnuPG_ / OpenPGP_ keys.
 
 The domain for the advanced method has to be set up at your DNS-Hoster and within your uberspace:
 
@@ -189,6 +189,8 @@ Credits
  * https://www.kuketz-blog.de/gnupg-web-key-directory-wkd-einrichten/ (German)
 
 .. _Web Key Directory: https://wiki.gnupg.org/WKD
+.. _GnuPG: https://gnupg.org/
+.. _OpenPGP: https://www.openpgp.org/software/
 
 ----
 
