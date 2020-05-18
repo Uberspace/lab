@@ -1,66 +1,37 @@
 .. highlight:: console
 
-.. author:: YourName <YourURL/YourMail>
+.. author:: lk3de <web-uberlab@lk3.de>
 
-.. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
-.. tag:: lang-php
 .. tag:: web
+.. tag:: console
+.. tag:: ssh
 
 .. sidebar:: About
 
-  .. image:: _static/images/loremipsum.png
+  .. image:: _static/images/shellinabox.svg
       :align: center
 
-##########
-Loremipsum
-##########
+##############
+Shell In A Box
+##############
 
 .. tag_list::
 
-Loremipsum_ dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+_`Shell In A Box` emulates a terminal in your browser. It implements a web server that works with purely JavaScript and CSS across most modern web browsers. This is helpful if you are e.g. behind a corporate firewall that blocks port 22, which is usually used for :manual:`SSH <basics-ssh>` connections.
 
 ----
-
-.. note:: For this guide you should be familiar with the basic concepts of
-
-  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
-  * :manual:`MySQL <database-mysql>`
-  * :manual:`supervisord <daemons-supervisord>`
-  * :manual:`domains <web-domains>`
 
 License
 =======
 
-All relevant legal information can be found here
-
-  * http://www.loremipsum.com/legal/privacy
+Shell In A Box is released under the `GNU General Public License version 2`_.
 
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
- [isabell@stardust ~]$
-
-You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
-
-::
-
- [isabell@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=isabell
- --password=MySuperSecretPassword
- [isabell@stardust ~]$
-
 Your blog URL needs to be setup:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ uberspace web domain list
  isabell.uber.space
@@ -69,50 +40,90 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Clone Github project
+-------------
+Clone the shellinabox repository from Github_ into ``~/shellinabox`` and ``cd`` into the newly created directory:
 
-Step 2
-------
+.. code-block:: console
+
+ [isabell@stardust ~]$ git clone https://github.com/shellinabox/shellinabox
+ Cloning into 'shellinabox'...
+ TODO here
+ [isabell@stardust ~]$ cd ~/shellinabox
+ [isabell@stardust ~/shellinabox]$
+ TODO check this & paste code block
+ 
+Build executable
+----------------
+Run the autotools, afterwards build the application with configure and make:
+
+.. code-block:: console
+
+ [isabell@stardust ~/shellinabox]$ autoreconf --install
+ TODO output
+ [isabell@stardust ~/shellinabox]$ ./configure
+ TODO output
+ [isabell@stardust ~/shellinabox]$ make
+ TODO output
+ [isabell@stardust ~/shellinabox]$
+
+This will create a new executable file ``shellinaboxd`` in the same directory.
 
 Configuration
 =============
 
-Configure Webserver
--------------------
+Open port
+---------
+.. include:: includes/open-port.rst
+
+Configure web backend
+---------------------
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
+Create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
+
+.. warning:: Replace ``isabell`` with your username and ``<port>`` with the port that you have opened in the firewall!
+
+.. code-block:: ini
+
+ [program:shellinabox]
+ command=/home/isabell/shellinabox/shellinaboxd --background --disable-ssl --port <port> --verbose
+ autostart=yes
+ autorestart=yes
+
+We are using a few command-line options here:
+
+  * ``--background``: Tells shellinaboxd to run as daemon in the background
+  * ``--disable-ssl``: Disables the built-in SSL function, since this is covered by the :manual:`web backend <web-backends>`
+  * ``--port``: Overrides the default port with the one that you have opened in the firewall
+  * ``--verbose``: Enables verbose logging which helps troubleshooting (can be safely disabled as well)
+  
+You can find the full reference on `Google Code`_.
+
+Refresh supervisord
+-------------------
+.. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
 
-Point your browser to URL and create a user account.
+Point your browser to https://isabell.uber.space/ (replace ``isabell`` with your username) and enjoy your new browser-based shell.
 
-Best practices
-==============
-
-Security
---------
-
-Change all default passwords. Look at folder permissions. Don't get hacked!
-
-Tuning
-======
-
-Disable all plugins you don't need. Configure caching.
-
-Updates
-=======
-
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
-
-
-.. _Loremipsum: https://en.wikipedia.org/wiki/Lorem_ipsum
-.. _feed: https://github.com/lorem/ipsum/releases.atom
 
 ----
 
-Tested with Loremipsum 1.22.1, Uberspace 7.1.1
+Acknowledgements
+================
+The icon is made by Freepik_ from Flaticon_.
+
+.. _`GNU General Public License version 2`: https://github.com/shellinabox/shellinabox/blob/master/COPYING
+.. _Github: https://github.com/shellinabox/shellinabox
+.. _`Google Code`: https://code.google.com/archive/p/shellinabox/wikis/shellinaboxd_man.wiki
+.. _Flaticon: https://www.flaticon.com/
+.. _Freepik: https://www.flaticon.com/authors/freepik
+
+Tested with shellinabox 2.20, Uberspace TODO
 
 .. author_list::
