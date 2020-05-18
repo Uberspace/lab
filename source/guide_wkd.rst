@@ -26,7 +26,7 @@ Web Key Directories provide an easy way to discover public keys through HTTPS. T
 Prerequisites
 =============
 
-You need the public keys for the e-mail identities you want to provide via WKD (e.g. isabell@example.org). This guide does not explain how to generate GnuPG_ / OpenPGP_ keys.
+You need to own a domain (e.g. for example.org) and to have the ready to use public keys for the e-mail identities you want to provide via WKD (e.g. isabell@example.org). This guide does not explain how to generate GnuPG_ / OpenPGP_ keys.
 
 The domain for the advanced method has to be set up at your DNS-Hoster and within your uberspace:
 
