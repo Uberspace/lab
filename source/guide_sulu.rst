@@ -161,9 +161,35 @@ Sulu will create the database schema and populate it with sample data for the sk
 Finishing installation
 ======================
 
-.. warning:: Change the standard user directly after your first login and use a strong password to prevent others from hacking your instance.
+Before we can login, we must create a security role and a first user.
 
-To finish the installation you need to point your browser to the sulu administration on your domain (e.g. ``https://isabell.uber.space/admin/``) and login with "admin" / "admin".
+.. code-block:: console
+ :emphasize-lines: 3,6,9,10,11,12,16,19,20
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/sulucms
+ [isabell@stardust sulucms]$ ./bin/adminconsole sulu:security:role:create
+ Please choose a rolename: admin
+ Please choose a system:
+ [0] Sulu
+ > 0
+ Created role "admin" in system "Sulu".
+ [isabell@stardust sulucms]$ ./bin/adminconsole sulu:security:user:create
+ Please choose a username: isabell
+ Please choose a FirstName: Isabell
+ Please choose a LastName: Stardust
+ Please choose a Email: isabell@stardust.uberspace.de
+ Please choose a locale
+   [0] de
+   [1] en
+  > 1
+ Please choose a role:
+   [0] admin
+  > 0
+ Please choose a Password:
+ Created user "isabell" in role "admin"
+ [isabell@stardust sulucms]$
+
+To finish the installation you need to point your browser to the sulu administration on your domain (e.g. ``https://isabell.uber.space/admin/``) and login.
 
 
 Best practices
