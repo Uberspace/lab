@@ -85,7 +85,7 @@ Build the server executable:
 
 .. code-block:: console
 
- [isabell@stardust bitwarden_rs]$ cargo build --release --features sqlite
+ [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release --features sqlite
 
 In the next step we will download the latest build for the web vault. Check `this page`_ for the newest build number and **replace it** in the following snippet:
 
@@ -273,7 +273,7 @@ Updating bitwarden_rs is really easy. Just stop the server, pull everything and 
  [isabell@stardust web-vault]$ wget new-release.tar.gz
  [isabell@stardust web-vault]$ tar -xvzf new-release.tar.gz
  [isabell@stardust web-vault]$ cd ..
- [isabell@stardust bitwarden_rs]$ cargo build --release
+ [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release
  [isabell@stardust bitwarden_rs]$ 
  
 .. include:: includes/supervisord.rst
