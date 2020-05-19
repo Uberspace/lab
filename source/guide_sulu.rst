@@ -203,7 +203,7 @@ You probably want to develop your templates locally on your machine. It's recomm
 Updates
 =======
 
-.. note:: Check the Releases_ on Github regularly to stay informed about the newest version. Follow the upgrade guidelines before updating the code via composer..
+.. note:: Check the Releases_ on Github regularly to stay informed about the newest version.
 
 .. warning:: Follow the upgrade guidelines before updating the code via composer..
 
