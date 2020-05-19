@@ -118,7 +118,7 @@ Review the sample configuration file ``.../sulucms/.env``. Then edit the ``.env.
 When you’re done with the configuration, populate the database with Sulu’s default data by following the build walkthrough.
 
 .. code-block:: console
- :emphasize-lines: 31
+ :emphasize-lines: 32
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/sulucms
  [isabell@stardust sulucms]$ ./bin/adminconsole sulu:build dev
