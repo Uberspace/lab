@@ -175,6 +175,51 @@ Updates
 Check Gitea's `releases <https://github.com/go-gitea/gitea/releases/latest>`_ for the latest version. If a newer
 version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the "Installation" step followed by ``supervisorctl start gitea`` to restart gitea.
 
+Update Script
+--------------
+
+Alternatively you can use an automated update script. Create a file ``~/bin/update-gitea`` with the following content:
+
+.. code-block:: sh
+
+  #!/bin/bash
+  
+  GITEADIR=~/gitea
+  
+  GITEA_VERSIONSTRING=$($GITEADIR/gitea -v)
+  CURRENT_VERSION=$(echo $GITEA_VERSIONSTRING | awk '{print $3}')
+  CURRENT_VERSION=$(echo $CURRENT_VERSION | sed -nE 's/^v?(.+)$/\1/p')
+  
+  LATEST_TAG_NAME=$(curl -s https://api.github.com/repos/go-gitea/gitea/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4)
+  LATEST_VERSION=$(echo $LATEST_TAG_NAME | sed -nE 's/^v?(.+)$/\1/p')
+  
+  if [[ $CURRENT_VERSION != $LATEST_VERSION ]]
+  then
+    supervisorctl stop gitea
+    wget -q -O $GITEADIR/gitea $GITEADIR/gitea https://github.com/go-gitea/gitea/releases/download/v${LATEST_VERSION}/gitea-${LATEST_VERSION}-linux-amd64
+    chmod +x $GITEADIR/gitea
+    supervisorctl start gitea
+    echo "updated Gitea from version $CURRENT_VERSION to version $LATEST_VERSION"
+    echo ""
+    echo "check your Gitea instance at:"
+    uberspace web domain list
+  fi
+
+Then make it executable:
+
+::
+
+  [isabell@stardust ~]$ chmod u+x ~/bin/update-gitea
+  [isabell@stardust ~]$
+
+You can execute the script by your own regularly or better set up a cronjob to check and run the update automatically:
+
+::
+
+  0 3 * * * /home/$USER/bin/update-gitea | mailx -E -s "updated gitea on uberspace $USER" $LOGNAME
+
+The part with ``| mailx -E [...]`` just makes sure to send an email only if an update was performed. Read the manual :manual:`uberspace manual cron article <daemons-cron>` to learn more about cronjobs.
+
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
@@ -183,6 +228,6 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 ----
 
-Tested with Gitea 1.11.4, Uberspace 7.6.0
+Tested with Gitea 1.11.5, Uberspace 7.6.1.2
 
 .. author_list::
