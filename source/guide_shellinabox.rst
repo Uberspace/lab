@@ -29,78 +29,81 @@ Shell In A Box is released under the `GNU General Public License version 2`_.
 Prerequisites
 =============
 
-Your blog URL needs to be setup:
+Your page's URL needs to be set up:
 
-.. code-block:: console
+.. include:: includes/web-domain-list.rst
 
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
 
 Installation
 ============
 
 Clone Github project
--------------
-Clone the shellinabox repository from Github_ into ``~/shellinabox`` and ``cd`` into the newly created directory:
+--------------------
+Clone the *shellinabox* repository from Github_ into ``~/shellinabox`` and ``cd`` into the newly created directory:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ git clone https://github.com/shellinabox/shellinabox
  Cloning into 'shellinabox'...
- TODO here
+ remote: Enumerating objects: 3073, done.
+ remote: Total 3073 (delta 0), reused 0 (delta 0), pack-reused 3073
+ Receiving objects: 100% (3073/3073), 4.31 MiB | 6.47 MiB/s, done.
+ Resolving deltas: 100% (2418/2418), done.
  [isabell@stardust ~]$ cd ~/shellinabox
- [isabell@stardust ~/shellinabox]$
- TODO check this & paste code block
+ [isabell@stardust shellinabox]$
  
 Build executable
 ----------------
-Run the autotools, afterwards build the application with configure and make:
+Run the *autotools*, afterwards build the application with ``configure`` followed by ``make``:
 
 .. code-block:: console
 
- [isabell@stardust ~/shellinabox]$ autoreconf --install
- TODO output
- [isabell@stardust ~/shellinabox]$ ./configure
- TODO output
- [isabell@stardust ~/shellinabox]$ make
- TODO output
- [isabell@stardust ~/shellinabox]$
+ [isabell@stardust shellinabox]$ autoreconf --install
+ [...]
+ Makefile.am: installing './INSTALL'
+ Makefile.am: installing './depcomp'
+ [isabell@stardust shellinabox]$ ./configure
+ [...]
+ config.status: creating Makefile
+ config.status: creating config.h
+ config.status: executing depfiles commands
+ config.status: executing libtool commands
+ [isabell@stardust shellinabox]$ make
+ [...]
+ make[1]: Leaving directory '/home/isabell/shellinabox'
+ [isabell@stardust shellinabox]$
 
-This will create a new executable file ``shellinaboxd`` in the same directory.
+This will create a new executable file named ``shellinaboxd`` (notice the *d* at the end of the filename) in your *shellinabox* directory.
 
 Configuration
 =============
 
-Open port
----------
-.. include:: includes/open-port.rst
-
 Configure web backend
 ---------------------
+.. note:: *shellinabox* is running on port 4200 by default.
 .. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
-Create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
+To run *shellinabox* as a deamon, create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
 
-.. warning:: Replace ``isabell`` with your username and ``<port>`` with the port that you have opened in the firewall!
+.. warning:: Replace ``isabell`` with your username!
 
 .. code-block:: ini
 
  [program:shellinabox]
- command=/home/isabell/shellinabox/shellinaboxd --background --disable-ssl --port <port> --verbose
+ command=/home/isabell/shellinabox/shellinaboxd --disable-ssl --verbose
  autostart=yes
  autorestart=yes
 
-We are using a few command-line options here:
+We are using two command-line options here:
 
-  * ``--background``: Tells shellinaboxd to run as daemon in the background
-  * ``--disable-ssl``: Disables the built-in SSL function, since this is covered by the :manual:`web backend <web-backends>`
-  * ``--port``: Overrides the default port with the one that you have opened in the firewall
-  * ``--verbose``: Enables verbose logging which helps troubleshooting (can be safely disabled as well)
-  
-You can find the full reference on `Google Code`_.
+  * ``--disable-ssl``: Disables the built-in SSL functionality, since this is already enforced by Uberspace's :manual:`HTTPS configuration <web-https>`
+  * ``--verbose``: Enables verbose logging which helps troubleshooting (you can safely disable this if you want to)
+
+.. warning: Don't try to run *shellinabox* with the ``--background`` command-line option, as this will confuse 
+
+You can find the full reference of command-line options on `Google Code`_.
 
 Refresh supervisord
 -------------------
@@ -111,7 +114,6 @@ Finishing installation
 
 Point your browser to https://isabell.uber.space/ (replace ``isabell`` with your username) and enjoy your new browser-based shell.
 
-
 ----
 
 Acknowledgements
@@ -121,9 +123,11 @@ The icon is made by Freepik_ from Flaticon_.
 .. _`GNU General Public License version 2`: https://github.com/shellinabox/shellinabox/blob/master/COPYING
 .. _Github: https://github.com/shellinabox/shellinabox
 .. _`Google Code`: https://code.google.com/archive/p/shellinabox/wikis/shellinaboxd_man.wiki
-.. _Flaticon: https://www.flaticon.com/
 .. _Freepik: https://www.flaticon.com/authors/freepik
+.. _Flaticon: https://www.flaticon.com/
 
-Tested with shellinabox 2.20, Uberspace TODO
+----
+
+Tested with shellinabox 2.20, Uberspace 7.6.1.2
 
 .. author_list::
