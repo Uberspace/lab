@@ -2,6 +2,10 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: rss
+
 .. sidebar:: Logo
 
   .. image:: _static/images/freshrss.svg
@@ -11,16 +15,18 @@
 FreshRSS
 ########
 
+.. tag_list::
+
 FreshRSS_ is a multi-user self-hosted RSS feed aggregator.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * domains_
-  * PHP_
-  * cron_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`PHP <lang-php>`
+  * :manual:`cron <daemons-cron>`
 
 License
 =======
@@ -48,7 +54,7 @@ If you want to use FreshRSS with your own domain, it needs to be set up.
 Installation
 ============
 
-``cd`` to your DocumentRoot_ and download the latest release from GitHub, then unzip it:
+``cd`` to your :manual:`DocumentRoot <web-documentroot>` and download the latest release from GitHub, then unzip it:
 
 ::
 
@@ -57,8 +63,8 @@ Installation
  --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’ 
-  
+ Saving to: ‘master.zip’
+
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
  2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
@@ -74,7 +80,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 .. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep in ``html``, you can also rename the folder instead of deleting it.
 
 ::
- 
+
  [isabell@stardust isabell]$ rm -rf html
  [isabell@stardust isabell]$ ln -s FreshRSS-master/p/ html
  [isabell@stardust isabell]$ ls -l
@@ -86,7 +92,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 Configuration
 =============
 
-Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, we recommend to use a seperate database such as ``<username>_freshrss``. Replace ``<username>`` with your actual user name.
+Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, we recommend to use a separate database such as ``<username>_freshrss``. Replace ``<username>`` with your actual user name.
 
 Cron job
 --------
@@ -94,7 +100,7 @@ Cron job
 To automatically update your feeds every ten minutes, set up a cron job like this using the ``crontab -e`` command.
 
 ::
- 
+
  */10 * * * * php /var/www/virtual/$USER/FreshRSS-master/app/actualize_script.php > $HOME/logs/FreshRSS.log 2>&1
 
 Updates
@@ -103,38 +109,32 @@ Updates
 Keep an eye on the FreshRSS releases feed, which has automatically been added as your first subscription in FreshRSS. When a new version is released, remove the previously downloaded ZIP archive and download the current release, then unzip it:
 
 ::
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm master.zip
  [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/master.zip
  --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’ 
-  
+ Saving to: ‘master.zip’
+
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
  2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
- [isabell@stardust isabell]$ unzip master.zip
+ [isabell@stardust isabell]$ unzip -o master.zip -x FreshRSS-master/data/do-install.txt
  […]
   inflating: FreshRSS-master/tests/app/Models/UserQueryTest.php
   inflating: FreshRSS-master/tests/bootstrap.php
   inflating: FreshRSS-master/tests/phpunit.xml
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 This will overwrite any changed files while keeping your current configuration.
 
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _cron: https://manual.uberspace.de/en/daemons-cron.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _FreshRSS: https://freshrss.github.io/FreshRSS
+.. _FreshRSS: https://freshrss.org/
 .. _GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
-.. _DocumentRoot: https://manual.uberspace.de/en/web-documentroot.html
 
 ----
 
 Tested with FreshRSS 1.11.2, Uberspace 7.1.12.0
 
-.. authors::
+.. author_list::

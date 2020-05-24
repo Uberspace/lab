@@ -1,6 +1,17 @@
 .. highlight:: console
 .. author:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: photo-management
+.. tag:: file-storage
+.. tag:: collaborative-editing
+.. tag:: groupware
+.. tag:: sync
+.. tag:: project-management
+.. tag:: voip
+.. tag:: video-chat
+
 .. sidebar:: Logo
 
   .. image:: _static/images/nextcloud.png
@@ -10,6 +21,8 @@
 Nextcloud
 #########
 
+.. tag_list::
+
 Nextcloud_ is an open source cloud solution written in PHP and distributed under the AGPLv3 license.
 
 Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintained by Nextcloud GmbH.
@@ -18,15 +31,15 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
-  * cronjobs_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`cronjobs <daemons-cron>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -43,9 +56,9 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of the Nextcloud and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
 
-.. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
+.. note:: The link to the latest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
 ::
 
@@ -61,18 +74,19 @@ Now point your browser to your uberspace URL and follow the instructions.
 You will need to enter the following information:
 
   * Administrator username and password: Insert the credentials you want to use for the admin user
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Nextcloud database name: we suggest you use an additional_ database. For example: isabell_nextcloud
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Nextcloud database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_nextcloud
+
+Additionally, you can choose where Nextcloud is going to store your data files. It is recommended to place them outside of the webserver's DocumentRoot, e.g. at ``/home/isabell/nextcloud_data/``.
 
 Tuning
 ======
-
 cronjob
 -------
 
 For better performance, Nextcloud suggests to add a local cronjob.
 
-Add the following cronjob to your crontab_:
+Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
@@ -81,7 +95,7 @@ Add the following cronjob to your crontab_:
 Memcaching
 ----------
 
-To further enhance perfomance, enable Memcaching.
+To further enhance performance, enable Memcaching.
 
 To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
 
@@ -90,7 +104,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 
  [...]
     'dbuser' => 'isabell',
-    'dbpassword' => 'eeCae1ahx6angai',
+    'dbpassword' => 'MySuperSecretPassword',
     'installed' => true,
     'memcache.local' => '\OC\Memcache\APCu',
   );
@@ -98,9 +112,9 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 opcache
 -------
 
-Enable opcache to further optimise perfomance.
+Enable opcache to further optimise performance.
 
-To do that, add the following lines to $HOME/etc/php.d/opcache.ini
+To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
 
 ::
 
@@ -112,7 +126,19 @@ To do that, add the following lines to $HOME/etc/php.d/opcache.ini
  opcache.save_comments=1
  opcache.revalidate_freq=1
 
-After that you need to reload your PHP configuration:
+PHP Memory
+----------
+
+In order to increase the memory limit of php to the recommended value of 512 MB, create ``$HOME/etc/php.d/memory_limit.ini`` with the following content:
+
+::
+
+ memory_limit = 512M
+
+PHP Reload
+----------
+
+After that you need to restart PHP configuration to load the last two changes:
 
 ::
 
@@ -120,12 +146,53 @@ After that you need to reload your PHP configuration:
  Your php configuration has been loaded.
  [isabell@stardust ~]$
 
+Database maintenance
+--------------------
+
+To adapt some database configs to make Nextcloud run smoother execute these commands:
+
+::
+
+ [isabell@stardust ~] cd html
+ [isabell@stardust html]$ php occ db:add-missing-indices
+ [isabell@stardust html]$ php occ db:convert-filecache-bigint
+
 HSTS
 ----
 
 Nextcloud will complain about your HSTS settings in the admin interface.
 
-At the moment it is not possible to change the HSTS settings, as mentioned in the `manual <https://manual.uberspace.de/en/web-security.html>`_.
+At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
+
+Onlyoffice (Community Edition)
+------------------------------
+To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface:
+
+* Community Document Server (a light version of the Onlyoffice server)
+* Onlyoffice (the connector to the Onlyoffice server)
+
+Both apps can be installed optional during the main install, but the huge document server may fail. Then install it manually from the shell:
+
+::
+
+[isabell@stardust html]$ cd apps
+[isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
+
+Reload the admin panel and enable the Community Document Server.
+A click on a text/spreadsheet document should now start the Onlyoffice Editor.
+
+Nextcloud Talk
+--------------
+
+To can enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
+If the web installation fails, install the app manually in your shell:
+
+::
+
+  [isabell@stardust html]$ cd apps
+  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
+
+Reload the page and press the talk icon in the top menu bar.
 
 Updates
 =======
@@ -135,29 +202,22 @@ The easiest way to update Nextcloud is to use the web updater provided in the ad
 If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
- 
- [isaball@stardust ~]$ cd /var/www/virtual/$USER/html
- [isaball@stardust ~]$ php occ upgrade
- [isaball@stardust ~]$ restorecon -R .
- [isabell@stardust ~]$
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ php occ upgrade
+ [isabell@stardust html]$ restorecon -R .
+ [isabell@stardust html]$ php occ maintenance:mode --off
+ [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
-.. _cronjobs: https://manual.uberspace.de/en/daemons-cron.html
-.. _crontab: https://manual.uberspace.de/en/daemons-cron.html
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 
 ----
 
-Tested with Nextcloud 13.0.1, Uberspace 7.1.3
+Tested with Nextcloud 18.0.2, Uberspace 7.4.3.0
 
-.. authors::
+.. author_list::

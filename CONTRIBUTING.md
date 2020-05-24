@@ -8,6 +8,14 @@ Before you begin writing:
 
  - To signify intent and prevent duplicate work, please create an issue **before** working on your pull request.
  - Check out our [style guide](https://github.com/Uberspace/lab/blob/master/STYLE.md).
+ 
+## Reward
+
+For every guide that makes it to the Uberlab you get an Uberspace mug that you can't buy anywhere:
+
+![Ubermug](/ubermug.png)
+
+Also you'll be mentioned in the [hall of fame](https://lab.uberspace.de/en/hall_of_fame.html).
 
 ## Our Standards
 

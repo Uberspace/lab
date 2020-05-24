@@ -33,7 +33,9 @@ import sphinx_rtd_theme
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-  'authorship',
+    'authorship',
+    'sphinx.ext.extlinks',
+    'notfound.extension',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -78,24 +80,47 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+# Configure the `extlinks` extension to handle the `manual` and `lab`
+# directives.
+# By setting an empty string as the second tuple element, the display text
+# is the same as the target by default.
+extlinks = {
+    'manual': (
+        'https://manual.uberspace.de/%s.html',
+        ''
+    ),
+    'manual_anchor': (
+        'https://manual.uberspace.de/%s',
+        ''
+    ),
+    'lab': (
+        '%s.html',
+        ''
+    ),
+    'lab_anchor': (
+        '%s',
+        ''
+    ),
+}
+
 
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
-  'display_version': False,
-  'navigation_depth': 2,
-  'collapse_navigation': True
+    'display_version': False,
+    'navigation_depth': 2,
+    'collapse_navigation': True
 }
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_last_updated_fmt = '%b %d, %Y'
 html_context = {
-  'css_files': ['_static/css/custom.css'],
-  'display_github': True,
-  'github_user': 'Uberspace',
-  'github_repo': 'lab',
-  'github_version': 'master',
-  'conf_py_path': '/source/'
+    'css_files': ['_static/css/custom.css'],
+    'display_github': True,
+    'github_user': 'Uberspace',
+    'github_repo': 'lab',
+    'github_version': 'master',
+    'conf_py_path': '/source/'
 }
 html_show_copyright = False
 html_favicon = '_static/favicon.ico'
@@ -111,6 +136,7 @@ html_favicon = '_static/favicon.ico'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_extra_path = ['_redirects']
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
@@ -124,12 +150,17 @@ html_sidebars = {
     ]
 }
 
+# sphinx-notfound-page
+# https://github.com/rtfd/sphinx-notfound-page
+notfound_no_urls_prefix = True
 
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Uberspace7labdoc'
 
+
+exclude_patterns = ['404.rst', 'includes/proxy-rewrite-static.rst']
 
 def setup(app):
     app.add_javascript('js/custom.js')

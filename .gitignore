@@ -99,6 +99,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+Scripts/
 
 # Spyder project settings
 .spyderproject
@@ -113,5 +114,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+### PhpStorm ###
+.idea/
+
 
 # End of https://www.gitignore.io/api/python
+.vscode/settings.json

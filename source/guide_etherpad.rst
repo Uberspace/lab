@@ -1,4 +1,9 @@
-.. author:: ezzra <ezra@posteo.de>
+.. author:: ezra <ezra@posteo.de>
+
+.. tag:: lang-nodejs
+.. tag:: web
+.. tag:: collaborative-editing
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -10,26 +15,28 @@
 Etherpad Lite
 #############
 
-`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on Node.js_ and comes with lots of possible plugins.
+.. tag_list::
+
+`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Node.js_ and its package manager npm_
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using Node.js_ in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Using 'Node.js' version: '12'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -41,17 +48,29 @@ Your URL needs to be setup:
 Installation
 ============
 
-First get the Etherpad Lite source code from Github_, be sure to replace the pseudo version number ``66.6.6`` here with the latest version number from the release feed_:
+First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.3`` here with the latest version number from the release feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch release/66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 1.8.3 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
-  remote: Counting objects: 29789, done.
-  remote: Compressing objects: 100% (14/14), done.
-  remote: Total 29789 (delta 9), reused 16 (delta 7), pack-reused 29768
-  Receiving objects: 100% (29789/29789), 19.25 MiB | 6.07 MiB/s, done.
-  Resolving deltas: 100% (21251/21251), done.
+  remote: Enumerating objects: 504, done.
+  remote: Counting objects: 100% (504/504), done.
+  remote: Compressing objects: 100% (486/486), done.
+  remote: Total 504 (delta 22), reused 143 (delta 1), pack-reused 0
+  Receiving objects: 100% (504/504), 3.50 MiB | 7.56 MiB/s, done.
+  Resolving deltas: 100% (22/22), done.
+  Note: checking out '62101147a0c3495dc80daa87ab53a3366321a205'.
+
+  You are in 'detached HEAD' state. You can look around, make experimental
+  changes and commit them, and you can discard any commits you make in this
+  state without impacting any branches by performing another checkout.
+
+  If you want to create a new branch to retain commits you create, you may
+  do so (now or later) by using -b with the checkout command again. Example:
+
+    git checkout -b <new-branch-name>
+  
   [isabell@stardust ~]$
 
 
@@ -71,13 +90,6 @@ Then run the etherpad script, to install the dependencies:
 Configuration
 =============
 
-Configure port
---------------
-
-Since Node.js applications use their own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
-
 Set up a Database
 -----------------
 
@@ -91,90 +103,57 @@ Run the following code to create the database ``<username>_etherpad`` in MySQL:
 Change the configuration
 ------------------------
 
-You need to adjust your ``~/etherpad/settings.json`` with the new port. Find the following code block and change port 9001 to your own port:
-
-.. code-block:: none
- :emphasize-lines: 3
-
-  //IP and port which etherpad should bind at
-  "ip": "0.0.0.0",
-  "port" : 9001,
-
-You also need to set up the MySQL_ database settings, therefore you should completely replace these codeblocks:
+You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Comment this codeblock by adding ``/*`` before and ``*/`` after like shown below.:
 
 .. code-block:: none
 
-  //The Type of the database. You can choose between dirty, postgres, sqlite and mysql
-  //You shouldn't use "dirty" for for anything else than testing or development
-  "dbType" : "dirty",
-  //the database specific settings
-  "dbSettings" : {
-                   "filename" : "var/dirty.db"
-                 },
-
-  /* An Example of MySQL Configuration
-   "dbType" : "mysql",
-   "dbSettings" : {
-                    "user"    : "root",
-                    "host"    : "localhost",
-                    "password": "",
-                    "database": "store",
-                    "charset" : "utf8mb4"
-                  },
+  /*
+    "dbType" : "dirty",
+    "dbSettings" : {
+     "filename" : "var/dirty.db"
+   },
   */
 
-with the following. Be sure to replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites:
+Uncomment the block for mysql below by removing ``/*`` and ``*/``. Update the configuration data as shown below. Replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites. Update the database name to ``<username>_etherpad`` with your username replaced.
 
 .. code-block:: none
- :emphasize-lines: 4,6,7
+ :emphasize-lines: 3,6,7
 
-  //MySQL Configuration
   "dbType" : "mysql",
   "dbSettings" : {
-                    "user"    : "<username>",
-                    "host"    : "localhost",
-                    "password": "<mysql_password>",
-                    "database": "<username>_etherpad",
-                    "charset" : "utf8mb4"
-                  },
+    "user":     "<username>",
+    "host":     "localhost",
+    "port":     3306,
+    "password": "<mysql_password>",
+    "database": "<username>_etherpad",
+    "charset":  "utf8mb4"
+  },
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-.. include:: includes/proxy-rewrite.rst
+.. note::
+
+    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/pad`` instead of the root URI ``/``.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
 
 Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
  [program:etherpad]
- command=/home/<username>/etherpad/bin/run.sh
+ directory=%(ENV_HOME)s/etherpad
+ command=node %(ENV_HOME)s/etherpad/node_modules/ep_etherpad-lite/node/server.js
  environment=NODE_ENV="production"
+ autorestart=true
+ startsecs=60
 
-In our example this would be:
 
-.. code-block:: ini
-
- [program:etherpad]
- command=/home/isabell/etherpad/bin/run.sh
- environment=NODE_ENV="production"
-
-Tell supervisord_ to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- etherpad: available
- [isabell@stardust ~]$ supervisorctl update
- etherpad: added process group
- [isabell@stardust ~]$ supervisorctl status
- etherpad                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
@@ -184,7 +163,9 @@ Best practices
 Personalization
 ---------------
 
-Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there.
+Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there. If you've updated the settings you need to restart etherpad using ``supervisorctl restart etherpad``. 
+
+You can also personalize the look of your installation by using your own skin or change an existing one. See `Skins`_ in the documentation for further information.
 
 Updates
 =======
@@ -192,20 +173,28 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the pseudo version number ``66.6.6`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the pseudo version number ``1.8.3`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
-  [isabell@stardust ~]$ git pull origin release/66.6.6
-  From git://github.com/ether/etherpad-lite
-  * branch              release/66.6.6 -> FETCH_HEAD
-  Updating e84c6962..1e25e7fc
+  [isabell@stardust etherpad]$ git checkout  -- src/package.json
+  [isabell@stardust etherpad]$ git pull origin 1.8.3
+  From https://github.com/ether/etherpad-lite
+   * tag                 1.8.3      -> FETCH_HEAD
+  Updating b8b2e4bc..96ac381a
   Fast-forward
-  [...]
-  32 files changed, 2033 insertions(+), 212 deletions(-)
-  [...]
+  […]
   [isabell@stardust ~]$
+
+Update the dependencies.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ ~/etherpad/bin/installDeps.sh
+  […]
+  [isabell@stardust ~]$
+
 
 Then you need to restart the service daemon, so the new code is used by the webserver:
 
@@ -217,18 +206,13 @@ Then you need to restart the service daemon, so the new code is used by the webs
   [isabell@stardust ~]$
 
 
-
 .. _`Etherpad Lite`: http://etherpad.org/
-.. _Node.js: https://manual.uberspace.de/en/lang-nodejs.html
-.. _npm: https://manual.uberspace.de/en/lang-nodejs.html#npm
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
+.. _`Skins`: http://etherpad.org/doc/v1.8.3/#skins
 
 ----
 
-Tested with Etherpad Lite 1.6.3 and Uberspace 7.1.1
+Tested with Etherpad Lite 1.8.3 and Uberspace 7.6.0.0
 
-.. authors::
+.. author_list::

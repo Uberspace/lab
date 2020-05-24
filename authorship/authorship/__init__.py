@@ -8,6 +8,8 @@ of author names.
 """
 
 import itertools
+import os.path
+import re
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -15,7 +17,7 @@ from sphinx.util.docutils import SphinxDirective
 import sphinx.addnodes as addnodes
 
 
-def comma_list(nodes_):
+def comma_list(nodes_, separator):
     """Return list of nodes seperated by `, ` text nodes."""
     elements = []
 
@@ -24,18 +26,17 @@ def comma_list(nodes_):
 
     for node in nodes_:
         elements.append(node)
-        elements.append(nodes.Text(', '))
+        elements.append(nodes.Text(separator))
 
     return elements[:-1]
 
 
-class Author(SphinxDirective):
+class ListItem(SphinxDirective):
     """
-    Store author information in the environment (``authors``).
+    Store a list of things (e.g. authors, tags) in the environment of each
+    document.
 
-    Append given author info to the list for the current document.
-
-    From rst markup like::
+    Usage::
 
         .. author:: YourName <YourURL/YourMail>
 
@@ -43,16 +44,21 @@ class Author(SphinxDirective):
     required_arguments = 1
     final_argument_whitespace = True
 
-    def run(self):
-        env = self.state.document.settings.env
+    marker_list_name = None
 
-        env.authors.setdefault(env.docname, [])
-        env.authors[env.docname].append(self.arguments[0])
+    def run(self):
+        assert self.marker_list_name
+
+        env = self.state.document.settings.env
+        l = getattr(env, self.marker_list_name)
+
+        l.setdefault(env.docname, [])
+        l[env.docname].append(self.arguments[0])
 
         return []
 
 
-class Authors(SphinxDirective):
+class AuthorListDisplay(SphinxDirective):
     """
     Output the list of authors for the document.
 
@@ -60,17 +66,70 @@ class Authors(SphinxDirective):
 
     From rst markup like::
 
-        .. authors::
+        .. author_list::
 
     """
+
     def run(self):
         env = self.state.document.settings.env
-        authors = env.authors.get(env.docname, [])
+        items = env.author_list.get(env.docname, [])
+        item_nodes = (nodes.Text(a) for a in items)
 
-        if not authors:
-            return [nodes.Text('Written by: Uberspace')]
+        if items:
+            return [nodes.Text('Written by: ')] + \
+                comma_list(item_nodes, ', ') + \
+                [nodes.raw('', '<br>', format='html')]
+        else:
+            return []
 
-        return [nodes.Text('Written by: ')] + comma_list(nodes.Text(a) for a in authors)
+
+class TagListDisplay(SphinxDirective):
+    """
+    Output the list of tags for the document.
+
+    Like: `#lang-nodejs #web`
+
+    From rst markup like::
+
+
+    """
+
+    def run(self):
+        env = self.state.document.settings.env
+
+        container = nodes.container()
+        container.set_class('taglist')
+
+        for item in env.tag_list.get(env.docname, []):
+            elem = nodes.inline()
+            elem += nodes.reference('', '#' + item, refuri='/tags/' + item)
+            elem.set_class('tag')
+            container += elem
+            container += nodes.raw('', '&nbsp;', format='html')
+
+        return [container]
+
+
+def add_list_type(app, name, list_cls):
+    list_name = name + '_list'
+
+    class ListItemImpl(ListItem):
+        marker_list_name = list_name
+
+    def init_list(app):
+        """Initialize environment."""
+        setattr(app.builder.env, list_name, {})
+
+    def purge(app, env, docname):
+        """Remove possible stale info for updated documents."""
+        if hasattr(env, list_name):
+            getattr(env, list_name).pop(docname, None)
+
+    directives.register_directive(name, ListItemImpl)
+    directives.register_directive(list_name, list_cls)
+
+    app.connect('builder-inited', init_list)
+    app.connect('env-purge-doc', purge)
 
 
 class allauthors(nodes.General, nodes.Element):
@@ -91,25 +150,12 @@ class AllAuthors(SphinxDirective):
         return [allauthors('')]
 
 
-def builder_inited(app):
-    """Initialize environment."""
-    app.builder.env.authors = {}
-
-
-def purge_authors(app, env, docname):
-    """Remove possible stale info for updated documents."""
-    if not hasattr(env, 'authors'):
-        return
-
-    env.authors.pop(docname, None)
-
-
 def process_authorlists(app, doctree, fromdocname):
     """Build list of authors sorted by contribution count."""
     env = app.builder.env
-    authors = set(itertools.chain(*[authors for authors in env.authors.values()]))
+    authors = set(itertools.chain(*[authors for authors in env.author_list.values()]))
     guides_by_author = {
-        a: set(g for g, guide_authors in env.authors.items() if a in guide_authors)
+        a: set(g for g, guide_authors in env.author_list.items() if a in guide_authors)
         for a in authors
     }
     count_by_author = {a: len(guides_by_author[a]) for a in authors}
@@ -156,16 +202,73 @@ def process_authorlists(app, doctree, fromdocname):
         node.replace_self([author_list])
 
 
+def tag_list(app):
+    env = app.builder.env
+    tags = set(itertools.chain(*[tags for tags in env.tag_list.values()]))
+
+    return [
+        (
+            'tags/index',
+            {
+                'tags': tags,
+                'title': 'Tags',
+            },
+            'tags.html'
+        )
+    ]
+
+
+def tag_intro(tag):
+    intro_file = os.path.normpath(os.path.join(os.path.dirname(__file__), '../../source/tags', tag + '.txt'))
+
+    try:
+        with open(intro_file) as f:
+            intro = f.read()
+
+        # replace #tags with links to their tag pages
+        intro = re.sub(r'#([a-z0-9]+)', r'<a href="/tags/\1">#\1</a>', intro)
+
+        return intro
+    except OSError:
+        return ""
+
+
+def tag_pages(app):
+    env = app.builder.env
+    tags = set(itertools.chain(*[tags for tags in env.tag_list.values()]))
+    guides_by_tag = {
+        t: set(g for g, guide_tags in env.tag_list.items() if t in guide_tags)
+        for t in tags
+    }
+
+    return [
+        (
+            'tags/' + t,
+            {
+                'tag': t,
+                'parents': [
+                    {'title': 'Tags', 'link': '/tags'}
+                ],
+                'title': '#' + t,
+                'guides': guides_by_tag[t],
+                'titles': env.titles,
+                'intro': tag_intro(t),
+            },
+            'tag.html'
+        )
+        for t in guides_by_tag
+    ]
+
+
 def setup(app):
+    add_list_type(app, 'author', AuthorListDisplay)
     app.add_node(allauthors)
-
-    directives.register_directive('author', Author)
-    directives.register_directive('authors', Authors)
     directives.register_directive('allauthors', AllAuthors)
-
-    app.connect('builder-inited', builder_inited)
-    app.connect('env-purge-doc', purge_authors)
     app.connect('doctree-resolved', process_authorlists)
+
+    add_list_type(app, 'tag', TagListDisplay)
+    app.connect('html-collect-pages', tag_pages)
+    app.connect('html-collect-pages', tag_list)
 
     return {
         'version': '1.0.0',

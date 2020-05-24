@@ -1,4 +1,9 @@
 .. author:: TheForcer <https://github.com/TheForcer>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: photo-management
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -10,20 +15,22 @@
 Lychee
 #########
 
+.. tag_list::
+
 Lychee_ is a open source photo-management software written in PHP and distributed under the MIT license. It allows you to easily upload, sort and manage your photos, all while presenting those with a beautiful web interface.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -57,8 +64,8 @@ Now point your browser to your Lychee URL and follow the instructions.
 
 You will need to enter the following information:
 
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Lychee database name: we suggest you use an additional_ database. For example: isabell_lychee. Enter that, you can leave the prefix field empty.
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Lychee database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_lychee. Enter that, you can leave the prefix field empty.
 
 For the last step you have to enter the username/password you want to use for the Lychee user.
 
@@ -80,15 +87,9 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 .. _Lychee: https://lychee.electerious.com/
 .. _GitHub: https://github.com/LycheeOrg/Lychee/releases
 .. _Feed: https://github.com/LycheeOrg/Lychee/releases.atom
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 
 ----
 
 Tested with Lychee 3.1.6, Uberspace 7.1.1
 
-.. authors::
+.. author_list::

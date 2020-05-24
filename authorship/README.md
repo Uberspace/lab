@@ -9,7 +9,7 @@ of author names.
 ## Usage
 
 Use the ``.. author:: Author Name <email or url>`` directive to add information
-to a document. With ``.. authors::`` you can add a paragraph, that list all
+to a document. With ``.. author_list::`` you can add a paragraph, that list all
 authors that are set for a document, like this::
 
     Written by: author1 <mail@some.org>, author2 <site.org>

@@ -1,32 +1,40 @@
 .. author:: Michael Stötzer <hallo@bytekeks.de>
+
+.. tag:: lang-go
+.. tag:: audience-developers
+.. tag:: continuous-integration
+.. tag:: automation
+
 .. highlight:: console
 
 .. sidebar:: Logo
-  
+
   .. image:: _static/images/gitlab-logo.png
       :align: center
 
 #############
-Gitlab Runner
+GitLab Runner
 #############
+
+.. tag_list::
 
 GitLab Runner is the open source project that is used to run your jobs and send the results back to `GitLab`_. It is used in conjunction with `GitLab`_ CI, the open-source continuous integration service included with `GitLab`_ that coordinates the jobs.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
-  * supervisord_
+  * :manual:`supervisord <daemons-supervisord>`
 
 Prerequisites
 =============
 
-gitlab project
+GitLab project
 --------------
 
-You need to have a project in gitlab that you want to deploy using Gitlab Runner.
+You need to have a project in GitLab that you want to deploy using GitLab Runner.
 
-For further information please refer to the official `Gitlab Runner docs`_
+For further information please refer to the official `GitLab Runner docs`_
 
 Obtain registration token
 --------------------------
@@ -41,7 +49,7 @@ Installation
 Download latest version
 -----------------------
 
-Use ``wget`` to download the latest version of Gitlab Runner:
+Use ``wget`` to download the latest version of GitLab Runner:
 
 ::
 
@@ -51,13 +59,13 @@ Make it executable:
 
 ::
 
-  [isabell@stardust ~]$ chmod +x gitlab-runner
+  [isabell@stardust ~]$ chmod +x /home/$USER/bin/gitlab-runner
 
 **Optional** check runner version:
 
 ::
 
-  [isabell@stardust ~]$ ./bin/gitlab-runner -v
+  [isabell@stardust ~]$ /home/$USER/bin/gitlab-runner -v
 
 Create working directory
 ------------------------
@@ -73,56 +81,45 @@ Register the runner
 
 .. note:: You need your registration token you copied above.
 
-  This basic setup uses the **shell executor**. See: `Gitlab Runner Executors`_
+  This basic setup uses the **shell executor**. See: `GitLab Runner Executors`_
 
 ::
 
-  [isabell@stardust ~]$ ./bin/gitlab-runner register
+  [isabell@stardust ~]$ /home/$USER/bin/gitlab-runner register
 
 Configure the supervisord service
 =================================
 
-Create a shell script (e.g. ``~/bin/gitlab-runner.sh``) that keeps the call for the runner:
+Create a shell script (e.g. ``/home/$USER/bin/gitlab-runner.sh``) that keeps the call for the runner:
 
 ::
 
   #!/bin/bash
-  /home/$USER/bin/gitlab-runner-11.1.0 run --working-directory=/home/$USER/gitlab-runner/
+  /home/$USER/bin/gitlab-runner run --working-directory=/home/$USER/gitlab-runner/
 
 Make it executable:
 
 ::
 
-  [isabell@stardust ~]$ chmod +x ~/bin/gitlab-runner.sh
+  [isabell@stardust ~]$ chmod +x /home/$USER/bin/gitlab-runner.sh
 
-Create supervisord ini (e.g. ``~/etc/services.d/gitlab-runner.ini``:
+Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 
 ::
 
   [program:gitlab-runner]
-  command=/home/$USER/bin/gitlab-runner.sh
+  command=%(ENV_HOME)s/bin/gitlab-runner.sh
 
-
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- gitlab-runner: available
- [isabell@stardust ~]$ supervisorctl update
- gitlab-runner: added process group
- [isabell@stardust ~]$ supervisorctl status
- gitlab-runner                   RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
+.. include:: includes/supervisord.rst
 
 If it’s not in state RUNNING, check your configuration.
 
-.. _Gitlab: https://gitlab.com
-.. _Gitlab Runner docs: https://docs.gitlab.com/runner/
-.. _Gitlab Runner executors: https://docs.gitlab.com/runner/executors/README.html
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
+.. _GitLab: https://gitlab.com
+.. _GitLab Runner docs: https://docs.gitlab.com/runner/
+.. _GitLab Runner executors: https://docs.gitlab.com/runner/executors/README.html
 
 ----
 
-Tested with Gitlab Runner 11.1.0, Uberspace 7.1.7.0
+Tested with GitLab Runner 11.1.0, Uberspace 7.1.7.0
+
+.. author_list::

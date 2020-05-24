@@ -1,4 +1,9 @@
 .. author:: Willi Mutschler <willi@mutschler.eu>
+
+.. tag:: lang-php
+.. tag:: web
+.. tag:: cms
+
 .. highlight:: console
 .. sidebar:: Logo
 
@@ -9,20 +14,22 @@
 Joomla!
 #########
 
+.. tag_list::
+
 Joomla_ is a free and open-source content management system (CMS) for publishing web content, developed by Open Source Matters, Inc. It is built on a model–view–controller web application framework that can be used independently of the CMS. Joomla_ is distributed under the GPLv2 license.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 ::
 
@@ -32,16 +39,16 @@ We're using PHP_ in the stable version 7.1:
 
 .. include:: includes/my-print-defaults.rst
 
-If you want to use Joomla! with your own domain you need to setup your domains_ first:
+If you want to use Joomla! with your own domain you need to setup your :manual:`domains <web-domains>` first:
 
 .. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-``cd`` to your `document root`_, then download the latest release of *Joomla!* and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of *Joomla!* and extract it:
 
-.. note:: The link to the lastest version can be found at Joomla!'s `download page <https://downloads.joomla.org/>`_.
+.. note:: The link to the latest version can be found at Joomla!'s `download page <https://downloads.joomla.org/>`_.
 
 ::
 
@@ -62,29 +69,23 @@ Page 1 - Configuration:
 Page 2 - Database Configuration:
   * Database Type: Set it to ``MySQLi``
   * Host Name: ``localhost``
-  * Username: ``isabell`` 
-  * Password: ``yourMySQLPassword`` (you should know your MySQL credentials_ by now; if you don't, start reading again at the top.)
-  * Database Name: your Joomla! database name: we suggest you use an additional_ database. For example: ``isabell_joomla``
+  * Username: ``isabell``
+  * Password: ``yourMySQLPassword`` (you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now; if you don't, start reading again at the top.)
+  * Database Name: your Joomla! database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_joomla``
   * Table Prefix: just stick to the randomly generated one
   * Old Database Process: ``Backup`` to be sure
 
 Page 3 - Finalization
   * Install Sample Data: up to you...
   * Email Configuration: up to you...
-  * Check that all Pre-Installation Checks are fullfilled (a green ``Yes``)
-  * Check that all Recommended Settings are fullfilled (for me the only difference was ``Output Buffering`` which is recommended to *off*, but is *on* in my case -- it does not matter, Joomla! will still operate)
-  
+  * Check that all Pre-Installation Checks are fulfilled (a green ``Yes``)
+  * Check that all Recommended Settings are fulfilled (for me the only difference was ``Output Buffering`` which is recommended to *off*, but is *on* in my case -- it does not matter, Joomla! will still operate)
+
 Hit ``Install``!
 You should see a message ``Congratulations! Joomla! is now installed``
 You can also install optionally extra languages by clicking on ``Extra steps: Install languages``
 
 *Important*: Click ``Remove installation folder``. You will not be able to proceed beyond this point until the installation folder has been removed. This is a security feature of Joomla!
-
-Tuning [under construction]
-======
-
-  * Check the Post-installation Messages for any hints and errors
-  * ...
 
 Updates
 =======
@@ -92,15 +93,9 @@ Updates
 The easiest way to update Joomla! is to use the web updater provided in the admin section of your website, e.g. ``isabell.uber.space/administrator``
 
 .. _Joomla: https://www.joomla.org/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 
 ----
 
 Tested with Joomla! 3.8.12, Uberspace 7.1.12
 
-.. authors::
+.. author_list::

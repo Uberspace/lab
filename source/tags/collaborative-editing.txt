@@ -1,0 +1,5 @@
+Editing a document by yourself is no fun, editing with friends is much better!
+The software listed below enables you to simultaneously or asynchronously edit
+a document with multiple people on different devices. Hosting this kind of
+software yourself enables to keep full control over your data and the long-term
+availability of your tools.

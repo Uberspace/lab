@@ -2,39 +2,40 @@
 
 .. author:: Martin Porsch <https://github.com/kubiac/>
 
+.. tag:: web
+.. tag:: file-storage
+.. tag:: sync
+.. tag:: proprietary
+
 .. sidebar:: About
-  
-  .. image:: _static/images/resilio.png 
+
+  .. image:: _static/images/resilio.png
       :align: center
 
 ############
 Resilio Sync
 ############
 
+.. tag_list::
+
 Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of 
+.. note:: For this guide you should be familiar with the basic concepts of
 
-  * supervisord_
-  * domains_
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
+  * :manual:`ports <basics-ports>`
 
 License
 =======
 
-All relevant legal information can be found here 
+All relevant legal information can be found here
 
   * http://www.resilio.com/legal/privacy
   * http://www.resilio.com/legal/terms-of-use
   * http://www.resilio.com/legal/eula
-
-Prerequisites
-=============
-
-We need a free port that Resilio Sync can listen to. To discover a currently unoccupied port run:
-
-.. include:: includes/generate-port.rst
 
 Installation
 ============
@@ -47,58 +48,59 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
  [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
- [isabell@stardust bin]$ 
+ [isabell@stardust bin]$
 
-Setup .htaccess
-===============
+Configure web server
+====================
 
-Create ``~/html/.htaccess`` with the following content:
+.. note::
 
-.. warning:: Replace ``<yourport>`` with your port!
+    Resilio is running on port 9000.
 
-.. code-block:: apacheconf
+.. include:: includes/web-backend.rst
 
- RewriteEngine On
- RewriteRule (.*) http://localhost:<yourport>/$1 [P]
- DirectoryIndex disabled
+Configure firewall port
+=======================
 
-In our example this would be:
+Resilio Sync will work without this step, however, all connections will be routed through a relay server, since direct connections are blocked by the firewall.
 
-.. code-block:: apacheconf
+.. include:: includes/open-port.rst
 
- RewriteEngine On
- RewriteRule (.*) http://localhost:9000/$1 [P]
- DirectoryIndex disabled
+Configure Resilio Sync
+======================
+
+Create a config file ``~/.sync/resilio-sync.conf`` with the following contents:
+
+.. warning:: Replace ``<username>`` with your username and ``<port>`` with the appropriate port number, which was opened in the previous step (would be 40132 in our example).
+
+.. code-block:: text
+
+ {
+   "device_name": "Uberspace",
+   "listening_port" : <port>, // 0 - randomize port
+
+    "storage_path" : "/home/<username>/.sync",
+
+    "webui" :
+  	{
+    	"listen" : "0.0.0.0:9000" // remove field to disable WebUI
+	}
+ }
 
 Configure ``supervisord``
 =========================
 
 Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username! Replace ``<yourport>`` with your port!
-
 .. code-block:: ini
 
  [program:resilio-sync]
- command=/home/<username>/bin/rslsync --webui.listen 0.0.0.0:<yourport> --nodaemon --storage /home/<username>/.sync
-
-In our example this would be:
-
-.. code-block:: ini
-
- [program:resilio-sync]
- command=/home/isabell/bin/rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=rslsync --nodaemon --config /home/isabell/.sync/resilio-sync.conf
 
 Start Service
 =============
 
-Now you need to load the changes and start your service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$ 
+.. include:: includes/supervisord.rst
 
 Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example) and see if it works. Enjoy!
 
@@ -115,14 +117,12 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ supervisorctl start resilio-sync
- [isabell@stardust bin]$ 
+ [isabell@stardust bin]$
 
 .. _Resilio: https://www.resilio.com
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 
 ----
 
 Tested with Resilio Sync 2.5.12, Uberspace 7.1.4.0
 
-.. authors::
+.. author_list::

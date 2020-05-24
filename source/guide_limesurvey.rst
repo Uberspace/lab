@@ -2,6 +2,10 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. tag:: lang-python
+.. tag:: web
+.. tag:: survey
+
 .. sidebar:: Logo
 
   .. image:: _static/images/limesurvey.png
@@ -11,15 +15,17 @@
 LimeSurvey
 ##########
 
+.. tag_list::
+
 LimeSurvey_ is a free and open source survey web application.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -37,7 +43,7 @@ We're using PHP in the stable version 7.1:
  Using 'PHP' version: '7.1'
  [isabell@stardust ~]$
 
-You'll need your MySQL credentials_. Get them with ``my_print_defaults``:
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
 
 ::
 
@@ -59,27 +65,27 @@ Installation
 ============
 
 Download archive
-------
+----------------
 
 Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
  [...]
  2018-10-02 16:01:50 (10.0 MB/s) - ‘stable-release?download=4711:limesurvey4711%20180926targz’ saved [72359513/72359513]
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 
 Extract archive
-------
+---------------
 
 ::
 
  [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 Configuration
 =============
@@ -94,7 +100,7 @@ Edit .htaccess
 The default ``.htaccess`` includes a RewriteCond so that existing directories won't be rewritten, but for some reason it is commented out:
 
 .. code-block:: apacheconf
- 
+
      #RewriteCond %{REQUEST_FILENAME} !-d
 
 
@@ -102,25 +108,25 @@ The default ``.htaccess`` includes a RewriteCond so that existing directories wo
 Edit the ``.htaccess`` file and uncomment the line above, so the full ``.htaccess`` file should look like this:
 
 .. code-block:: apacheconf
- 
+
  <IfModule mod_rewrite.c>
      RewriteEngine on
- 
+
      # if a directory or a file exists, use it directly
      RewriteCond %{REQUEST_FILENAME} !-f
      RewriteCond %{REQUEST_FILENAME} !-d
- 
+
      # otherwise forward it to index.php
      RewriteRule . index.php
- 
+
      # deny access to hidden files and directories except .well-known
      RewriteCond %{REQUEST_URI} !^/\.well-known
      RewriteRule ^(.*/)?\.+ - [F]
  </IfModule>
- 
+
  # deny access to hidden files and directories without mod_rewrite
  RedirectMatch 403 ^/(?!\.well-known/)(.*/)?\.+
- 
+
  # General setting to properly handle LimeSurvey paths
  # AcceptPathInfo on
 
@@ -136,19 +142,14 @@ When a new version is released, copy the download link and download it as above,
 
 .. code-block:: console
  :emphasize-lines: 2
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
  [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1 --overwrite  --exclude '/application/config/config.php' --exclude '/upload/*'
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 
 .. _LimeSurvey: https://www.limesurvey.org/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _feed: https://github.com/LimeSurvey/LimeSurvey/releases.atom
 .. _GPLv2: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 .. _stable release: https://www.limesurvey.org/en/downloads/category/25-latest-stable-release
@@ -157,5 +158,5 @@ When a new version is released, copy the download link and download it as above,
 
 Tested with LimeSurvey 3.14.11+180926, Uberspace 7.1.13.0
 
-.. authors::
+.. author_list::
 

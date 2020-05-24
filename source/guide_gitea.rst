@@ -1,4 +1,9 @@
-.. author:: luto <luto.at>
+.. author:: luto <http://luto.at>
+
+.. tag:: lang-go
+.. tag:: audience-developers
+.. tag:: version-control
+
 .. highlight:: console
 
 .. sidebar:: Logo
@@ -10,6 +15,8 @@
 Gitea
 #####
 
+.. tag_list::
+
 Gitea_ is a painless self-hosted Git service written in Go and distributed under the MIT License, designed to provide
 similar core functionality as GitLab or GitHub, but at a much smaller resource footprint. The project started as a fork
 of the then-popular Gogs_, but quickly became more active and bigger than the original.
@@ -18,9 +25,9 @@ of the then-popular Gogs_, but quickly became more active and bigger than the or
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * MySQL_
-  * supervisord_
-  * domains_
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
@@ -29,18 +36,9 @@ Prerequisites
 
 You need a database for gitea:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE <username>_gitea"
-  [isabell@stardust ~]$
-
-In our example this would be:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE isabell_gitea"
+  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_gitea"
   [isabell@stardust ~]$
 
 Your gitea URL needs to be setup:
@@ -50,14 +48,14 @@ Your gitea URL needs to be setup:
 Installation
 ============
 
-Like a lot of Go software, gitea is distributed as a single binary. Download Gitea's latests `release <https://github.com/go-gitea/gitea/releases/latest>`_,
+Like a lot of Go software, gitea is distributed as a single binary. Download Gitea's latest `release <https://github.com/go-gitea/gitea/releases/latest>`_,
 verify the checksum specified in the respective ``.sha256`` file and finally
 make sure that the file can be executed.
 
 ::
 
   [isabell@stardust ~]$ mkdir ~/gitea
-  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.5.1/gitea-1.5.1-linux-amd64
+  [isabell@stardust ~]$ wget -O gitea/gitea https://github.com/go-gitea/gitea/releases/download/v1.7.2/gitea-1.7.2-linux-amd64
   Resolving dl.gitea.io (github.com)... 2400:cb00:2048:1::681b:8e9b, 2400:cb00:2048:1::681b:8f9b, 104.27.142.155, ...
   Connecting to dl.gitea.io (github.com)|2400:cb00:2048:1::681b:8e9b|:443... connected.
   HTTP request sent, awaiting response... 200 OK
@@ -68,19 +66,12 @@ make sure that the file can be executed.
 
   2018-09-16 18:36:36 (8.72 MB/s) - gitea/gitea’ saved [60473144/60473144]
   [isabell@stardust ~]$ sha256sum gitea/gitea
-  ae4f43f73acbd0b61fbca78385a017d7aaed6f7d50f2bff5c3f057acfb46c71a gitea/gitea
+  b84098f0b0018071aa1ba5522078820494def29e6385c25c581c4362a4e463b3 gitea/gitea
   [isabell@stardust ~]$ chmod +x gitea/gitea
   [isabell@stardust ~]$
 
 Configuration
 =============
-
-Configure port
---------------
-
-Since Gitea uses its own webserver, you need to find a free port and bind your application to it.
-
-.. include:: includes/generate-port.rst
 
 Change the configuration
 ------------------------
@@ -93,8 +84,7 @@ You need to create a custom directory
   [isabell@stardust ~]$
 
 
-and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the
-desired port, domain and disable public registration:
+and a new config file at ``~/gitea/custom/conf/app.ini`` to specify the port and domain and to disable public registration:
 
 .. code-block:: ini
 
@@ -109,50 +99,33 @@ desired port, domain and disable public registration:
 Gitea provides many other configuration options. Take a look at the Documentation_
 to learn more.
 
-Setup .htaccess
----------------
+Configure web server
+--------------------
 
-.. include:: includes/proxy-rewrite.rst
+.. note::
+
+    Gitea is running on port 9000.
+
+.. include:: includes/web-backend.rst
 
 Setup daemon
 ------------
 
 Create ``~/etc/services.d/gitea.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
-.. warning:: Replace ``<yourport>`` with your port!
-
 .. code-block:: ini
 
   [program:gitea]
-  command=/home/<username>/gitea/gitea web -port <yourport>
+  command=%(ENV_HOME)s/gitea/gitea web
 
-In our example this would be:
-
-.. code-block:: ini
-
-  [program:gitea]
-  command=/home/isabell/gitea/gitea web -port 9000
-
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- gitea: available
- [isabell@stardust ~]$ supervisorctl update
- gitea: added process group
- [isabell@stardust ~]$ supervisorctl status
- gitea                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
 Finishing installation
 ======================
 
-Point your browser to your gitea URL and finish the installation.
+Point your browser to the ``/install`` path on your domain to finish the installation.
 
 .. note:: Using the same public key for Gitea and your Uberspace will prevent you from logging in with this key via SSH. Login via password still works as expected, you can use the Dashboard_ to manage your keys.
 
@@ -173,6 +146,27 @@ Add your key in gitea and then change the line in ``.ssh/authorized_keys`` to th
 
 .. warning:: Replace ``<username>`` with your username and put your public key after ``ssh-``!
 
+Tuning
+======
+
+You can easily add AsciiDoc rendering to Gitea. Install asciidoctor via ruby gems:
+
+::
+
+ [isabell@stardust ~]$ gem install asciidoctor
+
+Edit your config file at ``~/gitea/custom/conf/app.ini`` to enable asciidoctor in Gitea:
+
+.. code-block:: ini
+
+  [markup.asciidoc]
+  ENABLED = true
+  FILE_EXTENSIONS = .adoc,.asciidoc
+  RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
+  IS_INPUT_FILE = false
+
+In the end stop (``supervisorctl stop gitea``) and restart (``supervisorctl stop gitea``) Gitea. Try it with a .adoc or .asciidoc file.
+
 Updates
 =======
 
@@ -183,15 +177,12 @@ version is available, stop daemon by ``supervisorctl stop gitea`` and repeat the
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
-.. _supervisord: https://manual.uberspace.de/en/daemons-supervisord.html
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
 .. _Documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
-.. _domains: https://manual.uberspace.de/en/web-domains.html
 .. _Dashboard: https://uberspace.de/dashboard/authentication
 
 ----
 
-Tested with Gitea 1.5.1, Uberspace 7.1.3
+Tested with Gitea 1.11.4, Uberspace 7.6.0
 
-.. authors::
+.. author_list::

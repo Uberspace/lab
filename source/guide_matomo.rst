@@ -1,6 +1,10 @@
 .. highlight:: console
 .. author:: GodMod <godmod@eqdkp-plus.eu>
 
+.. tag:: lang-php
+.. tag:: web
+.. tag:: analytics
+
 .. sidebar:: Logo
 
   .. image:: _static/images/matomo.png
@@ -10,73 +14,75 @@
 Matomo
 #########
 
-Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
+.. tag_list::
+
+Matomo_ (formerly known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
-  * MySQL_
-  * domains_
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.2:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.2'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
-If you want to use Matomo with your own domain you need to setup your domain first:
+If you want to use Matomo with your own domain you need to add it first:
 
 .. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-If you want to install Matomo into a subfolder of your domain, create a new folder and navigate to it:
+If you want to install Matomo into a subfolder of your domain, download and unzip it in your :manual:`document root <web-documentroot>`:
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust ~]$ mkdir matomo
- [isabell@stardust ~]$ cd matomo/
- [isabell@stardust matomo]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ wget https://builds.matomo.org/matomo.zip
+ [isabell@stardust html]$ unzip matomo.zip
+ [isabell@stardust html]$ rm matomo.zip
 
-If you want to install matomo into your `document root`_, just navigate with ``cd`` to your `document root`_.
-
-Now download the latest version and extract it:
-
-::
-
- [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip && rm matomo.zip
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
-  
- [...]
- 
- [isabell@stardust matomo]$
-
-This will create a ``piwik`` folder containing the files and directories. Now we will move the files from the ``piwik`` folder to the parent folder.
-
-::
-
- [isabell@stardust matomo]$ cd piwik/ && mv * .. && cd .. && rm piwik -rf
- [isabell@stardust matomo]$
-
-Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. After that, follow the instructions of the Installer.
+Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. Follow the instructions in your browser.
 
 You will need to enter the following information:
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL credentials_ by now. If you don't, start reading again at the top.
-  * your Matomo database name: we suggest you use an additional_ database. For example: isabell_matomo
+  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
+  * your Matomo database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
   * Name and URL of the first website you want to track with Matomo (more can be added after installation)
+
+
+Best practices
+==============
+
+auto-archive
+------------
+
+archiving can slow down Matomo quite a bit. So if you want to have a more fluent workflow this is recommended.
+
+enter crontab with
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ crontab -e
+
+and enter with your url (more configuration-details about :manual:`cron <daemons-cron>`):
+
+.. code-block::
+
+  5 * * * * /usr/bin/php /home/$USER/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+
 
 Tracking
 ========
@@ -115,7 +121,7 @@ There are different ways to use Matomo for website tracking. The easiest way is 
 
 Moreover, Matomo provides Image Tracking and the importing of server logs. Also it offers a `Tracking HTTP API <https://developer.matomo.org/api-reference/tracking-api>`_, which lets you integrate the Matomo Tracking for example in your PHP application.
 
-  
+
 Privacy
 =======
 
@@ -125,6 +131,8 @@ Nevertheless, you should update your Privacy Policy to explain how Matomo is use
 
 Also, you can provide your users an Opt-Out Feature using iframes. Therefore, go to ``Administration >> Privacy >> Users opt-out`` and copy the provided HTML-Code into your website, e.g. in your Privacy Policy.
 
+.. warning:: If you want to track a website outside of your uberspace, be aware that you won't be able to place an opt-out iFrame due to the option ``X-Frame-Options: SAMEORIGIN`` which is enabled by default. This implicates a breach of the GDPR laws and should be solved otherwise. Use a solution like the official plugin  `Ajax Opt Out <https://plugins.matomo.org/AjaxOptOut/>`_ instead to serve a opt-out option for your visitors.
+
 Updates
 =======
 
@@ -133,15 +141,9 @@ The easiest way to update Matomo is to use the web updater provided in the admin
 .. note:: Check the `changelog <https://matomo.org/changelog/>`_ regularly to stay informed about new updates and releases.
 
 .. _Matomo: https://matomo.org/
-.. _PHP: https://manual.uberspace.de/en/lang-php.html
-.. _credentials: https://manual.uberspace.de/en/database-mysql.html#login-credentials
-.. _MySQL: https://manual.uberspace.de/en/database-mysql.html
-.. _domains: https://manual.uberspace.de/en/web-domains.html
-.. _document root: https://manual.uberspace.de/en/web-documentroot.html
-.. _additional: https://manual.uberspace.de/en/database-mysql.html#additional-databases
 
 ----
 
 Tested with Matomo 3.5.0, Uberspace 7.1.3
 
-.. authors::
+.. author_list::

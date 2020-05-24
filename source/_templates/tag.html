@@ -1,0 +1,13 @@
+{% extends "!layout.html" %}
+
+{% block body %}
+<h1>#{{ tag }}</h1>
+{% if intro %}
+<p>{{ intro }}</p>
+{% endif %}
+<div class="tagguides">
+{% for g in guides %}
+    <a href="{{ pathto(g) }}">{{ titles[g][0] }}</a>
+{% endfor %}
+</div>
+{% endblock %}
