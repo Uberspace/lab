@@ -152,11 +152,11 @@ Check out the official `selfoss documentation`_ for explanation of further confi
 Cron job
 ========
 
-It is recommended to set up a cron job to automatically update your feeds. Edit your cron tab using the ``crontab -e`` command and insert this cron job to update every 15 minutes. Make sure to replace ``isabell.uber.space`` with your own domain.
+It is recommended to set up a cron job to automatically update your feeds. Edit your cron tab using the ``crontab -e`` command and insert this cron job to update every 15 minutes. Make sure to replace ``/home/isabell/html/cliupdate.php`` with the path to the ``cliupdate.php`` script inside the selfoss folder.
 
 ::
 
- */15 * * * * curl -so /dev/null https://isabell.uber.space/update
+ */15 * * * * php /home/isabell/html/cliupdate.php
 
 .. _selfoss: https://selfoss.aditu.de/
 .. _latest release: https://github.com/SSilence/selfoss/releases/latest
