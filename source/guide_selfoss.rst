@@ -156,7 +156,7 @@ It is recommended to set up a cron job to automatically update your feeds. Edit 
 
 ::
 
- */15 * * * * php /home/isabell/html/cliupdate.php
+ */15 * * * * php /home/isabell/html/cliupdate.php > /dev/null 2>&1
 
 .. _selfoss: https://selfoss.aditu.de/
 .. _latest release: https://github.com/SSilence/selfoss/releases/latest
