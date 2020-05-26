@@ -111,22 +111,22 @@ We visit the page in the browser of our choice.
 2. For the ``Data directory``, we choose the moodledata folder we created. ``/home/isabell/moodledata``
 3. For the Database driver, we choose ``MariaDB (native/mariadb)``
 4. For the Database Settings, we enter our information:
-  
+
   1. ``Database name``: ``isabell_moodle``
   2. ``Database user``: ``isabell``
   3. ``Database password``: ``MySuperSecretPassword``
   4. ``Database port``: ``3306``
 
 5. Read the Copyright notice and only accept if you truly do :)
-6. The checks should now show all OK. At the end of the page, we click on ``Continue``. This could take a while to finish.
-7. You should be redirected to the installation status screen. If you're not being redirected automatically, just wait a little bit. Try refreshing the exact site. It has to be an URL something like https://isabell.uber.space/admin/index.php?cache=0&agreelicense=1&confirmrelease=1&lang=en . At this point, it may be possible that a message like "Site is being upgraded, please retry later" pops up after reloading. Just try reloading after some minutes when this occurs.
+6. The checks should now show all OK. At the end of the page, we click on ``Continue``.
+7. This could take a while to finish. We should shortly after be redirected to the process page. We can watch the process while installing missing plugins. After all installations have finished, at the end of the page we click on ``Continue``
 8. After that, we should be shown the admin user creation page. We enter our information here which we later will also use to login.
 9. Enter a full and short name for your Moodle instance.
 10. Et voila, our Moodle is now installed.
 
 Step 3
 ------
-We definitely should configure a cron task for Moodle. This script is critical for several features of Moodle e.g. sending notification emails. Enter 
+We definitely should configure a cron task for Moodle. This script is critical for several features of Moodle e.g. sending notification emails. Enter
 
 ::
 
