@@ -118,24 +118,23 @@ Review the sample configuration file ``.../sulucms/.env``. Then edit the ``.env.
 When you’re done with the configuration, populate the database with Sulu’s default data by following the build walkthrough.
 
 .. code-block:: console
- :emphasize-lines: 32
+ :emphasize-lines: 31
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/sulucms
- [isabell@stardust sulucms]$ ./bin/adminconsole sulu:build dev
+ [isabell@stardust sulucms]$ ./bin/adminconsole sulu:build prod
  Build Targets
  =============
 
- +---+--------------------+-----------------------------------------------------------------------+
- | # | Builder            | Deps                                                                  |
- +---+--------------------+-----------------------------------------------------------------------+
- | 0 | database           |                                                                       |
- | 1 | phpcr              | database                                                              |
- | 2 | phpcr_migrations   | phpcr                                                                 |
- | 3 | fixtures           | database, phpcr                                                       |
- | 4 | user               | fixtures, database                                                    |
- | 5 | system_collections | database, fixtures                                                    |
- | 6 | dev                | database, fixtures, phpcr, user, phpcr_migrations, system_collections |
- +---+--------------------+-----------------------------------------------------------------------+
+ +---+--------------------+-----------------------------------------------------------------+
+ | # | Builder            | Deps                                                            |
+ +---+--------------------+-----------------------------------------------------------------+
+ | 0 | database           |                                                                 |
+ | 1 | phpcr              | database                                                        |
+ | 2 | fixtures           | database, phpcr                                                 |
+ | 3 | phpcr_migrations   | phpcr                                                           |
+ | 4 | system_collections | database, fixtures                                              |
+ | 5 | prod               | database, phpcr, fixtures, phpcr_migrations, system_collections |
+ +---+--------------------+-----------------------------------------------------------------+
 
  Options:
 
