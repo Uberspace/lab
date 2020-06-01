@@ -125,6 +125,7 @@ Create ``~/etc/services.d/thelounge.ini`` with the following content:
 
  [program:thelounge]
  command=thelounge start
+ startsecs=60
  autostart=yes
  autorestart=yes
 

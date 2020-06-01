@@ -12,7 +12,7 @@ Jingo
 
 .. tag_list::
 
-Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
+Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too many functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
 
 At this time, Jingo is no longer actively developed but still supported for security issues.
 
@@ -162,6 +162,7 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
 
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
+  startsecs=60
 
 .. include:: includes/supervisord.rst
 

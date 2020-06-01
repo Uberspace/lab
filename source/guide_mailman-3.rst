@@ -380,7 +380,12 @@ If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, 
 Install cronjobs
 ----------------
 
-`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the line ``@daily /home/isabell/.local/bin/mailman digests --send`` at the end of the file.
+`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the following line at the end of the file.
+
+.. code-block:: bash
+
+ @daily /home/$USER/.local/bin/mailman digests --send
+
 
 Using Mailman
 =============

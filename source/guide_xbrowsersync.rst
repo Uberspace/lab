@@ -190,6 +190,7 @@ Create a service file under ``~/etc/services.d/xbrowsersync.ini`` and replace ``
 
   [program:xbrowsersync]
   command=node /home/<username>/xbrowsersync/api/dist/api.js
+  startsecs=60
   autostart=yes
   autorestart=yes
 

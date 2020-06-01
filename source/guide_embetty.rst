@@ -81,6 +81,7 @@ Create ``~/etc/services.d/embetty.ini`` with the following content:
 
  [program:embetty]
  command=embetty start
+ startsecs=60
  environment=TWITTER_ACCESS_TOKEN_KEY="<accesstoken>",TWITTER_ACCESS_TOKEN_SECRET="<accesstokensecret>",TWITTER_CONSUMER_KEY="<consumerkey>",TWITTER_CONSUMER_SECRET="<consumersecret>"
 
 .. note:: If you don't need Twitter support, you can leave out the ``TWITTER_`` variables.
