@@ -39,12 +39,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -78,6 +78,44 @@ You will need to enter the following information:
   * your Nextcloud database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_nextcloud
 
 Additionally, you can choose where Nextcloud is going to store your data files. It is recommended to place them outside of the webserver's DocumentRoot, e.g. at ``/home/isabell/nextcloud_data/``.
+
+Configuration
+=============
+
+Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by editing the ``/var/www/virtual/$USER/html/config/config.php`` with your favorite editor. If yo want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
+
+Sendmail Settings
+-----------------
+
+ and enter the following settings:
+
+.. warning:: Make sure to replace the example values.
+
+::
+
+ 'mail_domain' => 'uber.space',
+ 'mail_from_address' => 'isabell',
+ 'mail_smtpmode' => 'sendmail',
+ 'mail_sendmailmode' => 'pipe',
+ 
+SMTP Settings
+-------------
+
+.. note:: In our example we assume that Nextcloud will use the user's :manual:`system mailbox <mail-mailboxes>` user to send out mails. If you prefer to use an :manual_anchor:`additional mailbox <mail-mailboxes.html#setup-a-new-mailbox>` just adapt the settings. Refer to the :manual_anchor:`manual <mail-access.html#smtp>` if you don't know your smtp password.
+
+::
+
+ 'mail_domain' => 'uber.space',
+ 'mail_from_address' => 'isabell',
+ 'mail_smtpmode' => 'smtp',
+ 'mail_smtpport' => 587,
+ 'mail_smtphost' => 'stardust.uberspace.de',
+ 'mail_smtpsecure' => 'tls',
+ 'mail_smtpauth' => true,
+ 'mail_smtpauthtype' => 'LOGIN',
+ 'mail_smtpname' => 'isabell@uber.space',
+ 'mail_smtppassword' => 'MySSHPasswordIfUsingTheSystemMailbox',
+
 
 Tuning
 ======
@@ -153,7 +191,7 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
 
 ::
 
- [isabell@stardust ~] cd html
+ [isabell@stardust ~]$ cd html
  [isabell@stardust html]$ php occ db:add-missing-indices
  [isabell@stardust html]$ php occ db:convert-filecache-bigint
 
