@@ -64,11 +64,11 @@ Check current version of Gitea at releases_ page.
   Location: [...]
   HTTP request sent, awaiting response... 200 OK
   Length: 83243800 (79M) [application/octet-stream]
-  Saving to: ‘/home/test0r/gitea/gitea’
+  Saving to: ‘/home/isabell/gitea/gitea’
   
   100%[====================================================================================================================>] 83,243,800  14.9MB/s   in 9.8s   
   
-  2020-06-01 21:00:42 (8.11 MB/s) - ‘/home/test0r/gitea/gitea’ saved [83243800/83243800]
+  2020-06-01 21:00:42 (8.11 MB/s) - ‘/home/isabell/gitea/gitea’ saved [83243800/83243800]
   [isabell@stardust ~]$ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
   Resolving github.com (github.com)... 140.82.118.4
   Connecting to github.com (github.com)|140.82.118.4|:443... connected.
@@ -76,11 +76,11 @@ Check current version of Gitea at releases_ page.
   Location: [...]
   HTTP request sent, awaiting response... 200 OK
   Length: 833 [application/octet-stream]
-  Saving to: ‘/home/test0r/gitea/gitea.asc’
+  Saving to: ‘/home/isabell/gitea/gitea.asc’
   
   100%[====================================================================================================================>] 833         --.-K/s   in 0s      
   
-  2020-06-01 21:03:17 (9.01 MB/s) - ‘/home/test0r/gitea/gitea.asc’ saved [833/833]
+  2020-06-01 21:03:17 (9.01 MB/s) - ‘/home/isabell/gitea/gitea.asc’ saved [833/833]
   [isabell@stardust ~]$ 
  
 We use ``gpg`` to download the pgp key and verify our download.
@@ -266,7 +266,7 @@ We can install an extra `external rendering <https://docs.gitea.io/en-us/externa
   
   [isabell@stardust ~]$ gem install asciidoctor
   Fetching asciidoctor-2.0.10.gem
-  WARNING:  You don't have /home/test0r/.gem/ruby/2.7.0/bin in your PATH,
+  WARNING:  You don't have /home/isabell/.gem/ruby/2.7.0/bin in your PATH,
   	  gem executables will not run.
   Successfully installed asciidoctor-2.0.10
   1 gem installed
@@ -353,9 +353,9 @@ To interact with Gitea at our local machine like ``git clone isabell@isabell.ube
 
 .. code-block:: config
 
-  Host isabelle.uber.space
-      HostName isabelle.uber.space
-      User isabelle
+  Host isabell.uber.space
+      HostName isabell.uber.space
+      User isabell
       IdentityFile ~/.ssh/id_your_git_key
       IdentitiesOnly yes
 
