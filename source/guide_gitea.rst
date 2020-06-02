@@ -311,12 +311,14 @@ We generate a safe password for the admin user. For this we use ``head`` to pipe
 .. code-block:: console
 
   [isabell@stardust ~]$ ADMPWD=$(head /dev/urandom | tr --complement --delete A-Za-z0-9 | head --bytes=16 ; echo '')
+  [isabell@stardust ~]$ 
 
 Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. We choose ``adminuser`` and the generated password from above. To ensure we remember the password beyond this installation session we store the password in a text file.
 
 .. code-block:: console
   
   [isabell@stardust ~]$ ~/gitea/gitea admin create-user --username adminuser --password ${ADMPWD} --email ${USER}@uber.space --admin
+  [isabell@stardust ~]$
   ...
   New user 'adminuser' has been successfully created!
   [isabell@stardust ~]$ echo "usr: adminuser" > ~/gitea/gitea-admin.txt
