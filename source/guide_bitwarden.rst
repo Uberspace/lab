@@ -137,7 +137,7 @@ Configuration
 Setup web backend
 -----------------
 
-.. note:: Enter the port you configured in the ``env`` file before.
+.. note:: Enter the port ``62714`` as configured in the ``env`` file before.
 
 If you want to use a subdomain refer to the :manual:`web-backend manual <web-backends>`.
 
@@ -171,10 +171,10 @@ Use your favourite editor to create ``~/etc/services.d/bitwarden_rs.ini`` with t
 .. code-block:: ini
 
  [program:bitwarden_rs]
-	directory=%(ENV_HOME)s/bitwarden_rs
-	command=%(ENV_HOME)s/bitwarden_rs/target/release/bitwarden_rs
-	autostart=yes
-	autorestart=yes
+ directory=%(ENV_HOME)s/bitwarden_rs
+ command=%(ENV_HOME)s/bitwarden_rs/target/release/bitwarden_rs
+ autostart=yes
+ autorestart=yes
 
 .. include:: includes/supervisord.rst
 
