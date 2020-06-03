@@ -62,7 +62,7 @@ Run the *autotools*, afterwards build the application with ``configure`` followe
  [...]
  Makefile.am: installing './INSTALL'
  Makefile.am: installing './depcomp'
- [isabell@stardust shellinabox]$ ./configure
+ [isabell@stardust shellinabox]$ ./configure --prefix=$HOME
  [...]
  config.status: creating Makefile
  config.status: creating config.h
@@ -71,9 +71,11 @@ Run the *autotools*, afterwards build the application with ``configure`` followe
  [isabell@stardust shellinabox]$ make
  [...]
  make[1]: Leaving directory '/home/isabell/shellinabox'
- [isabell@stardust shellinabox]$
+ [isabell@stardust shellinabox]$ make install
+ [...]
+ make[1]: Leaving directory `/home/isabell/shellinabox'
 
-This will create a new executable file named ``shellinaboxd`` (notice the *d* at the end of the filename) in your *shellinabox* directory.
+This will create a new executable file named ``shellinaboxd`` (notice the *d* at the end of the filename) in your ``~/bin`` directory.
 
 Configuration
 =============
@@ -92,7 +94,7 @@ To run *shellinabox* as a deamon, create a new file ``~/etc/services.d/shellinab
 .. code-block:: ini
 
  [program:shellinabox]
- command=/home/isabell/shellinabox/shellinaboxd --disable-ssl --verbose
+ command=shellinaboxd --disable-ssl --verbose
  autostart=yes
  autorestart=yes
 
