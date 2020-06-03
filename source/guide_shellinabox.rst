@@ -89,8 +89,6 @@ Setup daemon
 ------------
 To run *shellinabox* as a deamon, create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
 
-.. warning:: Replace ``isabell`` with your username!
-
 .. code-block:: ini
 
  [program:shellinabox]
