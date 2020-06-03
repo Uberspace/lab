@@ -55,9 +55,9 @@ We create the application directory and install the latest version. The website 
  [isabell@stardust ~]$ mkdir docusaurus
  [isabell@stardust ~]$ cd docusaurus
  [isabell@stardust docusaurus]$ npm install --global docusaurus-init
- […]
+ (...)
  [isabell@stardust docusaurus]$ docusaurus-init
- […]
+ (...)
  [isabell@stardust docusaurus]$
 
 Setup daemon
