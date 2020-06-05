@@ -167,8 +167,6 @@ When using this, we have to finish the installation via gitea web service https:
 
 For more informations about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample>`_.
 
-.. note:: The minimum improvements are written in the sections of ``[database]``, ``[security]`` and ``[service]``.
-
 .. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
 .. code-block:: ini
@@ -267,7 +265,7 @@ Above we locked the registration and the web installation feature, so this servi
 Gitea admin user
 ----------------
 
-We generate a safe password for the admin user. We use ``pwgen`` to create 1 set of 16 characters and write them into a variable for usage during the next two steps.
+We generate a safe password for the admin user. We use ``pwgen`` to create 1 set of 16 characters and write them into a variable to use it during the next two steps.
 
 .. code-block:: console
 
