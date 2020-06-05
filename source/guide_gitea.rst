@@ -32,6 +32,8 @@ Gitea_ is a self-hosted Git service with a functionality similar to GitHub, GitL
 Prerequisites
 =============
 
+.. include:: includes/my-print-defaults.rst
+
 We need a database:
 
 .. code-block:: console
@@ -130,11 +132,11 @@ Before we write the configuration we need the MySQL database password and some r
   xG9MD-15A4aMGsln,MTr
   [isabell@stardust ~]$ 
 
-... and some random alpha-num chars for the security key. For this we pipe some random characters from the ``/dev/urandom`` device into the translate tool ``tr`` to delete the complementary of alpha-numeric characters until we have 32 characters.
+... and some random alpha-num chars for the security key. We generate one 32 characters key.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cat /dev/urandom | tr --delete --complement 'a-zA-Z0-9' | fold --width=32 | head --lines=1
+  [isabell@stardust ~]$ pwgen 32 1
   SomeRandomCharactersyHxLQeGr976f
   [isabell@stardust ~]$ 
 
@@ -162,8 +164,6 @@ When using this, we have to finish the installation via gitea web service https:
 * Filling the database access data that we would otherwise enter in the web installation step. (``[database]`` section)
 * As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
 * We disallow public registration and set some privacy settings. (``[service]`` section)
-* Naming the repositories path.
-* Set the eye-friendly dark theme as default theme, set mailing, set time and set logging options.
 
 For more informations about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample>`_.
 
@@ -181,12 +181,7 @@ For more informations about the possibilities and configuration options see the 
   HTTP_PORT            = 9000
   DOMAIN               = isabell.uber.space
   ROOT_URL             = https://%(DOMAIN)s
-  STATIC_URL_PREFIX    = 
   OFFLINE_MODE         = true
-  DISABLE_SSH          = false
-  SSH_DOMAIN           = isabell.uber.space
-  SSH_PORT             = 22
-  LANDING_PAGE         = explore ; [home, explore, organizations, login]
   LFS_START_SERVER     = true
   LFS_CONTENT_PATH     = /home/isabell/gitea/data/lfs
   LFS_JWT_SECRET       = 
@@ -203,59 +198,25 @@ For more informations about the possibilities and configuration options see the 
   [security]
   INSTALL_LOCK          = true
   MIN_PASSWORD_LENGTH   = 8
-  PASSWORD_COMPLEXITY   = lower,digit
-  PASSWORD_HASH_ALGO    = pbkdf2 ; [pbkdf2, argon2, scrypt, bcrypt]
-  LOGIN_REMEMBER_DAYS   = 5
-  CSRF_COOKIE_HTTP_ONLY = true
-  INTERNAL_TOKEN        = 
+  PASSWORD_COMPLEXITY   = lower
   SECRET_KEY            = <RANDOM_32_CHARS>
   
   [service]
   DISABLE_REGISTRATION                   = true
   SHOW_REGISTRATION_BUTTON               = false
-  REQUIRE_EXTERNAL_REGISTRATION_PASSWORD = false
-  ALLOW_ONLY_EXTERNAL_REGISTRATION       = false
   REQUIRE_SIGNIN_VIEW                    = true
-  ENABLE_CAPTCHA                         = false
   REGISTER_EMAIL_CONFIRM                 = true
-  ACTIVE_CODE_LIVE_MINUTES               = 60
-  RESET_PASSWD_CODE_LIVE_MINUTES         = 60
   ENABLE_NOTIFY_MAIL                     = false
-  SHOW_MILESTONES_DASHBOARD_PAGE         = true
-  DEFAULT_ALLOW_CREATE_ORGANIZATION      = true
   DEFAULT_ORG_VISIBILITY                 = private ; [public, limited, private]
   DEFAULT_ORG_MEMBER_VISIBLE             = false
-  DEFAULT_ENABLE_TIMETRACKING            = true
   DEFAULT_KEEP_EMAIL_PRIVATE             = true
   NO_REPLY_ADDRESS                       = noreply.isabell.uber.space
-  
-  [repository]
-  ROOT = /home/isabell/gitea/repositories
-  DEFAULT_PRIVATE = private ; [last, private, public]
-
-  [ui]
-  THEMES        = gitea,arc-green
-  DEFAULT_THEME = arc-green
 
   [mailer]
   ENABLED     = true
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
   
-  [time]
-  FORMAT              = 2006-01-02 15:04:05
-  DEFAULT_UI_LOCATION = Europe/Amsterdam
-  
-  [log]
-  MODE      = file
-  LEVEL     = info ; [Trace, Debug, Info, Warn, Error, Critical, Fatal, None]
-  ROOT_PATH = /home/isabell/gitea/log
-  
-  [log.file]
-  LOG_ROTATE   = true
-  DAILY_ROTATE = true
-  MAX_DAYS     = 14
-  COMPRESS     = false
 
 Gitea using external renderer (optional)
 ----------------------------------------
@@ -272,7 +233,7 @@ We can install an extra `external rendering <https://docs.gitea.io/en-us/externa
   1 gem installed
   [isabell@stardust ~]$
 
-.. note:: Don't be irritated by the warning that the bin folder isn't in the path. Uberspace is taking care of it and provide it via ``/opt/uberspace/etc/isabell/binpaths/ruby/asciidoctor``. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
+.. note:: Don't be irritated by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
 
 Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
@@ -306,11 +267,11 @@ Above we locked the registration and the web installation feature, so this servi
 Gitea admin user
 ----------------
 
-We generate a safe password for the admin user. For this we use ``head`` to pipe some random characters from the ``/dev/urandom`` device into the translate tool ``tr`` to delete the complementary of alpha-numeric characters until we have 16 characters and then write into a variable to use it in the next two steps.
+We generate a safe password for the admin user. We use ``pwgen`` to create 1 set of 16 characters and write them into a variable for usage during the next two steps.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ADMPWD=$(head /dev/urandom | tr --complement --delete A-Za-z0-9 | head --bytes=16 ; echo '')
+  [isabell@stardust ~]$ ADMPWD=$(pwgen 16 1)
   [isabell@stardust ~]$ 
 
 Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. We choose ``adminuser`` and the generated password from above. To ensure we remember the password beyond this installation session we store the password in a text file.
@@ -347,7 +308,7 @@ If we're using the same ssh key for auth to uberspace and Gitea, we need to modi
 
   command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
 
-.. note:: Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username isabell to yours.
+.. note:: Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
 
 .. note:: You can still use the Uberspace dashboard_ to add ssh keys.
 
@@ -382,16 +343,11 @@ Create a file ``~/etc/services.d/gitea.ini`` for the service ...
 Uberspace web backend
 ---------------------
 
-.. code-block:: console
+.. note:: gittea is running on port 9000.
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 9000
-  Set backend for / to port 9000; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$ uberspace web backend list
-  [isabell@stardust ~]$ 
+.. include:: includes/web-backend.rst
 
 .. note:: If we run the service under a domain subfolder aka prefix, you need to append the above command like ``uberspace web backend set exampe.net/subfolder --http --port 9000 --remove-prefix``.
-
 
 Done. We can point our browser to https://isabell.uber.space/.
 
