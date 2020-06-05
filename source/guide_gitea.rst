@@ -159,7 +159,7 @@ The minimum set of ``~/gitea/custom/conf/app.ini`` is:
   [service]
   DISABLE_REGISTRATION = true
 
-When using this, we have to finish the installation via gitea web service https://isabell.uber.space/install. This is exposed without any password request. We improve the configiguration with some modifications, e.g.:
+When using this, we have to finish the installation via gitea web service https://isabell.uber.space/install. This is exposed without any password request. We improve the configuration with some modifications, e.g.:
 
 * Filling the database access data that we would otherwise enter in the web installation step. (``[database]`` section)
 * As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
@@ -186,29 +186,29 @@ For more informations about the possibilities and configuration options see the 
   LFS_HTTP_AUTH_EXPIRY = 24m
   
   [database]
-  DB_TYPE           = mysql
-  HOST              = 127.0.0.1:3306
-  NAME              = isabell_gitea
-  USER              = isabell
-  PASSWD            = <MySQL_PASSWORD>
-  SSL_MODE          = disable
+  DB_TYPE  = mysql
+  HOST     = 127.0.0.1:3306
+  NAME     = isabell_gitea
+  USER     = isabell
+  PASSWD   = <MySQL_PASSWORD>
+  SSL_MODE = disable
   
   [security]
-  INSTALL_LOCK          = true
-  MIN_PASSWORD_LENGTH   = 8
-  PASSWORD_COMPLEXITY   = lower
-  SECRET_KEY            = <RANDOM_32_CHARS>
+  INSTALL_LOCK        = true
+  MIN_PASSWORD_LENGTH = 8
+  PASSWORD_COMPLEXITY = lower
+  SECRET_KEY          = <RANDOM_32_CHARS>
   
   [service]
-  DISABLE_REGISTRATION                   = true
-  SHOW_REGISTRATION_BUTTON               = false
-  REQUIRE_SIGNIN_VIEW                    = true
-  REGISTER_EMAIL_CONFIRM                 = true
-  ENABLE_NOTIFY_MAIL                     = false
-  DEFAULT_ORG_VISIBILITY                 = private ; [public, limited, private]
-  DEFAULT_ORG_MEMBER_VISIBLE             = false
-  DEFAULT_KEEP_EMAIL_PRIVATE             = true
-  NO_REPLY_ADDRESS                       = noreply.isabell.uber.space
+  DISABLE_REGISTRATION       = true
+  SHOW_REGISTRATION_BUTTON   = false
+  REQUIRE_SIGNIN_VIEW        = true
+  REGISTER_EMAIL_CONFIRM     = true
+  ENABLE_NOTIFY_MAIL         = false
+  DEFAULT_ORG_VISIBILITY     = private ; [public, limited, private]
+  DEFAULT_ORG_MEMBER_VISIBLE = false
+  DEFAULT_KEEP_EMAIL_PRIVATE = true
+  NO_REPLY_ADDRESS           = noreply.isabell.uber.space
 
   [mailer]
   ENABLED     = true
@@ -265,7 +265,7 @@ Above we locked the registration and the web installation feature, so this servi
 Gitea admin user
 ----------------
 
-We generate a safe password for the admin user. We use ``pwgen`` to create 1 set of 16 characters and write them into a variable to use it during the next two steps.
+We generate a safe password for the admin user. We use ``pwgen`` to create one set of 16 characters and write them into a variable to use it during the next two steps.
 
 .. code-block:: console
 
