@@ -2,6 +2,7 @@
 .. author:: Nico Graf <hallo@uberspace.de>
 .. author:: Peleke <https://www.peleke.de>
 .. author:: Noah <https://noahwagner.de>
+.. author:: tobimori <tobias@moeritz.cc>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -55,17 +56,19 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Install ghost-cli and knex-migrator
------------------------------------
+Install ghost-cli, knex-migrator and yarn
+-----------------------------------------
 
-Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally:
+Use ``npm`` to install ``ghost-cli`` and ``knex-migrator`` globally.
+In order to avoid issues and bugs with Ghost_, we need to also install the package manager ``yarn`` to use for further updates.
 
 ::
 
- [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator
+ [isabell@stardust ~]$ npm i -g ghost-cli knex-migrator yarn
  [...]
  + ghost-cli@1.9.1
  + knex-migrator@3.2.3
+ + yarn@1.22.4
  added 690 packages in 31.543s
  [isabell@stardust ~]$
 
@@ -111,13 +114,13 @@ You will need to enter the following information:
  ✔ Configuring Ghost
  ✔ Setting up instance
  ℹ Setting up SSL [skipped]
- 
+
  Ghost uses direct mail by default. To set up an alternative email method read our docs at https://ghost.org/docs/concepts/config/#mail
- 
+
  ------------------------------------------------------------------------------
- 
+
  Ghost was installed successfully! To complete setup of your publication, visit:
- 
+
  https://isabell.uber.space/ghost/
 
 
@@ -160,6 +163,7 @@ Create ``~/etc/services.d/ghost.ini`` with the following content:
  [program:ghost]
  directory=%(ENV_HOME)s/ghost
  command=env NODE_ENV=production /bin/node current/index.js
+ startsecs=60
 
 .. include:: includes/supervisord.rst
 
@@ -198,16 +202,16 @@ You now need to readjust your ``~/ghost/config.production.json`` to change the U
      "host": "0.0.0.0"
    },
 
-Kill and restart Ghost (also check the restartet process with second command):
+Kill and restart Ghost (also check the restarted process with second command):
 
 .. code-block:: console
- 
+
  [isabell@stardust ~]$ supervisorctl restart ghost
  ghost: stopped
  ghost: started
  [isabell@stardust ~]$ supervisorctl status
  ghost                            RUNNING   pid 26020, uptime 0:00:56
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Now the URLs in your Ghost installation always use your newly configured URL. This is especially seen in the RSS feeds which if this part is not run will always use the uber.space URL even though you access your blog via an external domain already. This is due to Ghost using the configured URL as a variable in some templates etc. which is the case for the RSS URLs for example in the main Casper theme.
 
@@ -230,16 +234,16 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
 
-Install the required ``node`` modules
--------------------------------------
+Install the required ``node`` modules with ``yarn``
+---------------------------------------------------
 
 .. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd ~/ghost/versions/23.42.1/content
- [isabell@stardust content]$ npm install --production
+ [isabell@stardust content]$ yarn install --production
  [...]
- added 91 packages, removed 134 packages and updated 544 packages in 27.303s
+ Done in 121.15s.
  [isabell@stardust content]$
 
 Migrate your database
@@ -303,7 +307,7 @@ As an alternative to this manual process of updating Ghost to a new version you 
      rm $GHOSTDIR/versions/$CURRENT_GHOST_FILE
      echo "Updating ghost ..."
      cd $GHOSTDIR/versions/$CURRENT_GHOST
-     npm install --production
+     yarn install --production
      echo "Migrating ghost database ..."
      cd $GHOSTDIR
      NODE_ENV=production knex-migrator migrate --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
@@ -327,6 +331,6 @@ As an alternative to this manual process of updating Ghost to a new version you 
 
 ----
 
-Tested with Ghost 2.15.0, Uberspace 7.2.4
+Tested with Ghost 3.13.4, Uberspace 7.6.0.0
 
 .. author_list::

@@ -4,6 +4,7 @@
 
 .. tag:: lang-php
 .. tag:: web
+.. tag:: password-manager
 
 .. sidebar:: Logo
 
@@ -134,7 +135,7 @@ line to your crontab using the ``crontab -e`` command:
 
 ::
 
- * * * * * ~/html/bin/cake EmailQueue.sender >> ~/logs/passbolt_mails.log
+ * * * * * /home/$USER/html/bin/cake EmailQueue.sender >> ~/logs/passbolt_mails.log
 
 Updates
 =======

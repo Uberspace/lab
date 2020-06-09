@@ -49,6 +49,17 @@ Your URL needs to be setup for web and mail:
  isabell.uber.space
  [isabell@stardust ~]$
 
+Mailman requires `dnspython`. Install it using `pip`:
+
+::
+
+ [isabell@stardust ~]$ pip install dnspython --user
+ Collecting dnspython
+   Using cached https://files.pythonhosted.org/packages/ec/d3/3aa0e7213ef72b8585747aa0e271a9523e713813b9a20177ebe1e939deb0/dnspython-1.16.0-py2.py3-none-any.whl
+ Installing collected packages: dnspython
+ Successfully installed dnspython
+ [isabell@stardust ~]$ 
+
 Installation
 ============
 
@@ -58,9 +69,8 @@ Prepare the installation folders:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/
- [isabell@stardust isabell]$ mkdir mailman_source
- [isabell@stardust isabell]$ mkdir mailman
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ mkdir mailman_source mailman
  [isabell@stardust isabell]$ chmod g+s mailman
  [isabell@stardust isabell]$
 
@@ -71,9 +81,9 @@ Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ an
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell
- [isabell@stardust isabell]$ wget https://ftp.gnu.org/gnu/mailman/mailman-99.9.9.tgz
- [isabell@stardust isabell]$ tar xzvf mailman-99.9.9.tgz -C mailman_source --strip-components=1
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER
+ [isabell@stardust isabell]$ wget https://ftp.gnu.org/gnu/mailman/mailman-2.1.29.tgz
+ [isabell@stardust isabell]$ tar xzvf mailman-2.1.29.tgz -C mailman_source --strip-components=1
  [isabell@stardust isabell]$
 
 Now run the configure script, telling Mailman where to install and what user/groups to use for its binaries. You need to change your Uberspace account name for each parameter (you can find a declaration for the parameters in the Mailman documentation_):
@@ -81,8 +91,8 @@ Now run the configure script, telling Mailman where to install and what user/gro
 ::
 
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman_source
- [isabell@stardust mailman_source]$ ./configure --with-username=isabell --with-groupname=isabell --prefix=/var/www/virtual/isabell/mailman/ --with-mail-gid=isabell --with-cgi-gid=isabell
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/mailman_source
+ [isabell@stardust mailman_source]$ ./configure --with-username=$USER --with-groupname=$USER --prefix=/var/www/virtual/$USER/mailman/ --with-mail-gid=$USER --with-cgi-gid=$USER
  [...]
  config.status: creating build/cron/nightly_gzip
  config.status: creating build/cron/senddigests
@@ -94,7 +104,7 @@ After configuration is finished, you may compile and install the package by runn
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman_source
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/mailman_source
  [isabell@stardust mailman_source]$ make && make install
  Compiling /var/www/virtual/isabell/mailman/Mailman/versions.py ...
  Upgrading from version 0x0 to 0x2011df0
@@ -107,7 +117,7 @@ If compilation and installation finished without errors, we will no longer need 
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm mailman-*.tgz
  [isabell@stardust isabell]$ rm -fvr mailman_source
  [isabell@stardust isabell]$
@@ -120,7 +130,7 @@ We can continue by checking folder permissions in the installation folder:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/mailman
  [isabell@stardust mailman]$ bin/check_perms
  No problems found
  [isabell@stardust mailman]$
@@ -130,17 +140,17 @@ In case errors are found, you should definitely fix them before continuing.
 Step 4
 ------
 
-If you want the webinterface to be available publically, we need to create a couple of SymLinks and an htaccess-file:
+If you want the webinterface to be public available, we need to create a couple of SymLinks and an htaccess-file:
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/html
- [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/cgi-bin ./mailman
- [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/archives/public ./pipermail
- [isabell@stardust html]$ ln -s /var/www/virtual/isabell/mailman/icons ./icons
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ ln -s /var/www/virtual/$USER/mailman/cgi-bin ./mailman
+ [isabell@stardust html]$ ln -s /var/www/virtual/$USER/mailman/archives/public ./pipermail
+ [isabell@stardust html]$ ln -s /var/www/virtual/$USER/mailman/icons ./icons
  [isabell@stardust html]$
 
-Create the file ``/var/www/virtual/isabell/mailman/cgi-bin/.htaccess`` with the following content:
+Create the file ``/var/www/virtual/$USER/mailman/cgi-bin/.htaccess`` with the following content:
 
 ::
 
@@ -151,7 +161,7 @@ Finally, we need to adjust file permissions for the Mailman_ cgi-scripts to run:
 
 ::
 
- [isabell@stardust ~]$ chmod -R 0755 /var/www/virtual/isabell/mailman/cgi-bin
+ [isabell@stardust ~]$ chmod -R 0755 /var/www/virtual/$USER/mailman/cgi-bin
  [isabell@stardust ~]$
 
 Step 5
@@ -165,16 +175,16 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
  if [ $# = 1 ]; then
  i=$1
  echo Making links to $i in home directory...
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman post $i" > ~/.qmail-$i
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman admin $i" > ~/.qmail-$i-admin
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman bounces $i" > ~/.qmail-$i-bounces
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman confirm $i" > ~/.qmail-$i-confirm
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman join $i" > ~/.qmail-$i-join
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman leave $i" > ~/.qmail-$i-leave
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman owner $i" > ~/.qmail-$i-owner
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman request $i" > ~/.qmail-$i-request
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman subscribe $i" > ~/.qmail-$i-subscribe
- echo "|preline /var/www/virtual/`whoami`/mailman/mail/mailman unsubscribe $i" > ~/.qmail-$i-unsubscribe
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman post $i" > ~/.qmail-$i
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman admin $i" > ~/.qmail-$i-admin
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman bounces $i" > ~/.qmail-$i-bounces
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman confirm $i" > ~/.qmail-$i-confirm
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman join $i" > ~/.qmail-$i-join
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman leave $i" > ~/.qmail-$i-leave
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman owner $i" > ~/.qmail-$i-owner
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman request $i" > ~/.qmail-$i-request
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman subscribe $i" > ~/.qmail-$i-subscribe
+ echo "|preline /var/www/virtual/$USER/mailman/mail/mailman unsubscribe $i" > ~/.qmail-$i-unsubscribe
  fi
 
 You still need to make the script executable:
@@ -199,7 +209,7 @@ Create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for 
 Step 2
 ------
 
-Add the following options to the end of the file ``/var/www/virtual/isabell/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
+Add the following options to the end of the file ``/var/www/virtual/$USER/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
 
 .. code:: python
 
@@ -234,7 +244,7 @@ Mailman_ offers a couple of cronjobs to perform some maintenance actions at regu
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/mailman
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/mailman
  [isabell@stardust mailman]$ echo "* * * * * /var/www/virtual/$USER/mailman/bin/qrunner --runner=All --once" >> cron/crontab.in
  [isabell@stardust mailman]$ crontab cron/crontab.in
  [isabell@stardust mailman]$
@@ -246,7 +256,7 @@ Now we are ready to create the first mailing list! Simply run
 
 ::
 
- [isabell@stardust ~]$ /var/www/virtual/isabell/mailman/bin/newlist mailman
+ [isabell@stardust ~]$ /var/www/virtual/$USER/mailman/bin/newlist mailman
  Enter the email of the person running the list: isabell@uber.space
  Initial test password:
  [...]

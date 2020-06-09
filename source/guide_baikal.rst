@@ -6,6 +6,7 @@
 .. tag:: web
 .. tag:: sync
 .. tag:: calendar
+.. tag:: audience-family
 
 .. sidebar:: Logo
 
@@ -45,17 +46,17 @@ Your website domain needs to be set up:
 Installation
 ============
 
-Remove your ``html`` directory and download the current version of Baïkal from the github release. Link the Baïkal ``html`` directory as your new 
+Remove your ``html`` directory and download the current version of Baïkal from the github release. Link the Baïkal ``html`` directory as your new
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html 
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
  [isabell@stardust isabell]$ unzip baikal-0.6.1.zip
  [isabell@stardust isabell]$ rm baikal-0.6.1.zip
  [isabell@stardust isabell]$ ln -s baikal/html html
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Configuration
 =============

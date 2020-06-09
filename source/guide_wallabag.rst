@@ -30,13 +30,15 @@ Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize a
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.3'
  [isabell@stardust ~]$
+
+.. warning:: Wallabag 2.3.x does not work with PHP 7.4
 
 .. include:: includes/my-print-defaults.rst
 
@@ -69,7 +71,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
 * ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
 * ``domain_name:`` put in here your domain or subdomain like https://isabell.uber.space
-* ``secret:`` type in any random string here, do not keep the defaul string!
+* ``secret:`` type in any random string here, do not keep the default string!
 * ``twofactor_sender:`` choose an email address to be used as sender
 * ``fosuser_registration:`` set this to false, otherwise anyone can register at your wallabag instance
 * ``from_email:`` choose an email address to be used as sender (can be the same as above)
@@ -77,7 +79,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``Would you like to create a new admin user (recommended)?:`` yes
 * ``Username:`` admin *- or you can also choose any other name, that could increase security*
 * ``Password:`` *choose a good password here*
-* ``Email:`` set in a mailadress to use with this admin account
+* ``Email:`` set in a mail address to use with this admin account
 
 .. code-block:: console
  :emphasize-lines: 1,2,10,11,12,17,23,25,26,28,30,31,32,33

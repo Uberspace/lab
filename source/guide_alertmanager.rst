@@ -4,6 +4,7 @@
 
 .. tag:: lang-go
 .. tag:: monitoring
+.. tag:: audience-admins
 
 ############
 Alertmanager
@@ -61,10 +62,10 @@ Find the latest version of alertmanager_ for the operating system ``linux`` and 
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/prometheus/alertmanager/releases/download/v0.19.0/alertmanager-0.19.0.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf alertmanager-0.19.0.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd alertmanager-0.19.0.linux-amd64
- [isabell@stardust alertmanager-0.19.0.linux-amd64]$
+ [isabell@stardust ~]$ wget https://github.com/prometheus/alertmanager/releases/download/v0.20.0/alertmanager-0.20.0.linux-amd64.tar.gz
+ [isabell@stardust ~]$ tar xvzf alertmanager-0.20.0.linux-amd64.tar.gz
+ [isabell@stardust ~]$ cd alertmanager-0.20.0.linux-amd64
+ [isabell@stardust alertmanager-0.20.0.linux-amd64]$
 
 Step 2
 ------
@@ -73,9 +74,9 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/alertmanager`
 
 ::
 
- [isabell@stardust alertmanager-0.19.0.linux-amd64]$ mv alertmanager ~/bin/
- [isabell@stardust alertmanager-0.19.0.linux-amd64]$ mv alertmanager.yml ~/etc/alertmanager
- [isabell@stardust alertmanager-0.19.0.linux-amd64]$
+ [isabell@stardust alertmanager-0.20.0.linux-amd64]$ mv alertmanager ~/bin/
+ [isabell@stardust alertmanager-0.20.0.linux-amd64]$ mv alertmanager.yml ~/etc/alertmanager
+ [isabell@stardust alertmanager-0.20.0.linux-amd64]$
 
 Configuration
 =============
@@ -138,6 +139,6 @@ Now you can access the web interface via ``http://localhost:8080`` on your works
 
 ----
 
-Tested with alertmanager_ 0.19.0, Uberspace 7.3.6.1
+Tested with alertmanager_ 0.20.0, Uberspace 7.6.1.2
 
 .. author_list::

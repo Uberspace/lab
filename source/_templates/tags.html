@@ -2,6 +2,10 @@
 
 {% block body %}
 <h1>Tags</h1>
+As you can see on the left, we've got quite a selection of guides. To help you
+find the right one for your needs, all of them have categories associated with
+them. Click one of them below to get a quick description and a list of related
+guides.
 <div class="tagguides">
 {% for t in tags %}
     <a href="/tags/{{ t }}">#{{ t }}</a>

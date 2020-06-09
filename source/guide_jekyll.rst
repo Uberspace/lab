@@ -123,7 +123,7 @@ Now open a browser and navigate to your URL where you can see your beautiful res
 
 Best practices
 ======================
-If you dont want to create and modify your website on your uberspace, you can install Ruby, Jekyll and git on your local machine and then push it to your uberspace where it gets deployed automatically. This is an easy way to work with an editor of your choice and you can test your website befor publishing it.
+If you don't want to create and modify your website on your uberspace, you can install Ruby, Jekyll and git on your local machine and then push it to your uberspace where it gets deployed automatically. This is an easy way to work with an editor of your choice and you can test your website before publishing it.
 
 To install Ruby, Windows users should use RubyInstaller_, Linux and Mac users could use RVM_.
 
@@ -146,7 +146,7 @@ Clone that repository on your local machine, enter the parent folder and create 
  [user@localhost ~]$ jekyll new website --force
  [user@localhost ~]$
 
-.. note:: By entering the parent folder and using the same name for your website as the cloned repository you can create the website directly insite the repository folder. If you give your website a different name, you have to copy your website into your repository.
+.. note:: By entering the parent folder and using the same name for your website as the cloned repository you can create the website directly inside the repository folder. If you give your website a different name, you have to copy your website into your repository.
 
 After Jekyll created the website you can enter it and run the local webserver for testing:
 ::

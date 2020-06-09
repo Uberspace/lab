@@ -19,7 +19,7 @@ minim
 
 minim_ offers a super simple PHP Content Management System. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
 
-It'is ideal for simple travel blogs or publishing news. It has an easy administration interface and an automatic generated RSS feed. Themes and other modifications are fully customisable.
+It is ideal for simple travel blogs or publishing news. It has an easy administration interface and an automatic generated RSS feed. Themes and other modifications are fully customisable.
 
 ----
 

@@ -17,7 +17,7 @@ MinIO
 .. tag_list::
 
 MinIO_ is an open source object storage server,
-compatible with Amazon S3 writen in go.
+compatible with Amazon S3 written in go.
 
 ----
 
@@ -140,7 +140,7 @@ Just stop MinIO and replace the old binary with the newer one:
 
 MinIO docs
 ==========
-Offical MinIO Docs: https://docs.min.io
+Official MinIO Docs: https://docs.min.io
 
 .. _Minio: https://min.io
 .. _client: https://docs.min.io/docs/minio-client-quickstart-guide.html

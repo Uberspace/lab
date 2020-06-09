@@ -62,7 +62,7 @@ Install django
 
 .. hint::
 
-  Depening on your database configuration, additional modules like ``mysqlclient`` might be required.
+  Depending on your database configuration, additional modules like ``mysqlclient`` might be required.
 
 Create a django project. We will use "MyDjangoProject" during this guide.
 
@@ -113,8 +113,10 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
 
+.. warning:: Ensure that ``static-map`` matches the path configured in django's ``STATIC_ROOT``. Otherwise all images, stylesheets and javascript will be missing from your site.
+
 .. code-block:: ini
-  :emphasize-lines: 2,3,17,18
+  :emphasize-lines: 2,3,9,17,18
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject

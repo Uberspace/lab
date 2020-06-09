@@ -3,7 +3,7 @@
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
-.. tag:: business
+.. tag:: audience-business
 .. tag:: accounting
 .. tag:: customer-management
 
@@ -20,7 +20,7 @@ GSALES 2
 .. tag_list::
 
 GSALES 2 is a very flexible german billing application specialized for generating recurring invoices.
-Equipped with a well documentated SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.
+Equipped with a well documented SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.
 
 
 
@@ -119,7 +119,7 @@ Next get rid of the GSALES 2 download archive:
 
 
 
-Prepare the GSALES 2 configuration file which has to be in place to hold the paramters to access the database later:
+Prepare the GSALES 2 configuration file which has to be in place to hold the parameters to access the database later:
 
 ::
 

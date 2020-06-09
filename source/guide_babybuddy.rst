@@ -5,6 +5,7 @@
 .. tag:: lang-python
 .. tag:: web
 .. tag:: activity-tracking
+.. tag:: audience-family
 
 .. sidebar:: About
 
@@ -228,7 +229,7 @@ In our example, the file ``~/babybuddy/public/babybuddy/settings/production.py``
 Step 6
 ------
 
-Enter the virtual environment, initialize the database tables and exit the virtual environemt again:
+Enter the virtual environment, initialize the database tables and exit the virtual environment again:
 
 ::
 

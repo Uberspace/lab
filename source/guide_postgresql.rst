@@ -57,10 +57,6 @@ To extract the tar archive, use the following options:
 Step 2 - Source Code Configuration, Compiling and Installation
 --------------------------------------------------------------
 
-Configure and compile the source code with the commands ``configure`` and ``make`` and finally install it with ``make install``.
-
-.. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
-
 Before we start, we have to consider some aspects, e.g. Python support, and corresponding settings, regarding to a shared hosting environment like Uberspace:
 
  * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
@@ -68,6 +64,16 @@ Before we start, we have to consider some aspects, e.g. Python support, and corr
  * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude Readline with this option.
 
 Other options can be found in the PostgreSQL documentation_.
+
+Now configure and compile the source code and finally install it.
+
+::
+
+ [isabell@stardust ~]$ configure
+ [isabell@stardust ~]$ make
+ [isabell@stardust ~]$ make install
+
+.. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
 .. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
 
@@ -189,7 +195,7 @@ After the installation of PostgreSQL, it is necessary to configure the network e
 Configure the Unix Socket
 -------------------------
 
-The Unix socket will be configured to the standard port. You must set the environment varables with your new port:
+The Unix socket will be configured to the standard port. You must set the environment variables with your new port:
 
 Edit your ``~/.bashrc`` and add the following content:
 

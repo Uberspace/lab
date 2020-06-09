@@ -157,7 +157,7 @@ Then add the same ``api_key`` to the file ``~/up1/client/config.js``:
 
   upload.config.api_key = '<random_string_from_above>'
 
-If you want to, you can also edit the website footer and contact informations to your details in the same file:
+If you want to, you can also edit the website footer and contact information to your details in the same file:
 
 .. code-block:: none
 
@@ -182,6 +182,7 @@ Create ``~/etc/services.d/up1.ini`` with the following content:
  [program:up1]
  directory=%(ENV_HOME)s/up1/server/
  command=node %(ENV_HOME)s/up1/server/server.js
+ startsecs=60
 
 .. include:: includes/supervisord.rst
 

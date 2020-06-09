@@ -17,7 +17,7 @@ Flatboard
 
 .. tag_list::
 
-Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown [1]_ or BBcode.
+Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON and Markdown [1]_ or BBcode.
 
 ----
 
@@ -93,11 +93,11 @@ You will need to enter the following information:
 
 Then push the Unzip-Button.
 
-  * titel: titel of your forum
+  * title: title of your forum
   * description: what is your forum about
-  * E-Mail: your admin e-mail adress
+  * E-Mail: your admin e-mail address
   * administrator: set up your admin password
-  * language: the language you prefer (English, French, German, Russian, Italiano) « Yes, the question is double.
+  * language: the language you prefer (English, French, German, Russian, Italian) « Yes, the question is double.
 
 At least you have to delete the ``install.php``.
 

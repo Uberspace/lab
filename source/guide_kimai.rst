@@ -4,7 +4,7 @@
 
 .. tag:: lang-php
 .. tag:: web
-.. tag:: business
+.. tag:: audience-business
 .. tag:: accounting
 .. tag:: time-tracking
 
@@ -19,7 +19,7 @@ Kimai
 
 .. tag_list::
 
-Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers. 
+Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers.
 
 The times tracked in the software can be directly priced, aggregated, invoiced and integrated in automated processes utilizing the RESTful API.
 
@@ -70,7 +70,7 @@ Check the current `stable release`_ and copy the version number which you have t
  […]
  [isabell@stardust ~]$
 
-Install all neccessary dependencies using Composer. This can take some time.
+Install all necessary dependencies using Composer. This can take some time.
 
 ::
 
@@ -117,7 +117,7 @@ Save the changed file and start the installation using the Kimai console.
 Finishing installation
 ======================
 
-Finish the installation by creating an admin user with the Kimai console. Insert your username and email adress in the shell command. You will be prompted to insert a password afterwards.
+Finish the installation by creating an admin user with the Kimai console. Insert your username and email address in the shell command. You will be prompted to insert a password afterwards.
 
 Please don't use ``admin`` as your username and set yourself a strong password.
 
@@ -130,7 +130,7 @@ Please don't use ``admin`` as your username and set yourself a strong password.
  […]
  [isabell@stardust ~]$
 
-That's it! You can now visit your website domain and login using your new account. 
+That's it! You can now visit your website domain and login using your new account.
 
 Best practices
 ==============
@@ -138,17 +138,17 @@ Best practices
 Security
 --------
 
-By default Kimai allows any visitor of your domain to register a new user account. You might want to diable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
+By default Kimai allows any visitor of your domain to register a new user account. You might want to disable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
 
-Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration: 
+Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
 
-.. code-block:: yml
+.. code-block:: yaml
 
  kimai:
     user:
         registration: false
 
-Save the new file and clear the cache so the changes become active. 
+Save the new file and clear the cache so the changes become active.
 
 ::
 
@@ -157,7 +157,7 @@ Save the new file and clear the cache so the changes become active.
  [isabell@stardust kimai2]$ bin/console cache:warmup --env=prod
  [isabell@stardust ~]$
 
-To be sure if everything works check if the registration link is gone from your login page. 
+To be sure if everything works check if the registration link is gone from your login page.
 
 Updates
 =======
@@ -193,7 +193,7 @@ And last but not least: upgrade your database (you need to confirm the migration
 
  [isabell@stardust kimai2]$ bin/console doctrine:migrations:migrate
  Application Migrations
- WARNING! You are about to execute a database migration that could result in schema changes and data loss. 
+ WARNING! You are about to execute a database migration that could result in schema changes and data loss.
  Are you sure you wish to continue? (y/n)
  [isabell@stardust ~]$
 

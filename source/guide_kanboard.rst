@@ -3,6 +3,7 @@
 .. author:: stratmaster <https://github.com/stratmaster>
 .. tag:: lang-php
 .. tag:: project-management
+.. tag:: audience-business
 .. tag:: web
 
 .. sidebar:: Logo
@@ -138,7 +139,7 @@ To work properly, Kanboard requires that a `background job`_ runs on a daily bas
 
 ::
 
-  0 8 * * * cd /var/www/virtual/isabell/html && ./cli cronjob >/dev/null 2>&1
+  0 8 * * * cd /var/www/virtual/$USER/html && ./cli cronjob >/dev/null 2>&1
 
 Best practices
 ==============

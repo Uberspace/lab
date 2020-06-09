@@ -4,7 +4,6 @@
 .. tag:: blog
 .. tag:: cms
 .. tag:: web
-.. tag:: bedrock
 
 .. highlight:: console
 
@@ -23,7 +22,7 @@ WordPress_ is an open source blogging platform written in PHP and distributed un
 
 WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
 
-Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer. Since Bedrock separates the non-web files from the document root, it is also more secure. 
+Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer. Since Bedrock separates the non-web files from the document root, it is also more secure.
 
 It is maintained by roots.io and released and distributed under MIT Licence.
 
@@ -96,7 +95,7 @@ Configuration
 
 Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/bedrock/.env``
 
-In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``). 
+In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``).
 
 .. code-block:: ini
  :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
@@ -148,14 +147,14 @@ Point your browser to your domain, ``https://isabell.uber.space/wp/wp-admin`` in
  * Choose a Site title
  * Set a administrative account and password
 
-Your site is now ready to use. 
+Your site is now ready to use.
 
 .. note:: Your Website will be available in your root-directory (e.g. ``https://isabell.uber.space/``). Unlike a standard WordPress-Installation, the Backend will be available in the ``/wp`` subdirectory. To get there point your browser to ``https://isabell.uber.space/wp/wp-admin``.
 
 Installing Plugins
 =============================
 
-Unlinke with a "normal" Wordpress-Installation, with bedrock, you cannot install Plugins or edit Code via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
+Unlike a "normal" Wordpress-Installation, with bedrock, you cannot install Plugins or edit Code via the Wordpress-Backend. This is intended behaviour and part of the reason to use bedrock in the first place.
 
 Instead you can use composer to manage Plugins. Every Plugin (or Theme) listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
 
@@ -227,7 +226,7 @@ To update Wordpress itself you have several options:
  - Requiring the new version with ``composer require``. In this example we want to update to version ``5.3.2``:
 
   .. code-block:: console
-  
+
    [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
    [isabell@stardust bedrock]$ composer require roots/wordpress 5.3.2
 

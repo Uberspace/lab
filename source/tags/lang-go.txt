@@ -1,0 +1,5 @@
+Go, also known as Golang, is a statically typed, compiled programming language
+designed at Google. It is used for all kinds of tasks, including web
+development. Most of the time, Go programs are distributed as statically linked
+fat binaries including all their dependencies. This means there is no need to
+compile the source yourself.

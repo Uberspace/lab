@@ -4,7 +4,8 @@
 .. tag:: web
 .. tag:: self-hosting
 .. tag:: prometheus
-.. tag:: go
+.. tag:: lang-go
+.. tag:: audience-admins
 
 .. highlight:: console
 

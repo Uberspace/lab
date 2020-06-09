@@ -2,7 +2,9 @@
 
 .. author:: Thomas S. <https://github.com/Thomas--S/>
 
+.. tag:: lang-go
 .. tag:: package-management
+.. tag:: audience-admins
 
 #####
 aptly

@@ -1,5 +1,6 @@
 .. author:: benks <uberspace@benks.io>
 
+.. tag:: lang-php
 .. tag:: web
 .. tag:: mediaplayer
 .. tag:: streaming
@@ -20,7 +21,7 @@ Ampache
 
 
 `Ampache`_ is a glossy multi user Web-based Audio file manager / web Media Server published under AGPLv3.
-If you want to try out Ampache without installing it first, visit the `demo-page`_: 
+If you want to try out Ampache without installing it first, visit the `demo-page`_:
 A general Installation guide can be found on `Github`_.
 
 

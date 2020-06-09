@@ -5,6 +5,7 @@
 .. tag:: web
 .. tag:: file-storage
 .. tag:: sync
+.. tag:: proprietary
 
 .. sidebar:: About
 
@@ -68,11 +69,11 @@ Resilio Sync will work without this step, however, all connections will be route
 Configure Resilio Sync
 ======================
 
-Create a config file ``~/.sync/resilio-sync.conf`` with the follwoing contents:
+Create a config file ``~/.sync/resilio-sync.conf`` with the following contents:
 
-.. warning:: Replace ``<username>`` with your username and ``<port>`` with the apropiate port number, which was opened in the previous step (would be 40132 in our example).
+.. warning:: Replace ``<username>`` with your username and ``<port>`` with the appropriate port number, which was opened in the previous step (would be 40132 in our example).
 
-.. code-block:: text 
+.. code-block:: text
 
  {
    "device_name": "Uberspace",

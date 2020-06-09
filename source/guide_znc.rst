@@ -2,6 +2,7 @@
 
 .. author:: no-one <https://github.com/no-one>
 
+.. tag:: lang-cpp
 .. tag:: irc
 .. tag:: bouncer
 
@@ -38,7 +39,7 @@ Installation
 
 Step 1
 ------
-Create a new directory, download the lastest version and enter the directory you just created:
+Create a new directory, download the latest version and enter the directory you just created:
 
 ::
 

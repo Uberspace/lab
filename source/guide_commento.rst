@@ -129,7 +129,7 @@ Now you should be able to access Commento at your defined domain in your browser
 Additional Notes
 ----------------
 
-If you are the only user of the Commento instance, it would be adviseable to disable the new owner sign up, after you registered your site.
+If you are the only user of the Commento instance, it would be advisable to disable the new owner sign up, after you registered your site.
 Add this to your ``commento_daemon`` above the ``/home/isabell/commento/commento`` call:
 
 .. note:: This doe not impact the commenting users of your site!
@@ -147,7 +147,7 @@ Then restart Commento:
  commento: started
  [isabell@stardust ~]$
 
-The form to sign up will still be visisble, but cannot be submitted.
+The form to sign up will still be visible, but cannot be submitted.
 
 .. _Commento: https://commento.io
 

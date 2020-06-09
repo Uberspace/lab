@@ -78,10 +78,10 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/9.99.9/dart-sass-9.99.9-linux-x64.tar.gz
- [isabell@stardust ~]$ tar xzvf dart-sass-9.99.9-linux-x64.tar.gz dart-sass
+ [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
+ [isabell@stardust ~]$ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
  [isabell@stardust ~]$ mv dart-sass ./bin/
- [isabell@stardust ~]$ rm dart-sass-9.99.9-linux-x64.tar.gz
+ [isabell@stardust ~]$ rm dart-sass-1.17.2-linux-x64.tar.gz
  [isabell@stardust ~]$
 
 
@@ -380,7 +380,12 @@ If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, 
 Install cronjobs
 ----------------
 
-`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the line ``@daily /home/isabell/.local/bin/mailman digests --send`` at the end of the file.
+`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the following line at the end of the file.
+
+.. code-block:: bash
+
+ @daily /home/$USER/.local/bin/mailman digests --send
+
 
 Using Mailman
 =============

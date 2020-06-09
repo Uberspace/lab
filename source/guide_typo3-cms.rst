@@ -1,4 +1,4 @@
-.. author:: Tobias Stahn <info@tstahn.io>
+.. author:: Tobias Stahn <hello@tstahn.io>
 
 .. tag:: lang-php
 .. tag:: web
@@ -53,7 +53,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-TYPO3 9.5 provides the directory ``public`` as web root, so we will install it next to the default :manual:`document root <web-documentroot>` and
+TYPO3 provides the directory ``public`` as web root since version 9.5, so we will install it next to the default :manual:`document root <web-documentroot>` and
 use a symlink to make it accessible.
 
 ``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` and set up a new project using :manual_anchor:`composer <lang-php.html#package-manager>`.
@@ -61,15 +61,16 @@ use a symlink to make it accessible.
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project typo3/cms-base-distribution typo3-cms
- Installing typo3/cms-base-distribution (v9.5.0)
-   - Installing typo3/cms-base-distribution (v9.5.0)
- Created project in typo3-cms
+ [isabell@stardust isabell]$ composer create-project "typo3/cms-base-distribution:^10.4" typo3-cms
+ Creating a "typo3/cms-base-distribution:^10.4" project at "./typo3-cms"
+ Installing typo3/cms-base-distribution (v10.4.1)
+   - Installing typo3/cms-base-distribution (v10.4.1): Downloading (100%)
+ Created project in /var/www/virtual/tstahn/typo3-cms
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
- Package operations: 76 installs, 0 updates, 0 removals
-   - Installing typo3/cms-composer-installers (v2.2.1)
-   - Installing typo3/class-alias-loader (1.0.1)
+ Package operations: 88 installs, 0 updates, 0 removals
+   - Installing typo3/cms-composer-installers (v2.2.4): Downloading (100%)
+   - Installing typo3/class-alias-loader (v1.0.2): Downloading (100%)
  [...]
  [isabell@stardust isabell]$
 
@@ -122,6 +123,9 @@ Enter a username and password for your first TYPO3 admin user (the password will
 
 .. note:: For security reasons it's best to **not** use the name ``admin``.
 
+Enter your email address. This is used in case you forget your password and need to reset it. Additionally it can be used
+to notify you by email when somebody logs in from your account.
+
 Choose a "site name" which will identify this installation (in the page tree and browser title).
 
 Step 5
@@ -151,7 +155,7 @@ To update TYPO3 ``cd`` into the directory you installed it in earlier and update
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/typo3-cms
- [isabell@stardust typo3-cms]$ composer update typo3/minimal
+ [isabell@stardust typo3-cms]$ composer update typo3/cms-core
 
 To update 3rd party packages, find the corresponding composer package name (e.g. from the official `TYPO3 extension repository`_),
 and update the package.
@@ -183,6 +187,6 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 
 ----
 
-Tested with TYPO3 9.5 LTS and Uberspace 7.2.2
+Tested with TYPO3 10.4 LTS and Uberspace 7.6.0
 
 .. author_list::

@@ -16,7 +16,7 @@ EQdkp Plus
 
 .. tag_list::
 
-EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP and distributed unter the AGPLv3 licence.
+EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP and distributed under the AGPLv3 licence.
 It is focused on supporting guilds and clans playing online games, especially MMORPGs. Therefore it brings tools for planning raids or distributing loot or points like DKP (Dragon Kill Points).
 
 ----
@@ -60,7 +60,7 @@ Installation
  [isabell@stardust html]$ unzip eqdkp-plus.zip && rm eqdkp-plus.zip
  [isabell@stardust html]$
 
-Now point your browser to your uberspace URL and follow the instructions of the Installer Assistent.
+Now point your browser to your uberspace URL and follow the instructions of the Installer Assistant.
 
 You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.

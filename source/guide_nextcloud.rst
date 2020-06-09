@@ -9,6 +9,8 @@
 .. tag:: groupware
 .. tag:: sync
 .. tag:: project-management
+.. tag:: voip
+.. tag:: video-chat
 
 .. sidebar:: Logo
 
@@ -37,12 +39,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -56,7 +58,7 @@ Installation
 
 ``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
 
-.. note:: The link to the lastest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
+.. note:: The link to the latest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
 
 ::
 
@@ -77,6 +79,44 @@ You will need to enter the following information:
 
 Additionally, you can choose where Nextcloud is going to store your data files. It is recommended to place them outside of the webserver's DocumentRoot, e.g. at ``/home/isabell/nextcloud_data/``.
 
+Configuration
+=============
+
+Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by editing the ``/var/www/virtual/$USER/html/config/config.php`` with your favorite editor. If yo want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
+
+Sendmail Settings
+-----------------
+
+ and enter the following settings:
+
+.. warning:: Make sure to replace the example values.
+
+::
+
+ 'mail_domain' => 'uber.space',
+ 'mail_from_address' => 'isabell',
+ 'mail_smtpmode' => 'sendmail',
+ 'mail_sendmailmode' => 'pipe',
+ 
+SMTP Settings
+-------------
+
+.. note:: In our example we assume that Nextcloud will use the user's :manual:`system mailbox <mail-mailboxes>` user to send out mails. If you prefer to use an :manual_anchor:`additional mailbox <mail-mailboxes.html#setup-a-new-mailbox>` just adapt the settings. Refer to the :manual_anchor:`manual <mail-access.html#smtp>` if you don't know your smtp password.
+
+::
+
+ 'mail_domain' => 'uber.space',
+ 'mail_from_address' => 'isabell',
+ 'mail_smtpmode' => 'smtp',
+ 'mail_smtpport' => 587,
+ 'mail_smtphost' => 'stardust.uberspace.de',
+ 'mail_smtpsecure' => 'tls',
+ 'mail_smtpauth' => true,
+ 'mail_smtpauthtype' => 'LOGIN',
+ 'mail_smtpname' => 'isabell@uber.space',
+ 'mail_smtppassword' => 'MySSHPasswordIfUsingTheSystemMailbox',
+
+
 Tuning
 ======
 cronjob
@@ -93,7 +133,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 Memcaching
 ----------
 
-To further enhance perfomance, enable Memcaching.
+To further enhance performance, enable Memcaching.
 
 To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
 
@@ -110,7 +150,7 @@ To enable Memcaching (APCu), add the following line to your /var/www/virtual/$US
 opcache
 -------
 
-Enable opcache to further optimise perfomance.
+Enable opcache to further optimise performance.
 
 To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
 
@@ -150,8 +190,8 @@ Database maintenance
 To adapt some database configs to make Nextcloud run smoother execute these commands:
 
 ::
- 
- [isabell@stardust ~] cd html
+
+ [isabell@stardust ~]$ cd html
  [isabell@stardust html]$ php occ db:add-missing-indices
  [isabell@stardust html]$ php occ db:convert-filecache-bigint
 
@@ -164,7 +204,7 @@ At the moment it is not possible to change the HSTS settings, as mentioned in th
 
 Onlyoffice (Community Edition)
 ------------------------------
-To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface: 
+To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface:
 
 * Community Document Server (a light version of the Onlyoffice server)
 * Onlyoffice (the connector to the Onlyoffice server)
@@ -176,8 +216,21 @@ Both apps can be installed optional during the main install, but the huge docume
 [isabell@stardust html]$ cd apps
 [isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
 
-Reload the admin panel and enable the Community Document Server. 
-A click on a text/spreadsheet document should now start the Onlyoffice Editor. 
+Reload the admin panel and enable the Community Document Server.
+A click on a text/spreadsheet document should now start the Onlyoffice Editor.
+
+Nextcloud Talk
+--------------
+
+To can enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
+If the web installation fails, install the app manually in your shell:
+
+::
+
+  [isabell@stardust html]$ cd apps
+  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
+
+Reload the page and press the talk icon in the top menu bar.
 
 Updates
 =======
@@ -191,6 +244,7 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ php occ upgrade
  [isabell@stardust html]$ restorecon -R .
+ [isabell@stardust html]$ php occ maintenance:mode --off
  [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.

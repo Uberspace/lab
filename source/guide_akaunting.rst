@@ -6,7 +6,7 @@
 .. tag:: web
 .. tag:: accounting
 .. tag:: customer-management
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 
@@ -97,7 +97,7 @@ Akaunting saves your data in a MySQL database. We suggest you use an :manual_anc
  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_akaunting"
  [isabell@stardust ~]$
 
-Enter the following informations into the installer:
+Enter the following information into the installer:
 
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * the name of your newly created Akaunting database (e.g. ``isabell_akaunting``)
@@ -105,7 +105,7 @@ Enter the following informations into the installer:
 Step 3: Company and Admin Details
 ---------------------------------
 
-Fill in the name of your company, the company email adress (email sender if you send e.g. invoices), an admin email adress and your admin password.
+Fill in the name of your company, the company email address (email sender if you send e.g. invoices), an admin email address and your admin password.
 
 **That's it.** After the installation you can login with your chosen admin credentials.
 
@@ -123,9 +123,9 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 You will be additionally notified about available updates in the built in notification center.
-You can update the installation in the update wizzard which you can find in the Akaunting web interface.
+You can update the installation in the update wizard which you can find in the Akaunting web interface.
 
-.. warning:: Please note that third-party apps (plugins) need to be updated seperately. Available app updates are listed directly under the core updates. Make sure to check these regularly.
+.. warning:: Please note that third-party apps (plugins) need to be updated separately. Available app updates are listed directly under the core updates. Make sure to check these regularly.
 
 
 .. _Akaunting: https://akaunting.com

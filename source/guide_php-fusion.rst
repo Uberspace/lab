@@ -14,6 +14,8 @@
 PHP-Fusion
 ##########
 
+.. tag_list::
+
 PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
 
 ----
@@ -37,7 +39,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 
 MySQL
 -----
- 
+
 .. include:: includes/my-print-defaults.rst
 
 We advise you set up an additional database for PHP Fusion:
@@ -45,7 +47,7 @@ We advise you set up an additional database for PHP Fusion:
 ::
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_phpfusion"
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Domain
@@ -68,7 +70,7 @@ First get the PHP-Fusion source code from Sourceforge_:
   [isabell@stardust ~]$ rm -rf "PHP-Fusion 9.03.00" phpf9.zip
 
 
-  
+
 Finishing installation
 ======================
 
@@ -82,7 +84,7 @@ To remove the file install.php enter
 
  [isabell@stardust ~]$ rm /var/www/virtual/$USER/html/install.php
  [isabell@stardust ~]$
- 
+
 ----
 
 Tested with PHP-Fusion v9.03.00 and Uberspace 7.2.8.2

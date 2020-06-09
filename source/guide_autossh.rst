@@ -41,10 +41,10 @@ Download the latest version of autossh_ from the website http://www.harding.motd
 
 ::
 
- [isabell@stardust ~] wget http://www.harding.motd.ca/autossh/autossh-99.9f.tgz
- [isabell@stardust ~] tar zxf autossh-99.9f.tgz
- [isabell@stardust ~] cd autossh-99.9f
- [isabell@stardust autossh-99.9f]
+ [isabell@stardust ~] wget https://www.harding.motd.ca/autossh/autossh-1.4g.tgz
+ [isabell@stardust ~] tar zxf autossh-1.4g.tgz
+ [isabell@stardust ~] cd autossh-1.4g
+ [isabell@stardust autossh-1.4g]
 
 Step 2
 ------
@@ -53,11 +53,11 @@ Run ``configure``, ``make`` and ``make install`` (the ``--prefix`` options tells
 
 ::
 
- [isabell@stardust autossh-99.9f] ./configure --prefix=$HOME
+ [isabell@stardust autossh-1.4g] ./configure --prefix=$HOME
  [...]
- [isabell@stardust autossh-99.9f] make
+ [isabell@stardust autossh-1.4g] make
  [...]
- [isabell@stardust autossh-99.9f] make install
+ [isabell@stardust autossh-1.4g] make install
  [...]
 
 After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors.

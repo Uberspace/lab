@@ -17,7 +17,7 @@ Mattermost
 
 .. tag_list::
 
-`Mattermost`_ is an open-source, self-hostable online chat service written in Go and JavaScript.
+`Mattermost`_ is an open-source, self-hosted online chat service written in Go and JavaScript.
 
 ----
 
@@ -50,11 +50,11 @@ Download the most recent Linux TAR archive from the `Mattermost website`_:
   HTTP request sent, awaiting response... 200 OK
   Length: 155306557 (148M) [application/x-gzip]
   Saving to: ‘mattermost-5.18.0-linux-amd64.tar.gz’
-  
+
   100%[====================================================================>] 155,306,557 22.5MB/s   in 6.6s
-  
+
   2019-12-23 13:27:08 (22.6 MB/s) - ‘mattermost-5.18.0-linux-amd64.tar.gz’ saved [155306557/155306557]
-  
+
   [isabell@stardust ~]$
 
 Extract the archive:
@@ -84,7 +84,7 @@ Run the following code to create the database ``<username>_mattermost`` in MySQL
 Change the configuration
 ------------------------
 
-You need to set up your URL, and MySQL settings in ``~/mattermost/config/config.json``. 
+You need to set up your URL, and MySQL settings in ``~/mattermost/config/config.json``.
 
 First, set your site URL:
 
@@ -92,9 +92,9 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the databse you created earlier:
+Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the database you created earlier:
 
-.. code-block:: json
+.. code-block:: javascript
  :emphasize-lines: 3
 
     "SqlSettings": {
@@ -112,9 +112,9 @@ Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, `
 
 To configure plugins you have to change the plugin path under ``PluginSettings``:
 
-.. code-block:: json
+.. code-block:: javascript
  :emphasize-lines: 1,2
- 
+
       "Directory": "/home/isabell/mattermost/plugins",
       "ClientDirectory": "/home/isabell/mattermost/client/plugins",
 
@@ -152,6 +152,12 @@ Further customisation
 ---------------------
 
 To further customise your configuration, you can open the ``system console`` in your browser and adapt any settings to your wishes. Setting the SMTP server is a good idea.
+
+Updates
+-------
+
+Stop your service, backup your ``/home/isabell/mattermost/client``, ``/home/isabell/mattermost/config`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
+Proceed with the installation steps and restore the ``client``, ``config`` and ``plugins`` directories. Then you can start your service again.
 
 .. _`Mattermost website`: https://mattermost.com/download/
 
