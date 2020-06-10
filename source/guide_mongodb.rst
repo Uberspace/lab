@@ -121,7 +121,7 @@ If it’s not in state RUNNING, check your configuration.
 Create root user
 -----------------
 
-Choose a root password or generate a random one one using this snippet:
+Choose a root password or generate a random one using this snippet:
 
 .. code-block:: bash
 
