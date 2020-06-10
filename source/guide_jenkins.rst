@@ -41,7 +41,7 @@ Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins
 Prerequisites
 =============
 
-We're using java version 8 or 11 `(9, 10 and 12 are currently not supported) <https://jenkins.io/doc/administration/requirements/java/>`_.
+We're using Java version 8 or 11 `(9, 10 and 12 are currently not supported) <https://jenkins.io/doc/administration/requirements/java/>`_.
 
 ::
 
@@ -147,7 +147,7 @@ Just copy and paste that and you'll be good to go. Just follow the setup and eve
 Updates
 =======
 
-Do jump to a new version just replace the old war with the new version.
+To jump to a new version just replace the old war with the new version.
 
 .. _Jenkins: https://jenkins.io
 .. author_list::
