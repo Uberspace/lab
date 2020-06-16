@@ -195,13 +195,6 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
  [isabell@stardust html]$ php occ db:add-missing-indices
  [isabell@stardust html]$ php occ db:convert-filecache-bigint
 
-HSTS
-----
-
-Nextcloud will complain about your HSTS settings in the admin interface.
-
-At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
-
 Onlyoffice (Community Edition)
 ------------------------------
 To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface:
