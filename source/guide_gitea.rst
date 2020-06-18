@@ -165,7 +165,7 @@ When using this, we have to finish the installation via gitea web service https:
 * As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
 * We disallow public registration and set some privacy settings. (``[service]`` section)
 
-For more informations about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample>`_.
+For more informations about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.example.ini>`_.
 
 .. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
@@ -179,11 +179,7 @@ For more informations about the possibilities and configuration options see the 
   HTTP_PORT            = 9000
   DOMAIN               = isabell.uber.space
   ROOT_URL             = https://%(DOMAIN)s
-  OFFLINE_MODE         = true
-  LFS_START_SERVER     = true
-  LFS_CONTENT_PATH     = /home/isabell/gitea/data/lfs
-  LFS_JWT_SECRET       = 
-  LFS_HTTP_AUTH_EXPIRY = 24m
+  OFFLINE_MODE         = true ; privacy option.
   
   [database]
   DB_TYPE  = mysql
@@ -200,13 +196,10 @@ For more informations about the possibilities and configuration options see the 
   SECRET_KEY          = <RANDOM_32_CHARS>
   
   [service]
-  DISABLE_REGISTRATION       = true
+  DISABLE_REGISTRATION       = true ; security option, only admins can create new users.
   SHOW_REGISTRATION_BUTTON   = false
-  REQUIRE_SIGNIN_VIEW        = true
   REGISTER_EMAIL_CONFIRM     = true
-  ENABLE_NOTIFY_MAIL         = false
   DEFAULT_ORG_VISIBILITY     = private ; [public, limited, private]
-  DEFAULT_ORG_MEMBER_VISIBLE = false
   DEFAULT_KEEP_EMAIL_PRIVATE = true
   NO_REPLY_ADDRESS           = noreply.isabell.uber.space
 
