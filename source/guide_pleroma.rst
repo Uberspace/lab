@@ -21,16 +21,24 @@ Pleroma_ is a free, federated social networking server built on open protocols. 
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :lab:`PostgreSQL <guide_postgresql>`
   * :manual:`Domains <web-domains>`
-  * :manual:`Web Backend <web-backend>`  
+  * :lab:`PostgreSQL <guide_postgresql>`
+  * :manual:`Cron <daemons-cron>`
+  * :manual:`web backends <web-backends>`
+ 
 
 Prerequisites
 =============
 
+Web domain
+----------
+
 Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
+
+Setup PostgreSQL
+----------------
 
 You should've running a :lab:`PostgreSQL <guide_postgresql>` in the version ``9.6`` or above configured with ``--with-uuid=e2fs``
 
@@ -39,7 +47,7 @@ You should've running a :lab:`PostgreSQL <guide_postgresql>` in the version ``9.
  [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline --with-uuid=e2fs
  [isabell@stardust ~]$
 
-In PostgreSQL you need a database with your username as name. Otherwise there is an error when you create the database for pleroma.
+In PostgreSQL you need a database with your username as name. Otherwise there is an error when you create the database for pleroma with the later generated script.
 
 .. warning:: Please replace ``<username>`` with your Uberspace username created in :lab:`PostgreSQL <guide_postgresql>`!
 
@@ -51,11 +59,10 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
 Installation
 ============
 
-Create a ``pleroma`` directory in your home and download the latest stable release from source. You dont need to ``cd`` the new directory because ``git clone`` download the files automatically in the new created ``pleroma`` directory.
+Download the latest stable release from source to ``~/pleroma``
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/pleroma
  [isabell@stardust ~]$ git clone -b stable https://git.pleroma.social/pleroma/pleroma.git
  Cloning into 'pleroma'...
  remote: Enumerating objects: 1130, done.
@@ -73,6 +80,10 @@ Create a ``pleroma`` directory in your home and download the latest stable relea
 
  [isabell@stardust ~]$ cd ~/pleroma
  [isabell@stardust ~]$ mix deps.get
+ !!! RUNNING IN LOCALHOST DEV MODE! !!!
+ FEDERATION WON'T WORK UNTIL YOU CONFIGURE A dev.secret.exs
+ Could not find Hex, which is needed to build dependency :phoenix
+ Shall I install Hex? (if running non-interactively, use "mix local.hex --force") [Yn] Y
  [...]
  [isabell@stardust ~]$
 
@@ -91,6 +102,10 @@ Run ``mix pleroma.instance gen``. This will compiling the files and asks you que
 ::
 
  [isabell@stardust ~]$ mix pleroma.instance gen
+ [...]
+ Could not find "rebar3", which is needed to build dependency :parse_trans
+ I can install a local copy which is just used by Mix
+ Shall I install rebar3? (if running non-interactively, use "mix local.rebar --force") [Yn] Y
  [...]
  Generated pleroma app
  What domain will your instance use? (e.g pleroma.soykaf.com) []  isabell.uber.space
@@ -134,18 +149,56 @@ Run the script with ``psql``:
  CREATE EXTENSION
  [isabell@stardust ~]$
 
-Database migration
-------------------
+Recommened minimum settings
+---------------------------
 
-.. note:: For these next steps, the default will be to run pleroma using the dev configuration file, ``config/dev.secret.exs``. To run them using the prod config file, prefix each command at the shell with ``MIX_ENV=prod``. For example: ``MIX_ENV=prod mix phx.server``. Documentation for the config can be found at docs/config.md in the repository, or at the "Configuration" page on https://docs-develop.pleroma.social/config.html
-
-Make a copy of the file ``generated_config.exs`` in the directory ``~/pleroma/config`` and rename it to ``dev.secret.exs``. ``cd`` the root directory of Pleroma and run ``mix ecto.migrate`` to migrate the database.
+Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it to ``prod.secret.exs``. 
 
 ::
 
- [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/dev.secret.exs
+ [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ mix ecto.migrate
+ 
+For minimum privacy settings adjust your ``~/pleroma/config/dev.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 daysto reduce space usage. Find the following block and address
+
+.. code-block:: none
+ :emphasize-lines: 6, 7, 8
+
+ config :pleroma, :instance,
+   name: "Isabell",
+   email: "isabell@uber.space",
+   notify_email: "isabell@uber.space",
+   limit: 5000,
+   registrations_open: false,
+   public: false,
+   remote_post_retention: 30
+
+Check out the `Configuration Cheat Sheet`_ for more settings.
+
+cronjob
+-------
+
+Add the following crontob to your :manual:`crontab <daemons-cron>` to check daily at 04:42 for posts older than 30 days to remove.
+
+.. note:: If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
+
+.. code-block:: none
+
+ 42 4 * * * cd /home/<username>/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
+
+
+
+Database migration
+------------------
+
+.. note:: For these next steps we use pleroma in the environment ``prod`` using the file ``~/pleroma/config/prod.secret.exs``. If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
+
+``cd`` the root directory of Pleroma and run ``MIX_ENV=prod mix ecto.migrate`` to migrate the database.
+
+::
+
+ [isabell@stardust ~]$ cd ~/pleroma
+ [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
  [isabell@stardust ~]$
 
 Configure web server
@@ -166,47 +219,20 @@ As example for this guide:
  You can always check the status of your backend using "uberspace web backend list".
  [isabell@stardust ~]$
 
-.. Comment out because its not necessary
-.. Start Pleroma
- =============
-
- With ``mix phx.server`` you can start Pleroma in the debug mode.
-
- ::
-
-  [isabell@stardust ~] cd ~/pleroma
-  [isabell@stardust ~] mix phx.server
-
- To stop the service type an ``a`` in the terminal and press Enter.
-
 Setup deamon
 ============
 
-Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure to replace ``<username>`` with your Uberspace username:
+Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure to replace ``<username>`` with your Uberspace username and setup your environment:
 
 .. code-block:: ini
 
- ; Assumes pleroma is installed in /home/<username>/pleroma and running as the pleroma user
- ; Also assumes mix is in /usr/bin, this might differ on BSDs or niche Linux distros
- ; Logs into /home/<username>/logs
  [program:pleroma]
  command=/usr/bin/mix phx.server
- directory=/home/<username>/pleroma
+ directory=%(ENV_HOME)s/pleroma
  autostart=true
  autorestart=true
- user=<username>
  environment =
-   MIX_ENV=dev,
-   HOME=/home/<username>,
-   USER=<username>,
-   PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/<username>/bin:%(ENV_PATH)s",
-   PWD=/home/<username>/pleroma
- stdout_logfile=/home/<username>/logs/stdout.log
- stdout_logfile_maxbytes=50MB
- stdout_logfile_backups=10
- stderr_logfile=/home/<username>/logs/stderr.log
- stderr_logfile_maxbytes=50MB
- stderr_logfile_backups=10
+   MIX_ENV=prod
 
 .. include:: includes/supervisord.rst
 
@@ -220,7 +246,7 @@ Create your first user as admin with ``mix pleroma.user new <nickname> <email> [
 ::
 
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ mix pleroma.user new isabell isabell@uber.space --password MySuperSecretPassword --admin
+ [isabell@stardust ~]$ MIX_ENV=prod mix pleroma.user new isabell isabell@uber.space --password MySuperSecretPassword --admin
  A user will be created with the following information:
    - nickname: isabell
    - email: isabell@uber.space
@@ -263,8 +289,8 @@ Stop the Pleroma service:
  Updating a5ccb5b0b..f891e2b2f
  Fast-forward
  [...]
- [isabell@stardust ~]$ mix deps.get
- [isabell@stardust ~]$ mix ecto.migrate
+ [isabell@stardust ~]$ MIX_ENV=prod mix deps.get
+ [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
  [isabell@stardust ~]$ supervisorctl start pleroma
  [isabell@stardust ~]$
 
@@ -275,5 +301,6 @@ Tested with Pleroma 2.0.7, Uberspace 7.7.1.2
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
 .. _Mastodon: https://joinmastodon.org/
+.. _Configuration Cheat Sheet: https://docs-develop.pleroma.social/backend/configuration/cheatsheet/
 
 .. author_list::
