@@ -154,6 +154,7 @@ Create ``~/share/icecast/update-cert.sh`` to consolidate certificate keys into o
 
   cat $CRTFILE $KEYFILE > $PEMFILE
   chmod 640 $PEMFILE
+  supervisorctl restart icecast
 
 Change permissions and execute this script initially.
 
