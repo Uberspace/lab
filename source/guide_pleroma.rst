@@ -150,7 +150,7 @@ Run the script with ``psql``:
  [isabell@stardust ~]$
 
 Recommended minimum settings
----------------------------
+----------------------------
 
 Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it to ``prod.secret.exs``. 
 
@@ -159,7 +159,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$ cd ~/pleroma
  
-For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 daysto reduce space usage. Find the following block and address
+For minimum privacy settings adjust your ``~/pleroma/config/dev.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 daysto reduce space usage. Find the following block and address
 
 .. code-block:: none
  :emphasize-lines: 6, 7, 8
@@ -233,6 +233,13 @@ Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure
  autorestart=true
  environment =
    MIX_ENV=prod
+ stdout_logfile=%(ENV_HOME)s/logs/stdout.log
+ stdout_logfile_maxbytes=50MB
+ stdout_logfile_backups=10
+ stderr_logfile=%(ENV_HOME)s/logs/stderr.log
+ stderr_logfile_maxbytes=50MB
+ stderr_logfile_backups=10
+
 
 .. include:: includes/supervisord.rst
 
