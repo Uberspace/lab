@@ -129,9 +129,45 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
      <port>$yourlisteningport</port>
      <!-- <bind-address>127.0.0.1</bind-address> -->
      <shoutcast-mount>/stream</shoutcast-mount>
+     <ssl>1</ssl>
   </listen-socket>
+  
+::
+
+  <paths>
+
+::
+
+     <ssl-certificate>/home/isabell/share/icecast/isabell.uber.space.pem</ssl-certificate>
+  </paths>
 
 Use the port you were assigned by ``uberspace port add`` above.
+
+Create ``~/share/icecast/update-cert.sh`` to consolidate certificate keys into one file.
+
+::
+
+  #!/bin/sh
+  CRTFILE=/home/isabell/etc/certificates/isabell.uber.space.crt
+  KEYFILE=/home/isabell/etc/certificates/isabell.uber.space.key
+  PEMFILE=/home/isabell/share/icecast/isabell.uber.space.pem
+
+  cat $CRTFILE $KEYFILE > $PEMFILE
+  chmod 640 $PEMFILE
+
+Change permissions and execute this script initially.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ chmod +x ~/var/log/icecast/
+  [isabell@stardust ~]$ ~/share/icecast/update-cert.sh
+  [isabell@stardust ~]$
+  
+Edit crontab with ``crontab -e`` and add following line for monthly execution.
+
+::
+
+  @monthly /home/isabell/share/icecast/update-cert.sh > /dev/null
 
 Create the directory for the log files.
 
