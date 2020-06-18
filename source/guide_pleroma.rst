@@ -159,7 +159,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$ cd ~/pleroma
  
-For minimum privacy settings adjust your ``~/pleroma/config/dev.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 daysto reduce space usage. Find the following block and address
+For minimum privacy settings adjust your ``~/pleroma/config/dev.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines: 
 
 .. code-block:: none
  :emphasize-lines: 6, 7, 8
