@@ -126,7 +126,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=radicale -f
+  command=radicale
 
 
 Finishing installation
@@ -200,8 +200,8 @@ Updates
   [isabell@stardust ~]$
 
 .. _Radicale: https://radicale.org/
-.. _Changelog: https://radicale.org/news/
-.. _Config: https://radicale.org/configuration/
+.. _Changelog: https://github.com/Kozea/Radicale/releases/
+.. _Config: https://radicale.org/3.0.html#documentation
 
 ----
 
