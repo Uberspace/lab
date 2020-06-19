@@ -76,7 +76,8 @@ Download the latest stable release from source to ``~/pleroma``
 
 ``cd`` to the new pleroma directory and run ``mix deps.get`` to install elixir dependencies:
 
-::
+.. code-block:: console
+ :emphasize-lines: 6
 
  [isabell@stardust ~]$ cd ~/pleroma
  [isabell@stardust ~]$ mix deps.get
@@ -99,7 +100,8 @@ Run ``mix pleroma.instance gen``. This will compiling the files and asks you que
 
 .. warning:: Make sure to set the listen port to ``0.0.0.0`` instead of ``127.0.0.1`` !
 
-::
+.. code-block:: console
+ :emphasize-lines: 5,8-22
 
  [isabell@stardust ~]$ mix pleroma.instance gen
  [...]
@@ -159,7 +161,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$ cd ~/pleroma
  
-For minimum privacy settings adjust your ``~/pleroma/config/dev.secret.exs`` to disable the open registratrions and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines: 
+For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines:
 
 .. code-block:: none
  :emphasize-lines: 6, 7, 8
@@ -178,7 +180,7 @@ Check out the `Configuration Cheat Sheet`_ for more settings.
 cronjob
 -------
 
-Add the following crontob to your :manual:`crontab <daemons-cron>` to check daily at 04:42 for posts older than 30 days to remove.
+Add the following cronjob to your :manual:`crontab <daemons-cron>` to check daily at 04:42 for posts older than 30 days to remove.
 
 .. note:: If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
 
@@ -199,6 +201,7 @@ Database migration
 
  [isabell@stardust ~]$ cd ~/pleroma
  [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
+ [...]
  [isabell@stardust ~]$
 
 Configure web server
@@ -233,13 +236,6 @@ Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure
  autorestart=true
  environment =
    MIX_ENV=prod
- stdout_logfile=%(ENV_HOME)s/logs/stdout.log
- stdout_logfile_maxbytes=50MB
- stdout_logfile_backups=10
- stderr_logfile=%(ENV_HOME)s/logs/stderr.log
- stderr_logfile_maxbytes=50MB
- stderr_logfile_backups=10
-
 
 .. include:: includes/supervisord.rst
 
@@ -250,7 +246,8 @@ Finishing Installation
 
 Create your first user as admin with ``mix pleroma.user new <nickname> <email> [option ...]``:
 
-::
+.. code-block:: console
+ :emphasize-lines: 12
 
  [isabell@stardust ~]$ cd ~/pleroma
  [isabell@stardust ~]$ MIX_ENV=prod mix pleroma.user new isabell isabell@uber.space --password MySuperSecretPassword --admin
@@ -296,7 +293,7 @@ Stop the Pleroma service:
  Updating a5ccb5b0b..f891e2b2f
  Fast-forward
  [...]
- [isabell@stardust ~]$ MIX_ENV=prod mix deps.get
+ [isabell@stardust ~]$ mix deps.get
  [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
  [isabell@stardust ~]$ supervisorctl start pleroma
  [isabell@stardust ~]$
