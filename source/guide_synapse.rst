@@ -179,7 +179,6 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
   Set backend for /.well-known/matrix to apache.
   [isabell@stardust ~]$
 
-
 Configure Database Access
 -------------------------
 
