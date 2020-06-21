@@ -179,16 +179,6 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
   Set backend for /.well-known/matrix to apache.
   [isabell@stardust ~]$
 
-Configure Certificates
-----------------------
-
-Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
-
-.. code-block:: yaml
-
-    tls_certificate_path: "/home/isabell/etc/certificates/my.domain.name.crt"
-
-    tls_private_key_path: "/home/isabell/etc/certificates/my.domain.name.key"
 
 Configure Database Access
 -------------------------
