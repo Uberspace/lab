@@ -2,9 +2,9 @@
 
 .. author:: Frederik Ring <hioffen@posteo.de>
 
-.. tag:: analytics
 .. tag:: web
-.. tag:: lang-go
+.. tag:: analytics
+.. tag:: privacy
 
 .. sidebar:: Logo
 
@@ -17,8 +17,9 @@ Offen
 
 .. tag_list::
 
-Offen_ is a fair alternative to common web analytics tools.
-Gain insights while your users have full access to their data.
+Offen_ is a fair and open alternative to common web analytics tools. Gain
+insights while your users have full access to their data. Lightweight, self
+hosted and free.
 
 ----
 
@@ -56,6 +57,17 @@ the word "offen", it can also be "analytics" or whatever you like):
     to blocking in many scenarios. A domain can be added at a later point in
     time though.
 
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`.
+Get them with ``my_print_defaults``:
+
+::
+
+ [isabell@stardust ~]$ my_print_defaults client
+ --default-character-set=utf8mb4
+ --user=isabell
+ --password=MySuperSecretPassword
+
+
 Installation
 ============
 
@@ -67,7 +79,7 @@ the latest release:
 
 ::
 
- [isabell@stardust ~]$ mkdir tmp/offen-download && cd tmp/offen-download
+ [isabell@stardust ~]$ mkdir ~/tmp/offen-download && cd ~/tmp/offen-download
  [isabell@stardust offen-download]$ curl -sSL https://get.offen.dev | tar -xvz
  LICENSE
  NOTICE
@@ -103,7 +115,11 @@ Next, you can install the Linux binary on your Uberspace:
 
 .. note:: Our distribution tarball also contains non-Linux binaries which is why
     you also see those `darwin` and `windows` files. If you feel like it, you
-    can safely delete the tmp/offen-download directory after installing.
+    can safely delete the `~/tmp/offen-download` directory after installing.
+
+    ::
+
+     [isabell@stardust ~]$ rm -rf ~/tmp/offen-download
 
 Configuration
 =============
@@ -116,8 +132,8 @@ In its most basic configuration, Offen sources configuration values from an
 
 ::
 
- [isabell@stardust ~]$ mkdir -p .config
- [isabell@stardust ~]$ touch offen.env
+ [isabell@stardust ~]$ mkdir -p ~/.config
+ [isabell@stardust ~]$ touch ~/.config/offen.env
 
 Populate the config file
 -------------------
@@ -133,25 +149,24 @@ can use the :code:`offen` command you just installed to create one for you:
 
 ::
 
- [isabell@stardust ~]$ echo "OFFEN_SECRET=$(offen secret -quiet)" >> .config/offen.env
+ [isabell@stardust ~]$ echo "OFFEN_SECRET=$(offen secret -quiet)" >> ~/.config/offen.env
 
 Database setup
 ------------
 
-On your Uberspace, Offen stores its data in a local SQLite file that you can
-store anywhere you want to. In this example we put it in an :code:`~/offen`
-directory:
+In this setup, Offen stores its Data in the MariaDB provided by your Uberspace.
+First create a database for Offen to store its data in:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p offen
- [isabell@stardust ~]$ touch offen/data.sqlite
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_offen"
 
-Next, add the location of the SQLite file to your config file:
+Next, add the dialect and the connection string to your config file:
 
 ::
 
- [isabell@stardust ~]$ echo "OFFEN_DATABASE_CONNECTIONSTRING=/home/isabell/offen/data.sqlite" >> .config/offen.env
+ [isabell@stardust ~]$ echo 'OFFEN_DATABASE_DIALECT=mysql' >> ~/.config/offen.env
+ [isabell@stardust ~]$ echo 'OFFEN_DATABASE_CONNECTIONSTRING="isabell:MySuperSecretPassword@tcp(localhost:3306)/isabell_offen?parseTime=true"' >> ~/.config/offen.env
 
 SMTP credentials
 ----
@@ -166,7 +181,7 @@ SMTP credentials in your config file:
 
 ::
 
- [isabell@stardust ~]$ cat >> .config/offen.env << EOF
+ [isabell@stardust ~]$ cat >> ~/.config/offen.env << EOF
  > OFFEN_SMTP_HOST="yoursmtphost.org"
  > OFFEN_SMTP_PASSWORD="yoursmtppassword"
  > OFFEN_SMTP_USER="isabell@yoursmtphost.org"
@@ -223,8 +238,8 @@ is now running on the default port 3000:
 Finishing installation
 ======================
 
-Point your browser to the `/setup` page on your domain and create your user
-and a first account.
+Point your browser to the `https://offen.yourdomain.org/setup/` page and create
+your user and a first account.
 
 Embedding Offen on your website
 ======================
@@ -258,6 +273,6 @@ Updates
 
 ----
 
-Tested with Offen v0.1.0-alpha.8, Uberspace 7.7
+Tested with Offen v0.1.0-alpha.9, Uberspace 7.7
 
 .. author_list::
