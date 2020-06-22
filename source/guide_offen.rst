@@ -52,21 +52,12 @@ the word "offen", it can also be "analytics" or whatever you like):
 .. note:: This subdomain setup is required so that Offen can set cookies from
     the same domain that your target site is running on. I.e. if your site is
     running on `www.yourdomain.org`, Offen is ideally running on
-    `offen.yourdomain.org`. You can use the `username.uber.space` domain if you
+    `offen.yourdomain.org`. You could use the `isabell.uber.space` domain if you
     want to, but that will make Offen issue 3rd party cookies, which are subject
     to blocking in many scenarios. A domain can be added at a later point in
     time though.
 
-You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`.
-Get them with ``my_print_defaults``:
-
-::
-
- [isabell@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=isabell
- --password=MySuperSecretPassword
-
+.. include:: includes/my-print-defaults.rst
 
 Installation
 ============
@@ -79,7 +70,7 @@ the latest release:
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/tmp/offen-download && cd ~/tmp/offen-download
+ [isabell@stardust ~]$ mkdir -p ~/tmp/offen-download && cd ~/tmp/offen-download
  [isabell@stardust offen-download]$ curl -sSL https://get.offen.dev | tar -xvz
  LICENSE
  NOTICE
@@ -91,6 +82,7 @@ the latest release:
  offen-linux-amd64.asc
  offen-windows-4.0-amd64.exe
  offen-windows-4.0-amd64.exe.asc
+ [isabell@stardust offen-download]$
 
 Check if the download contains the expected contents:
 
@@ -103,15 +95,17 @@ Check if the download contains the expected contents:
  offen-linux-amd64.asc: OK
  offen-windows-4.0-amd64.exe: OK
  offen-windows-4.0-amd64.exe.asc: OK
+ [isabell@stardust offen-download]$
 
 Next, you can install the Linux binary on your Uberspace:
 
 ::
 
- [isabell@stardust offen-download]$ cp offen-linux-amd64 /home/isabell/bin/offen
+ [isabell@stardust offen-download]$ cp offen-linux-amd64 ~/bin/offen
  [isabell@stardust offen-download]$ cd
  [isabell@stardust ~]$ which offen
  ~/bin/offen
+ [isabell@stardust ~]$
 
 .. note:: Our distribution tarball also contains non-Linux binaries which is why
     you also see those `darwin` and `windows` files. If you feel like it, you
@@ -120,6 +114,7 @@ Next, you can install the Linux binary on your Uberspace:
     ::
 
      [isabell@stardust ~]$ rm -rf ~/tmp/offen-download
+     [isabell@stardust ~]$
 
 Configuration
 =============
@@ -134,6 +129,7 @@ In its most basic configuration, Offen sources configuration values from an
 
  [isabell@stardust ~]$ mkdir -p ~/.config
  [isabell@stardust ~]$ touch ~/.config/offen.env
+ [isabell@stardust ~]$
 
 Populate the config file
 -------------------
@@ -145,48 +141,52 @@ A Secret
 ------------
 
 Offen requires a unique secret for signing login cookies and certain URLs. You
-can use the :code:`offen` command you just installed to create one for you:
+can use the :code:`offen` command you just installed to create one for you
+(passing :code:`-quiet` will make :code:`secret` output the generated value
+only):
 
 ::
 
  [isabell@stardust ~]$ echo "OFFEN_SECRET=$(offen secret -quiet)" >> ~/.config/offen.env
+ [isabell@stardust ~]$
 
 Database setup
 ------------
 
-In this setup, Offen stores its Data in the MariaDB provided by your Uberspace.
-First create a database for Offen to store its data in:
+In this setup, Offen stores its data in the MariaDB provided by your Uberspace.
+First create a dedicated database for Offen to use:
 
 ::
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_offen"
+ [isabell@stardust ~]$
 
-Next, add the dialect and the connection string to your config file:
+Next, edit the config file at `~/.config/offen.env` and add the dialect and the
+connection string (do not overwrite the existing secret):
 
-::
+.. code-block:: ini
 
- [isabell@stardust ~]$ echo 'OFFEN_DATABASE_DIALECT=mysql' >> ~/.config/offen.env
- [isabell@stardust ~]$ echo 'OFFEN_DATABASE_CONNECTIONSTRING="isabell:MySuperSecretPassword@tcp(localhost:3306)/isabell_offen?parseTime=true"' >> ~/.config/offen.env
+ OFFEN_DATABASE_DIALECT=mysql
+ OFFEN_DATABASE_CONNECTIONSTRING="isabell:MySuperSecretPassword@tcp(localhost:3306)/isabell_offen?parseTime=true"
 
 SMTP credentials
 ----
 
-.. note:: Your Uberspace comes with email and SMTP, so you can definitely
-    use this here if you feel like it.
+.. note:: Your Uberspace comes with SMTP, so you can definitely use this here
+    if you feel like it.
 
 Offen needs to be able to send out transactional emails so you can reset your
 password in case you forgot it, and so that you can invite others to collaborate
-with you on this instance. To enable Offen to send emails, set the following
-SMTP credentials in your config file:
+with you on this instance. To enable Offen to send emails, edit
+`~/.config/offen.env` and add the SMTP credentials like this (do not overwrite
+the existing values):
 
-::
+.. code-block:: ini
 
- [isabell@stardust ~]$ cat >> ~/.config/offen.env << EOF
- > OFFEN_SMTP_HOST="yoursmtphost.org"
- > OFFEN_SMTP_PASSWORD="yoursmtppassword"
- > OFFEN_SMTP_USER="isabell@yoursmtphost.org"
- > OFFEN_SMTP_SENDER="isabell@yoursmtphost.org"
- > EOF
+ OFFEN_SMTP_HOST="yoursmtphost.org"
+ OFFEN_SMTP_PASSWORD="yoursmtppassword"
+ OFFEN_SMTP_USER="isabell@yoursmtphost.org"
+ OFFEN_SMTP_SENDER="isabell@yoursmtphost.org"
 
 .. warning:: Offen will start and run without these values being set, but
     remember that you won't be able to reset your password or invite others
@@ -203,23 +203,13 @@ following:
 .. code-block:: ini
 
  [program:offen]
- command=/home/isabell/bin/offen
+ command=%(ENV_HOME)s/bin/offen
  autostart=yes
  autorestart=yes
 
-Afterwards, ask supervisord to look for new .ini files:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- offen: available
-
-You are ready to start the daemon now:
-
-::
-
- [isabell@stardust ~]$ supervisorctl update
- offen: added process group
+If it's not in state RUNNING, check your configuration.
 
 Point the web backend to Offen
 ------------
@@ -230,6 +220,7 @@ is now running on the default port 3000:
 ::
 
  [isabell@stardust ~]$ uberspace web backend set / --http --port 3000
+ [isabell@stardust ~]$
 
 .. note:: If you need to run Offen on a port other than 3000, set
     `OFFEN_SERVER_PORT` in your configuration file.
