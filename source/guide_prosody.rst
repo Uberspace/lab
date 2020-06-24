@@ -1,7 +1,9 @@
 .. highlight:: console
 .. author:: Arian Malek
 
-.. tag:: instant-messaging
+.. tag:: Instant Messaging
+.. tag:: Jabber
+.. tag:: XMPP
 
 .. sidebar:: Logo
 
@@ -224,7 +226,7 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
 Additionally I recommended the ssl ciphers and options to reach a high security score on `IM Observatory`_.
 
 .. code-block:: lua
- :emphasize-lines: 1, 2, 7, 10, 13, 19, 24-26, 30, 31, 33-36, 38-41
+ :emphasize-lines: 1, 2, 7, 10, 13, 19, 24-26, 30, 31, 33-36, 38-41, 44
 
  admins = { "isabell@uber.space" }
  plugin_paths = {"/home/isabell/prosody/prosody-modules"}
@@ -248,11 +250,11 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
  daemonize= false;
  storage = "sql"
  sql = { 
- 	 driver = "MySQL", 
+   driver = "MySQL", 
    database = "isabell_prosody", 
-	 username = "isabell", 
-	 password = "MySuperSecretPassword", 
-	 host = "localhost" 
+   username = "isabell", 
+   password = "MySuperSecretPassword", 
+   host = "localhost" 
  }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
@@ -265,9 +267,11 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
    modules_enabled = { "muc_mam", "vcard_muc" }
  Component "prosody.isabell.uber.space" "proxy65"
    proxy65_address = "prosody.isabell.uber.space"
-	 proxy65_acl = { "prosody.isabell.uber.space"  }
+   proxy65_acl = { "prosody.isabell.uber.space"  }
  Component "upload.isabell.uber.space" "http_upload" 
-	 http_upload_file_size_limit = 10485760
+   http_upload_file_size_limit = 10485760
+   http_upload_expire_after = 2419200
+   http_upload_path = "/home/isabell/prosody/http_upload/"
 
 .. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody! 
 
