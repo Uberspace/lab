@@ -226,7 +226,7 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
 Additionally I recommended the ssl ciphers and options to reach a high security score on `IM Observatory`_.
 
 .. code-block:: lua
- :emphasize-lines: 1, 2, 7, 10, 13, 19, 24-26, 30, 31, 33-36, 38-41, 44
+ :emphasize-lines: 1, 2, 7, 10, 13, 19, 24-26, 30, 31, 33-37, 40
 
  admins = { "isabell@uber.space" }
  plugin_paths = {"/home/isabell/prosody/prosody-modules"}
@@ -261,13 +261,9 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
  https_certificate = "/home/isabell/etc/certificates/upload.isabell.uber.space.crt"
  http_ports = { }
  https_ports = { FILEUPLOAD-PORT }
- proxy65_ports = { FILETRANSFER-PORT }
  VirtualHost "isabell.uber.space" 
  Component "conference.isabell.uber.space" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "prosody.isabell.uber.space" "proxy65"
-   proxy65_address = "prosody.isabell.uber.space"
-   proxy65_acl = { "prosody.isabell.uber.space"  }
  Component "upload.isabell.uber.space" "http_upload" 
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
