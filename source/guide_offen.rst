@@ -84,18 +84,30 @@ the latest release:
  offen-windows-4.0-amd64.exe.asc
  [isabell@stardust offen-download]$
 
-Check if the download contains the expected contents:
+Next, we should check if the binary matches the signature - i.e. it has not been
+altered by 3rd parties - using GPG (this step is optional, but `highly
+recommended`):
 
 ::
 
- [isabell@stardust offen-download]$ md5sum -c checksums.txt
- offen-darwin-10.6-amd64: OK
- offen-darwin-10.6-amd64.asc: OK
- offen-linux-amd64: OK
- offen-linux-amd64.asc: OK
- offen-windows-4.0-amd64.exe: OK
- offen-windows-4.0-amd64.exe.asc: OK
+ [isabell@stardust offen-download]$ curl -sSL https://keybase.io/hioffen/pgp_keys.asc | gpg --import
+ gpg: Schlüssel C90B8DA1: Öffentlicher Schlüssel "Offen (Signing Binaries) <hioffen@posteo.de>" importiert
+ gpg: Anzahl insgesamt bearbeiteter Schlüssel: 1
+ gpg:                              importiert: 1  (RSA: 1)
+ gpg: keine uneingeschränkt vertrauenswürdigen Schlüssel gefunden
+ [isabell@stardust offen-download]$ gpg --verify offen-linux-amd64.asc offen-linux-amd64
+ gpg: Signatur vom Mo 22 Jun 2020 09:27:16 CEST mittels RSA-Schlüssel ID C90B8DA1
+ gpg: Korrekte Signatur von "Offen (Signing Binaries) <hioffen@posteo.de>"
+ gpg: WARNUNG: Dieser Schlüssel trägt keine vertrauenswürdige Signatur!
+ gpg:          Es gibt keinen Hinweis, daß die Signatur wirklich dem vorgeblichen Besitzer gehört.
+ Haupt-Fingerabdruck  = F20D 4074 068C 636D 58B5  3F46 FD60 FBED C90B 8DA1
  [isabell@stardust offen-download]$
+
+.. note:: GPG will print warnings about the signing key not being certified
+    as your Uberspace's keyring is probably empty and does therefore not know
+    about anyone who has signed Offen's key. `This is expected behavior`. You
+    can check the Offen Keybase_ profile for further proof that this key is
+    the correct one.
 
 Next, you can install the Linux binary on your Uberspace:
 
@@ -261,6 +273,7 @@ Updates
 .. _Offen: https://www.offen.dev
 .. _Releases: https://github.com/offen/offen/releases
 .. _Twitter: https://twitter.com/hioffen
+.. _Keybase: https://keybase.io/hioffen
 
 ----
 
