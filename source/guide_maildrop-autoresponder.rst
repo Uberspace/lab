@@ -41,7 +41,7 @@ If you're planning to use your own domain for mail with your Uberspace, you need
 Installation
 ============
 
-For this guide, let's assume that you have created a mail user ``email``. We'll also assume that your EMail address is therefore ``email@stardust.uber.space``. If you're using an external domain, e.g. ``domain.tld``, refer to it accordingly. Make sure to replace these placeholder tags with your own credentials and usernames.
+For this guide, let's assume that you have created a mail user ``email``. We'll also assume that your email address is therefore ``email@stardust.uber.space``. If you're using an external domain, e.g. ``domain.tld``, refer to it accordingly. Make sure to replace these placeholder tags with your own credentials and usernames.
 
 Create the autoreply-filter
 ---------------------------
@@ -86,7 +86,7 @@ We strongly recommend enabling logging. If everything works you can safely disab
 	# Set the sender for the autoreply-email
 	FROM="email@stardust.uber.space"
 	
-Configure the email-address shown as sender from your generated mails.
+Configure the email address shown as sender from your generated mails.
 
 .. note:: I recommend to create one filter file for each autoresponder to prevent the use of generic sender addresses, but it's not necessary though.
 
@@ -216,7 +216,7 @@ Since we refer to the ``IMAP``-Folder ``Autorespond`` in the users mailbox tell 
 Usage
 -----
 
-When you're using the IMAP method you can additionally disable or enable the autoresponder by removing or adding a mail in the specified ``IMAP``-Folder. 
+When you're using the IMAP method you can additionally disable or enable the autoresponder by removing or adding a mail in the specified ``IMAP``-Folder. Mailbot will always use the most recent draft present in the specified folder.
 
 
 Common Issues
