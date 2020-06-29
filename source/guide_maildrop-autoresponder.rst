@@ -76,7 +76,7 @@ The variable ``$MAILDIR`` defines where maildrop finds the maildir and what it i
 
 .. code-block:: ini
 
-	# If you want to debug the autoresponder, turn on logging by uncommenting the following line.
+	# If you don't want to debug the autoresponder, turn off logging by commenting out the following line.
 	logfile "$HOME/autoresponder/autoreply-filter.log"
 	
 We strongly recommend enabling logging. If everything works you can safely disable this afterwards. The logfile ``~/autoresponder/autoreply-filter.log`` will be created showing the sender, date, subject and final destination for each mail processed by the filter.
