@@ -1,5 +1,6 @@
 .. highlight:: console
 .. author:: Arian Malek
+.. author:: fapsi
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -30,6 +31,8 @@ XMPP is an open and free alternative to commercial messaging and chat providers.
   * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
 
+This guide is based on the initial `pull request`_ from fapsi_.
+
 License
 =======
 
@@ -49,7 +52,13 @@ Web domain
 
 Your URL ``xmpp.isabell.uber.space`` and ``upload.isabell.uber.space`` needs to be setup:
 
-.. include:: includes/web-domain-list.rst
+::
+
+ [isabell@stardust ~]$ uberspace web domain list
+ isabell.uber.space
+ xmpp.isabell.uber.space
+ upload.isabell.uber.space
+ [isabell@stardust ~]$
 
 Ports
 -----
@@ -153,26 +162,24 @@ Create a database for prosody:
 Installation
 ============
 
-Download the latest stable release from source to ``~/prosody/prosody-0.11``:
+.. note:: Check out the latest stable release on https://prosody.im/downloads/source/.
+
+Download the latest stable release from source to ``~/prosody/prosody-0.11.5``:
 
 ::
 
- [isabell@stardust ~]$ hg clone https://hg.prosody.im/0.11/ ~/prosody/prosody-0.11
- requesting all changes
- adding changesets
- adding manifests
- adding file changes
- added 9796 changesets with 11406 changes to 519 files
- updating to bookmark @ on branch 0.11
- 357 files updated, 0 files merged, 0 files removed, 0 files unresolved
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ mkdir ~/home/prosody
+ [isabell@stardust ~]$ cd ~/home/prosody
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-0.11.5.tar.gz
+ [...]
+ [isabell@stardust ~]$ tar -xzf prosody-0.11.5.tar.gz
 
-``cd`` to the directory and configure, build and install prosody:
+Configure, build and install prosody:
 
 ::
 
- [isabell@stardust ~]$ cd ~/prosody/prosody-0.11
- [isabell@stardust ~]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
+ [isabell@stardust ~]$ cd ~/prosody/prosody-0.11.5
+ [isabell@stardust ~]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -199,7 +206,7 @@ Generate SSL dhparam file
 
 .. note:: This is going to take a long time!
 
-To improve the security you can generate a dhparam file with ``openssl``:
+To improve the security you can generate a Diffie–Hellman parameter file with ``openssl``:
 
 ::
 
@@ -210,7 +217,7 @@ To improve the security you can generate a dhparam file with ``openssl``:
 Install modules
 ---------------
 
-Now we create the http_upload folder and download the community plugins:
+Create the *http_upload* folder for the module **http_upload** which let clients upload files over HTTP. Additionally download the latest available community plugins:
 
 .. code-block:: console
 
@@ -221,17 +228,36 @@ Now we create the http_upload folder and download the community plugins:
 Configure prosody
 -----------------
 
-Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. In this example there are many modules enabled you can check out from the `official page`_.
+Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explaination of the config file under the `example configuration file`_ from Prosody.
 
-Additionally I recommended the ssl ciphers and options to reach a high security score on `IM Observatory`_.
+Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
 
 .. code-block:: lua
- :emphasize-lines: 1, 2, 7, 10, 13, 19, 24-26, 30, 31, 33-37, 40
+ :emphasize-lines: 2,3, 26, 29, 32, 38, 43-45, 50, 51, 53, 56, 57, 59, 62
 
+ ---------- Server-wide settings ----------
  admins = { "isabell@uber.space" }
- plugin_paths = {"/home/isabell/prosody/prosody-modules"}
- modules_enabled = {"roster"; "saslauth"; "tls"; "dialback"; "disco"; "carbons"; "pep"; "private"; "blocklist"; "vcard_legacy"; "version"; "uptime"; "time"; "ping"; "register"; "mam"; "admin_adhoc"; "posix"; "smacks"; "smacks_offline"; "csi_simple"; "cloud_notify"; "bookmarks"; }
-
+ plugin_paths = { "/home/isabell/prosody/prosody-modules" }
+ modules_enabled = {
+   "roster";
+   "saslauth";
+   "tls";
+   "dialback";
+   "disco";
+   "carbons";
+   "pep";
+   "private";
+   "blocklist";
+   "vcard4";
+   "vcard_legacy";
+   "version";
+   "uptime";
+   "time";
+   "ping";
+   "register";
+   "mam";
+   "csi_simple";
+   "admin_adhoc";
  allow_registration = false
  c2s_require_encryption = true
  c2s_ports = { C2S-PORT }
@@ -240,10 +266,10 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
  s2s_ports = { S2S-PORT }
  s2s_timeout = 300
  ssl = {
-   dhparam = "/home/isabell/etc/prosody/certs/dh-4096.pem";         
+   dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";         
 	 cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
 	 ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
-	 options = { "no_sslv2", "no_sslv3", "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
+	 options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
  authentication = "internal_hashed"
  pidfile = "/home/isabell/prosody/prosody.pid";
@@ -256,11 +282,14 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
    password = "MySuperSecretPassword", 
    host = "localhost" 
  }
+ archive_expires_after = "1w"
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
  https_certificate = "/home/isabell/etc/certificates/upload.isabell.uber.space.crt"
  http_ports = { }
  https_ports = { FILEUPLOAD-PORT }
+
+ ----------- Virtual hosts -----------
  VirtualHost "isabell.uber.space" 
  Component "conference.isabell.uber.space" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
@@ -270,8 +299,6 @@ Additionally I recommended the ssl ciphers and options to reach a high security 
    http_upload_path = "/home/isabell/prosody/http_upload/"
 
 .. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody! 
-
-For a explaination of the configuration check out the `example configuration file`_.
 
 Setup deamon
 ============
@@ -307,13 +334,17 @@ Create your first user:
 Updates
 =======
 
-For updates ``cd`` to ``~/prosody/prosody-0.11`` and pull down the latest changes and restart the service:
+.. note:: Check the `update feed`_ regularly to stay informed about the newest version.
+
+For updates simply repeat the steps described in the Installation_ part:
 
 ::
 
- [isabell@stardust ~]$ cd ~/prosody/prosody-0.11
- [isabell@stardust ~]$ hp pull -u
- [...] 
+ [isabell@stardust ~]$ cd ~/prosody
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-0.XX.X.tar.gz
+ [...]
+ [isabell@stardust ~]$ tar -xzf prosody-0.XX.X.tar.gz
+ [isabell@stardust ~]$ cd ~/prosody/prosody-0.XX.X
  [isabell@stardust ~]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
@@ -333,16 +364,30 @@ For updates ``cd`` to ``~/prosody/prosody-0.11`` and pull down the latest change
  [...] 
  [isabell@stardust ~]$ supervisorctl restart prosody
  [isabell@stardust ~]$ 
- 
+
+XMPP Clients
+============
+
+As a personal note I want to recommend following XMPP clients:
+
+* Gajim_ for Linux / Windows.
+* Converations_ for Android.
+* ChatSecure_ for iOS.
+
 ----
 
 Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 
 .. _prosody: https://prosody.im
+.. _pull request: https://github.com/Uberspace/lab/pull/435
+.. _fapsi: https://github.com/fapsi
 .. _dns: https://prosody.im/doc/dns
 .. _dependencies: https://prosody.im/doc/depends
-.. _official page: https://modules.prosody.im
 .. _IM Observatory: https://xmpp.net
 .. _example configuration file: https://prosody.im/doc/example_config
+.. _update feed: https://blog.prosody.im/index.xml
+.. _Gajim: https://gajim.org
+.. _Converations: https://conversations.im
+.. _ChatSecure: https://chatsecure.org
 
 .. author_list::
