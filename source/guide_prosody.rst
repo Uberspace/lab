@@ -371,7 +371,7 @@ XMPP Clients
 As a personal note I want to recommend following XMPP clients:
 
 * Gajim_ for Linux / Windows.
-* Converations_ for Android.
+* Conversations_ for Android.
 * ChatSecure_ for iOS.
 
 ----
@@ -387,7 +387,7 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _example configuration file: https://prosody.im/doc/example_config
 .. _update feed: https://blog.prosody.im/index.xml
 .. _Gajim: https://gajim.org
-.. _Converations: https://conversations.im
+.. _Conversations: https://conversations.im
 .. _ChatSecure: https://chatsecure.org
 
 .. author_list::
