@@ -49,14 +49,15 @@ Installation
 Install
 -------
 
-Installing salt in a a ``virtualenv`` using python 3.8 (latest available python on Uberspace). Also installing pygit2 as it is a dependency for any gitfs in Salt (which is very common).
+Installing Salt in a ``virtualenv`` using python 3.8 (latest available python on Uberspace). Also installing pygit2 (because it is a dependency for any gitfs in Salt which is very common). Packages are installed in multiple steps as updated setuptools, pip and wheel may be needed for others to install. Salt must be installed by itself due to 'global-option' being used. Download latest sample config as last step.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ virtualenv -p python3.8 ~/salt_venv
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
- (salt_venv) [isabell@stardust ~]$ pip3.8 install -U setuptools pip wheel 
- (salt_venv) [isabell@stardust ~]$ pip3.8 install salt pygit2
+ (salt_venv) [isabell@stardust ~]$ pip3.8 install -U setuptools pip wheel
+ (salt_venv) [isabell@stardust ~]$ pip3.8 install -U pyzmq PyYAML msgpack-python jinja2 psutil futures tornado 'msgpack<1.0.0' chardet idna urllib3 certifi requests pycryptodomex distro pygit2
+ (salt_venv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.8 install --global-option='--salt-root-dir='${HOME}'/salt_venv/' salt
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ mkdir -p ~/salt_venv/etc/salt ~/salt_venv/var/log/salt
  [isabell@stardust ~]$ curl https://raw.githubusercontent.com/saltstack/salt/master/conf/master -o ~/salt_venv/etc/salt/master
@@ -72,7 +73,6 @@ Edit ``~/salt_venv/etc/salt/master`` and make at least the following changes:
  user: <your-user i.e. isabell>
  publish_port: <high-port1>
  ret_port: <high-port2>
- root_dir: <absolute path to venv i.e. /home/isabell/salt_venv>
 
 
 Setup daemon
@@ -84,7 +84,7 @@ Create ``~/etc/services.d/salt-master.ini`` with the following content:
 
  [program:salt-master]
  process_name=salt-master
- command=%(ENV_HOME)s/salt_venv/bin/salt-master -c ~/salt_venv/etc/salt
+ command=%(ENV_HOME)s/salt_venv/bin/salt-master
  directory=%(ENV_HOME)s/salt_venv
  autostart=yes
  autorestart=yes
@@ -112,7 +112,7 @@ Now you can connect a minion to the salt master. The minion configuration needs 
 
 .. code-block:: yaml
 
- master: <IP or hostname of UberSpace>:<high-port2>
+ master: <IP or hostname of Uberspace>:<high-port2>
  publish_port: <high-port1>
 
 An initial minion run will upload the minion public key to the master and you view and accept this key to establish communication:
@@ -141,10 +141,10 @@ Update Salt in ``virtualenv``:
 .. code-block:: console
 
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
- (salt_venv) [isabell@stardust ~]$ pip3.8 install -U salt
+ (salt_venv) [isabell@stardust ~]$ pip3.8 install <any additional dependencies from newer version>
+ (salt_venv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.8 install -U --global-option='--salt-root-dir='${HOME}'/salt_venv/' salt
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ supervisorctl restart salt-master
-
 
 
 
