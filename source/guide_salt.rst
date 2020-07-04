@@ -46,10 +46,22 @@ Take note of the high ports, you will need them for salt master configuration la
 Installation
 ============
 
+Install and prepare virtualenv for python3.7
+--------------------------------------------
+
+Using python3.7 as python3.8 is not supported by Salt yet.
+::
+
+ [isabell@stardust ~]$ virtualenv -p python3.7 ~/salt/virtualenv
+ [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
+ (virtualenv) [isabell@stardust ~]$ pip3.7 install -U setuptools pip wheel pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado 'msgpack<1.0.0' chardet idna urllib3 certifi requests
+ [isabell@stardust ~]$ deactivate
+ 
+
 Install salt-master
 -------------------
 
-The ``salt`` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the "Developer installation" guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 2019.2.0
+The ``salt`` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the "Developer installation" guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 3000.3
 
 ::
 
@@ -57,11 +69,12 @@ The ``salt`` installation script requires root privileges and only supports virt
  [isabell@stardust ~]$ cd ~/salt/src
  [isabell@stardust ~]$ git clone https://github.com/saltstack/salt
  [isabell@stardust ~]$ cd salt
- [isabell@stardust ~]$ git checkout tags/v2019.2.0
- [isabell@stardust ~]$ virtualenv ~/salt/virtualenv
+ [isabell@stardust ~]$ git fetch --tags origin
+ [isabell@stardust ~]$ git checkout tags/v3000.3
  [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
- [isabell@stardust ~]$ pip install pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado
- [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip install --global-option='--salt-root-dir=~/salt/virtualenv/' -e ~/salt/src/salt
+ (virtualenv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.7 install --global-option='--salt-root-dir=~/salt/virtualenv/' -e ~/salt/src/salt
+ (virtualenv) [isabell@stardust ~]$ deactivate
+ [isabell@stardust ~]$ mkdir -p ~/salt/virtualenv/etc/salt ~/salt/virtualenv/var/log/salt
  [isabell@stardust ~]$ cp ~/salt/src/salt/conf/master ~/salt/virtualenv/etc/salt/
 
 
@@ -75,7 +88,7 @@ Edit ``~/salt/virtualenv/etc/salt/master`` and make at least the following chang
  user: <your-user>
  publish_port: <first port the was added above>
  ret_port: <second port the was added above>
- root_dir: /home/<username>/salt/virtualenv
+ root_dir: ~/salt/virtualenv
 
 
 Setup daemon
@@ -88,6 +101,7 @@ Create ``~/etc/services.d/salt-master.ini`` with the following content:
  [program:salt-master]
  process_name=salt-master
  command=%(ENV_HOME)s/salt/virtualenv/bin/salt-master
+ directory=%(ENV_HOME)s/salt/virtualenv
  autostart=yes
  autorestart=yes
 
@@ -127,6 +141,6 @@ Now you can connect a minion to the salt master. The minion configuration needs 
 Salt master is now setup with the first minion connected.
 
 
-Tested with SaltStack 2019.2.1, Uberspace 7.3
+Tested with SaltStack 3000.3, Uberspace 7.7
 
 .. author_list::
