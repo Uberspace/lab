@@ -61,7 +61,7 @@ Using python3.7 as python3.8 is not supported by Salt yet.
 Install salt-master
 -------------------
 
-The ``salt`` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the "Developer installation" guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 3000.3
+The ``salt`` installation script requires root privileges and only supports virtualenv installation for Ubuntu. So we'll follow the "Developer installation" guide to install the salt master manually. However, we don't want the latest head development version, but the latest stable/tagged version. As of writing this guide, the latest stable version is 3000.3.
 
 ::
 
@@ -72,7 +72,7 @@ The ``salt`` installation script requires root privileges and only supports virt
  [isabell@stardust ~]$ git fetch --tags origin
  [isabell@stardust ~]$ git checkout tags/v3000.3
  [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
- (virtualenv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.7 install --global-option='--salt-root-dir=~/salt/virtualenv/' -e ~/salt/src/salt
+ (virtualenv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.7 install --global-option='--salt-root-dir='${HOME}'/salt/virtualenv/' -e ~/salt/src/salt
  (virtualenv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ mkdir -p ~/salt/virtualenv/etc/salt ~/salt/virtualenv/var/log/salt
  [isabell@stardust ~]$ cp ~/salt/src/salt/conf/master ~/salt/virtualenv/etc/salt/
@@ -88,7 +88,6 @@ Edit ``~/salt/virtualenv/etc/salt/master`` and make at least the following chang
  user: <your-user>
  publish_port: <first port the was added above>
  ret_port: <second port the was added above>
- root_dir: ~/salt/virtualenv
 
 
 Setup daemon
