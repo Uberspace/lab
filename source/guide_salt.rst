@@ -128,7 +128,8 @@ Now you can connect a minion to the salt master. The minion configuration needs 
 
 .. code-block:: console
 
- [isabell@stardust ~]$ salt-key -L
+ [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
+ (virtualenv) [isabell@stardust ~]$ salt-key -L
  Accepted Keys:
  Denied Keys:
  Unaccepted Keys:
@@ -136,7 +137,8 @@ Now you can connect a minion to the salt master. The minion configuration needs 
  Rejected Keys:
 
 
- [isabell@stardust ~]$ salt-key -a <your-new-minion>
+ (virtualenv) [isabell@stardust ~]$ salt-key -a <your-new-minion>
+ (virtualenv) [isabell@stardust ~]$ deactivate
 
 Salt master is now setup with the first minion connected.
 
