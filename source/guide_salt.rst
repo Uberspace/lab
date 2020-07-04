@@ -55,7 +55,7 @@ Using python3.7 as python3.8 is not supported by Salt yet.
  [isabell@stardust ~]$ virtualenv -p python3.7 ~/salt/virtualenv
  [isabell@stardust ~]$ source ~/salt/virtualenv/bin/activate
  (virtualenv) [isabell@stardust ~]$ pip3.7 install -U setuptools pip wheel pyzmq PyYAML pycrypto msgpack-python jinja2 psutil futures tornado 'msgpack<1.0.0' chardet idna urllib3 certifi requests
- [isabell@stardust ~]$ deactivate
+ (virtualenv) [isabell@stardust ~]$ deactivate
  
 
 Install salt-master
