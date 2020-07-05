@@ -225,7 +225,7 @@ Remove the port from the put_url and provide configuration for mod_http_upload:
  :emphasize-lines: 2-9
 
     mod_http_upload:
-      put_url: "https://@HOST@/upload"
+      put_url: "https://upload.@HOST@/upload"
       file_mode: "0640"
       dir_mode: "2750"
       max_size: 104857600 # 100 MB
