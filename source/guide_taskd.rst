@@ -72,7 +72,7 @@ remember this port. To connect later, we'll also need to know the hostname:
 We need a directory where the taskd files are stored.
 ::
 
- [isabell@stardust ~]$ export TASKDDATA=/home/isabell/.var/taskddata
+ [isabell@stardust ~]$ export TASKDDATA=$HOME/.var/taskddata
  [isabell@stardust ~]$ mkdir -p $TASKDDATA
  [isabell@stardust ~]$
 
@@ -104,8 +104,8 @@ Install Required taskd Binaries
 -------------------------------
 ::
 
- [isabell@stardust ~]$ cp /home/isabell/taskd-1.1.0/src/taskd /home/isabell/bin
- [isabell@stardust ~]$ cp /home/isabell/taskd-1.1.0/src/taskdctl /home/isabell/bin
+ [isabell@stardust ~]$ cp $HOME/taskd-1.1.0/src/taskd $HOME/bin
+ [isabell@stardust ~]$ cp $HOME/taskd-1.1.0/src/taskdctl $HOME/bin
  [isabell@stardust ~]$
 
 Verify installation:
@@ -138,7 +138,7 @@ Create Server PKI Certificates and key
 The taskd bundles scripts for generating required keys and certificates for everything in the pki directory. We can set all required information in the vars file. But first we follow the recommended step and copy the pki directory to the ``$TASKDDATA`` directory so we have everything in one place.
 ::
 
- [isabell@stardust ~]$ cp -r /home/isabell/taskd-1.1.0/pki $TASKDDATA
+ [isabell@stardust ~]$ cp -r $HOME/taskd-1.1.0/pki $TASKDDATA
  [isabell@stardust ~]$ cd $TASKDDATA/pki
  [isabell@stardust ~]$
 
@@ -276,10 +276,10 @@ Configuring the Client
 Now Isabell wants to sync all her devices. Copy four files to all her devices:
 ::
 
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/ca.cert.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.cert.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_Smith.key.pem isabell@othermachine:~/.task/
- [isabell@othermachine ~]$ scp /home/isabell/.var/taskddata/pki/Isabell_task_info isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp $HOME/.var/taskddata/pki/ca.cert.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp $HOME/.var/taskddata/pki/Isabell_Smith.cert.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp $HOME/.var/taskddata/pki/Isabell_Smith.key.pem isabell@othermachine:~/.task/
+ [isabell@othermachine ~]$ scp $HOME/.var/taskddata/pki/Isabell_task_info isabell@othermachine:~/.task/
  [isabell@othermachine ~]$
 
 
