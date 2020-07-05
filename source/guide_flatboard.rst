@@ -118,7 +118,7 @@ Updates
  data/
  […]
  data/key.php
- [isabell@stardust html]$ mv flatforum-data_backup.tar.gz /home/isabell/
+ [isabell@stardust html]$ mv flatforum-data_backup.tar.gz $HOME
  [isabell@stardust html]$
 
 2. Download the latest version from Flatboard_.
