@@ -102,7 +102,7 @@ The test call should show that everything is OK. Now create directories and inst
 
 ::
 
- [isabell@stardust ezmlm-idx-7.2.2] mkdir -p /home/isabell/lib /home/isabell/etc
+ [isabell@stardust ezmlm-idx-7.2.2] mkdir -p $HOME/{lib,etc}
  [isabell@stardust ezmlm-idx-7.2.2] make install
  [...]
  [isabell@stardust ezmlm-idx-7.2.2]
