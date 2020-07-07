@@ -1,5 +1,5 @@
 .. highlight:: console
-.. author:: Arian Malek
+.. author:: Arian Malek <https://fetziverse.de>
 
 .. tag:: lang-elixir
 .. tag:: microblogging
