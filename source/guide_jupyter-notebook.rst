@@ -44,7 +44,7 @@ Make sure :manual_anchor:`pip <lang-python.html#pip>` is up-to-date:
  Successfully installed pip-20.1.1
  [isabell@stardust ~]$
 
-.. note:: If you are using :manual_anchor:`pip <lang-python.html#pip>` with the default configured Python 2.7.5 you may get a syntax error while the installation of jupyter. This guide uses pip3 so you do not need to change it.
+.. note:: If you are using :manual_anchor:`pip <lang-python.html#pip>` with the default configured Python 2.7.5 you may get a syntax error while installing jupyter. This guide uses pip3 so you do not need to change it.
 
 Installation
 ============
@@ -87,7 +87,7 @@ Modify the ``~/.jupyter/jupyter_notebook_config.py`` and add the following param
  c.NotebookApp.port = 8888
  c.ContentsManager.root_dir = '/home/isabell/'
 
-.. note:: The parameter ``c.ContentsManager.root_dir`` sets the root of the Jupyter file manger. So you could browse your hole user directory with this setting.
+.. note:: The parameter ``c.ContentsManager.root_dir`` sets the root of the Jupyter file manger. So you could browse your whole user directory with this setting.
   You may want to create a subfolder and then set the ``root_dir`` to ``/home/isabell/subfolder/``
 
 Set a password for a secure web access.
@@ -113,32 +113,17 @@ Create ``~/etc/services.d/jupyter.ini`` with the following content:
  autostart=true
  autorestart=true
 
-After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- jupyter: available
- [isabell@stardust ~]$ supervisorctl update
- jupyter: added process group
- [isabell@stardust ~]$ supervisorctl status
- jupyter                            RUNNING   pid 26020, uptime 0:01:23
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Setup web backend
 -----------------
 
-To make the application accessible from the outside, configure a :manual:`web-backend <web-backends>`.
-If you have your own :manual:`domain <web-domains>` you can also set a domain specific web beckend configuration.
-This guide overrides the default setting, so the default html folder is not accessable.
+If you have your own :manual:`domain <web-domains>` you can set a domain specific web beckend configuration.
+This guide overrides the default setting, so the default html folder is not accessible.
 Other options are described in the :manual:`web-backend manual <web-backends>`.
 
-.. code-block:: console
-
- [isabell@stardust ~]$ uberspace web backend set / --http --port 8888
- Set backend for / to port 8888; please make sure something is listening!
- You can always check the status of your backend using "uberspace web backend list".
- [isabell@stardust ~]$
+.. note:: *Jupyter* is running on port 8888 by default.
+.. include:: includes/web-backend.rst
 
 Let's check if it is working.
 
