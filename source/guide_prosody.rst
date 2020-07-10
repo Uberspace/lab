@@ -162,24 +162,25 @@ Create a database for prosody:
 Installation
 ============
 
-.. note:: Check out the latest stable release on https://prosody.im/downloads/source/.
+.. note:: Check out the latest stable release on https://prosody.im/downloads/source/. We'll set a temporary environment variable for this session to handle it more easier with the version number in the files and directories.
 
-Download the latest stable release from source to ``~/prosody/prosody-0.11.5``:
+Download and extract the latest stable release from source into ``~/prosody/``:
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/home/prosody
- [isabell@stardust ~]$ cd ~/home/prosody
- [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-0.11.5.tar.gz
+ [isabell@stardust ~]$ VERSION=0.11.5
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/prosody/
  [...]
- [isabell@stardust ~]$ tar -xzf prosody-0.11.5.tar.gz
+ [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/prosody/prosody-$VERSION.tar.gz --directory=$HOME/prosody/
+ [isabell@stardust ~]$ rm ~/prosody/prosody-$VERSION.tar.gz
+ [isabell@stardust ~]$
 
 Configure, build and install prosody:
 
 ::
 
- [isabell@stardust ~]$ cd ~/prosody/prosody-0.11.5
- [isabell@stardust ~]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
+ [isabell@stardust ~]$ cd ~/prosody/prosody-$VERSION
+ [isabell@stardust prosody-0.11.5]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -192,11 +193,11 @@ Configure, build and install prosody:
 
  Done. You can now run 'make' to build.
 
- [isabell@stardust ~]$ make
+ [isabell@stardust prosody-0.11.5]$ make
  [...] 
- [isabell@stardust ~]$ make install
+ [isabell@stardust prosody-0.11.5]$ make install
  [...] 
- [isabell@stardust ~]$ 
+ [isabell@stardust prosody-0.11.5]$ 
 
 Configuration
 =============
@@ -267,9 +268,9 @@ Additionally I recommend the ssl ciphers and options to reach a high security sc
  s2s_timeout = 300
  ssl = {
    dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";         
-	 cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
-	 ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
-	 options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
+   cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
+   ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
+   options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
  authentication = "internal_hashed"
  pidfile = "/home/isabell/prosody/prosody.pid";
@@ -324,9 +325,9 @@ Finishing installation
 Create your first user:
 
 .. code-block:: console
- :emphasize-lines: 2,3 
+ :emphasize-lines: 1-3 
 
- [isabell@stardust ~]$ prosodyctl adduser name@isabell.uber.space
+ [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.uber.space
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
@@ -340,12 +341,13 @@ For updates simply repeat the steps described in the Installation_ part:
 
 ::
 
- [isabell@stardust ~]$ cd ~/prosody
- [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-0.XX.X.tar.gz
+ [isabell@stardust ~]$ VERSION=X.XX.X
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/prosody/
  [...]
- [isabell@stardust ~]$ tar -xzf prosody-0.XX.X.tar.gz
- [isabell@stardust ~]$ cd ~/prosody/prosody-0.XX.X
- [isabell@stardust ~]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
+ [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/prosody/prosody-$VERSION.tar.gz --directory=$HOME/prosody/
+ [isabell@stardust ~]$ rm ~/prosody/prosody-$VERSION.tar.gz
+ [isabell@stardust ~]$ cd ~/prosody/prosody-$VERSION
+ [isabell@stardust prosody-X.XX.X]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -358,12 +360,12 @@ For updates simply repeat the steps described in the Installation_ part:
 
  Done. You can now run 'make' to build.
 
- [isabell@stardust ~]$ make
+ [isabell@stardust prosody-X.XX.X]$ make
  [...] 
- [isabell@stardust ~]$ make install
+ [isabell@stardust prosody-X.XX.X]$ make install
  [...] 
- [isabell@stardust ~]$ supervisorctl restart prosody
- [isabell@stardust ~]$ 
+ [isabell@stardust prosody-X.XX.X]$ supervisorctl restart prosody
+ [isabell@stardust prosody-X.XX.X]$ 
 
 XMPP Clients
 ============
