@@ -59,7 +59,7 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
 Installation
 ============
 
-Download the latest stable release from source to ``~/pleroma``
+Download the latest stable release from source into ``~/pleroma``
 
 ::
 
@@ -80,13 +80,13 @@ Download the latest stable release from source to ``~/pleroma``
  :emphasize-lines: 6
 
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ mix deps.get
+ [isabell@stardust pleroma]$ mix deps.get
  !!! RUNNING IN LOCALHOST DEV MODE! !!!
  FEDERATION WON'T WORK UNTIL YOU CONFIGURE A dev.secret.exs
  Could not find Hex, which is needed to build dependency :phoenix
  Shall I install Hex? (if running non-interactively, use "mix local.hex --force") [Yn] Y
  [...]
- [isabell@stardust ~]$
+ [isabell@stardust pleroma]$
 
 Configuration
 =============
@@ -96,14 +96,15 @@ Generate configuration file
 
 .. note:: The next step can take up to 10 minutes.
 
-Run ``mix pleroma.instance gen``. This will compiling the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``.
+Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``.
 
 .. warning:: Make sure to set the listen port to ``0.0.0.0`` instead of ``127.0.0.1`` !
 
 .. code-block:: console
- :emphasize-lines: 5,8-22
+ :emphasize-lines: 6,9-23
 
- [isabell@stardust ~]$ mix pleroma.instance gen
+ [isabell@stardust ~]$ cd ~/pleroma
+ [isabell@stardust pleroma]$ mix pleroma.instance gen
  [...]
  Could not find "rebar3", which is needed to build dependency :parse_trans
  I can install a local copy which is just used by Mix
@@ -130,15 +131,13 @@ Run ``mix pleroma.instance gen``. This will compiling the files and asks you que
  Writing instance/static/robots.txt.
  
  All files successfully written! Refer to the installation instructions for your platform for next steps.
- [isabell@stardust ~]$
+ [isabell@stardust pleroma]$
 
 Create new PostgreSQL user and database from file
 -------------------------------------------------
 
 You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additional it install the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database. 
 Run the script with ``psql``:
-
-.. I noticed a error when I want to run the script. With a fresh new postgresql instance I got the following error: ``psql: error: could not connect to server: FATAL: database "$uberspace_username" does not exist``. I dont know if this is a feature or a bug. I mean, the file runs as the database user &uberspace_username you created in the postgresql guide. The script tells to create a new user and database and extensions. Why does it need a database named identical with the username? When its a bug as workaround I created the database $uberspace_username how I described in the prequesites: [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> <username>
 
 ::
 
@@ -159,7 +158,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
 ::
 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
- [isabell@stardust ~]$ cd ~/pleroma
+ [isabell@stardust ~]$
  
 For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines:
 
@@ -195,14 +194,14 @@ Database migration
 
 .. note:: For these next steps we use pleroma in the environment ``prod`` using the file ``~/pleroma/config/prod.secret.exs``. If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
 
-``cd`` the root directory of Pleroma and run ``MIX_ENV=prod mix ecto.migrate`` to migrate the database.
+Run ``MIX_ENV=prod mix ecto.migrate`` in the pleroma directory to migrate the database.
 
 ::
 
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
+ [isabell@stardust pleroma]$ MIX_ENV=prod mix ecto.migrate
  [...]
- [isabell@stardust ~]$
+ [isabell@stardust pleroma]$
 
 Configure web server
 --------------------
@@ -250,7 +249,7 @@ Create your first user as admin with ``mix pleroma.user new <nickname> <email> [
  :emphasize-lines: 12
 
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ MIX_ENV=prod mix pleroma.user new isabell isabell@uber.space --password MySuperSecretPassword --admin
+ [isabell@stardust pleroma]$ MIX_ENV=prod mix pleroma.user new isabell isabell@uber.space --password MySuperSecretPassword --admin
  A user will be created with the following information:
    - nickname: isabell
    - email: isabell@uber.space
@@ -262,7 +261,7 @@ Create your first user as admin with ``mix pleroma.user new <nickname> <email> [
 
  Continue? [Yn] Y
  [...]
- [isabell@stardust ~]$
+ [isabell@stardust pleroma]$
 
 Updates
 =======
@@ -275,12 +274,12 @@ Stop the Pleroma service:
  pleroma: stopped
  [isabell@stardust ~]$
 
-``cd`` to your Pleroma directory and run ``git pull`` to pull the latest changes from upstream, install new dependencies and migrate the database.
+Run ``git pull`` in the pleroma directory to pull the latest changes from upstream. After that install new dependencies and migrate the database.
 
 ::
 
  [isabell@stardust ~]$ cd ~/pleroma
- [isabell@stardust ~]$ git pull origin stable
+ [isabell@stardust pleroma]$ git pull origin stable
  remote: Enumerating objects: 549, done.
  remote: Counting objects: 100% (549/549), done.
  remote: Compressing objects: 100% (51/51), done.
@@ -293,10 +292,10 @@ Stop the Pleroma service:
  Updating a5ccb5b0b..f891e2b2f
  Fast-forward
  [...]
- [isabell@stardust ~]$ mix deps.get
- [isabell@stardust ~]$ MIX_ENV=prod mix ecto.migrate
- [isabell@stardust ~]$ supervisorctl start pleroma
- [isabell@stardust ~]$
+ [isabell@stardust pleroma]$ mix deps.get
+ [isabell@stardust pleroma]$ MIX_ENV=prod mix ecto.migrate
+ [isabell@stardust pleroma]$ supervisorctl start pleroma
+ [isabell@stardust pleroma]$
 
 ----
 
