@@ -239,6 +239,7 @@ Enter the virtual environment, initialize the database tables and exit the virtu
   . /home/isabell/.local/share/virtualenvs/public-xxxxxx/bin/activate
  [isabell@stardust ~/babybuddy/public]$ export DJANGO_SETTINGS_MODULE=babybuddy.settings.production
  [isabell@stardust ~/babybuddy/public]$ python manage.py migrate
+ [isabell@stardust ~/babybuddy/public]$ python manage.py createcachetable
  [...]
  [isabell@stardust ~/babybuddy/public]$ exit && cd
  [isabell@stardust ~]$
@@ -283,9 +284,9 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/b
   master = True
   vacuum = True
 
-  http = :8000
+  http = 0.0.0.0:8000
 
-  wsgi-file = %(base)/public/babybuddy/wsgi.py
+  wsgi-file = %(base_dir)/public/babybuddy/wsgi.py
   touch-reload = %(wsgi-file)
 
   app = wsgi
