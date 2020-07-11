@@ -164,23 +164,23 @@ Installation
 
 .. note:: Check out the latest stable release on https://prosody.im/downloads/source/. We'll set a temporary environment variable for this session to handle it more easier with the version number in the files and directories.
 
-Download and extract the latest stable release from source into ``~/prosody/``:
+Download and extract the latest stable release from source into ``~/var/lib/prosody/``:
 
 ::
 
  [isabell@stardust ~]$ VERSION=0.11.5
- [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/prosody/
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/var/lib/prosody
  [...]
- [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/prosody/prosody-$VERSION.tar.gz --directory=$HOME/prosody/
- [isabell@stardust ~]$ rm ~/prosody/prosody-$VERSION.tar.gz
+ [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/var/lib/prosody/prosody-$VERSION.tar.gz --directory=$HOME/var/lib/prosody
+ [isabell@stardust ~]$ rm ~/var/lib/prosody/prosody-$VERSION.tar.gz
  [isabell@stardust ~]$
 
 Configure, build and install prosody:
 
 ::
 
- [isabell@stardust ~]$ cd ~/prosody/prosody-$VERSION
- [isabell@stardust prosody-0.11.5]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
+ [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-$VERSION
+ [isabell@stardust prosody-0.11.5]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -222,8 +222,8 @@ Create the *http_upload* folder for the module **http_upload** which let clients
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir ~/prosody/http_upload
- [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/prosody/prosody-modules
+ [isabell@stardust ~]$ mkdir ~/var/lib/prosody/http_upload
+ [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/lib/prosody/prosody-modules
  [isabell@stardust ~]$
 
 Configure prosody
@@ -234,11 +234,11 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
 Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
 
 .. code-block:: lua
- :emphasize-lines: 2,3, 26, 29, 32, 38, 43-45, 50, 51, 53, 56, 57, 59, 62
+ :emphasize-lines: 2,3, 26, 29, 32, 38, 43-45, 50, 51, 53, 56, 57, 59
 
  ---------- Server-wide settings ----------
  admins = { "isabell@uber.space" }
- plugin_paths = { "/home/isabell/prosody/prosody-modules" }
+ plugin_paths = { "/home/isabell/var/lib/prosody/prosody-modules" }
  modules_enabled = {
    "roster";
    "saslauth";
@@ -273,7 +273,7 @@ Additionally I recommend the ssl ciphers and options to reach a high security sc
    options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
  authentication = "internal_hashed"
- pidfile = "/home/isabell/prosody/prosody.pid";
+ pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize= false;
  storage = "sql"
  sql = { 
@@ -297,7 +297,6 @@ Additionally I recommend the ssl ciphers and options to reach a high security sc
  Component "upload.isabell.uber.space" "http_upload" 
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
-   http_upload_path = "/home/isabell/prosody/http_upload/"
 
 .. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody! 
 
@@ -342,12 +341,12 @@ For updates simply repeat the steps described in the Installation_ part:
 ::
 
  [isabell@stardust ~]$ VERSION=X.XX.X
- [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/prosody/
+ [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/var/lib/prosody
  [...]
- [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/prosody/prosody-$VERSION.tar.gz --directory=$HOME/prosody/
- [isabell@stardust ~]$ rm ~/prosody/prosody-$VERSION.tar.gz
- [isabell@stardust ~]$ cd ~/prosody/prosody-$VERSION
- [isabell@stardust prosody-X.XX.X]$ ./configure --ostype=linux --prefix=$HOME --libdir=$HOME/prosody --datadir=$HOME/prosody --with-lua-include=/usr/include
+ [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/var/lib/prosody/prosody-$VERSION.tar.gz --directory=$HOME/var/lib/prosody
+ [isabell@stardust ~]$ rm ~/var/lib/prosody/prosody-$VERSION.tar.gz
+ [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-$VERSION
+ [isabell@stardust prosody-X.XX.X]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -366,6 +365,16 @@ For updates simply repeat the steps described in the Installation_ part:
  [...] 
  [isabell@stardust prosody-X.XX.X]$ supervisorctl restart prosody
  [isabell@stardust prosody-X.XX.X]$ 
+
+Update the community prosody modules:
+
+::
+
+ [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-modules
+ [isabell@stardust prosody-modules]$ hg pull --update
+ pulling from https://hg.prosody.im/prosody-modules/
+ [...]
+ [isabell@stardust prosody-modules]$
 
 XMPP Clients
 ============
