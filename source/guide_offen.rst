@@ -277,6 +277,6 @@ Updates
 
 ----
 
-Tested with Offen v0.1.0, Uberspace 7.7
+Tested with Offen v0.1.1, Uberspace 7.7
 
 .. author_list::
