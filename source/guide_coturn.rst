@@ -40,12 +40,12 @@ Use the following options for ``./configure``:
 
  [isabell@stardust ~]$ mkdir -p $HOME/src/
  [isabell@stardust ~]$ cd $HOME/src/
- [isabell@stardust src]$ curl -O https://coturn.net/turnserver/v4.5.0.8/turnserver-4.5.0.8.tar.gz
- [isabell@stardust src]$ tar -xvzf turnserver-4.5.0.8.tar.gz
- [isabell@stardust src]$ cd turnserver-4.5.0.8/
- [isabell@stardust turnserver-4.5.0.8]$ ./configure --prefix=$HOME/opt/turnserver
- [isabell@stardust turnserver-4.5.0.8]$ make
- [isabell@stardust turnserver-4.5.0.8]$ make install
+ [isabell@stardust src]$ curl -O https://coturn.net/turnserver/v4.5.1.3/turnserver-4.5.1.3.tar.gz
+ [isabell@stardust src]$ tar -xvzf turnserver-4.5.1.3.tar.gz
+ [isabell@stardust src]$ cd turnserver-4.5.1.3/
+ [isabell@stardust turnserver-4.5.1.3]$ ./configure --prefix=$HOME/opt/turnserver
+ [isabell@stardust turnserver-4.5.1.3]$ make
+ [isabell@stardust turnserver-4.5.1.3]$ make install
 
 Make the binaries and man pages available through ``.bash_profile``:
 
@@ -60,8 +60,9 @@ Configuration
 
 Open Firewall Ports
 -------------------
-Coturn needs at least 2 open ports, plus some additional sucessive ports as port range for udp connections.
-So lets open 5 ports.
+Coturn needs at least 2 open ports, plus some additional sucessive ports as port range for UDP connections.
+An unberspace can open a maximum of 20 ports.
+So lets open 5 ports for now: two for base functions and three for UDP connections.
 
 .. include:: includes/open-port.rst
 
@@ -81,6 +82,7 @@ For some ciphers we need a DH-file:.
 
 Create a new config file at ``$HOME/etc/coturn/turnserver.conf``
 Replace values in brackets ``<value>`` with your values.
+Note: ``total-quota`` is the limit for all simultanious udp connections. In this example we only opened three ports for UDP, so this limit is 3. If you open more ports for UDP connections, change this setting accordingly.
 
 ::
 
@@ -92,22 +94,22 @@ Replace values in brackets ``<value>`` with your values.
  listening-ip=0.0.0.0
  relay-ip=::
  relay-ip=0.0.0.0
+ external-ip=<IP_OF_YOUR_UBERSPACE>
  min-port=<port-3>
  max-port=<port-5>
  fingerprint
- lt-cred-mech
  use-auth-secret
  static-auth-secret=<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>
- realm=isabell.uber.space
- total-quota=100
+ realm=<isabell>.uber.space
+ total-quota=3
  bps-capacity=0
  stale-nonce
- cert=/home/isabell/etc/certificates/isabell.uber.space.crt
- pkey=/home/isabell/etc/certificates/isabell.uber.space.key
- dh-file=/home/isabell/etc/coturn/dhparam-2066.pem
+ cert=/home/isabell/etc/certificates/<isabell>.uber.space.crt
+ pkey=/home/isabell/etc/certificates/<isabell>.uber.space.key
  cipher-list="ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AES:RSA+3DES:!ADH:!AECDH:!MD5"
+ dh-file=/home/<isabell>/etc/coturn/dhparam-2066.pem
+ log-file=/home/<isabell>/logs/coturn.log
  no-cli
- no-loopback-peers
  no-multicast-peers
 
 Setup daemon
@@ -174,6 +176,6 @@ version is available, stop daemon with ``supervisorctl stop coturn`` and repeat 
 
 ----
 
-Tested with coturn 4.5.1.1 and Uberspace 7.5.1
+Tested with coturn 4.5.1.3 and Uberspace 7.7.1.2
 
 .. author_list::
