@@ -1,4 +1,4 @@
-.. author:: Felix Förtsch <felixfoertsch@gmail.com> 
+.. author:: Felix Förtsch <https://felixfoertsch.de> 
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -154,6 +154,8 @@ In the **Mailer Settings** section change the
   * *username* to ``isabell@uber.space``,
   * *password* to ``MySuperSecretPassword`` and
   * test your settings by pressing the Button **Check Mailer Config**.
+
+.. note:: Uberspace discourages **mass** mailings. If you regularly send a large amount of emails, consider using `AWS SES <https://aws.amazon.com/ses/>`_ instead of the Uberspace mailing system.
 
 Best Practices
 ==============
