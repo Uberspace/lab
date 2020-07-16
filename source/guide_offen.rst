@@ -17,30 +17,33 @@ Offen
 
 .. tag_list::
 
-Offen_ is a fair and open alternative to common web analytics tools. Gain
-insights while your users have full access to their data. Lightweight, self
-hosted and free.
+Offen_ is an open alternative to common web analytics tools.
+Gain insights while your users have full access to their data.
+Lightweight, self hosted and free.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
+  * :manual:`mail <mail-access>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
 
-Offen is distributed under the Apache 2.0 license. All relevant legal
-information can be found here
+Offen is distributed under the Apache 2.0 license which can be found here:
 
   * https://github.com/offen/offen/blob/development/LICENSE
+
+For information about third party software bundled by Offen, check
+the `NOTICE` file included in the download.
 
 Prerequisites
 =============
 
-Your offen subdomain needs to be setup (note that this does not need to contain
-the word "offen", it can also be "analytics" or whatever you like):
+Your Offen subdomain needs to be setup (note that this does not need to contain
+the word "offen", it can also be "analytics" or whatever you feel like):
 
 ::
 
@@ -62,6 +65,8 @@ the word "offen", it can also be "analytics" or whatever you like):
 Installation
 ============
 
+.. _Download:
+
 Download the binary distribution
 ------
 
@@ -70,8 +75,8 @@ the latest release:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p ~/tmp/offen-download && cd ~/tmp/offen-download
- [isabell@stardust offen-download]$ curl -sSL https://get.offen.dev | tar -xvz
+ [isabell@stardust ~]$ mkdir -p ~/tmp/offen-download
+ [isabell@stardust ~]$ curl -sSL https://get.offen.dev | tar -xvz -C ~/tmp/offen-download
  LICENSE
  NOTICE
  README.md
@@ -82,7 +87,10 @@ the latest release:
  offen-linux-amd64.asc
  offen-windows-4.0-amd64.exe
  offen-windows-4.0-amd64.exe.asc
- [isabell@stardust offen-download]$
+ [isabell@stardust ~]$
+
+.. note:: The distribution tarball also contains non-Linux binaries which is why
+    you also see those `darwin` and `windows` files. We will delete them later.
 
 Next, we should check if the binary matches the signature - i.e. it has not been
 altered by 3rd parties - using GPG (this step is optional, but `highly
@@ -90,43 +98,47 @@ recommended`):
 
 ::
 
- [isabell@stardust offen-download]$ curl -sSL https://keybase.io/hioffen/pgp_keys.asc | gpg --import
- gpg: Schlüssel C90B8DA1: Öffentlicher Schlüssel "Offen (Signing Binaries) <hioffen@posteo.de>" importiert
- gpg: Anzahl insgesamt bearbeiteter Schlüssel: 1
- gpg:                              importiert: 1  (RSA: 1)
- gpg: keine uneingeschränkt vertrauenswürdigen Schlüssel gefunden
- [isabell@stardust offen-download]$ gpg --verify offen-linux-amd64.asc offen-linux-amd64
- gpg: Signatur vom Mo 22 Jun 2020 09:27:16 CEST mittels RSA-Schlüssel ID C90B8DA1
- gpg: Korrekte Signatur von "Offen (Signing Binaries) <hioffen@posteo.de>"
- gpg: WARNUNG: Dieser Schlüssel trägt keine vertrauenswürdige Signatur!
- gpg:          Es gibt keinen Hinweis, daß die Signatur wirklich dem vorgeblichen Besitzer gehört.
- Haupt-Fingerabdruck  = F20D 4074 068C 636D 58B5  3F46 FD60 FBED C90B 8DA1
- [isabell@stardust offen-download]$
+ [isabell@stardust ~]$ curl -sSL https://keybase.io/hioffen/pgp_keys.asc | gpg --import
+ gpg: key C90B8DA1: public key "Offen (Signing Binaries) <hioffen@posteo.de>" imported
+ gpg: Total number processed: 1
+ gpg:               imported: 1  (RSA: 1)
+ gpg: no ultimately trusted keys found
+ [isabell@stardust ~]$ gpg --verify ~/tmp/offen-download/offen-linux-amd64.asc ~/tmp/offen-download/offen-linux-amd64
+ gpg: Signature made Mo 13 Jul 2020 18:05:28 CEST using RSA key ID C90B8DA1
+ gpg: Good signature from "Offen (Signing Binaries) <hioffen@posteo.de>"
+ gpg: WARNING: This key is not certified with a trusted signature!
+ gpg:          There is no indication that the signature belongs to the owner.
+ Primary key fingerprint: F20D 4074 068C 636D 58B5  3F46 FD60 FBED C90B 8DA1
+ [isabell@stardust ~]$
 
 .. note:: GPG will print warnings about the signing key not being certified
-    as your Uberspace's keyring is probably empty and does therefore not know
+    as your Uberspace's keyring is likely empty and does therefore not know
     about anyone who has signed Offen's key. `This is expected behavior`. You
     can check the Offen Keybase_ profile for further proof that this key is
     the correct one.
+
+Install the command
+-----
 
 Next, you can install the Linux binary on your Uberspace:
 
 ::
 
- [isabell@stardust offen-download]$ cp offen-linux-amd64 ~/bin/offen
- [isabell@stardust offen-download]$ cd
+ [isabell@stardust ~]$ cp ~/tmp/offen-download/offen-linux-amd64 ~/bin/offen
  [isabell@stardust ~]$ which offen
  ~/bin/offen
  [isabell@stardust ~]$
 
-.. note:: Our distribution tarball also contains non-Linux binaries which is why
-    you also see those `darwin` and `windows` files. If you feel like it, you
-    can safely delete the `~/tmp/offen-download` directory after installing.
+Cleaning up
+-----
 
-    ::
+You can now safely delete the downloaded files (remember to check or keep
+`LICENSE` and `NOTICE` files if you are interested in such things):
 
-     [isabell@stardust ~]$ rm -rf ~/tmp/offen-download
-     [isabell@stardust ~]$
+::
+
+ [isabell@stardust ~]$ rm -rf ~/tmp/offen-download
+ [isabell@stardust ~]$
 
 Configuration
 =============
@@ -134,7 +146,7 @@ Configuration
 Create a config file
 ------
 
-In its most basic configuration, Offen sources configuration values from an
+In its most basic setup, Offen sources configuration values from an
 :code:`offen.env` file, that is expected in :code:`~/.config/offen.env`:
 
 ::
@@ -146,8 +158,8 @@ In its most basic configuration, Offen sources configuration values from an
 Populate the config file
 -------------------
 
-For Offen to run on your Uberspace you will need to populate this `.env` file
-with the following:
+For Offen to run on your Uberspace you will need to populate this :code:`.env`
+file with the following:
 
 A Secret
 ------------
@@ -162,19 +174,23 @@ only):
  [isabell@stardust ~]$ echo "OFFEN_SECRET=$(offen secret -quiet)" >> ~/.config/offen.env
  [isabell@stardust ~]$
 
+.. note:: Changing this secret at a later point is possible, but will invalidate
+ all currently active login sessions, as well as all pending invites or password
+ resets.
+
 Database setup
 ------------
 
-In this setup, Offen stores its data in the MariaDB provided by your Uberspace.
-First create a dedicated database for Offen to use:
+Offen will store its data in the MariaDB provided by your Uberspace. First,
+create a dedicated database for Offen to use:
 
 ::
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_offen"
  [isabell@stardust ~]$
 
-Next, edit the config file at `~/.config/offen.env` and add the dialect and the
-connection string (do not overwrite the existing secret):
+Next, edit the config file at :code:`~/.config/offen.env` and append the dialect
+and the connection string (do not overwrite the secret you just created):
 
 .. code-block:: ini
 
@@ -184,33 +200,33 @@ connection string (do not overwrite the existing secret):
 SMTP credentials
 ----
 
-.. note:: Your Uberspace comes with SMTP, so you can definitely use this here
-    if you feel like it.
+Offen needs to be able to send out transactional email so that you can:
 
-Offen needs to be able to send out transactional emails so you can reset your
-password in case you forgot it, and so that you can invite others to collaborate
-with you on this instance. To enable Offen to send emails, edit
-`~/.config/offen.env` and add the SMTP credentials like this (do not overwrite
-the existing values):
+* reset your password in case you forgot it
+* invite others to collaborate with you on this instance
+
+.. note:: This section uses your Uberspace's default mail setup because it's
+ easy and already present, but you are free to use whatever SMTP service you
+ like if you have different requirements.
+
+Edit :code:`~/.config/offen.env` and append the SMTP credentials like this
+(do not overwrite the existing values):
 
 .. code-block:: ini
 
- OFFEN_SMTP_HOST="yoursmtphost.org"
- OFFEN_SMTP_PASSWORD="yoursmtppassword"
- OFFEN_SMTP_USER="isabell@yoursmtphost.org"
- OFFEN_SMTP_SENDER="isabell@yoursmtphost.org"
+ OFFEN_SMTP_HOST="stardust.uberspace.de"
+ OFFEN_SMTP_PASSWORD="YourSuperSecretPassword"
+ OFFEN_SMTP_USER="isabell@uber.space"
+ OFFEN_SMTP_SENDER="isabell@uber.space"
 
-.. warning:: Offen will start and run without these values being set, but
-    remember that you won't be able to reset your password or invite others
-    without this. You can always set it at a later point in time though.
+.. note:: For your :code:`@uber.space` address the password is the same as for
+ SSH access, which you can set in your dashboard.
 
-Setup daemon
+Setup the daemon
 ------------
 
-Offen needs to run at all times so it can accept incoming events.
-
-Create a file :code:`~/etc/services.d/offen.ini` and populate it with the
-following:
+Offen needs to run at all times so it can accept incoming events. Create a file
+:code:`~/etc/services.d/offen.ini` and populate it with the following:
 
 .. code-block:: ini
 
@@ -221,7 +237,7 @@ following:
 
 .. include:: includes/supervisord.rst
 
-If it's not in state RUNNING, check your configuration.
+If it's not in state RUNNING, check the logs and your configuration.
 
 Point the web backend to Offen
 ------------
@@ -235,10 +251,10 @@ is now running on the default port 3000:
  [isabell@stardust ~]$
 
 .. note:: If you need to run Offen on a port other than 3000, set
-    `OFFEN_SERVER_PORT` in your configuration file.
+ :code:`OFFEN_SERVER_PORT` in your configuration file.
 
 
-Finishing installation
+Finishing the installation
 ======================
 
 Point your browser to the `https://offen.yourdomain.org/setup/` page and create
@@ -257,17 +273,45 @@ script to your document:
 .. note:: You will also find this snippet for copy / pasting when you log in to
     your account.
 
+Updating the version in use
+======
+
+If you want to update Offen to a newer version than you have originally
+installed, repeat the steps in the :ref:`Download<Download>` section.
+
+After having done so, stop the daemon, update the binary, check its version
+and restart the daemon:
+
+.. code-block:: console
+ :emphasize-lines: 4
+
+ [isabell@stardust ~]$ supervisorctl stop offen
+ [isabell@stardust ~]$ cp ~/tmp/offen-download/offen-linux-amd64 ~/bin/offen
+ [isabell@stardust ~]$ offen version
+ INFO[0000] Binary built using                            revision=v0.1.1
+ [isabell@stardust ~]$ rm -rf ~/tmp/offen-download
+ [isabell@stardust ~]$ supervisorctl start offen
+ [isabell@stardust ~]$
+
+.. note:: Before upgrading, always check the Releases_ page to confirm your
+ update is compatible with the version you are running. Running
+ :code:`offen version` will tell you which version your Uberspace is currently
+ using.
+
+Refer to the `documentation <https://docs.offen.dev/running-offen/downloads-distributions/>`_
+for info on how to download a specific version of Offen.
+
 Official docs
 =======
 
-Offen has a dedicated documentation site that will tell you a lot more about
-how to use and configure Offen: https://docs.offen.dev
+Offen has `a dedicated documentation site <https://docs.offen.dev>`_ that will
+tell you more about how to use and configure Offen.
 
-Updates
+Project updates
 =======
 
-.. note:: Check our Twitter_ or our Releases_ page regularly to stay informed
-    about the newest version.
+.. note:: Check Offen's Twitter_ or our Releases_ page regularly to stay
+ informed about the newest versions and changes.
 
 
 .. _Offen: https://www.offen.dev
