@@ -120,17 +120,7 @@ If you want to run Gollum on your Uberspace permanently it's probably a good ide
   autostart=yes
   autorestart=yes
 
-Now, reread and update the config and finally start the Gollum service:
-
-::
-
-  [isabell@stardust ~]$ supervisorctl reread
-  gollum: available
-  [isabell@stardust ~]$ supervisorctl update
-  gollum: added process group
-  [isabell@stardust ~]$ supervisorctl start gollum
-  gollum: started
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 
 .. _Gollum: https://github.com/gollum/gollum
