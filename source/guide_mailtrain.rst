@@ -140,27 +140,25 @@ Go to ``https://isabell.uber.space/users/account`` and change your email address
 Finishing installation
 ======================
 
-.. note:: This guide contains only the required settings that enable full Mailtrain_ functionality. Change the rest of the settings according to your requirements.
+.. warning:: We do not allow mass mailings from our servers (see the `Uberspace House Rules <https://dashboard.uberspace.de/register?lang=en>`_). However, you can use Mailtrain_ as the admin interface for your mailing needs. Use the SMTP services from `AWS SES <https://aws.amazon.com/ses/>`_, `Sendgrid <https://sendgrid.com/>`_, `Mailgun <https://www.mailgun.com/>`_, etc. for the actual mailing.
 
-Go to ``https://isabell.uber.space/settings``.
+Go to ``https://isabell.uber.space/settings``. In the **General Settings** section change the **Service Address (URL)** to ``https://isabell.uber.space/``.
 
-In the **General Settings** section change the **Service Address (URL)** to ``https://isabell.uber.space/``.
+In the **Mailer Settings** section change the following entries according to the documentation of your mailing service:
 
-In the **Mailer Settings** section change the
-
-  * *Hostname* to ``stardust.uberspace.de``,
-  * *Port* to ``587``,
-  * *Encryption* to ``Use STARTTLS - usually selected for port 587 and 25``,
-  * *username* to ``isabell@uber.space``,
-  * *password* to ``MySuperSecretPassword`` and
+  * *Hostname*,
+  * *Port*,
+  * *Encryption*,
+  * *username*,
+  * *password* and
   * test your settings by pressing the Button **Check Mailer Config**.
-
-.. note:: Uberspace discourages **mass** mailings. If you regularly send a large amount of emails, consider using `AWS SES <https://aws.amazon.com/ses/>`_ instead of the Uberspace mailing system.
 
 Best Practices
 ==============
 
-Test the configuration by creating a new list and subscribing yourself to it.
+* Test the configuration by creating a new list and subscribing yourself to it.
+* Craft your campaign with love and dedication.
+* Don't spam users that don't want your newsletter.
 
 
 ----
