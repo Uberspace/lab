@@ -79,12 +79,10 @@ Let's generate a config file.
 Modify the ``~/.jupyter/jupyter_notebook_config.py`` and add the following parameters.
 
 .. code-block:: ini
- :emphasize-lines: 4,5
 
  c.NotebookApp.allow_password_change = False
  c.NotebookApp.ip = '0.0.0.0'
  c.NotebookApp.open_browser = False
- c.NotebookApp.port = 8888
  c.ContentsManager.root_dir = '/home/isabell/'
 
 .. note:: The parameter ``c.ContentsManager.root_dir`` sets the root of the Jupyter file manger. So you could browse your whole user directory with this setting.
