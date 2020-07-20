@@ -11,9 +11,9 @@
   .. image:: _static/images/offen.png
       :align: center
 
-##########
+#####
 Offen
-##########
+#####
 
 .. tag_list::
 
@@ -68,7 +68,7 @@ Installation
 .. _Download:
 
 Download the binary distribution
-------
+--------------------------------
 
 Offen is distributed as a single binary file. To kick off your install, download
 the latest release:
@@ -118,7 +118,7 @@ recommended`):
     the correct one.
 
 Install the command
------
+-------------------
 
 Next, you can install the Linux binary on your Uberspace:
 
@@ -130,7 +130,7 @@ Next, you can install the Linux binary on your Uberspace:
  [isabell@stardust ~]$
 
 Cleaning up
------
+-----------
 
 You can now safely delete the downloaded files (remember to check or keep
 `LICENSE` and `NOTICE` files if you are interested in such things):
@@ -144,10 +144,10 @@ Configuration
 =============
 
 Create a config file
-------
+--------------------
 
 In its most basic setup, Offen sources configuration values from an
-:code:`offen.env` file, that is expected in :code:`~/.config/offen.env`:
+``offen.env`` file, that is expected in ``~/.config/offen.env``:
 
 ::
 
@@ -156,17 +156,17 @@ In its most basic setup, Offen sources configuration values from an
  [isabell@stardust ~]$
 
 Populate the config file
--------------------
+------------------------
 
-For Offen to run on your Uberspace you will need to populate this :code:`.env`
+For Offen to run on your Uberspace you will need to populate this ``.env``
 file with the following:
 
 A Secret
-------------
+--------
 
 Offen requires a unique secret for signing login cookies and certain URLs. You
-can use the :code:`offen` command you just installed to create one for you
-(passing :code:`-quiet` will make :code:`secret` output the generated value
+can use the ``offen`` command you just installed to create one for you
+(passing ``-quiet`` will make ``secret`` output the generated value
 only):
 
 ::
@@ -179,17 +179,17 @@ only):
  resets.
 
 Database setup
-------------
+--------------
 
 Offen will store its data in the MariaDB provided by your Uberspace. First,
 create a dedicated database for Offen to use:
 
 ::
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_offen"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_offen"
  [isabell@stardust ~]$
 
-Next, edit the config file at :code:`~/.config/offen.env` and append the dialect
+Next, edit the config file at ``~/.config/offen.env`` and append the dialect
 and the connection string (do not overwrite the secret you just created):
 
 .. code-block:: ini
@@ -198,7 +198,7 @@ and the connection string (do not overwrite the secret you just created):
  OFFEN_DATABASE_CONNECTIONSTRING="isabell:MySuperSecretPassword@tcp(localhost:3306)/isabell_offen?parseTime=true"
 
 SMTP credentials
-----
+----------------
 
 Offen needs to be able to send out transactional email so that you can:
 
@@ -209,8 +209,8 @@ Offen needs to be able to send out transactional email so that you can:
  easy and already present, but you are free to use whatever SMTP service you
  like if you have different requirements.
 
-Edit :code:`~/.config/offen.env` and append the SMTP credentials like this
-(do not overwrite the existing values):
+Edit ``~/.config/offen.env`` and append the SMTP credentials like this (do not
+overwrite the existing values):
 
 .. code-block:: ini
 
@@ -219,14 +219,14 @@ Edit :code:`~/.config/offen.env` and append the SMTP credentials like this
  OFFEN_SMTP_USER="isabell@uber.space"
  OFFEN_SMTP_SENDER="isabell@uber.space"
 
-.. note:: For your :code:`@uber.space` address the password is the same as for
- SSH access, which you can set in your dashboard.
+.. note:: For your ``@uber.space`` address the password is the same as for SSH
+ access, which you can set in your dashboard.
 
 Setup the daemon
-------------
+----------------
 
 Offen needs to run at all times so it can accept incoming events. Create a file
-:code:`~/etc/services.d/offen.ini` and populate it with the following:
+``~/etc/services.d/offen.ini`` and populate it with the following:
 
 .. code-block:: ini
 
@@ -240,28 +240,25 @@ Offen needs to run at all times so it can accept incoming events. Create a file
 If it's not in state RUNNING, check the logs and your configuration.
 
 Point the web backend to Offen
-------------
+------------------------------
 
-As a last step you need to point your web backend to your Offen instance that
-is now running on the default port 3000:
+As a last step you need to point your web backend to your Offen service.
 
-::
+.. note:: Offen is running on port 3000.
 
- [isabell@stardust ~]$ uberspace web backend set / --http --port 3000
- [isabell@stardust ~]$
+.. include:: includes/web-backend.rst
 
-.. note:: If you need to run Offen on a port other than 3000, set
- :code:`OFFEN_SERVER_PORT` in your configuration file.
-
+.. note:: If you need to use a different port, set ``OFFEN_SERVER_PORT`` in your
+ configuration file.
 
 Finishing the installation
-======================
+==========================
 
 Point your browser to the `https://offen.yourdomain.org/setup/` page and create
 your user and a first account.
 
 Embedding Offen on your website
-======================
+===============================
 
 All you need to do to embed your Offen install on a website is to add the
 script to your document:
@@ -274,7 +271,7 @@ script to your document:
     your account.
 
 Updating the version in use
-======
+===========================
 
 If you want to update Offen to a newer version than you have originally
 installed, repeat the steps in the :ref:`Download<Download>` section.
@@ -295,20 +292,20 @@ and restart the daemon:
 
 .. note:: Before upgrading, always check the Releases_ page to confirm your
  update is compatible with the version you are running. Running
- :code:`offen version` will tell you which version your Uberspace is currently
+ ``offen version`` will tell you which version your Uberspace is currently
  using.
 
 Refer to the `documentation <https://docs.offen.dev/running-offen/downloads-distributions/>`_
 for info on how to download a specific version of Offen.
 
 Official docs
-=======
+=============
 
 Offen has `a dedicated documentation site <https://docs.offen.dev>`_ that will
 tell you more about how to use and configure Offen.
 
 Project updates
-=======
+===============
 
 .. note:: Check Offen's Twitter_ or our Releases_ page regularly to stay
  informed about the newest versions and changes.
