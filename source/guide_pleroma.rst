@@ -185,7 +185,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>` to check dail
 
 .. code-block:: none
 
- 42 4 * * * cd /home/<username>/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
+ 42 4 * * * cd ~/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
 
 
 
