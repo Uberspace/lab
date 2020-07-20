@@ -41,14 +41,14 @@ Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins
 Prerequisites
 =============
 
-We're using Java version 8 or 11 `(9, 10 and 12 are currently not supported) <https://jenkins.io/doc/administration/requirements/java/>`_.
+We're using Java version 14 `(9, 10 and 12 are currently not supported by Jenkins, 8 and 11 are no longer provided by uberspace) <https://jenkins.io/doc/administration/requirements/java/>`_.
 
 ::
 
  [isabell@stardust ~]$ java -version
- openjdk version "1.8.0_212"
- OpenJDK Runtime Environment (build 1.8.0_212-b04)
- OpenJDK 64-Bit Server VM (build 25.212-b04, mixed mode)
+ openjdk version "14.0.1" 2020-04-14
+ OpenJDK Runtime Environment 20.3 (build 14.0.1+7)
+ OpenJDK 64-Bit Server VM 20.3 (build 14.0.1+7, mixed mode, sharing)
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -111,8 +111,8 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
  [program:jenkins]
  directory=%(ENV_HOME)s/Jenkins/Jenkins_home
- command=java -jar ../jenkins.war
-
+ command=env JENKINS_HOME=%(ENV_HOME)s/Jenkins/Jenkins_home java -jar %(ENV_HOME)s/Jenkins/jenkins.war --httpPort=8080 --enable-future-java
+ 
 .. include:: includes/supervisord.rst
 
 Your Jenkins is now up and running as a service.
