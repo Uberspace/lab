@@ -101,19 +101,12 @@ However Gollum is not yet reachable from the internet. So, close the Gollum appl
 Setting up a web backend
 ------------------------
 
-To be able to reach the Gollum appliaction from the internet, we need to wire up the proper ports via :manual:`Uberspace web backends <web-backends>`. By default Gollum runs on port 4567, so we need to create a web backend for this port. If you want to reach Gollum using your regular Uberspace base URL (e.g. ``https://isabell.uber.space/``), just run:
-
-::
-
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 4567
-  Set backend for / to port 4567; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
+.. note:: By default Gollum runs on port 4567, so we need to create a web backend for this port. 
+.. include:: includes/web-backend.rst
 
 .. note:: If you want to run Gollum under a different URL, just adjust the "/" parameter in the command above to match your preferred path.
 
-
-Now you can start Gollum again and you should be able to open it in your browser using your Uberspace URL.
+Now you can start Gollum again and you should be able to open it in your browser using your Uberspace URL (e.g. ``https://isabell.uber.space/``).
 
 Gollum as a service
 ======================
