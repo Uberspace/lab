@@ -117,7 +117,7 @@ If you want to run Gollum on your Uberspace permanently it's probably a good ide
 .. code-block:: ini
 
   [program:gollum]
-  command=/opt/uberspace/etc/isabell/binpaths/ruby/gollum/home/isabell/wiki
+  command=gollum %(ENV_HOME)s/wiki
   autostart=yes
   autorestart=yes
 
