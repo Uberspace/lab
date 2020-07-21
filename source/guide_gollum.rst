@@ -68,7 +68,7 @@ All the data within Gollum is kept in one directory, which is also where the und
 
 ::
 
-  [isabell@stardust ~]$ mkdir wiki
+  [isabell@stardust ~]$ git init wiki
   [isabell@stardust ~]$
 
 
