@@ -94,7 +94,7 @@ Now you should be able to start Gollum via:
 
 ::
 
-  [isabell@stardust ~]$ gollum /home/isabell/wiki
+  [isabell@stardust ~]$ gollum $HOME/wiki
   [isabell@stardust ~]$
 
 However Gollum is not yet reachable from the internet. So, close the Gollum application again (by pressing ``CTRL + C``).
