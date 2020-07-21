@@ -37,7 +37,7 @@ To install a recent CMake version, the fastest way is to run the official instal
 
 ::
 
-  [isabell@stardust ~]$ bash <(wget -qO- https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3-Linux-x86_64.sh)
+  [isabell@stardust ~]$ wget https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3-Linux-x86_64.sh && bash cmake-3.17.3-Linux-x86_64.sh
   [isabell@stardust ~]$
 
 When you run this command, you will be presented with the CMake terms of service, which you need to agree to (Press space bar to scroll down to the end of the file and then agree with ``y``). It will now ask for the target folder. Just stick with the default setting (``/home/isabell/cmake-3.17.3-Linux-x86_64``) for now by again entering ``y``.
