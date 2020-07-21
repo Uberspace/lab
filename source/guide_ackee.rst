@@ -7,6 +7,11 @@
 
 .. highlight:: console
 
+.. sidebar:: Logo
+
+  .. image:: _static/images/ackee.png
+      :align: center
+
 #####
 Ackee
 #####
