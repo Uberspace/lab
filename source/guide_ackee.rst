@@ -1,10 +1,8 @@
 .. author:: tobimori <tobias@moeritz.cc>
+.. author:: Felix Förtsch <https://felixfoertsch.de>
 
-.. tag:: monitoring
 .. tag:: web
 .. tag:: analytics
-.. tag:: self-hosting
-.. tag:: privacy
 .. tag:: lang-nodejs
 
 .. highlight:: console
@@ -15,16 +13,16 @@ Ackee
 
 .. tag_list::
 
-Ackee_ is a self-hosted, :manual:`Node.js <lang-nodejs>` based analytics tool "for those who care about privacy."
+Ackee_ is a self-hosted open-source web analytics tool built with :manual:`Node.js <lang-nodejs>`.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Node.js <lang-nodejs>`
-  * :manual:`web backends <web-backends>`
-  * :manual:`supervisord <daemons-supervisord>`
-  * :manual:`domains <web-domains>`
+  * :manual:`Web Backends <web-backends>`
+  * :manual:`Supervisord <daemons-supervisord>`
+  * :manual:`Domains <web-domains>`
 
 License
 =======
@@ -34,47 +32,81 @@ Ackee_ is released under the `MIT License`_.
 Prerequisites
 =============
 
-Ackee needs a working :lab:`MongoDB <guide_mongodb>` installation. 
-Follow and install MongoDB as written in the Uberlab guide :lab:`here <guide_mongodb>`.
+Ackee_ requires a MongoDB_ database. Set it up using the :lab:`MongoDB Uberlab guide <guide_mongodb>`. You will need your MongoDB_ admin name and password later.
 
-Then setup your domain:
+Set up your domain:
 
 .. include:: includes/web-domain-list.rst
-
-Also install ``yarn`` globally to later use as package manager for :manual:`Node.js <lang-nodejs>`.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ npm install yarn -g
-  /home/isabell/bin/yarn -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
-  /home/isabell/bin/yarnpkg -> /home/isabell/lib/node_modules/yarn/bin/yarn.js
-  + yarn@1.22.4
-  installed 1 package in 1.002s
-  [isabell@stardust ~]$ 
 
 Installation
 ============
 
-Clone the `GitHub repository of Ackee`_:
+Install ``yarn`` globally:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone https://github.com/electerious/Ackee ~/ackee
-  Cloning into '/home/isabell/ackee'...
-  remote: Enumerating objects: 1528, done.
-  remote: Counting objects: 100% (1528/1528), done.
-  remote: Compressing objects: 100% (884/884), done.
-  remote: Total 7991 (delta 1016), reused 1083 (delta 641), pack-reused 6463
-  Receiving objects: 100% (7991/7991), 1.97 MiB | 3.95 MiB/s, done.
-  Resolving deltas: 100% (5471/5471), done.
+  [isabell@stardust ~]$ npm install yarn -g
   [isabell@stardust ~]$ 
 
+Clone the `GitHub repository <https://github.com/electerious/Ackee>`_ and install the dependencies:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ git clone https://github.com/electerious/Ackee
+  [isabell@stardust ~]$ cd Ackee
+  [isabell@stardust Ackee]$ yarn
+
+Configuration
+=============
+
+Ackee Config
+------------
+
+Create a new, empty ``.env`` file in the root of the Ackee_ directory. Add the following content, replacing the placeholders. The environment variables ``ACKEE_USERNAME`` and ``ACKEE_PASSWORD`` define the credentials to log into the web interface. If you want to use Ackee_ to analyze a domain other than ``isabell.uber.space``, you have to add it under ``ACKEE_ALLOW_ORIGIN`` (read more about the CORS headers `in the Ackee documentation <https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md>`_). 
+
+.. code-block:: console
+
+  ACKEE_MONGODB=mongodb://<admin>_mongoroot:<password>@localhost:27017/admin
+  ACKEE_USERNAME=<ackee_username>
+  ACKEE_PASSWORD=<ackee_password>
+  ACKEE_ALLOW_ORIGIN="https://my-domain-other-than-isabell-on-stardust.de"
+
+
+Web Backend Config
+------------------
+
+.. note::
+
+    Ackee_ is running on port 3000.
+
+.. include:: includes/web-backend.rst
+
+Supervisord Daemon Setup
+------------------------
+
+Create ``~/etc/services.d/ackee.ini`` with the following content:
+
+.. code-block:: ini
+
+  [program:ackee]
+  directory=%(ENV_HOME)s/Ackee
+  command=yarn start
+  autostart=yes
+  autorestart=yes
+
+.. include:: includes/supervisord.rst
+
+Finishing installation
+======================
+
+Go to ``https://isabell.uber.space``. Login using the credentials defined in section `Ackee Config`. Add the domains you want to analyze in the web interface: After adding, it shows a tracking snippet you can add to these pages. If data does not show up after implementing the tracking script, remember that cross site tracking always takes extra consideration of `CORS <https://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_.
+
 .. _Ackee: https://ackee.electerious.com/
-.. _GitHub repository of Ackee: https://github.com/electerious/Ackee
+.. _MongoDB: https://mongodb.com
 .. _MIT License: https://github.com/electerious/Ackee/blob/master/LICENSE
 
 ----
 
-Tested with Ackee v1.7.1 on Uberspace v7.7.1.2
+Tested on Uberspace v7.7.1.2 with NodeJS v12, Ackee v1.7.1 and MongoDB v4.2.8.
 
 .. author_list::
