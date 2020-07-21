@@ -46,7 +46,7 @@ Now that CMake is installed, we need to make sure, that Gollum will use the new 
 
 ::
 
-  [isabell@stardust ~]$ export PATH=$PATH:/home/isabell/cmake-3.17.3-Linux-x86_64/bin/)
+  [isabell@stardust ~]$ export PATH=$HOME/cmake-3.17.3-Linux-x86_64/bin/:$PATH
   [isabell@stardust ~]$
 
 Now make sure that your new CMake version works correctly by checking the version number using this command:
