@@ -124,15 +124,7 @@ Configuration
 Gitea configuration file
 -------------------------
 
-Before we write the configuration we need the MySQL database password and some random characters as security key. We catch the MySQL/MariaDB password ...
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ my_print_defaults --defaults-file=~/.my.cnf client | grep -- --password | awk --field-separator = '{ print $2 }'
-  xG9MD-15A4aMGsln,MTr
-  [isabell@stardust ~]$
-
-... and some random alpha-num chars for the security key. We generate one 32 characters key.
+Before we write the configuration we need the MySQL database password from earlier as well as some random characters as security key.
 
 .. code-block:: console
 
