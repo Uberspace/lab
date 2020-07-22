@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/gitea.png 
+  .. image:: _static/images/gitea.png
       :align: center
 
 
@@ -67,9 +67,9 @@ Check current version of Gitea at releases_ page.
   HTTP request sent, awaiting response... 200 OK
   Length: 83243800 (79M) [application/octet-stream]
   Saving to: ‘/home/isabell/gitea/gitea’
-  
-  100%[====================================================================================================================>] 83,243,800  14.9MB/s   in 9.8s   
-  
+
+  100%[====================================================================================================================>] 83,243,800  14.9MB/s   in 9.8s
+
   2020-06-01 21:00:42 (8.11 MB/s) - ‘/home/isabell/gitea/gitea’ saved [83243800/83243800]
   [isabell@stardust ~]$ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
   Resolving github.com (github.com)... 140.82.118.4
@@ -79,12 +79,12 @@ Check current version of Gitea at releases_ page.
   HTTP request sent, awaiting response... 200 OK
   Length: 833 [application/octet-stream]
   Saving to: ‘/home/isabell/gitea/gitea.asc’
-  
-  100%[====================================================================================================================>] 833         --.-K/s   in 0s      
-  
+
+  100%[====================================================================================================================>] 833         --.-K/s   in 0s
+
   2020-06-01 21:03:17 (9.01 MB/s) - ‘/home/isabell/gitea/gitea.asc’ saved [833/833]
-  [isabell@stardust ~]$ 
- 
+  [isabell@stardust ~]$
+
 We use ``gpg`` to download the pgp key and verify our download.
 
 .. code-block:: console
@@ -108,10 +108,10 @@ We use ``gpg`` to download the pgp key and verify our download.
   gpg:          There is no indication that the signature belongs to the owner.
   Primary key fingerprint: 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
        Subkey fingerprint: CC64 B1DB 67AB BEEC AB24  B645 5FC3 4632 9753 F4B0
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line and we make the bin executeable.
-  
+
 .. code-block:: console
 
   [isabell@stardust ~]$ chmod u+x ~/gitea/gitea
@@ -130,7 +130,7 @@ Before we write the configuration we need the MySQL database password and some r
 
   [isabell@stardust ~]$ my_print_defaults --defaults-file=~/.my.cnf client | grep -- --password | awk --field-separator = '{ print $2 }'
   xG9MD-15A4aMGsln,MTr
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 ... and some random alpha-num chars for the security key. We generate one 32 characters key.
 
@@ -138,14 +138,14 @@ Before we write the configuration we need the MySQL database password and some r
 
   [isabell@stardust ~]$ pwgen 32 1
   SomeRandomCharactersyHxLQeGr976f
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Create a custom directory.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir -p ~/gitea/custom/conf/
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 The minimum set of ``~/gitea/custom/conf/app.ini`` is:
 
@@ -174,13 +174,13 @@ For more informations about the possibilities and configuration options see the 
   APP_NAME = Gitea
   RUN_USER = isabell
   RUN_MODE = prod ; Either "dev", "prod" or "test", default is "dev".
-  
+
   [server]
   HTTP_PORT            = 9000
   DOMAIN               = isabell.uber.space
   ROOT_URL             = https://%(DOMAIN)s
   OFFLINE_MODE         = true ; privacy option.
-  
+
   [database]
   DB_TYPE  = mysql
   HOST     = 127.0.0.1:3306
@@ -188,13 +188,13 @@ For more informations about the possibilities and configuration options see the 
   USER     = isabell
   PASSWD   = <MySQL_PASSWORD>
   SSL_MODE = disable
-  
+
   [security]
   INSTALL_LOCK        = true
   MIN_PASSWORD_LENGTH = 8
   PASSWORD_COMPLEXITY = lower
   SECRET_KEY          = <RANDOM_32_CHARS>
-  
+
   [service]
   DISABLE_REGISTRATION       = true ; security option, only admins can create new users.
   SHOW_REGISTRATION_BUTTON   = false
@@ -207,7 +207,7 @@ For more informations about the possibilities and configuration options see the 
   ENABLED     = true
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
-  
+
 
 Gitea using external renderer (optional)
 ----------------------------------------
@@ -215,7 +215,7 @@ Gitea using external renderer (optional)
 We can install an extra `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension AsciiDoc.
 
 .. code-block:: console
-  
+
   [isabell@stardust ~]$ gem install asciidoctor
   Fetching asciidoctor-2.0.10.gem
   WARNING:  You don't have /home/isabell/.gem/ruby/2.7.0/bin in your PATH,
@@ -242,18 +242,18 @@ Gitea initalization
 Above we locked the registration and the web installation feature, so this service will never be exposed in an unsecure way to the internet. So we have to do the provided steps to create the database layout and generate security keys manually.
 
 .. code-block:: console
-  
+
   [isabell@stardust ~]$ ~/gitea/gitea migrate
   ... a lot of console output about the database commands.
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret INTERNAL_TOKEN 
+  [isabell@stardust ~]$ ~/gitea/gitea generate secret INTERNAL_TOKEN
   Some-Random-Characters-eyJhbUNIn6CJ9.eyJuYmYiOjE1OTEwNDAyNTB9.xYynv0JXwO-aqE5XEkGZE8mEeiQEOl-rU0JXpdPbLck
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret SECRET_KEY 
+  [isabell@stardust ~]$ ~/gitea/gitea generate secret SECRET_KEY
   Some-Random-Characters-omddgYYpZTiMbrtBtgHU1f8ASXvS9Tlx6ETYiCwbJ
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret JWT_SECRET 
+  [isabell@stardust ~]$ ~/gitea/gitea generate secret JWT_SECRET
   Some-Random-Characters-qRsvc0BtKZRmNvbo22a8
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret LFS_JWT_SECRET 
+  [isabell@stardust ~]$ ~/gitea/gitea generate secret LFS_JWT_SECRET
   Some-Random-Characters-Lj7hGewx62tFGHZwRsVc
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Gitea admin user
 ----------------
@@ -263,19 +263,19 @@ We generate a safe password for the admin user. We use ``pwgen`` to create one s
 .. code-block:: console
 
   [isabell@stardust ~]$ ADMPWD=$(pwgen 16 1)
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. We choose ``adminuser`` and the generated password from above. To ensure we remember the password beyond this installation session we store the password in a text file.
 
 .. code-block:: console
-  
+
   [isabell@stardust ~]$ ~/gitea/gitea admin create-user --username adminuser --password ${ADMPWD} --email ${USER}@uber.space --admin
   [isabell@stardust ~]$
   ...
   New user 'adminuser' has been successfully created!
   [isabell@stardust ~]$ echo "usr: adminuser" > ~/gitea/gitea-admin.txt
   [isabell@stardust ~]$ echo "pwd: ${ADMPWD}" >> ~/gitea/gitea-admin.txt
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Gitea ssh setup (optional)
 --------------------------
@@ -283,9 +283,9 @@ Gitea ssh setup (optional)
 Gitea can manage the ssh keys. To use this feature we have to link the ssh folder into the gitea folder.
 
 .. code-block:: console
-  
+
   [isabell@stardust ~]$ ln -s ~/.ssh ~/gitea/.ssh
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Now our Gitea users can add their ssh keys via the menu in the up right corner: ``->`` settings ``->`` tab: SSH/GPG Keys ``->`` Add Key. Gitea is automatically writing a ssh key command into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
 
