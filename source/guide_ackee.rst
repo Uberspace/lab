@@ -74,15 +74,15 @@ Create a new, empty ``.env`` file in the root of the Ackee_ directory. Add the f
   ACKEE_MONGODB=mongodb://<admin>_mongoroot:<password>@localhost:27017/admin
   ACKEE_USERNAME=<ackee_username>
   ACKEE_PASSWORD=<ackee_password>
-  ACKEE_ALLOW_ORIGIN="https://my-domain-other-than-isabell-on-stardust.de"
+  ACKEE_ALLOW_ORIGIN="https://isabell.uber.space"
+
+.. note :: If you want to allow multiple sites, you can add them to   ``ACKEE_ALLOW_ORIGIN`` separated by a comma (e.g. ``ACKEE_ALLOW_ORIGIN="https://isabell.uber.space,https://my-other-domain.de"``).
 
 
 Web Backend Config
 ------------------
 
-.. note::
-
-    Ackee_ is running on port 3000.
+.. note:: Ackee_ is running on port 3000.
 
 .. include:: includes/web-backend.rst
 
@@ -105,6 +105,11 @@ Finishing installation
 ======================
 
 Go to ``https://isabell.uber.space``. Login using the credentials defined in section `Ackee Config`. Add the domains you want to analyze in the web interface: After adding, it shows a tracking snippet you can add to these pages. If data does not show up after implementing the tracking script, remember that cross site tracking always takes extra consideration of `CORS <https://en.wikipedia.org/wiki/Cross-origin_resource_sharing>`_.
+
+Updates
+=======
+
+Update by running ``git pull`` in Ackee's directory and restarting the service with ``supervisorctl restart ackee``.
 
 .. _Ackee: https://ackee.electerious.com/
 .. _MongoDB: https://mongodb.com
