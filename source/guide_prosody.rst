@@ -44,21 +44,35 @@ Prerequisites
 Web domain
 ----------
 
-.. note:: To understand and setup the domains easier I use the following (recommended) subdomains:
+.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``isabell.org``. To understand and setup the domains easier I use the following (recommended) subdomains:
 
- * ``xmpp.isabell.uber.space``
- * ``conference.isabell.uber.space``
- * ``upload.isabell.uber.space``
+ * ``xmpp.isabell.org``
+ * ``conference.isabell.org``
+ * ``upload.isabell.org``
 
-Your URL ``xmpp.isabell.uber.space`` and ``upload.isabell.uber.space`` needs to be setup:
+Your URL ``xmpp.isabell.org`` and ``upload.isabell.org`` needs to be setup:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- xmpp.isabell.uber.space
- upload.isabell.uber.space
+ isabell.org
+ xmpp.isabell.org
+ upload.isabell.org
  [isabell@stardust ~]$
+
+Uberspace creates certificates automagically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
+
+::
+
+ [isabell@stardust ~]$ curl --silent --head http://isabell.org | head -n 1
+ [...]
+ [isabell@stardust ~]$ curl --silent --head http://xmpp.isabell.org | head -n 1
+ [...]
+ [isabell@stardust ~]$ curl --silent --head http://upload.isabell.org | head -n 1
+ [...]
+ [isabell@stardust ~]$
+
+This will return ``HTTP/1.1 200 OK`` or something similiar accordingly your webserver configuration.
 
 Ports
 -----
@@ -76,23 +90,23 @@ Configure DNS records
 
 Your DNS needs to be setup with the following values:
 
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-|                       name                      |  ttl  | class |  type | priority | weight |   port   | target                  |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-|                isabell.uber.space               |  3600 |   IN  |   A   |          |        |          |      35.195.215.42      |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-|                isabell.uber.space               |  3600 |   IN  |  AAAA |          |        |          |            0:           |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-|            upload.isabell.uber.space            |  3600 |   IN  | CNAME |          |        |          | isabell.uber.space      |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-|             xmpp.isabell.uber.space             |  3600 |   IN  | CNAME |          |        |          | isabell.uber.space      |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-| _xmpp-client._tcp.isabell.uber.space            | 18000 | IN    | SRV   | 0        | 5      | C2S-PORT | xmpp.isabell.uber.space |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-| _xmpp-server._tcp.isabell.uber.space            | 18000 | IN    | SRV   | 0        | 5      | S2S-PORT | xmpp.isabell.uber.space |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
-| _xmpp-server._tcp.conference.isabell.uber.space | 18000 | IN    | SRV   | 0        | 5      | S2S-PORT | xmpp.isabell.uber.space |
-+-------------------------------------------------+-------+-------+-------+----------+--------+----------+-------------------------+
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|                   name                   |  ttl  | class |  type | priority | weight |   port   |      target      |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|                isabell.org               |  3600 |   IN  |   A   |          |        |          |   35.195.215.42  |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|                isabell.org               |  3600 |   IN  |  AAAA |          |        |          |        0:        |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|            upload.isabell.org            |  3600 |   IN  | CNAME |          |        |          |    isabell.org   |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|             xmpp.isabell.org             |  3600 |   IN  | CNAME |          |        |          |    isabell.org   |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|       _xmpp-client._tcp.isabell.org      | 18000 |   IN  |  SRV  |     0    |    5   | C2S-PORT | xmpp.isabell.org |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+|       _xmpp-server._tcp.isabell.org      | 18000 |   IN  |  SRV  |     0    |    5   | S2S-PORT | xmpp.isabell.org |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
+| _xmpp-server._tcp.conference.isabell.org | 18000 |   IN  |  SRV  |     0    |    5   | S2S-PORT | xmpp.isabell.org |
++------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
 
 Configure luarocks
 ------------------
@@ -109,12 +123,14 @@ Additionally we need to provide the paths ``LUA_PATH`` as well as ``LUA_CPATH`` 
 
 ::
 
- [isabell@stardust ~]$ echo "$(luarocks path)" >> ~/.bash_profile
+ [isabell@stardust ~]$ echo 'eval "$(luarocks path)"' >> ~/.bash_profile
  [isabell@stardust ~]$ source ~/.bash_profile
  [isabell@stardust ~]$
 
 Install runtime lua-dependencies
 --------------------------------
+
+.. note:: We are using ``luaexpat`` in the version ``1.3.0-1`` due of an `known issue`_ with the newer versions.
 
 The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and ``luasec``) are required:
 
@@ -122,7 +138,7 @@ The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and 
 
  [isabell@stardust ~]$ luarocks install luasocket --local
  luasocket [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install luaexpat --local
+ [isabell@stardust ~]$ luarocks install luaexpat 1.3.0-1 --local
  luaexpat [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luafilesystem --local
  luafilesystem [...] is now built and installed in [...]
@@ -205,7 +221,7 @@ Configuration
 Generate SSL dhparam file
 -------------------------
 
-.. note:: This is going to take a long time!
+.. note:: This is going to take a long time! You can start configuring the server while it runs, but don't start it yet.
 
 To improve the security you can generate a Diffie–Hellman parameter file with ``openssl``:
 
@@ -218,7 +234,7 @@ To improve the security you can generate a Diffie–Hellman parameter file with 
 Install modules
 ---------------
 
-Create the *http_upload* folder for the module **http_upload** which let clients upload files over HTTP. Additionally download the latest available community plugins:
+Create the directory ``~/var/lib/prosody/http_upload``  for the module ``http_upload`` which let clients upload files over HTTP. Additionally download the latest available community plugins:
 
 .. code-block:: console
 
@@ -233,36 +249,19 @@ Then there are many settings which should be edited accordingly in ``~/etc/proso
 
 Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
 
+.. note:: Make sure to adapt ``VirtualHost "localhost"`` with your domain.
+
+Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following lines in your ``prosody.cfg.lua``:
+
 .. code-block:: lua
- :emphasize-lines: 2,3, 26, 29, 32, 38, 43-45, 50, 51, 53, 56, 57, 59
 
  ---------- Server-wide settings ----------
- admins = { "isabell@uber.space" }
+ admins = { "isabell@isabell.org" }
  plugin_paths = { "/home/isabell/var/lib/prosody/prosody-modules" }
  modules_enabled = {
-   "roster";
-   "saslauth";
-   "tls";
-   "dialback";
-   "disco";
-   "carbons";
-   "pep";
-   "private";
-   "blocklist";
-   "vcard4";
-   "vcard_legacy";
-   "version";
-   "uptime";
-   "time";
-   "ping";
-   "register";
-   "mam";
-   "csi_simple";
-   "admin_adhoc";
- allow_registration = false
- c2s_require_encryption = true
+   "mam"; -- Store messages in an archive and allow users to access it
+   "csi_simple"; -- Simple Mobile optimizations
  c2s_ports = { C2S-PORT }
- s2s_require_encryption = true
  s2s_secure_auth = true
  s2s_ports = { S2S-PORT }
  s2s_timeout = 300
@@ -272,9 +271,8 @@ Additionally I recommend the ssl ciphers and options to reach a high security sc
    ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
    options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
- authentication = "internal_hashed"
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
- daemonize= false;
+ daemonize = false;
  storage = "sql"
  sql = { 
    driver = "MySQL", 
@@ -283,22 +281,21 @@ Additionally I recommend the ssl ciphers and options to reach a high security sc
    password = "MySuperSecretPassword", 
    host = "localhost" 
  }
- archive_expires_after = "1w"
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
- https_certificate = "/home/isabell/etc/certificates/upload.isabell.uber.space.crt"
+ https_certificate = "/home/isabell/etc/certificates/upload.isabell.org.crt"
  http_ports = { }
  https_ports = { FILEUPLOAD-PORT }
 
  ----------- Virtual hosts -----------
- VirtualHost "isabell.uber.space" 
- Component "conference.isabell.uber.space" "muc"
+ VirtualHost "isabell.org" 
+ Component "conference.isabell.org" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "upload.isabell.uber.space" "http_upload" 
+ Component "upload.isabell.org" "http_upload" 
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
-.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prodoy logs afterwards to verify whats going on after starting prosody! 
+.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody! 
 
 Setup deamon
 ============
@@ -326,7 +323,7 @@ Create your first user:
 .. code-block:: console
  :emphasize-lines: 1-3 
 
- [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.uber.space
+ [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.org
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
@@ -393,6 +390,7 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _pull request: https://github.com/Uberspace/lab/pull/435
 .. _fapsi: https://github.com/fapsi
 .. _dns: https://prosody.im/doc/dns
+.. _known issue: https://issues.prosody.im/1375
 .. _dependencies: https://prosody.im/doc/depends
 .. _IM Observatory: https://xmpp.net
 .. _example configuration file: https://prosody.im/doc/example_config
