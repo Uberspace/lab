@@ -73,7 +73,7 @@ All the data within Gollum is kept in one directory, which is also where the und
 
 
 Install Gollum
-=============
+==============
 
 Gollum can now be installed via the ruby package manager by running:
 
