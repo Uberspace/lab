@@ -9,10 +9,18 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Upload a logo to `_static/images/`, preferably SVG, a PNG file with transparent background is also fine.
  * If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not available, use the newest version instead.
  * Always use the same username `isabell`.
- * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
+ * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * Use the templates in `source/includes/` where appropriate.
+ * Use the templates in `source/includes/` where appropriate.  
+ For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
+ ```
+ ::
+
+ [isabell@stardust ~]$ uberspace web domain list
+ isabell.uber.space
+ [isabell@stardust ~]$
+ ```
  * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
  * When there is a license needed for the software mention it.
  * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
@@ -160,23 +168,11 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
  Using 'Node.js' version: '8'
  [isabell@stardust ~]$
 
-You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
-
-::
-
- [isabell@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=isabell
- --password=MySuperSecretPassword
- [isabell@stardust ~]$
+.. include:: includes/my-print-defaults.rst
 
 Your blog URL needs to be setup:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
