@@ -60,11 +60,18 @@ Installation
 Install Bitwarden_rs
 --------------------
 
-Clone the repository into your document root. It will create the directory ``~/bitwarden_rs`` automatically.
+Clone the repository into your home directory. It will create the directory ``~/bitwarden_rs`` automatically.
+
+
+.. warning :: At the moment (current date: 24.07.2020) there is an unofficial patch of some dependencies that have not yet made it into all the official repositories. You can find the discussion about it `on GitHub <https://github.com/Uberspace/lab/issues/708>`_. Therefore you have to use a special branch to install bitwarden_rs currently. Make sure to check back and update your installation, once all dependencies have been updated.
+
 
 .. code-block:: console
 
  [isabell@stardust ~]$ git clone https://github.com/dani-garcia/bitwarden_rs.git
+ [isabell@stardust ~]$ cd bitwarden_rs
+ [isabell@stardust bitwarden_rs]$ git checkout origin/async
+ [isabell@stardust bitwarden_rs]$ 
  
 In order to build bitwarden_rs  sucessfully you'll need to set an environment variable pointing to the sqlite3 header files:
 
@@ -184,7 +191,7 @@ If it's not in state RUNNING, check your configuration.
 Finishing installation
 ======================
 
-Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user.
+Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user. You can access the admin panel via ``https://isabell.uber.space/admin`` and log in using the openssl token you created during the installation process.
 
 Best practices
 ==============
