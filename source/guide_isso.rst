@@ -99,6 +99,7 @@ The port can be any free port of your uberspace (you have chosen that port durin
 
   * uninstall current version of ``werkzeug``:
     ::
+
      [isabell@stardust ~]$ pip3 uninstall werkzeug
      Uninstalling Werkzeug-1.0.1:
      [...]
@@ -107,6 +108,7 @@ The port can be any free port of your uberspace (you have chosen that port durin
 
   * install a compatible version of ``werkzeug``:
     ::
+
      [isabell@stardust ~]$ pip3 install Werkzeug==0.16.1 --user
      Collecting Werkzeug==0.16.1
      [...]
