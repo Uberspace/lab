@@ -100,6 +100,7 @@ Setup daemon
 Use your favourite editor to create ``~/etc/services.d/ethercalc.ini`` with the following content:
 
 .. note:: EtherCalc tries to connect to Redis via TCP/IP, which will accepts connections on both TCP/IP and UNIX socket. If you configured redis by following the :lab:`guide <guide_redis>` it is currently configured *for UNIX socket only* as this is also the more stylish, secure and faster version. So by now the connection between EtherCalc and Redis won't be established.
+
 Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-socket to the ``supervisord``-config forces EtherCalc to connect to Redis through the UNIX socket.
 
 
