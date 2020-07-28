@@ -268,8 +268,8 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 If files are missing like if you move files or restore backups on the machine and not via web you can perform a scan.
 ::
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ php files:scan --all
- [isabell@stardust html]$ php files:scan-app-data
+ [isabell@stardust html]$ php occ files:scan --all
+ [isabell@stardust html]$ php occ files:scan-app-data
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
