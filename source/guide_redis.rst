@@ -29,6 +29,10 @@ License
 
 Redis is distributed under the `BSD license`_.
 
+
+Installation
+============
+
 Redis is now preinstalled, please use the binaries.
 
 Configuration
