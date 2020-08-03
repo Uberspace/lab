@@ -53,7 +53,7 @@ Create a directory to store your configurations and keep your home directory nic
  [isabell@stardust ~]$ mkdir autoresponder
  [isabell@stardust autoresponder]$
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# set default Maildir
 	MAILDIR="$HOME/Maildir"
@@ -74,14 +74,14 @@ Create a directory to store your configurations and keep your home directory nic
 
 The variable ``$MAILDIR`` defines where maildrop finds the maildir and what it is. The example checks whether the call is for a specific mailbox or the main mailbox.
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# If you don't want to debug the autoresponder, turn off logging by commenting out the following line.
 	logfile "$HOME/autoresponder/autoreply-filter.log"
 
 We strongly recommend enabling logging. If everything works you can safely disable this afterwards. The logfile ``~/autoresponder/autoreply-filter.log`` will be created showing the sender, date, subject and final destination for each mail processed by the filter.
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# Set the sender for the autoreply-email
 	FROM="email@stardust.uber.space"
@@ -90,14 +90,14 @@ Configure the email address shown as sender from your generated mails.
 
 .. note:: I recommend to create one filter file for each autoresponder to prevent the use of generic sender addresses, but it's not necessary though.
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# show the mail to the uberspace spam filtering algorithm
 	include "$HOME/.spamfolder"
 
 We don't want to reply to Spam-Mails, therefore we hand over the incoming mails to the uberspace-spam-filtering. If the email is not recognized as spam, we'll continue processing. Otherwise it's either being sorted in the ``.spam``-Folder in the user's mailbox.
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# reply to mail with the following text and given parameters
 	cc "| mailbot -t $HOME/autoresponder/autoresponse.txt -N -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
@@ -122,7 +122,7 @@ We have to make sure that all referenced directories and files exist, otherwise 
 
 Finally, add this last block to your ``~/autoresponder/.autoreply-filter``:
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# Receive the mail (the original mail goes into your INBOX)
 	to "$MAILDIR"
@@ -141,7 +141,7 @@ Create the qmail
 
 Use your favourite editor to create ``~/.qmail-email`` with the following content (including the pipe):
 
-.. code-block:: ini
+.. code-block:: bash
 
 	|maildrop $HOME/autoresponder/.autoreply-filter
 
@@ -163,7 +163,7 @@ You can easily disable and enable the autoresponse at any given time. There are 
 
 Behaviour by mailing lists
 --------------------------
-By default ``mailbot`` won't reply to mails that are marked correctly as part of a mailing list. The default behavior is to send an autoresponse unless the original message has the ``Precedence: junk``or the ``Precedence: bulk`` header, or the ``Precedence: list`` header, or the ``List-ID:`` header, or if its MIME content type is ``multipart/report`` (this is the MIME content type for delivery status notifications).
+By default ``mailbot`` won't reply to mails that are marked correctly as part of a mailing list. The default behavior is to send an autoresponse unless the original message has the ``Precedence: junk`` or the ``Precedence: bulk`` header, or the ``Precedence: list`` header, or the ``List-ID:`` header, or if its MIME content type is ``multipart/report`` (this is the MIME content type for delivery status notifications).
 
 
 One more thing
@@ -182,12 +182,14 @@ In the ``~/autoresponder/.autoreply-filter`` the only thing that changes is the 
 
 Use your favourite editor to edit ``~/autoresponder/.autoreply-filter``. Remove these lines
 
-.. code-block:: ini
+.. code-block:: bash
 
 	# reply to mail with the following text and given parameters
 	cc "| mailbot -t $HOME/autoresponder/autoresponse.txt -N -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
 
 and replace them with the following lines:
+
+.. code-block:: bash
 
 	# using the mail stored in the referenced IMAP-Folder to reply
 	cc "| mailbot -T replydraft -l '$MAILDIR/.Autoresponder' -N  -A 'From: $FROM' -d $HOME/autoresponder/bouncedb -D 3 /var/qmail/bin/qmail-inject -f ''"
