@@ -305,7 +305,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>` to run the sc
 
 .. code-block:: none
 
- * * * * * cd /var/www/virtual/isabell/pixelfed && php artisan schedule:run >> /dev/null 2>&1
+ * * * * * cd /var/www/virtual/$USER/pixelfed && php artisan schedule:run >> /dev/null 2>&1
 
 Finishing installation
 ======================
