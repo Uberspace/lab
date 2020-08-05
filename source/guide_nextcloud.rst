@@ -237,17 +237,24 @@ The release cycle of Nextcloud is very short. A prepared script with some common
 
 Create `~/bin/nextcloud-update` with the following content:
 ::
+
  #!/usr/bin/env bash
  php ~/html/updater/updater.phar --no-interaction
+ 
+ ## database optimizations
+ ## The following command works from Nextcloud 19.
+ ## remove '#' so it is working
+ #php ~/html/occ db:add-missing-columns
  php ~/html/occ db:add-missing-indices
- php ~/html/occ db:add-missing-columns
  php ~/html/occ db:convert-filecache-bigint
+ 
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
  restorecon -vR ~/html
 
 Then you can run the script whenever you need it to perform the update.
 ::
+
  [isabell@stardust ~]$ nextcloud-update
  [...]
  [isabell@stardust ~]$
@@ -267,9 +274,11 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
 
 If files are missing like if you move files or restore backups on the machine and not via web you can perform a scan.
 ::
+
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ php occ files:scan --all
  [isabell@stardust html]$ php occ files:scan-app-data
+ [isabell@stardust html]$
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
 
