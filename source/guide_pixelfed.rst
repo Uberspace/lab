@@ -6,6 +6,7 @@
 .. tag:: gallery
 .. tag:: photo
 .. tag:: fediverse
+.. tag:: ActivityPub
 
 .. sidebar:: Logo
 
