@@ -215,7 +215,7 @@ PostgreSQL Configuration
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
 
-.. warning:: Replace replace ``<username>`` with your username!
+.. warning:: Please replace ``<username>`` with your username!
 
 .. code-block:: postgres
  :emphasize-lines: 7,14
