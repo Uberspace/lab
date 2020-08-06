@@ -3,15 +3,16 @@
 
 .. tag:: lang-elixir
 .. tag:: microblogging
+.. tag:: fediverse
 
 .. sidebar:: Logo
 
   .. image:: _static/images/pleroma.svg
       :align: center
 
-#########
+#######
 Pleroma
-#########
+#######
 
 .. tag_list::
 
@@ -266,6 +267,8 @@ Create your first user as admin with ``mix pleroma.user new <nickname> <email> [
 Updates
 =======
 
+.. note:: Check the release notes_ regularly to stay informed about the newest version.
+
 Stop the Pleroma service: 
 
 ::
@@ -299,11 +302,12 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.0.7, Uberspace 7.7.1.2
+Tested with Pleroma 2.0.7, Uberspace 7.7.2.0
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
 .. _Mastodon: https://joinmastodon.org/
 .. _Configuration Cheat Sheet: https://docs-develop.pleroma.social/backend/configuration/cheatsheet/
+.. _notes: https://git.pleroma.social/pleroma/pleroma/-/releases
 
 .. author_list::
