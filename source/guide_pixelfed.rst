@@ -5,6 +5,7 @@
 .. tag:: photo-management
 .. tag:: gallery
 .. tag:: photo
+.. tag:: fediverse
 
 .. sidebar:: Logo
 
@@ -17,7 +18,7 @@ Pixelfed
 
 .. tag_list::
 
-Pixelfed_ is a free, denzentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similiar to instagram.
+Pixelfed_ is a free, decentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similiar to instagram.
 
 ----
 
@@ -59,44 +60,10 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
  Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
-Setup Redis
-===========
+Redis
+=====
 
-Configuration
--------------
-
-.. note:: We need Redis for in-memory caching and background task queueing. Since Uberspace version 7.7.0 Redis is preinstalled and we only need to setup a service.
-
-Create the directory ``~/.redis/`` in your home directory:
-
-::
-
- [isabell@stardust ~]$ mkdir ~/.redis/
- [isabell@stardust ~]$
-
-Now create the config file ``~/.redis/conf`` with an editor of your choice and enter these settings. Replace ``isabell`` with your user name:
-
-.. code-block:: none
-
- unixsocket /home/isabell/.redis/sock
- daemonize no
- port 0
-
-Setup daemon
-------------
-
-Create ``~/etc/services.d/redis.ini`` with the following content:
-
-.. code-block:: ini
-
- [program:redis]
- command=redis-server %(ENV_HOME)s/.redis/conf
- autostart=yes
- autorestart=yes
-
-.. include:: includes/supervisord.rst
-
-If it's not in state RUNNING, check your configuration.
+We need Redis for in-memory caching and background task queueing. Please follow the :lab:`Redis <guide_redis>` guide to setup redis.
 
 Installation
 ============
@@ -291,6 +258,8 @@ Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following con
 
 If it's not in state RUNNING, check your configuration.
 
+.. warning:: Every time you run ``php artisan config:cache`` you have to restart horizon otherwise its shown in the dashboard as ``inactive``.
+
 Configuring Scheduler
 ---------------------
 
@@ -350,6 +319,8 @@ Now you can now login by visiting your domain and using the credentials you defi
 Updates
 =======
 
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
 Run ``git pull`` in the pixelfed directory to pull the latest changes from upstream. After that install new dependencies, run the cache commands and migrate the database.
 
 ::
@@ -371,6 +342,9 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
  Routes cached successfully!
  [isabell@stardust pixelfed]$ php artisan migrate --force
  [...]
+ [isabell@stardust pixelfed]$ supervisorctl restart horizon
+ horizon: stopped
+ horizon: started
  [isabell@stardust pixelfed]$
 
 ----
@@ -379,5 +353,6 @@ Tested with Pixelfed 0.10.9, Uberspace 7.7.2.0
 
 .. _Pixelfed: https://pixelfed.org
 .. _Redis: https://redios.io
+.. _feed: https://github.com/pixelfed/pixelfed/releases.atom
 
 .. author_list::
