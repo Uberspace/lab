@@ -4,6 +4,7 @@
 .. tag:: lang-elixir
 .. tag:: microblogging
 .. tag:: fediverse
+.. tag:: ActivityPub
 
 .. sidebar:: Logo
 
