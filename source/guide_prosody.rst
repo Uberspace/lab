@@ -11,9 +11,9 @@
   .. image:: _static/images/prosody.svg
       :align: center
 
-#########
+#######
 Prosody
-#########
+#######
 
 .. tag_list::
 
@@ -50,25 +50,28 @@ Web domain
  * ``conference.isabell.org``
  * ``upload.isabell.org``
 
-Your URL ``xmpp.isabell.org`` and ``upload.isabell.org`` needs to be setup:
+Your domain ``isabell.org`` and subdomains ``conference.isabell.org``, ``upload.isabell.org`` and ``xmpp.isabell.org`` needs to be setup:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
  isabell.org
- xmpp.isabell.org
+ conference.isabell.org
  upload.isabell.org
+ xmpp.isabell.org
  [isabell@stardust ~]$
 
 Uberspace creates certificates automagically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
 
 ::
 
- [isabell@stardust ~]$ curl --silent --head http://isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://isabell.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head http://xmpp.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://conference.isabell.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head http://upload.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://upload.isabell.org | head -n 1
+ [...]
+ [isabell@stardust ~]$ curl --silent --head https://xmpp.isabell.org | head -n 1
  [...]
  [isabell@stardust ~]$
 
@@ -90,23 +93,25 @@ Configure DNS records
 
 Your DNS needs to be setup with the following values:
 
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|                   name                   |  ttl  | class |  type | priority | weight |   port   |      target      |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|                isabell.org               |  3600 |   IN  |   A   |          |        |          |   35.195.215.42  |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|                isabell.org               |  3600 |   IN  |  AAAA |          |        |          |        0:        |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|            upload.isabell.org            |  3600 |   IN  | CNAME |          |        |          |    isabell.org   |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|             xmpp.isabell.org             |  3600 |   IN  | CNAME |          |        |          |    isabell.org   |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|       _xmpp-client._tcp.isabell.org      | 18000 |   IN  |  SRV  |     0    |    5   | C2S-PORT | xmpp.isabell.org |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-|       _xmpp-server._tcp.isabell.org      | 18000 |   IN  |  SRV  |     0    |    5   | S2S-PORT | xmpp.isabell.org |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
-| _xmpp-server._tcp.conference.isabell.org | 18000 |   IN  |  SRV  |     0    |    5   | S2S-PORT | xmpp.isabell.org |
-+------------------------------------------+-------+-------+-------+----------+--------+----------+------------------+
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|                    name                  |   ttl  | class |   type | priority | weight |    port  |       target     |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|                 isabell.org              |   3600 |    IN |    A   |          |        |          |    35.195.215.42 |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|                 isabell.org              |   3600 |    IN |   AAAA |          |        |          |         0:       |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|          conference.isabell.org          |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|             upload.isabell.org           |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|              xmpp.isabell.org            |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|        _xmpp-client._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | C2S-PORT | xmpp.isabell.org |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+|        _xmpp-server._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+| _xmpp-server._tcp.conference.isabell.org | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
 
 Configure luarocks
 ------------------
