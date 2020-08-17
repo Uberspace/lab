@@ -43,11 +43,11 @@ Starting with `Version 2.0.0`_, Ackee also requires the use of :manual:`Node.js 
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 10
- Using 'Node.js' version: '10'
- Selected node version 10
+ [isabell@stardust ~]$ uberspace tools version use node 14
+ Using 'Node.js' version: '14'
+ Selected node version 14
  The new configuration is adapted immediately. Patch updates will be applied automatically.
- [eliza@dolittle ~]$
+ [isabell@stardust ~]$
  
 Set up your domain:
 
