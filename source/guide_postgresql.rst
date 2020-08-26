@@ -38,7 +38,7 @@ Download version 9.6.10. A list of supported major and beta releases can be foun
 
 ::
 
- [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v9.6.10/postgresql-9.6.10.tar.gz
+ [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v12.4/postgresql-12.4.tar.gz
  [isabell@stardust ~]$
 
 To extract the tar archive, use the following options:
@@ -50,7 +50,7 @@ To extract the tar archive, use the following options:
 
 ::
 
- [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-9.6.10.tar.gz
+ [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-12.4.tar.gz
  [isabell@stardust ~]$
 
 
@@ -79,7 +79,7 @@ Now configure and compile the source code and finally install it.
 
 ::
 
- [isabell@stardust ~]$ cd ~/postgres/postgresql-9.6.10
+ [isabell@stardust ~]$ cd ~/postgres/postgresql-12.4
  [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline
  [isabell@stardust ~]$ make world
  [isabell@stardust ~]$ make install-world
@@ -111,7 +111,7 @@ Run ``psql --version`` to verify the installation so far:
 ::
 
  [isabell@stardust ~]$ psql --version
- psql (PostgreSQL) 9.6.10
+ psql (PostgreSQL) 12.4
  [isabell@stardust ~]$
 
 
@@ -161,23 +161,30 @@ Now create the database cluster:
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
- The files belonging to this database system will be owned by user "".
+ [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
+ The files belonging to this database system will be owned by user "<username>".
  This user must also own the server process.
+ 
  The database cluster will be initialized with locale "de_DE.UTF-8".
  The default text search configuration will be set to "german".
+ 
  Data page checksums are disabled.
+ 
  creating directory /home/<username>/opt/postgresql/data ... ok
  creating subdirectories ... ok
+ selecting dynamic shared memory implementation ... posix
  selecting default max_connections ... 100
  selecting default shared_buffers ... 128MB
- selecting dynamic shared memory implementation ... posix
+ selecting default time zone ... Europe/Berlin
  creating configuration files ... ok
  running bootstrap script ... ok
  performing post-bootstrap initialization ... ok
  syncing data to disk ... ok
+ 
  Success. You can now start the database server using:
+ 
     pg_ctl -D /home/<username>/opt/postgresql/data/ -l logfile start
+ 
  [isabell@stardust ~]$
 
 The temporary password file is no longer necessary:
@@ -335,6 +342,6 @@ To configure your project with the PostgreSQL details, you should have the datab
 
 ----
 
-Tested with Uberspace 7.1.15 and PostgreSQL 9.6.10
+Tested with Uberspace 7.1.15 and PostgreSQL 12.4
 
 .. author_list::
