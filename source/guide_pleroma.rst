@@ -311,7 +311,7 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.10.0, Uberspace 7.7.4.0
+Tested with Pleroma 2.1.0, Uberspace 7.7.4.0
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
