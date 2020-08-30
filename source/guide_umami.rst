@@ -79,7 +79,7 @@ Use your favorite editor to create ``~/umami/.env`` with the following content:
 
 .. code-block:: ini
 
-  DATABASE_URL=mysql://isabell:mypassword@localhost:3306/umami
+  DATABASE_URL=mysql://isabell_umami:mypassword@localhost:3306/umami
   HASH_SALT=(any random string)
 
 Generate the database client and create the production build:
@@ -117,7 +117,11 @@ Configure web server
 Configure application
 ---------------------
 
-For more information check the umami_ documentation.
+Your Umami installation will create a default administrator account with the username ``admin`` and the password ``umami``.
+
+.. warning:: The first thing you will want to do is log in and change your password.
+
+For more information check the umami_ documentation. 
 
 Updates
 -------
