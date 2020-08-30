@@ -70,7 +70,7 @@ After the installation you need to setup the database and do some configuration.
 .. code-block:: console
 
  [isabell@stardust umami]$ mysql -e "CREATE DATABASE ${USER}_umami"
- [isabell@stardust umami]$ mysql -u isabell -p isabell_umami < sql/schema.mysql.sql 
+ [isabell@stardust umami]$ mysql "${USER}_umami" < sql/schema.mysql.sql
  [isabell@stardust umami]$
 
 Enter your MySQL password.
