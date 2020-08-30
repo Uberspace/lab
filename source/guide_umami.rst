@@ -79,8 +79,8 @@ Use your favorite editor to create ~/umami/.env with the following content:
 
 .. code-block:: ini
 
-DATABASE_URL=mysql://isabell:mypassword@localhost:3306/umami
-HASH_SALT=(any random string)
+  DATABASE_URL=mysql://isabell:mypassword@localhost:3306/umami
+  HASH_SALT=(any random string)
 
 Generate the database client and create the production build:
 
