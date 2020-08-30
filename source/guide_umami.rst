@@ -75,7 +75,7 @@ After the installation you need to setup the database and do some configuration.
 
 Enter your MySQL password.
 
-Use your favorite editor to create ~/umami/.env with the following content:
+Use your favorite editor to create ``~/umami/.env`` with the following content:
 
 .. code-block:: ini
 
