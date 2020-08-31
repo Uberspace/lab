@@ -189,7 +189,7 @@ Current keys can now be listed with
 Restoring from backup
 ---------------------
 
-Please follow the Restic documentation on how to resore the files
+Please follow the Restic documentation on how to restore the files
 
   * https://restic.readthedocs.io/en/latest/050_restore.html
 
