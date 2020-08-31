@@ -102,7 +102,7 @@ Copy the default config file to ``data/config.php`` and edit it to your liking
 
 You will probably want to change the ``CURRENCY`` to ``EUR`` and ``CULTURE`` to ``de``.
 
-If you decided to host your grocy installation in a sub folder, also change the `BASE_URL` to your full url, e.g. `http://isabell.uber.space/grocy/'`.
+If you decided to host your grocy installation in a sub folder, also change the ``BASE_URL`` to your full url, e.g. ``http://isabell.uber.space/grocy/``.
 The config file provide's more help about this in it's comments, so make sure to read them.
 
 
