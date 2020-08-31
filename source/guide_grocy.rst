@@ -41,11 +41,10 @@ Installation
 Step 1
 -----
 
-Download grocy to the root of your uberspace web directory.
+Download grocy to your home directory.
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ wget https://releases.grocy.info/latest -O grocy_latest.zip
  […]
  Saving to: ‘grocy_latest.zip’
@@ -62,7 +61,7 @@ Unpack the downloaded grocy release
 
 ::
 
- [isabell@stardust isabell]$ unzip -q grocy_latest.zip
+ [isabell@stardust isabell]$ unzip -q grocy_latest.zip -d grocy
  [isabell@stardust isabell]$ rm grocy_latest.zip
  [isabell@stardust isabell]$ 
 
@@ -70,15 +69,24 @@ Unpack the downloaded grocy release
 Step 3
 ------
 
-Uberspace, by default, serves the `html` directory via http(s).
-Therefore, we move everything from `public`, the directory that grocy want's us to serve, to public.
+If you want to only host grocy on your Uberspace (best practice since Uberspace 7) you should link your
+DocumentRoot to grocy's public folder:
 
 ::
 
- [isabell@stardust isabell]$ mv public/* public/.htaccess html
+ [isabell@stardust isabell]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rm -r html
+ [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html
  [isabell@stardust isabell]$ 
 
+If you instead want to host grocy alongside other applications, just leave the html folder and create the link inside of it, like this:
 
+::
+
+ [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html/grocy
+ [isabell@stardust isabell]$ 
+ 
+Please note that this will require further tweaking in the config file.
 
 Step 4
 ------
@@ -94,12 +102,15 @@ Copy the default config file to `data/config.php` and edit it to your liking
 
 You will probably want to change the `CURRENCY` to `EUR` and `CULTURE` to `de`.
 
+If you decided to host your grocy installation in a sub folder, also change the `BASE_URL` to your full url, e.g. `http://isabell.uber.space/grocy/'`.
+The config file provide's more help about this in it's comments, so make sure to read them.
+
 
 
 Finishing installation
 ======================
 
-Point your Browser to your installation URL ``https://isabell.uber.space``.
+Point your Browser to your installation URL (e.g. ``https://isabell.uber.space``).
 This will take a moment, as grocy will need to create the default database at first.
 
 When prompted for a login, use `admin` for both username and password. CHANGE THIS AS SOON AS POSSIBLE!
@@ -114,10 +125,9 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust ~]$ cd ~/grocy
  [isabell@stardust isabell]$ bash update.sh
- [isabell@stardust isabell]$ mkdir html
- [isabell@stardust isabell]$ mv public/* public/.htaccess html
+ [isabell@stardust isabell]$ 
 
 
 
