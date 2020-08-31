@@ -91,7 +91,7 @@ Please note that this will require further tweaking in the config file.
 Step 4
 ------
 
-Copy the default config file to `data/config.php` and edit it to your liking
+Copy the default config file to ``data/config.php`` and edit it to your liking
 
 ::
 
@@ -100,7 +100,7 @@ Copy the default config file to `data/config.php` and edit it to your liking
  [isabell@stardust isabell]$ 
 
 
-You will probably want to change the `CURRENCY` to `EUR` and `CULTURE` to `de`.
+You will probably want to change the ``CURRENCY`` to ``EUR`` and ``CULTURE`` to ``de``.
 
 If you decided to host your grocy installation in a sub folder, also change the `BASE_URL` to your full url, e.g. `http://isabell.uber.space/grocy/'`.
 The config file provide's more help about this in it's comments, so make sure to read them.
@@ -113,7 +113,7 @@ Finishing installation
 Point your Browser to your installation URL (e.g. ``https://isabell.uber.space``).
 This will take a moment, as grocy will need to create the default database at first.
 
-When prompted for a login, use `admin` for both username and password. CHANGE THIS AS SOON AS POSSIBLE!
+When prompted for a login, use ``admin`` for both username and password. CHANGE THIS AS SOON AS POSSIBLE!
 
 
 Updates
