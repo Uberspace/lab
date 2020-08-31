@@ -21,7 +21,6 @@ Grocy_ is a web-based self-hosted groceries & household management solution for 
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * Git_
   * :manual:`Domains <web-domains>`
 
 License
@@ -122,7 +121,6 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
 
 
-.. _Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
 .. _Grocy: https://grocy.info/
 .. _feed: https://github.com/grocy/grocy/releases.atom
 .. _MIT License: https://github.com/grocy/grocy/blob/master/LICENSE
