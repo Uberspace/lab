@@ -113,8 +113,9 @@ Finishing installation
 Point your Browser to your installation URL (e.g. ``https://isabell.uber.space``).
 This will take a moment, as grocy will need to create the default database at first.
 
-When prompted for a login, use ``admin`` for both username and password. CHANGE THIS AS SOON AS POSSIBLE!
+When prompted for a login, use ``admin`` for both username and password.
 
+.. warning:: Change the default password as soon as possible, as it poses a security risk. If you don't, anyone can access your data.
 
 Updates
 =======
