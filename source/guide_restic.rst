@@ -24,7 +24,6 @@ Restic_ is a fast and secure backup program, which have compatibility with multi
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`Go <lang-go>`
   * :manual:`SSH <basics-ssh>`
   * :manual:`cronjobs <daemons-cron>`
 
@@ -39,15 +38,7 @@ Restic is an open source software distributed under the BSD-2-Clause License. Al
 Prerequisites
 =============
 
-We're using :manual:`Go <lang-golang>` version go1.12.5 to compile the software.
-
-::
-
- [isabell@stardust ~]$ go version
- go version go1.12.5 linux/amd64
- [isabell@stardust ~]$
-
-If you want to back up to a remote server, you should set up a bucket a or user first. Restic currently supports backup with:
+If you want to backup files to a remote server, you should set up a bucket a or user first. Restic currently supports backup with:
 
   - `Local directory <https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#local>`__
   - `sftp server (via SSH) <https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#sftp>`__
@@ -62,17 +53,17 @@ If you want to back up to a remote server, you should set up a bucket a or user 
 Installation
 ============
 
-``cd`` to your ``/$HOME`` home directory before fetching Restic.
+You can find and download the latest stable release versions of restic from the `restic
+release page <https://github.com/restic/restic/releases/latest>`__. SHA256 checksums and GPG signed files can also be found there.
 
-We're building restic from source with the following steps:
+We're installing a compiled restic binary for a 64-bit machine, and making it executable with the following steps:
 
 ::
 
- [isabell@stardust ~]$ git clone https://github.com/restic/restic.git
- [...]
- [isabell@stardust ~]$ cd restic
- [isabell@stardust restic]$ go run build.go
- [...]
+ [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.9.6/restic_0.9.6_linux_amd64.bz2
+ [isabell@stardust ~]$ bzip2 -d restic_0.9.6_linux_amd64.bz2
+ [isabell@stardust restic]$ mv restic_0.9.6_linux_amd64 ~/bin/restic
+ [isabell@stardust restic]$ chmod 700 bin/restic
  [isabell@stardust restic]$
 
 
@@ -95,7 +86,7 @@ Here we're initializing a repository on a Backblaze B2 bucket
 
   [isabell@stardust ~]$ export B2_ACCOUNT_ID=<MY_APPLICATION_KEY_ID>
   [isabell@stardust ~]$ export B2_ACCOUNT_KEY=<MY_APPLICATION_KEY>
-  [isabell@stardust ~]$ ~/restic/restic -r b2:bucketname:path/to/repo init
+  [isabell@stardust ~]$ restic -r b2:bucketname:path/to/repo init
   enter password for new repository:
   enter password again:
   created restic repository eefee03bbd at b2:bucketname:path/to/repo
@@ -126,7 +117,7 @@ It is recommended to create a bash script to automate the backups. Please edit t
   EXCLUDED_FILES='superSecretFile.txt'
 
   # Run restic backup
-  ~/restic/restic -r b2:bucketname:path/to/repo backup $FILES --exclude-if-present=$EXCLUDED_FILES
+  restic -r b2:bucketname:path/to/repo backup $FILES --exclude-if-present=$EXCLUDED_FILES
 
   #set +x # Stop printing
 
@@ -167,7 +158,7 @@ Restic allows for creation of multiple keys. this can be done with
 
 ::
 
- [isabell@stardust ~]$ ~/restic/restic -r /srv/restic-repo key add
+ [isabell@stardust ~]$ restic -r /srv/restic-repo key add
  enter password for repository:
  enter password for new key:
  enter password again:
@@ -178,7 +169,7 @@ Current keys can now be listed with
 
 ::
 
- [isabell@stardust ~]$ ~/restic/restic -r /srv/restic-repo key list
+ [isabell@stardust ~]$ restic -r /srv/restic-repo key list
  enter password for repository:
  ID          User        Host        Created
  ----------------------------------------------------------------------
@@ -198,7 +189,7 @@ Updates
 
 .. note:: Releases can be followed on the Github repository: https://github.com/restic/restic/releases or with the update feed_.
 
-The binaries can be updated by using the ``~/restic/restic self-update`` command or by building from source again.
+The binaries can be updated by using the ``restic self-update`` command or by building from source again.
 
 
 .. _feed: https://github.com/restic/restic/releases.atom
@@ -206,6 +197,6 @@ The binaries can be updated by using the ``~/restic/restic self-update`` command
 
 ----
 
-Tested with Restic 0.9.6, Uberspace 7.7.4.0, Go 1.12.5 and Git 2.24.3
+Tested with Restic 0.9.6, Uberspace 7.7.4.0
 
 .. author_list::
