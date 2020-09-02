@@ -41,10 +41,11 @@ Installation
 Step 1
 -----
 
-Download grocy to your home directory.
+Download grocy.
 
 ::
 
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER
  [isabell@stardust isabell]$ wget https://releases.grocy.info/latest -O grocy_latest.zip
  […]
  Saving to: ‘grocy_latest.zip’
@@ -74,16 +75,15 @@ DocumentRoot to grocy's public folder:
 
 ::
 
- [isabell@stardust isabell]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html
+ [isabell@stardust isabell]$ ln -s grocy/public html
  [isabell@stardust isabell]$
 
 If you instead want to host grocy alongside other applications, just leave the html folder and create the link inside of it, like this:
 
 ::
 
- [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html/grocy
+ [isabell@stardust isabell]$ ln -s public html/grocy
  [isabell@stardust isabell]$
 
 Please note that this will require further tweaking in the config file.
