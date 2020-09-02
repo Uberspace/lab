@@ -34,7 +34,7 @@ Create a working directory.
  [isabell@stardust ~]$ cd ~/postgres/
  [isabell@stardust ~]$
 
-Download version 9.6.10. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
+Download the lastest stable version. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
 
 ::
 
@@ -67,20 +67,14 @@ Other options can be found in the PostgreSQL documentation_.
 
 Now configure and compile the source code and finally install it.
 
-::
-
- [isabell@stardust ~]$ configure
- [isabell@stardust ~]$ make
- [isabell@stardust ~]$ make install
-
 .. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
+.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider installing everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
 
 ::
 
  [isabell@stardust ~]$ cd ~/postgres/postgresql-12.4
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline
+ [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/
  [isabell@stardust ~]$ make world
  [isabell@stardust ~]$ make install-world
  [isabell@stardust ~]$
