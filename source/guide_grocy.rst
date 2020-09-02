@@ -75,7 +75,7 @@ DocumentRoot to grocy's public folder:
 ::
 
  [isabell@stardust isabell]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -r html
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html
  [isabell@stardust isabell]$ 
 
