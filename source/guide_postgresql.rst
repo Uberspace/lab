@@ -214,9 +214,12 @@ Load the new settings:
 PostgreSQL Configuration
 ------------------------
 
-Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+Consider using only unix sockets if possible. 
 
 .. warning:: Please replace ``<username>`` with your username!
+
+.. warning:: If you set listen_addresses you might open your postgres installation to the world!
 
 .. code-block:: postgres
  :emphasize-lines: 7,14
@@ -227,7 +230,7 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
 
  # - Connection Settings -
 
- listen_addresses = '*'         # what IP address(es) to listen on;
+ #listen_addresses = '*'         # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
                                         # (change requires restart)
