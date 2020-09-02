@@ -95,9 +95,10 @@ Copy the default config file to ``data/config.php`` and edit it to your liking
 
 ::
 
- [isabell@stardust isabell]$ cp config-dist.php data/config.php
- [isabell@stardust isabell]$ nano data/config.php
- [isabell@stardust isabell]$
+ [isabell@stardust isabell]$ cd grocy
+ [isabell@stardust grocy]$ cp config-dist.php data/config.php
+ [isabell@stardust grocy]$ nano data/config.php
+ [isabell@stardust grocy]$
 
 
 You will probably want to change the ``CURRENCY`` to ``EUR`` and ``CULTURE`` to ``de``.
@@ -126,9 +127,9 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
 ::
 
- [isabell@stardust ~]$ cd ~/grocy
- [isabell@stardust isabell]$ bash update.sh
- [isabell@stardust isabell]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/grocy
+ [isabell@stardust grocy]$ bash update.sh
+ [isabell@stardust grocy]$
 
 
 
