@@ -48,11 +48,11 @@ Download grocy to your home directory.
  [isabell@stardust isabell]$ wget https://releases.grocy.info/latest -O grocy_latest.zip
  […]
  Saving to: ‘grocy_latest.zip’
- 
+
  grocy_latest.zip        100%[===============================>]  54,83M  12,6MB/s    in 4,4s
 
  2020-08-26 12:09:31 (12,5 MB/s) - ‘grocy_latest.zip’ saved [57489683/57489683]
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Step 2
 ------
@@ -63,7 +63,7 @@ Unpack the downloaded grocy release
 
  [isabell@stardust isabell]$ unzip -q grocy_latest.zip -d grocy
  [isabell@stardust isabell]$ rm grocy_latest.zip
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 
 Step 3
@@ -77,15 +77,15 @@ DocumentRoot to grocy's public folder:
  [isabell@stardust isabell]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 If you instead want to host grocy alongside other applications, just leave the html folder and create the link inside of it, like this:
 
 ::
 
  [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html/grocy
- [isabell@stardust isabell]$ 
- 
+ [isabell@stardust isabell]$
+
 Please note that this will require further tweaking in the config file.
 
 Step 4
@@ -97,7 +97,7 @@ Copy the default config file to ``data/config.php`` and edit it to your liking
 
  [isabell@stardust isabell]$ cp config-dist.php data/config.php
  [isabell@stardust isabell]$ nano data/config.php
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 
 You will probably want to change the ``CURRENCY`` to ``EUR`` and ``CULTURE`` to ``de``.
@@ -128,7 +128,7 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
  [isabell@stardust ~]$ cd ~/grocy
  [isabell@stardust isabell]$ bash update.sh
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 
 
