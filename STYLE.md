@@ -12,7 +12,7 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * Use the templates in `source/includes/` where appropriate.  
+ * Use the templates in `source/includes/` where appropriate.
  For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
  ```
  ::
@@ -229,7 +229,7 @@ Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 ## Add your changes to the Uberspace Lab
 
-Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`. 
+Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`.
 
 If you already commited your changes without following this styleguide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
 
