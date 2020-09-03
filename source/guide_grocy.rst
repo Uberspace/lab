@@ -75,7 +75,7 @@ DocumentRoot to grocy's public folder:
 
 ::
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ mv html html.old
  [isabell@stardust isabell]$ ln -s grocy/public html
  [isabell@stardust isabell]$
 

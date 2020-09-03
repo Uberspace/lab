@@ -11,7 +11,8 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Always use the same username `isabell`.
  * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
- * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
+ * Don't mention additional document roots. *Keep it simple*. Don't use subfolders inside `~/html`.
+ * Always use the standard document root `~/html`. Do not delete it but move it away using `mv html html.old`, after `cd`ing into `/var/www/virtual/$USER`.
  * Use the templates in `source/includes/` where appropriate.
  For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
  ```

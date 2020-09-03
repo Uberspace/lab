@@ -77,7 +77,7 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
 
 .. code-block:: console
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ mv html html.old
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/sulucms/public html
  [isabell@stardust isabell]$ cd ~
  [isabell@stardust ~]$
