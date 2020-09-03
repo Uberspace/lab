@@ -88,7 +88,7 @@ Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new sy
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/kimai2/public html
  [isabell@stardust ~]$
 

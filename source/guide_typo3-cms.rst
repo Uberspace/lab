@@ -81,7 +81,7 @@ Now remove the :manual:`document root <web-documentroot>` and create a symlink t
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/typo3-cms/public html
  [isabell@stardust isabell]$
 
