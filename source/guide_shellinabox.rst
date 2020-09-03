@@ -51,7 +51,7 @@ Clone the *shellinabox* repository from Github_ into ``~/shellinabox`` and ``cd`
  Resolving deltas: 100% (2418/2418), done.
  [isabell@stardust ~]$ cd ~/shellinabox
  [isabell@stardust shellinabox]$
- 
+
 Build executable
 ----------------
 Run the *autotools*, afterwards build the application with ``configure`` followed by ``make``:
@@ -101,7 +101,7 @@ We are using two command-line options here:
   * ``--disable-ssl``: Disables the built-in SSL functionality, since this is already enforced by Uberspace's :manual:`HTTPS configuration <web-https>`
   * ``--verbose``: Enables verbose logging which helps troubleshooting (you can safely disable this if you want to)
 
-.. warning: Don't try to run *shellinabox* with the ``--background`` command-line option, as this will confuse 
+.. warning: Don't try to run *shellinabox* with the ``--background`` command-line option, as this will confuse
 
 You can find the full reference of command-line options on `Google Code`_.
 

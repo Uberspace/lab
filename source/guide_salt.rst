@@ -61,7 +61,7 @@ Installing Salt in a ``virtualenv`` using python 3.8 (latest available python on
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ mkdir -p ~/salt_venv/etc/salt ~/salt_venv/var/log/salt
  [isabell@stardust ~]$ curl https://raw.githubusercontent.com/saltstack/salt/master/conf/master -o ~/salt_venv/etc/salt/master
- 
+
 
 Configuration
 =============

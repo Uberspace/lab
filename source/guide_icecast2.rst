@@ -131,7 +131,7 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
      <shoutcast-mount>/stream</shoutcast-mount>
      <ssl>1</ssl>
   </listen-socket>
-  
+
 ::
 
   <paths>
@@ -163,7 +163,7 @@ Change permissions and execute this script initially.
   [isabell@stardust ~]$ chmod +x ~/var/log/icecast/
   [isabell@stardust ~]$ ~/share/icecast/update-cert.sh
   [isabell@stardust ~]$
-  
+
 Edit crontab with ``crontab -e`` and add following line for monthly execution.
 
 ::

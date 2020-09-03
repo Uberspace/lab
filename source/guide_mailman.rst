@@ -58,7 +58,7 @@ Mailman requires `dnspython`. Install it using `pip`:
    Using cached https://files.pythonhosted.org/packages/ec/d3/3aa0e7213ef72b8585747aa0e271a9523e713813b9a20177ebe1e939deb0/dnspython-1.16.0-py2.py3-none-any.whl
  Installing collected packages: dnspython
  Successfully installed dnspython
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Installation
 ============

@@ -111,9 +111,9 @@ We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
  [program:jenkins]
  directory=%(ENV_HOME)s/Jenkins/Jenkins_home
- environment=JENKINS_HOME="%(ENV_HOME)s/Jenkins/Jenkins_home" 
+ environment=JENKINS_HOME="%(ENV_HOME)s/Jenkins/Jenkins_home"
  command=java -jar %(ENV_HOME)s/Jenkins/jenkins.war --httpPort=8080 --enable-future-java
- 
+
 .. include:: includes/supervisord.rst
 
 Your Jenkins is now up and running as a service.

@@ -240,14 +240,14 @@ Create `~/bin/nextcloud-update` with the following content:
 
  #!/usr/bin/env bash
  php ~/html/updater/updater.phar --no-interaction
- 
+
  ## database optimizations
  ## The following command works from Nextcloud 19.
  ## remove '#' so it is working
  #php ~/html/occ db:add-missing-columns
  php ~/html/occ db:add-missing-indices
  php ~/html/occ db:convert-filecache-bigint
- 
+
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
  restorecon -vR ~/html

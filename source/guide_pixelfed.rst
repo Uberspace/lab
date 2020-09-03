@@ -112,7 +112,7 @@ Configuration
 
 Copy the example configuration file ``.env.example`` to ``.env`` and generate a key into the config:
 
-:: 
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ cp .env.example .env
@@ -131,7 +131,7 @@ Open the file ``.env`` in your favourite editor and adjust the following blocks 
  APP_DOMAIN="isabell.uber.space"
  ADMIN_DOMAIN="isabell.uber.space"
  SESSION_DOMAIN="isabell.uber.space"
- 
+
  DB_CONNECTION=mysql
  DB_HOST=localhost
  DB_PORT=3306
@@ -178,7 +178,7 @@ Cache + Optimization Commands
 
 Running the following commands is recommend when running Pixelfed in production:
 
-:: 
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan config:cache
@@ -210,7 +210,7 @@ Import Places Data
 
 Run the following command to import the Places data:
 
-:: 
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan import:cities
@@ -227,7 +227,7 @@ Run the following command to import the Places data:
 Installing Horizon
 ------------------
 
-.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures. 
+.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures.
 
 To install Horizon, run the following commands and recache the routes:
 
@@ -244,9 +244,9 @@ To install Horizon, run the following commands and recache the routes:
  Routes cached successfully!
  [isabell@stardust pixelfed]$
 
-Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content: 
+Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content:
 
-.. note:: Make sure to replace ``Isabell`` with your user name. 
+.. note:: Make sure to replace ``Isabell`` with your user name.
 
 .. code-block:: ini
 

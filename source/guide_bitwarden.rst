@@ -30,7 +30,7 @@ Bitwarden_ is an open source password manager. Your vault is encrypted with your
   * :manual:`domains <web-domains>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`web-backends <web-backends>`
-  
+
 
 License
 =======
@@ -71,8 +71,8 @@ Clone the repository into your home directory. It will create the directory ``~/
  [isabell@stardust ~]$ git clone https://github.com/dani-garcia/bitwarden_rs.git
  [isabell@stardust ~]$ cd bitwarden_rs
  [isabell@stardust bitwarden_rs]$ git checkout origin/async
- [isabell@stardust bitwarden_rs]$ 
- 
+ [isabell@stardust bitwarden_rs]$
+
 In order to build bitwarden_rs  sucessfully you'll need to set an environment variable pointing to the sqlite3 header files:
 
 .. code-block:: console
@@ -84,7 +84,7 @@ In order to build bitwarden_rs  sucessfully you'll need to set an environment va
 .. code-block:: console
 
  [isabell@stardust ~]$ cd bitwarden_rs
- [isabell@stardust bitwarden_rs]$ 
+ [isabell@stardust bitwarden_rs]$
 
 Build the server executable:
 
@@ -106,7 +106,7 @@ In the next step we will download the latest build for the web vault. Check `thi
  [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.13.2.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
- 
+
 Generate an ``openssl -base64`` key now and save it temporarily, you'll need it in the next step.
 
 .. code-block:: console
@@ -127,7 +127,7 @@ Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following c
  SMTP_SSL=true
  SMTP_USERNAME=isabell@uber.space
  SMTP_PASSWORD=MySuperSecretPassword
- 
+
  DOMAIN=https://isabell.uber.space
 
 Replace the mail placeholder variables with your valid IMAP credentials, otherwise the bitwarden_rs server will not be able to send you mail notifications or tokens to verify newly created user accounts.
@@ -187,7 +187,7 @@ Use your favourite editor to create ``~/etc/services.d/bitwarden_rs.ini`` with t
 
 If it's not in state RUNNING, check your configuration.
 
- 
+
 Finishing installation
 ======================
 
@@ -206,7 +206,7 @@ You can create a backup of the database manually. ``cd`` to your project folder,
  [isabell@stardust ~]$ cd ~/bitwarden_rs/data
  [isabell@stardust data]$ mkdir db-backup
  [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '~/bitwarden_rs/data/db-backup/backup.sqlite3'"
- 
+
 .. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time.
 
 Restore up your vault manually
@@ -250,7 +250,7 @@ In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific d
 
  SIGNUPS_DOMAINS_WHITELIST=example.com # single domain
  SIGNUPS_DOMAINS_WHITELIST=example.com,example.net,example.org # multiple domains
- 
+
 .. warning ::  be careful using this feature. `At the moment`_ the emails are currently not checked, meaning that anyone could still register, by providing a fake email address that has the proper domain. So at the moment this is more security by obscurity. This seems to be fixedd in an upcoming release, so make sure to check the feed_ regularly to stay informed about the newest version.
 
 Disable password hint display
@@ -281,8 +281,8 @@ Updating bitwarden_rs is really easy. Just stop the server, pull everything and 
  [isabell@stardust web-vault]$ tar -xvzf new-release.tar.gz
  [isabell@stardust web-vault]$ cd ..
  [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release
- [isabell@stardust bitwarden_rs]$ 
- 
+ [isabell@stardust bitwarden_rs]$
+
 .. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration. You can check the service's log file using ``supervisorctl tail -f bitwarden_rs``.

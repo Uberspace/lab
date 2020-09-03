@@ -74,7 +74,7 @@ Next change into the Lychee directgory and update the Composer repository:
  Package operations: 134 installs, 7 updates, 0 removals
  ...
  [isabell@stardust isabell]$
- 
+
 After this, the required dependencies need to be installed:
 
 ::
@@ -91,7 +91,7 @@ Finally, setup a symbolic link for the ``public`` folder within the ``html`` fol
 ::
 
  [isabell@stardust isabell]$ ln -s Lychee/public html/Lychee
- 
+
 Now point your browser to your Lychee URL and follow the instructions.
 
 You will need to enter the following information:

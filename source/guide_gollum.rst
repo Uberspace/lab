@@ -102,7 +102,7 @@ However Gollum is not yet reachable from the internet. So, close the Gollum appl
 Setting up a web backend
 ------------------------
 
-.. note:: By default Gollum runs on port 4567, so we need to create a web backend for this port. 
+.. note:: By default Gollum runs on port 4567, so we need to create a web backend for this port.
 .. include:: includes/web-backend.rst
 
 .. note:: If you want to run Gollum under a different URL, just adjust the "/" parameter in the command above to match your preferred path.

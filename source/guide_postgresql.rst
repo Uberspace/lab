@@ -164,12 +164,12 @@ Now create the database cluster:
  [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
  The files belonging to this database system will be owned by user "<username>".
  This user must also own the server process.
- 
+
  The database cluster will be initialized with locale "de_DE.UTF-8".
  The default text search configuration will be set to "german".
- 
+
  Data page checksums are disabled.
- 
+
  creating directory /home/<username>/opt/postgresql/data ... ok
  creating subdirectories ... ok
  selecting dynamic shared memory implementation ... posix
@@ -180,11 +180,11 @@ Now create the database cluster:
  running bootstrap script ... ok
  performing post-bootstrap initialization ... ok
  syncing data to disk ... ok
- 
+
  Success. You can now start the database server using:
- 
+
     pg_ctl -D /home/<username>/opt/postgresql/data/ -l logfile start
- 
+
  [isabell@stardust ~]$
 
 The temporary password file is no longer necessary:

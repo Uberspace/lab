@@ -148,7 +148,7 @@ Perform a Django deployment check, which will give some configuration recommenda
 
      WARNINGS:
     ...
-    [isabell@stardust etesync_server]$ 
+    [isabell@stardust etesync_server]$
 
 Open ``~/etesync_server/etesync_site_settings.py`` again and add the recommended configuration at the end:
 
@@ -171,7 +171,7 @@ Perform the check again to make sure all warnings have been resolved:
 
     [isabell@stardust etesync_server]$ python3.6 manage.py check --deploy
     System check identified no issues (0 silenced).
-    [isabell@stardust etesync_server]$ 
+    [isabell@stardust etesync_server]$
 
 
 Step 7: Web backend configuration
@@ -251,10 +251,10 @@ First, you have to create an admin user:
     [isabell@stardust etesync_server]$ python3.6 manage.py createsuperuser
     Username (leave blank to use 'isabell'):
     Email address: isabell@uber.space
-    Password: 
-    Password (again): 
+    Password:
+    Password (again):
     Superuser created successfully.
-    [isabell@stardust etesync_server]$ 
+    [isabell@stardust etesync_server]$
 
 .. warning:: It is not recommended to use the admin user in daily life (i.e. for syncing data between your devices).
              So, go to ``https://isabell.uber.space/admin``, log in with your admin user credentials
@@ -325,7 +325,7 @@ with ``git`` (make sure to replace ``v0.3.x`` with the latest version number):
     [isabell@stardust etesync_server]$ pip3.6 install -U -r requirements.txt
     [isabell@stardust etesync_server]$ python3.6 manage.py migrate
     [isabell@stardust etesync_server]$ python3.6 manage.py collectstatic
-    [isabell@stardust etesync_server]$ 
+    [isabell@stardust etesync_server]$
 
 
 .. _EteSync: https://www.etesync.com/

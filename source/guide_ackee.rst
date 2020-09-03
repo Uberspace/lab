@@ -48,7 +48,7 @@ Starting with `Version 2.0.0`_, Ackee also requires the use of :manual:`Node.js 
  Selected node version 14
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
- 
+
 Set up your domain:
 
 .. include:: includes/web-domain-list.rst
@@ -61,7 +61,7 @@ Install ``yarn`` globally:
 .. code-block:: console
 
   [isabell@stardust ~]$ npm install yarn -g
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Clone the `GitHub repository <https://github.com/electerious/Ackee>`_ and install the dependencies:
 
@@ -77,7 +77,7 @@ Configuration
 Ackee Config
 ------------
 
-Create a new, empty ``.env`` file in the root of the Ackee_ directory. Add the following content, replacing the placeholders. The environment variables ``ACKEE_USERNAME`` and ``ACKEE_PASSWORD`` define the credentials to log into the web interface. If you want to use Ackee_ to analyze a domain other than ``isabell.uber.space``, you have to add it under ``ACKEE_ALLOW_ORIGIN`` (read more about the CORS headers `in the Ackee documentation <https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md>`_). 
+Create a new, empty ``.env`` file in the root of the Ackee_ directory. Add the following content, replacing the placeholders. The environment variables ``ACKEE_USERNAME`` and ``ACKEE_PASSWORD`` define the credentials to log into the web interface. If you want to use Ackee_ to analyze a domain other than ``isabell.uber.space``, you have to add it under ``ACKEE_ALLOW_ORIGIN`` (read more about the CORS headers `in the Ackee documentation <https://github.com/electerious/Ackee/blob/master/docs/CORS%20headers.md>`_).
 
 .. code-block:: console
 

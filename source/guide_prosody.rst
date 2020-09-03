@@ -121,7 +121,7 @@ Prosody is written in ``lua`` and has some runtime dependencies which we install
 ::
 
  PATH=$HOME/.luarocks/bin:$PATH
- 
+
  export PATH
 
 Additionally we need to provide the paths ``LUA_PATH`` as well as ``LUA_CPATH`` and have to reload to use ``luarocks`` accordingly:
@@ -215,10 +215,10 @@ Configure, build and install prosody:
  Done. You can now run 'make' to build.
 
  [isabell@stardust prosody-0.11.5]$ make
- [...] 
+ [...]
  [isabell@stardust prosody-0.11.5]$ make install
- [...] 
- [isabell@stardust prosody-0.11.5]$ 
+ [...]
+ [isabell@stardust prosody-0.11.5]$
 
 Configuration
 =============
@@ -234,7 +234,7 @@ To improve the security you can generate a Diffie–Hellman parameter file with 
 
  [isabell@stardust ~]$ openssl dhparam -out ~/etc/prosody/certs/dhparam-4096.pem 4096
  [...]
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Install modules
 ---------------
@@ -271,7 +271,7 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  s2s_ports = { S2S-PORT }
  s2s_timeout = 300
  ssl = {
-   dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";         
+   dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";
    cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
    ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
    options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
@@ -279,12 +279,12 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize = false;
  storage = "sql"
- sql = { 
-   driver = "MySQL", 
-   database = "isabell_prosody", 
-   username = "isabell", 
-   password = "MySuperSecretPassword", 
-   host = "localhost" 
+ sql = {
+   driver = "MySQL",
+   database = "isabell_prosody",
+   username = "isabell",
+   password = "MySuperSecretPassword",
+   host = "localhost"
  }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
@@ -293,14 +293,14 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  https_ports = { FILEUPLOAD-PORT }
 
  ----------- Virtual hosts -----------
- VirtualHost "isabell.org" 
+ VirtualHost "isabell.org"
  Component "conference.isabell.org" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "upload.isabell.org" "http_upload" 
+ Component "upload.isabell.org" "http_upload"
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
-.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody! 
+.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
 
 Setup deamon
 ============
@@ -326,7 +326,7 @@ Finishing installation
 Create your first user:
 
 .. code-block:: console
- :emphasize-lines: 1-3 
+ :emphasize-lines: 1-3
 
  [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.org
  Enter new password:
@@ -362,11 +362,11 @@ For updates simply repeat the steps described in the Installation_ part:
  Done. You can now run 'make' to build.
 
  [isabell@stardust prosody-X.XX.X]$ make
- [...] 
+ [...]
  [isabell@stardust prosody-X.XX.X]$ make install
- [...] 
+ [...]
  [isabell@stardust prosody-X.XX.X]$ supervisorctl restart prosody
- [isabell@stardust prosody-X.XX.X]$ 
+ [isabell@stardust prosody-X.XX.X]$
 
 Update the community prosody modules:
 

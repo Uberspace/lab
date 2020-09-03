@@ -3,7 +3,7 @@
 .. tag:: lang-nodejs
 .. tag:: web
 .. tag:: ide
-.. tag:: collaborative-editing 
+.. tag:: collaborative-editing
 
 .. highlight:: console
 
@@ -48,7 +48,7 @@ Create a new folder for code-server_ & its data in your home directory and switc
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/code-server-data && mkdir ~/code-server && cd ~/code-server
-  [isabell@stardust code-server]$ 
+  [isabell@stardust code-server]$
 
 
 Then download the latest release_ for x86_64. Make sure to the ``x.x.x`` with the current version in all following snippets.
@@ -84,7 +84,7 @@ Setup daemon
 
     Be aware that almost all configuration of code-server_ happens via command line arguments and so in this file. You can see all available command line arguments when running code-server_ with the ``--help`` argument. For example, you can disable telemetry by adding ``--disable-telemetry``.
 
-Create ``~/etc/services.d/code-server.ini`` with the following content. 
+Create ``~/etc/services.d/code-server.ini`` with the following content.
 Make sure to `<password>` with your password.
 
 .. code-block:: ini
@@ -123,14 +123,14 @@ Stop your code-server instance first.
 
   [isabell@stardust ~]$ supervisorctl stop code-server
   code-server: stopped
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Switch into code-server's folder we created when installing code-server.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/code-server
-  [isabell@stardust code-server]$ 
+  [isabell@stardust code-server]$
 
 
 Then download the latest release_ for x86_64. Make sure to the ``x.x.x`` with the current version in all following snippets.
@@ -157,7 +157,7 @@ You can now delete the archive and start code-server again:
   [isabell@stardust code-server]$ rm code-server-x.x.x-linux-x86_64.tar.gz
   [isabell@stardust code-server]$ supervisorctl start code-server
   code-server: started
-  [isabell@stardust code-server]$ 
+  [isabell@stardust code-server]$
 
 ----
 

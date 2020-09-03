@@ -96,7 +96,7 @@ Now we need to install the dependencies:
   found 0 vulnerabilities
   [isabell@stardust cryptpad]$ bower install
   (...)
-  [isabell@stardust cryptpad]$ 
+  [isabell@stardust cryptpad]$
 
 
 Configuration
@@ -124,13 +124,13 @@ Open ``config/config.js`` in an editor and edit following lines:
   httpSafeOrigin: "https://isabell.uber.space/",
 
 
-2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.  
+2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.
 
 3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
 
 .. note::
   If you forget to make change 2, the command ``uberspace web backend list`` will later complain as follows:
-  
+
   .. code-block:: console
 
    [isabell@stardust ~]$ uberspace web backend list

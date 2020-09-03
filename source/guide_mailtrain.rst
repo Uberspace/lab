@@ -1,4 +1,4 @@
-.. author:: Felix Förtsch <https://felixfoertsch.de> 
+.. author:: Felix Förtsch <https://felixfoertsch.de>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -88,7 +88,7 @@ Copy the example config file:
 Update ``production.toml`` with your MySQL settings; look for the ``[mysql]`` block:
 
 .. code-block:: console
-  
+
   ...
 
   [mysql]

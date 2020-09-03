@@ -30,7 +30,7 @@ EtherCalc_ is a web spreadsheet based on node-js and redis. People can edit the 
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`web-backends <web-backends>`
   * :lab:`redis <guide_redis>`
-  
+
 
 License
 =======
@@ -61,7 +61,7 @@ Installation
 Install node module
 -------------------
 
-Create a directory, ``cd`` into it and install the node module using the provided node packet manager `npm`: 
+Create a directory, ``cd`` into it and install the node module using the provided node packet manager `npm`:
 
 .. code-block:: console
 
@@ -115,7 +115,7 @@ Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-sock
 
 If it's not in state RUNNING, check your configuration.
 
- 
+
 Finishing installation
 ======================
 

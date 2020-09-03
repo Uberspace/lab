@@ -121,7 +121,7 @@ Your Umami installation will create a default administrator account with the use
 
 .. warning:: The first thing you will want to do is log in and change your password.
 
-For more information check the umami_ documentation. 
+For more information check the umami_ documentation.
 
 Updates
 -------

@@ -28,7 +28,7 @@ Pleroma_ is a free, federated social networking server built on open protocols. 
   * :manual:`Cron <daemons-cron>`
   * :manual:`web backends <web-backends>`
   * :manual:`Erlang <lang-erlang>`
- 
+
 Prerequisites
 =============
 
@@ -139,14 +139,14 @@ Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling t
  Writing config to config/generated_config.exs.
  Writing the postgres script to config/setup_db.psql.
  Writing instance/static/robots.txt.
- 
+
  All files successfully written! Refer to the installation instructions for your platform for next steps.
  [isabell@stardust pleroma]$
 
 Create new PostgreSQL user and database from file
 -------------------------------------------------
 
-You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additional it install the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database. 
+You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additional it install the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database.
 Run the script with ``psql``:
 
 ::
@@ -163,13 +163,13 @@ Run the script with ``psql``:
 Recommended minimum settings
 ----------------------------
 
-Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it to ``prod.secret.exs``. 
+Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it to ``prod.secret.exs``.
 
 ::
 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$
- 
+
 For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines:
 
 .. code-block:: none
@@ -278,7 +278,7 @@ Updates
 
 .. note:: Check the release notes_ regularly to stay informed about the newest version.
 
-Stop the Pleroma service: 
+Stop the Pleroma service:
 
 ::
 
