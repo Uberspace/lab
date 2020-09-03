@@ -177,11 +177,11 @@ Your blog URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download the source
+-------------------
 
-Step 2
-------
+Comple the code
+---------------
 
 Configuration
 =============
