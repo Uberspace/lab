@@ -58,7 +58,7 @@ Please follow our rules to keep the guides maintainable and consistent.
 ```
 
  * Always end your console code blocks with `[isabell@stardust ~]$`.
- * If you use flags, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
+ * If you use flags and their function cannot be determined by just reading their name, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
 
 ```
 Since the installer expects to be run with root privileges, we need to adjust some settings_:
