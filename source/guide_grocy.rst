@@ -41,12 +41,11 @@ Installation
 Step 1
 -----
 
-Download grocy.
+Download grocy to your home directory.
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER
- [isabell@stardust isabell]$ wget https://releases.grocy.info/latest -O grocy_latest.zip
+ [isabell@stardust ~]$ wget https://releases.grocy.info/latest -O grocy_latest.zip
  […]
  Saving to: ‘grocy_latest.zip’
 
@@ -62,9 +61,9 @@ Unpack the downloaded grocy release
 
 ::
 
- [isabell@stardust isabell]$ unzip -q grocy_latest.zip -d grocy
- [isabell@stardust isabell]$ rm grocy_latest.zip
- [isabell@stardust isabell]$
+ [isabell@stardust ~]$ unzip -q grocy_latest.zip -d grocy
+ [isabell@stardust ~]$ rm grocy_latest.zip
+ [isabell@stardust ~]$
 
 
 Step 3
@@ -74,16 +73,16 @@ If you want to only host grocy on your Uberspace (best practice since Uberspace 
 DocumentRoot to grocy's public folder:
 
 ::
-
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER
  [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ ln -s grocy/public html
+ [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html
  [isabell@stardust isabell]$
 
 If you instead want to host grocy alongside other applications, just leave the html folder and create the link inside of it, like this:
 
 ::
 
- [isabell@stardust isabell]$ ln -s public html/grocy
+ [isabell@stardust isabell]$ ln -s /home/$USER/grocy/public /var/www/virtual/$USER/html/grocy
  [isabell@stardust isabell]$
 
 Please note that this will require further tweaking in the config file.
@@ -91,11 +90,12 @@ Please note that this will require further tweaking in the config file.
 Step 4
 ------
 
+Go back to your grocy in your home directory.
 Copy the default config file to ``data/config.php`` and edit it to your liking
 
 ::
 
- [isabell@stardust isabell]$ cd grocy
+ [isabell@stardust isabell]$ cd ~/grocy
  [isabell@stardust grocy]$ cp config-dist.php data/config.php
  [isabell@stardust grocy]$ nano data/config.php
  [isabell@stardust grocy]$
@@ -123,11 +123,11 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Grocy comes with a handy update script, so just run this and copy the public files to html again.
+Grocy comes with a handy update script, so just run it.
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/grocy
+ [isabell@stardust ~]$ cd ~/grocy
  [isabell@stardust grocy]$ bash update.sh
  [isabell@stardust grocy]$
 
