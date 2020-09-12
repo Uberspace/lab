@@ -179,6 +179,13 @@ In order for your Radicale instance to be reachable from the web, you need to pu
 Again, don't forget to fill in your username!
 
 
+.. note:: If you want to setup radicale to be accessible in a subfolder (not in the home directory), add the "X-Script-Name" Header to the end of the ``.htaccess`` file:
+
+.. code-block:: ini
+
+RequestHeader set X-Script-Name /<foldername>
+
+
 Start Service
 -------------
 
