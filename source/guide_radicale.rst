@@ -183,7 +183,7 @@ Again, don't forget to fill in your username!
 
 .. code-block:: ini
 
-RequestHeader set X-Script-Name /<foldername>
+    RequestHeader set X-Script-Name /<foldername>
 
 
 Start Service
