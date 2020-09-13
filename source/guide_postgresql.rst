@@ -13,7 +13,7 @@ PostgreSQL
 
 PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
 
-Some projects (e.g. Miniflux2) require PostgreSQL and many others support it as an alternative to MySQL.
+Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
 
 License
 =======
@@ -60,7 +60,7 @@ Step 2 - Source Code Configuration, Compiling and Installation
 Before we start, we have to consider some aspects, e.g. Python support, and corresponding settings, regarding to a shared hosting environment like Uberspace:
 
  * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
- * ``--with-python PYTHON=/usr/bin/python2``: Compiling with Python 2.x support. Alternatively you can choose ``/usr/bin/python3``. Both are links to the actual supported Python versions.
+ * ``--with-python PYTHON=/usr/bin/python3``: Compiling with Python 3.x support. Alternatively you can choose ``/usr/bin/python2`` or any other version.
  * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude Readline with this option.
 
 Other options can be found in the PostgreSQL documentation_.
@@ -69,7 +69,7 @@ Now configure and compile the source code and finally install it.
 
 .. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider installing everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
+.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider to install all modules. This is done bby using the target ``world`` for ``make`` and ``make install``.
 
 ::
 
@@ -246,6 +246,17 @@ Consider using only unix sockets if possible.
                                         # (change requires restart)
  #bonjour_name = ''                     # defaults to the computer name
                                         # (change requires restart)
+
+
+Because postgres defines the socket as abstract, you cannot see it directly in the filesystem.
+However, if you want to check if they're there, use:
+
+.. code-block:: bash
+
+ [isabell@stardust ~]  lsof -U
+ COMMAND     PID     USER   FD   TYPE             DEVICE SIZE/OFF      NODE NAME
+ ...
+ postgres  30226 isabell    9u  unix 0xffff9c03c7b0cc80      0t0 304553459 /home/isabell/tmp/.s.PGSQL.5432
 
 
 Setup Daemon
