@@ -37,21 +37,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-You need a running :lab:`Postgresql <guide_postgresql>` database server, a dedicated user with a secure password and database for Synapse_.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ createuser synapse -P
-  Enter password for new role:
-  Enter it again:
-  [isabell@stardust ~]$ createdb \
-    --encoding=UTF8 \
-    --lc-collate=C \
-    --lc-ctype=C \
-    --owner="synapse" \
-    --template=template0 \
-    synapse
-  [isabell@stardust ~]$
+If you want to run synapse with postgresql instead of sqlite you need a running :lab:`Postgresql <guide_postgresql>` database server.
 
 Installation
 ============
@@ -182,6 +168,31 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
 Configure Database Access
 -------------------------
 
+If you are planning to use sqlite instead of postgres, skip this step.
+
+Setup a dedicated postgres user and database for synapse:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ createuser synapse -P
+  Enter password for new role:
+  Enter it again:
+  [isabell@stardust ~]$ createdb \
+    --encoding=UTF8 \
+    --lc-collate=C \
+    --lc-ctype=C \
+    --owner="synapse" \
+    --template=template0 \
+    synapse
+  [isabell@stardust ~]$
+  
+You can verify access with:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ psql synapse synapse
+  
+
 Modify the config file again to give synapse access to the database:
 
 .. code-block:: yaml
@@ -198,6 +209,8 @@ Modify the config file again to give synapse access to the database:
             host: "/home/isabell/tmp"
             cp_min: 5
             cp_max: 10
+            
+Comment out the active sqlite database. If you are using a different port for postgres, add a port property below host.
 
 Enable user search
 ------------------
