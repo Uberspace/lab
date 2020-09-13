@@ -115,10 +115,13 @@ And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
 .. include:: includes/web-backend.rst
 
+Announcement
+------------
+
 To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
 
 Option A: DNS announcement
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: This is the older method, harder to implement but supporting all servers.
 
@@ -137,7 +140,7 @@ For example like this:
 .. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
 
 Option B:.well-known announcement
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: This is the newer method, easier to implement but not supported on older servers.
 
@@ -168,7 +171,9 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
 Configure Database Access
 -------------------------
 
-If you are planning to use sqlite instead of postgres, skip this step.
+
+Option A: Postgres
+^^^^^^^^^^^^^^^^^^
 
 Setup a dedicated postgres user and database for synapse:
 
@@ -211,6 +216,11 @@ Modify the config file again to give synapse access to the database:
             cp_max: 10
             
 Comment out the active sqlite database. If you are using a different port for postgres, add a port property below host.
+
+Option B: Sqlite
+^^^^^^^^^^^^^^^^
+
+For the file-based sqlite database, leave the standard config in ``~/synapse/homeserver.yaml``.
 
 Enable user search
 ------------------
