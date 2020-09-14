@@ -248,16 +248,7 @@ Consider using only unix sockets if possible.
                                         # (change requires restart)
 
 
-Because postgres defines the socket as abstract, you cannot see it directly in the filesystem.
-However, if you want to check if they're there, use:
-
-.. code-block:: bash
-
- [isabell@stardust ~]  lsof -U
- COMMAND     PID     USER   FD   TYPE             DEVICE SIZE/OFF      NODE NAME
- ...
- postgres  30226 isabell    9u  unix 0xffff9c03c7b0cc80      0t0 304553459 /home/isabell/tmp/.s.PGSQL.5432
-
+You can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
 
 Setup Daemon
 ------------
