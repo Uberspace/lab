@@ -67,7 +67,7 @@ Make sure to have your PostgreSQL credentials ready. You will need an existing `
 
 Create ``~/bin/commento_daemon`` and add the following content:
 
-.. warning:: Replace replace all placeholders ``<*>`` with your values!
+.. warning:: Replace all placeholders ``<*>`` with your values!
 
 .. code-block:: bash
 
@@ -132,7 +132,7 @@ Additional Notes
 If you are the only user of the Commento instance, it would be advisable to disable the new owner sign up, after you registered your site.
 Add this to your ``commento_daemon`` above the ``/home/isabell/commento/commento`` call:
 
-.. note:: This doe not impact the commenting users of your site!
+.. note:: This does not impact the commenting users of your site!
 
 .. code-block:: bash
 
@@ -142,7 +142,7 @@ Then restart Commento:
 
 ::
 
- [isabell@stardust ~]$ supervisorctl retart commento
+ [isabell@stardust ~]$ supervisorctl restart commento
  commento: stopped
  commento: started
  [isabell@stardust ~]$
