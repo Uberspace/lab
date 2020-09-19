@@ -49,7 +49,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 13:
  The new configuration is adapted immediately. Minor updates will be applied automatically.
  [isabell@stardust ~]$
 
-If you want to use Bitwarden_rs with your own domain you need to setup your domain first:
+If you want to use Bitwarden_rs with your own domain you need to set up your domain first:
 
 .. include:: includes/web-domain-list.rst
 
@@ -73,7 +73,7 @@ Clone the repository into your home directory. It will create the directory ``~/
  [isabell@stardust bitwarden_rs]$ git checkout origin/async
  [isabell@stardust bitwarden_rs]$
 
-In order to build bitwarden_rs  sucessfully you'll need to set an environment variable pointing to the sqlite3 header files:
+In order to build bitwarden_rs  successfully you'll need to set an environment variable pointing to the sqlite3 header files:
 
 .. code-block:: console
 
@@ -102,8 +102,8 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.13.2/bw_web_v2.13.2.tar.gz
- [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.13.2.tar.gz
+ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.16.0b/bw_web_v2.16.0b.tar.gz
+ [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.16.0b.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
 
@@ -232,7 +232,7 @@ Disable registration and invitations
 
 By default, bitwarden_rs allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your bitwarden_rs server.
 
-Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the the following content:
+Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the following content:
 
 .. code-block:: ini
 
@@ -269,18 +269,20 @@ Update
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Updating bitwarden_rs is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again:
+Updating bitwarden_rs is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again. To get the download link for the newest version of the web-vault look here web-vault-feed_.
+
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/bitwarden_rs
  [isabell@stardust bitwarden_rs]$ supervisorctl stop bitwarden_rs
  [isabell@stardust bitwarden_rs]$ git pull
- [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault && cd web-vault
- [isabell@stardust web-vault]$ wget new-release.tar.gz
- [isabell@stardust web-vault]$ tar -xvzf new-release.tar.gz
- [isabell@stardust web-vault]$ cd ..
- [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release
+ [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault
+ [isabell@stardust bitwarden_rs]$ wget new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ tar -xvzf new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ rm new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release --features sqlite
+ ....
  [isabell@stardust bitwarden_rs]$
 
 .. include:: includes/supervisord.rst
@@ -301,10 +303,11 @@ This guide is based on the official `bitwarden_rs documentation`_ as well as the
 .. _Bitwarden: https://bitwarden.com/
 .. _Github: https://github.com/dani-garcia/bitwarden_rs
 .. _feed: https://github.com/dani-garcia/bitwarden_rs/releases
+.. _web-vault-feed: https://github.com/dani-garcia/bw_web_builds/releases/latest
 .. _GNU General Public License: https://github.com/dani-garcia/bitwarden_rs/blob/master/LICENSE.txt
 
 ----
 
-Tested with Bitwarden_rs 2.13.2, Uberspace 7.5.1.0
+Tested with Bitwarden_rs 1.16.3 and Web-Vault v2.16.0b, Uberspace 7.5.1.0
 
 .. author_list::
