@@ -280,7 +280,7 @@ If files are missing like if you move files or restore backups on the machine an
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
 
-.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
