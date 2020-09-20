@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: michi <https://github.com/michi-zuri/>
+.. author:: Michi <https://github.com/michi-zuri/>
 
 .. tag:: console
 .. tag:: rust
@@ -41,6 +41,10 @@ Prerequisites
 A NerdFont_ installed and enabled in your terminal on your computer (for example, try the
 FiraCode Nerd Font that can be downloaded from NerdFonts_).
 
+Instructions for installing fonts depend on your local operating systems: Windows10_,
+macOS_. For Linux: read the manual that belongs to your distribution. Blink.sh_ should
+work out of the box.
+
 Installation
 ============
 .. code-block:: console
@@ -76,5 +80,10 @@ That's it, you have successfully installed Starship_ to your Uberspace console:
 .. _Starship: https://starship.rs/
 .. _NerdFont: https://www.nerdfonts.com/
 .. _NerdFonts: https://www.nerdfonts.com/font-downloads
+.. _Windows10: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+.. _macOS: https://support.apple.com/en-us/HT201749
+.. _blink.sh: https://blink.sh/
+
+Tested with Starship v0.44.0 and Uberspace version 7.7.7.0
 
 .. author_list::
