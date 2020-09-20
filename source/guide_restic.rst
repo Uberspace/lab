@@ -54,16 +54,16 @@ Installation
 ============
 
 You can find and download the latest stable release versions of restic from the `restic
-release page <https://github.com/restic/restic/releases/latest>`__. SHA256 checksums and GPG signed files can also be found there.
+release page <https://github.com/restic/restic/releases/latest>`__. SHA256 checksums and `GPG <https://restic.readthedocs.io/en/latest/090_participating.html#security>`__ signed files can also be found there.
 
 We're installing a compiled restic binary for a 64-bit machine, and making it executable with the following steps:
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.9.6/restic_0.9.6_linux_amd64.bz2
- [isabell@stardust ~]$ bzip2 -d restic_0.9.6_linux_amd64.bz2
- [isabell@stardust restic]$ mv restic_0.9.6_linux_amd64 ~/bin/restic
- [isabell@stardust restic]$ chmod 700 bin/restic
+ [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.10.0/restic_0.10.0_linux_amd64.bz2
+ [isabell@stardust ~]$ bzip2 -d restic_0.10.0_linux_amd64.bz2
+ [isabell@stardust restic]$ mv restic_0.10.0_linux_amd64.bz2 ~/bin/restic
+ [isabell@stardust restic]$ chmod 700 ~/bin/restic
  [isabell@stardust restic]$
 
 
@@ -197,6 +197,6 @@ The binaries can be updated by using the ``restic self-update`` command or by bu
 
 ----
 
-Tested with Restic 0.9.6, Uberspace 7.7.4.0
+Tested with Restic 0.10.0, Uberspace 7.7.7.0
 
 .. author_list::
