@@ -38,10 +38,10 @@ removing some language that is no longer necessary.
 Prerequisites
 ============
 
-A NerdFont_ installed and enabled in your terminal on your computer (for example, try the
+A `Nerd Font`_ installed and enabled in your terminal on your computer (for example, try the
 FiraCode Nerd Font that can be downloaded from NerdFonts_).
 
-Instructions for installing fonts depend on your local operating systems: Windows10_,
+Instructions for installing fonts depend on your local operating systems: `Windows 10`_,
 macOS_. For Linux: read the manual that belongs to your distribution. Blink.sh_ should
 work out of the box.
 
@@ -78,9 +78,9 @@ That's it, you have successfully installed Starship_ to your Uberspace console:
 
 
 .. _Starship: https://starship.rs/
-.. _NerdFont: https://www.nerdfonts.com/
+.. _`Nerd Font`: https://www.nerdfonts.com/
 .. _NerdFonts: https://www.nerdfonts.com/font-downloads
-.. _Windows10: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
+.. _`Windows 10`: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
 .. _macOS: https://support.apple.com/en-us/HT201749
 .. _blink.sh: https://blink.sh/
 
