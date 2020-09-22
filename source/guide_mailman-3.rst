@@ -20,6 +20,8 @@ Mailman 3
 
 `Mailman`_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
 
+.. error:: This guide seems to be **broken** for the current versions of Mailman 3, we would be happy if you want to work on a solution and create a PullRequest. See also the related issue: https://github.com/Uberspace/lab/issues/704
+
 `Mailman 3`_ is a complete re-write of previous versions, consisting of a suite of programs that work together:
 
   * **Mailman Core**; the core delivery engine. This is where you are right now.
