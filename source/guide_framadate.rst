@@ -150,6 +150,10 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 
   If you choose not to do this, set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php`` or you won't be able to access your polls.
 
+.. note::
+
+  If you're using a subdomain, you need to add ``RewriteBase /`` to the ``.htaccess`` file as described `in the section for additional DocumentRoots <https://manual.uberspace.de/web-documentroot.html#additional-documentroots>`_.
+
 Mail
 ----
 
