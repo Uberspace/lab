@@ -68,7 +68,7 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [isabell@stardust ~]$ pip3.8 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
  [...]
  [isabell@stardust ~]$
 
@@ -78,12 +78,11 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
- [isabell@stardust ~]$ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
- [isabell@stardust ~]$ mv dart-sass ./bin/
- [isabell@stardust ~]$ rm dart-sass-1.17.2-linux-x64.tar.gz
- [isabell@stardust ~]$
-
+ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
+ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
+ mv dart-sass ./bin/
+ rm dart-sass-1.17.2-linux-x64.tar.gz
+ 
 
 Get the mailman-suite example configuration
 -------------------------------------------
@@ -91,11 +90,10 @@ To have a starting point for configuration, we use the mailman-suite_ example pr
 
 ::
 
- [isabell@stardust ~]$ git clone https://gitlab.com/mailman/mailman-suite.git
- [isabell@stardust ~]$ mv mailman-suite/mailman-suite_project/ .
- [isabell@stardust ~]$ rm -rf mailman-suite
- [isabell@stardust ~]$ mv mailman-suite_project/ mailman-suite
- [isabell@stardust ~]$
+ git clone https://gitlab.com/mailman/mailman-suite.git
+ mv mailman-suite/mailman-suite_project/ .
+ rm -rf mailman-suite
+ mv mailman-suite_project/ mailman-suite
 
 
 Get and enable uwsgi
