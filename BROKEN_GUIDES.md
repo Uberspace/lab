@@ -10,3 +10,11 @@ Once we or someone else notices that a guide doesn't work anymore, do the follow
     * delete the guide
     * add the deleting commit to the issue
     * close the issue
+
+```rst
+.. error::
+
+  This guide seems to be **broken** for the current versions of XYZ, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/000
+```
