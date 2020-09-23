@@ -68,7 +68,7 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [isabell@stardust ~]$ pip3.8 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
  [...]
  [isabell@stardust ~]$
 
@@ -267,9 +267,9 @@ After we have adjusted our configuration file, we need to compile and configure 
 
  .. code :: bash
 
-  [isabell@stardust ~]$ pip3.6 install --user pysqlite3-binary
+  [isabell@stardust ~]$ pip3.8 install --user pysqlite3-binary
   [...]
-  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.6/site-packages/sqlite3
+  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.8/site-packages/sqlite3
   [isabell@stardust ~]$
 
  Now add this ``~/mailman-suite/settings.py`` in order to have use that version of the ``sqlite3`` instead of the built-in one.
@@ -277,16 +277,16 @@ After we have adjusted our configuration file, we need to compile and configure 
  .. code :: python
 
   import sys
-  sys.path = ['/home/isabell/.local/lib/python3.6/site-packages'] + sys.path
+  sys.path = ['/home/isabell/.local/lib/python3.8/site-packages'] + sys.path
 
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py migrate
+ [isabell@stardust mailman-suite]$ python3.8 manage.py migrate
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py collectstatic
+ [isabell@stardust mailman-suite]$ python3.8 manage.py collectstatic
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py createsuperuser
+ [isabell@stardust mailman-suite]$ python3.8 manage.py createsuperuser
  ? Username (leave blank to use 'isabell'): isabell
  ? Email address: isabell@uber.space
  ? Password:
@@ -299,7 +299,7 @@ When Django is configured, we need to rename the example site to match our needs
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py shell
+ [isabell@stardust mailman-suite]$ python3.8 manage.py shell
 
  >>> from django.contrib.sites.models import Site
  >>> site = Site.objects.get(name='example.com')
@@ -327,7 +327,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  uid = isabell
  gid = isabell
 
- attach-daemon = python3.6 ./manage.py qcluster
+ attach-daemon = python3.8 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
 
@@ -402,14 +402,14 @@ As Mailman 3 consists of multiple independent projects, there is no single RSS f
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 list --outdated --user
+ [isabell@stardust ~]$ pip3.8 list --outdated --user
  [isabell@stardust ~]$
 
 If there are outdated packages, update the mailman packages and their dependencies using:
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ pip3.8 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
  [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
