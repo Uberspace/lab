@@ -66,6 +66,15 @@ Get Mailman 3
 -------------
 Install Mailman 3 and its dependencies via pip.
 
+
+.. note:: In the case that the mailman installation fails with an import error like ``ImportError: cannot import name 'find_namespace_packages'`` on installations this is due to an outdated version of the ``setuptools`` package. It can be upgraded to a newer version for your user using pip itself:
+
+ .. code :: bash
+
+  [isabell@stardust ~]$ pip3.6 install --user --upgrade setuptools wheel
+ [...]
+ [isabell@stardust ~]$
+
 ::
 
  [isabell@stardust ~]$ pip3.6 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
