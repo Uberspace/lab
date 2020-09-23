@@ -27,8 +27,6 @@ Mailman 3
   * **HyperKitty**; the web-based archiver
   * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
-.. note:: This guide only focuses on mail distribution and is missing information on how to archive emails. Please see the `hyperkitty documentation <https://hyperkitty.readthedocs.io/en/latest/install.html#connecting-to-mailman>`_ for this and create a PR 🎉.
-
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -161,6 +159,26 @@ At first, we need to configure the REST interface of the core component. Create 
  [mailman]
  layout: custom
 
+ [archiver.hyperkitty]
+ class: mailman_hyperkitty.Archiver
+ enable: yes
+ configuration: /home/isabell/var/etc/mailman-hyperkitty.cfg
+
+
+
+Configure HyperKitty
+--------------------
+
+HyperKitty is the part of mailman that takes care of archiving mail. It is configured independently and invoked by mailman core. ``~/var/etc/mailman.cfg`` points to the hyperkitty configuration file which needs to be created at the respective location ``~/var/etc/mailman-hyperkitty.cfg``. The following file can be adapted to your usage, make sure to generate a secret API key for your instance.
+
+.. code :: cfg
+
+ [general]
+
+ base_url: http://localhost:8000/hyperkitty/
+ api_key: SecretArchiverAPIKey
+
+
 Daemonizing Mailman Core
 ------------------------
 
@@ -217,10 +235,10 @@ After the REST backend has been configured, we need to configure the Django fron
  ]
 
  MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001'
- MAILMAN_REST_API_USER = 'see_above'
- MAILMAN_REST_API_PASS = 'see_above'
- MAILMAN_ARCHIVER_KEY = '<SecretArchiverAPIKey>'
- MAILMAN_ARCHIVER_FROM = ('0.0.0.0', '::')
+ MAILMAN_REST_API_USER = 'restadmin'
+ MAILMAN_REST_API_PASS = 'restpass'
+ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
+ MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
  [...]
 
