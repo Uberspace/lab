@@ -65,7 +65,10 @@ You will need to enter the following information:
 .. code-block:: console
  :emphasize-lines: 1,6,10
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ mv html html.old
+ [isabell@stardust isabell]$ mkdir html
+ [isabell@stardust isabell]$ cd html
  [isabell@stardust html]$ wp core download
  Downloading WordPress 23.42.1 (en_US)...
  md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
