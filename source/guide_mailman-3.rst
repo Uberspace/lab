@@ -27,8 +27,6 @@ Mailman 3
   * **HyperKitty**; the web-based archiver
   * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
-.. note:: This guide only focuses on mail distribution and is missing information on how to archive emails. Please see the `hyperkitty documentation <https://hyperkitty.readthedocs.io/en/latest/install.html#connecting-to-mailman>`_ for this and create a PR 🎉.
-
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -68,7 +66,7 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [isabell@stardust ~]$ pip3.8 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
  [...]
  [isabell@stardust ~]$
 
@@ -100,7 +98,51 @@ To have a starting point for configuration, we use the mailman-suite_ example pr
 
 Get and enable uwsgi
 ---------------------
-.. include:: includes/install-uwsgi.rst
+Install the required uwsgi package with pip.
+
+::
+
+ [isabell@stardust ~]$ pip3.8 install uwsgi --user
+ [isabell@stardust ~]$
+
+After that, continue with setting it up as a service.
+
+Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
+
+.. code-block:: ini
+
+  [program:uwsgi]
+  command=uwsgi --master --emperor %(ENV_HOME)s/uwsgi/apps-enabled
+  autostart=true
+  autorestart=true
+  stderr_logfile = ~/uwsgi/err.log
+  stdout_logfile = ~/uwsgi/out.log
+  stopsignal=INT
+
+Create needed folders and files for uwsgi:
+
+::
+
+ [isabell@stardust ~]$ mkdir -p ~/uwsgi/apps-enabled
+ [isabell@stardust ~]$ touch ~/uwsgi/err.log 
+ [isabell@stardust ~]$ touch ~/uwsgi/out.log
+ [isabell@stardust ~]$
+
+Tell ``supervisord`` to refresh its configuration and start the service:
+
+::
+
+ [isabell@stardust ~]$ supervisorctl reread
+ uwsgi: available
+ [isabell@stardust ~]$ supervisorctl update
+ uwsgi: added process group
+ [isabell@stardust ~]$ supervisorctl status
+ uwsgi                            RUNNING   pid 26020, uptime 0:03:14
+ [isabell@stardust ~]$
+
+
+If it's not in state RUNNING, check your configuration.
+
 
 Get .qmail helper scripts
 -------------------------
@@ -161,6 +203,26 @@ At first, we need to configure the REST interface of the core component. Create 
  [mailman]
  layout: custom
 
+ [archiver.hyperkitty]
+ class: mailman_hyperkitty.Archiver
+ enable: yes
+ configuration: /home/isabell/var/etc/mailman-hyperkitty.cfg
+
+
+
+Configure HyperKitty
+--------------------
+
+HyperKitty is the part of mailman that takes care of archiving mail. It is configured independently and invoked by mailman core. ``~/var/etc/mailman.cfg`` points to the hyperkitty configuration file which needs to be created at the respective location ``~/var/etc/mailman-hyperkitty.cfg``. The following file can be adapted to your usage, make sure to generate a secret API key for your instance.
+
+.. code :: cfg
+
+ [general]
+
+ base_url: http://localhost:8000/hyperkitty/
+ api_key: SecretArchiverAPIKey
+
+
 Daemonizing Mailman Core
 ------------------------
 
@@ -217,10 +279,10 @@ After the REST backend has been configured, we need to configure the Django fron
  ]
 
  MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001'
- MAILMAN_REST_API_USER = 'see_above'
- MAILMAN_REST_API_PASS = 'see_above'
- MAILMAN_ARCHIVER_KEY = '<SecretArchiverAPIKey>'
- MAILMAN_ARCHIVER_FROM = ('0.0.0.0', '::')
+ MAILMAN_REST_API_USER = 'restadmin'
+ MAILMAN_REST_API_PASS = 'restpass'
+ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
+ MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
  [...]
 
@@ -267,9 +329,9 @@ After we have adjusted our configuration file, we need to compile and configure 
 
  .. code :: bash
 
-  [isabell@stardust ~]$ pip3.6 install --user pysqlite3-binary
+  [isabell@stardust ~]$ pip3.8 install --user pysqlite3-binary
   [...]
-  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.6/site-packages/sqlite3
+  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.8/site-packages/sqlite3
   [isabell@stardust ~]$
 
  Now add this ``~/mailman-suite/settings.py`` in order to have use that version of the ``sqlite3`` instead of the built-in one.
@@ -277,16 +339,16 @@ After we have adjusted our configuration file, we need to compile and configure 
  .. code :: python
 
   import sys
-  sys.path = ['/home/isabell/.local/lib/python3.6/site-packages'] + sys.path
+  sys.path = ['/home/isabell/.local/lib/python3.8/site-packages'] + sys.path
 
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py migrate
+ [isabell@stardust mailman-suite]$ python3.8 manage.py migrate
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py collectstatic
+ [isabell@stardust mailman-suite]$ python3.8 manage.py collectstatic
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py createsuperuser
+ [isabell@stardust mailman-suite]$ python3.8 manage.py createsuperuser
  ? Username (leave blank to use 'isabell'): isabell
  ? Email address: isabell@uber.space
  ? Password:
@@ -299,7 +361,7 @@ When Django is configured, we need to rename the example site to match our needs
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py shell
+ [isabell@stardust mailman-suite]$ python3.8 manage.py shell
 
  >>> from django.contrib.sites.models import Site
  >>> site = Site.objects.get(name='example.com')
@@ -327,7 +389,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  uid = isabell
  gid = isabell
 
- attach-daemon = python3.6 ./manage.py qcluster
+ attach-daemon = python3.8 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
 
@@ -402,14 +464,14 @@ As Mailman 3 consists of multiple independent projects, there is no single RSS f
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 list --outdated --user
+ [isabell@stardust ~]$ pip3.8 list --outdated --user
  [isabell@stardust ~]$
 
 If there are outdated packages, update the mailman packages and their dependencies using:
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ pip3.8 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
  [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
