@@ -81,6 +81,10 @@ You will need to enter the following information:
 
 WordPress will generate a secure password for the admin user.
 
+.. note:: Uberspace writes an index.html file into the Uberspace. If you want browsers to actually load the Wordpress frontend you have to delete it, so browsers don't ignore the index.php.
+.. code-block:: console
+[isabell@stardust]$ rm -rf /var/www/virtual/$USER/html/index.html
+
 Updates
 =======
 
