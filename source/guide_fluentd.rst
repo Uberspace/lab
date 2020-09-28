@@ -111,7 +111,7 @@ Create the default configuration in the ``~/fluentd`` directory.
  Installed /home/isabell/fluentd/fluent.conf.
  [isabell@stardust ~]$
 
-Edit this configuration and comment out the following lines:
+Edit the config file ``~/fluentd/fluent.conf`` and comment out the following lines:
 
 .. code-block::
 
