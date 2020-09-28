@@ -144,9 +144,9 @@ List-specific settings need to be passed as command line options. Here are some 
 ``-a``
     Create a list archive.
 
-A common setup is to allow subscribers to post to the list and hold messages by any other address in moderation. For this setup you need to apply **both ``-u`` and ``-m`` **.
+.. note:: A common setup is to allow subscribers to post to the list and hold messages by any other address in moderation. For this setup you need to apply both ``-u`` and ``-m``.
 
-To **turn off** options, the according *capitalized* option must be used
+To **turn off** options, the according **capitalized** option must be used.
 
 The command to add a new list ``mylist@isabell.uber.space`` with the list owner ``owner@domain.org`` without an archive (-A) that allows subscribers to post (-u) and holds foreign senders in moderation (-m) looks like this:
 
