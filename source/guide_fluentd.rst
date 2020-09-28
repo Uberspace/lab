@@ -141,7 +141,6 @@ Create ``~/etc/services.d/fluentd.ini`` with the following content:
  [program:fluentd]
  directory=%(ENV_HOME)s/fluentd
  command=fluentd --config fluent.conf --no-supervisor
- startsecs=60
 
 .. include:: includes/supervisord.rst
 
