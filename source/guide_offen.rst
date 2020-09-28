@@ -65,7 +65,7 @@ the word "offen", it can also be "analytics" or whatever you feel like):
 Installation
 ============
 
-.. _Download:
+.. _Download
 
 Download the binary distribution
 --------------------------------
@@ -251,7 +251,7 @@ As a last step you need to point your web backend to your Offen service.
 .. note:: If you need to use a different port, set ``OFFEN_SERVER_PORT`` in your
  configuration file.
 
-.. note:: Uberspace set X-Frame-Options=SAMEORIGIN by default. Maybe you need to suppress it if you run into problems. `uberspace web header suppress / X-Frame-Options`
+.. note:: Uberspace set ``X-Frame-Options: SAMEORIGIN`` by default. You need to suppress it, if you run into problems: ``uberspace web header suppress / X-Frame-Options``.
 
 
 Finishing the installation
