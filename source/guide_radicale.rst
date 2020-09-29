@@ -126,7 +126,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=radicale -f
+  command=radicale
 
 
 Finishing installation
@@ -179,6 +179,13 @@ In order for your Radicale instance to be reachable from the web, you need to pu
 Again, don't forget to fill in your username!
 
 
+.. note:: If you want to setup radicale to be accessible in a subfolder (not in the home directory), add the "X-Script-Name" Header to the end of the ``.htaccess`` file:
+
+.. code-block:: ini
+
+    RequestHeader set X-Script-Name /<foldername>
+
+
 Start Service
 -------------
 
@@ -193,15 +200,15 @@ Updates
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ python3 -m pip install --upgrade radicale
+  [isabell@stardust ~]$ python3 -m pip install --user --upgrade radicale
   [isabell@stardust ~]$ supervisorctl restart radicale
   radicale: stopped
   radicale: started
   [isabell@stardust ~]$
 
 .. _Radicale: https://radicale.org/
-.. _Changelog: https://radicale.org/news/
-.. _Config: https://radicale.org/configuration/
+.. _Changelog: https://github.com/Kozea/Radicale/releases/
+.. _Config: https://radicale.org/3.0.html#documentation
 
 ----
 

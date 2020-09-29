@@ -118,7 +118,7 @@ Administration configuration
   * ``Options``
 
     * uncheck the option ``Subscribe to Piwigo Announcements Newsletter`` if you don't want to get Emails from Piwigo
-    * uncheck the option ``Send my connection settings by email``, as the email will contain your cleartext password for your user 
+    * uncheck the option ``Send my connection settings by email``, as the email will contain your cleartext password for your user
 
 After that, you are finished with the installation and can now add photos to your gallery.
 

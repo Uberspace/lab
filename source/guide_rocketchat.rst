@@ -95,30 +95,6 @@ Now we install the required dependencies:
  [isabell@stardust server]$ cd ~
  [isabell@stardust ~]$
 
-As long as  `this issue in Rocket.Chat <https://github.com/RocketChat/Rocket.Chat/issues/7465>`_ is not fixed, we need a little modification to get file uploads to work.
-
-Make ``~/rocket.chat/programs/server/packages/jalik_ufs.js`` writable:
-
-::
-
- [isabell@stardust ~]$ chmod +w ~/rocket.chat/programs/server/packages/jalik_ufs.js
- [isabell@stardust ~]$
-
-Edit ``~/rocket.chat/programs/server/packages/jalik_ufs.js`` and replace the line ``tmpDir: '/tmp/ufs',`` with ``tmpDir: process.env.HOME+'/tmp/ufs',``.
-
-Remove the write permission:
-::
-
- [isabell@stardust ~]$ chmod -w ~/rocket.chat/programs/server/packages/jalik_ufs.js
- [isabell@stardust ~]$
-
-.. note:: Alternatively you can do this in one step with ``sed``:
- ::
-
-  [isabell@stardust ~]$ sed -i "s#tmpDir: '/tmp/ufs',#tmpDir: process\.env\.HOME+'/tmp/ufs',#g" ~/rocket.chat/programs/server/packages/jalik_ufs.js
-  [isabell@stardust ~]$
-
-
 Configuration
 =============
 
@@ -144,7 +120,6 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
    --auth
    --unixSocketPrefix %(ENV_HOME)s/mongodb
    --replSet rs01
- startsecs=60
  autostart=yes
  autorestart=yes
 
@@ -177,8 +152,6 @@ Now initiate the replica set:
  	"ok" : 1
  }
  [isabell@stardust ~]$
-
-.. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
 
 As last part of the MongoDB configuration we need a user for Rocket.Chat.
 Generate a random password:
@@ -237,8 +210,6 @@ Use mongo to add the user:
  }
  [isabell@stardust ~]$
 
-.. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
-
 Remove the ``~/rocket.chat-user-setup.js`` file:
 
 ::
@@ -266,7 +237,8 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content:
         MONGO_URL="mongodb://%(ENV_USER)s_rocketchat:<password>@localhost:27017/rocketchat?replicaSet=rs01&authSource=admin",
         MONGO_OPLOG_URL="mongodb://%(ENV_USER)s_rocketchat:<password>@localhost:27017/local?replicaSet=rs01&authSource=admin",
         ROOT_URL="https://%(ENV_USER)s.uber.space/",
-        PORT=3000
+        PORT=3000,
+        TMPDIR="%(ENV_HOME)s/tmp"
  autostart=yes
  autorestart=yes
 
@@ -324,6 +296,6 @@ Start Rocket.Chat again after the installation is finished:
 
 ----
 
-Tested with Rocket.Chat 3.0.4, Uberspace 7.4.4.0
+Tested with Rocket.Chat 3.7.0, Uberspace 7.7.7.0
 
 .. author_list::

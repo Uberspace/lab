@@ -79,7 +79,7 @@ you need to remove your DocumentRoot and create a symlink to the shopware/public
 
 .. code-block:: console
 
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/shopware/public html
  [isabell@stardust isabell]$
 

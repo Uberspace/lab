@@ -156,8 +156,8 @@ To further customise your configuration, you can open the ``system console`` in 
 Updates
 -------
 
-Stop your service, backup your ``/home/isabell/mattermost/client``, ``/home/isabell/mattermost/config`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
-Proceed with the installation steps and restore the ``client``, ``config`` and ``plugins`` directories. Then you can start your service again.
+Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/home/isabell/mattermost/config``, ``/home/isabell/mattermost/data``, ``/home/isabell/mattermost/logs`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
+Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
 
 .. _`Mattermost website`: https://mattermost.com/download/
 

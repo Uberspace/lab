@@ -30,12 +30,12 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.3'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -47,18 +47,50 @@ Also, the domain you want to use for Lychee must be set up as well:
 Installation
 ============
 
+Since version 4.0, Lychee requires the web server to actually point to the ``public`` subfolder instead of the main Lychee folder. Therefore, we are going to put the Lychee base folder into the parent folder of the default DocumentRoot, i.e. ``/var/www/virtual/$USER``.
+
 Clone the Lychee code from GitHub_:
 
 ::
 
- [isabell@stardust ~]$ git clone https://github.com/LycheeOrg/Lychee ~/html
- Cloning into '/home/isabell/html'...
- remote: Counting objects: 10458, done.
- remote: Compressing objects: 100% (8/8), done.
- remote: Total 10458 (delta 3), reused 7 (delta 2), pack-reused 10448
- Receiving objects: 100% (10458/10458), 5.74 MiB | 8.85 MiB/s, done.
- Resolving deltas: 100% (7144/7144), done.
- [isabell@stardust html]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER
+ [isabell@stardust isabell]$ git clone https://github.com/LycheeOrg/Lychee Lychee
+ Cloning into '/var/www/virtual/isabell/Lychee'...
+ remote: Enumerating objects: 5, done.
+ remote: Counting objects: 100% (5/5), done.
+ remote: Compressing objects: 100% (5/5), done.
+ remote: Total 6469 (delta 0), reused 0 (delta 0), pack-reused 6464
+ Receiving objects: 100% (6469/6469), 28.55 MiB | 13.36 MiB/s, done.
+ Resolving deltas: 100% (4511/4511), done.
+ [isabell@stardust isabell]$
+
+Next change into the Lychee directgory and update the Composer repository:
+
+::
+
+ [isabell@stardust isabell]$ Lychee/composer update
+ Loading composer repositories with package information
+ Updating dependencies (including require-dev)
+ Package operations: 134 installs, 7 updates, 0 removals
+ ...
+ [isabell@stardust isabell]$
+
+After this, the required dependencies need to be installed:
+
+::
+
+ [isabell@stardust isabell]$ Lychee/composer install --no-dev
+ Loading composer repositories with package information
+ Installing dependencies from lock file
+ Package operations: 0 installs, 0 updates, 52 removals
+ ...
+ [isabell@stardust isabell]$
+
+Finally, setup a symbolic link for the ``public`` folder within the ``html`` folder or in the current folder if you use a custom subdomain:
+
+::
+
+ [isabell@stardust isabell]$ ln -s Lychee/public html/Lychee
 
 Now point your browser to your Lychee URL and follow the instructions.
 
@@ -78,10 +110,10 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ git pull origin master
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/Lychee
+ [isabell@stardust Lychee]$ git pull origin master
  Already up to date.
- [isabell@stardust html]$
+ [isabell@stardust Lychee]$
 
 
 .. _Lychee: https://lychee.electerious.com/
@@ -90,6 +122,6 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 
 ----
 
-Tested with Lychee 3.1.6, Uberspace 7.1.1
+Tested with Lychee 4.0.6, Uberspace 7.7.2.0
 
 .. author_list::

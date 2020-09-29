@@ -104,6 +104,7 @@ the new file in order to configure your database settings for the "production" e
 Redmine uses Bundler to manage dependencies. Install Bundler running ``gem install bundler``.
 
 Install all dependencies running ``bundle install --without development test rmagick --path vendor/bundle``:
+
 .. code-block:: console
 
   [isabell@stardust redmine]$ bundle install --without development test rmagick --path vendor/bundle

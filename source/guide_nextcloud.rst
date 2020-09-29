@@ -97,7 +97,7 @@ Sendmail Settings
  'mail_from_address' => 'isabell',
  'mail_smtpmode' => 'sendmail',
  'mail_sendmailmode' => 'pipe',
- 
+
 SMTP Settings
 -------------
 
@@ -195,13 +195,6 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
  [isabell@stardust html]$ php occ db:add-missing-indices
  [isabell@stardust html]$ php occ db:convert-filecache-bigint
 
-HSTS
-----
-
-Nextcloud will complain about your HSTS settings in the admin interface.
-
-At the moment it is not possible to change the HSTS settings, as mentioned in the :manual:`manual <web-security>`.
-
 Onlyoffice (Community Edition)
 ------------------------------
 To edit text and spreadsheet documents, you need to install and enable these apps from the admin interface:
@@ -237,6 +230,38 @@ Updates
 
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
+Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimisation.
+The release cycle of Nextcloud is very short. A prepared script with some common checks would ensure you don't need to run them.
+
+.. warning:: Before updating to the next major release, such as version 19.x.x to 20.x.x, make sure your apps are compatible or there exists updates. Otherwise the incompatible apps will get disabled. If the web based admin overview displays an available update it also checks if there are any incompatible apps. You can also check for compatible versions in the `Nextcloud App Store`_.
+
+Create `~/bin/nextcloud-update` with the following content:
+::
+
+ #!/usr/bin/env bash
+ php ~/html/updater/updater.phar --no-interaction
+
+ ## database optimizations
+ ## The following command works from Nextcloud 19.
+ ## remove '#' so it is working
+ #php ~/html/occ db:add-missing-columns
+ php ~/html/occ db:add-missing-indices
+ php ~/html/occ db:convert-filecache-bigint
+
+ php ~/html/occ app:update --all
+ php ~/html/occ maintenance:mode --off
+ restorecon -vR ~/html
+
+Then you can run the script whenever you need it to perform the update.
+::
+
+ [isabell@stardust ~]$ nextcloud-update
+ [...]
+ [isabell@stardust ~]$
+
+Troubleshooting
+---------------
+
 If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
@@ -247,10 +272,19 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
  [isabell@stardust html]$ php occ maintenance:mode --off
  [isabell@stardust html]$
 
-.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly to stay informed about new updates and releases.
+If files are missing like if you move files or restore backups on the machine and not via web you can perform a scan.
+::
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ php occ files:scan --all
+ [isabell@stardust html]$ php occ files:scan-app-data
+ [isabell@stardust html]$
+
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
+.. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 

@@ -18,7 +18,7 @@ PhantomBot
 
 .. tag_list::
 
-PhantomBot_ is an actively developed open source interactive Twitch bot written in Java 
+PhantomBot_ is an actively developed open source interactive Twitch bot written in Java
 that provides entertainment and moderation for your channel.
 
 ----
@@ -82,13 +82,13 @@ To setup PhantomBot for the first time, run launch.sh.
   [isabell@stardust phantombot]$ ./launch.sh
   [...]
 
-PhantomBot will guide you through its configuration. After the configuration is done, 
+PhantomBot will guide you through its configuration. After the configuration is done,
 close PhantomBot by pressing ``CTRL-C`` and continue with the next step.
 
 Configure web server
 --------------------
 
-PhantomBot_ binds to localhost in the default configuration. This prevents the Panel from being used with a :manual:`web backend <web-backends>`. 
+PhantomBot_ binds to localhost in the default configuration. This prevents the Panel from being used with a :manual:`web backend <web-backends>`.
 To bind the bot to ``0.0.0.0``, add ``bindIP=0.0.0.0`` to botlogin.txt in the config folder.
 
 .. code-block:: console

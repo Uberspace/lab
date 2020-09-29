@@ -9,10 +9,18 @@ Please follow our rules to keep the guides maintainable and consistent.
  * Upload a logo to `_static/images/`, preferably SVG, a PNG file with transparent background is also fine.
  * If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not available, use the newest version instead.
  * Always use the same username `isabell`.
- * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]`.
+ * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
  * Always use full paths in commands. Don't assume the home directory or the html folder.
  * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
  * Use the templates in `source/includes/` where appropriate.
+ For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
+ ```
+ ::
+
+ [isabell@stardust ~]$ uberspace web domain list
+ isabell.uber.space
+ [isabell@stardust ~]$
+ ```
  * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
  * When there is a license needed for the software mention it.
  * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
@@ -50,7 +58,7 @@ Please follow our rules to keep the guides maintainable and consistent.
 ```
 
  * Always end your console code blocks with `[isabell@stardust ~]$`.
- * If you use flags, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
+ * If you use flags and their function cannot be determined by just reading their name, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
 
 ```
 Since the installer expects to be run with root privileges, we need to adjust some settings_:
@@ -160,32 +168,20 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
  Using 'Node.js' version: '8'
  [isabell@stardust ~]$
 
-You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
-
-::
-
- [isabell@stardust ~]$ my_print_defaults client
- --default-character-set=utf8mb4
- --user=isabell
- --password=MySuperSecretPassword
- [isabell@stardust ~]$
+.. include:: includes/my-print-defaults.rst
 
 Your blog URL needs to be setup:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-Step 1
-------
+Download the source
+-------------------
 
-Step 2
-------
+Comple the code
+---------------
 
 Configuration
 =============
@@ -233,7 +229,7 @@ Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 ## Add your changes to the Uberspace Lab
 
-Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`. 
+Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`.
 
 If you already commited your changes without following this styleguide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
 

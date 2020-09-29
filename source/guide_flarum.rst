@@ -53,11 +53,11 @@ We create the database and install Flarum using composer.
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_flarum"
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust html]$ composer create-project flarum/flarum flarum --stability=beta
+ [isabell@stardust isabell]$ composer create-project flarum/flarum flarum --stability=beta
  […]
- [isabell@stardust ~]$ rmdir html
- [isabell@stardust ~]$ ln -s flarum html
- [isabell@stardust ~]$
+ [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ ln -s flarum html
+ [isabell@stardust isabell]$
 
 Configuration
 =============

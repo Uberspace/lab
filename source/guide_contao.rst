@@ -81,7 +81,7 @@ Create a folder for Contao Manager, download it and make it accessible:
  [isabell@stardust web]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
  [isabell@stardust web]$ mv contao-manager.phar contao-manager.phar.php
  [isabell@stardust web]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html/
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/<target>/web/ html
  [isabell@stardust isabell]$
 
@@ -126,7 +126,7 @@ Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a n
  :emphasize-lines: 1,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html/
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/<target>/web/ html
  [isabell@stardust isabell]$
 

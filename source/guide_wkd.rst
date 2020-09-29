@@ -20,7 +20,7 @@ Web Key Directories provide an easy way to discover public keys through HTTPS. T
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * e-mail encryption with GnuPG_ / OpenPGP_ 
+  * e-mail encryption with GnuPG_ / OpenPGP_
   * :manual:`domains <web-domains>`
 
 Prerequisites
@@ -79,7 +79,7 @@ Create the directories and symlinks
  [isabell@stardust ~]$ mkdir -p html/.well-known
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/openpgpkey.example.org/.well-known/openpgpkey/example.org/ /var/www/virtual/$USER/html/.well-known/openpgpkey
  [isabell@stardust ~]$
- 
+
 Create another symlink to facilitate uploading keys via scp:
 
 ::
@@ -122,7 +122,7 @@ Exporting a GPG key
 
  [someuser@somehost ~]$ gpg --no-armor --export isabell@example.org > mmuhurigesr7z8hzf6sh5cmfsnmiiyyr
  [someuser@somehost ~]$
- 
+
 .. note:: The public key is the the same for all identities of a key. You can simply duplicate the exported key, using the corresponding WKD-Hash as filename.
 
 Upload
@@ -147,7 +147,7 @@ or ``curl``:
  :emphasize-lines: 4,6
 
  [someuser@somehost ~]$ curl -I https://openpgpkey.example.org/.well-known/openpgpkey/example.org/hu/mmuhurigesr7z8hzf6sh5cmfsnmiiyyr
- HTTP/2 200 
+ HTTP/2 200
  date: Sat, 02 May 2020 19:16:17 GMT
  content-type: application/octet-stream
  content-length: 5298
@@ -161,7 +161,7 @@ or ``curl``:
  x-content-type-options: nosniff
  x-xss-protection: 1; mode=block
  x-frame-options: SAMEORIGIN
- [someuser@somehost ~]$ 
+ [someuser@somehost ~]$
 
 You can test the WKD-download by running:
 

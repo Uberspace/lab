@@ -13,7 +13,7 @@ PostgreSQL
 
 PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
 
-Some projects (e.g. Miniflux2) require PostgreSQL and many others support it as an alternative to MySQL.
+Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
 
 License
 =======
@@ -34,11 +34,11 @@ Create a working directory.
  [isabell@stardust ~]$ cd ~/postgres/
  [isabell@stardust ~]$
 
-Download version 9.6.10. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
+Download the lastest stable version. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
 
 ::
 
- [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v9.6.10/postgresql-9.6.10.tar.gz
+ [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v12.4/postgresql-12.4.tar.gz
  [isabell@stardust ~]$
 
 To extract the tar archive, use the following options:
@@ -50,7 +50,7 @@ To extract the tar archive, use the following options:
 
 ::
 
- [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-9.6.10.tar.gz
+ [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-12.4.tar.gz
  [isabell@stardust ~]$
 
 
@@ -60,27 +60,21 @@ Step 2 - Source Code Configuration, Compiling and Installation
 Before we start, we have to consider some aspects, e.g. Python support, and corresponding settings, regarding to a shared hosting environment like Uberspace:
 
  * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
- * ``--with-python PYTHON=/usr/bin/python2``: Compiling with Python 2.x support. Alternatively you can choose ``/usr/bin/python3``. Both are links to the actual supported Python versions.
+ * ``--with-python PYTHON=/usr/bin/python3``: Compiling with Python 3.x support. Alternatively you can choose ``/usr/bin/python2`` or any other version.
  * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude Readline with this option.
 
 Other options can be found in the PostgreSQL documentation_.
 
 Now configure and compile the source code and finally install it.
 
-::
-
- [isabell@stardust ~]$ configure
- [isabell@stardust ~]$ make
- [isabell@stardust ~]$ make install
-
 .. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider everything like docs and especially additional modules by PostgreSQL. This is the reason to use the supported option ``world`` for ``make`` and ``make install``.
+.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider to install all modules. This is done bby using the target ``world`` for ``make`` and ``make install``.
 
 ::
 
- [isabell@stardust ~]$ cd ~/postgres/postgresql-9.6.10
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline
+ [isabell@stardust ~]$ cd ~/postgres/postgresql-12.4
+ [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/
  [isabell@stardust ~]$ make world
  [isabell@stardust ~]$ make install-world
  [isabell@stardust ~]$
@@ -111,7 +105,7 @@ Run ``psql --version`` to verify the installation so far:
 ::
 
  [isabell@stardust ~]$ psql --version
- psql (PostgreSQL) 9.6.10
+ psql (PostgreSQL) 12.4
  [isabell@stardust ~]$
 
 
@@ -161,23 +155,30 @@ Now create the database cluster:
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=md5 -E UTF8 -D ~/opt/postgresql/data/
- The files belonging to this database system will be owned by user "".
+ [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
+ The files belonging to this database system will be owned by user "<username>".
  This user must also own the server process.
+
  The database cluster will be initialized with locale "de_DE.UTF-8".
  The default text search configuration will be set to "german".
+
  Data page checksums are disabled.
+
  creating directory /home/<username>/opt/postgresql/data ... ok
  creating subdirectories ... ok
+ selecting dynamic shared memory implementation ... posix
  selecting default max_connections ... 100
  selecting default shared_buffers ... 128MB
- selecting dynamic shared memory implementation ... posix
+ selecting default time zone ... Europe/Berlin
  creating configuration files ... ok
  running bootstrap script ... ok
  performing post-bootstrap initialization ... ok
  syncing data to disk ... ok
+
  Success. You can now start the database server using:
+
     pg_ctl -D /home/<username>/opt/postgresql/data/ -l logfile start
+
  [isabell@stardust ~]$
 
 The temporary password file is no longer necessary:
@@ -213,9 +214,12 @@ Load the new settings:
 PostgreSQL Configuration
 ------------------------
 
-Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``:
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+Consider using only unix sockets if possible. 
 
-.. warning:: Replace replace ``<username>`` with your username!
+.. warning:: Please replace ``<username>`` with your username!
+
+.. warning:: If you set listen_addresses you might open your postgres installation to the world!
 
 .. code-block:: postgres
  :emphasize-lines: 7,14
@@ -226,7 +230,7 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
 
  # - Connection Settings -
 
- listen_addresses = '*'         # what IP address(es) to listen on;
+ #listen_addresses = '*'         # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
                                         # (change requires restart)
@@ -243,6 +247,8 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_a
  #bonjour_name = ''                     # defaults to the computer name
                                         # (change requires restart)
 
+
+You can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
 
 Setup Daemon
 ------------
@@ -335,6 +341,6 @@ To configure your project with the PostgreSQL details, you should have the datab
 
 ----
 
-Tested with Uberspace 7.1.15 and PostgreSQL 9.6.10
+Tested with Uberspace 7.1.15 and PostgreSQL 12.4
 
 .. author_list::

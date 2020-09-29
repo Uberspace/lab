@@ -30,7 +30,7 @@ EtherCalc_ is a web spreadsheet based on node-js and redis. People can edit the 
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`web-backends <web-backends>`
   * :lab:`redis <guide_redis>`
-  
+
 
 License
 =======
@@ -61,7 +61,7 @@ Installation
 Install node module
 -------------------
 
-Create a directory, ``cd`` into it and install the node module using the provided node packet manager `npm`: 
+Create a directory, ``cd`` into it and install the node module using the provided node packet manager `npm`:
 
 .. code-block:: console
 
@@ -100,6 +100,7 @@ Setup daemon
 Use your favourite editor to create ``~/etc/services.d/ethercalc.ini`` with the following content:
 
 .. note:: EtherCalc tries to connect to Redis via TCP/IP, which will accepts connections on both TCP/IP and UNIX socket. If you configured redis by following the :lab:`guide <guide_redis>` it is currently configured *for UNIX socket only* as this is also the more stylish, secure and faster version. So by now the connection between EtherCalc and Redis won't be established.
+
 Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-socket to the ``supervisord``-config forces EtherCalc to connect to Redis through the UNIX socket.
 
 
@@ -114,7 +115,7 @@ Adding the environment variable ``REDIS_SOCKPATH`` pointing to our the unix-sock
 
 If it's not in state RUNNING, check your configuration.
 
- 
+
 Finishing installation
 ======================
 

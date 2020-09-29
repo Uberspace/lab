@@ -59,6 +59,9 @@ You will need to enter the following information:
   * your WordPress database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_wordpress
   * Admin User: The name and the email address of the admin user.
 
+.. note:: The database name has to start with the user name and an underscore (isabell_xxxx). Otherwise the creation of the database will fail with a permission denied.
+
+
 .. code-block:: console
  :emphasize-lines: 1,6,10
 

@@ -81,7 +81,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 
 ::
 
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rmdir html
  [isabell@stardust isabell]$ ln -s FreshRSS-master/p/ html
  [isabell@stardust isabell]$ ls -l
  total 2636

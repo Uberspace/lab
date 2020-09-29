@@ -30,7 +30,7 @@ Bitwarden_ is an open source password manager. Your vault is encrypted with your
   * :manual:`domains <web-domains>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`web-backends <web-backends>`
-  
+
 
 License
 =======
@@ -49,7 +49,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 13:
  The new configuration is adapted immediately. Minor updates will be applied automatically.
  [isabell@stardust ~]$
 
-If you want to use Bitwarden_rs with your own domain you need to setup your domain first:
+If you want to use Bitwarden_rs with your own domain you need to set up your domain first:
 
 .. include:: includes/web-domain-list.rst
 
@@ -60,13 +60,20 @@ Installation
 Install Bitwarden_rs
 --------------------
 
-Clone the repository into your document root. It will create the directory ``~/bitwarden_rs`` automatically.
+Clone the repository into your home directory. It will create the directory ``~/bitwarden_rs`` automatically.
+
+
+.. warning :: At the moment (current date: 24.07.2020) there is an unofficial patch of some dependencies that have not yet made it into all the official repositories. You can find the discussion about it `on GitHub <https://github.com/Uberspace/lab/issues/708>`_. Therefore you have to use a special branch to install bitwarden_rs currently. Make sure to check back and update your installation, once all dependencies have been updated.
+
 
 .. code-block:: console
 
  [isabell@stardust ~]$ git clone https://github.com/dani-garcia/bitwarden_rs.git
- 
-In order to build bitwarden_rs  sucessfully you'll need to set an environment variable pointing to the sqlite3 header files:
+ [isabell@stardust ~]$ cd bitwarden_rs
+ [isabell@stardust bitwarden_rs]$ git checkout origin/async
+ [isabell@stardust bitwarden_rs]$
+
+In order to build bitwarden_rs  successfully you'll need to set an environment variable pointing to the sqlite3 header files:
 
 .. code-block:: console
 
@@ -77,7 +84,7 @@ In order to build bitwarden_rs  sucessfully you'll need to set an environment va
 .. code-block:: console
 
  [isabell@stardust ~]$ cd bitwarden_rs
- [isabell@stardust bitwarden_rs]$ 
+ [isabell@stardust bitwarden_rs]$
 
 Build the server executable:
 
@@ -95,11 +102,11 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.13.2/bw_web_v2.13.2.tar.gz
- [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.13.2.tar.gz
+ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.16.0b/bw_web_v2.16.0b.tar.gz
+ [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.16.0b.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
- 
+
 Generate an ``openssl -base64`` key now and save it temporarily, you'll need it in the next step.
 
 .. code-block:: console
@@ -120,7 +127,7 @@ Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following c
  SMTP_SSL=true
  SMTP_USERNAME=isabell@uber.space
  SMTP_PASSWORD=MySuperSecretPassword
- 
+
  DOMAIN=https://isabell.uber.space
 
 Replace the mail placeholder variables with your valid IMAP credentials, otherwise the bitwarden_rs server will not be able to send you mail notifications or tokens to verify newly created user accounts.
@@ -180,11 +187,11 @@ Use your favourite editor to create ``~/etc/services.d/bitwarden_rs.ini`` with t
 
 If it's not in state RUNNING, check your configuration.
 
- 
+
 Finishing installation
 ======================
 
-Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user.
+Your done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user. You can access the admin panel via ``https://isabell.uber.space/admin`` and log in using the openssl token you created during the installation process.
 
 Best practices
 ==============
@@ -199,7 +206,7 @@ You can create a backup of the database manually. ``cd`` to your project folder,
  [isabell@stardust ~]$ cd ~/bitwarden_rs/data
  [isabell@stardust data]$ mkdir db-backup
  [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '~/bitwarden_rs/data/db-backup/backup.sqlite3'"
- 
+
 .. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time.
 
 Restore up your vault manually
@@ -225,7 +232,7 @@ Disable registration and invitations
 
 By default, bitwarden_rs allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your bitwarden_rs server.
 
-Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the the following content:
+Use your favourite editor to edit ``~/bitwarden_rs/.env`` and add the following content:
 
 .. code-block:: ini
 
@@ -243,7 +250,7 @@ In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific d
 
  SIGNUPS_DOMAINS_WHITELIST=example.com # single domain
  SIGNUPS_DOMAINS_WHITELIST=example.com,example.net,example.org # multiple domains
- 
+
 .. warning ::  be careful using this feature. `At the moment`_ the emails are currently not checked, meaning that anyone could still register, by providing a fake email address that has the proper domain. So at the moment this is more security by obscurity. This seems to be fixedd in an upcoming release, so make sure to check the feed_ regularly to stay informed about the newest version.
 
 Disable password hint display
@@ -262,20 +269,22 @@ Update
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Updating bitwarden_rs is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again:
+Updating bitwarden_rs is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again. To get the download link for the newest version of the web-vault look here web-vault-feed_.
+
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/bitwarden_rs
  [isabell@stardust bitwarden_rs]$ supervisorctl stop bitwarden_rs
  [isabell@stardust bitwarden_rs]$ git pull
- [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault && cd web-vault
- [isabell@stardust web-vault]$ wget new-release.tar.gz
- [isabell@stardust web-vault]$ tar -xvzf new-release.tar.gz
- [isabell@stardust web-vault]$ cd ..
- [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release
- [isabell@stardust bitwarden_rs]$ 
- 
+ [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault
+ [isabell@stardust bitwarden_rs]$ wget new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ tar -xvzf new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ rm new-release.tar.gz
+ [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release --features sqlite
+ ....
+ [isabell@stardust bitwarden_rs]$
+
 .. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration. You can check the service's log file using ``supervisorctl tail -f bitwarden_rs``.
@@ -294,10 +303,11 @@ This guide is based on the official `bitwarden_rs documentation`_ as well as the
 .. _Bitwarden: https://bitwarden.com/
 .. _Github: https://github.com/dani-garcia/bitwarden_rs
 .. _feed: https://github.com/dani-garcia/bitwarden_rs/releases
+.. _web-vault-feed: https://github.com/dani-garcia/bw_web_builds/releases/latest
 .. _GNU General Public License: https://github.com/dani-garcia/bitwarden_rs/blob/master/LICENSE.txt
 
 ----
 
-Tested with Bitwarden_rs 2.13.2, Uberspace 7.5.1.0
+Tested with Bitwarden_rs 1.16.3 and Web-Vault v2.16.0b, Uberspace 7.5.1.0
 
 .. author_list::

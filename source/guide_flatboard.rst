@@ -118,7 +118,7 @@ Updates
  data/
  […]
  data/key.php
- [isabell@stardust html]$ mv flatforum-data_backup.tar.gz /home/isabell/
+ [isabell@stardust html]$ mv flatforum-data_backup.tar.gz $HOME
  [isabell@stardust html]$
 
 2. Download the latest version from Flatboard_.
@@ -127,7 +127,7 @@ Updates
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget http://flatboard.free.fr/uploads/plugins/flatboard_latest.zip
+ [isabell@stardust html]$ wget https://flatboard.org/download.php?file=flatboard_latest.zip
  […]
  Saving to: ‘flatboard_latest.zip’
 
@@ -186,7 +186,7 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 .. _feed: https://github.com/Fred89/flatboard/commits/master.atom
 .. _twitter: https://twitter.com/flatboardoffic1
-.. _Flatboard: http://flatboard.free.fr
+.. _Flatboard: https://flatboard.org/
 
 .. [1] For the moment Markdown is not available, but should be fixed with one of the next updates.
 

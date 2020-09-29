@@ -83,10 +83,10 @@ Storage
 
 haste-server_ currently supports six storage solutions, of which File, Redis and Postgres are supported by Uberspace. The File backend is the most basic option and does not require additional sofware, Redis and Postgres do require additional steps. With Redis and Postgres you can set the ``expire`` option. This is off by default, but will constantly kick back expirations on each view or post.
 
-.. note:: 
+.. note::
 
-  Pick only one. 
-  
+  Pick only one.
+
 File
 ^^^^
 
@@ -112,7 +112,7 @@ To use redis storage you must setup redis as specified :lab:`here <guide_redis>`
   [...]
   + redis@3.0.2
   added 5 packages from 7 contributors and audited 6 packages in 1.312s
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Make sure to also change the port in ``~/.redis/conf`` to something accessible, like ``6379`` and restart redis.
 
@@ -140,7 +140,7 @@ To use postgres storage you must setup postgres as specified :lab:`here <guide_p
   [...]
   + pg@8.0.3
   added 17 packages from 9 contributors and audited 28 packages in 1.56s
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Once you've done that, create a new user for haste-server_ and set a password.
 
@@ -163,7 +163,7 @@ You will have to manually add a table to your postgres database:
 .. code-block:: console
 
   [isabell@stardust ~]$ pqsl haste haste
-  Password for user haste: 
+  Password for user haste:
   psql (9.6.17)
   Type "help" for help.
 

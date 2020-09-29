@@ -122,7 +122,7 @@ Update
  bl-content/
  […]
  README.md
- [isabell@stardust html]$ mv 3.8.0_backup.tar.gz /home/isabell/
+ [isabell@stardust html]$ mv 3.8.0_backup.tar.gz $HOME
  [isabell@stardust html]$
 
 2. Download the latest version from Bludit_ or Github_. In this example we´re download it from Github_.

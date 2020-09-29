@@ -37,21 +37,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-You need a running :lab:`Postgresql <guide_postgresql>` database server, a dedicated user with a secure password and database for Synapse_.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ createuser synapse -P
-  Enter password for new role:
-  Enter it again:
-  [isabell@stardust ~]$ createdb \
-    --encoding=UTF8 \
-    --lc-collate=C \
-    --lc-ctype=C \
-    --owner="synapse" \
-    --template=template0 \
-    synapse
-  [isabell@stardust ~]$
+If you want to run synapse with postgresql instead of sqlite you need a running :lab:`Postgresql <guide_postgresql>` database server.
 
 Installation
 ============
@@ -129,10 +115,13 @@ And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
 
 .. include:: includes/web-backend.rst
 
+Announcement
+------------
+
 To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
 
 Option A: DNS announcement
---------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: This is the older method, harder to implement but supporting all servers.
 
@@ -151,7 +140,7 @@ For example like this:
 .. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
 
 Option B:.well-known announcement
----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: This is the newer method, easier to implement but not supported on older servers.
 
@@ -179,19 +168,35 @@ This has to be made available under ``/.well-known/matrix`` via the web backend:
   Set backend for /.well-known/matrix to apache.
   [isabell@stardust ~]$
 
-Configure Certificates
-----------------------
-
-Now you edit the config file ``~/synapse/homeserver.yaml`` to reflect the paths to the letsencrypt certificates:
-
-.. code-block:: yaml
-
-    tls_certificate_path: "/home/isabell/etc/certificates/my.domain.name.crt"
-
-    tls_private_key_path: "/home/isabell/etc/certificates/my.domain.name.key"
-
 Configure Database Access
 -------------------------
+
+
+Option A: Postgres
+^^^^^^^^^^^^^^^^^^
+
+Setup a dedicated postgres user and database for synapse:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ createuser synapse -P
+  Enter password for new role:
+  Enter it again:
+  [isabell@stardust ~]$ createdb \
+    --encoding=UTF8 \
+    --lc-collate=C \
+    --lc-ctype=C \
+    --owner="synapse" \
+    --template=template0 \
+    synapse
+  [isabell@stardust ~]$
+  
+You can verify access with:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ psql synapse synapse
+  
 
 Modify the config file again to give synapse access to the database:
 
@@ -209,6 +214,13 @@ Modify the config file again to give synapse access to the database:
             host: "/home/isabell/tmp"
             cp_min: 5
             cp_max: 10
+            
+Comment out the active sqlite database. If you are using a different port for postgres, add a port property below host.
+
+Option B: Sqlite
+^^^^^^^^^^^^^^^^
+
+For the file-based sqlite database, leave the standard config in ``~/synapse/homeserver.yaml``.
 
 Enable user search
 ------------------

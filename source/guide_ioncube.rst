@@ -83,7 +83,7 @@ Create the following configuration directive if you are using PHP 5.6.
 
 ::
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_5.6.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_5.6.so" > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -95,7 +95,7 @@ Create the following configuration directive if you are using PHP 7.0.
 
 ::
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.0.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_7.0.so" > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -107,7 +107,7 @@ Create the following configuration directive if you are using PHP 7.1.
 
 ::
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.1.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_7.1.so" > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -119,7 +119,19 @@ Create the following configuration directive if you are using PHP 7.2.
 
 ::
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.2.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_7.2.so" > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$
+
+
+
+ionCube Loader for PHP 7.3
+==========================
+
+Create the following configuration directive if you are using PHP 7.3.
+
+::
+
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_7.3.so" > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -135,6 +147,6 @@ Changes to the PHP configuration will take effect after reloading PHP:
 
 ----
 
-Tested with IonCube 10.2.7, Uberspace 7.1.16
+Tested with IonCube 10.2.7, Uberspace 7.1.16 (PHP 7.3 tested with IonCube 10.4.1, Uberspace 7.7.4.0)
 
 .. author_list::

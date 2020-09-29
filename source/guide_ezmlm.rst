@@ -102,7 +102,7 @@ The test call should show that everything is OK. Now create directories and inst
 
 ::
 
- [isabell@stardust ezmlm-idx-7.2.2] mkdir -p /home/isabell/lib /home/isabell/etc
+ [isabell@stardust ezmlm-idx-7.2.2] mkdir -p $HOME/{lib,etc}
  [isabell@stardust ezmlm-idx-7.2.2] make install
  [...]
  [isabell@stardust ezmlm-idx-7.2.2]
@@ -114,10 +114,6 @@ If not, check the output of the respective commands for errors.
 Configuration and Usage
 =======================
 
-General setup
--------------
-
-ezmlm_ comes with templates for the administrative messages it sends. They are installed in the directory configured in ``conf-etc`` above. To change a message you can edit the files directly. To set a new default language change the ``default`` symbolic link to point to the subdirectory with the chosen language.
 It is advisable to keep the lists in a separate directory where ezmlm_ will create subdirectories for every single list:
 
 ::
@@ -128,15 +124,38 @@ It is advisable to keep the lists in a separate directory where ezmlm_ will crea
 Adding / removing a mailing list
 --------------------------------
 
-Most administrative commands need to be done from the command line using different tools.
-In order to add a remotely administered list (-r) without an archive (-A) with the list owner ``owner@domain.org`` and the list address ``mylist@isabell.uber.space`` you can do:
+The tool to add a list and to change options afterwards is `ezmlm-make`. It needs four arguments:
+
+1. the directory inside above created ``~/lists``
+2. the prefix for .qmail-files
+3. the local alias (the part before the ``@``)
+4. the hostname (the part after the ``@``)
+
+List-specific settings need to be passed as command line options. Here are some of the most common ones:
+
+``-u``
+    User posts. Only addresses that are subscribed to the list may send messages.
+``-m``
+    Message moderation. Every mail must be approved by a moderator.
+``-s``
+    Subscription moderation. Every new subscriber must be approved by a moderator.
+``-5 owner@domain.org``
+    Set the address of the list owner.
+``-a``
+    Create a list archive.
+
+.. note:: A common setup is to allow subscribers to post to the list and hold messages by any other address in moderation. For this setup you need to apply both ``-u`` and ``-m``.
+
+To **turn off** options, the according **capitalized** option must be used.
+
+The command to add a new list ``mylist@isabell.uber.space`` with the list owner ``owner@domain.org`` without an archive (-A) that allows subscribers to post (-u) and holds foreign senders in moderation (-m) looks like this:
 
 ::
 
- [isabell@stardust ~] ezmlm-make -rA -5 owner@domain.org ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
+ [isabell@stardust ~] ezmlm-make -A -u -m -5 owner@domain.org ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
  [isabell@stardust ~]
 
-This will add the directory ``~/lists/mylist`` where everything concerning this list will be stored and setup all necessary ``.qmail-mylist`` files.
+This will add the directory ``~/lists/mylist`` where everything concerning this list will be stored and setup all necessary ``.qmail-mylist…`` files.
 
 To remove the list simply delete the directory ``~/lists/mylist`` and the ``.qmail-mylist*`` files.
 
@@ -144,6 +163,18 @@ To remove the list simply delete the directory ``~/lists/mylist`` and the ``.qma
 
  [isabell@stardust ~] rm -rf ~/lists/mylist ~/.qmail-mylist*
  [isabell@stardust ~]
+
+
+Change options
+--------------
+
+If you want to change any of the options, use the option ``-+``. Note that all the other arguments from the creation are required here as well. To turn the archive back on, you need to do:
+
+::
+
+ [isabell@stardust ~] ezmlm-make -+ -a ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
+ [isabell@stardust ~]
+
 
 
 Subscribing / Unsubscribing
@@ -165,6 +196,44 @@ To unsubscribe write an email to ``mylist-unsubscribe@isabell.uber.space`` or us
 
 
 ezmlm_ can do many more things such as subscriber only lists, list moderation etc. Have a look at the man page for ezmlm-make or at the online documentation for details.
+
+
+
+Moderators
+----------
+
+Moderators will receive mails if messages are held for moderation (``-m``). Adding moderators is similar to adding subscribers using ``ezmlm-sub`` and ``ezmlm-unsub``, with one additional argument ``mod``:
+
+::
+
+ [isabell@stardust ~] ezmlm-sub ~/lists/mylist mod moderator@theirdomain.org
+ [isabell@stardust ~]
+
+
+
+Allow other addresses
+---------------------
+
+Allowing and removing other addresses to bypass moderation on a subscriber-only list (``-m -u``) is also similar to adding subscribers, with one additional argument ``allow``:
+
+::
+
+ [isabell@stardust ~] ezmlm-sub ~/lists/mylist allow alloweduser@otherdomain.org
+ [isabell@stardust ~]
+
+
+Language and custom messages
+----------------------------
+
+ezmlm_ comes with templates for the administrative messages it sends. They are installed in the directory configured in ``conf-etc`` above. To change a message you can edit the files directly. To set a new default language change the ``default`` symbolic link to point to the subdirectory with the chosen language.
+
+To set another language (e.g. ``de``), use the ``-C`` option:
+
+::
+
+ [isabell@stardust ~] ezmlm-make -C ~/etc/ezmlm/de ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
+ [isabell@stardust ~]
+
 
 
 .. _ezmlm: https://untroubled.org/ezmlm/

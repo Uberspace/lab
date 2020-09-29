@@ -70,7 +70,7 @@ First get the Etherpad Lite source code from Github_, be sure to replace the ver
   do so (now or later) by using -b with the checkout command again. Example:
 
     git checkout -b <new-branch-name>
-  
+
   [isabell@stardust ~]$
 
 
@@ -163,7 +163,7 @@ Best practices
 Personalization
 ---------------
 
-Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there. If you've updated the settings you need to restart etherpad using ``supervisorctl restart etherpad``. 
+Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there. If you've updated the settings you need to restart etherpad using ``supervisorctl restart etherpad``.
 
 You can also personalize the look of your installation by using your own skin or change an existing one. See `Skins`_ in the documentation for further information.
 
