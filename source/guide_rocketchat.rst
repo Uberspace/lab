@@ -120,7 +120,6 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
    --auth
    --unixSocketPrefix %(ENV_HOME)s/mongodb
    --replSet rs01
- startsecs=60
  autostart=yes
  autorestart=yes
 
@@ -153,8 +152,6 @@ Now initiate the replica set:
  	"ok" : 1
  }
  [isabell@stardust ~]$
-
-.. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
 
 As last part of the MongoDB configuration we need a user for Rocket.Chat.
 Generate a random password:
@@ -212,8 +209,6 @@ Use mongo to add the user:
  	]
  }
  [isabell@stardust ~]$
-
-.. note:: You don't need to add ``--username`` if you have stored your credentials in the `~/.mongorc.js` file.
 
 Remove the ``~/rocket.chat-user-setup.js`` file:
 
