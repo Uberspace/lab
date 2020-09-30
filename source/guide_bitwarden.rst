@@ -199,7 +199,7 @@ Best practices
 Backing up your vault manually
 ------------------------------
 
-You can create a backup of the database manually. ``cd`` to your project folder, create a folder to sotre the backup in and use the given sqlite3 backup command. This will ensure the database does not become corrupted if the backup happens during a database write.
+You can create a backup of the database manually. ``cd`` to your project folder, create a folder to store the backup in and use the given sqlite3 backup command. This will ensure the database does not become corrupted if the backup happens during a database write.
 
 .. code-block:: console
 
