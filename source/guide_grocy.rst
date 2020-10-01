@@ -9,9 +9,9 @@
   .. image:: _static/images/grocy.svg
       :align: center
 
-####
+#####
 Grocy
-####
+#####
 
 .. tag_list::
 
