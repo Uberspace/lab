@@ -152,7 +152,7 @@ Finishing installation
 Further adjust the configuration in ``~/fluentd/fluent.conf`` according to your needs (see configuration_).
 
 Optional: Expose the HTTP Endpoint
------------------------
+----------------------------------
 
 To expose the fluentd http endpoint (default port 8888), configure a :manual:`web backend <web-backend>`:
 

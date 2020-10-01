@@ -39,7 +39,7 @@ Installation
 ============
 
 Step 1
------
+------
 
 Download grocy.
 

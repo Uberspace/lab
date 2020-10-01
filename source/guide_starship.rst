@@ -36,7 +36,7 @@ is functionally equivalent to BSD 2-Clause and MIT licenses,
 removing some language that is no longer necessary.
 
 Prerequisites
-============
+=============
 
 A `Nerd Font`_ installed and enabled in your terminal on your computer (for example, try the
 FiraCode Nerd Font that can be downloaded from NerdFonts_).
