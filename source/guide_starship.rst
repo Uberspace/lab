@@ -10,9 +10,9 @@
   .. image:: _static/images/starship.svg
       :align: center
 
-####
+########
 Starship
-####
+########
 
 .. tag_list::
 
