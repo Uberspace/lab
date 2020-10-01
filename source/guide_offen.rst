@@ -65,7 +65,7 @@ the word "offen", it can also be "analytics" or whatever you feel like):
 Installation
 ============
 
-.. _Download
+.. _Download:
 
 Download the binary distribution
 --------------------------------
