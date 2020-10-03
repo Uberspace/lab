@@ -173,6 +173,15 @@ In order to increase the memory limit of php to the recommended value of 512 MB,
 
  memory_limit = 512M
 
+Output Buffering
+----------------
+
+Disable output buffering, create ``$HOME/etc/php.d/output_buffering.ini`` with the following content:
+
+::
+
+ output_buffering=0
+
 PHP Reload
 ----------
 
@@ -290,6 +299,6 @@ If files are missing like if you move files or restore backups on the machine an
 
 ----
 
-Tested with Nextcloud 18.0.2, Uberspace 7.4.3.0
+Tested with Nextcloud 20.0.0, Uberspace 7.7.8.0
 
 .. author_list::
