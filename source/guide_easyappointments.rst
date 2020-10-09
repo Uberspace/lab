@@ -67,9 +67,15 @@ Installation
 Configuration
 =============
 
-To get started set some basic configuration variables. Edit ``/var/www/virtual/$USER/html/config.php``
+To get started set some basic configuration variables. First, copy the sample configuration:
 
-In here you need to enter your base-URL, :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_ea``).
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ cp config-sample.php config.php
+ [isabell@stardust html]$
+
+Then, edit ``config.php``. In here you need to enter your base-URL, :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_ea``).
 
 .. code-block:: ini
  :emphasize-lines: 4,12,13,14,15
