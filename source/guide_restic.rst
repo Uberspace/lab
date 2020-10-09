@@ -64,6 +64,7 @@ We're installing a compiled restic binary for a 64-bit machine, and making it ex
  [isabell@stardust ~]$ bzip2 -d restic_0.10.0_linux_amd64.bz2
  [isabell@stardust ~]$ mv restic_0.10.0_linux_amd64 ~/bin/restic
  [isabell@stardust ~]$ chmod 700 ~/bin/restic
+ [isabell@stardust ~]$
 
 
 Configuration
