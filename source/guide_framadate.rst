@@ -152,7 +152,7 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 
 .. note::
 
-  If you're using a subdomain, you need to add ``RewriteBase /`` to the ``.htaccess`` file as described `in the section for additional DocumentRoots <https://manual.uberspace.de/web-documentroot.html#additional-documentroots>`_.
+  If you're using an :manual_anchor:`additional DocumentRoot <web-documentroot.html#additional-documentroots>` , you need to modify the ``.htaccess`` file within the DocumentRoot by adding ``RewriteBase /`` to it.
 
 Mail
 ----
