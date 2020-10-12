@@ -224,7 +224,7 @@ A click on a text/spreadsheet document should now start the Onlyoffice Editor.
 Nextcloud Talk
 --------------
 
-To can enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
+To enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
 If the web installation fails, install the app manually in your shell:
 
 ::
