@@ -150,6 +150,10 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 
   If you choose not to do this, set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php`` or you won't be able to access your polls.
 
+.. note::
+
+  If you're using an :manual_anchor:`additional DocumentRoot <web-documentroot.html#additional-documentroots>` , you need to modify the ``.htaccess`` file within the DocumentRoot by adding ``RewriteBase /`` to it.
+
 Mail
 ----
 
