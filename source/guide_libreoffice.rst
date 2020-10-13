@@ -53,7 +53,7 @@ LibreOffice Online. It is licensed `like the latter <CODE_>`_, and its Logo is
 published under `CC0 <https://creativecommons.org/share-your-work/public-domain/cc0>`_.
 
 `udocker`_ is licensed under the `Apache License 2.0
-<https://github.com/indigo-dc/udocker/blob/master/LICENSE>`.
+<https://github.com/indigo-dc/udocker/blob/master/LICENSE>`_.
 
 Licensing information about containers on Dockerhub in general is available in Section 6 of its
 `Terms of Service <Docker Terms of Service_>`_.
@@ -87,7 +87,7 @@ This installs the binaries and libraries needed by udocker into ``$HOME/.udocker
 Installation
 ============
 
-There are mainly three docker distributions of LibreOffice to choose from:
+There are three officially endorsed docker distributions of LibreOffice:
 
   * `LibreOffice Online`_, by `The Document Foundation
     <https://www.documentfoundation.org/>`_ is the basis for all three. There
@@ -99,26 +99,17 @@ There are mainly three docker distributions of LibreOffice to choose from:
     <https://hub.docker.com/r/collabora/code>`_.
   * `LibreOffice Powered by CIB`_ is a commercially supported distribution with
     the stable docker image `cibsoftware/libreoffice-online
-    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_, but without
-    reliable license information available for it.
-
-.. admonition:: Edit note
-  :class: warning
-
-  CIB didn't answer my question regarding their the licensing of LibreOffice
-  Powered by CIB. Shall I remove it? The three Docker images listed are the
-  ones also listed on the official page by The Document Foundation. According
-  to Section 6.4 of the `Docker Terms of Service`_, the image should be
-  licensed openly if not stated otherwise. However, if it is built by third
-  party layers, they may be proprietary (Section 6.1). 
-
+    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_. It is not
+    covered in this guide, as there is no reliable licensing information
+    available for it, and it reqires a manual tweak (remove ``su``)
+    in the startup script to run with `udocker_`.
 
 On first sight, the main differences are the sizes of the docker images
 and slightly different default configurations and look-and-feels. However, the new
 *notebookbar* (ribbon-styled) design `introduced in CODE 6.4
 <https://www.collaboraoffice.com/press-releases/code-6-4-0-release/>`_ does not
 yet work correctly in the `libreoffice/online`_ docker image at the time of
-writing (2020-09-26).
+writing (2020-10-14).
 
 In the following, LibreOffice refers to any of the three distributions.
 A listing of the ways to get LibreOffice Online is available on the
@@ -143,6 +134,7 @@ a container:
   The output of the second command is the UUID of the container named
   ``collabora-code``. If you leave out the ``--name`` flag, you must later use
   the UUID instead.
+
 
 Configuration
 =============
