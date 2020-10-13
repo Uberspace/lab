@@ -55,11 +55,8 @@ published under `CC0 <https://creativecommons.org/share-your-work/public-domain/
 `udocker`_ is licensed under the `Apache License 2.0
 <https://github.com/indigo-dc/udocker/blob/master/LICENSE>`.
 
-.. admonition:: Edit note
-  :class: warning
-
-  For `LibreOffice Powered by CIB`_ I didn't find any legal information. I have
-  asked CIB and are waiting for a response.
+Licensing information about containers on Dockerhub in general is available in Section 6 of its
+`Terms of Service <Docker Terms of Service_>`_.
 
 Prerequisites
 =============
@@ -102,7 +99,19 @@ There are mainly three docker distributions of LibreOffice to choose from:
     <https://hub.docker.com/r/collabora/code>`_.
   * `LibreOffice Powered by CIB`_ is a commercially supported distribution with
     the stable docker image `cibsoftware/libreoffice-online
-    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_.
+    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_, but without
+    reliable license information available for it.
+
+.. admonition:: Edit note
+  :class: warning
+
+  CIB didn't answer my question regarding their the licensing of LibreOffice
+  Powered by CIB. Shall I remove it? The three Docker images listed are the
+  ones also listed on the official page by The Document Foundation. According
+  to Section 6.4 of the `Docker Terms of Service`_, the image should be
+  licensed openly if not stated otherwise. However, if it is built by third
+  party layers, they may be proprietary (Section 6.1). 
+
 
 On first sight, the main differences are the sizes of the docker images
 and slightly different default configurations and look-and-feels. However, the new
@@ -112,7 +121,7 @@ yet work correctly in the `libreoffice/online`_ docker image at the time of
 writing (2020-09-26).
 
 In the following, LibreOffice refers to any of the three distributions.
-A thorough listing of the ways to get LibreOffice Online is available on the
+A listing of the ways to get LibreOffice Online is available on the
 `official download page <LOOL_>`_ by The Document Foundation.
 
 Assume you chose `collabora/code`_. Pull the image from dockerhub and create
@@ -426,6 +435,7 @@ If everything is well, you can delete the old container and the config file:
 .. _CODE feed: https://www.collaboraoffice.com/feed
 .. _Collabora: https://www.collaboraoffice.com/
 .. _Collabora Online: https://www.collaboraoffice.com/collabora-online/
+.. _Docker Terms of Service: https://www.docker.com/legal/docker-terms-service
 .. _fakechroot: https://github.com/dex4er/fakechroot/wiki
 .. _Libreoffice powered by CIB: https://libreoffice.cib.de/
 .. _LOOL: https://www.libreoffice.org/download/libreoffice-online/
