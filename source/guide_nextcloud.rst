@@ -82,7 +82,7 @@ Additionally, you can choose where Nextcloud is going to store your data files. 
 Configuration
 =============
 
-Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by editing the ``/var/www/virtual/$USER/html/config/config.php`` with your favorite editor. If yo want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
+Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by editing the ``/var/www/virtual/$USER/html/config/config.php`` with your favorite editor. If you want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
 
 Sendmail Settings
 -----------------
