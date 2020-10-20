@@ -58,8 +58,12 @@ Remove your ``html`` directory and download the current version of Baïkal from 
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
 
+You can also choose not to replace your ``html`` directory (and e.g. install Baïkal in a subdirectory or under a subdomain). In that case, you need to perform additional configuration steps. 
+
 Configuration
 =============
+
+Only if you didn't replace your ``html`` directory (and e.g. installed Baïkal in a subdirectory or under a subdomain), edit the file ``baikal/config/baikal.yaml`` and set the value of ``base_uri`` to ``'/'``.
 
 After the installation you need to open isabell.uber.space in your browser to finish your setup.
 
