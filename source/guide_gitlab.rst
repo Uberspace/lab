@@ -48,36 +48,34 @@ Before starting to deploy gitlab on uberspace there are some preliminary
 conciderations to take.
 
 Since one uberspace account is limited to 1536MB RAM, you will need 2 uberspace
-accounts for full functionality. The gitlab instance will need around 1,2-1,3GB
-RAM and the sidekiq instance will need around 600-700MB RAM. The sidekiq
-instance doesn't need to be dedicated solely to sidekiq. I chose to install
-gitlab runner in parallel for which I would have needed to create a second
-account anyways. Just be sure you can spare 3.5GB of disk space during the setup
-of sidekiq and around 2GB permanent disk space.
+accounts for full functionality without crashes. The gitlab instance will need
+around 1,4GB RAM and the sidekiq instance with postgresql intalled will need
+around 750MB RAM.  The sidekiq instance doesn't need to be dedicated solely to
+sidekiq. I chose to install gitlab runner in parallel for which I would have
+needed to create a second account anyways. Just be sure you can spare 5GB of
+disk space during the setup of sidekiq and around 2.5GB permanent disk space.
 
 The compilation of the assets most likely won't work on your uberspace host
 because the process uses more than the allowed RAM and gets automatically
-killed. So you'll need around 3GB disk space left on your home PC and in your
+killed. So you'll need around 5GB disk space left on your home PC and in your
 home directory to compile the assets there. In case you want to try compiling
 the assets locally before going through the complete guide and noticing it
 doesn't work jump to the `Compile assets`_ section.
 
-You should be aware that on the gitlab instance there will be only around 5GB of
+You should be aware that on the gitlab instance there will be only around 4GB of
 disk space left for your repositories.
 
-Adding all up the final gitlab instance can be used by yourself or a small
+Adding all up the final gitlab instance can be used by yourself and a small
 development team.
 
 If you're finished setting up gitlab you may have noticed that the day is gone,
 so be sure you can spare some hours up to a day ;)
 
-This guide is roughly based on the official `Gitlab installation from source`_
+This guide is roughly based on the official `GitLab installation from source`_
 guide with a lot of adjustments to make it work on uberspace. The main
-differences are the lack of root access (this is why to install from source and
-the need to build some software from source), a different user than the default
-``git`` user and the resource limitations, described above. But since there is a
-way around all of that, this guide exists and you can be a happy GitLab
-administrator when finished.
+differences are the lack of root access (this is why to install GitLab from
+source and the need to build some software from source), a different user than
+the default ``git`` user and the resource limitations, described above.
 
 Finally you'll need a piece of paper or some sort of digital scratchpad to note
 things down.
@@ -133,9 +131,9 @@ Passwords
 A quick word about passwords. The ``REDIS_PASSWORD``,
 ``POSTGRESQL_GITLAB_PASSWORD`` and ``POSTGRESQL_SUPERUSER_PASSWORD`` need to be
 url encoded in some parts of the guide. To avoid the confusion when an when not
-to url encode, you can choose to use an alphanumeric password [a-zA-Z0-9] with a
-higher length. Something between 64 and 128 characters should provide a very
-secure password without the need to go through the url encoding. A 128
+to url encode, you can choose to use an alphanumeric password ``[a-zA-Z0-9]``
+with a higher length. Something between 64 and 128 characters should provide a
+very secure password without the need to go through the url encoding. A 128
 character alphanumeric password can easily be created
 
 ::
@@ -174,10 +172,10 @@ Installation Dependencies
 
 There are a lot of them and some need to be built from source. I'll just tell
 about those which need attention or are not installed by default on uberspace
-hosts. You can have a look at all dependencies at `Gitlab installation from
+hosts. You can have a look at all dependencies at `GitLab installation from
 source dependencies`_ . The basic working directory is ``$HOME/workspace``. You
 can choose a different one if you like. Since we dont' need it anymore when
-`Gitlab`_ is installed, delete it when you reached the end of the gitlab
+`GitLab`_ is installed, delete it when you reached the end of the gitlab
 installation process to get back some disk space.
 
 Cmake
@@ -239,7 +237,7 @@ fine.
 Exiftool
 --------
 
-Gitlab Workhorse needs ``exiftool`` to remove EXIF data from uploaded images.
+GitLab Workhorse needs ``exiftool`` to remove EXIF data from uploaded images.
 As of ``Uberspace 7.7.9.0`` it is not available but you can check yourself with
 
 ::
@@ -311,9 +309,7 @@ At the very bottom of this pretty long output you'll see the INC path where
 Ruby
 ----
 
-We'll need ruby in version ``2.6.x``
-
-Check current version with:
+We'll need ruby in version ``2.6.x``. Check the current version with
 
 ::
 
@@ -425,14 +421,24 @@ uberspace but check with
 PostgreSQL
 ----------
 
-This is the only currently supported database by `GitLab`_. Follow the uberlab
-guide :lab:`PostgreSQL <guide_postgresql>` until :lab_anchor:`Step 3
-<guide_postgresql.html#step3-environment-settings>`. I strongly recommend
-configuring with ``./configure --prefix $HOME/.local`` into the ``$HOME/.local``
-hierarchy because I will refer to this directory structure in this guide. It
-also makes sure that your PATH settings don't need to be adjusted once you've
-added ``$HOME/.local/bin`` to you're PATH in the ``.bashrc`` like described
-above.
+This is the only supported database by `GitLab`_. We need postgresql installed
+on both the ``gitlab`` host for the libraries and on the ``sidekiq`` host for
+the functionality.
+
+PostgreSQL Installation
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: To keep things in line start the `PostgreSQL Installation`_ on the
+   ``sidekiq`` host and then on the ``gitlab`` host before `Creating the
+   Database Cluster`_.
+
+Follow the uberlab guide :lab:`PostgreSQL <guide_postgresql>` until
+:lab_anchor:`Step 3 <guide_postgresql.html#step3-environment-settings>`. I
+strongly recommend configuring with ``./configure --prefix $HOME/.local`` into
+the ``$HOME/.local`` hierarchy because I will refer to this directory structure
+in this guide. It also makes sure that your PATH settings don't need to be
+adjusted once you've added ``$HOME/.local/bin`` to you're PATH in the
+``.bashrc`` like described above.
 
 In your ``$HOME/.bashrc`` adjust the ``LD_LIBRARY_PATH`` to include
 ``$HOME/.local/lib/postgresql`` and ``PGPASSFILE`` environment variables
@@ -444,23 +450,26 @@ In your ``$HOME/.bashrc`` adjust the ``LD_LIBRARY_PATH`` to include
 
 and source ``$HOME/.bashrc`` to make you're current shell recognize the changes.
 
-The Database Cluster
-^^^^^^^^^^^^^^^^^^^^
-
 Create and edit the ``$HOME/.pgpass`` file with the following content
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-    | Replace ``POSTGRESQL_SUPERUSER_PASSWORD`` with a secure password. (See the `Passwords`_ section)
+.. warning:: Replace ``SIDEKIQ_USERNAME``. Replace
+   ``POSTGRESQL_SUPERUSER_PASSWORD`` with a secure password. (See the
+   `Passwords`_ section)
 
 ::
 
-    *:*:*:GITLAB_USERNAME:POSTGRESQL_SUPERUSER_PASSWORD
+    *:*:*:SIDEKIQ_USERNAME:POSTGRESQL_SUPERUSER_PASSWORD
 
 Change permissions to
 
 ::
 
-    [isabell@gitlab ~]$ chmod 0600 "$HOME/.pgpass"
+    [isabell@sidekiq ~]$ chmod 0600 "$HOME/.pgpass"
+
+Creating the Database Cluster
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: We need the database cluster only on the ``sidekiq`` host.
 
 Dump your plain ``POSTGRESQL_SUPERUSER_PASSWORD`` from above into
 ``$HOME/pgpass.temp``
@@ -475,18 +484,20 @@ Create the database cluster and remove the temporary ``$HOME/pgpass.temp`` file.
 
 ::
 
-    [isabell@gitlab ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/.local/var/postgresql
-    [isabell@gitlab ~]$ rm "$HOME/pgpass.temp"
+    [isabell@sidekiq ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/.local/var/postgresql
+    [isabell@sidekiq ~]$ rm "$HOME/pgpass.temp"
 
 Port
 ^^^^
 
-We need ``postgresql`` to be available from the outside so ``sidekiq`` can
-communicate with ``postgresql``
+.. note:: This step is also only needed on the ``sidekiq`` host
+
+We need ``postgresql`` to be available from the outside so the ``gitlab`` host
+can communicate with ``postgresql``. On the ``sidekiq`` host execute
 
 ::
 
-    [isabell@gitlab ~]$ uberspace port add
+    [isabell@sidekiq ~]$ uberspace port add
     Port 55555 will be open for TCP and UDP traffic in a few minutes.
 
 Write this port number down, in this case ``55555``. We'll need it in
@@ -494,6 +505,8 @@ different places later. I'll refer to it with ``POSTGRESQL_PORT``.
 
 Configuration
 ^^^^^^^^^^^^^
+
+.. note:: Only on the ``sidekiq`` host if not otherwise noted
 
 Edit the ``$HOME/.local/var/postgresql/postgresql.conf`` configuration file and
 adjust the following values:
@@ -506,22 +519,22 @@ adjust the following values:
     listen_addressses = '*'
     port = POSTGRESQL_PORT
 
-In the next step we need the external ip address of our ``sidekiq`` host. You
+In the next step we need the external ip address of our ``gitlab`` host. You
 can get the ip address by executing
 
-.. warning:: Replace ``SIDEKIQ_FQDN``
+.. warning:: Replace ``GITLAB_FQDN``
 
 ::
 
-    [isabell@gitlab ~]$ dig SIDEKIQ_FQDN +short
+    [isabell@sidekiq ~]$ dig GITLAB_FQDN +short
     185.26.156.230
 
-on your ``gitlab`` host. I'll refer to this ip with ``SIDEKIQ_IP``.
+for example on your ``sidekiq`` host. I'll refer to this ip with ``GITLAB_IP``.
 
 To secure the database edit the ``$HOME/.local/var/postgresql/pg_hba.conf``
 configuration file on your ``gitlab`` host:
 
-.. warning:: Replace ``SIDEKIQ_IP``
+.. warning:: Replace ``GITLAB_IP``
 
 ::
 
@@ -530,12 +543,12 @@ configuration file on your ``gitlab`` host:
     # local   all             all                                 scram-sha-256
     host    all             all             127.0.0.1/32        scram-sha-256
     host    all             all             ::1/32              scram-sha-256
-    host    gitlab          gitlab          SIDEKIQ_IP/32       scram-sha-256
+    host    gitlab          gitlab          GITLAB_IP/32       scram-sha-256
 
 The ``local`` type sets the connection method for linux ``unix`` sockets, but
 postgresql doesn't listen on both tcp and unix sockets, so we comment it out.
 ``host`` configures ``tcp`` sockets. The last line ensures that you can connect
-from your ``sidekiq`` host to this one.
+from your ``gitlab`` host to the ``sidekiq`` host.
 
 Add or adjust the following environment variables in your ``.bashrc``
 
@@ -543,13 +556,36 @@ Add or adjust the following environment variables in your ``.bashrc``
 
 .. code-block:: bash
 
+    # PostgreSQL configuration on the sidekiq host
+
     export PGPASSFILE="$HOME/.pgpass"
     export PGHOST="localhost"
-    export PGPORT=POSTGRESQL_PORT
+    export PGPORT="POSTGRESQL_PORT"
     export PGDATA="$HOME/.local/var/postgresql"
+    export PGUSER="gitlab"
+    export PGDATABASE="gitlab"
 
-Setup Daemon
-^^^^^^^^^^^^
+and source it with ``source $HOME/.bashrc``.
+
+On the ``gitlab`` host add the following to your ``.bashrc``
+
+.. warning:: Replace ``POSTGRESQL_PORT`` and ``SIDEKIQ_FQDN``.
+
+.. code-block:: bash
+
+    # PostgreSQL configuration on the gitlab host
+    export PGPASSFILE="$HOME/.pgpass"
+    export PGHOST="SIDEKIQ_FQDN"
+    export PGPORT="POSTGRESQL_PORT"
+    export PGUSER="gitlab"
+    export PGDATABASE="gitlab"
+
+and source it.
+
+Setup the supervisor PostgreSQL service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: Only on the ``sidekiq`` host
 
 Create ``$HOME/etc/services.d/postgresql.ini`` with the folllowing content:
 
@@ -567,27 +603,32 @@ and start it with
 
 ::
 
-    [isabell@gitlab ~]$ supervisorctl reread
-    [isabell@gitlab ~]$ supervisorctl update postgresql
-    [isabell@gitlab ~]$ supervisorctl status postgresql
+    [isabell@sidekiq ~]$ supervisorctl reread
+    [isabell@sidekiq ~]$ supervisorctl update postgresql
+    [isabell@sidekiq ~]$ supervisorctl status postgresql
 
 Make sure postgresql is listening on the configured port and addresses
 
 ::
 
-    [isabell@gitlab ~]$ netstat -tlpn | grep postgres
+    [isabell@sidekiq ~]$ netstat -tlpn | grep postgres
     tcp        0      0 0.0.0.0:port           0.0.0.0:*               LISTEN      1786/postgres
     tcp6       0      0 :::port                :::*                    LISTEN      1786/postgres
 
 The output should look similar to the output above with your ``POSTGRESQL_PORT``
 as ``port``. The process number in ``1786/postgres`` may differ, too.
 
-Check that you can connect to the database from your ``gitlab`` host as
+Check PostgreSQL connection from sidekiq host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check that you can connect to the database from your ``sidekiq`` host as
 superuser.
+
+.. warning:: Replace ``SIDEKIQ_USERNAME``
 
 ::
 
-    [isabell@gitlab ~]$ psql -d postgres
+    [isabell@sidekiq ~]$ psql -U SIDEKIQ_USERNAME -d postgres
     psql (12.4)
     Type "help" for help.
 
@@ -605,15 +646,15 @@ users and verify that everything's alright
     ----------+------------------------------------------------------------+-----------
     username  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 
-where username in the ``Role name`` column should be your ``GITLAB_USERNAME``.
+where username in the ``Role name`` column should be your ``SIDEKIQ_USERNAME``.
 For the next step stay in the prompt.
 
-Create Gitlab Database
-^^^^^^^^^^^^^^^^^^^^^^
+Create the GitLab Database
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Supposed you're still connected as your user to the ``postgres`` database we
-now setup the ``gitlab`` database user and database itself. The actual production
-database and user should be different from the superuser to limit it's power as
+now setup the ``gitlab`` database user and database. The actual production
+database and user should be different from the superuser to limit its power as
 far as possible.
 
 .. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD`` with a password different from
@@ -629,11 +670,15 @@ far as possible.
     template1=\q
 
 
-Now add the password from above to the ``$HOME/.pgpass`` file
+Now add the password from above to the ``$HOME/.pgpass`` file on the ``sidekiq``
+and ``gitlab`` host which should now like like
+
+.. warning:: Replace ``SIDEKIQ_USERNAME``, ``POSTGRESQL_SUPERUSER_PASSWORD`` and
+   ``POSTGRESQL_GITLAB_PASSWORD``
 
 ::
 
-    *:*:*:GITLAB_USERNAME:POSTGRESQL_SUPERUSER_PASSWORD
+    *:*:*:SIDEKIQ_USERNAME:POSTGRESQL_SUPERUSER_PASSWORD
     *:*:gitlab:gitlab:POSTGRESQL_GITLAB_PASSWORD
 
 Try to connect to the ``gitlab`` database as ``gitlab`` user and check that
@@ -641,7 +686,7 @@ the extensions are enabled
 
 ::
 
-    [isabell@gitlab ~]$ psql -U gitlab -d gitlab
+    [isabell@sidekiq ~]$ psql -U gitlab -d gitlab
     gitlab=# SELECT true AS enabled
     gitlab=# FROM pg_available_extensions
     gitlab=# WHERE name = 'pg_trgm'
@@ -663,7 +708,23 @@ the extensions are enabled
     gitlab=# \q
 
 The enabled column should contain a row with ``t``. The extensions are required
-by `Gitlab`_ 13.1+.
+by `GitLab`_ 13.1+.
+
+Check PostgreSQL from the gitlab host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+With all the environment set in the ``.bashrc`` and the database password stored
+in ``$HOME/.pgpass`` it's just one command away to connect to the database from
+the ``gitlab`` host as gitlab user
+
+::
+
+    [isabell@gitlab ~]$ psql
+    psql (12.4)
+    Type "help" for help.
+
+    gitlab=> \q
+
 
 Redis
 -----
@@ -704,10 +765,8 @@ Now create the redis directory
 
 and the ``$HOME/.redis/conf`` file in it
 
-.. warning:: | Replace ``GITLAB_VETH_IP``
-   | Replace ``REDIS_PORT``
-   | Replace ``GITLAB_USERNAME``
-   | Replace ``REDIS_PASSWORD`` with a secure password. (See `Passwords`_)
+.. warning:: Replace ``GITLAB_VETH_IP``, ``REDIS_PORT``, ``GITLAB_USERNAME`` and
+   ``REDIS_PASSWORD`` with a secure password. (See `Passwords`_)
 
 ::
 
@@ -738,11 +797,36 @@ Let's start redis
     [isabell@gitlab ~]$ supervisorctl update redis
     [isabell@gitlab ~]$ supervisorctl status redis
 
+and eventually check that redis works as expected (you'll end up in a redis
+prompt)
 
-Installation Gitlab
+.. note:: Do this from your ``sidekiq`` host and ``gitlab`` host. On the
+   ``gitlab`` host you don't need to specify the REDIS_PORT and GITLAB_FQDN
+   since you can connect via the redis socket. A simple ``$ redis-cli`` will
+   do.
+
+.. warning:: Replace ``REDIS_PORT``, ``GITLAB_FQDN`` and ``REDIS_PASSWORD``
+
+::
+
+    [isabell@sidekiq ~]$ redis-cli -p REDIS_PORT -h GITLAB_FQDN
+    host:port> ping
+    (error) NOAUTH Authentication required.
+    host:port> auth REDIS_PASSWORD
+    OK
+    host:port> ping
+    PONG
+    host:port> quit
+
+``host`` should match ``GITLAB_FQDN``  and ``port`` the ``REDIS_PORT``. If your
+prompt looks like that after typing all commands you're all set. If not you
+should go through the `Redis`_ section again.
+
+
+Installation GitLab
 ===================
 
-.. note:: This guide is tested with `Gitlab`_ 13.4.2.
+.. note:: This guide is tested with `GitLab`_ 13.4.2.
 
 Pull the source
 
@@ -780,6 +864,9 @@ and copy the example files
     [isabell@gitlab ~/gitlab/config]$ cp database.yml.example database.yml
     [isabell@gitlab ~/gitlab/config]$ chmod 0600 database.yml
 
+    [isabell@gitlab ~/gitlab/config]$ cp initializers/smtp_settings.rb.sample initializers/smtp_settings.rb
+    [isabell@gitlab ~/gitlab/config]$ chmod 0600 initializers/smtp_settings.rb
+
 We need to change all occurences of ``/home/git/`` to your actual home
 ``/home/GITLAB_USERNAME/``
 
@@ -792,8 +879,7 @@ We need to change all occurences of ``/home/git/`` to your actual home
 
 Edit ``gitlab.yml`` to match the following (only required changes are listed)
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_EXTERNAL_FQDN``
+.. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_EXTERNAL_FQDN``
 
    The file is big so you may need to scroll down a lot to get to the configuration key.
 
@@ -816,7 +902,7 @@ Edit ``gitlab.yml`` to match the following (only required changes are listed)
 
             email_enabled: true
             email_from: GITLAB_USERNAME@uber.space
-            email_display_name: Gitlab
+            email_display_name: GitLab
             email_reply_to: GITLAB_USERNAME@uber.space
 
         # ...
@@ -849,8 +935,7 @@ and leaves some headroom but not enough for another worker.
 
 Edit ``resque.yml`` to match the following (only required changes are listed)
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``REDIS_PASSWORD``
+.. warning:: Replace ``GITLAB_USERNAME`` and ``REDIS_PASSWORD``
 
 ::
 
@@ -861,8 +946,7 @@ Edit ``resque.yml`` to match the following (only required changes are listed)
 
 Edit ``database.yml`` to match the following (only required changes are listed)
 
-.. warning:: | Replace ``POSTGRESQL_PORT``
-   | Replace ``POSTGRESQL_GITLAB_PASSWORD``
+.. warning:: Replace ``POSTGRESQL_PORT`` and ``POSTGRESQL_GITLAB_PASSWORD``
 
 ::
 
@@ -875,6 +959,30 @@ Edit ``database.yml`` to match the following (only required changes are listed)
         port: POSTGRESQL_PORT
 
     # ...
+
+Edit ``initializers/smtp_settings.rb`` to match the following
+
+.. warning:: Replace ``GITLAB_FQDN``,
+   ``GITLAB_USERNAME``, ``GITLAB_EMAIL_PASSWORD`` and ``GITLAB_EXTERNAL_FQDN``
+
+::
+
+    # ...
+    if Rails.env.production?
+    Rails.application.config.action_mailer.delivery_method = :smtp
+
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      address: "GITLAB_FQDN",
+      port: 587,
+      user_name: "GITLAB_USERNAME@uber.space",
+      password: "GITLAB_EMAIL_PASSWORD",
+      domain: "GITLAB_EXTERNAL_FQDN",
+      authentication: :plain,
+      enable_starttls_auto: true,
+      tls: false,
+      ssl: false,
+      openssl_verify_mode: 'none' # See ActionMailer documentation for other possible options
 
 
 Directories
@@ -936,8 +1044,7 @@ The gitlab-shell configuration is auto generated from the configuration values
 above but it doesn't harm to double check. This is what the
 ``$HOME/gitlab-shell/config.yml`` configuration file should look like
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_EXTERNAL_FQDN``
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_EXTERNAL_FQDN``
 
 ::
 
@@ -981,8 +1088,7 @@ The gitlab-workhorse needs a supervisor service in
 ``$HOME/etc/services.d/gitlab-workhorse.ini``
 
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_WORKHORSE_PORT``
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_WORKHORSE_PORT``
 
 ::
 
@@ -1028,10 +1134,8 @@ Now let's check the auto-generated gitaly configuration file
 ``$HOME/gitaly/config.toml`` and add or change configuration options to match
 the following:
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_VETH_IP``
-   | Replace ``GITALY_PORT``
-   | Replace ``GITLAB_EXTERNAL_FQDN``
+.. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_VETH_IP``, ``GITALY_PORT``
+   and ``GITLAB_EXTERNAL_FQDN``
 
 ::
 
@@ -1170,7 +1274,7 @@ Make sure you have the minimum ``node`` and ``yarn`` versions installed
 otherwise install them with your package manager. You'll also need cmake ``>=
 3.x`` and the libre2-dev package. The package name may differ depending on your
 OS. If something goes wrong this is most likely because you're missing some
-dependencies. Check the dependencies section at `Gitlab installation from source
+dependencies. Check the dependencies section at `GitLab installation from source
 dependencies`_. Next we go through some of the steps again to be able to
 compile the assets locally. It's not that much anymore like before.
 
@@ -1192,8 +1296,7 @@ compile the assets locally. It's not that much anymore like before.
 For the next step to work you'll need some configuration files from your
 ``gitlab`` host. Download them for example with
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_FQDN``
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_FQDN``
 
 ::
 
@@ -1264,83 +1367,6 @@ are
 Don't forget to adjust your ``.bashrc`` on the ``sidekiq`` host to include all
 ``PATH``'s and the ``LD_LIBRARY_PATH`` adjustments.
 
-From the `PostgreSQL`_ section we need to set the variables in your
-``.bashrc`` to the right values
-
-.. warning:: | Replace ``GITLAB_FQDN``
-   | Replace ``POSTGRESQL_PORT``
-
-.. code-block:: bash
-
-    # Postgresql environment variables on the sidekiq host
-
-    export PGPASSFILE="$HOME/.pgpass"
-    export PGHOST="GITLAB_FQDN"
-    export PGPORT=POSTGRESQL_PORT
-    export PGUSER="gitlab"
-    export PGDATABASE="gitlab"
-
-Source the ``.bashrc`` file
-
-::
-
-    [isabell@sidekiq ~]$ source .bashrc
-
-Store the database password in the ``$HOME/.pgpass`` file
-
-
-.. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD``
-
-::
-
-    *:*:gitlab:gitlab:POSTGRESQL_GITLAB_PASSWORD
-
-and change permissions of that file
-
-::
-
-    [isabell@sidekiq ~]$ chmod 0600 "$HOME/.pgpass"
-
-Check postgresql and redis connection
--------------------------------------
-
-With all the environment files set and the database password stored in
-``$HOME/.pgpass`` it's just one command away to connect to the database from the
-``sidekiq`` host
-
-::
-
-    [isabell@sidekiq ~]$ psql
-    psql (12.4)
-    Type "help" for help.
-
-    gitlab=> \q
-
-If this works we're done with the postgresql setup else go through the
-`PostgreSQL`_ section again. You may have missed something.
-
-Now let's check that redis works as expected (you'll end up in a redis prompt)
-
-
-.. warning:: | Replace ``REDIS_PORT``
-   | Replace ``GITLAB_FQDN``
-   | Replace ``REDIS_PASSWORD``
-
-::
-
-    [isabell@sidekiq ~]$ redis-cli -p REDIS_PORT -h GITLAB_FQDN
-    host:port> ping
-    (error) NOAUTH Authentication required.
-    host:port> auth REDIS_PASSWORD
-    OK
-    host:port> ping
-    PONG
-    host:port> quit
-
-``host`` should match ``GITLAB_FQDN``  and ``port`` the ``REDIS_PORT``. If your
-prompt looks like that after typing all commands you're all set. If not you
-should go through the `Redis`_ section again.
-
 Install sidekiq
 ---------------
 
@@ -1359,18 +1385,20 @@ through all commands quickly here
 
     [isabell@sidekiq ~/gitlab/config]$ cp gitlab.yml.example gitlab.yml
 
-    [isabell@sidekiq ~/gitlab/config]$ cp secrets.yml.example secrets.yml
-    [isabell@sidekiq ~/gitlab/config]$ chmod 0600 secrets.yml
-
     [isabell@sidekiq ~/gitlab/config]$ cp resque.yml.example resque.yml
     [isabell@sidekiq ~/gitlab/config]$ chmod 0600 resque.yml
 
     [isabell@sidekiq ~/gitlab/config]$ cp database.yml.example database.yml
     [isabell@sidekiq ~/gitlab/config]$ chmod 0600 database.yml
 
-We need to change all occurences of ``/home/git/`` to the actual home
-``/home/GITLAB_USERNAME/`` of the user on the ``gitlab`` host.
+    [isabell@sidekiq ~/gitlab/config]$ cp initializers/smtp_settings.rb.sample initializers/smtp_settings.rb
+    [isabell@sidekiq ~/gitlab/config]$ chmod 0600 initializers/smtp_settings.rb
 
+.. note:: We need the ``gitlab/config/secrets.yml`` file from the ``gitlab``
+   host. Copy it over with the tool of your choice.
+
+Next change all occurences of ``/home/git/`` to the actual home
+``/home/GITLAB_USERNAME/`` of the user on the ``gitlab`` host.
 
 .. warning:: Replace ``GITLAB_USERNAME``
 
@@ -1380,10 +1408,8 @@ We need to change all occurences of ``/home/git/`` to the actual home
 
 Edit ``gitlab.yml`` to match the following (only required changes are listed)
 
-.. warning:: | Replace ``GITLAB_USERNAME``
-   | Replace ``GITLAB_EXTERNAL_FQDN``
-   | Replace ``GITLAB_FQDN``
-   | Replace ``GITALY_PORT``
+.. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_EXTERNAL_FQDN``,
+   ``GITLAB_FQDN`` and ``GITALY_PORT``
 
 ::
 
@@ -1423,9 +1449,7 @@ Edit ``gitlab.yml`` to match the following (only required changes are listed)
 Edit ``resque.yml`` to match the following (only required changes are listed)
 
 
-.. warning:: | Replace ``REDIS_PASSWORD``
-   | Replace ``GITLAB_FQDN``
-   | Replace ``REDIS_PORT``
+.. warning:: Replace ``REDIS_PASSWORD``, ``GITLAB_FQDN`` and ``REDIS_PORT``
 
 ::
 
@@ -1436,9 +1460,8 @@ Edit ``resque.yml`` to match the following (only required changes are listed)
 
 Edit ``database.yml`` to match the following (only required changes are listed)
 
-.. warning:: | Replace ``POSTGRESQL_GITLAB_PASSWORD``
-   | Replace ``GITLAB_FQDN``
-   | Replace ``POSTGRESQL_PORT``
+.. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD``, ``SIDEKIQ_FQDN`` and
+   ``POSTGRESQL_PORT``
 
 ::
 
@@ -1447,10 +1470,34 @@ Edit ``database.yml`` to match the following (only required changes are listed)
         database: gitlab
         username: gitlab
         password: 'POSTGRESQL_GITLAB_PASSWORD'
-        host: 'GITLAB_FQDN'
+        host: 'SIDEKIQ_FQDN'
         port: 'POSTGRESQL_PORT'
 
     # ...
+
+Edit ``initializers/smtp_settings.rb`` to match the following
+
+.. warning:: Replace ``GITLAB_FQDN``,
+   ``GITLAB_USERNAME``, ``GITLAB_EMAIL_PASSWORD`` and ``GITLAB_EXTERNAL_FQDN``
+
+::
+
+    # ...
+    if Rails.env.production?
+    Rails.application.config.action_mailer.delivery_method = :smtp
+
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      address: "GITLAB_FQDN",
+      port: 587,
+      user_name: "GITLAB_USERNAME@uber.space",
+      password: "GITLAB_EMAIL_PASSWORD",
+      domain: "GITLAB_EXTERNAL_FQDN",
+      authentication: :plain,
+      enable_starttls_auto: true,
+      tls: false,
+      ssl: false,
+      openssl_verify_mode: 'none' # See ActionMailer documentation for other possible options
 
 Install Gems (sidekiq)
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -1479,9 +1526,7 @@ Now that installation is done we need a supervisor service for sidekiq in
 
 The ``SIDEKIQ_WORKERS=1`` setting ensures to run only one worker which uses
 around 500-600MB and leaves enough headroom to run another app on the same host,
-so your ``sidekiq`` host doesn't need to be dedicated to the sidekiq app alone.
-As long as you don't want to serve 500 users with your gitlab instance I don't
-think there is the need for more workers.
+so your ``sidekiq`` host doesn't need to be dedicated to sidekiq alone.
 
 Final steps
 ===========
@@ -1614,11 +1659,20 @@ There should only be two errors presents which we can ignore. ``sidekiq`` isn't
 running because we've set it up on a different host and the init script is
 replaced by our supervisor services.
 
-Cleanup
--------
+Finish it
+---------
 
-We can cleanup our home a bit to gain some disk space back. Remove the entire
-workspace directory and some of the cache
+Point your browser to ``https://GITLAB_EXTERNAL_FQDN``, follow the instructions
+and reset the password. You can login with ``root`` as user and your new
+password.
+
+Done :)
+
+Cleanup
+^^^^^^^
+
+Finally we can cleanup our home a bit to gain some disk space back. Remove the
+entire workspace directory and some of the cache. You can do so on both hosts.
 
 ::
 
@@ -1632,15 +1686,6 @@ Check your quota
     [isabell@gitlab ~]$ quota -gsl
 
 you should have left around 4-5GB for your repositories.
-
-Finish it up
-------------
-
-Now point your browser to ``https://GITLAB_EXTERNAL_FQDN``, follow the
-instructions and reset the password. You can login with ``root`` as user and
-your new password.
-
-Done :)
 
 .. rubric:: Footnotes
 
