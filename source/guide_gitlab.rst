@@ -984,6 +984,32 @@ Edit ``initializers/smtp_settings.rb`` to match the following
       ssl: false,
       openssl_verify_mode: 'none' # See ActionMailer documentation for other possible options
 
+Puma suffers from memory leaks and the memory consumption increases over time.
+As a counter measurement gitlab uses puma worker killer but the default memory
+limit is too high for uberspace. Edit
+``$HOME/gitlab/lib/gitlab/cluster/puma_worker_killer_initializer.rb`` to match
+the following
+
+::
+
+    # ...
+    module Gitlab
+      module Cluster
+        class PumaWorkerKillerInitializer
+          def self.start(
+            puma_options,
+              puma_per_worker_max_memory_mb: 750,
+              puma_master_max_memory_mb: 550,
+              additional_puma_dev_max_memory_mb: 200
+        )
+
+    # ...
+
+You will notice higher loading times when the puma worker is restarted and
+you're currently browsing. From my experience the restart happens once or twice
+the hour but I haven't noticed it very often. Feel free to adjust the
+``puma_per_worker_max_memory_mb`` value to something you feel comfortable with
+but don't stress the overall memory limit.
 
 Directories
 -----------
