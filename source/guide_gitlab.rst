@@ -433,7 +433,7 @@ PostgreSQL Installation
    Database Cluster`_.
 
 Follow the uberlab guide :lab:`PostgreSQL <guide_postgresql>` until
-:lab_anchor:`Step 3 <guide_postgresql.html#step3-environment-settings>`. I
+:lab_anchor:`Step 3 <guide_postgresql.html#step-3-environment-settings>`. I
 strongly recommend configuring with ``./configure --prefix $HOME/.local`` into
 the ``$HOME/.local`` hierarchy because I will refer to this directory structure
 in this guide. It also makes sure that your PATH settings don't need to be
@@ -487,8 +487,8 @@ Create the database cluster and remove the temporary ``$HOME/pgpass.temp`` file.
     [isabell@sidekiq ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/.local/var/postgresql
     [isabell@sidekiq ~]$ rm "$HOME/pgpass.temp"
 
-Port
-^^^^
+PostgreSQL Port
+^^^^^^^^^^^^^^^
 
 .. note:: This step is also only needed on the ``sidekiq`` host
 
@@ -503,8 +503,8 @@ can communicate with ``postgresql``. On the ``sidekiq`` host execute
 Write this port number down, in this case ``55555``. We'll need it in
 different places later. I'll refer to it with ``POSTGRESQL_PORT``.
 
-Configuration
-^^^^^^^^^^^^^
+PostgreSQL Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: Only on the ``sidekiq`` host if not otherwise noted
 
@@ -1341,22 +1341,47 @@ This may take a while to complete but in next step we can upload the assets to
 the ``gitlab`` host. You can either upload it directly or compress them first
 like described here
 
+
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_FQDN``
+
 ::
 
     [isabell@home ~/workspace/gitlab]$ cd public
     [isabell@home ~/workspace/gitlab/public]$ tar czf assets.tar.gz assets/
     [isabell@home ~/workspace/gitlab/public]$ scp assets.tar.gz GITLAB_USERNAME@GITLAB_FQDN:gitlab/public
 
+Upload the hash files. If one of them is missing just upload the file which
+exists
+
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_FQDN``
+
+::
+
+    [isabell@home ~/workspace/gitlab]$ scp {master-,}assets-hash.txt GITLAB_USERNAME@GITLAB_FQDN:gitlab/
+
+
 Next on your ``gitlab`` host
 
 ::
 
     [isabell@gitlab ~]$ cd gitlab/public
-    [isabell@gitlab ~/gitlab/public]$ rm -rf assets/ # just needed if you've tried to compile the assets on your gitlab host
+    [isabell@gitlab ~/gitlab/public]$ rm -rf assets/ # Delete the assets directory if it exists
     [isabell@gitlab ~/gitlab/public]$ tar xzf assets.tar.gz
     [isabell@gitlab ~/gitlab/public]$ rm assets.tar.gz
 
-and your done.
+Do not delete anything yet in your home directory. We'll need the assets on the
+``sidekiq`` host too, but it's not ready yet.
+
+and finally execute
+
+::
+
+    [isabell@gitlab ~]$ cd gitlab
+    [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+
+Since the ``$HOME/gitlab/public/assets`` directory including subdirectories and
+the ``$HOME/gitlab/master-assets-hash.txt`` file already exist the webpack step
+will be skipped. Everything else should run through without errors.
 
 Installation sidekiq
 ====================
@@ -1417,20 +1442,32 @@ through all commands quickly here
     [isabell@sidekiq ~/gitlab/config]$ cp database.yml.example database.yml
     [isabell@sidekiq ~/gitlab/config]$ chmod 0600 database.yml
 
-    [isabell@sidekiq ~/gitlab/config]$ cp initializers/smtp_settings.rb.sample initializers/smtp_settings.rb
-    [isabell@sidekiq ~/gitlab/config]$ chmod 0600 initializers/smtp_settings.rb
-
-.. note:: We need the ``gitlab/config/secrets.yml`` file from the ``gitlab``
-   host. Copy it over with the tool of your choice.
-
-Next change all occurences of ``/home/git/`` to the actual home
-``/home/GITLAB_USERNAME/`` of the user on the ``gitlab`` host.
-
-.. warning:: Replace ``GITLAB_USERNAME``
+We also need some files from the ``gitlab`` host. Copy them over either directly
+or your local PC as intermediate. These files are (relative to the
+``/home/GITLAB_USERNAME/gitlab`` directory)
 
 ::
 
-    [isabell@sidekiq ~/gitlab/config]$ sed -i 's:/home/git/:/home/GITLAB_USERNAME/:g' gitlab.yml secrets.yml resque.yml database.yml
+    config/secrets.yml
+    config/initializers/smtp_settings.rb
+    .gitlab_kas_secret
+    .gitlab_shell_secret
+    .gitlab_workhorse_secret
+
+Secure access to these files with
+
+::
+
+    [isabell@gitlab ~]$ cd gitlab
+    [isabell@sidekiq ~/gitlab]$ chmod 0600 config/{secrets.yml,initializers/smtp_settings.rb} .gitlab_{kas,shell,workhorse}_secret``.
+
+Next change all occurences of ``/home/git/`` to ``/home/SIDEKIQ_USERNAME/``
+
+.. warning:: Replace ``SIDEKIQ_USERNAME``
+
+::
+
+    [isabell@sidekiq ~/gitlab/config]$ sed -i 's:/home/git/:/home/SIDEKIQ_USERNAME/:g' gitlab.yml
 
 Edit ``gitlab.yml`` to match the following (only required changes are listed)
 
@@ -1459,11 +1496,6 @@ Edit ``gitlab.yml`` to match the following (only required changes are listed)
 
         # ...
 
-        dependency_proxy:
-            enabled: false
-
-        # ...
-
         repositories:
             # ...
             storages:
@@ -1486,8 +1518,7 @@ Edit ``resque.yml`` to match the following (only required changes are listed)
 
 Edit ``database.yml`` to match the following (only required changes are listed)
 
-.. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD``, ``SIDEKIQ_FQDN`` and
-   ``POSTGRESQL_PORT``
+.. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD`` and ``POSTGRESQL_PORT``
 
 ::
 
@@ -1496,34 +1527,10 @@ Edit ``database.yml`` to match the following (only required changes are listed)
         database: gitlab
         username: gitlab
         password: 'POSTGRESQL_GITLAB_PASSWORD'
-        host: 'SIDEKIQ_FQDN'
+        host: 'localhost'
         port: 'POSTGRESQL_PORT'
 
     # ...
-
-Edit ``initializers/smtp_settings.rb`` to match the following
-
-.. warning:: Replace ``GITLAB_FQDN``,
-   ``GITLAB_USERNAME``, ``GITLAB_EMAIL_PASSWORD`` and ``GITLAB_EXTERNAL_FQDN``
-
-::
-
-    # ...
-    if Rails.env.production?
-    Rails.application.config.action_mailer.delivery_method = :smtp
-
-    ActionMailer::Base.delivery_method = :smtp
-    ActionMailer::Base.smtp_settings = {
-      address: "GITLAB_FQDN",
-      port: 587,
-      user_name: "GITLAB_USERNAME@uber.space",
-      password: "GITLAB_EMAIL_PASSWORD",
-      domain: "GITLAB_EXTERNAL_FQDN",
-      authentication: :plain,
-      enable_starttls_auto: true,
-      tls: false,
-      ssl: false,
-      openssl_verify_mode: 'none' # See ActionMailer documentation for other possible options
 
 Install Gems (sidekiq)
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -1533,11 +1540,67 @@ Install Gems (sidekiq)
     [isabell@sidekiq ~]$ cd gitlab
     [isabell@sidekiq ~/gitlab]$ bundle install --deployment --without development test mysql aws kerberos
 
+Post installation (sidekiq)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Repeat every step from the `Post installation steps`_ section. You do not need
+to compile the assets again on your home PC, just upload the ``assets.tar.gz``
+file and the ``hash files`` this time to the ``sidekiq`` host and finish the
+compilation with
+
+::
+
+    [isabell@sidekiq ~]$ cd gitlab
+    [isabell@sidekiq ~/gitlab]$ bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+
+
+
+Check sending emails
+^^^^^^^^^^^^^^^^^^^^
+
+We need to enter the Rails console
+
+::
+
+    [isabell@sidekiq ~]$ cd gitlab
+    [isabell@sidekiq ~/gitlab]$ bundle exec rails console -e production
+    --------------------------------------------------------------------------------
+    GitLab:       13.4.2 (5049b3cd236) FOSS
+    GitLab Shell: Unknown
+    PostgreSQL:   12.4
+    --------------------------------------------------------------------------------
+    Loading production environment (Rails 6.0.3.1)
+    irb(main):001:0>
+
+Within the console enter some commands to get used to the console a bit, check
+email settings and finally send a test email
+
+.. warning:: Replace ``TEST_EMAIL_ACCOUNT`` with a valid email address in the
+   form test@example.com you have access to.
+
+::
+
+    irb(main):001:0> ActionMailer::Base.delivery_method
+    => :smtp
+    irb(main):002:0> ActionMailer::Base.smtp_settings
+    => {:address=>"<gitlab_fqdn>", :port=>587, :user_name=>"<username>@uber.space", :password=>"<password>", :domain=>"<username>.uber.space", :authentication=>:plain, :enable_starttls_auto=>true, :tls=>false, :ssl=>false, :openssl_verify_mode=>"none"}
+    irb(main):003:0> Notify.test_email('TEST_EMAIL_ACCOUNT', 'Test', 'This is a test message').deliver_now
+
+where ``<gitlab_fqdn>`` matches your ``GITLAB_FQDN``, ``<password>`` your
+``GITLAB_EMAIL_PASSWORD`` and ``<username>`` your ``GITLAB_USERNAME``. If there
+are no exceptions you should have received an email in your
+``TEST_EMAIL_ACCOUNT``'s inbox. If not check your junk mail inbox just to be
+sure. In the case you haven't received an email you should go through the
+``$HOME/gitlab/config/initializers/smtp_settings.rb`` again (See also
+`Configuration`_).
+
+Setup the sidekiq supervisor daemon
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now that installation is done we need a supervisor service for sidekiq in
 ``$HOME/etc/services.d/sidekiq.ini``
 
-.. warning:: Replace ``GITLAB_USERNAME``
+.. warning:: Replace ``SIDEKIQ_USERNAME``
 
 ::
 
