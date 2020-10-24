@@ -110,6 +110,7 @@ with
 
     [isabell@gitlab ~]$ hostname -f
     gitlab.uberspace.de
+    [isabell@gitlab ~]$
 
 Do the same on your ``sidekiq`` host and write them down. Your usernames are
 referred to as ``SIDEKIQ_USERNAME`` and ``GITLAB_USERNAME``. In our case this
@@ -140,6 +141,7 @@ character alphanumeric password can easily be created
 
     [isabell@gitlab ~]$ echo -n 'my secret passphrase' | sha512sum | sed 's/[ -]//g'
     1d143ea6fb069e71fa8c90b3f81283cc71bf8d182448fda3e8cc3ae6ee8955b8baa6e616adfa2ffbb436791df91f07fdeac3c8083e1fabfd597398a97801c4a2
+    [isabell@gitlab ~]$
 
 For a 96 character password use ``sha384sum`` (64 chars => ``sha256sum`` ...).
 If you don't care about a passphrase you can increase the security of your
@@ -148,6 +150,7 @@ password
 ::
 
     [isabell@gitlab ~]$ head -c 128 /dev/random | sha512sum | sed 's/[ -]//g'
+    [isabell@gitlab ~]$
 
 The ``128`` value is chosen by me and you can use anything you want, say from 64
 characters onwards to end up with a very secure password. The more characters
@@ -155,7 +158,8 @@ the lower the speed of the password creation but the higher the security.
 
 However if you really don't want an alphanumeric password you can url encode it
 
-::
+.. code-block:: console
+   :emphasize-lines: 1,5,6,7,9
 
     [isabell@gitlab ~]$ python3
     Python 3.6.8 (default, Apr  2 2020, 13:34:55)
@@ -165,6 +169,8 @@ However if you really don't want an alphanumeric password you can url encode it
     >>> password = '# {my secret password as string or as bytes!}'
     >>> p.quote(password)
     '%23%20%7Bmy%20secret%20password%20as%20string%20or%20as%20bytes%21%7D'
+    >>> quit()
+    [isabell@gitlab ~]$
 
 
 Installation Dependencies
@@ -186,6 +192,8 @@ Check the current available version of ``cmake`` with
 ::
 
     [isabell@gitlab ~]$ cmake --version
+    cmake version 2.8.12.2
+    [isabell@gitlab ~]$
 
 If it is below ``3.0.0`` than we'll need to install cmake from source. You can
 skip the ``test`` if you like to, because it takes a while to complete but to be
@@ -197,17 +205,24 @@ sure that your installation will work you should run it.
     [isabell@gitlab ~]$ cd workspace/cmake
     [isabell@gitlab ~/workspace/cmake]$ wget https://github.com/Kitware/CMake/releases/download/v3.18.3/cmake-3.18.3.tar.gz
     [isabell@gitlab ~/workspace/cmake]$ tar xzf cmake-3.18.3.tar.gz && cd cmake-3.18.3
-    [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$ ./bootstrap --prefix=$HOME/.local --docdir=share --mandir=share
+    [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$ ./bootstrap --prefix=$HOME/.local
     [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$ make
     [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$ make test # this may take a while
     [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$ make install
+    [isabell@gitlab ~/workspace/cmake/cmake-3.18.3]$
 
-and add the ``$HOME/.local/bin`` dir to the PATH
+and add the ``$HOME/.local/bin`` dir to the PATH. Edit ``$HOME/.bashrc`` to
+include the following
+
+.. code-block:: bash
+
+    export PATH="$HOME/.local/bin:$PATH"
+
 
 ::
 
-    [isabell@gitlab ~]$ echo 'export PATH="$HOME/.local/bin:$PATH"' >> $HOME/.bashrc
-    [isabell@gitlab ~]$ source .bashrc
+    [isabell@gitlab ~]$ source $HOME/.bashrc
+    [isabell@gitlab ~]$
 
 Check the cmake version
 
@@ -217,6 +232,7 @@ Check the cmake version
     cmake version 3.18.3
 
     CMake suite maintained and supported by Kitware (kitware.com/cmake).
+    [isabell@gitlab ~]$
 
 If your output looks similar you're all set.
 
@@ -230,6 +246,7 @@ Check that git has minimum version ``>=2.24.0`` and is compiled with ``libpcre2`
     [isabell@gitlab ~]$ git --version && ldd $(command -v git) | grep pcre2
     git version 2.24.3
         libpcre2-8.so.0 => /lib64/libpcre2-8.so.0 (0x00007fc2bf65c000)
+    [isabell@gitlab ~]$
 
 This is normally the case and if the output looks similar then everything's
 fine.
@@ -242,11 +259,11 @@ As of ``Uberspace 7.7.9.0`` it is not available but you can check yourself with
 
 ::
 
-    [isabell@gitlab ~]$ command -v exiftool
+    [isabell@gitlab ~]$ command -v exiftool || echo nope
+    nope
     [isabell@gitlab ~]$
 
-If this returns an error with no output we'll install it from source into the
-``$HOME/.local`` hierarchy
+We'll install it from source into the ``$HOME/.local`` hierarchy
 
 ::
 
@@ -258,6 +275,7 @@ If this returns an error with no output we'll install it from source into the
     [isabell@gitlab ~/workspace/exiftool/Image-ExifTool-12.07]$ perl Makefile.PL INSTALL_BASE="$HOME/.local"
     [isabell@gitlab ~/workspace/exiftool/Image-ExifTool-12.07]$ make test
     [isabell@gitlab ~/workspace/exiftool/Image-ExifTool-12.07]$ make install
+    [isabell@gitlab ~/workspace/exiftool/Image-ExifTool-12.07]$
 
 The man pages of ``exiftool`` aren't installed into the right location so we
 have to fix that:
@@ -266,9 +284,10 @@ have to fix that:
 
     [isabell@gitlab ~/workspace/exiftool/Image-ExifTool-12.07]$ cd ~/.local
     [isabell@gitlab ~/.local]$ cp -af man/ share/ && rm -rf man/
+    [isabell@gitlab ~/.local]$
 
 Optionally add the ``$HOME/.local/share/man`` and ``$HOME/.local/share/info``
-paths to MANPATH and INFOPATH in your ``.bashrc``
+paths to MANPATH and INFOPATH in your ``$HOME/.bashrc``
 
 .. code-block:: bash
 
@@ -282,18 +301,19 @@ Next add the local perl libraries to the INC path of perl. Edit
 
     export PERL5LIB="$HOME/.local/lib/perl5:$PERL5LIB"
 
-Now source your ``.bashrc``
+Now source your ``$HOME/.bashrc``
 
 ::
 
-    [isabell@gitlab ~]$ source .bashrc
+    [isabell@gitlab ~]$ source $HOME/.bashrc
+    [isabell@gitlab ~]$
 
 Check that the INC path includes ``/home/GITLAB_USERNAME/.local/lib/perl5``
 
 ::
 
     [isabell@gitlab ~]$ perl -V
-    # ...
+    # ... a lot of output we don't care about right now
     @INC:
         /home/<username>/.local/lib/perl5
         /usr/local/lib64/perl5
@@ -302,6 +322,7 @@ Check that the INC path includes ``/home/GITLAB_USERNAME/.local/lib/perl5``
         /usr/share/perl5/vendor_perl
         /usr/lib64/perl5
         /usr/share/perl5
+    [isabell@gitlab ~]$
 
 At the very bottom of this pretty long output you'll see the INC path where
 ``<username>`` is your ``GITLAB_USERNAME``.
@@ -314,6 +335,7 @@ We'll need ruby in version ``2.6.x``. Check the current version with
 ::
 
     [isabell@gitlab ~]$ ruby --version
+    [isabell@gitlab ~]$
 
 If it is below or higher than the required version we'll change to ``2.6``
 
@@ -321,12 +343,14 @@ If it is below or higher than the required version we'll change to ``2.6``
 
     [isabell@gitlab ~]$ uberspace tools version use ruby 2.6
     Using 'Ruby' version: '2.6'
+    [isabell@gitlab ~]$
 
 Bundler is needed in a version ``>=1.5.2, < 2``. Install bundler with
 
 ::
 
     [isabell@gitlab ~]$ gem install bundler --no-document --version '>=1.5.2, < 2'
+    [isabell@gitlab ~]$
 
 Re2
 ---
@@ -339,6 +363,7 @@ yourself with
 
     [isabell@gitlab ~]$ /sbin/ldconfig -p | grep 'libre2\.so' || echo nope
     nope
+    [isabell@gitlab ~]$
 
 
 So let's install it from source
@@ -352,31 +377,34 @@ So let's install it from source
     [isabell@gitlab ~/workspace/libre2]$ make test prefix="$HOME/.local"
     [isabell@gitlab ~/workspace/libre2]$ make install prefix="$HOME/.local"
     [isabell@gitlab ~/workspace/libre2]$ make testinstall prefix="$HOME/.local"
+    [isabell@gitlab ~/workspace/libre2]$
 
 Make sure that ``LD_LIBRARY_PATH`` is set to include ``$HOME/.local/lib`` in your
-``.bashrc``
+``$HOME/.bashrc``
 
 .. code-block:: bash
 
     export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
-and source your ``.bashrc``
+and source your ``$HOME/.bashrc``
 
 ::
 
-    [isabell@gitlab ~]$ source .bashrc
+    [isabell@gitlab ~]$ source $HOME/.bashrc
+    [isabell@gitlab ~]$
 
 bundler needs to know about the ``libre2`` path too
 
 ::
 
     [isabell@gitlab ~]$ bundler config set --global build.re2 "--with-re2-dir=$HOME/.local"
+    [isabell@gitlab ~]$
 
 Runit
 -----
 
 Only the ``runit`` binaries are required but since they are not installed on
-uberspace we need to compile them ourselves
+uberspace we need to compile them ourselves.
 
 ::
 
@@ -391,6 +419,7 @@ uberspace we need to compile them ourselves
     [isabell@gitlab ~/workspace/runit/admin/runit-2.1.2]$ echo 'gcc -s' > src/conf-ld
     [isabell@gitlab ~/workspace/runit/admin/runit-2.1.2]$ make
     [isabell@gitlab ~/workspace/runit/admin/runit-2.1.2]$ for c in (<package/commands); do cp -a "src/$c" "$HOME/.local/bin/$c"; done
+    [isabell@gitlab ~/workspace/runit/admin/runit-2.1.2]$
 
 
 If you've not already added ``$HOME/.local/bin`` to your ``PATH`` do it now.
@@ -404,12 +433,14 @@ faster. Check you're version with
 ::
 
     [isabell@gitlab ~]$ node --version
+    [isabell@gitlab ~]$
 
 and if necessary change it with
 
 ::
 
     [isabell@gitlab ~]$ uberspace tools version node 12
+    [isabell@gitlab ~]$
 
 yarn is needed with a minimum version of ``>=1.10.0`` and is installed on
 uberspace but check with
@@ -417,6 +448,7 @@ uberspace but check with
 ::
 
     [isabell@gitlab ~]$ yarn --version
+    [isabell@gitlab ~]$
 
 PostgreSQL
 ----------
@@ -437,8 +469,8 @@ Follow the uberlab guide :lab:`PostgreSQL <guide_postgresql>` until
 strongly recommend configuring with ``./configure --prefix $HOME/.local`` into
 the ``$HOME/.local`` hierarchy because I will refer to this directory structure
 in this guide. It also makes sure that your PATH settings don't need to be
-adjusted once you've added ``$HOME/.local/bin`` to you're PATH in the
-``.bashrc`` like described above.
+adjusted once you've added ``$HOME/.local/bin`` to your PATH in the
+``$HOME/.bashrc`` like described above.
 
 In your ``$HOME/.bashrc`` adjust the ``LD_LIBRARY_PATH`` to include
 ``$HOME/.local/lib/postgresql`` and ``PGPASSFILE`` environment variables
@@ -465,6 +497,7 @@ Change permissions to
 ::
 
     [isabell@sidekiq ~]$ chmod 0600 "$HOME/.pgpass"
+    [isabell@sidekiq ~]$
 
 Creating the Database Cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -486,6 +519,7 @@ Create the database cluster and remove the temporary ``$HOME/pgpass.temp`` file.
 
     [isabell@sidekiq ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/.local/var/postgresql
     [isabell@sidekiq ~]$ rm "$HOME/pgpass.temp"
+    [isabell@sidekiq ~]$
 
 PostgreSQL Port
 ^^^^^^^^^^^^^^^
@@ -499,6 +533,7 @@ can communicate with ``postgresql``. On the ``sidekiq`` host execute
 
     [isabell@sidekiq ~]$ uberspace port add
     Port 55555 will be open for TCP and UDP traffic in a few minutes.
+    [isabell@sidekiq ~]$
 
 Write this port number down, in this case ``55555``. We'll need it in
 different places later. I'll refer to it with ``POSTGRESQL_PORT``.
@@ -512,12 +547,22 @@ Edit the ``$HOME/.local/var/postgresql/postgresql.conf`` configuration file and
 adjust the following values:
 
 
-.. warning:: Replace ``POSTGRESQL_PORT``
+.. warning:: Replace ``POSTGRESQL_PORT`` and adjust ``listen_addresses``
 
-::
+.. code-block:: kconfig
+   :emphasize-lines: 7,11
 
-    listen_addressses = '*'
-    port = POSTGRESQL_PORT
+    #------------------------------------------------------------------------------
+    # CONNECTIONS AND AUTHENTICATION
+    #------------------------------------------------------------------------------
+
+    # - Connection Settings -
+
+    listen_addresses = '*'          # what IP address(es) to listen on;
+                                            # comma-separated list of addresses;
+                                            # defaults to 'localhost'; use '*' for all
+                                            # (change requires restart)
+    port = POSTGRESQL_PORT                  # (change requires restart)
 
 In the next step we need the external ip address of our ``gitlab`` host. You
 can get the ip address by executing
@@ -528,6 +573,7 @@ can get the ip address by executing
 
     [isabell@sidekiq ~]$ dig GITLAB_FQDN +short
     185.26.156.230
+    [isabell@sidekiq ~]$
 
 for example on your ``sidekiq`` host. I'll refer to this ip with ``GITLAB_IP``.
 
@@ -536,25 +582,27 @@ configuration file on your ``gitlab`` host:
 
 .. warning:: Replace ``GITLAB_IP``
 
-::
+.. code-block:: kconfig
+   :emphasize-lines: 6
 
     # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
     # local   all             all                                 scram-sha-256
     host    all             all             127.0.0.1/32        scram-sha-256
     host    all             all             ::1/32              scram-sha-256
-    host    gitlab          gitlab          GITLAB_IP/32       scram-sha-256
+    host    gitlab          gitlab          GITLAB_IP/32        scram-sha-256
 
 The ``local`` type sets the connection method for linux ``unix`` sockets, but
 postgresql doesn't listen on both tcp and unix sockets, so we comment it out.
 ``host`` configures ``tcp`` sockets. The last line ensures that you can connect
 from your ``gitlab`` host to the ``sidekiq`` host.
 
-Add or adjust the following environment variables in your ``.bashrc``
+Add or adjust the following environment variables in your ``$HOME/.bashrc``
 
 .. warning:: Replace ``POSTGRESQL_PORT``
 
 .. code-block:: bash
+   :emphasize-lines: 5
 
     # PostgreSQL configuration on the sidekiq host
 
@@ -567,13 +615,15 @@ Add or adjust the following environment variables in your ``.bashrc``
 
 and source it with ``source $HOME/.bashrc``.
 
-On the ``gitlab`` host add the following to your ``.bashrc``
+On the ``gitlab`` host add the following to your ``$HOME/.bashrc``
 
 .. warning:: Replace ``POSTGRESQL_PORT`` and ``SIDEKIQ_FQDN``.
 
 .. code-block:: bash
+   :emphasize-lines: 3,4
 
     # PostgreSQL configuration on the gitlab host
+
     export PGPASSFILE="$HOME/.pgpass"
     export PGHOST="SIDEKIQ_FQDN"
     export PGPORT="POSTGRESQL_PORT"
@@ -589,7 +639,7 @@ Setup the supervisor PostgreSQL service
 
 Create ``$HOME/etc/services.d/postgresql.ini`` with the folllowing content:
 
-::
+..  code-block:: ini
 
     [program:postgresql]
     command=%(ENV_HOME)s/.local/bin/postgres -D %(ENV_HOME)s/.local/var/postgresql/
@@ -606,17 +656,19 @@ and start it with
     [isabell@sidekiq ~]$ supervisorctl reread
     [isabell@sidekiq ~]$ supervisorctl update postgresql
     [isabell@sidekiq ~]$ supervisorctl status postgresql
+    [isabell@sidekiq ~]$
 
 Make sure postgresql is listening on the configured port and addresses
 
 ::
 
     [isabell@sidekiq ~]$ netstat -tlpn | grep postgres
-    tcp        0      0 0.0.0.0:port           0.0.0.0:*               LISTEN      1786/postgres
-    tcp6       0      0 :::port                :::*                    LISTEN      1786/postgres
+    tcp        0      0 0.0.0.0:<port>           0.0.0.0:*               LISTEN      1786/postgres
+    tcp6       0      0 :::<port>                :::*                    LISTEN      1786/postgres
+    [isabell@sidekiq ~]$
 
 The output should look similar to the output above with your ``POSTGRESQL_PORT``
-as ``port``. The process number in ``1786/postgres`` may differ, too.
+as ``<port>``. The process number in ``1786/postgres`` may differ, too.
 
 Check PostgreSQL connection from sidekiq host
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -638,16 +690,17 @@ You should see the postgresql command prompt. You can exit with ``CTRL-D`` or by
 typing ``\q`` and hitting the ``ENTER`` key. But first list the current database
 users and verify that everything's alright
 
-::
+.. code-block:: psql
+    :emphasize-lines: 1
 
     postgres=# \du
                                       List of roles
     Role name |                         Attributes                         | Member of
     ----------+------------------------------------------------------------+-----------
-    username  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+    <username>| Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 
-where username in the ``Role name`` column should be your ``SIDEKIQ_USERNAME``.
-For the next step stay in the prompt.
+where ``<username>`` in the ``Role name`` column should be your
+``SIDEKIQ_USERNAME``.  For the next step stay in the prompt.
 
 Create the GitLab Database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -660,18 +713,23 @@ far as possible.
 .. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD`` with a password different from
    the ``POSTGRESQL_SUPERUSER_PASSWORD``. (See the `Passwords`_ section.)
 
-::
+.. code-block:: psql
 
     postgres=# \c template1
-    template1=# CREATE USER gitlab with password 'POSTGRESQL_GITLAB_PASSWORD' CREATEDB;
-    template1=# CREATE EXTENSION IF NOT EXIST pg_trgm;
-    template1=# CREATE EXTENSION IF NOT EXIST btree_gist;
+    You are now connected to database "template1" as user "<sidekiq_username>".
+    template1=# CREATE USER gitlab WITH PASSWORD 'POSTGRESQL_GITLAB_PASSWORD' CREATEDB;
+    CREATE ROLE
+    template1=# CREATE EXTENSION IF NOT EXISTS pg_trgm;
+    CREATE EXTENSION
+    template1=# CREATE EXTENSION IF NOT EXISTS btree_gist;
+    CREATE EXTENSION
     template1=# CREATE DATABASE gitlab OWNER gitlab;
-    template1=\q
+    CREATE DATABASE
+    template1=# \q
 
-
-Now add the password from above to the ``$HOME/.pgpass`` file on the ``sidekiq``
-and ``gitlab`` host which should now like like
+where ``<sidekiq_username>`` in the output of the first command matches your
+``SIDEKIQ_USERNAME``. Now add the password from above to the ``$HOME/.pgpass``
+file on the ``sidekiq`` and ``gitlab`` host which should now like like
 
 .. warning:: Replace ``SIDEKIQ_USERNAME``, ``POSTGRESQL_SUPERUSER_PASSWORD`` and
    ``POSTGRESQL_GITLAB_PASSWORD``
@@ -681,12 +739,20 @@ and ``gitlab`` host which should now like like
     *:*:*:SIDEKIQ_USERNAME:POSTGRESQL_SUPERUSER_PASSWORD
     *:*:gitlab:gitlab:POSTGRESQL_GITLAB_PASSWORD
 
-Try to connect to the ``gitlab`` database as ``gitlab`` user and check that
-the extensions are enabled
+Try to connect to the ``gitlab`` database as ``gitlab`` user
 
 ::
 
     [isabell@sidekiq ~]$ psql -U gitlab -d gitlab
+    psql (12.4)
+    Type "help" for help.
+
+    gitlab=#
+
+and check that the extensions are enabled
+
+.. code-block:: psql
+
     gitlab=# SELECT true AS enabled
     gitlab=# FROM pg_available_extensions
     gitlab=# WHERE name = 'pg_trgm'
@@ -713,28 +779,32 @@ by `GitLab`_ 13.1+.
 Check PostgreSQL from the gitlab host
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-With all the environment set in the ``.bashrc`` and the database password stored
+With all the environment set in the ``$HOME/.bashrc`` and the database password stored
 in ``$HOME/.pgpass`` it's just one command away to connect to the database from
 the ``gitlab`` host as gitlab user
 
-::
+.. code-block:: console
+   :emphasize-lines: 5
 
     [isabell@gitlab ~]$ psql
     psql (12.4)
     Type "help" for help.
 
     gitlab=> \q
+    [isabell@gitlab ~]$
 
 
 Redis
 -----
 
-Redis is installled on uberspace hosts so just quickly check that redis version
+Redis is installed on uberspace hosts so just quickly check that redis version
 is ``>=6.x``
 
 ::
 
     [isabell@gitlab ~]$ redis-server --version
+    Redis server v=6.0.8 sha=00000000:0 malloc=jemalloc-5.1.0 bits=64 build=611051ae86733216
+    [isabell@gitlab ~]$
 
 For an in-depth guide see the :lab:`Redis <guide_redis>` lab guide. Here in
 short. We need redis to accept outside connections for ``sidekiq`` in addition
@@ -744,16 +814,19 @@ to its socket so let's aquire a port for it. I'll refer to it as ``REDIS_PORT``
 
     [isabell@gitlab ~]$ uberspace port add
     Port 66666 will be open for TCP and UDP traffic in a few minutes.
+    [isabell@gitlab ~]$
 
 We further need the bind url
 
-::
+.. code-block:: console
+   :emphasize-lines: 3
 
     [isabell@gitlab ~]$ /sbin/ifconfig | grep -A1 veth
     veth_isabell: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 100.64.4.52  netmask 255.255.255.252  broadcast 0.0.0.0
+    [isabell@gitlab ~]$
 
-Look out for the inet key in the last line and write the ip down. The
+Look out for the ``inet`` key in the last line and write the ip down. The
 ``veth_isabell`` line will look different from yours and the ip in the case
 above would be ``100.64.4.52``. I'll refer to it as ``GITLAB_VETH_IP``
 
@@ -762,13 +835,14 @@ Now create the redis directory
 ::
 
     [isabell@gitlab ~]$ mkdir "$HOME/.redis"
+    [isabell@gitlab ~]$
 
 and the ``$HOME/.redis/conf`` file in it
 
 .. warning:: Replace ``GITLAB_VETH_IP``, ``REDIS_PORT``, ``GITLAB_USERNAME`` and
    ``REDIS_PASSWORD`` with a secure password. (See `Passwords`_)
 
-::
+.. code-block:: ruby
 
     bind GITLAB_VETH_IP
     port REDIS_PORT
@@ -779,7 +853,7 @@ and the ``$HOME/.redis/conf`` file in it
 Setup the damon and create ``$HOME/etc/services.d/redis.ini`` with the following
 content:
 
-::
+.. code-block:: ini
 
     [program:redis]
     command=redis-server %(ENV_HOME)s/.redis/conf
@@ -796,18 +870,20 @@ Let's start redis
     [isabell@gitlab ~]$ supervisorctl reread
     [isabell@gitlab ~]$ supervisorctl update redis
     [isabell@gitlab ~]$ supervisorctl status redis
+    [isabell@gitlab ~]$
 
 and eventually check that redis works as expected (you'll end up in a redis
 prompt)
 
 .. note:: Do this from your ``sidekiq`` host and ``gitlab`` host. On the
-   ``gitlab`` host you don't need to specify the REDIS_PORT and GITLAB_FQDN
-   since you can connect via the redis socket. A simple ``$ redis-cli`` will
-   do.
+   ``gitlab`` host you don't need to specify the ``REDIS_PORT`` and
+   ``GITLAB_FQDN`` since you can connect via the redis socket. A simple ``$
+   redis-cli`` will do.
 
 .. warning:: Replace ``REDIS_PORT``, ``GITLAB_FQDN`` and ``REDIS_PASSWORD``
 
-::
+.. code-block:: console
+    :emphasize-lines: 1,2,4,6,8
 
     [isabell@sidekiq ~]$ redis-cli -p REDIS_PORT -h GITLAB_FQDN
     host:port> ping
@@ -817,6 +893,7 @@ prompt)
     host:port> ping
     PONG
     host:port> quit
+    [isabell@sidekiq ~]$
 
 ``host`` should match ``GITLAB_FQDN``  and ``port`` the ``REDIS_PORT``. If your
 prompt looks like that after typing all commands you're all set. If not you
@@ -835,11 +912,12 @@ Pull the source
     [isabell@gitlab ~]$ git clone https://gitlab.com/gitlab-org/gitlab-foss.git -b 13-4-stable gitlab
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ git checkout v13.4.2
+    [isabell@gitlab ~/gitlab]$
 
 Configuration
 -------------
 
-Change the current directory
+Change the current directory to the location of the configuration files
 
 ::
 
@@ -866,6 +944,7 @@ and copy the example files
 
     [isabell@gitlab ~/gitlab/config]$ cp initializers/smtp_settings.rb.sample initializers/smtp_settings.rb
     [isabell@gitlab ~/gitlab/config]$ chmod 0600 initializers/smtp_settings.rb
+    [isabell@gitlab ~/gitlab/config]$
 
 We need to change all occurences of ``/home/git/`` to your actual home
 ``/home/GITLAB_USERNAME/``
@@ -874,100 +953,111 @@ We need to change all occurences of ``/home/git/`` to your actual home
 
 ::
 
-    [isabell@gitlab ~/gitlab/config]$ sed -i 's:/home/git/:/home/GITLAB_USERNAME/:g' gitlab.yml secrets.yml puma.rb resque.yml database.yml
+    [isabell@gitlab ~/gitlab/config]$ sed -i 's:/home/git/:/home/GITLAB_USERNAME/:g' gitlab.yml puma.rb resque.yml database.yml
+    [isabell@gitlab ~/gitlab/config]$
 
 
-Edit ``gitlab.yml`` to match the following (only required changes are listed)
+Edit ``$HOME/gitlab/config/gitlab.yml`` to match the following (only required changes are listed)
 
 .. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_EXTERNAL_FQDN``
 
    The file is big so you may need to scroll down a lot to get to the configuration key.
 
-::
+.. code-block:: yaml
 
     production: &base
 
-        # ...
-
+        # ... line 30
         gitlab:
             host: GITLAB_EXTERNAL_FQDN
             port: 443
             https: true
 
-            # ...
-
+            # ... line 84
+            # Uncomment and customize if you can't use the default user to run GitLab (default: 'git')
             user: GITLAB_USERNAME
 
-            # ...
-
+            # ... line 94
             email_enabled: true
             email_from: GITLAB_USERNAME@uber.space
             email_display_name: GitLab
             email_reply_to: GITLAB_USERNAME@uber.space
 
-        # ...
-
+        # ... line 1026
         repositories:
-            # ...
+            # ... line 1031
             storages:
                 default:
-                    #
+                    path: /home/GITLAB_USERNAME/repositories/
                     gitaly_address: unix:/home/GITLAB_USERNAME/gitlab/tmp/sockets/private/gitaly.socket
 
+        # ...
 
-Edit ``puma.rb`` to match the following (only required changes are listed)
+
+Edit ``$HOME/gitlab/config/puma.rb`` to match the following (only required changes are listed)
 
 .. warning:: Replace ``GITLAB_USERNAME``
 
-::
+.. code-block:: ruby
 
-    # ...
+    # ... line 19
     threads 1, 16
-    # ...
+
+    # ... line 33
     bind 'unix:///home/GITLAB_USERNAME/gitlab/tmp/sockets/gitlab.socket'
+
     workers 1
-    # ...
+
+    # ... line 69
     worker_timeout 100
 
 Setting the ``workers`` count to 1 limits the RAM usage of puma. The main puma
 process and one puma worker use up to 600MB each. This sums up to around 1-1.2GB
 and leaves some headroom but not enough for another worker.
 
-Edit ``resque.yml`` to match the following (only required changes are listed)
+Edit ``$HOME/gitlab/config/resque.yml`` to match the following (only required changes are listed)
 
 .. warning:: Replace ``GITLAB_USERNAME`` and ``REDIS_PASSWORD``
 
-::
+.. code-block:: yaml
 
-    # ...
+    # ... line 14
     production:
+        # Redis (single instance)
         url: unix:/home/GITLAB_USERNAME/.redis.sock
         password: REDIS_PASSWORD
 
-Edit ``database.yml`` to match the following (only required changes are listed)
+    # ...
+
+Edit ``$HOME/gitlab/config/database.yml`` to match the following (only required changes are listed)
 
 .. warning:: Replace ``POSTGRESQL_PORT`` and ``POSTGRESQL_GITLAB_PASSWORD``
 
-::
+.. code-block:: yaml
 
-    production:
-        # ...
-        database: gitlab
-        username: gitlab
-        password: POSTGRESQL_GITLAB_PASSWORD
-        host: localhost
-        port: POSTGRESQL_PORT
+   #
+   # PRODUCTION
+   #
+   production:
+     adapter: postgresql
+     encoding: unicode
+     database: gitlab
+     username: gitlab
+     password: POSTGRESQL_GITLAB_PASSWORD
+     host: localhost
+     port: POSTGRESQL_PORT
+     # ... some settings commented out to setup a load balancer
 
-    # ...
+   # ... other environments we don't need to change
 
-Edit ``initializers/smtp_settings.rb`` to match the following
+Edit ``$HOME/gitlab/config/initializers/smtp_settings.rb`` to match the following
 
 .. warning:: Replace ``GITLAB_FQDN``,
    ``GITLAB_USERNAME``, ``GITLAB_EMAIL_PASSWORD`` and ``GITLAB_EXTERNAL_FQDN``
 
-::
+.. code-block:: ruby
 
-    # ...
+    # ... line 9
     if Rails.env.production?
     Rails.application.config.action_mailer.delivery_method = :smtp
 
@@ -983,6 +1073,8 @@ Edit ``initializers/smtp_settings.rb`` to match the following
       tls: false,
       ssl: false,
       openssl_verify_mode: 'none' # See ActionMailer documentation for other possible options
+      }
+    end
 
 Puma suffers from memory leaks and the memory consumption increases over time.
 As a counter measurement gitlab uses puma worker killer but the default memory
@@ -990,9 +1082,9 @@ limit is too high for uberspace. Edit
 ``$HOME/gitlab/lib/gitlab/cluster/puma_worker_killer_initializer.rb`` to match
 the following
 
-::
+.. code-block:: ruby
 
-    # ...
+    # ... scroll until here
     module Gitlab
       module Cluster
         class PumaWorkerKillerInitializer
@@ -1003,7 +1095,7 @@ the following
               additional_puma_dev_max_memory_mb: 200
         )
 
-    # ...
+    # ... not important
 
 You will notice higher loading times when the puma worker is restarted and
 you're currently browsing. From my experience the restart happens once or twice
@@ -1034,6 +1126,7 @@ Ensure that the basic directories exist and have the correct permissions
 
     [isabell@gitlab ~/gitlab]$ chmod -R 0770 shared/artifacts
     [isabell@gitlab ~/gitlab]$ chmod -R 0770 shared/pages/
+    [isabell@gitlab ~/gitlab]$
 
 Git
 ---
@@ -1047,6 +1140,7 @@ Configure git
     [isabell@gitlab ~]$ git config --global repack.writeBitmaps true
     [isabell@gitlab ~]$ git config --global receive.advertisePushOptions true
     [isabell@gitlab ~]$ git config --global core.fsyncObjectFiles true
+    [isabell@gitlab ~]$
 
 Install Gems
 ------------
@@ -1058,6 +1152,7 @@ path. Double check the `Ruby`_ section.
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle install --deployment --without development test mysql aws kerberos
+    [isabell@gitlab ~/gitlab]$
 
 Install GitLab Shell
 --------------------
@@ -1065,6 +1160,7 @@ Install GitLab Shell
 ::
 
     [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:shell:install RAILS_ENV=production
+    [isabell@gitlab ~/gitlab]$
 
 The gitlab-shell configuration is auto generated from the configuration values
 above but it doesn't harm to double check. This is what the
@@ -1072,7 +1168,7 @@ above but it doesn't harm to double check. This is what the
 
 .. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_EXTERNAL_FQDN``
 
-::
+.. code-block:: yaml
 
     ---
     user: GITLAB_USERNAME
@@ -1099,6 +1195,7 @@ sockets we use a tcp port on the loopback interface. Make sure that the port
 
     [isabell@gitlab ~]$ netstat -tulpn | grep '\b8181\b' || echo nope
     nope
+    [isabell@gitlab ~]$
 
 If there is a process occupying the port just choose another one that is above
 ``1024``. Connections only operating on the loopback interface don't need to be
@@ -1109,6 +1206,7 @@ unlocked by the firewall with ``uberspace port add``.
 ::
 
     [isabell@gitlab ~/gitlab]$ bundle exec rake "gitlab:workhorse:install[/home/GITLAB_USERNAME/gitlab-workhorse]" RAILS_ENV=production
+    [isabell@gitlab ~/gitlab]$
 
 The gitlab-workhorse needs a supervisor service in
 ``$HOME/etc/services.d/gitlab-workhorse.ini``
@@ -1116,8 +1214,7 @@ The gitlab-workhorse needs a supervisor service in
 
 .. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_WORKHORSE_PORT``
 
-::
-
+.. code-block:: ini
 
     [program:workhorse]
     directory=%(ENV_HOME)s/gitlab
@@ -1132,11 +1229,12 @@ takes precedence but if you would like to change the method ``gitlab-workhorse``
 and ``puma`` communicate then change it to the port number ``puma`` is listening
 on. The default is ``9292``.
 
-Reread the supervisor configuration but do NOT start ``gitlab-workhorse`` yet.
+Reread the supervisor configuration but do **not** start ``gitlab-workhorse`` yet.
 
 ::
 
     [isabell@gitlab ~]$ supervisorctl reread
+    [isabell@gitlab ~]$
 
 
 Install Gitaly
@@ -1147,6 +1245,7 @@ Install Gitaly
 ::
 
     [isabell@gitlab ~/gitlab]$ bundle exec rake "gitlab:gitaly:install[/home/GITLAB_USERNAME/gitaly,/home/GITLAB_USERNAME/repositories]" RAILS_ENV=production
+    [isabell@gitlab ~/gitlab]$
 
 The ``sidekiq`` host needs to communicate with gitaly and we need another open
 port. The last one. I'll refer to it with ``GITALY_PORT``.
@@ -1155,6 +1254,7 @@ port. The last one. I'll refer to it with ``GITALY_PORT``.
 
     [isabell@gitlab ~]$ uberspace port add
     Port 77777 will be open for TCP and UDP traffic in a few minutes.
+    [isabell@gitlab ~]$
 
 Now let's check the auto-generated gitaly configuration file
 ``$HOME/gitaly/config.toml`` and add or change configuration options to match
@@ -1163,7 +1263,7 @@ the following:
 .. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_VETH_IP``, ``GITALY_PORT``
    and ``GITLAB_EXTERNAL_FQDN``
 
-::
+.. code-block:: toml
 
     bin_dir = "/home/GITLAB_USERNAME/gitaly"
     internal_socket_dir = "/home/GITLAB_USERNAME/gitaly/internal_sockets"
@@ -1184,7 +1284,7 @@ Setup the supervisor service in ``$HOME/etc/services.d/gitaly.ini``
 
 .. warning:: Replace ``GITLAB_USERNAME``
 
-::
+.. code-block:: ini
 
     [program:gitaly]
     directory=%(ENV_HOME)s/gitlab
@@ -1204,6 +1304,7 @@ Gitaly must be running for the next section to work
     [isabell@gitlab ~]$ supervisorctl reread
     [isabell@gitlab ~]$ supervisorctl update gitaly
     [isabell@gitlab ~]$ supervisorctl status gitaly
+    [isabell@gitlab ~]$
 
 
 Initialize Database
@@ -1217,6 +1318,7 @@ Initialize Database
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:setup RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1 force=yes
+    [isabell@gitlab ~/gitlab]$
 
 ``DISABLE_DATABASE_ENVIRONMENT_CHECK=1`` lets you drop the production database
 and ``force=yes`` disables the interactive questions if you really want to do
@@ -1230,10 +1332,12 @@ Stop the gitaly process for the moment
 ::
 
     [isabell@gitlab ~]$ supervisorctl stop gitaly
+    [isabell@gitlab ~]$
 
 and check the application status
 
-::
+.. code-block:: console
+   :emphasize-lines: 1,2,35
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:env:info RAILS_ENV=production
@@ -1269,9 +1373,10 @@ and check the application status
     1. default:      /home/<username>/repositories
     GitLab Shell path:              /home/<username>/gitlab-shell
     Git:            /usr/bin/git
+    [isabell@gitlab ~/gitlab]$
 
-Your output should look similar to this but with ``<username>`` replaced with
-your ``GITLAB_USERNAME``.
+Your output should look similar to this but ``<username>`` replaced with your
+``GITLAB_USERNAME``.
 
 Compile GetText PO files
 ------------------------
@@ -1280,6 +1385,7 @@ Compile GetText PO files
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle exec rake gettext:compile RAILS_ENV=production
+    [isabell@gitlab ~/gitlab]$
 
 Install yarn packages
 ---------------------
@@ -1288,28 +1394,28 @@ Install yarn packages
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ yarn install --production --pure-lockfile
+    [isabell@gitlab ~/gitlab]$
 
 Compile assets
 --------------
 
 This step hasn't worked for me on my uberspace host because the ``webpack``
 process uses too much RAM and gets killed in the middle. The solution is to
-compile the assets locally.
+compile the assets locally on your home PC.
 
 Make sure you have the minimum ``node`` and ``yarn`` versions installed
 otherwise install them with your package manager. You'll also need cmake ``>=
 3.x`` and the libre2-dev package. The package name may differ depending on your
 OS. If something goes wrong this is most likely because you're missing some
 dependencies. Check the dependencies section at `GitLab installation from source
-dependencies`_. Next we go through some of the steps again to be able to
-compile the assets locally. It's not that much anymore like before.
+dependencies`_. Next we go through some of the steps again to be able to compile
+the assets locally. It's not that much anymore like before.
 
 
 .. warning:: Checkout the same gitlab version on your local host than the one
    on your ``gitlab`` host.
 
 ::
-
 
     [isabell@home ~]$ mkdir -p workspace/
     [isabell@home ~/workspace]$ cd workspace/
@@ -1318,6 +1424,7 @@ compile the assets locally. It's not that much anymore like before.
     [isabell@home ~/workspace/gitlab]$ gem install bundler --version '>=1.5.2, < 2'
     [isabell@home ~/workspace/gitlab]$ git checkout v13.4.2
     [isabell@home ~/workspace/gitlab]$ bundle install --deployment --without development test mysql aws kerberos
+    [isabell@home ~/workspace/gitlab]$
 
 For the next step to work you'll need some configuration files from your
 ``gitlab`` host. Download them for example with
@@ -1327,6 +1434,7 @@ For the next step to work you'll need some configuration files from your
 ::
 
     [isabell@home ~/workspace/gitlab]$ scp GITLAB_USERNAME@GITLAB_FQDN:'gitlab/config/{database.yml,gitlab.yml}' config
+    [isabell@home ~/workspace/gitlab]$
 
 
 Now compile the assets
@@ -1336,8 +1444,9 @@ Now compile the assets
     [isabell@home ~/workspace/gitlab]$ bundle exec rake gettext:compile RAILS_ENV=production
     [isabell@home ~/workspace/gitlab]$ yarn install --production --pure-lockfile
     [isabell@home ~/workspace/gitlab]$ bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+    [isabell@home ~/workspace/gitlab]$
 
-This may take a while to complete but in next step we can upload the assets to
+This may take a while to complete but in the next step we can upload the assets to
 the ``gitlab`` host. You can either upload it directly or compress them first
 like described here
 
@@ -1349,39 +1458,51 @@ like described here
     [isabell@home ~/workspace/gitlab]$ cd public
     [isabell@home ~/workspace/gitlab/public]$ tar czf assets.tar.gz assets/
     [isabell@home ~/workspace/gitlab/public]$ scp assets.tar.gz GITLAB_USERNAME@GITLAB_FQDN:gitlab/public
+    [isabell@home ~/workspace/gitlab/public]$
 
-Upload the hash files. If one of them is missing just upload the file which
-exists
+Upload the hash files
 
 .. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_FQDN``
 
 ::
 
     [isabell@home ~/workspace/gitlab]$ scp {master-,}assets-hash.txt GITLAB_USERNAME@GITLAB_FQDN:gitlab/
+    [isabell@home ~/workspace/gitlab]$
 
+If you get an error because one of them is missing upload the file which exists
+(here ``master-assets-hash.txt``) as ``assets-hash.txt``
+
+.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_FQDN``
+
+::
+
+    [isabell@home ~/workspace/gitlab]$ scp master-assets-hash.txt GITLAB_USERNAME@GITLAB_FQDN:gitlab/assets-hash.txt
+    [isabell@home ~/workspace/gitlab]$
 
 Next on your ``gitlab`` host
 
 ::
 
     [isabell@gitlab ~]$ cd gitlab/public
-    [isabell@gitlab ~/gitlab/public]$ rm -rf assets/ # Delete the assets directory if it exists
+    [isabell@gitlab ~/gitlab/public]$ rm -rf assets/ # Deletes the assets directory if it exists
     [isabell@gitlab ~/gitlab/public]$ tar xzf assets.tar.gz
     [isabell@gitlab ~/gitlab/public]$ rm assets.tar.gz
+    [isabell@gitlab ~/gitlab/public]$
 
-Do not delete anything yet in your home directory. We'll need the assets on the
-``sidekiq`` host too, but it's not ready yet.
+Do not delete anything yet in your home directory of your home PC. We'll need
+the assets and hash files on the ``sidekiq`` host too, but it's not ready yet.
 
-and finally execute
+Finally finish the compilation and execute
 
 ::
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+    [isabell@gitlab ~/gitlab]$
 
 Since the ``$HOME/gitlab/public/assets`` directory including subdirectories and
-the ``$HOME/gitlab/master-assets-hash.txt`` file already exist the webpack step
-will be skipped. Everything else should run through without errors.
+the ``$HOME/gitlab/assets-hash.txt`` file already exist the critical webpack
+step will be skipped.
 
 Installation sidekiq
 ====================
@@ -1399,6 +1520,7 @@ We also need the ip address of the ``veth`` interface
     [isabell@sidekiq ~]$ /sbin/ifconfig | grep -A1 veth
     veth_isabell: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 100.64.4.53  netmask 255.255.255.252  broadcast 0.0.0.0
+    [isabell@sidekiq ~]$
 
 Write the ip down (in the case above ``100.64.4.53``). I'll refer to it as
 ``SIDEKIQ_VETH_IP``.
@@ -1415,7 +1537,7 @@ are
 #. `Re2`_
 #. `Runit`_
 
-Don't forget to adjust your ``.bashrc`` on the ``sidekiq`` host to include all
+Don't forget to adjust your ``$HOME/.bashrc`` on the ``sidekiq`` host to include all
 ``PATH``'s and the ``LD_LIBRARY_PATH`` adjustments.
 
 Install sidekiq
@@ -1441,12 +1563,13 @@ through all commands quickly here
 
     [isabell@sidekiq ~/gitlab/config]$ cp database.yml.example database.yml
     [isabell@sidekiq ~/gitlab/config]$ chmod 0600 database.yml
+    [isabell@sidekiq ~/gitlab/config]$
 
 We also need some files from the ``gitlab`` host. Copy them over either directly
 or your local PC as intermediate. These files are (relative to the
 ``/home/GITLAB_USERNAME/gitlab`` directory)
 
-::
+.. code-block:: none
 
     config/secrets.yml
     config/initializers/smtp_settings.rb
@@ -1459,7 +1582,8 @@ Secure access to these files with
 ::
 
     [isabell@gitlab ~]$ cd gitlab
-    [isabell@sidekiq ~/gitlab]$ chmod 0600 config/{secrets.yml,initializers/smtp_settings.rb} .gitlab_{kas,shell,workhorse}_secret``.
+    [isabell@sidekiq ~/gitlab]$ chmod 0600 config/{secrets.yml,initializers/smtp_settings.rb} .gitlab_{kas,shell,workhorse}_secret
+    [isabell@sidekiq ~/gitlab]$
 
 Next change all occurences of ``/home/git/`` to ``/home/SIDEKIQ_USERNAME/``
 
@@ -1468,67 +1592,73 @@ Next change all occurences of ``/home/git/`` to ``/home/SIDEKIQ_USERNAME/``
 ::
 
     [isabell@sidekiq ~/gitlab/config]$ sed -i 's:/home/git/:/home/SIDEKIQ_USERNAME/:g' gitlab.yml
+    [isabell@sidekiq ~/gitlab/config]$
 
-Edit ``gitlab.yml`` to match the following (only required changes are listed)
+Edit ``$HOME/gitlab/config/gitlab.yml`` to match the following (only required changes are listed)
 
 .. warning:: Replace ``GITLAB_USERNAME``, ``GITLAB_EXTERNAL_FQDN``,
    ``GITLAB_FQDN`` and ``GITALY_PORT``
 
-::
+.. code-block:: yaml
 
     production: &base
 
-        # ...
-
+        # ... line 31
         gitlab:
             host: GITLAB_EXTERNAL_FQDN
             port: 443
             https: true
 
-            # ...
-
+            # ... line 84
+            # Uncomment and customize if you can't use the default user to run GitLab (default: 'git')
             user: GITLAB_USERNAME
 
-        # ...
+            # ... line 94
+            email_enabled: true
+            email_from: GITLAB_USERNAME@uber.space
+            email_display_name: GitLab
+            email_reply_to: GITLAB_USERNAME@uber.space
 
-        incoming_email:
-            enabled: false
-
-        # ...
-
+        # ... line 1026
         repositories:
-            # ...
+            # ... line 1031
             storages:
                 default:
                     path: /home/GITLAB_USERNAME/repositories/
                     gitaly_address: tcp://GITLAB_FQDN:GITALY_PORT
 
 
-Edit ``resque.yml`` to match the following (only required changes are listed)
+Edit ``$HOME/gitlab/config/resque.yml`` to match the following (only required changes are listed)
 
 
-.. warning:: Replace ``REDIS_PASSWORD``, ``GITLAB_FQDN`` and ``REDIS_PORT``
+.. warning:: Replace ``REDIS_PASSWORD``, ``GITLAB_FQDN`` and ``REDIS_PORT``.
+   Notice the colon ``:`` in front of the ``REDIS_PASSWORD`` which is necessary
 
-::
 
-    # ...
+.. code-block:: yaml
+
+    # ... line 14
     production:
         # Redis (single instance)
         url: redis://:REDIS_PASSWORD@GITLAB_FQDN:REDIS_PORT
 
-Edit ``database.yml`` to match the following (only required changes are listed)
+Edit ``$HOME/gitlab/config/database.yml`` to match the following
 
 .. warning:: Replace ``POSTGRESQL_GITLAB_PASSWORD`` and ``POSTGRESQL_PORT``
 
-::
+.. code-block:: yaml
 
-    production:
-        # ...
-        database: gitlab
-        username: gitlab
-        password: 'POSTGRESQL_GITLAB_PASSWORD'
-        host: 'localhost'
-        port: 'POSTGRESQL_PORT'
+   #
+   # PRODUCTION
+   #
+   production:
+     adapter: postgresql
+     encoding: unicode
+     database: gitlab
+     username: gitlab
+     password: 'POSTGRESQL_GITLAB_PASSWORD'
+     host: 'localhost'
+     port: 'POSTGRESQL_PORT'
 
     # ...
 
@@ -1539,24 +1669,25 @@ Install Gems (sidekiq)
 
     [isabell@sidekiq ~]$ cd gitlab
     [isabell@sidekiq ~/gitlab]$ bundle install --deployment --without development test mysql aws kerberos
+    [isabell@sidekiq ~/gitlab]$
 
 Post installation (sidekiq)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Repeat every step from the `Post installation steps`_ section. You do not need
 to compile the assets again on your home PC, just upload the ``assets.tar.gz``
-file and the ``hash files`` this time to the ``sidekiq`` host and finish the
-compilation with
+and the ``hash files`` this time to the ``sidekiq`` host, uncompress the assets
+archive and finish the compilation with
 
 ::
 
     [isabell@sidekiq ~]$ cd gitlab
     [isabell@sidekiq ~/gitlab]$ bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+    [isabell@sidekiq ~/gitlab]$
 
 
-
-Check sending emails
-^^^^^^^^^^^^^^^^^^^^
+Verify email configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We need to enter the Rails console
 
@@ -1576,9 +1707,9 @@ Within the console enter some commands to get used to the console a bit, check
 email settings and finally send a test email
 
 .. warning:: Replace ``TEST_EMAIL_ACCOUNT`` with a valid email address in the
-   form test@example.com you have access to.
+   form test@example.com and you have access to.
 
-::
+.. code-block:: ruby
 
     irb(main):001:0> ActionMailer::Base.delivery_method
     => :smtp
@@ -1602,7 +1733,7 @@ Now that installation is done we need a supervisor service for sidekiq in
 
 .. warning:: Replace ``SIDEKIQ_USERNAME``
 
-::
+.. code-block:: ini
 
     [program:sidekiq]
     directory=%(ENV_HOME)s/gitlab
@@ -1627,6 +1758,7 @@ Reread the configuration and start sidekiq
     [isabell@sidekiq ~]$ supervisorctl reread
     [isabell@sidekiq ~]$ supervisorctl update sidekiq
     [isabell@sidekiq ~]$ supervisorctl status sidekiq
+    [isabell@sidekiq ~]$
 
 
 Now change to your ``gitlab`` host and start all the services
@@ -1636,6 +1768,7 @@ Now change to your ``gitlab`` host and start all the services
     [isabell@sidekiq ~]$ supervisorctl reread
     [isabell@sidekiq ~]$ supervisorctl update
     [isabell@sidekiq ~]$ supervisorctl status
+    [isabell@sidekiq ~]$
 
 Web Backend
 -----------
@@ -1648,6 +1781,7 @@ Configure the web backend to use the ``GITLAB_WORKHORSE_PORT`` on your
 ::
 
     [isabell@gitlab ~]$ uberspace web backend set / --remove-prefix --http --port GITLAB_WORKHORSE_PORT
+    [isabell@gitlab ~]$
 
 Double check the backend
 
@@ -1655,6 +1789,7 @@ Double check the backend
 
     [isabell@gitlab ~]$ uberspace web backend list
     / http:<port>, --remove-prefix => OK, listening: PID 21435, /home/<username>/gitlab-workhorse/gitlab-workhorse -listenUmask 0 -listenNetwork tcp -listenAddr 0.0.0.0:<port> -authBackend http://127.0.0.1:9292 -authSocket /home/<username>/gitlab/tmp/sockets/gitlab.socket -documentRoot /home/<username>/gitlab/public
+    [isabell@gitlab ~]$
 
 your output should look similar to the one above where ``<port>`` is to your
 ``GITLAB_WORKHORSE_PORT`` and ``<username>`` is your ``GITLAB_USERNAME``.
@@ -1665,7 +1800,8 @@ Double Check the application status
 
 Run a thourough check of your ``gitlab`` instance
 
-::
+.. code-block:: console
+   :emphasize-lines: 1,2,77
 
     [isabell@gitlab ~]$ cd gitlab
     [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:check RAILS_ENV=production
@@ -1675,7 +1811,7 @@ Run a thourough check of your ``gitlab`` instance
     Checking GitLab Shell ...
 
     GitLab Shell: ... GitLab Shell version >= 13.7.0 ? ... OK (13.7.0)
-    Running /home/gitls7or/gitlab-shell/bin/check
+    Running /home/<username>/gitlab-shell/bin/check
     Internal API available: OK
     Redis available via internal API: OK
     gitlab-shell self-check successful
@@ -1692,7 +1828,7 @@ Run a thourough check of your ``gitlab`` instance
 
     Sidekiq: ... Running? ... no
       Try fixing it:
-      sudo -u gitls7or -H RAILS_ENV=production bin/background_jobs start
+      sudo -u <username> -H RAILS_ENV=production bin/background_jobs start
       For more information see:
       doc/install/installation.md in section "Install Init Script"
       see log/sidekiq.log for possible errors
@@ -1743,10 +1879,11 @@ Run a thourough check of your ``gitlab`` instance
 
 
     Checking GitLab subtasks ... Finished
+    [isabell@gitlab ~/gitlab]$
 
-There should only be two errors presents which we can ignore. ``sidekiq`` isn't
-running because we've set it up on a different host and the init script is
-replaced by our supervisor services.
+where ``<username>`` is your ``GITLAB_USERNAME``.  You should see only two
+errors which we can ignore. ``sidekiq`` isn't running because we've set it up on
+a different host and the init script is replaced by our supervisor services.
 
 Finish it
 ---------
@@ -1765,14 +1902,16 @@ entire workspace directory and some of the cache. You can do so on both hosts.
 
 ::
 
-    [isabell@gitlab ~]$ rm -rfI workspace/
-    [isabell@gitlab ~]$ rm -rfI .cache/{yarn,go-build}
+    [isabell@gitlab ~]$ rm -rfI $HOME/workspace/
+    [isabell@gitlab ~]$ rm -rfI $HOME/.cache/{yarn,go-build}
+    [isabell@gitlab ~]$
 
 Check your quota
 
 ::
 
     [isabell@gitlab ~]$ quota -gsl
+    [isabell@gitlab ~]$
 
 you should have left around 4-5GB for your repositories.
 
