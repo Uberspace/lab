@@ -34,7 +34,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -53,8 +53,8 @@ Installation
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://downloads.joomla.org/cms/joomla3/3-8-12/Joomla_3-8-12-Stable-Full_Package.zip
- [isabell@stardust html]$ unzip Joomla_3-8-12-Stable-Full_Package.zip
+ [isabell@stardust html]$ wget https://downloads.joomla.org/cms/joomla3/3-9-22/Joomla_3-9-22-Stable-Full_Package.zip
+ [isabell@stardust html]$ unzip Joomla_3-9-22-Stable-Full_Package.zip
 
 Now point your browser to your uberspace URL or domain and follow the instructions.
 
@@ -96,6 +96,6 @@ The easiest way to update Joomla! is to use the web updater provided in the admi
 
 ----
 
-Tested with Joomla! 3.8.12, Uberspace 7.1.12
+Tested with Joomla! 3.9.22, Uberspace 7.1.12
 
 .. author_list::
