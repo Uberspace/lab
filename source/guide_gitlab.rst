@@ -620,7 +620,7 @@ On the ``gitlab`` host add the following to your ``$HOME/.bashrc``
 .. warning:: Replace ``POSTGRESQL_PORT`` and ``SIDEKIQ_FQDN``.
 
 .. code-block:: bash
-   :emphasize-lines: 3,4
+   :emphasize-lines: 4,5
 
     # PostgreSQL configuration on the gitlab host
 
@@ -649,7 +649,7 @@ Create ``$HOME/etc/services.d/postgresql.ini`` with the folllowing content:
     stdout_logfile=%(ENV_HOME)s/logs/postgresql.log
 
 
-and start it with
+Reload configuration files, start the service and check the status with
 
 ::
 
@@ -776,8 +776,8 @@ and check that the extensions are enabled
 The enabled column should contain a row with ``t``. The extensions are required
 by `GitLab`_ 13.1+.
 
-Check PostgreSQL from the gitlab host
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Check PostgreSQL connection from the gitlab host
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With all the environment set in the ``$HOME/.bashrc`` and the database password stored
 in ``$HOME/.pgpass`` it's just one command away to connect to the database from
@@ -797,8 +797,8 @@ the ``gitlab`` host as gitlab user
 Redis
 -----
 
-Redis is installed on uberspace hosts so just quickly check that redis version
-is ``>=6.x``
+Redis is installed on uberspace hosts so just quickly check that the redis
+version is ``>=6.x``
 
 ::
 
@@ -1097,7 +1097,7 @@ the following
 
     # ... not important
 
-You will notice higher loading times when the puma worker is restarted and
+You will notice higher loading the moment the puma worker is restarted and
 you're currently browsing. From my experience the restart happens once or twice
 the hour but I haven't noticed it very often. Feel free to adjust the
 ``puma_per_worker_max_memory_mb`` value to something you feel comfortable with
@@ -1187,7 +1187,7 @@ Install GitLab Workhorse
 Under normal cirumstances the nginx weberver communicates over a socket with
 gitlab-workhorse but since we don't have the option to install a nginx
 configuration file to set this up and apache doesn't support reverse proxying to
-sockets we use a tcp port on the loopback interface. Make sure that the port
+sockets we use a tcp port on the loopback interface. Make sure that port
 8181 isn't occupied by another processes. I'll refer to it as
 ``GITLAB_WORKHORSE_PORT``.
 
@@ -1212,14 +1212,25 @@ The gitlab-workhorse needs a supervisor service in
 ``$HOME/etc/services.d/gitlab-workhorse.ini``
 
 
-.. warning:: Replace ``GITLAB_USERNAME`` and ``GITLAB_WORKHORSE_PORT``
+.. warning:: Replace ``GITLAB_WORKHORSE_PORT`` on the marked line
 
 .. code-block:: ini
+   :emphasize-lines: 7
 
     [program:workhorse]
     directory=%(ENV_HOME)s/gitlab
-    command=%(ENV_HOME)s/gitlab-workhorse/gitlab-workhorse -listenUmask 0 -listenNetwork tcp -listenAddr 0.0.0.0:GITLAB_WORKHORSE_PORT -authBackend http://127.0.0.1:9292 -authSocket %(ENV_HOME)s/gitlab/tmp/sockets/gitlab.socket -documentRoot %(ENV_HOME)s/gitlab/public
-    environment=PERL5LIB="/home/GITLAB_USERNAME/.local/lib/perl5",LD_LIBRARY_PATH="/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst:/home/GITLAB_USERNAME/.local/lib:/home/GITLAB_USERNAME/.local/postgresql/lib",PATH="/home/GITLAB_USERNAME/.local/bin:/home/GITLAB_USERNAME/bin:/opt/uberspace/etc/GITLAB_USERNAME/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:/home/GITLAB_USERNAME/.cargo/bin:/home/GITLAB_USERNAME/.luarocks/bin:/home/GITLAB_USERNAME/go/bin:/home/GITLAB_USERNAME/.deno/bin:/home/GITLAB_USERNAME/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:/home/GITLAB_USERNAME/.dotnet/tools"
+    command=
+        %(ENV_HOME)s/gitlab-workhorse/gitlab-workhorse
+        -listenUmask 0
+        -listenNetwork tcp
+        -listenAddr 0.0.0.0:GITLAB_WORKHORSE_PORT
+        -authBackend http://127.0.0.1:9292
+        -authSocket %(ENV_HOME)s/gitlab/tmp/sockets/gitlab.socket
+        -documentRoot %(ENV_HOME)s/gitlab/public
+    environment=
+        PERL5LIB="%(ENV_HOME)s/.local/lib/perl5",
+        LD_LIBRARY_PATH="%(ENV_HOME)s/.local/lib:%(ENV_HOME)s/.local/postgresql/lib:/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst",
+        PATH="%(ENV_HOME)s/gitlab-workhorse:%(ENV_HOME)s/.local/sbin:%(ENV_HOME)s/.local/bin:%(ENV_HOME)s/bin:/opt/uberspace/etc/%(ENV_USER)s/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:%(ENV_HOME)s/.cargo/bin:%(ENV_HOME)s/.luarocks/bin:%(ENV_HOME)s/go/bin:%(ENV_HOME)s/.deno/bin:%(ENV_HOME)s/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:%(ENV_HOME)s/.dotnet/tools"
     redirect_stderr=true
     stdout_logfile=%(ENV_HOME)s/gitlab/log/gitlab-workhorse.log
 
@@ -1280,16 +1291,17 @@ the following:
     path = "/home/GITLAB_USERNAME/repositories"
 
 
-Setup the supervisor service in ``$HOME/etc/services.d/gitaly.ini``
-
-.. warning:: Replace ``GITLAB_USERNAME``
+Setup the supervisor service and create the file in
+``$HOME/etc/services.d/gitaly.ini``
 
 .. code-block:: ini
 
     [program:gitaly]
     directory=%(ENV_HOME)s/gitlab
     command=nohup %(ENV_HOME)s/gitaly/gitaly %(ENV_HOME)s/gitaly/config.toml
-    environment=LD_LIBRARY_PATH="/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst:/home/GITLAB_USERNAME/.local/lib:/home/GITLAB_USERNAME/.local/postgresql/lib",PATH="/home/GITLAB_USERNAME/.local/bin:/home/GITLAB_USERNAME/bin:/opt/uberspace/etc/GITLAB_USERNAME/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:/home/GITLAB_USERNAME/.cargo/bin:/home/GITLAB_USERNAME/.luarocks/bin:/home/GITLAB_USERNAME/go/bin:/home/GITLAB_USERNAME/.deno/bin:/home/GITLAB_USERNAME/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:/home/GITLAB_USERNAME/.dotnet/tools"
+    environment=
+        LD_LIBRARY_PATH="%(ENV_HOME)s/.local/lib:%(ENV_HOME)s/.local/postgresql/lib:/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst",
+        PATH="%(ENV_HOME)s/.local/sbin:%(ENV_HOME)s/.local/bin:%(ENV_HOME)s/bin:/opt/uberspace/etc/%(ENV_USER)s/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:%(ENV_HOME)s/.cargo/bin:%(ENV_HOME)s/.luarocks/bin:%(ENV_HOME)s/go/bin:%(ENV_HOME)s/.deno/bin:%(ENV_HOME)s/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:%(ENV_HOME)s/.dotnet/tools"
     autostart=yes
     autorestart=yes
     redirect_stderr=true
@@ -1503,6 +1515,47 @@ Finally finish the compilation and execute
 Since the ``$HOME/gitlab/public/assets`` directory including subdirectories and
 the ``$HOME/gitlab/assets-hash.txt`` file already exist the critical webpack
 step will be skipped.
+
+Finish installation on the gitlab host
+--------------------------------------
+
+Set up the last service needed on the ``gitlab`` host, which starts the puma
+webserver. Edit ``$HOME/etc/services.d/webserver.ini``
+
+.. code-block:: ini
+
+    [program:webserver]
+    directory=%(ENV_HOME)s/gitlab
+    command=%(ENV_HOME)s/gitlab/bin/web start_foreground
+    environment=
+        RAILS_ENV="production",
+        USE_WEB_SERVER="puma",
+        LD_LIBRARY_PATH="%(ENV_HOME)s/.local/lib:%(ENV_HOME)s/.local/postgresql/lib:/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst",
+        PATH="%(ENV_HOME)s/.local/sbin:%(ENV_HOME)s/.local/bin:%(ENV_HOME)s/bin:/opt/uberspace/etc/%(ENV_USER)s/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:%(ENV_HOME)s/.cargo/bin:%(ENV_HOME)s/.luarocks/bin:%(ENV_HOME)s/go/bin:%(ENV_HOME)s/.deno/bin:%(ENV_HOME)s/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:%(ENV_HOME)s/.dotnet/tools"
+    autostart=yes
+    autorestart=yes
+    redirect_stderr=true
+    stdout_logfile=%(ENV_HOME)s/gitlab/log/gitaly.log
+
+We don't need to start it yet and just load the configuration
+
+::
+
+    [isabell@gitlab ~]$ supervisorctl reread
+    [isabell@gitlab ~]$
+
+As a last point on the ``gitlab`` host check that all services are available
+
+::
+
+    [isabell@gitlab ~]$ supervisorctl avail
+    gitaly                           in use   auto      999:999
+    redis                            avail    auto      999:999
+    webserver                        avail    auto      999:999
+    workhorse                        avail    auto      999:999
+    [isabell@gitlab ~]$
+
+If all services are listed we're good.
 
 Installation sidekiq
 ====================
@@ -1731,14 +1784,16 @@ Setup the sidekiq supervisor daemon
 Now that installation is done we need a supervisor service for sidekiq in
 ``$HOME/etc/services.d/sidekiq.ini``
 
-.. warning:: Replace ``SIDEKIQ_USERNAME``
-
 .. code-block:: ini
 
     [program:sidekiq]
     directory=%(ENV_HOME)s/gitlab
     command=%(ENV_HOME)s/gitlab/bin/background_jobs start_foreground
-    environment=RAILS_ENV="production",SIDEKIQ_WORKERS="1",LD_LIBRARY_PATH="/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst:/home/SIDEKIQ_USERNAME/.local/lib:/home/SIDEKIQ_USERNAME/.local/postgresql/lib",PATH="/home/SIDEKIQ_USERNAME/.local/bin:/home/SIDEKIQ_USERNAME/bin:/opt/uberspace/etc/SIDEKIQ_USERNAME/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:/home/SIDEKIQ_USERNAME/.cargo/bin:/home/SIDEKIQ_USERNAME/.luarocks/bin:/home/SIDEKIQ_USERNAME/go/bin:/home/SIDEKIQ_USERNAME/.deno/bin:/home/SIDEKIQ_USERNAME/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:/home/SIDEKIQ_USERNAME/.dotnet/tools"
+    environment=
+        RAILS_ENV="production",
+        SIDEKIQ_WORKERS="1",
+        LD_LIBRARY_PATH="%(ENV_HOME)s/.local/lib:%(ENV_HOME)s/.local/postgresql/lib:/opt/rh/devtoolset-9/root/usr/lib64:/opt/rh/devtoolset-9/root/usr/lib:/opt/rh/devtoolset-9/root/usr/lib64/dyninst:/opt/rh/devtoolset-9/root/usr/lib/dyninst",
+        PATH="%(ENV_HOME)s/.local/sbin:%(ENV_HOME)s/.local/bin:%(ENV_HOME)s/bin:/opt/uberspace/etc/%(ENV_USER)s/binpaths/ruby:/opt/rh/devtoolset-9/root/usr/bin:%(ENV_HOME)s/.cargo/bin:%(ENV_HOME)s/.luarocks/bin:%(ENV_HOME)s/go/bin:%(ENV_HOME)s/.deno/bin:%(ENV_HOME)s/.config/composer/vendor/bin:/bin:/usr/bin:/usr/ucb:/usr/local/bin:%(ENV_HOME)s/.dotnet/tools"
     autostart=yes
     autorestart=yes
     redirect_stderr=yes
