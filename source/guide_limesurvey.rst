@@ -2,7 +2,7 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
-.. tag:: lang-python
+.. tag:: lang-php
 .. tag:: web
 .. tag:: survey
 
