@@ -43,14 +43,6 @@ Akaunting is released under the GPLv3_ license. The licence can be found in the 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
- [isabell@stardust ~]$
-
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
