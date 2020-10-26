@@ -40,11 +40,11 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
  Using 'Node.js' version: '10'
  Selected node version 10
  The new configuration is adapted immediately. Patch updates will be applied automatically.
- [eliza@dolittle ~]$
+ [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
-Your blog URL needs to be setup:
+Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
@@ -94,20 +94,16 @@ Preparing the MySQL connection
 
 Install the mysql client so that Stripe can use a MySQL connection.
 
-
 .. code-block:: console
 
  [local@My-Computer ~]$ yarn intall sails-mysql
 
-
 Create a new ``database.js`` for the production environment. This will be used whenever ``NODE_ENV=production`` (which is the case for Uberspace in our setup).
-
 
 .. code-block:: console
 
  [local@My-Computer ~]$ mkdir -p config/env/production
  [local@My-Computer ~]$ touch config/env/production/database.js
-
 
 Put the following content into the ``database.js``:
 
@@ -145,12 +141,12 @@ Commit and push your changes again:
 Deploy local project on Uberspace
 ---------------------------------
 
-You can chooose to checkout the Git repostiory on Uberspace or to copy the files manually or via rsync.
+You can chooose to checkout the Git repostiory on Uberspace or to copy the files manually/via rsync.
 
 Using Git (recommended)
 ***********************
 
-This is actually the first time, we will connect to our Uberspace. So connect to your Uberspace:
+This is actually the first time to access your Uberspace. So connect to your Uberspace:
 
 .. code-block:: console
 
@@ -160,26 +156,21 @@ In order to clone the Git repository, your Uberspace needs to have a SSH key.
 
 Check for an existing SSH key:
 
-
 .. code-block:: console
 
  [isabell@stardust ~]$ cat ~/.ssh/id_rsa.pub
 
-
 If it shows an SSH key, copy it. If it shows an error, create a new SSH key:
-
 
 .. code-block:: console
 
  [isabell@stardust ~]$ ssh-keygen -t rsa -b 4096
-
 
 Finish the process of SSH key generation (just hit enter multiple times), then copy your SSH key (using the beforementioned command).
 
 Place this SSH key as deploy key in the GitHub or GitLab repository.
 
 Once the deploy key is added to the remote repository, you should be able to clone the repository:
-
 
 .. code-block:: console
 
@@ -200,6 +191,13 @@ Run the following command from your local machine:
 
 Configure Strapi
 ----------------
+
+Log in to your Uberspace and change to the Strapi project, if not done yet.
+
+.. code-block:: console
+
+ [local@My-Computer ~]$ ssh isabell@stardust.uberspace.de
+ [isabell@stardust ~]$ cd ~/strapi
 
 The Strapi project files are now present on the Uberspace, so we can start configuring the project.
 
@@ -229,14 +227,13 @@ Configure web server
 
 .. note::
 
-    Use port 1337.
+    Use port 1337 for the Strapi webserver.
 
 .. include:: includes/web-backend.rst
 
 
 Setup daemon
 ------------
-
 
 Create ``~/etc/services.d/strapi.ini`` with the following content:
 
@@ -254,7 +251,9 @@ If it's not in state RUNNING, check your configuration.
 Finished!
 ---------
 
-Strapi should now be accessible via ``https://isabell.uber.space/admin``. Strapi is in production mode, meaning that the Content Type creator is disabled. To make changes on the API, you have to re-deploy the project.
+Strapi should now be accessible via ``https://isabell.uber.space/admin``. Make sure to set a password first!
+
+Strapi is in production mode, meaning that the Content Type creator is disabled. To make changes on the API, you have to re-deploy the project.
 
 Continuous Delivery
 -------------------
