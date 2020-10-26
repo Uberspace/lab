@@ -73,7 +73,6 @@ Init a Git repository
 
 We will initialize a Git repository and commit our initial project files.
 
-
 .. code-block:: console
 
  cd my-project
@@ -160,13 +159,13 @@ Check for an existing SSH key:
 
  [isabell@stardust ~]$ cat ~/.ssh/id_rsa.pub
 
-If it shows an SSH key, copy it. If it shows an error, create a new SSH key:
+If it shows an SSH key, copy it. When it shows an error message, you can create a new SSH key with the following command:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ ssh-keygen -t rsa -b 4096
 
-Finish the process of SSH key generation (just hit enter multiple times), then copy your SSH key (using the beforementioned command).
+Finish the SSH key generation (just hit enter multiple times), then copy your SSH key (using the command from the step above).
 
 Place this SSH key as deploy key in the GitHub or GitLab repository.
 
@@ -174,7 +173,7 @@ Once the deploy key is added to the remote repository, you should be able to clo
 
 .. code-block:: console
 
- [isabell@stardust ~]$ git@github.com:me/my-project.git strapi
+ [isabell@stardust ~]$ git clone git@github.com:me/my-project.git strapi
 
 This will clone the project inside the ``strapi`` directory in the home folder.
 
