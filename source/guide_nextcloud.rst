@@ -248,7 +248,11 @@ Create `~/bin/nextcloud-update` with the following content:
 ::
 
  #!/usr/bin/env bash
+ # Updater automatically works in maintenance:mode
  php ~/html/updater/updater.phar --no-interaction
+
+ # re-enable maintenance mode for occ commands
+ php ~/html/occ maintenance:mode --on
 
  ## database optimizations
  ## The following command works from Nextcloud 19.
@@ -259,7 +263,7 @@ Create `~/bin/nextcloud-update` with the following content:
 
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
- restorecon -vR ~/html
+ restorecon -R ~/html
 
 Then you can run the script whenever you need it to perform the update.
 ::
@@ -268,8 +272,13 @@ Then you can run the script whenever you need it to perform the update.
  [...]
  [isabell@stardust ~]$
 
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
+
 Troubleshooting
----------------
+===============
+
+403 errors
+----------
 
 If you have installed Nextcloud on a subdomain it can happen that the update fails: Access to the UI is not possible and HTTP 403 errors are thrown.
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
@@ -281,6 +290,9 @@ In most cases this happens due to wrong `SELinux labels`_ which can be fixed wit
  [isabell@stardust html]$ php occ maintenance:mode --off
  [isabell@stardust html]$
 
+missing files
+-------------
+
 If files are missing like if you move files or restore backups on the machine and not via web you can perform a scan.
 ::
 
@@ -289,7 +301,28 @@ If files are missing like if you move files or restore backups on the machine an
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
 
-.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
+storage capacity problems
+-------------------------
+
+| If you use large apps like onlyoffice, your backups can get very large in relation to your storage capacity. Nextcloud always keeps the last 3 backups and deletes the older ones.
+| Depending on your storage quota you may run into issues so you may want to delete some backups. The Updater will store the backups in a folder with a generated suffix ``updater-XXXXX`` inside the data directory.
+
+| e.g. according to the recommended data location:
+|  ``/home/isabell/nextcloud_data/updater_XXXXX/backups``
+| if you did't change the default setting:
+|  ``/home/isabell/html/data/updater_XXXXX/backups``
+
+Here is an example you probably don't want to keep on your Uberspace. To get rid of the old version navigate to that path and run: ``rm --recursive nextcloud-19.*``
+::
+
+  ncdu 1.15.1 ~ Use the arrow keys to navigate, press ? for help
+  --- /home/isabell/nextcloud-data/updater-ocRANDOMg5/backups ----
+                         /..
+    1,8 GiB [##########] /nextcloud-20.0.0.9-1603717139
+    1,6 GiB [########  ] /nextcloud-19.0.3.1
+    1,6 GiB [########  ] /nextcloud-19.0.4.0-1601738662
+
+  Total disk usage:   4,9 GiB  Apparent size:   4,7 GiB  Items: 132481
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
