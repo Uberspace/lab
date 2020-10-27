@@ -1271,7 +1271,7 @@ the following
 
     # ... not important
 
-You will notice higher loading the moment the puma worker is restarted and
+You will notice higher loading times the moment the puma worker is restarted and
 you're currently browsing. From my experience the restart happens once or twice
 the hour but I haven't noticed it very often. Feel free to adjust the
 ``puma_per_worker_max_memory_mb`` value to something you feel comfortable with
@@ -2246,7 +2246,7 @@ In the console type the following commands
 ..  code-block:: ruby
     :emphasize-lines: 1,2,4,6,9
 
-    irb(main):001:0> user = User.where(id: 1).firs
+    irb(main):001:0> user = User.where(id: 1).first
     irb(main):002:0> user.password = 'ROOT_PASSWORD'
     => "<root_password>"
     irb(main):003:0> user.password_confirmation = 'ROOT_PASSWORD'
@@ -2257,6 +2257,53 @@ In the console type the following commands
     irb(main):005:0> quit
 
 where ``<root_password>`` in the output matches your ``ROOT_PASSWORD``.
+
+Best Practices
+==============
+
+Backup
+------
+
+.. warning:: GitLab's backup system is not compatible with uberspace when it
+   comes to the ``$HOME/.ssh/authorized_keys`` file. After a restore and you
+   accepted to restore the ``authorized_keys`` keys file your ssh key and the
+   uberspace ssh key are gone!! You have to take care of the
+   ``authorized_keys`` file yourself and decline the restoration of the
+   ``authorized_key`` file when you're asked to do so during a ``bundle exec
+   rake gitlab:backup:restore``.
+
+You should create an initial backup and create backups on a regular basis. To
+create a backup it's best to shut down everything what accesses the database
+besides ``gitaly``. On your ``gitlab`` host
+
+::
+
+    [isabell@gitlab ~]$ supervisorctl stop webserver workhorse
+    [isabell@gitlab ~]$
+
+and on your ``sidekiq`` host
+
+::
+
+    [isabell@sidekiq ~]$ supervisorctl stop sidekiq
+    [isabell@sidekiq ~]$
+
+
+Then back on your ``gitlab`` host
+
+::
+
+    [isabell@gitlab ~]$ cd gitlab
+    [isabell@gitlab ~/gitlab]$ bundle exec rake gitlab:backup:create RAILS_ENV=production
+    [isabell@gitlab ~/gitlab]$
+
+You should also save all configuration files we've created during the
+installation from both hosts. Besides these I recommend backing up the secret
+files ``$HOME/gitlab/.gitlab_*_secret``. Also back up the
+``$HOME/.ssh/authorized_keys`` file from your ``gitlab`` host and everything
+else you think is worthy to be saved (``~/.bashrc``, ``~/.pgpass``, ...)
+
+Store all these files in a safe place for example on your home machine.
 
 .. rubric:: Footnotes
 
