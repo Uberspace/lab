@@ -36,7 +36,7 @@ Installation
 Download MongoDB
 ----------------
 
-Go to the MongoDB Community Server `download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
+Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
 .. code-block:: bash
 
@@ -58,24 +58,15 @@ Go to the MongoDB Community Server `download page`_ and select the current versi
 Extract the archive
 -------------------
 
-Use ``tar`` to extract the archive. To only extract the binaries, specify the relative path ``mongo*/bin`` and use ``--strip-components=1`` to remove the ``mongodb-linux-x86_64-rhel70-4.0.5/`` prefix from the path.
+Use ``tar`` to extract the archive. To only extract the binaries, specify the relative path ``mongo*/bin`` and use ``--strip-components=1`` to remove the ``mongodb-linux-x86_64-rhel70-4.4.1/`` prefix from the path.
 
 .. code-block:: bash
 
  [isabell@stardust ~]$ tar xfv mongodb.tgz mongo*/bin/ --strip-components=1
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongodump
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongorestore
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongoexport
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongoimport
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongostat
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongotop
- mongodb-linux-x86_64-rhel70-4.0.5/bin/bsondump
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongofiles
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongoreplay
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongod
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongos
- mongodb-linux-x86_64-rhel70-4.0.5/bin/mongo
- mongodb-linux-x86_64-rhel70-4.0.5/bin/install_compass
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/mongod
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/mongos
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/mongo
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/install_compass
  [isabell@stardust ~]$
 
 You can now delete the archive:
@@ -84,6 +75,55 @@ You can now delete the archive:
 
  [isabell@stardust ~]$ rm mongodb.tgz
  [isabell@stardust ~]$
+
+Download MongoDB Tools
+----------------------
+
+Go to the `MongoDB Tools download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
+
+.. code-block:: bash
+
+ [isabell@stardust ~]$ wget -O ~/mongodb_tools.tgz https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
+ --2019-01-05 17:15:54--  https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
+ Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 13.35.198.38, 13.35.198.45, 13.35.198.57, ...
+ Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|13.35.198.38|:443... connected.
+ HTTP request sent, awaiting response... 200 OK
+ Length: 88063053 (84M) [application/x-gzip]
+ Saving to: /home/isabell/mongodb_tools.tgz’
+
+ 100%[=============================================================>] 88,063,053  27.9MB/s   in 3.0s
+
+ 2019-01-05 17:15:57 (27.9 MB/s) - ‘/home/isabell/mongodb_tools.tgz’ saved [88063053/88063053]
+ [isabell@stardust ~]$
+
+
+
+Extract the tool archive
+------------------------
+
+Use ``tar`` to extract the archive. To only extract the binaries, specify the relative path ``mongo*/bin`` and use ``--strip-components=1`` to remove the ``mongodb-database-tools-rhel70-x86_64-100.2.0/`` prefix from the path.
+
+.. code-block:: bash
+
+ [isabell@stardust ~]$ tar xfv mongodb_tools.tgz mongo*/bin/ --strip-components=1
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/bsondump
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongodump
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongoexport
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongofiles
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongoimport
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongorestore
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongostat
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongotop
+ [isabell@stardust ~]$
+
+You can now delete the archive:
+
+.. code-block:: bash
+
+ [isabell@stardust ~]$ rm mongodb_tools.tgz
+ [isabell@stardust ~]$
+
+
 
 Create database folder
 ----------------------
@@ -214,7 +254,8 @@ Restart your MongoDB and login to check the version.
  [isabell@stardust ~]$
 
 .. _MongoDB: https://www.mongodb.com/
-.. _download page: https://www.mongodb.com/download-center/community
+.. _MongoDB Community Server download page: https://www.mongodb.com/download-center/community
+.. _MongoDB Tools download page: https://www.mongodb.com/try/download/database-tools
 
 ----
 
