@@ -40,20 +40,19 @@ Go to the `MongoDB Community Server download page`_ and select the current versi
 
 .. code-block:: bash
 
- [isabell@stardust ~]$ wget -O ~/mongodb.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.5.tgz
- --2019-01-05 17:15:54--  https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.0.5.tgz
- Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 13.35.198.38, 13.35.198.45, 13.35.198.57, ...
- Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|13.35.198.38|:443... connected.
+ [isabell@stardust ~]$ wget -O ~/mongodb.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
+ --2020-10-28 22:40:46--  https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
+ Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 99.86.2.52, 99.86.2.36, 99.86.2.55, ...
+ Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|99.86.2.52|:443... connected.
  HTTP request sent, awaiting response... 200 OK
- Length: 88063053 (84M) [application/x-gzip]
- Saving to: /home/isabell/mongodb.tgz’
+ Length: 71253687 (68M) [application/gzip]
+ Saving to: ‘/home/isabell/mongodb.tgz’
 
- 100%[=============================================================>] 88,063,053  27.9MB/s   in 3.0s
+ 100%[==============================================================================================================================>] 71.253.687  22,9MB/s   in 3,0s   
 
- 2019-01-05 17:15:57 (27.9 MB/s) - ‘/home/isabell/mongodb.tgz’ saved [88063053/88063053]
+ 2020-10-28 22:40:49 (22,9 MB/s) - ‘/home/isabell/mongodb.tgz’ saved [71253687/71253687]
+
  [isabell@stardust ~]$
-
-
 
 Extract the archive
 -------------------
@@ -63,10 +62,10 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
 .. code-block:: bash
 
  [isabell@stardust ~]$ tar xfv mongodb.tgz mongo*/bin/ --strip-components=1
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/install_compass
+ mongodb-linux-x86_64-rhel70-4.4.1/bin/mongo
  mongodb-linux-x86_64-rhel70-4.4.1/bin/mongod
  mongodb-linux-x86_64-rhel70-4.4.1/bin/mongos
- mongodb-linux-x86_64-rhel70-4.4.1/bin/mongo
- mongodb-linux-x86_64-rhel70-4.4.1/bin/install_compass
  [isabell@stardust ~]$
 
 You can now delete the archive:
@@ -84,16 +83,17 @@ Go to the `MongoDB Tools download page`_ and select the current version, OS ``RH
 .. code-block:: bash
 
  [isabell@stardust ~]$ wget -O ~/mongodb_tools.tgz https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
- --2019-01-05 17:15:54--  https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
- Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 13.35.198.38, 13.35.198.45, 13.35.198.57, ...
- Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|13.35.198.38|:443... connected.
+ --2020-10-28 22:44:20--  https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
+ Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 99.86.2.50, 99.86.2.52, 99.86.2.55, ...
+ Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|99.86.2.50|:443... connected.
  HTTP request sent, awaiting response... 200 OK
- Length: 88063053 (84M) [application/x-gzip]
- Saving to: /home/isabell/mongodb_tools.tgz’
+ Length: 67141659 (64M) [binary/octet-stream]
+ Saving to: ‘/home/isabell/mongodb_tools.tgz’
 
- 100%[=============================================================>] 88,063,053  27.9MB/s   in 3.0s
+ 100%[==============================================================================================================================>] 67.141.659  41,3MB/s   in 1,5s   
 
- 2019-01-05 17:15:57 (27.9 MB/s) - ‘/home/isabell/mongodb_tools.tgz’ saved [88063053/88063053]
+ 2020-10-28 22:44:22 (41,3 MB/s) - ‘/home/isabell/mongodb_tools.tgz’ saved [67141659/67141659]
+ 
  [isabell@stardust ~]$
 
 
@@ -113,7 +113,7 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongoimport
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongorestore
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongostat
- mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongotop
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongotop 
  [isabell@stardust ~]$
 
 You can now delete the archive:
@@ -188,11 +188,11 @@ Use ``mongo`` to run ``setup.js``.
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ mongo admin ~/mongodb/setup.js
- MongoDB shell version v4.0.5
- connecting to: mongodb://127.0.0.1:63325/admin?gssapiServiceName=mongodb
- Implicit session: session { "id" : UUID("0ddef66e-e716-4ef2-bbc2-a50dfc3fad7e") }
- MongoDB server version: 4.0.5
- Successfully added user: { "user" : "isabell_mongoroot", "roles" : [ "root" ] }
+ MongoDB shell version v4.4.1
+ connecting to: mongodb://127.0.0.1:27017/admin?compressors=disabled&gssapiServiceName=mongodb
+ Implicit session: session { "id" : UUID("5309a64f-0c83-44a6-83d9-bdb347a94af0") }
+ MongoDB server version: 4.4.1
+ Successfully added user: { "user" : "mongodb_mongoroot", "roles" : [ "root" ] }
  [isabell@stardust ~]$
 
 .mongorc.js (optional)
@@ -209,11 +209,35 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
 .. code-block:: none
 
  [isabell@stardust ~]$ mongo
- MongoDB shell version v4.0.5
- connecting to: mongodb://127.0.0.1:61026/admin
- Implicit session: session { "id" : UUID("6fd371f6-e1fa-461c-be0c-ea3cbe230a01") }
- MongoDB server version: 4.0.5
+ MongoDB shell version v4.4.1
+ connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+ Implicit session: session { "id" : UUID("cb614de8-7748-4530-b4d4-d42f0e430424") }
+ MongoDB server version: 4.4.1
+ connecting to: mongodb://127.0.0.1:27017/admin
+ Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
+ MongoDB server version: 4.4.1
+ ---
+ The server generated these startup warnings when booting: 
+        2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+        2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
+        2020-10-28T22:49:35.811+01:00: Soft rlimits too low
+        2020-10-28T22:49:35.811+01:00:         currentValue: 1024
+        2020-10-28T22:49:35.811+01:00:         recommendedMinimum: 64000
+ ---
+ ---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+
  >
+
+You can exit the shell by entering ``exit``.
 
 Updates
 =======
@@ -245,10 +269,32 @@ Restart your MongoDB and login to check the version.
  [isabell@stardust ~]$ supervisorctl start mongodb
  mongodb: started
  [isabell@stardust ~]$ mongo
- MongoDB shell version v4.0.5
- connecting to: mongodb://127.0.0.1:61026/admin
- Implicit session: session { "id" : UUID("78d3c750-5119-4e2f-aa5b-2b0b4ede919b") }
- MongoDB server version: 4.0.5
+ MongoDB shell version v4.4.1
+ connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+ Implicit session: session { "id" : UUID("cb614de8-7748-4530-b4d4-d42f0e430424") }
+ MongoDB server version: 4.4.1
+ connecting to: mongodb://127.0.0.1:27017/admin
+ Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
+ MongoDB server version: 4.4.1
+ ---
+ The server generated these startup warnings when booting: 
+        2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+        2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
+        2020-10-28T22:49:35.811+01:00: Soft rlimits too low
+        2020-10-28T22:49:35.811+01:00:         currentValue: 1024
+        2020-10-28T22:49:35.811+01:00:         recommendedMinimum: 64000
+ ---
+ ---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+
  > exit
  bye
  [isabell@stardust ~]$
