@@ -40,39 +40,39 @@ Installation
 Step 1
 ------
 
-Download the latest version of ezmlm_ from the website https://untroubled.org/ezmlm/, extract it and enter the directory:
+Download the latest version of ezmlm_ from the website https://untroubled.org/ezmlm/ and extract it to ``~/ezmlm``:
 
 ::
 
  [isabell@stardust ~] wget https://untroubled.org/ezmlm/archive/7.2.2/ezmlm-idx-7.2.2.tar.gz
  [isabell@stardust ~] tar -xzf ezmlm-idx-7.2.2.tar.gz
- [isabell@stardust ~] cd ezmlm-idx-7.2.2/
- [isabell@stardust ezmlm-idx-7.2.2]
+ [isabell@stardust ~] mv ezmlm-idx-7.2.2 ezmlm
+ [isabell@stardust ~]
 
 Step 2
 ------
 
-Change the configuration by editing the ``conf-*`` files using a text editor. It is usually sufficient to change the following files:
+Change the configuration by editing the ``~/ezmlm/conf-*`` files using a text editor. It is usually sufficient to change the following files:
 
-``conf-bin`` content to
+``~/ezmlm/conf-bin`` content to
 
 ::
 
  /home/isabell/bin
 
-``conf-etc`` content to
+``~/ezmlm/conf-etc`` content to
 
 ::
 
  /home/isabell/etc/ezmlm
 
-``conf-lib`` content to
+``~/ezmlm/conf-lib`` content to
 
 ::
 
  /home/isabell/lib/ezmlm
 
-``conf-man`` content to
+``~/ezmlm/conf-man`` content to
 
 ::
 
@@ -82,11 +82,12 @@ Then run
 
 ::
 
- [isabell@stardust ezmlm-idx-7.2.2] make
+ [isabell@stardust ~] cd ezmlm
+ [isabell@stardust ezmlm] make
  [...]
- [isabell@stardust ezmlm-idx-7.2.2] make man
+ [isabell@stardust ezmlm] make man
  [...]
- [isabell@stardust ezmlm-idx-7.2.2] ./ezmlm-test
+ [isabell@stardust ezmlm] ./ezmlm-test
  getconfopt library:   OK
  ezmlm-make:           OK
  Using subdb plugin:   std
@@ -97,17 +98,17 @@ Then run
  omitbottom (-manage): OK
  omitbottom (-get):    OK
  Cleaning up...
- [isabell@stardust ezmlm-idx-7.2.2]
+ [isabell@stardust ezmlm]
 
 
 The test call should show that everything is OK. Now create directories and install everything in the correct locations
 
 ::
 
- [isabell@stardust ezmlm-idx-7.2.2] mkdir -p $HOME/{lib,etc}
- [isabell@stardust ezmlm-idx-7.2.2] make install
+ [isabell@stardust ezmlm] mkdir -p $HOME/{lib,etc}
+ [isabell@stardust ezmlm] make install
  [...]
- [isabell@stardust ezmlm-idx-7.2.2]
+ [isabell@stardust ezmlm]
 
 You can run ezmlm-test again if you wish. Now also ``man ezmlm-make`` should work.
 If not, check the output of the respective commands for errors.
