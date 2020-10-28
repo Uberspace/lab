@@ -121,7 +121,7 @@ Now create directories and install everything in the correct locations
  [...]
  [isabell@stardust ezmlm]
 
-You can run ezmlm-test again if you wish. Now also ``man ezmlm-make`` should work.
+You can run ``ezmlm-test`` again if you wish. Now also ``man ezmlm-make`` should work.
 If not, check the output of the respective commands for errors.
 
 
@@ -138,38 +138,34 @@ It is advisable to keep the lists in a separate directory where ezmlm_ will crea
 Adding / removing a mailing list
 --------------------------------
 
-The tool to add a list and to change options afterwards is `ezmlm-make`. It needs four arguments:
+The tool to add a list and to change options afterwards is ``ezmlm-make``. It needs four *positional arguments*:
 
-1. the directory inside above created ``~/lists``
-2. the prefix for .qmail-files
-3. the local alias (the part before the ``@``)
-4. the hostname (the part after the ``@``)
+1. the path to the list folder, for example ``~/lists/mylist``
+2. the prefix for the ``.qmail-files``, for example ``.qmail-mylist``
+3. the local alias (the part before the ``@``), for example ``mylist``
+4. the domain (the part after the ``@``), for example ``isabell.uber.space``
 
-List-specific settings need to be passed as command line options. Here are some of the most common ones:
+List-specific settings can be passed as *optional arguments*, here are some of the most common ones:
 
-``-u``
-    User posts. Only addresses that are subscribed to the list may send messages.
-``-m``
-    Message moderation. Every mail must be approved by a moderator.
-``-s``
-    Subscription moderation. Every new subscriber must be approved by a moderator.
-``-5 owner@domain.org``
-    Set the address of the list owner.
-``-a``
-    Create a list archive.
+
+- ``-u`` user posts. Only addresses that are subscribed to the list may send messages.
+- ``-m`` message moderation. Every mail must be approved by a moderator.
+- ``-s`` subscription moderation. Every new subscriber must be approved by a moderator.
+- ``-5 owner@domain.org`` set the address of the list owner.
+- ``-a`` create a list archive.
+
+To **turn off** settings, the according **capitalized** optional argument must be used.
 
 .. note:: A common setup is to allow subscribers to post to the list and hold messages by any other address in moderation. For this setup you need to apply both ``-u`` and ``-m``.
 
-To **turn off** options, the according **capitalized** option must be used.
+.. note:: The command to add a new list ``mylist@isabell.uber.space`` with the list owner ``owner@domain.org`` without an archive (``-A``) that allows subscribers to post (``-u``) and holds foreign senders in moderation (``-m``) looks like this:
 
-The command to add a new list ``mylist@isabell.uber.space`` with the list owner ``owner@domain.org`` without an archive (-A) that allows subscribers to post (-u) and holds foreign senders in moderation (-m) looks like this:
+  ::
 
-::
+   [isabell@stardust ~] ezmlm-make -A -u -m -5 owner@domain.org ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
+   [isabell@stardust ~]
 
- [isabell@stardust ~] ezmlm-make -A -u -m -5 owner@domain.org ~/lists/mylist ~/.qmail-mylist mylist isabell.uber.space
- [isabell@stardust ~]
-
-This will add the directory ``~/lists/mylist`` where everything concerning this list will be stored and setup all necessary ``.qmail-mylist…`` files.
+  This will add the directory ``~/lists/mylist`` where everything concerning this list will be stored and setup all necessary ``.qmail-mylist…`` files.
 
 To remove the list simply delete the directory ``~/lists/mylist`` and the ``.qmail-mylist*`` files.
 
@@ -182,7 +178,7 @@ To remove the list simply delete the directory ``~/lists/mylist`` and the ``.qma
 Change options
 --------------
 
-If you want to change any of the options, use the option ``-+``. Note that all the other arguments from the creation are required here as well. To turn the archive back on, you need to do:
+If you want to change any of the options, use the option ``-+``. Note that all the other *positional arguments* from the creation are required here as well. To turn the archive back on, you need to do:
 
 ::
 
