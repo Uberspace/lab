@@ -194,14 +194,14 @@ Users can either subscribe themselves to a list by writing an email to ``mylist-
 
 ::
 
- [isabell@stardust ~] ezmlm-sub ~/lists/mylist user@otherdomain.org
+ [isabell@stardust ~] ezmlm-sub ~/lists/mylist user@example.com
  [isabell@stardust ~]
 
 To unsubscribe write an email to ``mylist-unsubscribe@isabell.uber.space`` or use:
 
 ::
 
- [isabell@stardust ~] ezmlm-unsub ~/lists/mylist user@otherdomain.org
+ [isabell@stardust ~] ezmlm-unsub ~/lists/mylist user@example.com
  [isabell@stardust ~]
 
 
@@ -216,7 +216,7 @@ Moderators will receive mails if messages are held for moderation (``-m``). Addi
 
 ::
 
- [isabell@stardust ~] ezmlm-sub ~/lists/mylist mod moderator@theirdomain.org
+ [isabell@stardust ~] ezmlm-sub ~/lists/mylist mod moderator@example.com
  [isabell@stardust ~]
 
 
@@ -228,7 +228,7 @@ Allowing and removing other addresses to bypass moderation on a subscriber-only 
 
 ::
 
- [isabell@stardust ~] ezmlm-sub ~/lists/mylist allow alloweduser@otherdomain.org
+ [isabell@stardust ~] ezmlm-sub ~/lists/mylist allow alloweduser@example.com
  [isabell@stardust ~]
 
 
