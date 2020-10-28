@@ -259,7 +259,7 @@ Restart your MongoDB and login to check the version.
 
 ----
 
-Tested with MongoDB 4.0.5, Uberspace 7.2.1.0
+Tested with MongoDB 4.4.1, Uberspace 7.7.9.0
 
 .. author_list::
 
