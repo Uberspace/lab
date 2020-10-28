@@ -78,7 +78,11 @@ Change the configuration by editing the ``~/ezmlm/conf-*`` files using a text ed
 
  /home/isabell/man
 
-Then run
+
+Step 3
+------
+
+Then run ``make`` and ``test`` commands
 
 ::
 
@@ -101,11 +105,18 @@ Then run
  [isabell@stardust ezmlm]
 
 
-The test call should show that everything is OK. Now create directories and install everything in the correct locations
+The test call should show that everything is OK.
+
+
+Step 4
+------
+
+Now create directories and install everything in the correct locations
 
 ::
 
- [isabell@stardust ezmlm] mkdir -p $HOME/{lib,etc}
+ [isabell@stardust ~] mkdir {lib,etc}
+ [isabell@stardust ~] cd ezmlm
  [isabell@stardust ezmlm] make install
  [...]
  [isabell@stardust ezmlm]
