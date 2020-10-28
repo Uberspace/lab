@@ -57,7 +57,7 @@ Install django
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install django --user
+ [isabell@stardust ~]$ pip3.8 install django --user
  [isabell@stardust ~]$
 
 .. hint::
@@ -75,7 +75,7 @@ Migrate database
 
 ::
 
- [isabell@stardust ~]$ python3.6 ~/MyDjangoProject/manage.py migrate
+ [isabell@stardust ~]$ python3.8 ~/MyDjangoProject/manage.py migrate
  [isabell@stardust ~]$
 
 
@@ -117,6 +117,8 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 
 .. code-block:: ini
   :emphasize-lines: 2,3,9,17,18
+  :caption: ~/uwsgi/apps-enabled/myDjangoProject.ini
+  :name: this-py
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject

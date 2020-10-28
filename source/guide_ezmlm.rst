@@ -52,25 +52,27 @@ Download the latest version of ezmlm_ from the website https://untroubled.org/ez
 Step 2
 ------
 
-Change the configuration by editing the ``conf-*`` files using a text editor. It is usually sufficient to change the following files: ``conf-bin`` to
+Change the configuration by editing the ``conf-*`` files using a text editor. It is usually sufficient to change the following files:
+
+``conf-bin`` content to
 
 ::
 
  /home/isabell/bin
 
-``conf-etc`` to
+``conf-etc`` content to
 
 ::
 
  /home/isabell/etc/ezmlm
 
-``conf-lib`` to
+``conf-lib`` content to
 
 ::
 
  /home/isabell/lib/ezmlm
 
-``conf-man`` to
+``conf-man`` content to
 
 ::
 
