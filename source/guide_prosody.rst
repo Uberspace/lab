@@ -332,6 +332,39 @@ Create your first user:
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
+ 
+Voice/Video calls
+=================
+
+In order to enable voice/video calls a TURN and STUN server for NAT traversal is required. coturn_ is supported by prosody.
+
+First install coturn according to `coturn lab guide`_ and note listening port ``<port-1>`` as well as ``static-auth-secret``.
+
+To enable coturn, it must be configured as `external service`_ in ``prosody.cfg.lua``:
+
+.. code-block:: lua
+ :emphasize-lines: 11,16,17
+
+modules_enabled = {
+    -- other modules ...
+    "external_services"
+}
+
+external_services = {
+    {
+        type = "stun",
+        transport = "udp",
+        host = "isabell.uber.space",
+        port = <port-1>
+    }, {
+        type = "turn",
+        transport = "udp",
+        host = "isabell.uber.space",
+        port = <port-1>,
+        secret = "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
+    }
+}
+
 
 Updates
 =======
@@ -400,6 +433,9 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _IM Observatory: https://xmpp.net
 .. _example configuration file: https://prosody.im/doc/example_config
 .. _update feed: https://blog.prosody.im/index.xml
+.. _coturn: https://prosody.im/doc/coturn
+.. _`coturn lab guide`: https://lab.uberspace.de/guide_coturn.html
+.. _`external service`: https://prosody.im/doc/modules/mod_external_services
 .. _Gajim: https://gajim.org
 .. _Conversations: https://conversations.im
 .. _ChatSecure: https://chatsecure.org
