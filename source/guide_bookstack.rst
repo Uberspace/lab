@@ -70,7 +70,7 @@ To install BookStack clone the release branch of the official repository one lev
 .. code-block:: console
 
  [isabell@stardust isabell]$ cd BookStack
- [isabell@stardust isabell]$ composer install
+ [isabell@stardust isabell]$ composer install --no-dev
  Loading composer repositories with package information
  Installing dependencies (including require-dev) from lock file
  Package operations: 103 installs, 0 updates, 0 removals
@@ -156,7 +156,7 @@ To update BookStack you can run the following command in the root directory of t
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
- [isabell@stardust BookStack]$ git pull origin release && composer install && php artisan migrate
+ [isabell@stardust BookStack]$ git pull origin release && composer install --no-dev && php artisan migrate
  From https://github.com/BookStackApp/BookStack
  * branch            release    -> FETCH_HEAD
  [...]
