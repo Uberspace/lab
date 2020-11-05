@@ -389,12 +389,13 @@ To update, for example to CODE version 6.5, run the following:
   [isabell@stardust ~]$ udocker pull collabora/code
   [isabell@stardust ~]$ udocker create --name=collabora-code-65 collabora/code
   e5abc845-e867-3331-85f6-9324f0a4e867
-  [isabell@stardust ~]$ cp $HOME/.udocker/containers/collabora-code-65/etc/loolwsd/loolwsd.xml $HOME/etc/libreoffice/loolwsd-65.xml
+  [isabell@stardust ~]$ udocker setup --execmode=F1 collabora-code-65
+  [isabell@stardust ~]$ cp $HOME/.udocker/containers/collabora-code-65/ROOT/etc/loolwsd/loolwsd.xml $HOME/etc/libreoffice/loolwsd-65.xml
   [isabell@stardust ~]$ chmod 0600 $HOME/etc/libreoffice/loolwsd-65.xml
   [isabell@stardust ~]$ diff --side-by-side $HOME/etc/libreoffice/loolwsd{,-65}.xml
   [isabell@stardust ~]$
 
-Now migrate your config to the ``loolwsd-65.xml`` and update the variables
+Now migrate your config to ``loolwsd-65.xml`` and update the variables
 ``container`` and ``config_file`` in ``$HOME/etc/libreoffice/run``.
 Then, run ``supervisorctl restart libreoffice``.
 
