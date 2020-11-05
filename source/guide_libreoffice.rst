@@ -439,6 +439,6 @@ If everything is well, you can delete the old container and the config file:
 
 Tested with
 LibreOffice Online 2020-08-09, CODE 6.4, udocker 1.1.4, on Uberspace 7.7.7,
-connected to a Nextcloud 19.0.3 with the app Collabora Online 3.7.4.
+connected to a Nextcloud 19.0.3 with the app Collabora Online 3.7.6.
 
 .. author_list::
