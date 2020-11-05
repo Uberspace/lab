@@ -101,15 +101,17 @@ Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file
 To make your BookStack installation safe you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
 
 .. code-block:: console
- :emphasize-lines: 6
+ :emphasize-lines: 7
 
  [isabell@stardust BookStack]$ php artisan key:generate
  **************************************
  *     Application In Production!     *
  **************************************
- Do you really wish to run this command? (yes/no) [no]:
- > yes
- Application key [base64:xck2FdvKbm+edDy3mUJOlBFDz3S/jdG6DMWgcOVyYRY=] set successfully.
+
+  Do you really wish to run this command? (yes/no) [no]:
+  > yes
+
+ Application key set successfully.
  [isabell@stardust ~]$
 
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``BookStack/public`` directory.
