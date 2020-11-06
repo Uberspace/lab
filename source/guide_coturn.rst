@@ -34,7 +34,7 @@ Use the following options for ``./configure``:
 .. note::
   Coturn supports sqlite, mysql, postgresql, mongodb and redis as database backends.
   Sqlite and mysql work out of the box.
-  If you want the others you must install them before and set ``CPATH`` and ``LIBRARY_PATH`` accoringly.
+  If you want the others you must install them before and set ``CPATH`` and ``LIBRARY_PATH`` accordingly.
 
 ::
 

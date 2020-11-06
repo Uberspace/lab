@@ -64,7 +64,7 @@ Clone the Lychee code from GitHub_:
  Resolving deltas: 100% (4511/4511), done.
  [isabell@stardust isabell]$
 
-Next change into the Lychee directgory and update the Composer repository:
+Next change into the Lychee directory and update the Composer repository:
 
 ::
 

@@ -53,7 +53,7 @@ MySQL
 
 .. include:: includes/my-print-defaults.rst
 
-We will create a seperate database for moodle:
+We will create a separate database for moodle:
 
 ::
 
@@ -64,11 +64,11 @@ Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-You can also setup your own :manual_anchor:`domain <web-domains.html>`. Note that you will have to create a seperate folder for your domain as described in :manual_anchor:`DocumentRoot <web-documentroot.html>`.
+You can also setup your own :manual_anchor:`domain <web-domains.html>`. Note that you will have to create a separate folder for your domain as described in :manual_anchor:`DocumentRoot <web-documentroot.html>`.
 
 Moodledata
 ----------
-Moodle saves files and data into a folder inter alia for persistency. We have to create this folder and give its path to Moodle later on.
+Moodle saves files and data into a folder for persistency. We have to create this folder and give its path to Moodle later on.
 
 ::
 
@@ -82,7 +82,7 @@ Step 1
 ------
 First, we're going to download Moodle and extract it. For this, we should first change into the html directory of your account.
 
-Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the downloadlink on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
+Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
 
 ::
 
@@ -101,7 +101,7 @@ The ``--strip-components=1`` option will unpack the contents of the moodle folde
 
 Step 2
 ------
-Now we should be able to access the initialization process of the Moodle instance. Here, we used the uberspace domain, so our address is the one mentionend here:
+Now we should be able to access the initialization process of the Moodle instance. Here, we used the uberspace domain, so our address is the one mentioned here:
 
 .. include:: includes/web-domain-list.rst
 

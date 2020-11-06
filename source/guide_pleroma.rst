@@ -231,7 +231,7 @@ As example for this guide:
  You can always check the status of your backend using "uberspace web backend list".
  [isabell@stardust ~]$
 
-Setup deamon
+Setup daemon
 ============
 
 Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure to replace ``<username>`` with your Uberspace username and setup your environment:

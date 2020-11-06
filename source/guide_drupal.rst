@@ -156,7 +156,7 @@ Add the following configuration to the ``settings.php`` file.
 Cronjob
 -------
 
-For executing periodical tasks like updatong the search index, purging old logs or checking for
+For executing periodical tasks like updating the search index, purging old logs or checking for
 updates, etc. you will need to set up a cronjob.
 
 Get your cron URL for your site under Administration → Configuration → System → Cron. We create a

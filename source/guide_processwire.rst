@@ -122,6 +122,6 @@ Updates
 
 ----
 
-Tested with ProcessWire 3.0.123, Uberspace 7.2.7.0
+Tested with ProcessWire 3.0.123 on Uberspace 7.2.7.0.
 
 .. author_list::

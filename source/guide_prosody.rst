@@ -19,7 +19,7 @@ Prosody
 
 Prosody_ is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.
 
-XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organisation, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
+XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organization, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
 
 ----
 
@@ -61,7 +61,7 @@ Your domain ``isabell.org`` and subdomains ``conference.isabell.org``, ``upload.
  xmpp.isabell.org
  [isabell@stardust ~]$
 
-Uberspace creates certificates automagically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
+Uberspace creates certificates automatically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
 
 ::
 
@@ -75,7 +75,7 @@ Uberspace creates certificates automagically when a domain is first seen by the 
  [...]
  [isabell@stardust ~]$
 
-This will return ``HTTP/1.1 200 OK`` or something similiar accordingly your webserver configuration.
+This will return ``HTTP/1.1 200 OK`` or something similar accordingly your webserver configuration.
 
 Ports
 -----
@@ -250,7 +250,7 @@ Create the directory ``~/var/lib/prosody/http_upload``  for the module ``http_up
 Configure prosody
 -----------------
 
-Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explaination of the config file under the `example configuration file`_ from Prosody.
+Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explanation of the config file under the `example configuration file`_ from Prosody.
 
 Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
 
@@ -300,9 +300,9 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
-.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
+.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, omit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
 
-Setup deamon
+Setup daemon
 ============
 
 Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adapt it accordingly:
