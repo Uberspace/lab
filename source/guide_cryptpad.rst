@@ -126,7 +126,7 @@ Open ``config/config.js`` in an editor and edit following lines:
 
 2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.
 
-3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace your e-mail address.
+3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace it with your e-mail address.
 
 .. note::
   If you forget to make change 2, the command ``uberspace web backend list`` will later complain as follows:
