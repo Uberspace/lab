@@ -345,25 +345,25 @@ To enable coturn, it must be configured as `external service`_ in ``prosody.cfg.
 .. code-block:: lua
  :emphasize-lines: 11,16,17
 
-modules_enabled = {
-    -- other modules ...
-    "external_services"
-}
+ modules_enabled = {
+     -- other modules ...
+     "external_services"
+ }
 
-external_services = {
-    {
-        type = "stun",
-        transport = "udp",
-        host = "isabell.uber.space",
-        port = <port-1>
-    }, {
-        type = "turn",
-        transport = "udp",
-        host = "isabell.uber.space",
-        port = <port-1>,
-        secret = "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
-    }
-}
+ external_services = {
+     {
+         type = "stun",
+         transport = "udp",
+         host = "isabell.uber.space",
+         port = <port-1>
+     }, {
+         type = "turn",
+         transport = "udp",
+         host = "isabell.uber.space",
+         port = <port-1>,
+         secret = "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
+     }
+ }
 
 
 Updates
