@@ -173,7 +173,7 @@ structure. Adapt the highlighted lines to your setup.
 You could now start Puma manually and everything would work. But to start it
 automatically Uberspace offers the service supervisord_.
 
-Create and edit the file ``~/etc/services.d/redmine-deamon.ini`` and add the following content to it.
+Create and edit the file ``~/etc/services.d/redmine-daemon.ini`` and add the following content to it.
 
 .. code-block:: ini
 

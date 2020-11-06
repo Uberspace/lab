@@ -301,7 +301,7 @@ Set up a cron job by using the ``crontab -e`` command and adding the line:
 
     @daily  $HOME/bin/backup-etesync-server
 
-.. warning:: Your backups should be stored at another location outside your Ubersapce!
+.. warning:: Your backups should be stored at another location outside your Uberspace!
 
 .. warning:: Keep in mind that the data stored by EteSync server is end-to-end encrypted.
              Therefore, the data from your server backups can not be restored without the encryption password

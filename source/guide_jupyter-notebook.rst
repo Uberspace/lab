@@ -116,7 +116,7 @@ Create ``~/etc/services.d/jupyter.ini`` with the following content:
 Setup web backend
 -----------------
 
-If you have your own :manual:`domain <web-domains>` you can set a domain specific web beckend configuration.
+If you have your own :manual:`domain <web-domains>` you can set a domain specific web backend configuration.
 This guide overrides the default setting, so the default html folder is not accessible.
 Other options are described in the :manual:`web-backend manual <web-backends>`.
 

@@ -110,7 +110,7 @@ We use ``gpg`` to download the pgp key and verify our download.
        Subkey fingerprint: CC64 B1DB 67AB BEEC AB24  B645 5FC3 4632 9753 F4B0
   [isabell@stardust ~]$
 
-If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line and we make the bin executeable.
+If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line and we make the bin executable.
 
 .. code-block:: console
 
@@ -157,7 +157,7 @@ When using this, we have to finish the installation via gitea web service https:
 * As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
 * We disallow public registration and set some privacy settings. (``[service]`` section)
 
-For more informations about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.example.ini>`_.
+For more information about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.example.ini>`_.
 
 .. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
@@ -228,10 +228,10 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
   RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
   IS_INPUT_FILE = false
 
-Gitea initalization
--------------------
+Gitea initialization
+--------------------
 
-Above we locked the registration and the web installation feature, so this service will never be exposed in an unsecure way to the internet. So we have to do the provided steps to create the database layout and generate security keys manually.
+Above we locked the registration and the web installation feature, so this service will never be exposed in an insecure way to the internet. So we have to do the provided steps to create the database layout and generate security keys manually.
 
 .. code-block:: console
 
@@ -326,7 +326,7 @@ Create a file ``~/etc/services.d/gitea.ini`` for the service ...
 Uberspace web backend
 ---------------------
 
-.. note:: gittea is running on port 9000.
+.. note:: gitea is running on port 9000.
 
 .. include:: includes/web-backend.rst
 

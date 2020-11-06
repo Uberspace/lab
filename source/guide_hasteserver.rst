@@ -127,7 +127,7 @@ Once you've done that, your config section should look like:
     "db": 0
   }
 
-If your Redis server is configured for password authentification, use the ``password`` field.
+If your Redis server is configured for password authentication, use the ``password`` field.
 
 Postgres
 ^^^^^^^^

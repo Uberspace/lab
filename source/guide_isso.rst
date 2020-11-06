@@ -124,7 +124,7 @@ Run ``isso -c ~/isso/user.cfg run`` to let Isso check and load the configuration
  2020-04-04 13:27:56,086 INFO: connected to https://isabell.uber.space/
  [isabell@stardust ~]$
 
-If you get any error message your configation settings are not correct.
+If you get any error message your configuration settings are not correct.
 
 Setup daemon
 ------------

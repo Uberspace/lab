@@ -16,7 +16,7 @@ Starship
 
 .. tag_list::
 
-Starship_ is the minimal, blazing-fast, and infinitely customizable prompt for
+Starship_ is the minimal, blazing-fast, and infinitely customisable prompt for
 any shell!
 
 
@@ -31,7 +31,7 @@ any shell!
 License
 =======
 
-Starship_ is free software, available under the permissive ISC License, whcih
+Starship_ is free software, available under the permissive ISC License, which
 is functionally equivalent to BSD 2-Clause and MIT licenses,
 removing some language that is no longer necessary.
 

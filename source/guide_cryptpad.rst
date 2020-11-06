@@ -33,7 +33,7 @@ Cryptpad
 Prerequisites
 =============
 
-Your webseite domain or subdomain needs to be setup up:
+Your website domain or subdomain needs to be setup up:
 
 .. include:: includes/web-domain-list.rst
 

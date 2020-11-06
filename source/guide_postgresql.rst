@@ -34,7 +34,7 @@ Create a working directory.
  [isabell@stardust ~]$ cd ~/postgres/
  [isabell@stardust ~]$
 
-Download the lastest stable version. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
+Download the latest stable version. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
 
 ::
 
@@ -69,7 +69,7 @@ Now configure and compile the source code and finally install it.
 
 .. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
 
-.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider to install all modules. This is done bby using the target ``world`` for ``make`` and ``make install``.
+.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider to install all modules. This is done by using the target ``world`` for ``make`` and ``make install``.
 
 ::
 

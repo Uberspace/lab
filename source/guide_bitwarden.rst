@@ -251,7 +251,7 @@ In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific d
  SIGNUPS_DOMAINS_WHITELIST=example.com # single domain
  SIGNUPS_DOMAINS_WHITELIST=example.com,example.net,example.org # multiple domains
 
-.. warning ::  be careful using this feature. `At the moment`_ the emails are currently not checked, meaning that anyone could still register, by providing a fake email address that has the proper domain. So at the moment this is more security by obscurity. This seems to be fixedd in an upcoming release, so make sure to check the feed_ regularly to stay informed about the newest version.
+.. warning ::  be careful using this feature. `At the moment`_ the emails are currently not checked, meaning that anyone could still register, by providing a fake email address that has the proper domain. So at the moment this is more security by obscurity. This seems to be fixed in an upcoming release, so make sure to check the feed_ regularly to stay informed about the newest version.
 
 Disable password hint display
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
