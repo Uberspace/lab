@@ -18,8 +18,7 @@ Writefreely
 .. tag_list::
 
 WriteFreely_ is built around writing. There's no news feed, notifications, or unnecessary likes or claps to take you away from your train of thought.
-Reach outside your own site with federation via ActivityPub. WriteFreely lets anyone on Mastodon, Pleroma, or any ActivityPub-enabled service follow your blog, bookmark your posts, and share them with their followers.
-WriteFreely is written in Go (golang), so it runs anywhere and takes up very few resources.
+Reach outside your own site with federation via ActivityPub. WriteFreely lets anyone on Mastodon, Pleroma, or any ActivityPub-enabled service follow your blog, bookmark your posts, and share them with their followers. WriteFreely is written in Go (golang), so it runs anywhere and takes up very few resources.
 
 ----
 
@@ -70,7 +69,7 @@ Create a new database:
 Writefreely Config
 ------------------
 
-Change to _writefreely_ directory and start config mode to create a config file:
+Change to `writefreely` directory and start config mode to create a config file:
 
 .. note:: You need to select ``Production, behind reverse proxy`` in Server setup.
 
@@ -80,7 +79,7 @@ Change to _writefreely_ directory and start config mode to create a config file:
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
   
-Alter _bind_ key and add TLS certificates paths in ``config.ini``; look for the ``[server]`` block:
+Alter `bind` key and add TLS certificates paths in ``config.ini``; look for the ``[server]`` block:
 
 .. code-block:: ini
 
@@ -135,7 +134,7 @@ Your Writefreely installation should now be reachable on ``https://isabell.uber.
 
 RSS feed is automatically served at: ``https://isabell.uber.space/feed/``
 
-You can overwrite the default design with own CSS in _Customize_ settings. There are some examples for basic selectors in Writefreely's documentation_.
+You can overwrite the default design with own CSS in `Customize` settings. There are some examples for basic selectors in Writefreely's documentation_.
 
 Updates
 =======
