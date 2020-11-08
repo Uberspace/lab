@@ -64,8 +64,8 @@ Create a new database:
 
 .. code-block:: console
 
-  [isabell@stardust mailtrain]$ mysql -e "CREATE DATABASE ${USER}_writefreely CHARACTER SET latin1 COLLATE latin1_swedish_ci;"
-  [isabell@stardust mailtrain]$
+  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_writefreely CHARACTER SET latin1 COLLATE latin1_swedish_ci;"
+  [isabell@stardust ~]$
 
 Writefreely Config
 ------------------
