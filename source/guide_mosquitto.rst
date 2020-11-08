@@ -58,6 +58,7 @@ Copy the default (preinstalled) configuration to ``~/etc/mosquitto``.
 .. code-block:: console
  :emphasize-lines: 1
 
+ [isabell@stardust ~]$ mkdir -p ~/etc/mosquitto/
  [isabell@stardust ~]$ cp /etc/mosquitto/mosquitto.conf ~/etc/mosquitto/
  [isabell@stardust ~]$
 
