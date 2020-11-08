@@ -120,7 +120,7 @@ Create ``~/etc/services.d/writefreely.ini`` with the following content:
 
   [program:writefreely]
   directory=%(ENV_HOME)s/writefreely/
-  command=%(ENV_HOME)s/writefreely/writefreely -c %(ENV_HOME)s/writefreely/config.ini
+  command=%(ENV_HOME)s/writefreely/writefreely
   autostart=yes
   autorestart=yes
 
