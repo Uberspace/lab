@@ -50,8 +50,8 @@ Configuration
 We're setting up the broker to be reachable via a dedicated TCP port (as opposed to MQTT over WebSockets).
 The communication will be secured using TLS encryption and password authentication.
 
-Step 1
-------
+Copy default config
+-------------------
 
 Copy the default (preinstalled) configuration to ``~/etc/mosquitto``.
 
@@ -62,13 +62,13 @@ Copy the default (preinstalled) configuration to ``~/etc/mosquitto``.
  [isabell@stardust ~]$ cp /etc/mosquitto/mosquitto.conf ~/etc/mosquitto/
  [isabell@stardust ~]$
 
-Step 2
-------
+Open firewall port
+------------------
 
 .. include:: includes/open-port.rst
 
-Step 3
-------
+Update config
+-------------
 
 Uncomment and update the following configuration values in ``~/etc/mosquitto/mosquitto.conf``.
 Update ``certfile`` and ``keyfile`` to match the domain certificates you want to use Mosquitto with.
@@ -83,8 +83,8 @@ The last two values ensure that only registered users are allowed.
  allow_anonymous false
  password_file /home/isabell/etc/mosquitto/passwd
 
-Step 4
-------
+Create user(s)
+--------------
 
 Create a password file for the first user. To add more users, omit ``-c``, which creates (overwrites) the given file.
 
