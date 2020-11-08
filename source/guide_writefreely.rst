@@ -71,15 +71,60 @@ Writefreely Config
 
 Change to `writefreely` directory and start config mode to create a config file:
 
-.. note:: You need to select ``Production, behind reverse proxy`` in Server setup.
-
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/writefreely
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
   
-Alter `bind` key in ``config.ini``; look for the ``[server]`` block:
+Setup writefreely interactively. Use ``Production behind reverse proxy`` in `Server setup` and confirm default port:
+
+.. code-block::
+
+  Loaded configuration config.ini.
+
+   ✍ WriteFreely Configuration ✍
+
+   This quick configuration process will update the application's config
+  file, config.ini.
+
+   It validates your input along the way, so you can be sure any future
+  errors aren't caused by a bad configuration. If you'd rather configure your
+  server manually, instead run: writefreely --create-config and edit that
+  file.
+
+  Server setup 
+  Production, behind reverse proxy
+  Local port: 8080
+
+Choose ``MySQL`` in `Database Setup` and use credentials shown earlier. Use ``<username>_writefreely``, replacing ``<username>`` with your username. Confirm default MySQL host and port:
+
+.. code-block::
+
+  Database setup 
+  MySQL
+  Username: isabell
+  Password: *******************
+  Database name: isabell_writefreely
+  Host: localhost
+  Port: 3306
+
+Enter admin and blog details as needed, enter your domain with ``https://`` and without port. Choose other options to your liking:
+
+.. code-block::
+
+  App setup 
+  Single user blog
+  Admin username: admin
+  Admin password: <choose_a_password>
+  Blog name: this.ven
+  Public URL: https://isabell.uber.space
+
+  ...
+  
+  2020/11/08 23:52:14 Done!
+  
+After interactive configuration alter `bind` key in ``config.ini``; look for the ``[server]`` block:
 
 .. code-block:: ini
 
