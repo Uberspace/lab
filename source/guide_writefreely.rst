@@ -101,7 +101,7 @@ Generate the encryption keys for your instance:
 
 .. code-block:: console
 
-  [isabell@stardust writefreely]$ writefreely keys generate
+  [isabell@stardust writefreely]$ ./writefreely keys generate
   [isabell@stardust writefreely]$
   
 Web Backend Config
