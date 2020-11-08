@@ -76,7 +76,7 @@ Change to _writefreely_ directory and start config mode to create a config file:
 
 .. code-block:: console
 
-  [isabell@stardust writefreely]$ cd ~/writefreely
+  [isabell@stardust ~]$ cd ~/writefreely
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
   
