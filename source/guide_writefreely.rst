@@ -79,15 +79,13 @@ Change to `writefreely` directory and start config mode to create a config file:
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
   
-Alter `bind` key and add TLS certificates paths in ``config.ini``; look for the ``[server]`` block:
+Alter `bind` key in ``config.ini``; look for the ``[server]`` block:
 
 .. code-block:: ini
 
   ...
 
   bind                 = 0.0.0.0
-  tls_cert_path        = /home/isabell/etc/certificates/isabell.uber.space.crt
-  tls_key_path         = /home/isabell/etc/certificates/isabell.uber.space.key
 
   ...
 
