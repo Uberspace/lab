@@ -76,15 +76,14 @@ Step 1
 ------
 First, we're going to download TeamCity and extract it.
 
-Change into your local bin folder. Then we're going to download the latest version (TeamCity-Download_ page) of the tgz archive and extract it. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.jetbrains.com/teamcity/TeamCity-2020.1.5.tar.gz``.
+Download the latest version (TeamCity-Download_ page) of the tgz archive and extract it. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.jetbrains.com/teamcity/TeamCity-2020.1.5.tar.gz``.
 
 ::
 
- [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust bin]$ wget -O teamcity.tgz https://download.jetbrains.com/teamcity/TeamCity-2020.1.5.tar.gz
- [isabell@stardust bin]$ tar --gzip --extract --file=teamcity.tgz
- [isabell@stardust bin]$ rm teamcity.tgz
- [isabell@stardust bin]$
+ [isabell@stardust ~]$ wget -O teamcity.tgz https://download.jetbrains.com/teamcity/TeamCity-2020.1.5.tar.gz
+ [isabell@stardust ~]$ tar --gzip --extract --file=teamcity.tgz
+ [isabell@stardust ~]$ rm teamcity.tgz
+ [isabell@stardust ~]$
 
 Step 2
 ------
@@ -92,18 +91,18 @@ Start the TeamCity Server. The startup scripts lie in TeamCity/bin
 
 ::
 
- [isabell@stardust bin]$ ./TeamCity/bin/runAll.sh start
+ [isabell@stardust ~]$ ./TeamCity/bin/runAll.sh start
  Spawning TeamCity restarter in separate process
  TeamCity restarter running with PID XXXXX
  Starting TeamCity build agent...
  Java executable is found: '/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64/jre/bin/java'
  Starting TeamCity Build Agent Launcher...
- Agent home directory is /home/isabell/bin/TeamCity/buildAgent
+ Agent home directory is /home/isabell/TeamCity/buildAgent
  Agent Launcher Java runtime version is 1.8
- Lock file: /home/isabell/bin/TeamCity/buildAgent/logs/buildAgent.properties.lock
+ Lock file: /home/isabell/TeamCity/buildAgent/logs/buildAgent.properties.lock
  Using no lock
- Done [28997], see log at /home/isabell/bin/TeamCity/buildAgent/logs/teamcity-agent.log
- [isabell@stardust bin]$
+ Done [28997], see log at /home/isabell/TeamCity/buildAgent/logs/teamcity-agent.log
+ [isabell@stardust ~]$
 
 Step 3
 ------
