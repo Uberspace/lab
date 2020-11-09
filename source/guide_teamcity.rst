@@ -72,7 +72,7 @@ You can also setup your own :manual_anchor:`domain <web-domains.html>`. TeamCity
 Installation
 ============
 
-Step 1
+Download and Extract
 ------
 First, we're going to download TeamCity and extract it.
 
@@ -85,7 +85,7 @@ Download the latest version (TeamCity-Download_ page) of the tgz archive and ext
  [isabell@stardust ~]$ rm teamcity.tgz
  [isabell@stardust ~]$
 
-Step 2
+Start Server
 ------
 Start the TeamCity Server. The startup scripts lie in TeamCity/bin
 
@@ -104,7 +104,7 @@ Start the TeamCity Server. The startup scripts lie in TeamCity/bin
  Done [28997], see log at /home/isabell/TeamCity/buildAgent/logs/teamcity-agent.log
  [isabell@stardust ~]$
 
-Step 3
+Configure Backend
 ------
 Now we should configure a web backend for TeamCity.
 
@@ -116,7 +116,7 @@ Now we should configure a web backend for TeamCity.
  [isabell@stardust bin]$
 
 
-Step 4
+Initialize TeamCity Server
 ------
 We visit the page in the browser of our choice on isabell.uber.space.
 
