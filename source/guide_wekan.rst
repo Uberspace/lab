@@ -154,7 +154,7 @@ Next, make it executable:
 Setup daemon
 ------------
 
-Lastly, we set up the daemon so that wekan is started automatically. Create ~/etc/services.d/wekan.ini with the following content:
+Lastly, we set up the daemon so that wekan is started automatically. Create ``~/etc/services.d/wekan.ini`` with the following content:
 
 .. code-block:: ini
 
