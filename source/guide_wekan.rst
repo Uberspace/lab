@@ -23,10 +23,10 @@ Wekan_ - Open Source kanban
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`node <lang-nodejs>`
-  * :manual:`web backends <web-backends>`
   * :manual:`domains <web-domains>`
-  * :manual:`supervisord <daemons-supervisord>`
   * :lab:`MongoDB <guide_mongodb>`
+  * :manual:`web backends <web-backends>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 
 License
@@ -52,17 +52,17 @@ The domain you want to use should be already set up:
 
 We'll also need :lab:`MongoDB <guide_mongodb>`, so follow the MongoDB guide and come back when it's running.
 
-Let's create a new password for our database:
+Let's create a password for a new database:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
  randompassword
  [isabell@stardust ~]$
 
-Once we have that, let's create the database itself.
+Once we have that, let's create the new database for Wekan itself.
 
-.. code-block:: none
+.. code-block:: 
 
  [isabell@stardust ~]$ mongo
  MongoDB shell version v4.4.1
@@ -77,9 +77,7 @@ Once we have that, let's create the database itself.
       roles: ["readWrite"]
     }
    )
- >
-
-You can leave the mongo shell afterwards by pressing ``CTRL-D``.
+ > exit
 
 Installation
 ============
@@ -114,99 +112,85 @@ Unzip the archive and then delete it. Replace the version in the file name with 
 Install server
 --------------
 
+Change into the server folder of wekan and delete two files before installing all dependencies and compile the code using node.
+
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd bundle/programs/server
+ [isabell@stardust ~]$ rm node_modules/.bin/node-gyp
+ [isabell@stardust ~]$ rm node_modules/.bin/node-pre-gyp 
  [isabell@stardust server]$ npm install node-gyp node-pre-gyp fibers
- [isabell@stardust server]$ cd ~
+ [isabell@stardust server]$ cd
  [isabell@stardust ~]$
 
 
+Configuration
+=============
 
-
-========
-
-To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am. Make sure to replace ``isabell`` with your own user name.
-
-::
-
-  0 8 * * * cd /var/www/virtual/$USER/html && ./cli cronjob >/dev/null 2>&1
-
-Best practices
-==============
-
-Plugins
--------
-
-Get an overview of all available Plugins_ for Kanboard and install them from the user interface. More (unofficial) plugins may also be available, just browse GitHub.
-
-
-Email Notifications
+Configure Webserver
 -------------------
-To receive `email notifications`_, users of Kanboard `must have`_:
 
-* Activated notifications in their profile
-* Have a valid email address in their profile
-* Be a member of the project that will trigger notifications
+Now, the server is ready to be started. For that, we need to start the server with environmental variables of the database we created earlier
 
-Set the email address used for the "From" header by changing the value in ``config.php``:
+.. code-block:: console
+
+ [isabell@stardust ~]$ PORT=8080 MONGO_URL="mongodb://wekan:randompassword@127.0.0.1:27017/wekan" ROOT_URL="https://isabell.uber.space" node bundle/main.js
+ [isabell@stardust ~]$
+
+As this is quite hard to type and remember, let's create a file `~/bin/wekan`:
+
+.. code-block:: bash
+
+ #!/usr/bin/env bash
+ PORT=8080 MONGO_URL="mongodb://wekan:randompassword@127.0.0.1:27017/wekan" ROOT_URL="https://isabell.uber.space" node bundle/main.js
+
+Next, make it executable:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ chmod u+x ~/bin/wekan
+ [isabell@stardust ~]$
+
+Setup daemon
+------------
+
+Lastly, we set up the daemon so that wekan is started automatically. Create ~/etc/services.d/wekan.ini with the following content:
 
 .. code-block:: ini
- :emphasize-lines: 2
 
- // E-mail address used for the "From" header (notifications)
- define('MAIL_FROM', 'isabell@uber.space');
+  [program:wekan]
+  command=wekan
+  autostart=yes
+  autorestart=yes
 
-Specify the URL of your Kanboard installation in your Application Settings to display a link to the task in notifications: ``https://isabell.uber.space/``. By default, nothing is defined, so no links will be displayed in notifications.
+Now let's start the service:
 
-.. note:: Don’t forget the ending slash ``/``.
+.. include:: includes/supervisord.rst
 
-Debugging
----------
+Finishing installation
+======================
 
-Enable debug mode by setting the following two values in ``config.php``:
+Point your browser to your uberspace URL and create a user account which will be also your admin account.
 
-.. code-block:: ini
- :emphasize-lines: 2,5
+Tuning
+======
 
- // Enable/Disable debug
- define('DEBUG', true);
-
- // Available log drivers: syslog, stderr, stdout, system or file
- define('LOG_DRIVER', 'file');
-
-The file ``debug.log`` will be found in the ``data`` folder of your Kanboard directory.
-
+There are many more options that can be set via environment variables. To get an overview, have a look at the `Wekan Wiki`_.
 
 Updates
 =======
 
-.. note:: Check the update Feed_ regularly to stay informed about the newest version.
+To update, simply download the newest version from the `latest release`_ website, unpack and rebuild.
 
-Check the GitHub's Atom Feed_ for any new Kanboard releases and copy the link to the ``.tar.gz`` archive. In this example the version is v42.23.2, which does not exist of course. Change the version to the latest one in the highlighted lines.
+.. note:: Check the update feed_ regularly to stay informed about the newest version. Wekan is updated often.
 
-.. code-block:: console
- :emphasize-lines: 2,3,4,5,6
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/kanboard/kanboard/archive/v42.23.2.tar.gz
- [isabell@stardust isabell]$ tar -xzf v42.23.2.tar.gz
- [isabell@stardust isabell]$ cp -r html/data/ html/plugins/ html/config.php kanboard-42.23.2/
- [isabell@stardust isabell]$ cp -r kanboard-42.23.2/* html/
- [isabell@stardust isabell]$ rm -rf kanboard-42.23.2 v42.23.2.tar.gz
- [isabell@stardust isabell]$
-
-Check the `Kanboard documentation`_ if the configuration changed between ``config.default.php`` and your ``config.php`` (happens very rarely). Also check ``.htaccess`` if further adjustments needed to be made.
-
-.. _Wekan: https://wekan.github.io/
-.. _MIT License: https://github.com/kanboard/kanboard/blob/master/LICENSE
-.. _Wekan documentation: https://github.com/wekan/wekan/wiki
-.. _Github: https://github.com/wekan/wekan/
+.. _wekan: https://wekan.org/
+.. _MIT License: https://github.com/wekan/wekan/blob/master/LICENSE
+.. _Wekan Wiki: https://github.com/wekan/wekan/wiki
+.. _Github: https://github.com/wekan/wekan
 .. _latest release: https://releases.wekan.team/
+.. _feed: https://github.com/wekan/wekan/releases.atom
 
-----
-
-Tested with Kanboard 1.2.6, Uberspace 7.1.14.0
+Tested with Wekan 4.43, Uberspace 7.7.9.0
 
 .. author_list::
