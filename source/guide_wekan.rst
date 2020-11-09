@@ -56,7 +56,7 @@ Let's create a password for a new database:
 
 .. code-block::
 
- [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~]$ pwgen 15 1
  randompassword
  [isabell@stardust ~]$
 
