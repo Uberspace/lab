@@ -14,9 +14,9 @@
       :target: https://www.jetbrains.com/company/brand/logos/
 
 
-##########
+########
 TeamCity
-##########
+########
 
 .. tag_list::
 
@@ -73,7 +73,7 @@ Installation
 ============
 
 Download and Extract
-------
+--------------------
 First, we're going to download TeamCity and extract it.
 
 Download the latest version (TeamCity-Download_ page) of the tgz archive and extract it. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.jetbrains.com/teamcity/TeamCity-2020.1.5.tar.gz``.
@@ -86,6 +86,7 @@ Download the latest version (TeamCity-Download_ page) of the tgz archive and ext
  [isabell@stardust ~]$
 
 Start Server
+------------
 We will configure two services for supervisor: One for the actual TeamCity server and one for the first build agent. You can use the following configuration file as a template but don't forget to change the paths! Save them in ``~/etc/services.d/``
 
 .. code-block:: text
@@ -107,12 +108,12 @@ We will configure two services for supervisor: One for the actual TeamCity serve
 
 .. include:: includes/supervisord.rst
 
-Configure Backend
-------
+Configure Web Backend
+---------------------
 .. include:: includes/web-backend.rst
 
 Initialize TeamCity Server
-------
+--------------------------
 We visit the page in the browser of our choice on isabell.uber.space.
 
 1. Type in the data directory. You can also use the default one at /home/isabell/.BuildServer
