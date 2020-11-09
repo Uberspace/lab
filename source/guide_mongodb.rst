@@ -48,7 +48,7 @@ Go to the `MongoDB Community Server download page`_ and select the current versi
  Length: 71253687 (68M) [application/gzip]
  Saving to: ‘/home/isabell/mongodb.tgz’
 
- 100%[==============================================================================================================================>] 71.253.687  22,9MB/s   in 3,0s   
+ 100%[==============================================================================================================================>] 71.253.687  22,9MB/s   in 3,0s
 
  2020-10-28 22:40:49 (22,9 MB/s) - ‘/home/isabell/mongodb.tgz’ saved [71253687/71253687]
 
@@ -90,10 +90,10 @@ Go to the `MongoDB Tools download page`_ and select the current version, OS ``RH
  Length: 67141659 (64M) [binary/octet-stream]
  Saving to: ‘/home/isabell/mongodb_tools.tgz’
 
- 100%[==============================================================================================================================>] 67.141.659  41,3MB/s   in 1,5s   
+ 100%[==============================================================================================================================>] 67.141.659  41,3MB/s   in 1,5s
 
  2020-10-28 22:44:22 (41,3 MB/s) - ‘/home/isabell/mongodb_tools.tgz’ saved [67141659/67141659]
- 
+
  [isabell@stardust ~]$
 
 
@@ -113,7 +113,7 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongoimport
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongorestore
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongostat
- mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongotop 
+ mongodb-database-tools-rhel70-x86_64-100.2.0/bin/mongotop
  [isabell@stardust ~]$
 
 You can now delete the archive:
@@ -165,7 +165,7 @@ Choose a root password or generate a random one using this snippet:
 
 .. code-block:: bash
 
- [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~]$ pwgen 32 1
  randompassword
  [isabell@stardust ~]$
 
@@ -217,7 +217,7 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
  MongoDB server version: 4.4.1
  ---
- The server generated these startup warnings when booting: 
+ The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: Soft rlimits too low
@@ -277,7 +277,7 @@ Restart your MongoDB and login to check the version.
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
  MongoDB server version: 4.4.1
  ---
- The server generated these startup warnings when booting: 
+ The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: Soft rlimits too low

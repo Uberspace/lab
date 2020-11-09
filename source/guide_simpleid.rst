@@ -127,7 +127,7 @@ First we'll generate a random salt to make this secure as possible. You are free
 
 ::
 
- [isabell@stardust ~]$ head -c32 /dev/urandom | base64 | head -c 16 ; echo
+ [isabell@stardust ~]$ pwgen 32 1
  MySuperSecretSalt
  [isabell@stardust ~]$
 

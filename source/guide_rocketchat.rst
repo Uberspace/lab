@@ -158,7 +158,7 @@ Generate a random password:
 
 ::
 
- [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~]$ pwgen 32 1
  randompassword
  [isabell@stardust ~]$
 

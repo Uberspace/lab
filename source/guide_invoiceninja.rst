@@ -196,7 +196,7 @@ You can generate the secret key with this command:
 
 ::
 
- [isabell@stardust ~] < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~] pwgen 32 1
  <randomSecret>
  [isabell@stardust ~]$
 

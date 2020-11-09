@@ -149,7 +149,7 @@ Use this snippet to generate a random string to use as secret key:
 
 ::
 
- [isabell@stardust ~] < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;
+ [isabell@stardust ~] pwgen 32 1
  extremerandom
  [isabell@stardust ~]$
 

@@ -93,7 +93,7 @@ Use this snippet to generate random passwords:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo
+ [isabell@stardust ~]$ pwgen 32 1
  topsecretrandompassword
 
 

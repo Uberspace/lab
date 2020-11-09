@@ -125,7 +125,7 @@ We also recommend password protection for your installation. First, generate a r
 
 ::
 
- [isabell@stardust html]$ head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20 ; echo ''
+ [isabell@stardust html]$ pwgen 32 1
 
 Copy the output and set it as salt in your ``config.ini``.
 
