@@ -88,7 +88,7 @@ Download and extract .ZIP archive
 Check the Wekan website for the `latest release`_ and copy the download link to the wekan-*.*.zip file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. code-block:: console
- :emphasize-lines: 2
+ :emphasize-lines: 1
 
  [isabell@stardust ~]$ wget https://releases.wekan.team/wekan-4.43.zip
  […]
