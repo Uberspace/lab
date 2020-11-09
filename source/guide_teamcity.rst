@@ -86,23 +86,26 @@ Download the latest version (TeamCity-Download_ page) of the tgz archive and ext
  [isabell@stardust ~]$
 
 Start Server
-------
-Start the TeamCity Server. The startup scripts lie in TeamCity/bin
+We will configure two services for supervisor: One for the actual TeamCity server and one for the first build agent. You can use the following configuration file as a template but don't forget to change the paths! Save them in ``~/etc/services.d/``
 
-::
+.. code-block:: text
 
- [isabell@stardust ~]$ ./TeamCity/bin/runAll.sh start
- Spawning TeamCity restarter in separate process
- TeamCity restarter running with PID XXXXX
- Starting TeamCity build agent...
- Java executable is found: '/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64/jre/bin/java'
- Starting TeamCity Build Agent Launcher...
- Agent home directory is /home/isabell/TeamCity/buildAgent
- Agent Launcher Java runtime version is 1.8
- Lock file: /home/isabell/TeamCity/buildAgent/logs/buildAgent.properties.lock
- Using no lock
- Done [28997], see log at /home/isabell/TeamCity/buildAgent/logs/teamcity-agent.log
- [isabell@stardust ~]$
+ [program:teamcity-server]
+ command=bash /home/isabell/TeamCity/bin/teamcity-server.sh run
+ autostart=yes
+ autorestart=yes
+ startsecs=120
+ stopsignal=QUIT
+ stopasgroup=true
+
+.. code-block:: text
+
+ [program:build-agent]
+ command=bash /home/isabell/TeamCity/bin/buildAgent/bin/agent.sh run
+ autostart=yes
+ autorestart=yes
+
+.. include:: includes/supervisord.rst
 
 Configure Backend
 ------
