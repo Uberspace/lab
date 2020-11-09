@@ -106,15 +106,7 @@ Start the TeamCity Server. The startup scripts lie in TeamCity/bin
 
 Configure Backend
 ------
-Now we should configure a web backend for TeamCity.
-
-::
-
- [isabell@stardust bin]$ uberspace web backend set --http --port 8111 isabell.uber.space
- Set backend for isabell.uber.space/ to port 8111; please make sure something is listening!
- You can always check the status of your backend using "uberspace web backend list".
- [isabell@stardust bin]$
-
+.. include:: includes/web-backend.rst
 
 Initialize TeamCity Server
 ------
