@@ -117,8 +117,8 @@ Change into the server folder of wekan and delete two files before installing al
 .. code-block:: console
 
  [isabell@stardust ~]$ cd bundle/programs/server
- [isabell@stardust ~]$ rm node_modules/.bin/node-gyp
- [isabell@stardust ~]$ rm node_modules/.bin/node-pre-gyp 
+ [isabell@stardust server]$ rm node_modules/.bin/node-gyp
+ [isabell@stardust server]$ rm node_modules/.bin/node-pre-gyp 
  [isabell@stardust server]$ npm install node-gyp node-pre-gyp fibers
  [isabell@stardust server]$ cd
  [isabell@stardust ~]$
