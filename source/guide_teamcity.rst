@@ -28,6 +28,8 @@ TeamCity_ is a build management tool by JetBrains. It is not open source and req
 
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
+  * :manual:`web backends <web-backends>`
+  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
