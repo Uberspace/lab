@@ -24,18 +24,19 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`PHP <lang-php>`
+  * Composer_
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -64,11 +65,11 @@ Clone the Lychee code from GitHub_:
  Resolving deltas: 100% (4511/4511), done.
  [isabell@stardust isabell]$
 
-Next change into the Lychee directory and update the Composer repository:
+Next update the Composer repository:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer update
+ [isabell@stardust isabell]$ Lychee/composer.phar update
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
  Package operations: 134 installs, 7 updates, 0 removals
@@ -79,18 +80,38 @@ After this, the required dependencies need to be installed:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer install --no-dev
+ [isabell@stardust isabell]$ Lychee/composer.phar install --no-dev
  Loading composer repositories with package information
  Installing dependencies from lock file
  Package operations: 0 installs, 0 updates, 52 removals
  ...
  [isabell@stardust isabell]$
 
-Finally, setup a symbolic link for the ``public`` folder within the ``html`` folder or in the current folder if you use a custom subdomain:
+Now setup a symbolic link for the ``public`` folder within the ``html`` folder:
 
 ::
 
- [isabell@stardust isabell]$ ln -s Lychee/public html/Lychee
+ [isabell@stardust isabell]$ ln -s Lychee/public html/lychee
+
+Or in the current folder if you use a custom subdomain:
+
+::
+
+ [isabell@stardust isabell]$ ln -s Lychee/public sub.domain.org
+
+As last step, the default ``.htaccess`` file needs to be adapted for the Uberspace environment for the redirection rules to work. Open the ``.htaccess`` file in the ``Lycchee\public`` directory with you favorite editor and add the statement ``RewriteBase /``:
+
+::
+
+  ...
+  RewriteEngine On
+  
+  RewriteBase /
+  
+  # Handle Authorization Header
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  ...
 
 Now point your browser to your Lychee URL and follow the instructions.
 
@@ -115,6 +136,7 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
  Already up to date.
  [isabell@stardust Lychee]$
 
+Or you use the automatic update function available in the web interface.
 
 .. _Lychee: https://lychee.electerious.com/
 .. _GitHub: https://github.com/LycheeOrg/Lychee/releases
@@ -122,6 +144,6 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 
 ----
 
-Tested with Lychee 4.0.6, Uberspace 7.7.2.0
+Tested with Lychee 4.0.9, Uberspace 7.7.2.0
 
 .. author_list::
