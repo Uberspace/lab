@@ -24,6 +24,7 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`PHP <lang-php>`
+  * :manual_anchor:`composer <lang-php.html#package-manager>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
