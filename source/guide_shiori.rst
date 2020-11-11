@@ -76,7 +76,7 @@ Configuration
 Setup daemon
 -----------
 
-.. note:: To use a different port instead of 8080, you need to add `` -p <portnumber>`` to the command in your shiori.ini file
+.. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command in your shiori.ini file
 
 Create ``~/etc/services.d/shiori.ini`` with the following content.
 
