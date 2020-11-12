@@ -1,4 +1,4 @@
-.. author:: Kevin <https://github.com/systemsemaphore>
+.. author:: Kevin Jost <https://github.com/systemsemaphore>
 
 .. tag:: lang-go
 
