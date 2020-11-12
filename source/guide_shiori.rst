@@ -1,10 +1,9 @@
+.. highlight:: console
+
 .. author:: Kevin Jost <https://github.com/systemsemaphore>
 
 .. tag:: lang-go
-
 .. tag:: web
-
-.. highlight:: console
 
 .. sidebar:: Logo
 
@@ -17,36 +16,31 @@ Shiori
 
 .. tag_list::
 
-Shiori_ is a simple bookmarks manager written in Go and distributed under the MIT License. It can be used as a `command line application <https://github.com/go-shiori/shiori/wiki/Usage#using-command-line-interface>` or via the built-in web-ui.
+Shiori_ is a simple bookmarks manager written in Go and distributed under the MIT License. It can be used as a `command line application <https://github.com/go-shiori/shiori/wiki/Usage#using-command-line-interface>`_ or via the built-in web-ui.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`web backends <webbackend_>`_.
 
 Prerequisites
 =============
 
-.. note:: By default, Shiori runs on port 8080.
+.. note:: Shiori won't work with a subpath (e.g. https://isabell.uber.space/shiori/).
 
-Shiori can run under a subdomain (e.g. https://shiori.isabell.uber.space) or via a subpath (e.g. 
-https://isabell.uber.space/shiori/).
-
-For both options you need to configure a `web backend <webbackend_>`_.
-The subpath option looks like this:
+By default, Shiori runs on port 8080.
+To reach it, you need to configure a `web backend <webbackend_>`_.
 
 ::
 
-  [isabell@stardust ~]$ uberspace web backend set /shiori/ --http --port 8080 --remove-prefix
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8080
   Set backend for / to port 8080; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
 .. _webbackend: https://manual.uberspace.de/web-backends.html
-
-Note the `--remove-prefix` option here. Without it, Shiori will not work behind a sub path (e.g. `isabell.uber.space/shiori/`).
-
 
 Installation
 ============
@@ -69,14 +63,13 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
   [isabell@stardust shiori~]$ chmod u+x shiori-linux-amd64-stretch
   [isabell@stardust shiori]$
 
-
 Configuration
 =============
 
 Setup daemon
 -----------
 
-.. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command in your shiori.ini file
+.. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command in your ``shiori.ini`` file. Remember to adjust the port for the web backend as well.
 
 Create ``~/etc/services.d/shiori.ini`` with the following content.
 
@@ -114,6 +107,6 @@ version is available, stop daemon by ``supervisorctl stop shiori`` and repeat th
 
 ----
 
-Tested (to some extent) with Shiori 1.5.0, Uberspace 7.7.9.0
+Tested with Shiori 1.5.0, Uberspace 7.7.9.0
 
 .. author_list::
