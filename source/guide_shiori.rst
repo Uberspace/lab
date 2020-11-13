@@ -23,7 +23,7 @@ Shiori_ is a simple bookmarks manager written in Go and distributed under the MI
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`supervisord <daemons-supervisord>`
-  * :manual:`web backends <webbackend_>`_.
+  * :manual:`web backends <web-backends>`
 
 Prerequisites
 =============
