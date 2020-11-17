@@ -202,7 +202,7 @@ To make CLI access using the ``mongo`` command easier, you can create a ``~/.mon
 
 .. code-block:: none
 
- db = connect("mongodb://<username>_mongoroot:<password>@127.0.0.1:27017/admin")
+ db=connect"mongodb://<username>_mongoroot:<password>@127.0.0.1:27017/admin"
 
 Now you can just run ``mongo`` to connect to your MongoDB instance:
 
