@@ -12,6 +12,8 @@ coturn
 
 .. tag_list::
 
+.. warning:: This guide `seems to be broken <https://github.com/Uberspace/lab/issues/844>`_.
+
 The `TURN Server <https://github.com/coturn/coturn>`_ is a VoIP media traffic NAT traversal server and gateway. It can be used as a general-purpose network traffic TURN server and gateway, too.
 On-line management interface (over telnet or over HTTPS) for the TURN server is available.
 The implementation also includes some extra experimental features.
