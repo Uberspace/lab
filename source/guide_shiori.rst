@@ -60,7 +60,7 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
  100%[======================================>] 19,735,216  12.2MB/s
 
   2020-11-11 22:04:39 (12.2 MB/s) - ‘shiori-linux-amd64-stretch’ saved [19735216/19735216]
-  [isabell@stardust shiori~]$ chmod u+x shiori-linux-amd64-stretch
+  [isabell@stardust shiori]$ chmod u+x shiori-linux-amd64-stretch
   [isabell@stardust shiori]$
 
 Configuration
