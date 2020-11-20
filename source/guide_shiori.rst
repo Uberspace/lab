@@ -76,7 +76,7 @@ Create ``~/etc/services.d/shiori.ini`` with the following content.
 .. code-block:: ini
 
   [program:shiori]
-  command=/home/isabell/shiori/shiori-linux-amd64-stretch serve
+  command=shiori serve
   autostart=yes
   autorestart=yes
 
