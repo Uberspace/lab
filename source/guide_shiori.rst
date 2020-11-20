@@ -50,7 +50,7 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
 ::
 
   [isabell@stardust ~]$ mkdir ~/shiori && cd ~/shiori
-  [isabell@stardust shiori~]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch
+  [isabell@stardust shiori]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch
   Resolving github.com (github.com)... 140.82.121.3
   Connecting to github.com (github.com)|140.82.121.3|:443... connected.
   HTTP request sent, awaiting response... 302 Found
