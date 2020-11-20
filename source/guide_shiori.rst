@@ -28,17 +28,7 @@ Shiori_ is a simple bookmarks manager written in Go and distributed under the MI
 Prerequisites
 =============
 
-.. note:: Shiori won't work with a subpath (e.g. https://isabell.uber.space/shiori/).
-
-By default, Shiori runs on port 8080.
-To reach it, you need to configure a `web backend <webbackend_>`_.
-
-::
-
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 8080
-  Set backend for / to port 8080; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
+.. note:: By default, Shiori runs on port 8080.
 
 .. include:: includes/web-backend.rst
 
