@@ -47,7 +47,7 @@ Installation
 
 Like a lot of Go software, Shiori is distributed as a single binary. Download Shiori's latest `release <https://github.com/go-shiori/shiori/releases/latest>`_ and make sure that the file can be executed.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/shiori && cd ~/shiori
   [isabell@stardust shiori]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch
