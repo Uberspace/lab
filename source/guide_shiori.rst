@@ -40,7 +40,7 @@ To reach it, you need to configure a `web backend <webbackend_>`_.
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
 
-.. _webbackend: https://manual.uberspace.de/web-backends.html
+.. include:: includes/web-backend.rst
 
 Installation
 ============
@@ -49,19 +49,18 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir ~/shiori && cd ~/shiori
-  [isabell@stardust shiori]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch
+  [isabell@stardust ~]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch -O ~/bin/shiori
   Resolving github.com (github.com)... 140.82.121.3
   Connecting to github.com (github.com)|140.82.121.3|:443... connected.
   HTTP request sent, awaiting response... 302 Found
   Length: 19735216 (19M) [application/octet-stream]
-  Saving to: ‘shiori-linux-amd64-stretch’
+  Saving to: ‘/home/shiori/bin/shiori’
 
  100%[======================================>] 19,735,216  12.2MB/s
 
-  2020-11-11 22:04:39 (12.2 MB/s) - ‘shiori-linux-amd64-stretch’ saved [19735216/19735216]
-  [isabell@stardust shiori]$ chmod u+x shiori-linux-amd64-stretch
-  [isabell@stardust shiori]$
+  2020-11-11 22:04:39 (12.2 MB/s) - ‘/home/isabell/bin/shiori’ saved [19735216/19735216]
+  [isabell@stardust ~]$ chmod u+x ~/bin/shiori
+  [isabell@stardust ~]$
 
 Configuration
 =============
