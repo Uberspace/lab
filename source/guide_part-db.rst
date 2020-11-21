@@ -61,7 +61,6 @@ To install all needed libraries you run `composer install`Ö
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ composer install
  Installing dependencies from lock file (including require-dev)
  Verifying lock file contents can be installed on current platform.
