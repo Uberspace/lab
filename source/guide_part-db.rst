@@ -57,7 +57,7 @@ Installation
   100 37.5M  100 37.5M    0     0  5274k      0  0:00:07  0:00:07 --:--:-- 6062k
  [isabell@stardust html]$
 
-To install all needed libraries you run `composer install`Ö
+To install all needed libraries you run `composer install`:
 
 ::
 
