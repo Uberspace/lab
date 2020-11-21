@@ -184,6 +184,7 @@ Follow the installation procedure and restore the data directory
  [isabell@stardust ~]$
 
 .. _Part-DB: https://github.com/Part-DB/Part-DB
+.. _composer: https://getcomposer.org
 
 
 ----
