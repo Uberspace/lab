@@ -169,9 +169,12 @@ Create an backup of your database:
 
 Remove the old installation:
 
+.. note::
+   If the trailing `/` is missing from the command below, the folder will be deleted and you will need to restore it using `mkdir /var/www/virtual/${USER}/html`.
+
 ::
 
- [isabell@stardust ~]$ rm -rf ~/html/
+ [isabell@stardust ~]$ rm -rf /var/www/virtual/${USER}/html/
  [isabell@stardust ~]$
 
 Follow the installation procedure and restore the data directory
