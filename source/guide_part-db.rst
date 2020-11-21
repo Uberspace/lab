@@ -124,7 +124,7 @@ To update Part-DB you copy the data folder to your home directory:
 
 ::
 
- [isabell@stardust ~]$ cp --recursive ~/html/data ~/
+ [isabell@stardust ~]$ mv ~/html/data ~/
  [isabell@stardust ~]$
 
 Create an backup of your database:
