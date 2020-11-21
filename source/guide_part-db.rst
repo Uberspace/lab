@@ -131,7 +131,7 @@ Create an backup of your database:
 
 ::
 
- [isabell@stardust ~]$ mysqldump ${USER}_partdb > partdb.sql
+ [isabell@stardust ~]$ mysqldump ${USER}_partdb > partdb_update_backup.sql
  [isabell@stardust ~]$
 
 Remove the old installation:
