@@ -116,10 +116,44 @@ You will need to enter the following information:
 
 The installation wizard will prompt you to initialize the database and you will have to change the admin password afterwards.
 
+Backup
+======
+
+To create a backup of the installation you need the `data` folder and the database.
+To backup the `data` directory you copy it into your home:
+
+::
+
+ [isabell@stardust ~]$ cp --recursive ~/html/data ~/data
+ [isabell@stardust ~]$
+
+To create a backup of your database you dump it into a file:
+
+::
+
+ [isabell@stardust ~]$ mysqldump ${USER}_partdb > partdb_backup.sql
+ [isabell@stardust ~]$
+
+Restore
+=======
+
+You restore the database from the backup as follows:
+
+::
+
+ [isabell@stardust ~]$ mysql --database=${USER}_partdb < partdb_backup.sql
+ [isabell@stardust ~]$
+
+.. note::
+   If you get an error like "ERROR 1049 (42000): Unknown database 'test_partdb'" you have to create the databse as described in the installation instructions.
+
+The `data` directory can just be moved into the documentroot.
+
+
 Updates
 =======
 
-To update Part-DB you copy the data folder to your home directory:
+To update Part-DB you create a backup as described above or move the `data` folder away before replacing the installation:
 
 ::
 
