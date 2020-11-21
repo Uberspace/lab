@@ -50,7 +50,7 @@ Installation
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd ~/html/
  [isabell@stardust html]$ curl --location https://github.com/Part-DB/Part-DB/archive/master.tar.gz | tar -xzf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
