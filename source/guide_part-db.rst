@@ -144,7 +144,7 @@ Remove the old installation:
 Follow the installation procedure and restore the data directory
 ::
 
- [isabell@stardust ~]$ mv -Z ~/data ~/html/data
+ [isabell@stardust ~]$ mv ~/data ~/html/data
  [isabell@stardust ~]$
 
 .. _Part-DB: https://github.com/Part-DB/Part-DB
