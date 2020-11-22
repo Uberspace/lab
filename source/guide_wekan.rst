@@ -78,6 +78,8 @@ Once we have that, let's create the new database for Wekan itself.
     }
    )
  > exit
+ [isabell@stardust ~]$
+
 
 Installation
 ============
@@ -85,7 +87,7 @@ Installation
 Download and extract .ZIP archive
 -----------------------------------
 
-Check the Wekan website for the `latest release`_ and copy the download link to the wekan-*.*.zip file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
+Check the Wekan website for the `latest release`_ and copy the download link to the wekan-\*.\*.zip file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. warning:: Make sure to use the latest version from the `latest release`_ page, as Wekan is developed in a fast pace.
 
@@ -133,7 +135,7 @@ Configuration
 Setup daemon
 ------------
 
-Lastly, we set up the daemon so that wekan is started automatically. Create ``~/etc/services.d/wekan.ini`` with the following content:
+Next, we set up the daemon so that wekan is started automatically. Create ``~/etc/services.d/wekan.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -152,6 +154,8 @@ Now let's start the service:
 Configure Webserver
 -------------------
 
+Lastly, we connect the server to the web.
+
 .. note:: For this guide, Wekan will run on port 8080.
 
 .. include:: includes/web-backend.rst
@@ -160,7 +164,7 @@ Configure Webserver
 Finishing installation
 ======================
 
-Point your browser to your uberspace URL and create a user account which will be also your admin account.
+Point your browser to your Uberspace URL and create a user account which will be also your admin account.
 
 Tuning
 ======
