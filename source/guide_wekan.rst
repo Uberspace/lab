@@ -87,7 +87,7 @@ Installation
 Download and extract .ZIP archive
 -----------------------------------
 
-Check the Wekan website for the `latest release`_ and copy the download link to the wekan-\*.\*.zip file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
+Check the Wekan website for the `latest release`_ and copy the download link to the ``wekan-*.*.zip`` file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. warning:: Make sure to use the latest version from the `latest release`_ page, as Wekan is developed in a fast pace.
 
