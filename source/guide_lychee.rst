@@ -116,6 +116,7 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
  Already up to date.
  [isabell@stardust Lychee]$
 
+Or you use the automatic update function available in the web interface.
 
 .. _Lychee: https://lychee.electerious.com/
 .. _GitHub: https://github.com/LycheeOrg/Lychee/releases
