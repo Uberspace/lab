@@ -124,6 +124,6 @@ Or you use the automatic update function available in the web interface.
 
 ----
 
-Tested with Lychee 4.0.6, Uberspace 7.7.2.0
+Tested with Lychee 4.0.9, Uberspace 7.7.2.0
 
 .. author_list::
