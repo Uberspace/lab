@@ -87,6 +87,8 @@ Download and extract .ZIP archive
 
 Check the Wekan website for the `latest release`_ and copy the download link to the wekan-*.*.zip file. Then use ``wget`` to download it. Replace the URL with the one you just copied.
 
+.. warning:: Make sure to use the latest version from the `latest release`_ page, as Wekan is developed in a fast pace.
+
 .. code-block:: console
  :emphasize-lines: 1
 
@@ -127,29 +129,6 @@ Change into the server folder of wekan and delete two files before installing al
 Configuration
 =============
 
-Configure Webserver
--------------------
-
-Now, the server is ready to be started. For that, we need to start the server with environmental variables of the database we created earlier
-
-.. code-block:: console
-
- [isabell@stardust ~]$ PORT=8080 MONGO_URL="mongodb://wekan:randompassword@127.0.0.1:27017/wekan" ROOT_URL="https://isabell.uber.space" node bundle/main.js
- [isabell@stardust ~]$
-
-As this is quite hard to type and remember, let's create a file `~/bin/wekan`:
-
-.. code-block:: bash
-
- #!/usr/bin/env bash
- PORT=8080 MONGO_URL="mongodb://wekan:randompassword@127.0.0.1:27017/wekan" ROOT_URL="https://isabell.uber.space" node bundle/main.js
-
-Next, make it executable:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ chmod u+x ~/bin/wekan
- [isabell@stardust ~]$
 
 Setup daemon
 ------------
@@ -159,13 +138,24 @@ Lastly, we set up the daemon so that wekan is started automatically. Create ``~/
 .. code-block:: ini
 
   [program:wekan]
-  command=wekan
+  environment=PORT="8080",MONGO_URL="mongodb://wekan:randompassword@127.0.0.1:27017/wekan",ROOT_URL="https://isabell.uber.space"
+  directory=%(ENV_HOME)s/bundle
+  command=node main.js
   autostart=yes
   autorestart=yes
 
 Now let's start the service:
 
 .. include:: includes/supervisord.rst
+
+
+Configure Webserver
+-------------------
+
+.. note:: For this guide, Wekan will run on port 8080.
+
+.. include:: includes/web-backend.rst
+
 
 Finishing installation
 ======================
