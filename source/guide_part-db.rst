@@ -192,7 +192,3 @@ Follow the installation procedure and restore the data directory
 Tested with Part-DB 0.5.9, Uberspace 7.7.10.0
 
 .. author_list::
-
-Sources:
-    * :lab: guide_satis
-    * :lab: guide_nextcloud
