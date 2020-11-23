@@ -61,29 +61,28 @@ Download the source
 
 Check Github_ for the `latest release`_ and copy the download link to the .tar.gz file.
 Then ``cd`` to your :manual:`DocumentRoot <web-documentroot>` and use ``wget`` to download it. Replace the URL with the one you just copied.
-In the example the version is 1.2.4 which does not exist.
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.2.4.tar.gz
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.3.4.tar.gz
  […]
- Saving to: ‘1.2.4.tar.gz’
+ Saving to: ‘1.3.4.tar.gz’
 
  100%[=================================================>] 3,172,029   3.45MB/s   in 0.9s
 
- 2020-11-22 16:27:44 (8.32 MB/s) - ‘1.2.4.tar.gz’ saved [523648]
- [isabell@stardust ~]$
+ 2020-11-22 16:27:44 (8.32 MB/s) - ‘1.3.4.tar.gz’ saved [523648]
+ [isabell@stardust html]$
 
-Untar the archive to the ``html`` folder and then delete it. Replace the version in the file name with the one you downloaded.
+Untar the archive and then delete it. Replace the version in the file name with the one you downloaded.
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust isabell]$ tar -xzf 1.2.4.tar.gz -C html/ --strip-components=1
- [isabell@stardust isabell]$ rm 1.2.4.tar.gz
- [isabell@stardust ~]$
+ [isabell@stardust html]$ tar -xzf 1.3.4.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm 1.3.4.tar.gz
+ [isabell@stardust html]$
 
 
 Activate the .htaccess file
@@ -92,9 +91,8 @@ PrivateBin provides a .htaccess file, which blocks some known robots and link-sc
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ mv .htaccess.disabled .htaccess
- [isabell@stardust ~]$
+ [isabell@stardust html]$
 
 
 Moving files outside of DocumentRoot
@@ -105,40 +103,21 @@ If not already there, go to the ``html`` directory before running ``mv``.
 
 .. code-block:: console
 
- [isabell@stardust html]$ mkdir /var/www/virtual/$USER/privatebin-data
- [isabell@stardust html]$ cd /var/www/virtual/$USER/html
- [isabell@stardust html]$ mv -t /var/www/virtual/$USER/privatebin-data cfg/ lib/ tpl/ vendor/
- [isabell@stardust ~]$
+ [isabell@stardust html]$ mkdir ../privatebin-data
+ [isabell@stardust html]$ mv -t ../privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust html]$
 
 Changing index.php
 ------------------
 
 Now edit ``/var/www/virtual/$USER/html/index.php``  to inform PrivateBin about to the new location of the folders. 
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: php
- :emphasize-lines: 3
 
  [...]
  // change this, if your php files and data is outside of your webservers document root
- define('PATH', '/var/www/virtual/<username>/privatebin-data/');
+ define('PATH', '../privatebin-data/');
  [...]
-
-Setting permissions
--------------------
-
-Let's make sure the files and folder have the correct :manual_anchor:`permissions <web-documentroot#permissions>`.
-Use ``find`` in combination with ``chmod`` to change them.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER
- [isabell@stardust isabell]$ find privatebin-data -type d -exec chmod 755 {} \;
- [isabell@stardust isabell]$ find privatebin-data -type f -exec chmod 644 {} \;
- [isabell@stardust ~]$
-
-
 
 Configuration
 =============
@@ -146,16 +125,15 @@ Configuration
 Configure your PrivateBin Instance
 ----------------------------------
 
-.. note:: You are not forced to change any of the default settings as they are mostly secure.
+.. note:: You don't need to change any of the default settings as they are mostly secure.
 
 You can find an example configuration file at ``cfg/conf.sample.php`` with the default settings. To change these, copy the sample file
 to ``cfg/conf.php`` and adapt the values as needed.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/privatebin-data
- [isabell@stardust privatebin-data]$ cp cfg/conf.sample.php cfg/conf.php 
- [isabell@stardust ~]$
+ [isabell@stardust html]$ cp ../privatebin-data/cfg/conf.sample.php ../privatebin-data/cfg/conf.php
+ [isabell@stardust html]$
 
 The file is in ini format, meaning that lines beginning with semicolons ``;`` are comments,
 configuration options are grouped in sections, marked by square brackets ``[`` and ``]``
