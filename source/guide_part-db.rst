@@ -153,33 +153,7 @@ The `data` directory can just be moved into the documentroot.
 Updates
 =======
 
-To update Part-DB you create a backup as described above or move the `data` folder away before replacing the installation:
-
-::
-
- [isabell@stardust ~]$ mv ~/html/data ~/
- [isabell@stardust ~]$
-
-Create an backup of your database:
-
-::
-
- [isabell@stardust ~]$ mysqldump ${USER}_partdb > partdb_update_backup.sql
- [isabell@stardust ~]$
-
-Remove the old installation:
-
-::
-
- [isabell@stardust ~]$ rm -rf /var/www/virtual/${USER}/html/
- [isabell@stardust ~]$ mkdir -p /var/www/virtual/${USER}/html/
- [isabell@stardust ~]$
-
-Follow the installation procedure and restore the data directory
-::
-
- [isabell@stardust ~]$ mv ~/data ~/html/data
- [isabell@stardust ~]$
+To update Part-DB you create a backup as described above, reinstall the new version and restore your old data.
 
 .. _Part-DB: https://github.com/Part-DB/Part-DB
 .. _composer: https://getcomposer.org
