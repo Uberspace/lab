@@ -43,7 +43,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show node
+ [isabell@stardust ~]$ uberspace tools version show php
  Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
@@ -60,7 +60,7 @@ Download the source
 -------------------
 
 Check Github_ for the `latest release`_ and copy the download link to the .tar.gz file.
-Then ``cd`` to your :manual:`DocumentRoot <web-documentroot>` and use ``wget`` to download it. Replace the URL with the one you just copied.
+Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it. Replace the URL with the one you just copied.
 
 .. code-block:: console
  :emphasize-lines: 2
@@ -110,7 +110,7 @@ If not already there, go to the ``html`` directory before running ``mv``.
 Changing index.php
 ------------------
 
-Now edit ``/var/www/virtual/$USER/html/index.php``  to inform PrivateBin about to the new location of the folders. 
+Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of the folders. 
 
 .. code-block:: php
 
