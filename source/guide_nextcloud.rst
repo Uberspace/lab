@@ -268,7 +268,8 @@ Create `~/bin/nextcloud-update` with the following content:
 Make the script executable:
 ::
 
- chmod +x ~/bin/nextcloud-update
+ [isabell@stardust ~]$ chmod +x ~/bin/nextcloud-update
+ [isabell@stardust ~]$
 
 Then you can run the script whenever you need it to perform the update.
 ::
