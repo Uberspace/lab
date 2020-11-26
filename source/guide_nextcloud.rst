@@ -265,6 +265,11 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ maintenance:mode --off
  restorecon -R ~/html
 
+Make the script executable:
+::
+
+ chmod +x ~/bin/nextcloud-update
+
 Then you can run the script whenever you need it to perform the update.
 ::
 
