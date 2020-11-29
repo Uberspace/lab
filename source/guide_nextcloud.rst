@@ -71,6 +71,8 @@ Installation
 
 Now point your browser to your uberspace URL and follow the instructions.
 
+.. warning:: We strongly recommend you to use the MySQL backend for netxtcloud. Do not use the SQLite backend for production. It gives you a better performance and reduces disk load on the host you share.
+
 You will need to enter the following information:
 
   * Administrator username and password: Insert the credentials you want to use for the admin user
@@ -264,6 +266,12 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
  restorecon -R ~/html
+
+Make the script executable:
+::
+
+ [isabell@stardust ~]$ chmod +x ~/bin/nextcloud-update
+ [isabell@stardust ~]$
 
 Then you can run the script whenever you need it to perform the update.
 ::

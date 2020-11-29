@@ -21,7 +21,7 @@ Icecast2
 .. tag_list::
 
 
-'Icecast'_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
+`Icecast`_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
 
 Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
 
@@ -245,6 +245,17 @@ You may want to change the log level from Info ``3`` to Debug ``4`` for debuggin
 
 After having changed the ``icecast.xml`` you need to restart the service.
 
+Best practices
+==============
+
+Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to encode to `Ogg Vorbis`_ format. 
+
+.. code-block:: console
+
+  [isabell@localhost ~]$ ffmpeg -i $yourinputfile -vn -acodec libvorbis -b:a 128k -f ogg -y /dev/stdout |
+  oggfwd isabell.uber.space $yourlisteningport y0uRS3cR3t_1! /stream.ogg
+  
+A more detailed setup for live streaming concerts with JACK audio server can be found at: https://wikis.ven.pm/streaming_setup
 
 Updates
 =======
@@ -258,6 +269,9 @@ Updates
 .. _configdocu: https://icecast.org/docs/icecast-2.4.1/config-file.html
 .. _clients: https://icecast.org/apps/
 .. _mixxx: https://mixxx.org/
+.. _oggfwd: https://r-w-x.org/r/oggfwd
+.. _ffmpeg: https://ffmpeg.org
+.. _`Ogg Vorbis`: https://en.wikipedia.org/wiki/Vorbis
 
 ----
 

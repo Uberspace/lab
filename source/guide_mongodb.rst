@@ -242,7 +242,12 @@ You can exit the shell by entering ``exit``.
 Updates
 =======
 
-When a new version of MongoDB is released, use the following steps to update your installation:
+When a new version of MongoDB is released, use the following steps to update your installation.
+
+.. warning::
+
+  You may need to perform additional steps to upgrade to the latest version. Please read the
+  `release notes <MongoDB release notes_>`_ before you begin.
 
 Stop your MongoDB
 -----------------
@@ -302,6 +307,7 @@ Restart your MongoDB and login to check the version.
 .. _MongoDB: https://www.mongodb.com/
 .. _MongoDB Community Server download page: https://www.mongodb.com/download-center/community
 .. _MongoDB Tools download page: https://www.mongodb.com/try/download/database-tools
+.. _MongoDB release notes: https://docs.mongodb.com/manual/release-notes/
 
 ----
 

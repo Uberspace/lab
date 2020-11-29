@@ -140,6 +140,11 @@ Using Werkzeug for development
 
 You can use Werkzeug which get's shipped with Flask to spin up a small development server. But be aware: **Do not use it in a production deployment.** For more info head to https://www.palletsprojects.com/p/werkzeug/.
 
+Note that if you run your application under a path different from ``/``, this
+approach does not work because the requests don't match the configured routes
+and because the server does not set the ``SCRIPT_NAME`` variable.
+The proper fix is using a uWSGI deployment as we will do in the next step.
+
 To start Werkzeug execute the following commands. It enables the virtual python environment and uses executes ``app.py``. Stop it by pressing ``Ctrl + C``.
 
 ::
@@ -180,6 +185,14 @@ Create ini file ``~/basic_flask_template/uwsgi.ini`` with the following content:
   chmod-socket = 660
   vacuum = true
 
+
+If your application does not run under ``/`` but under, say, ``/your/path/``,
+replace the ``module = ...`` line with
+
+.. code-block:: ini
+
+  mount = /your/path=app:app
+  manage-script-name = true
 
 To serve your application via uWSGI execute the following commands. Stop it by pressing ``Ctrl + C``.
 

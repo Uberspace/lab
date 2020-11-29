@@ -24,18 +24,19 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`PHP <lang-php>`
+  * :manual_anchor:`composer <lang-php.html#package-manager>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -64,11 +65,11 @@ Clone the Lychee code from GitHub_:
  Resolving deltas: 100% (4511/4511), done.
  [isabell@stardust isabell]$
 
-Next change into the Lychee directory and update the Composer repository:
+Next update the Composer repository:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer update
+ [isabell@stardust isabell]$ Lychee/composer.phar update
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
  Package operations: 134 installs, 7 updates, 0 removals
@@ -79,7 +80,7 @@ After this, the required dependencies need to be installed:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer install --no-dev
+ [isabell@stardust isabell]$ Lychee/composer.phar install --no-dev
  Loading composer repositories with package information
  Installing dependencies from lock file
  Package operations: 0 installs, 0 updates, 52 removals
@@ -115,6 +116,7 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
  Already up to date.
  [isabell@stardust Lychee]$
 
+Or you use the automatic update function available in the web interface.
 
 .. _Lychee: https://lychee.electerious.com/
 .. _GitHub: https://github.com/LycheeOrg/Lychee/releases
@@ -122,6 +124,6 @@ If a new version is available, ``cd`` to your Lychee folder and do a simple ``gi
 
 ----
 
-Tested with Lychee 4.0.6, Uberspace 7.7.2.0
+Tested with Lychee 4.0.9, Uberspace 7.7.2.0
 
 .. author_list::
