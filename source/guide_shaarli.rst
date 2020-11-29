@@ -37,8 +37,6 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
-.. code-block:: console
-
   [isabell@stardust ~]$ uberspace tools version show php
   Using 'PHP' version: '7.4'
   [isabell@stardust ~]$
@@ -79,12 +77,12 @@ version is available, you can upgrade by following these steps:
 
 .. code-block:: console
 
-[isabell@stardust ~]$ cd /var/www/virtual/isabell/html/
-[isabell@stardust ~]$ git pull
-[isabell@stardust ~]$ composer install --no-dev
-[isabell@stardust ~]$ make translate
-[isabell@stardust ~]$ make build_frontend
-[isabell@stardust ~]$ 
+  [isabell@stardust ~]$ cd /var/www/virtual/isabell/html/
+  [isabell@stardust ~]$ git pull
+  [isabell@stardust ~]$ composer install --no-dev
+  [isabell@stardust ~]$ make translate
+  [isabell@stardust ~]$ make build_frontend
+  [isabell@stardust ~]$ 
 
 .. _Shaarli: https://github.com/shaarli/Shaarli#readme
 .. _Documentation: https://shaarli.readthedocs.io/en/master/
