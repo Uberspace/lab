@@ -22,6 +22,9 @@ EteSync_ is a secure, end-to-end encrypted, and privacy respecting sync for your
 You can set up your own `EteSync Server`_ to sync all your devices.
 It is written in :manual:`Python <lang-python>` and based on the popular :lab:`Django-Framework <guide_django>`.
 
+.. warning:: EteSync Server v2 has been released_ in October 2020. This guide is about installing EteSync Server v1
+    and seems to be not applicable to v2.
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -62,8 +65,6 @@ Step 1
 ------
 
 Clone the source code from Github to ``~/etesync_server``.
-Make sure to replace the release number ``v0.3.0`` in the command with the latest release
-which can be found at the release_ page on GitHub:
 
 .. code-block:: console
     :emphasize-lines: 1
@@ -308,31 +309,10 @@ Set up a cron job by using the ``crontab -e`` command and adding the line:
              which is not included in the backups, because it only exists on your synchronized devices.
              Make sure you keep your encryption password in a safe place, too!
 
-
-Updates
-=======
-
-.. note:: Check the release_ page on GitHub regularly or follow the feed_ to stay informed about the newest version.
-
-If there is a new version available, update your EteSync server installation to the latest release
-with ``git`` (make sure to replace ``v0.3.x`` with the latest version number):
-
-.. code-block:: console
- :emphasize-lines: 2
-
-    [isabell@stardust ~]$ cd ~/etesync_server
-    [isabell@stardust etesync_server]$ git pull origin v0.3.x
-    [isabell@stardust etesync_server]$ pip3.6 install -U -r requirements.txt
-    [isabell@stardust etesync_server]$ python3.6 manage.py migrate
-    [isabell@stardust etesync_server]$ python3.6 manage.py collectstatic
-    [isabell@stardust etesync_server]$
-
-
 .. _EteSync: https://www.etesync.com/
 .. _EteSync Server: https://github.com/etesync/server
 .. _Django:  https://www.djangoproject.com/
-.. _release: https://github.com/etesync/server/releases
-.. _feed: https://github.com/etesync/server/releases.atom
+.. _released: https://github.com/etesync/server/releases/tag/v0.5.0
 
 ----
 
