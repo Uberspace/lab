@@ -48,17 +48,13 @@ Set up your domain:
 Installation
 ============
 
-Clone the GitHub repository, install the 3rd-party PHP dependencies and copy the resulting shaarli directory to your document root:
+Enter your document root, download the `latest <https://github.com/shaarli/Shaarli/releases>`_ release and unpack the downloaded archive:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone -b latest https://github.com/shaarli/Shaarli.git ~/shaarli
-  [isabell@stardust ~]$ cd ~/shaarli
-  [isabell@stardust ~]$ composer install --no-dev --prefer-dist
-  [isabell@stardust ~]$ make build_frontend
-  [isabell@stardust ~]$ make translate
-  [isabell@stardust ~]$ make htmldoc
-  [isabell@stardust ~]$ rsync -avP ~/shaarli/ /var/www/virtual/isabell/html/
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.12.1/shaarli-v0.12.1-full.tar.gz
+  [isabell@stardust ~]$ tar xvzf shaarli-v0.12.1-full.tar.gz --strip-components=1
   [isabell@stardust ~]$ 
 
 Finishing installation
@@ -70,6 +66,16 @@ Enter a username and a secure password, choose your preferred language and timez
 Updates
 =======
 
+.. note:: ALL data from Shaarli will be lost when updating, so make sure to backup your data before upgrading.
+
+Shaarli stores user data and configuration under the data directory. Remember to backup this folder before upgrading Shaarli.
+You can restore it after the following upgrade steps.
+
+::
+
+  [isabell@stardust ~]$ cp -r /var/www/virtual/isabell/html/data ~/shaarli-data-backup
+  [isabell@stardust ~]$
+
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Shaarli's `releases <https://github.com/shaarli/Shaarli/releases>`_ for the latest version. If a newer
@@ -77,11 +83,9 @@ version is available, you can upgrade by following these steps:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd /var/www/virtual/isabell/html/
-  [isabell@stardust ~]$ git pull
-  [isabell@stardust ~]$ composer install --no-dev
-  [isabell@stardust ~]$ make translate
-  [isabell@stardust ~]$ make build_frontend
+  [isabell@stardust ~]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.X.Y/shaarli-v0.X.Y-full.tar.gz
+  [isabell@stardust ~]$ tar xvzf shaarli-v0.X.Y-full.tar.gz --strip-components=1
+  [isabell@stardust ~]$ cp -r ~/shaarli-data-backup/* /var/www/virtual/isabell/shaarli.mydomain.org/data/
   [isabell@stardust ~]$ 
 
 .. _Shaarli: https://github.com/shaarli/Shaarli#readme
