@@ -60,7 +60,7 @@ Enter your document root, download the `latest <https://github.com/shaarli/Shaar
 Finishing installation
 ======================
 
-Once all files have been placed at the correct location, go to ``https://isabell.uber.space``.
+Once all files have been placed at the correct location, go to ``https://isabell.uber.space``. 
 Enter a username and a secure password, choose your preferred language and timezone, then click on "Install".
 
 Updates
@@ -78,14 +78,15 @@ Shaarli stores user data and configuration under the data directory. Remember to
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 Check Shaarli's `releases <https://github.com/shaarli/Shaarli/releases>`_ for the latest version. If a newer
-version is available, download the archive, unpack it and make sure to restore your backup:
+version is available, enter your document root, download the archive, unpack it and make sure to restore your backup:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.X.Y/shaarli-v0.X.Y-full.tar.gz
-  [isabell@stardust ~]$ tar xvzf shaarli-v0.X.Y-full.tar.gz --strip-components=1
-  [isabell@stardust ~]$ cp -r ~/shaarli-data-backup/* /var/www/virtual/isabell/html/data/
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust html]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.X.Y/shaarli-v0.X.Y-full.tar.gz
+  [isabell@stardust html]$ tar xvzf shaarli-v0.X.Y-full.tar.gz --strip-components=1
+  [isabell@stardust html]$ cp -r ~/shaarli-data-backup/* /var/www/virtual/isabell/html/data/
+  [isabell@stardust html]$ 
 
 .. _Shaarli: https://github.com/shaarli/Shaarli#readme
 .. _Documentation: https://shaarli.readthedocs.io/en/master/
