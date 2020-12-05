@@ -53,9 +53,9 @@ Enter your document root, download the `latest <https://github.com/shaarli/Shaar
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust ~]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.12.1/shaarli-v0.12.1-full.tar.gz
-  [isabell@stardust ~]$ tar xvzf shaarli-v0.12.1-full.tar.gz --strip-components=1
-  [isabell@stardust ~]$ 
+  [isabell@stardust html]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.12.1/shaarli-v0.12.1-full.tar.gz
+  [isabell@stardust html]$ tar xvzf shaarli-v0.12.1-full.tar.gz --strip-components=1
+  [isabell@stardust html]$ 
 
 Finishing installation
 ======================
