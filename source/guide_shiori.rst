@@ -56,7 +56,7 @@ Configuration
 =============
 
 Setup daemon
------------
+------------
 
 .. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command in your ``shiori.ini`` file. Remember to adjust the port for the web backend as well.
 

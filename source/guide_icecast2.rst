@@ -264,7 +264,7 @@ Updates
 
 
 .. _here: https://icecast.org/docs/icecast-2.4.1/
-.. _`Icecast2`: https://icecast.org
+.. _`Icecast`: https://icecast.org
 .. _news: https://icecast.org
 .. _configdocu: https://icecast.org/docs/icecast-2.4.1/config-file.html
 .. _clients: https://icecast.org/apps/

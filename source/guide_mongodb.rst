@@ -38,7 +38,7 @@ Download MongoDB
 
 Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ wget -O ~/mongodb.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
  --2020-10-28 22:40:46--  https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
@@ -59,7 +59,7 @@ Extract the archive
 
 Use ``tar`` to extract the archive. To only extract the binaries, specify the relative path ``mongo*/bin`` and use ``--strip-components=1`` to remove the ``mongodb-linux-x86_64-rhel70-4.4.1/`` prefix from the path.
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ tar xfv mongodb.tgz mongo*/bin/ --strip-components=1
  mongodb-linux-x86_64-rhel70-4.4.1/bin/install_compass
@@ -70,7 +70,7 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
 
 You can now delete the archive:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ rm mongodb.tgz
  [isabell@stardust ~]$
@@ -80,7 +80,7 @@ Download MongoDB Tools
 
 Go to the `MongoDB Tools download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ wget -O ~/mongodb_tools.tgz https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
  --2020-10-28 22:44:20--  https://fastdl.mongodb.org/tools/db/mongodb-database-tools-rhel70-x86_64-100.2.0.tgz
@@ -103,7 +103,7 @@ Extract the tool archive
 
 Use ``tar`` to extract the archive. To only extract the binaries, specify the relative path ``mongo*/bin`` and use ``--strip-components=1`` to remove the ``mongodb-database-tools-rhel70-x86_64-100.2.0/`` prefix from the path.
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ tar xfv mongodb_tools.tgz mongo*/bin/ --strip-components=1
  mongodb-database-tools-rhel70-x86_64-100.2.0/bin/bsondump
@@ -118,7 +118,7 @@ Use ``tar`` to extract the archive. To only extract the binaries, specify the re
 
 You can now delete the archive:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ rm mongodb_tools.tgz
  [isabell@stardust ~]$
@@ -130,7 +130,7 @@ Create database folder
 
 Create the folder ``~/mongodb``. Your databases will be stored there.
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ mkdir ~/mongodb
  [isabell@stardust ~]$
@@ -163,7 +163,7 @@ Create root user
 
 Choose a root password or generate a random one using this snippet:
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ pwgen 32 1
  randompassword
@@ -184,7 +184,7 @@ Create ``~/mongodb/setup.js``. Replace ``<username>`` with your Uberspace user n
 
 Use ``mongo`` to run ``setup.js``.
 
-.. code-block:: bash
+.. code-block::
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ mongo admin ~/mongodb/setup.js
@@ -206,7 +206,7 @@ To make CLI access using the ``mongo`` command easier, you can create a ``~/.mon
 
 Now you can just run ``mongo`` to connect to your MongoDB instance:
 
-.. code-block:: none
+.. code-block::
 
  [isabell@stardust ~]$ mongo
  MongoDB shell version v4.4.1
@@ -252,7 +252,7 @@ When a new version of MongoDB is released, use the following steps to update you
 Stop your MongoDB
 -----------------
 
-.. code-block:: bash
+.. code-block::
 
  [isabell@stardust ~]$ supervisorctl stop mongodb
  mongodb: stopped
@@ -268,7 +268,7 @@ Restart and check version
 
 Restart your MongoDB and login to check the version.
 
-.. code-block:: bash
+.. code-block::
  :emphasize-lines: 4,7
 
  [isabell@stardust ~]$ supervisorctl start mongodb
@@ -281,15 +281,15 @@ Restart your MongoDB and login to check the version.
  connecting to: mongodb://127.0.0.1:27017/admin
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
  MongoDB server version: 4.4.1
- ---
+  ---
  The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: Soft rlimits too low
         2020-10-28T22:49:35.811+01:00:         currentValue: 1024
         2020-10-28T22:49:35.811+01:00:         recommendedMinimum: 64000
- ---
- ---
+   ---
+   ---
         Enable MongoDB's free cloud-based monitoring service, which will then receive and display
         metrics about your deployment (disk utilization, CPU, operation statistics, etc).
 
