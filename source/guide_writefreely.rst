@@ -77,7 +77,7 @@ Change to `writefreely` directory and start config mode to create a config file:
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
   
-Setup writefreely interactively. Use ``Production behind reverse proxy`` in `Server setup` and confirm default port:
+Setup Writefreely interactively. Use ``Production behind reverse proxy`` in `Server setup` and confirm default port:
 
 .. code-block::
 
