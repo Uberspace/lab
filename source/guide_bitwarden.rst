@@ -96,7 +96,7 @@ Build the server executable:
 
 In the next step we will download the latest build for the web vault. Check `this page`_ for the newest build number and **replace it** in the following snippet:
 
-.. note :: If you don't want to use the web-vault feature (web-app access to your vaults) for any security reasons you can skip this step. Add the following line to your ``env`` file later if you do so:
+.. note :: If you don't want to use the web-vault feature (web-app access to your vaults) for any security reasons you can skip this step. Please note that without the web-vault, newly created users can't verify their email address. So it would be best to disable the web-vault after you've created your user accounts. Add the following line to your ``env`` file later if you do so:
   ``WEB_VAULT_ENABLED=false``
 
 .. code-block:: console
