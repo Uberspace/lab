@@ -79,11 +79,11 @@ In order to build bitwarden_rs  successfully you'll need to set an environment v
 
  [isabell@stardust ~]$ export SQLITE3_LIB_DIR=/var/lib64
 
-``cd`` into the automatically created folder:
+``cd`` into the automatically created folder and create the ``data`` directory:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd bitwarden_rs
+ [isabell@stardust ~]$ cd bitwarden_rs && mkdir data
  [isabell@stardust bitwarden_rs]$
 
 Build the server executable:
