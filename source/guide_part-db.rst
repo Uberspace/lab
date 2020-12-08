@@ -46,7 +46,7 @@ Installation
 
 ``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of Part-DB and extract it:
 
-.. note:: The link to the latest version can be found at the `release page <https://github.com/Part-DB/Part-DB/releases`_.
+.. note:: The link to the latest version can be found at the `release page`_.
 
 ::
 
@@ -157,6 +157,7 @@ To update Part-DB you create a backup as described above, reinstall the new vers
 
 .. _Part-DB: https://github.com/Part-DB/Part-DB
 .. _composer: https://getcomposer.org
+.. _release page: https://github.com/Part-DB/Part-DB/releases
 
 
 ----
