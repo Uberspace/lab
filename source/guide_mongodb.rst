@@ -281,15 +281,15 @@ Restart your MongoDB and login to check the version.
  connecting to: mongodb://127.0.0.1:27017/admin
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
  MongoDB server version: 4.4.1
-  ---
+ ---
  The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/defrag is 'always'. We suggest setting it to 'never'
         2020-10-28T22:49:35.811+01:00: Soft rlimits too low
         2020-10-28T22:49:35.811+01:00:         currentValue: 1024
         2020-10-28T22:49:35.811+01:00:         recommendedMinimum: 64000
-   ---
-   ---
+ ---
+ ---
         Enable MongoDB's free cloud-based monitoring service, which will then receive and display
         metrics about your deployment (disk utilization, CPU, operation statistics, etc).
 
