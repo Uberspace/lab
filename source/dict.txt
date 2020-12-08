@@ -1,4 +1,3 @@
-
 Ackee
 Acknowledgements
 addons
@@ -224,6 +223,7 @@ mongorc
 Moodle
 moodle
 moosh
+Mosquitto
 Mullenweg
 mysql
 mysqlclient
@@ -308,7 +308,9 @@ seahub
 Secuity
 selfoss
 servlet
+Shaarli
 ShareX
+Shiori
 Shopware
 shopware
 Shortener
@@ -393,6 +395,8 @@ webroot
 Webserver
 webserver
 webspace
+Wekan
+wekan
 Werkzeug
 whitelist
 whiteliste
@@ -401,6 +405,7 @@ WKD
 Wordpress
 wordpress
 Workgroup
+Writefreely
 wsgidav
 www
 xBrowserSync

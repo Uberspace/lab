@@ -71,7 +71,7 @@ Installation
 
 Now point your browser to your uberspace URL and follow the instructions.
 
-.. warning:: We strongly recommend you to use the MySQL backend for netxtcloud. Do not use the SQLite backend for production. It gives you a better performance and reduces disk load on the host you share.
+.. warning:: We strongly recommend you to use the MySQL backend for nextcloud. Do not use the SQLite backend for production. It gives you a better performance and reduces disk load on the host you share.
 
 You will need to enter the following information:
 
