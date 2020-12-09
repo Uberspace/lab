@@ -20,77 +20,30 @@ License
 
 PostgreSQL is released under the `PostgreSQL License`_, a liberal Open Source license, similar to the BSD or MIT licenses.
 
-Installation
-============
+Version
+=======
 
-Step 1 - Download and Extract the Source Code
----------------------------------------------
-
-Create a working directory.
+Select the desired postgresql version using:
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/postgres/
- [isabell@stardust ~]$ cd ~/postgres/
+ [isabell@stardust ~]$ uberspace tools version use postgresql 12
+ Using 'Postgresql' version: '12'
+ Selected postgresql version 12
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
-Download the latest stable version. A list of supported major and beta releases can be found on the PostgreSQL `download server`_.
+Initialization
+==============
 
-::
-
- [isabell@stardust ~]$ curl -O https://download.postgresql.org/pub/source/v12.4/postgresql-12.4.tar.gz
- [isabell@stardust ~]$
-
-To extract the tar archive, use the following options:
-
- * ``-x``: To extract files and directories.
- * ``-v``: To have a verbose output.
- * ``-z``: To consider gzip.
- * ``-f``: And as last option the file to extract.
-
-::
-
- [isabell@stardust ~]$ tar -xvzf ~/postgres/postgresql-12.4.tar.gz
- [isabell@stardust ~]$
-
-
-Step 2 - Source Code Configuration, Compiling and Installation
---------------------------------------------------------------
-
-Before we start, we have to consider some aspects, e.g. Python support, and corresponding settings, regarding to a shared hosting environment like Uberspace:
-
- * ``--prefix=$HOME/opt/postgresql/``: New installation target for your personal Uberspace.
- * ``--with-python PYTHON=/usr/bin/python3``: Compiling with Python 3.x support. Alternatively you can choose ``/usr/bin/python2`` or any other version.
- * ``--without-readline``: In case of problems, regarding missing Readline support, you can exclude Readline with this option.
-
-Other options can be found in the PostgreSQL documentation_.
-
-Now configure and compile the source code and finally install it.
-
-.. note:: Please use single steps instead of combining all three in one process to see and identify possible errors.
-
-.. important:: For future usage with projects like Miniflux2, ejabberd, Matrix etc. it is recommended to consider to install all modules. This is done by using the target ``world`` for ``make`` and ``make install``.
-
-::
-
- [isabell@stardust ~]$ cd ~/postgres/postgresql-12.4
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/
- [isabell@stardust ~]$ make world
- [isabell@stardust ~]$ make install-world
- [isabell@stardust ~]$
-
-
-Step 3 - Environment Settings
------------------------------
+Environment Settings
+--------------------
 
 Please add the following lines to your ``~/.bash_profile``:
 
 .. code-block:: bash
 
  # Postgresql Environment
-
- export PATH=$HOME/opt/postgresql/bin/:$PATH
- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/opt/postgresql/lib
  export PGPASSFILE=$HOME/.pgpass
 
 Reload the ``.bash_profile`` with:
@@ -109,8 +62,8 @@ Run ``psql --version`` to verify the installation so far:
  [isabell@stardust ~]$
 
 
-Step 4 - The Database Cluster
------------------------------
+The Database Cluster
+--------------------
 
 A database cluster is the base for all new single databases. We will define the location for the cluster and the user password. The user name for the cluster is automatically predefined to be your Uberspace name.
 
@@ -258,7 +211,7 @@ Create ``~/etc/services.d/postgresql.ini`` with the following content:
 .. code-block:: ini
 
  [program:postgresql]
- command=%(ENV_HOME)s/opt/postgresql/bin/postgres -D %(ENV_HOME)s/opt/postgresql/data/
+ command=postgres -D %(ENV_HOME)s/opt/postgresql/data/
  autostart=yes
  autorestart=yes
 
