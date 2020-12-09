@@ -65,11 +65,11 @@ Now point your browser to your uberspace URL and follow the instructions of the 
 You will need to enter the following information:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * your EQdkp Plus database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_eqdkp
-  * an encryption key: choose a strong encryption key, as sensitive data is encrypted using this key. You can generate a strong key using ``openssl``:
+  * an encryption key: choose a strong encryption key, as sensitive data is encrypted using this key. You can generate a strong key:
 
   ::
 
-   [isabell@stardust html]$ openssl rand -base64 32
+   [isabell@stardust html]$ pwgen 32 1
    SuperSecretPassword
    [isabell@stardust html]$
 
