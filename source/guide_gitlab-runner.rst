@@ -117,7 +117,7 @@ If it’s not in state RUNNING, check your configuration.
 
 Updates
 =======
-To update the GitLab Runner the service needs to be stopped.Then you should backup your old executable. Afterwards its common to the installation: 
+To update the GitLab Runner the service needs to be stopped. Then you should backup your old executable. Afterwards its common to the installation: 
 You download the current release and make it executable. Afterwards see if it prints the current version and then (re)start your service.
 
 ::
