@@ -83,7 +83,8 @@ In order to build bitwarden_rs  successfully you'll need to set an environment v
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd bitwarden_rs && mkdir data
+ [isabell@stardust ~]$ cd bitwarden_rs
+ [isabell@stardust bitwarden_rs]$ mkdir data
  [isabell@stardust bitwarden_rs]$
 
 Build the server executable:
