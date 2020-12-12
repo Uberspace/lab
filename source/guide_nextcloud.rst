@@ -62,7 +62,7 @@ Installation
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust ~]$ cd html
  [isabell@stardust html]$ curl https://download.nextcloud.com/server/releases/latest.tar.bz2 | tar -xjf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -130,7 +130,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */15  *  *  *  * php -f /var/www/virtual/$USER/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */15  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
 Memcaching
 ----------
@@ -250,18 +250,25 @@ Create `~/bin/nextcloud-update` with the following content:
 ::
 
  #!/usr/bin/env bash
- # Updater automatically works in maintenance:mode
- php ~/html/updater/updater.phar --no-interaction
+ ## Updater automatically works in maintenance:mode.
+ ## Use the Uberspace backup system for files and database if you need to roll back.
+ ## The Nextcloud updater creates backups only to safe base and app code data and config files
+ ## so it takes ressources you might need for your productive data.
+ ## Deactivate NC-updater Backups with --no-backup (works from 19.0.4, 18.0.10 and 17.0.10)
+ php ~/html/updater/updater.phar -vv --no-backup --no-interaction
 
- # re-enable maintenance mode for occ commands
+ ## re-enable maintenance mode for occ commands
  php ~/html/occ maintenance:mode --on
 
- ## database optimizations
+ ## database optimisations
+ ## The following command works from Nextcloud 20.
+ ## remove '#' so it is working
+ #php ~/html/occ db:add-missing-primary-keys --no-interaction
  ## The following command works from Nextcloud 19.
  ## remove '#' so it is working
- #php ~/html/occ db:add-missing-columns
- php ~/html/occ db:add-missing-indices
- php ~/html/occ db:convert-filecache-bigint
+ #php ~/html/occ db:add-missing-columns --no-interaction
+ php ~/html/occ db:add-missing-indices --no-interaction
+ php ~/html/occ db:convert-filecache-bigint --no-interaction
 
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
@@ -292,7 +299,7 @@ If you have installed Nextcloud on a subdomain it can happen that the update fai
 In most cases this happens due to wrong `SELinux labels`_ which can be fixed with finishing the update via console and setting the labels according the loaded SELinux policy.
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust ~]$ cd html
  [isabell@stardust html]$ php occ upgrade
  [isabell@stardust html]$ restorecon -R .
  [isabell@stardust html]$ php occ maintenance:mode --off
@@ -304,7 +311,7 @@ missing files
 If files are missing like if you move files or restore backups on the machine and not via web you can perform a scan.
 ::
 
- [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust ~]$ cd html
  [isabell@stardust html]$ php occ files:scan --all
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
