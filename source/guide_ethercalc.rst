@@ -3,7 +3,7 @@
 .. author:: Achim | pxlfrk <hallo@pxlfrk.de>
 
 .. tag:: spreadsheet
-.. tag:: lang-node-js
+.. tag:: lang-nodejs
 .. tag:: web
 .. tag:: collaborative-editing
 

@@ -1,7 +1,7 @@
 .. highlight:: console
 
 .. author:: Andrej <https://github.com/schoeke>
-.. tag:: lang-node
+.. tag:: lang-nodejs
 .. tag:: project-management
 .. tag:: web
 
