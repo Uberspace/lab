@@ -18,7 +18,7 @@ Django
 .. tag_list::
 
 Django_ is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
-This guide will show you how to set up 2 Django instances each in their own virtual environment: "test_project" and "website_project". In this guide I have used python3 in command line examples. Adjust this according to the python version your project is using. If your project is using python3.9, use python3.9. However, when you have a virtual environment activated, use just "python". This will use the proper python version in your venv. Calling other python versions explicitly may create chaos with permissions and dependencies.
+This guide will show you how to set up 2 Django instances each in their own virtual environment: "test_project" and "website_project". In this guide I have used python3 in command line examples. Adjust this according to the python version your project is using. If your project is using python3.9, use python3.9. However, when you have a virtual environment activated, use just "python". This will use the proper python version in your venv. Calling other python versions explicitly may create chaos with permissions and dependencies. The guide is based on the preexisting Django installation guide.
 
 
 ----
@@ -108,7 +108,7 @@ Migrate database. (Remember to do it for both projects.)
 
 ::
 
- (website_venv) [isabell@stardust ~]$ python ~/website_venv/manage.py migrate
+ (test_venv) [isabell@stardust ~]$ python ~/test_venv/manage.py migrate
 
 
 
@@ -155,31 +155,44 @@ Setup daemon
 
 Finally we need to create two files at ``~/uwsgi/apps-enabled/``, one called test_project.ini and one called website_project.ini.
 
-.. warning:: Replace ``<username>`` with your username! (4 times)
+.. warning:: Replace ``<username>`` with your username. Replace ``<projectfolder>`` with the projectfolder (test, website). Replace ``<project>`` with your projectname (test_project, website_project).
 
 .. warning:: Ensure that ``static-map`` matches the path configured in django's ``STATIC_ROOT``. Otherwise all images, stylesheets and javascript will be missing from your site.
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,9,17,18
+  :emphasize-lines: 3,5,6,7,10,12,13,15,18,20,22,28
 
   [uwsgi]
-  base = /home/<username>/MyDjangoProject/MyDjangoProject
-  chdir = /home/<username>/MyDjangoProject
-
-  http = :8000
-  master = true
-  wsgi-file = %(base)/wsgi.py
-  touch-reload = %(wsgi-file)
-  static-map = /static=%(base)/static
-
-  app = wsgi
-
-  #virtualenv = %(chdir)/venv
-
-  plugin = python
-
+  # Project name
+  project = <project>
+  # Process owner
   uid = <username>
   gid = <username>
+  base = /home/<username>
+
+  # Project location
+  chdir = %(base)/<projectfolder>/<project>
+  # Location for the virtual environment
+  virtualenv = %(base)/<projectfolder>/<project>_venv
+  module = <project>.wsgi:application
+  # The next two entries make Django oblivious of being run in a folder
+  mount = /<project>=<project>.wsgi:application
+  manage-script-name = true
+  # Add the project lib to the python path
+  pythonpath=%(base)/<projectfolder>/<project>
+  # Port for backend, :8010 for second instance
+  http = :8000
+  # Mapping for static files
+  static-map=/<project>/static=/var/www/virtual/<username>/html/<project>_static/
+
+  # Performance
+  master = true
+  processes = 5
+
+  wsgi-file = %(base)/rbp_website_venv/rbp_website/rbp_website/wsgi.py
+  touch-reload = %(wsgi-file)
+  app = wsgi
+
 
 Test installation
 -----------------
@@ -188,7 +201,7 @@ Perform a CURL request to djangos port to see if your installation succeeded:
 
 ::
 
- [isabell@stardust ~]$ curl -I https://isabell.uber.space
+ [isabell@stardust ~]$ curl -I https://isabell.uber.space/test
  HTTP/1.1 200 OK
  Content-Type: text/html
  X-Frame-Options: SAMEORIGIN
@@ -217,6 +230,6 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 ----
 
-Tested with Django 2.0.5, Uberspace 7.1.6
+Tested with Python 3.9, Django 3.1, Uberspace 7.1.6
 
 .. author_list::
