@@ -56,6 +56,60 @@ If you want to use your cloud with your own domain you need to setup your domain
 Installation
 ============
 
+PHP settings
+------------
+
+Before you start the actual app installation you should have set the proper php settings. Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
+
+opcache
+^^^^^^^
+
+Enable opcache to optimise performance.
+
+To do that, create ``$~/etc/php.d/opcache.ini`` with the content:
+
+.. code-block:: ini
+
+ opcache.enable=1
+ opcache.enable_cli=1
+ opcache.interned_strings_buffer=8
+ opcache.max_accelerated_files=10000
+ opcache.memory_consumption=128
+ opcache.save_comments=1
+ opcache.revalidate_freq=1
+
+PHP Memory
+^^^^^^^^^^
+
+In order to increase the memory limit of php to the recommended minimum value of 512 MB, create ``~/etc/php.d/memory_limit.ini`` with the following content:
+
+.. code-block:: ini
+
+ memory_limit=512M
+
+Output Buffering
+^^^^^^^^^^^^^^^^
+
+Disable output buffering, create ``~/etc/php.d/output_buffering.ini`` with the following content:
+
+.. code-block:: ini
+
+ output_buffering=0
+
+PHP Reload
+^^^^^^^^^^
+
+After that you need to restart PHP configuration to load the changes:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools restart php
+ Your php configuration has been loaded.
+ [isabell@stardust ~]$
+
+Downloading
+-----------
+
 ``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
 
 .. note:: The link to the latest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
@@ -183,52 +237,6 @@ To reduce load on the mysql server and also improve transactional file locking y
   System config value memcache.distributed set to string \OC\Memcache\Redis
 
 In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
-
-opcache
--------
-
-Enable opcache to further optimise performance.
-
-To do that, create ``$HOME/etc/php.d/opcache.ini`` with the content:
-
-::
-
- opcache.enable=1
- opcache.enable_cli=1
- opcache.interned_strings_buffer=8
- opcache.max_accelerated_files=10000
- opcache.memory_consumption=128
- opcache.save_comments=1
- opcache.revalidate_freq=1
-
-PHP Memory
-----------
-
-In order to increase the memory limit of php to the recommended value of 512 MB, create ``$HOME/etc/php.d/memory_limit.ini`` with the following content:
-
-::
-
- memory_limit = 512M
-
-Output Buffering
-----------------
-
-Disable output buffering, create ``$HOME/etc/php.d/output_buffering.ini`` with the following content:
-
-::
-
- output_buffering=0
-
-PHP Reload
-----------
-
-After that you need to restart PHP configuration to load the last two changes:
-
-::
-
- [isabell@stardust ~]$ uberspace tools restart php
- Your php configuration has been loaded.
- [isabell@stardust ~]$
 
 Database maintenance
 --------------------
