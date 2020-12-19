@@ -138,7 +138,7 @@ Additionally, you can choose where Nextcloud is going to store your data files. 
 Configuration
 =============
 
-Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by editing the ``/var/www/virtual/$USER/html/config/config.php`` with your favorite editor. If you want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
+Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by executing the commands in the following code block or by editing the ``~/html/config/config.php`` with your favorite editor. If you want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
 
 Sendmail Settings
 -----------------
@@ -147,19 +147,25 @@ Sendmail Settings
 
 .. warning:: Make sure to replace the example values.
 
-::
+.. code-block:: console
 
- 'mail_domain' => 'uber.space',
- 'mail_from_address' => 'isabell',
- 'mail_smtpmode' => 'sendmail',
- 'mail_sendmailmode' => 'pipe',
+  [isabell@stardust html]$ php occ config:system:set mail_domain --value="uber.space"
+  System config value mail_domain set to string uber.space
+  [isabell@stardust html]$ php occ config:system:set mail_from_address --value="$USER"
+  System config value mail_from_address set to string isabell
+  [isabell@stardust html]$ php occ config:system:set mail_smtpmode --value="sendmail"
+  System config value mail_smtpmode set to string sendmail
+  [isabell@stardust html]$ php occ config:system:set mail_sendmailmode --value="pipe"
+  System config value mail_sendmailmode set to string pipe
 
 SMTP Settings
 -------------
 
 .. note:: In our example we assume that Nextcloud will use the user's :manual:`system mailbox <mail-mailboxes>` user to send out mails. If you prefer to use an :manual_anchor:`additional mailbox <mail-mailboxes.html#setup-a-new-mailbox>` just adapt the settings. Refer to the :manual_anchor:`manual <mail-access.html#smtp>` if you don't know your smtp password.
 
-::
+You can also use the ``occ config:system:set`` command for these settings.
+
+.. code-block:: php
 
  'mail_domain' => 'uber.space',
  'mail_from_address' => 'isabell',
