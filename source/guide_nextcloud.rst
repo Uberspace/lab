@@ -121,6 +121,20 @@ SMTP Settings
 
 Tuning
 ======
+
+URL rewriting
+-------------
+
+If you prefer prettier URLs without ``index.php`` run the following two commands.
+
+.. code-block:: console
+
+  [isabell@stardust html]$ php occ config:system:set htaccess.RewriteBase --value='/'
+  System config value htaccess.RewriteBase set to string /
+  [isabell@stardust html]$ php occ maintenance:update:htaccess
+  .htaccess has been updated
+  [isabell@stardust html]$
+
 cronjob
 -------
 
