@@ -130,7 +130,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */15  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
 Memcaching
 ----------
