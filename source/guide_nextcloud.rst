@@ -137,17 +137,38 @@ Memcaching
 
 To further enhance performance, enable Memcaching.
 
-To enable Memcaching (APCu), add the following line to your /var/www/virtual/$USER/html/config/config.php:
+APCu caching
+^^^^^^^^^^^^
+
+To enable Memcaching (APCu), execute the following commands:
 
 .. code-block:: console
- :emphasize-lines: 5
 
- [...]
-    'dbuser' => 'isabell',
-    'dbpassword' => 'MySuperSecretPassword',
-    'installed' => true,
-    'memcache.local' => '\OC\Memcache\APCu',
-  );
+  [isabell@stardust html]$ php occ config:system:set memcache.local --value='\OC\Memcache\APCu'
+  System config value memcache.local set to string \OC\Memcache\APCu
+  [isabell@stardust html]$
+
+Redis caching
+^^^^^^^^^^^^^
+
+To reduce load on the mysql server and also improve transactional file locking you may follow the :lab:`redis guide <guide_redis>` on the lab and then execute the following commands:
+
+.. code-block:: console
+
+  [isabell@stardust html]$ php occ config:system:set redis host --value="${HOME}/.redis/sock"
+  System config value redis => host set to string /home/isabell/.redis/sock
+  [isabell@stardust html]$ php occ config:system:set redis port --value=0
+  System config value redis => port set to string 0
+  [isabell@stardust html]$ php occ config:system:set redis timeout --value=1.5
+  System config value redis => timeout set to string 1.5
+  [isabell@stardust html]$ php occ config:system:set filelocking.enabled --value='true'
+  System config value filelocking.enabled set to string true
+  [isabell@stardust html]$ php occ config:system:set memcache.locking --value='\OC\Memcache\Redis'
+  System config value memcache.locking set to string \OC\Memcache\Redis
+  [isabell@stardust html]$ php occ config:system:set memcache.distributed --value='\OC\Memcache\Redis'
+  System config value memcache.distributed set to string \OC\Memcache\Redis
+
+In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
 
 opcache
 -------
