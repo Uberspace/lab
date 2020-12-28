@@ -355,6 +355,52 @@ To update do:
 * Start the application ``supervisorctl start gitea``
 * Check if the application is running ``supervisorctl status gitea``
 
+Updating using a script
+---------------------
+The easiest way to update Gitea is to use an automated script.
+
+Updating via console command is a comfortable way to perform upgrades. The release cycle of Gitea is very short. A prepared script with some common checks would ensure you don’t need to run them.
+
+Create `~/bin/gitea-update` with the following content:
+::
+
+ #!/usr/bin/env bash
+ # Stop the application
+ supervisorctl stop gitea
+
+ # Do the download and verify part
+ LATEST_URL=https://github.com/go-gitea/gitea/releases/latest
+ VERSION="$(curl -sI "${LATEST_URL}" | grep -Po 'tag\/v\K(\S+)')"
+ mkdir -p ~/gitea
+ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
+ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
+ gpg --keyserver keys.gnupg.net --recv-keys 7C9E68152594688862D62AF62D9AE806EC1592E2
+ gpg --verify ~/gitea/gitea.asc ~/gitea/gitea
+ chmod u+x ~/gitea/gitea
+
+ # Do the application migration
+ ~/gitea/gitea migrate
+
+ # Start the application
+ supervisorctl start gitea
+
+ # Check if the application is running
+ supervisorctl status gitea
+
+Make the script executable:
+::
+
+ [isabell@stardust ~]$ chmod +x ~/bin/gitea-update
+ [isabell@stardust ~]$
+
+Then you can run the script whenever you need it to perform the update.
+::
+
+ [isabell@stardust ~]$ gitea-update
+ [...]
+ [isabell@stardust ~]$
+
+.. note:: Check the `changelog <https://github.com/go-gitea/gitea/blob/master/CHANGELOG.md/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/go-gitea/gitea/releases.atom/>`_ with your fa>
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
