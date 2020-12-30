@@ -90,7 +90,6 @@ You will need to enter the following information:
   * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * your Ghost database name: we suggest you use a :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_ghost
-  * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,14,16,17,18
