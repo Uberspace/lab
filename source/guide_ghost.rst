@@ -3,6 +3,7 @@
 .. author:: Peleke <https://www.peleke.de>
 .. author:: Noah <https://noahwagner.de>
 .. author:: tobimori <tobias@moeritz.cc>
+.. author:: Patrick Brunck <https://www.patrick-brunck.de/>
 
 .. tag:: lang-nodejs
 .. tag:: web
