@@ -37,13 +37,13 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 10
- Using 'Node.js' version: '10'
- Selected node version 10
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Using 'Node.js' version: '12'
+ Selected node version 12
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [eliza@dolittle ~]$
 
