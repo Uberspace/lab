@@ -31,12 +31,12 @@ Baïkal_ is a lightweight CalDAV+CardDAV server.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -51,10 +51,10 @@ Remove your ``html`` directory and download the current version of Baïkal from 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
- [isabell@stardust isabell]$ unzip baikal-0.6.1.zip
- [isabell@stardust isabell]$ rm baikal-0.6.1.zip
+ [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.7.2/baikal-0.7.2.zip
+ [isabell@stardust isabell]$ unzip baikal-0.7.2.zip
+ [isabell@stardust isabell]$ rm baikal-0.7.2.zip
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
 
@@ -90,13 +90,13 @@ Proceed with the installation steps from here and move back your config file.
  [isabell@stardust html]$ mv ~/Specific ./
  [isabell@stardust html]$
 
-Finish the update by open isabell.uber.space/html in your browser.
+Finish the update by open isabell.uber.space in your browser.
 
-.. _Baïkal: http://www.baikal-server.com/
+.. _Baïkal: https://sabre.io/baikal/
 .. _stable releases: https://github.com/sabre-io/Baikal/releases
 
 ----
 
-Tested with Baïkal_ 0.6.1 and Uberspace 7.4.3
+Tested with Baïkal_ 0.7.2 and Uberspace 7.8.1
 
 .. author_list::
