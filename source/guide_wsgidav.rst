@@ -101,6 +101,12 @@ Save the file here:
 Configure web server
 ====================
 
+To make the web server available as a web backend you have to explicitly set the host ip address in the configuration file ``~/etc/wsgidav.yaml``.
+
+::
+
+host: 0.0.0.0
+
 .. note::
 
     wsgidav is running on port 8080.
@@ -130,6 +136,6 @@ Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.spa
 
 ----
 
-Tested with wsgidav 3.0.0, Uberspace 7.3.4.2
+Tested with wsgidav 3.1.0, Uberspace 7.8.1.0
 
 .. author_list::
