@@ -36,12 +36,12 @@ Installation
 Download MongoDB
 ----------------
 
-Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RedHat / CentOS 7.0`` (not ``s390x``), package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
+Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RedHat / CentOS 7.0``, package ``tgz``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
 .. code-block::
 
- [isabell@stardust ~]$ wget -O ~/mongodb.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
- --2020-10-28 22:40:46--  https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.1.tgz
+ [isabell@stardust ~]$ wget -O ~/mongodb.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.3.tgz
+ --2020-10-28 22:40:46--  https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-4.4.3.tgz
  Resolving fastdl.mongodb.org (fastdl.mongodb.org)... 99.86.2.52, 99.86.2.36, 99.86.2.55, ...
  Connecting to fastdl.mongodb.org (fastdl.mongodb.org)|99.86.2.52|:443... connected.
  HTTP request sent, awaiting response... 200 OK
@@ -78,7 +78,7 @@ You can now delete the archive:
 Download MongoDB Tools
 ----------------------
 
-Go to the `MongoDB Tools download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
+Go to the `MongoDB Tools download page`_ and select the current version, OS ``RedHat / CentOS 7.0 x86_64``, package ``tgz``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
 .. code-block::
 
@@ -188,10 +188,10 @@ Use ``mongo`` to run ``setup.js``.
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ mongo admin ~/mongodb/setup.js
- MongoDB shell version v4.4.1
+ MongoDB shell version v4.4.3
  connecting to: mongodb://127.0.0.1:27017/admin?compressors=disabled&gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("5309a64f-0c83-44a6-83d9-bdb347a94af0") }
- MongoDB server version: 4.4.1
+ MongoDB server version: 4.4.3
  Successfully added user: { "user" : "mongodb_mongoroot", "roles" : [ "root" ] }
  [isabell@stardust ~]$
 
@@ -209,13 +209,13 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
 .. code-block::
 
  [isabell@stardust ~]$ mongo
- MongoDB shell version v4.4.1
+ MongoDB shell version v4.4.3
  connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("cb614de8-7748-4530-b4d4-d42f0e430424") }
- MongoDB server version: 4.4.1
+ MongoDB server version: 4.4.3
  connecting to: mongodb://127.0.0.1:27017/admin
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
- MongoDB server version: 4.4.1
+ MongoDB server version: 4.4.3
  ---
  The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
@@ -274,13 +274,13 @@ Restart your MongoDB and login to check the version.
  [isabell@stardust ~]$ supervisorctl start mongodb
  mongodb: started
  [isabell@stardust ~]$ mongo
- MongoDB shell version v4.4.1
+ MongoDB shell version v4.4.3
  connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
  Implicit session: session { "id" : UUID("cb614de8-7748-4530-b4d4-d42f0e430424") }
- MongoDB server version: 4.4.1
+ MongoDB server version: 4.4.3
  connecting to: mongodb://127.0.0.1:27017/admin
  Implicit session: session { "id" : UUID("2ec1cc81-3c00-45a9-9f1c-423f7f5d46be") }
- MongoDB server version: 4.4.1
+ MongoDB server version: 4.4.3
  ---
  The server generated these startup warnings when booting:
         2020-10-28T22:49:35.811+01:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
@@ -311,7 +311,7 @@ Restart your MongoDB and login to check the version.
 
 ----
 
-Tested with MongoDB 4.4.1, MongoDB Tools 100.2.0, Uberspace 7.7.9.0
+Tested with MongoDB 4.4.3, MongoDB Tools 100.2.0, Uberspace 7.8.1.0
 
 .. author_list::
 
