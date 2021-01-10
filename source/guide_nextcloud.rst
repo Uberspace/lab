@@ -369,7 +369,7 @@ Create `~/bin/nextcloud-update` with the following content:
 
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
- restorecon -R ~/html
+ /usr/sbin/restorecon -R ~/html
 
 Make the script executable:
 
@@ -385,6 +385,11 @@ Then you can run the script whenever you need it to perform the update.
  [isabell@stardust ~]$ nextcloud-update
  [...]
  [isabell@stardust ~]$
+
+.. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
+
+ ``@daily $HOME/bin/nextcloud-update`` output as email
+ ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
 
 .. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
 
