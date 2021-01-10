@@ -220,7 +220,6 @@ Option B: Install ExifTool Binaries
  [isabell@stardust tmp]$ tar -xzf Image-ExifTool-12.14.tar.gz
  [isabell@stardust tmp]$ cd Image-ExifTool-12.14/
  [isabell@stardust Image-ExifTool-12.14]$ cp -r exiftool lib ~/bin
- [isabell@stardust Image-ExifTool-12.14]$ supervisorctl restart pleroma
 
 Check out the `Configuration Cheat Sheet`_ for more settings.
 
