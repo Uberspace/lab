@@ -36,7 +36,7 @@ Installation
 Download MongoDB
 ----------------
 
-Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RHEL 7.0 Linux 64-bit x64``, package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
+Go to the `MongoDB Community Server download page`_ and select the current version, OS ``RedHat / CentOS 7.0`` (not ``s390x``), package ``TGZ``. Copy the download link and use ``wget`` to download it to your Uberspace:
 
 .. code-block::
 
