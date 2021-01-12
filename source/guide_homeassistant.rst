@@ -13,16 +13,14 @@
       :align: center
 
 
-#########
+##############
 Home Assistant
-#########
+##############
 
 .. tag_list::
 
 Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.
 [1]_
-
-home-assistant is written in python and licensed under the Apache License 2.0.
 
 ----
 
@@ -34,7 +32,7 @@ home-assistant is written in python and licensed under the Apache License 2.0.
 License
 =======
 
-Home-assistant is written in python and licensed under the Apache License 2.0.
+Home Assistant is written in Python and licensed under the Apache License 2.0.
 All relevant legal information can be found here:
 
   * https://github.com/home-assistant/core/blob/dev/LICENSE.md
@@ -50,31 +48,31 @@ Installation
 ============
 
 Create a virtual environment and install packages
--------------------
-Install the homeassistant in a virtual environment.
-Python 3.8 or later is recommended, so we'll stick on 3.8.
+-------------------------------------------------
+Install Home Assistant in a virtual environment.
+Python 3.8 or later is recommended, so we'll stick to 3.8.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,4,5,6
 
- [isabell@stardust ~]$ mkdir /home/isabell/homeassistant
- [isabell@stardust ~]$ cd /home/isabell/homeassistant
- [isabell@stardust ~]$ python3.8 -m venv .
- [isabell@stardust ~]$ source ./bin/activate
- [isabell@stardust ~]$ python3.8 -m pip install wheel
- [isabell@stardust ~]$ python3.8 -m pip install homeassistant
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ mkdir ~/homeassistant
+ [isabell@stardust ~]$ cd ~/homeassistant
+ [isabell@stardust homeassistant]$ python3.8 -m venv .
+ [isabell@stardust homeassistant]$ source ./bin/activate
+ [isabell@stardust homeassistant]$ python3.8 -m pip install wheel
+ [isabell@stardust homeassistant]$ python3.8 -m pip install homeassistant
+ [isabell@stardust homeassistant]$
 
 
 First time startup
----------------
-Now we can start the homeassistant for the first time in order to create all needed configuration files.
-Just run the following command in the created homeassistant directory with active venv.
+------------------
+Now we can start Home Assistant for the first time in order to create all needed configuration files.
+Just run the following command in the created `homeassistant` directory with active venv.
 
 .. code-block:: console
- :emphasize-lines: 1
 
- [isabell@stardust ~]$ hass
+ [isabell@stardust ~]$ 
+ [isabell@stardust homeassistant]$ hass
 
 A directory containing config files is created at /home/isabell/.homeassistant. 
 So you can terminate the homeassistant using Strg-C.
@@ -83,23 +81,24 @@ So you can terminate the homeassistant using Strg-C.
 Configuration
 =============
 
-Configure homeassistant
--------------------
+Configure Home Assistant
+------------------------
 
 Now it's time to make a basic configuration.
-Here_ you can find more about the homeassistant configuration.
+`Home Assistant documentation`_ to find out more about  Home Assistant configuration.
 
-.. _Here: https://www.home-assistant.io/docs/configuration/basic/
+.. _`Home Assistant documentation`: https://www.home-assistant.io/docs/configuration/basic/
+
+Use an editor such as ``nano`` to edit Home Assistant's configuration file:
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ nano ~/.homeassistant/configuration.yaml
 
-Modify external_url and internal_url.
+Modify ``external_url`` and ``internal_url``.
 
 .. code-block:: yaml
-  :emphasize-lines: 8,9
+  :emphasize-lines: 3,4,5,8,9
 
   homeassistant:
   name: Home
@@ -118,15 +117,16 @@ Modify external_url and internal_url.
 Setup a web backend
 -------------------
 
-::
+.. note::
 
-    [isabell@stardust ~]$ uberspace web backend set / --http --port 8123    
-    [isabell@stardust ~]$
+    Home Assistant is running on port 8123.
 
+.. include:: includes/web-backend.rst
  
 Create a supervisord service entry
 -------------------
-nano /home/isabell/etc/services.d/homeassistant.ini
+
+Create ``~/etc/services.d/homeassistant.ini`` with the following content:
 
 .. code-block:: ini
   :emphasize-lines: 8,9
@@ -135,15 +135,16 @@ nano /home/isabell/etc/services.d/homeassistant.ini
   command=python -m homeassistant
   autostart=yes
   autorestart=yes
-  environment = PATH="/home/isabell/homeassistant/bin"
+  environment = PATH="%(ENV_HOME)s/homeassistant/bin"
 
 .. include:: includes/supervisord.rst
 
+If it's not in state RUNNING, check your configuration.
 
 Finishing installation
 ======================
 
-Now your homeassistant should be running and you can point your webbrowser to the configured domain in order to make the initial homeserver setup.
+Now Home Assistant should be running and you can point your webbrowser to the configured domain in order to make the initial homeserver setup.
 
 
 Best practices
