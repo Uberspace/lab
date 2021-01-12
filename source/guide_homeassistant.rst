@@ -129,7 +129,6 @@ Create a supervisord service entry
 Create ``~/etc/services.d/homeassistant.ini`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 8,9
 
   [program:homeassistant]
   command=python -m homeassistant
