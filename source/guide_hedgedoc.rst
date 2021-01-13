@@ -144,7 +144,7 @@ Create ``~/hedgedoc/config.json`` with the following content:
 
   {}
 
-Edit the file ``~/hedgedoc/.sequelizerc`` with the following content:
+Edit the file ``~/hedgedoc/.sequelizerc`` with the following content and adjust the highlighted line.:
 
 .. code-block:: js
   :emphasize-lines: 7
@@ -155,33 +155,22 @@ Edit the file ``~/hedgedoc/.sequelizerc`` with the following content:
       'config':          path.resolve('config.json'),
       'migrations-path': path.resolve('lib', 'migrations'),
       'models-path':     path.resolve('lib', 'models'),
-      'url':             process.env.CMD_DB_URL
+      'url':             'mysql://isabell:YourMySQL-Password@localhost:3306/isabell_hedgedoc'
   }
 
-Generate setting strings
-------------------------
-You will need those highlighted strings at the next step for the ``~/etc/services.d/hedgedoc.ini``.
+.. note:: You will also need the highlighted string later at the step for the ``~/etc/services.d/hedgedoc.ini``, so note it.
 
 Generate session secret
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
+
+| The cookie session secret is used to sign the session cookie. If none is set, one will randomly be generated on each startup, meaning all your users will be logged out.
+| You will need the highlighted string at the next step for the ``~/etc/services.d/hedgedoc.ini``.
 
 .. code-block:: console
   :emphasize-lines: 2
 
-  [isabell@stardust ~]$ echo "CMD_SESSION_SECRET=\"$(pwgen 32 1)\""
-  CMD_SESSION_SECRET="somethingSuperRandom"
-  [isabell@stardust ~]$
-
-Generate DB URL
-^^^^^^^^^^^^^^^
-
-.. code-block:: console
-  :emphasize-lines: 4
-
-  [isabell@stardust ~]$ PASSWORD_STR=$(cat ~/.my.cnf | grep --max-count=1 password=)
-  [isabell@stardust ~]$ MYSQL_PASSWORD=${PASSWORD_STR:9} # using bash substring syntax
-  [isabell@stardust ~]$ echo "CMD_DB_URL=\"mysql://${USER}:${MYSQL_PASSWORD}@localhost:3306/${USER}_hedgedoc\""
-  CMD_DB_URL="mysql://isabell:YourMySQL-Password@localhost:3306/isabell_hedgedoc"
+  [isabell@stardust ~]$ pwgen 32 1
+  somethingSuperRandom
   [isabell@stardust ~]$
 
 
@@ -232,7 +221,7 @@ Even if you have deactivated the web based user registration you can always crea
 .. code-block:: console
   :emphasize-lines: 1
 
-  [isabell@stardust hedgedoc]$ NODE_ENV=production CMD_DB_URL="mysql://isabell:YourMySQL-Password@localhost:3306/isabell_hedgedoc" bin/manage_users --add isabell@uber.space
+  [isabell@stardust hedgedoc]$ NODE_ENV=production bin/manage_users --add isabell@uber.space
   Password for isabell@uber.space:*************
   Created user with email isabell@uber.space
   [isabell@stardust hedgedoc]$
