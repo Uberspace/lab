@@ -101,18 +101,18 @@ Modify ``external_url`` and ``internal_url``.
   :emphasize-lines: 3,4,5,8,9
 
   homeassistant:
-  name: Home
-  latitude: 32.87336
-  longitude: 117.22743
-  elevation: 430
-  unit_system: metric
-  time_zone: Europe/Berlin
-  external_url: "isabell.uber.space"
-  internal_url: "0.0.0.0:8123"
-  allowlist_external_dirs:
-  allowlist_external_urls:
-  media_dirs:
-  legacy_templates: false
+    name: Home
+    latitude: 32.87336
+    longitude: 117.22743
+    elevation: 430
+    unit_system: metric
+    time_zone: Europe/Berlin
+    external_url: "isabell.uber.space"
+    internal_url: "0.0.0.0:8123"
+    allowlist_external_dirs:
+    allowlist_external_urls:
+    media_dirs:
+    legacy_templates: false
 
 Setup a web backend
 -------------------
