@@ -34,38 +34,21 @@ License
 
 Adminer_ is released under `Apache License 2.0`_ or `GPL 2`_.
 
-Installation
-============
+Installation (with Plugin Support)
+==================================
 
 Check the current version of Adminer at `GitHub <https://github.com/vrana/adminer/releases>`_ and go the the folder where you want Adminer to be installed
 
 .. code-block:: console
 
   [isabell@stardust ~]$ VERSION=4.7.8
-  [isabell@stardust ~]$ cd ...
-  [isabell@stardust ~]$
-
-Option 1: Install Adminer without Plugin Support
-------------------------------------------------
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ wget -O index.php https://github.com/vrana/adminer/releases/download/v$VERSION/adminer-$VERSION.php
-  [isabell@stardust ~]$
-
-That's it!
-
-Option 2: Install Adminer with Plugin Support
----------------------------------------------
-
-.. code-block:: console
-
+  [isabell@stardust ~]$ cd ~/html
   [isabell@stardust ~]$ wget -O adminer.php https://github.com/vrana/adminer/releases/download/v$VERSION/adminer-$VERSION.php
   [isabell@stardust ~]$ mkdir -p plugins
   [isabell@stardust ~]$ wget -O plugins/plugin.php https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php
   [isabell@stardust ~]$
 
-Create an ``index.php`` file:
+Create an ``index.php`` file in the same directory:
 
 .. code-block:: php
 
