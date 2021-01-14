@@ -172,14 +172,13 @@ You can already access your Nextcloud, but it is highly recommended to continue 
 Configuration
 =============
 
-Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. Log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server. Alternatively you can do this by executing the commands in the following code block or by editing the ``~/html/config/config.php`` with your favorite editor. If you want to keep things simple, use the sendmail option. If you prefer saving all messages in a (dedicated) mailbox use the smtp variant.
+Currently your Nextcloud installation is not capable of sending mail, e.g.  for notifications or password resets. You can do this by executing the commands in the following block or by editing the ``~/html/config/config.php`` with your favorite editor. If you want to keep things simple, use sendmail. Alternatively log in with your admin user, go to settings > Administration > Basic settings and  configure the email-server.
 
 Sendmail Settings
 -----------------
 
- and enter the following settings:
-
-.. warning:: Make sure to replace the example values.
+| For the basic system mail configuration just run the following commands.
+| You can also change the `mail_from_adress` or the `mail_domain` if you have :manual:`set up additional mail domains <mail-domains>`
 
 .. code-block:: console
 
@@ -192,25 +191,8 @@ Sendmail Settings
   [isabell@stardust html]$ php occ config:system:set mail_sendmailmode --value="pipe"
   System config value mail_sendmailmode set to string pipe
 
-SMTP Settings
--------------
-
-.. note:: In our example we assume that Nextcloud will use the user's :manual:`system mailbox <mail-mailboxes>` user to send out mails. If you prefer to use an :manual_anchor:`additional mailbox <mail-mailboxes.html#setup-a-new-mailbox>` just adapt the settings. Refer to the :manual_anchor:`manual <mail-access.html#smtp>` if you don't know your smtp password.
-
-You can also use the ``occ config:system:set`` command for these settings.
-
-.. code-block:: php
-
- 'mail_domain' => 'uber.space',
- 'mail_from_address' => 'isabell',
- 'mail_smtpmode' => 'smtp',
- 'mail_smtpport' => 587,
- 'mail_smtphost' => 'stardust.uberspace.de',
- 'mail_smtpsecure' => 'tls',
- 'mail_smtpauth' => true,
- 'mail_smtpauthtype' => 'LOGIN',
- 'mail_smtpname' => 'isabell@uber.space',
- 'mail_smtppassword' => 'MySSHPasswordIfUsingTheSystemMailbox',
+.. note:: | If you prefer an advanced configuration read the `Nextcloud admin manual for email`_.
+ | You can also set all settings via the web based admin interface.
 
 Tuning
 ======
@@ -437,6 +419,7 @@ Here is an example you probably don't want to keep on your Uberspace. To get rid
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
+.. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#email
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
