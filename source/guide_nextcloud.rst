@@ -333,9 +333,7 @@ Create `~/bin/nextcloud-update` with the following content:
  ## The following command works from Nextcloud 20.
  ## remove '#' so it is working
  #php ~/html/occ db:add-missing-primary-keys --no-interaction
- ## The following command works from Nextcloud 19.
- ## remove '#' so it is working
- #php ~/html/occ db:add-missing-columns --no-interaction
+ php ~/html/occ db:add-missing-columns --no-interaction
  php ~/html/occ db:add-missing-indices --no-interaction
  php ~/html/occ db:convert-filecache-bigint --no-interaction
 
