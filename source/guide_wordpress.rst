@@ -70,7 +70,7 @@ You will need to enter the following information:
  Downloading WordPress 23.42.1 (en_US)...
  md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
  Success: WordPress downloaded.
- [isabell@stardust html]$ wp config create --dbname=isabell_wordpress --dbuser=isabell --dbpass=MySuperSecretPassword
+ [isabell@stardust html]$ wp config create --dbname=${USER}_wordpress --dbuser=${USER} --dbpass=MySuperSecretPassword
  Success: Generated 'wp-config.php' file.
  [isabell@stardust html]$ wp db create
  Success: Database created.

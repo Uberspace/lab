@@ -54,7 +54,8 @@ Run ``./configure --help`` to see all options.
   [isabell@stardust ~]$ tar xf 20.04.tar.gz
   [isabell@stardust ~]$ cd ejabberd-20.04/
   [isabell@stardust ejabberd-20.04]$ ./autogen.sh
-  [isabell@stardust ejabberd-20.04]$ ./configure --enable-user=$USER --prefix=$HOME/opt/ejabberd --enable-mysql --enable-new-sql-schema
+  [isabell@stardust ejabberd-20.04]$ ./configure --enable-user=$USER --prefix=$HOME --enable-mysql --enable-new-sql-schema
+  [isabell@stardust ejabberd-20.04]$ make
   [isabell@stardust ejabberd-20.04]$ make install
 
 The files will be installed to the following locations:

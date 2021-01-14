@@ -3,6 +3,7 @@
 .. author:: Peleke <https://www.peleke.de>
 .. author:: Noah <https://noahwagner.de>
 .. author:: tobimori <tobias@moeritz.cc>
+.. author:: Patrick Brunck <https://www.patrick-brunck.de/>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -37,13 +38,13 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 10:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 10
- Using 'Node.js' version: '10'
- Selected node version 10
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Using 'Node.js' version: '12'
+ Selected node version 12
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [eliza@dolittle ~]$
 
@@ -89,7 +90,6 @@ You will need to enter the following information:
   * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * your Ghost database name: we suggest you use a :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_ghost
-  * Do you want to start Ghost?: Answer No.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,14,16,17,18
@@ -181,7 +181,7 @@ If it's not in state RUNNING, check your configuration.
 Finishing installation
 ======================
 
-Point your browser to your blog URL and create a user account.
+Point your browser to your blog URL and Ghost Admin page (https://isabell.uber.space/ghost/) to create a user account.
 
 Changing internal uber.space URL to external URL
 ================================================
