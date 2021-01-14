@@ -67,7 +67,7 @@ opcache
 
 Enable opcache to optimise performance.
 
-To do that, create ``$~/etc/php.d/opcache.ini`` with the content:
+To do that, create ``~/etc/php.d/opcache.ini`` with the content:
 
 .. code-block:: ini
 
