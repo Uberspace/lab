@@ -108,19 +108,30 @@ Tuning
 
 Mail
 ####
-To setup Firefly III to be able to send mails first navigate to your Firefly III home folder and afterwards edit the ``.env`` file. An example configuration could look like this:
+
+To setup Firefly III to be able to send mails, you first have to create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-mailboxes>`:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace mail user add firefly_iii
+  Enter a password for the mailbox:
+  Please confirm your password:
+  New mailbox created for user: 'firefly_iii', it will be live in a few minutes...
+  [isabell@stardust ~]$
+
+Afterwards navigate to your Firefly III home folder and edit the ``.env`` file. The mail configuration should be setup like this:
 
 .. code-block:: ini
 
  MAIL_MAILER=smtp
  MAIL_HOST=stardust.uberspace.de
  MAIL_PORT=587
- MAIL_FROM=isabell@uber.space
- MAIL_USERNAME=isabell@uber.space
+ MAIL_FROM=firefly_iii@isabell.uber.space
+ MAIL_USERNAME=firefly_iii@isabell.uber.space
  MAIL_PASSWORD=MySuperSecretPassword
  MAIL_ENCRYPTION=tls
 
-``MAIL_USERNAME`` and ``MAIL_PASSWORD`` must be the login data from a valid mail account.
+.. note:: Replace ``MySuperSecretPassword`` with the password you just assigned to the mailbox.
 
 Cronjob
 ########
