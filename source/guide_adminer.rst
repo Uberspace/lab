@@ -43,10 +43,10 @@ Check the current version of Adminer at `GitHub <https://github.com/vrana/admine
 
   [isabell@stardust ~]$ VERSION=4.7.8
   [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust ~]$ wget -O adminer.php https://github.com/vrana/adminer/releases/download/v$VERSION/adminer-$VERSION.php
-  [isabell@stardust ~]$ mkdir -p plugins
-  [isabell@stardust ~]$ wget -O plugins/plugin.php https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php
-  [isabell@stardust ~]$
+  [isabell@stardust html]$ wget -O adminer.php https://github.com/vrana/adminer/releases/download/v$VERSION/adminer-$VERSION.php
+  [isabell@stardust html]$ mkdir -p plugins
+  [isabell@stardust html]$ wget -O plugins/plugin.php https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php
+  [isabell@stardust html]$
 
 Create an ``index.php`` file in the same directory:
 
@@ -77,12 +77,12 @@ Example Plugin: Themes
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ THEME_VERSION=1.7
-  [isabell@stardust ~]$ wget -O theme.zip https://github.com/pematon/adminer-theme/archive/v$THEME_VERSION.zip
-  [isabell@stardust ~]$ unzip -o theme.zip
-  [isabell@stardust ~]$ cp -r adminer-theme-$THEME_VERSION/lib/* .
-  [isabell@stardust ~]$ rm -rf theme.zip adminer-theme-$THEME_VERSION
-  [isabell@stardust ~]$
+  [isabell@stardust html]$ THEME_VERSION=1.7
+  [isabell@stardust html]$ wget -O theme.zip https://github.com/pematon/adminer-theme/archive/v$THEME_VERSION.zip
+  [isabell@stardust html]$ unzip -o theme.zip
+  [isabell@stardust html]$ cp -r adminer-theme-$THEME_VERSION/lib/* .
+  [isabell@stardust html]$ rm -rf theme.zip adminer-theme-$THEME_VERSION
+  [isabell@stardust html]$
 
 Update the ``index.php`` to include the new Plugin:
 
