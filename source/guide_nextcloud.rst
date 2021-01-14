@@ -128,20 +128,10 @@ Setup
 -----
 .. warning:: We strongly recommend you to use the MySQL backend for nextcloud. Do not use the SQLite backend for production. It gives you a better performance and reduces disk load on the host you share.
 
-If you are not comfortable with the the fist step via command line you can also go the web way by pointing your browser to https://isabell.uber.space
-
-For the web based install you will need to enter the following information:
-
-  * Administrator username and password: Insert the credentials you want to use for the admin user
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
-  * your Nextcloud database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_nextcloud
-
-Additionally, you can choose where Nextcloud is going to store your data files. It is recommended to place them outside of the webserver's DocumentRoot, e.g. at ``/home/isabell/nextcloud_data/``.
-
-command line based installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 You need to change the following tree highlighted parameters to prepare the install command below:
+
+ * Administrator username and password: Insert the credentials you want to use for the admin user
+ * Get your :manual_anchor:`MySQL Password <database-mysql.html#login-credentials>`
 
 .. code-block:: console
   :emphasize-lines: 6-8
