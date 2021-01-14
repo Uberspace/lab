@@ -71,8 +71,8 @@ Just run the following command in the created `homeassistant` directory with act
 
 .. code-block:: console
 
- [isabell@stardust ~]$ 
  [isabell@stardust homeassistant]$ hass
+ [isabell@stardust homeassistant]$ 
 
 A directory containing config files is created at /home/isabell/.homeassistant. 
 So you can terminate the homeassistant using Strg-C.
