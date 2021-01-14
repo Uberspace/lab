@@ -134,7 +134,7 @@ Create ``~/etc/services.d/homeassistant.ini`` with the following content:
   command=python -m homeassistant
   autostart=yes
   autorestart=yes
-  environment = PATH="%(ENV_HOME)s/homeassistant/bin"
+  environment=PATH="%(ENV_HOME)s/homeassistant/bin"
 
 .. include:: includes/supervisord.rst
 
