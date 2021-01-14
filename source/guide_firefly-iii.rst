@@ -50,7 +50,7 @@ Installation
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust ~]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii <latest>
+ [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii <latest>
  [...]
  [isabell@stardust isabell]$
 
@@ -81,7 +81,7 @@ We suggest you use an :manual_anchor:`additional database <database-mysql.html#a
 .. code-block:: console
 
  [isabell@stardust isabell]$ cd firefly_iii
- [isabell@stardust ~]$
+ [isabell@stardust firefly_iii]$
 
 Edit the ``.env`` file to change the settings. Change ``DB_HOST`` to  ``localhost`` and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`.
 Also edit any other settings like the time zone (``TZ``) or default language (``DEFAULT_LANGUAGE``) while the file is open.
@@ -94,10 +94,10 @@ To finish the installation and setup your database run the following commands:
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
- [isabell@stardust ~]$ php artisan migrate:refresh --seed
- [isabell@stardust ~]$ php artisan firefly-iii:upgrade-database
- [isabell@stardust ~]$ php artisan passport:install
- [isabell@stardust ~]$
+ [isabell@stardust firefly_iii]$ php artisan migrate:refresh --seed
+ [isabell@stardust firefly_iii]$ php artisan firefly-iii:upgrade-database
+ [isabell@stardust firefly_iii]$ php artisan passport:install
+ [isabell@stardust firefly_iii]$
 
 Go to https://isabell.uber.space to access your Firefly III installation.
 
@@ -144,7 +144,7 @@ To update your Firefly III installation, ``cd`` to the directory one level above
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust ~]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly-iii-updated <next_version>
+ [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly-iii-updated <next_version>
  [...]
  [isabell@stardust isabell]$
 
@@ -154,9 +154,9 @@ After the installation has finished, we need to copy over our settings located i
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
- [isabell@stardust ~]$ cp firefly_iii/.env firefly-iii-updated/.env
- [isabell@stardust ~]$ cp firefly_iii/storage/upload/* firefly-iii-updated/storage/upload/
- [isabell@stardust ~]$ cp firefly_iii/storage/export/* firefly-iii-updated/storage/export/
+ [isabell@stardust isabell]$ cp firefly_iii/.env firefly-iii-updated/.env
+ [isabell@stardust isabell]$ cp firefly_iii/storage/upload/* firefly-iii-updated/storage/upload/
+ [isabell@stardust isabell]$ cp firefly_iii/storage/export/* firefly-iii-updated/storage/export/
  [isabell@stardust isabell]$
 
 Navigate into the newly created folder and run the following commands to finish the upgrade:
@@ -164,23 +164,23 @@ Navigate into the newly created folder and run the following commands to finish 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ cd firefly-iii-updated
- [isabell@stardust ~]$ rm -rf bootstrap/cache/*
- [isabell@stardust ~]$ php artisan cache:clear
- [isabell@stardust ~]$ php artisan migrate --seed
- [isabell@stardust ~]$ php artisan firefly-iii:upgrade-database
- [isabell@stardust ~]$ php artisan passport:install
- [isabell@stardust ~]$ php artisan cache:clear
- [isabell@stardust isabell]$
+ [isabell@stardust isabell]$ cd firefly-iii-updated
+ [isabell@stardust firefly-iii-updated]$ rm -rf bootstrap/cache/*
+ [isabell@stardust firefly-iii-updated]$ php artisan cache:clear
+ [isabell@stardust firefly-iii-updated]$ php artisan migrate --seed
+ [isabell@stardust firefly-iii-updated]$ php artisan firefly-iii:upgrade-database
+ [isabell@stardust firefly-iii-updated]$ php artisan passport:install
+ [isabell@stardust firefly-iii-updated]$ php artisan cache:clear
+ [isabell@stardust firefly-iii-updated]$
 
 Move one folder up again and rename the updated folder, so our :manual:`document root <web-documentroot>` points to the updated version.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
- [isabell@stardust ~]$ cd ..
- [isabell@stardust ~]$ mv firefly_iii firefly-iii-old
- [isabell@stardust ~]$ mv firefly-iii-updated firefly_iii
+ [isabell@stardust firefly-iii-updated]$ cd ..
+ [isabell@stardust isabell]$ mv firefly_iii firefly-iii-old
+ [isabell@stardust isabell]$ mv firefly-iii-updated firefly_iii
  [isabell@stardust isabell]$
 
 You can now go to https://isabell.uber.space to access your updated Firefly III installation.
