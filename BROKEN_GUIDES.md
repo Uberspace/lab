@@ -23,7 +23,7 @@ Once we or someone else notices that a guide doesn't work anymore, do the follow
 ```md
 The guide for XYZ does not work anymore. [explanation of what does not work here]. We added a banner to the guide to signal the broken state.
 
-If you have any insights, please comment on this issue. Pull requests fixing the guide are also highly appreciated. If the guide does not get fixed within two months, we will remove it from the lab, as documented in the [broken guides policy](https://github.com/Uberspace/lab/blob/master/BROKEN_GUIDES.md).
+If you have any insights, please comment on this issue. Pull requests fixing the guide are also highly appreciated. If the guide does not get fixed within two months, we will remove it from the lab, as documented in the [broken guides policy](https://github.com/Uberspace/lab/blob/main/BROKEN_GUIDES.md).
 
 @[original guide author here] FYI.
 ```

@@ -19,7 +19,7 @@ Everybody is welcome to contribute new guides, changes to existing ones, or even
 Thank you and have fun experimenting!
 
 .. _Manual: http://manual.uberspace.de
-.. _Edit on Github: https://github.com/Uberspace/lab/blob/master/source/index.rst
+.. _Edit on Github: https://github.com/Uberspace/lab/blob/main/source/index.rst
 .. _GitHub repository: https://github.com/Uberspace/lab/
 .. _support: https://uberspace.de/support
 
@@ -39,6 +39,6 @@ Thank you and have fun experimenting!
 
    hall_of_fame
    Repository <https://github.com/Uberspace/lab>
-   Changelog <https://github.com/Uberspace/lab/commits/master>
+   Changelog <https://github.com/Uberspace/lab/commits/main>
    Legal Notice <https://uberspace.de/imprint>
    Privacy <https://uberspace.de/privacy>
