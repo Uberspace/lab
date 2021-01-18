@@ -124,7 +124,7 @@ html_context = {
     'display_github': True,
     'github_user': 'Uberspace',
     'github_repo': 'lab',
-    'github_version': 'master',
+    'github_version': 'main',
     'conf_py_path': '/source/'
 }
 html_show_copyright = False
