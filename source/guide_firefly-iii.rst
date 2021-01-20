@@ -44,13 +44,13 @@ Your domain needs to be set up:
 Installation
 ============
 
-``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then install Firefly III via composer. You can find the latest version on the `release tracker`_, replace <version> with the version number.
+``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then install Firefly III via composer. You can find the latest version on the `release tracker`_, replace the version below with the version number.
 
 .. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii <latest>
+ [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii 5.4.6
  [...]
  [isabell@stardust isabell]$
 
