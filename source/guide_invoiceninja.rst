@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Till Deeke <hallo@tilldeeke.de>
+.. author:: Daniel Weber <https://github.com/DaniW42>
 
 .. tag:: lang-php
 .. tag:: accounting
@@ -39,14 +40,6 @@ License
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
- [isabell@stardust ~]$
-
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
@@ -56,32 +49,30 @@ Your domain needs to be set up:
 Installation
 ============
 
-We will be installing Invoice Ninja using composer.
-``cd`` to your :manual:`DocumentRoot <web-documentroot>`, download the latest release, and install the dependencies using ``composer``:
+We will be installing Invoice Ninja using the latest stable version.
+Download the release file, unzip it using ``unzip`` and copy the contents to your :manual:`DocumentRoot <web-documentroot>`:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone https://github.com/invoiceninja/invoiceninja
- Cloning into 'invoiceninja'...
- remote: Enumerating objects: 71, done.
+ [isabell@stardust ~]$ wget https://download.invoiceninja.com -O ninja.zip
+ Resolving download.invoiceninja.com (download.invoiceninja.com)...
+ Saving to: ‘ninja.zip’
  […]
- [isabell@stardust isabell]$ cd invoiceninja
- [isabell@stardust invoiceninja]$ composer install
- Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file
- […]
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ unzip -q ninja.zip
+ [isabell@stardust ~]$ mv ninja/* html/
+ [isabell@stardust ~]$ rm -rf ninja*
 
-Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``invoiceninja/public`` directory.
+Edit ``html/.htaccess`` to hide ``/public`` (example.com/public) from your url and force https:
 
-.. code-block:: console
+::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/invoiceninja/public html
- [isabell@stardust ~]$
+ # Redirect HTTP to HTTPS:
+ RewriteCond %{ENV:HTTPS} !=on
+ RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+ # Hide /public from url:
+ RewriteBase /
+ RewriteRule ^(.*)$ public/$1 [L]
 
 Configuration
 =============
@@ -136,8 +127,8 @@ To automatically send recurring invoices and reminders we need to setup some cro
 
 ::
 
- 0 8 * * * /usr/bin/php /var/www/virtual/$USER/invoiceninja/artisan ninja:send-invoices
- 0 8 * * * /usr/bin/php /var/www/virtual/$USER/invoiceninja/artisan ninja:send-reminders
+ 0 8 * * * /usr/bin/php /var/www/virtual/$USER/artisan ninja:send-invoices
+ 0 8 * * * /usr/bin/php /var/www/virtual/$USER/artisan ninja:send-reminders
 
 You can learn more about cronjobs in the :manual:`uberspace manual cron article <daemons-cron>`.
 
@@ -157,22 +148,27 @@ After that you can :manual_anchor:`add a new supervisord service <daemons-superv
 
 ::
 
- /usr/bin/php /var/www/virtual/$USER/invoiceninja/artisan queue:work --daemon
+ /usr/bin/php /var/www/virtual/$USER/artisan queue:work --daemon
 
 as the command.
 
 Attaching PDF invoices to emails
 --------------------------------
 
-If you want to attach a PDF file of an invoice to the email a client is receiving, you will need ``phantomjs`` to generate the PDF. We are going to install phantomjs globally via npm:
+If you want to attach a PDF file of an invoice to the email a client is receiving, you will need ``phantomjs`` to generate the PDF. We are going to install phantomjs globally using the binary from http://phantomjs.org/download.html. Download the Linux 64-bit archive and unzip it using ``tar``:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ npm install -g phantomjs-prebuilt
+ [isabell@stardust ~]$ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
  […]
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ tar xfvj phantomjs-2.1.1-linux-x86_64.tar.bz2 phantomjs-2.1.1-linux-x86_64/bin/phantomjs
+ [isabell@stardust ~]$ mv phantomjs-2.1.1-linux-x86_64/bin/phantomjs ~/bin/
+ [isabell@stardust ~]$ rm -rf phantomjs-2.1.1-linux-x86_64*
+ [isabell@stardust ~]$ phantomjs --version
+ 2.1.1
+ [isabell@stardust ~]$ 
 
-After phantomjs is installed you need to change some settings in the application. Edit the ``.env`` file in the root of the application folder (``/var/www/virtual/$USER/invoiceninja/.env``). Replace these lines:
+After phantomjs is installed you need to change some settings in the application. Edit the ``.env`` file in the root of the application folder (``/var/www/virtual/$USER/.env``). Replace these lines:
 
 ::
 
@@ -190,13 +186,13 @@ Now you only have to enable the correct option in the admin panel (``https://isa
 Using the mobile apps
 ---------------------
 
-If you want to use the mobile apps for Invoice Ninja, you will need to add a secret key to the configuration file in the application directory (``/var/www/virtual/$USER/invoiceninja/.env``).
+If you want to use the mobile apps for Invoice Ninja, you will need to add a secret key to the configuration file in the application directory (``/var/www/virtual/$USER/.env``).
 
 You can generate the secret key with this command:
 
 ::
 
- [isabell@stardust ~] pwgen 32 1
+ [isabell@stardust ~]$ pwgen 32 1
  <randomSecret>
  [isabell@stardust ~]$
 
@@ -211,28 +207,8 @@ Updates
 
 .. note:: Check the Releases_ on Github regularly to stay informed about the newest version.
 
-To update `Invoice Ninja`_ you can run the following commands in the root directory of the application.
-The ``--force`` arguments are needed to prevent warnings about the application running in production mode.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/invoiceninja
- [isabell@stardust invoiceninja]$ git pull
- [isabell@stardust invoiceninja]$ composer install
- Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file
- […]
- [isabell@stardust invoiceninja]$ php artisan optimize --force
- Generating optimized class loader
- The compiled services file has been removed.
- [isabell@stardust invoiceninja]$ php artisan migrate --force
- […]
- [isabell@stardust invoiceninja]$ php artisan db:seed --class=UpdateSeeder --force
- Running UpdateSeeder...
- Seeding: CountriesSeeder
- […]
- [isabell@stardust ~]$
-
+To update `Invoice Ninja`_ you can run the internal self updater. It should perform all the necessary tasks to bring your app up to the latest version.
+For convenience please check the official Updating_ Guide.
 
 .. _Invoice Ninja: https://www.invoiceninja.org/
 .. _AAL License: https://opensource.org/licenses/AAL
@@ -240,10 +216,11 @@ The ``--force`` arguments are needed to prevent warnings about the application r
 .. _Self-Hosting Terms of Service: https://www.invoiceninja.com/self-hosting-terms-service/
 .. _Self-Hosting Data Privacy Addendum: https://www.invoiceninja.com/self-hosting-privacy-data-control/
 .. _Releases: https://github.com/invoiceninja/invoiceninja/releases
+.. _Updating: https://invoiceninja.github.io/selfhost.html#shared-hosting-zip-builds
 
 
 ----
 
-Tested with Invoice Ninja v4.5.12, Uberspace 7.2.10.0
+Tested with Invoice Ninja v4.5.31, Uberspace 7.9.0
 
 .. author_list::
