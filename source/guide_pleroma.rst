@@ -173,7 +173,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$
 
-For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Also add a database task queue timeout to avoid timeouts on the front end. Find the following block and change / add the highlighted lines:
+For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with remote posts older than 28 days to reduce space usage. Also add a database task queue timeout to avoid timeouts on the front end. Find the following block and change / add the highlighted lines:
 
 .. code-block:: none
  :emphasize-lines: 6, 7, 8, 17
@@ -185,7 +185,7 @@ For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to
    limit: 5000,
    registrations_open: false,
    public: false,
-   remote_post_retention: 30
+   remote_post_retention_days: 28
 
  config :pleroma, Pleroma.Repo,
    adapter: Ecto.Adapters.Postgres,
@@ -226,13 +226,13 @@ Check out the `Configuration Cheat Sheet`_ for more settings.
 cronjob
 -------
 
-Add the following cronjob to your :manual:`crontab <daemons-cron>` to check daily at 04:42 for posts older than 30 days to remove.
+Add the following cronjob to your :manual:`crontab <daemons-cron>` to check daily at midnight for remote posts older than 28 days to remove.
 
 .. note:: If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
 
 .. code-block:: none
 
- 42 4 * * * cd ~/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
+ @daily cd ~/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
 
 
 
