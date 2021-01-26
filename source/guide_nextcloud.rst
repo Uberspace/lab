@@ -50,9 +50,11 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 .. include:: includes/my-print-defaults.rst
 
-If you want to use your cloud with your own domain you need to setup your domain first:
+You can use the domains that are currently configured :
 
 .. include:: includes/web-domain-list.rst
+
+If you want to use your cloud with a domain not shown here, such as your own domain, :manual:`setup your domain <web-domains>` for use with your Uberspace account.
 
 Installation
 ============
@@ -60,14 +62,18 @@ Installation
 PHP settings
 ------------
 
-Before you start the actual app installation you should have set the proper php settings. Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
+Before you start the NextCloud installation you should adapt some PHP settings:
+
+ #. enable the `PHP OPcache <https://www.php.net/manual/en/book.opcache.php>`_
+ #. increase the PHP memory limit
+ #. disable PHP output buffering
+
+Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
 
 opcache
 ^^^^^^^
 
-Enable opcache to optimise performance.
-
-To do that, create ``~/etc/php.d/opcache.ini`` with the content:
+OPcache caches script bytecode in shared memory, so scripts need not to be loaded, parsed and compiled on every request. To enable it, create the file ``~/etc/php.d/opcache.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -82,7 +88,7 @@ To do that, create ``~/etc/php.d/opcache.ini`` with the content:
 PHP Memory
 ^^^^^^^^^^
 
-In order to increase the memory limit of php to the recommended minimum value of 512 MB, create ``~/etc/php.d/memory_limit.ini`` with the following content:
+NextCloud `recommends 512 MB <https://docs.nextcloud.com/server/20/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -91,16 +97,13 @@ In order to increase the memory limit of php to the recommended minimum value of
 Output Buffering
 ^^^^^^^^^^^^^^^^
 
-Disable output buffering, create ``~/etc/php.d/output_buffering.ini`` with the following content:
+To Disable output buffering, create the file ``~/etc/php.d/output_buffering.ini`` with the following content:
 
 .. code-block:: ini
 
  output_buffering=0
 
-PHP Reload
-^^^^^^^^^^
-
-After that you need to restart PHP configuration to load the changes:
+.. note:: After setting these PHP parameters, restart PHP to activate the changes
 
 .. code-block:: console
 
@@ -110,10 +113,9 @@ After that you need to restart PHP configuration to load the changes:
 
 Downloading
 -----------
+.. note:: This Lab uses a well-known link to the latest NextCloud package. You can find more versions and formats on the NextCloud `download page <https://nextcloud.com/install/#instructions-server>`_.
 
-``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of the Nextcloud and extract it:
-
-.. note:: The link to the latest version can be found at Nextcloud's `download page <https://nextcloud.com/install/#instructions-server>`_.
+``cd`` to your :manual:`document root <web-documentroot>`, download the latest Nextcloud release found at `https://download.nextcloud.com/server/releases/latest.tar.bz2 <https://download.nextcloud.com/server/releases/latest.tar.bz2>`_ and extract it on the fly, omitting the top-level directory from the archive:
 
 .. code-block:: console
 
@@ -126,29 +128,44 @@ Downloading
 
 Setup
 -----
-.. warning:: We strongly recommend you to use the MySQL backend for nextcloud. Do not use the SQLite backend for production. It gives you a better performance and reduces disk load on the host you share.
+.. warning:: We strongly recommend to use the MySQL backend for NextCloud, consistent with the NextCloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/20/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
 
-You need to change the following tree highlighted parameters to prepare the install command below:
+Create the database
+^^^^^^^^^^^^^^^^^
 
- * Administrator username and password: Insert the credentials you want to use for the admin user
- * Get your :manual_anchor:`MySQL Password <database-mysql.html#login-credentials>`
+First, create a MySQL database to hold your NextCloud installation
 
 .. code-block:: console
-  :emphasize-lines: 6-8
 
   [isabell@stardust html]$ mysql --verbose --execute="CREATE DATABASE ${USER}_nextcloud"
   --------------
   CREATE DATABASE isabell_nextcloud
   --------------
+  [isabell@stardust html]$
 
-  [isabell@stardust html]$ ADMIN_USER=MyUserName
-  [isabell@stardust html]$ ADMIN_PASS=MySuperSecretAdminPassword
+Run the installation script
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now, execute the NextCloud maintenance PHP script ``occ`` with the parameters shown below. Set the three highlighted parameters to your account-specific values before executing the command:
+
+* ``NEXTCLOUD_ADMIN_USER`` the name of the NextCloud admin user you have to use when logging on for the first time on your new NextCloud Instance
+* ``NEXTCLOUD_ADMIN_PASS`` the password for the NextCloud admin user
+* ``MYSQL_PASSWORD`` your :manual_anchor:`MySQL Password <database-mysql.html#login-credentials>`
+
+.. code-block:: console
+  :emphasize-lines: 1-3
+
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER=MyUserName
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS=MySuperSecretAdminPassword
   [isabell@stardust html]$ MYSQL_PASSWORD=MySuperSecretMySQLPassword
   [isabell@stardust html]$ php occ maintenance:install --admin-user "${ADMIN_USER}" --admin-pass "${ADMIN_PASS}" --database 'mysql' --database-name "${USER}_nextcloud"  --database-user "${USER}" --database-pass "${MYSQL_PASSWORD}" --data-dir "${HOME}/nextcloud_data"
   Nextcloud was successfully installed
   [isabell@stardust html]$
 
-You should now set your :manual:`domain <web-domains>`.
+Set the "truste" domain
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the :manual:`domain name <web-domains>` that your NextCloud will be accessed with as "trusted":
 
 .. code-block:: console
   :emphasize-lines: 1,3
@@ -159,7 +176,7 @@ You should now set your :manual:`domain <web-domains>`.
   System config value overwrite.cli.url set to string https://isabell.uber.space
   [isabell@stardust html]$
 
-Set links to the log file destinations so you can easily access them in case you need them.
+Set links to the log file destinations so you can more easily access them:
 
 .. code-block:: console
 
@@ -167,7 +184,7 @@ Set links to the log file destinations so you can easily access them in case you
   [isabell@stardust html]$ ln --symbolic ~/nextcloud_data/updater.log ~/logs/nextcloud-updater.log
   [isabell@stardust html]$
 
-You can already access your Nextcloud, but it is highly recommended to continue with a proper configuration and also some tuning to enhance the performance.
+You can now logon your Nextcloud using the domain you just configured as trusted. But before you use it, go to the next chapter and finish the configuration to enable sending mails, optimize performance and setup a housekeeping job.
 
 Configuration
 =============
@@ -190,6 +207,7 @@ Sendmail Settings
   System config value mail_smtpmode set to string sendmail
   [isabell@stardust html]$ php occ config:system:set mail_sendmailmode --value="pipe"
   System config value mail_sendmailmode set to string pipe
+  [isabell@stardust html]$
 
 .. note:: | If you prefer an advanced configuration read the `Nextcloud admin manual for email`_.
  | You can also set all settings via the web based admin interface.
@@ -256,6 +274,7 @@ To reduce load on the mysql server and also improve transactional file locking y
   System config value memcache.locking set to string \OC\Memcache\Redis
   [isabell@stardust html]$ php occ config:system:set memcache.distributed --value='\OC\Memcache\Redis'
   System config value memcache.distributed set to string \OC\Memcache\Redis
+  [isabell@stardust html]$
 
 In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
 
@@ -266,9 +285,10 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd html
- [isabell@stardust html]$ php occ db:add-missing-indices --no-interaction
- [isabell@stardust html]$ php occ db:convert-filecache-bigint --no-interaction
+  [isabell@stardust ~]$ cd html
+  [isabell@stardust html]$ php occ db:add-missing-indices --no-interaction
+  [isabell@stardust html]$ php occ db:convert-filecache-bigint --no-interaction
+  [isabell@stardust html]$
 
 Apps
 ----
@@ -287,6 +307,7 @@ Both apps can be installed optional during the main install, but the huge docume
 
   [isabell@stardust html]$ cd apps
   [isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
+  [isabell@stardust html]$
 
 Reload the admin panel and enable the Community Document Server.
 A click on a text/spreadsheet document should now start the Onlyoffice Editor.
@@ -301,6 +322,7 @@ If the web installation fails, install the app manually in your shell:
 
   [isabell@stardust html]$ cd apps
   [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
+  [isabell@stardust html]$
 
 Reload the page and press the talk icon in the top menu bar.
 
@@ -345,16 +367,16 @@ Make the script executable:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ chmod +x ~/bin/nextcloud-update
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ chmod +x ~/bin/nextcloud-update
+  [isabell@stardust ~]$
 
 Then you can run the script whenever you need it to perform the update.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ nextcloud-update
- [...]
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ nextcloud-update
+  [...]
+  [isabell@stardust ~]$
 
 .. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
 
