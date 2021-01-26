@@ -42,12 +42,20 @@ Your URL needs to be setup:
 Setup PostgreSQL
 ----------------
 
-You should've running a :lab:`PostgreSQL <guide_postgresql>` in the version ``9.6`` or above configured with ``--with-uuid=e2fs``
+We’re using :manual:`PostgreSQL <database-postgresql>` in the version 13. Please refer to the :lab:`PostgreSQL <guide_postgresql>` guide to setup your instance.
 
 ::
 
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline --with-uuid=e2fs
+ [isabell@stardust ~]$ uberspace tools version show postgresql
+ Using 'postgresql' version: 13
  [isabell@stardust ~]$
+
+Please make sure you set ``listen_addresses`` in the config.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ listen_addresses = '*'         # what IP address(es) to listen on;
 
 In PostgreSQL you need a database with your username as name. Otherwise there is an error when you create the database for pleroma with the later generated script.
 
@@ -57,6 +65,9 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
 
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> <username>
  [isabell@stardust ~]$
+
+Set Erlang version
+------------------
 
 We’re using :manual:`Erlang <lang-erlang>` in the version 22:
 
@@ -348,7 +359,7 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.2.1, Uberspace 7.8.1.0
+Tested with Pleroma 2.2.2, Uberspace 7.9.0.0
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
