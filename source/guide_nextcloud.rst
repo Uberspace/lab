@@ -15,7 +15,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/nextcloud.png
+  .. image:: _static/images/nextcloud.svg
       :align: center
 
 #########
