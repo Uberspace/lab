@@ -62,7 +62,7 @@ Installation
 PHP settings
 ------------
 
-Before you start the NextCloud installation you should adapt some PHP settings:
+Before you start the Nextcloud installation you should adapt some PHP settings:
 
  #. enable the `PHP OPcache <https://www.php.net/manual/en/book.opcache.php>`_
  #. increase the PHP memory limit
@@ -88,7 +88,7 @@ OPcache caches script bytecode in shared memory, so scripts need not to be loade
 PHP Memory
 ^^^^^^^^^^
 
-NextCloud `recommends 512 MB <https://docs.nextcloud.com/server/20/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
+Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -97,7 +97,7 @@ NextCloud `recommends 512 MB <https://docs.nextcloud.com/server/20/admin_manual/
 Output Buffering
 ^^^^^^^^^^^^^^^^
 
-To Disable output buffering, create the file ``~/etc/php.d/output_buffering.ini`` with the following content:
+To disable output buffering, create the file ``~/etc/php.d/output_buffering.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -113,7 +113,7 @@ To Disable output buffering, create the file ``~/etc/php.d/output_buffering.ini`
 
 Downloading
 -----------
-.. note:: This Lab uses a well-known link to the latest NextCloud package. You can find more versions and formats on the NextCloud `download page <https://nextcloud.com/install/#instructions-server>`_.
+.. note:: This Lab uses a well-known link to the latest Nextcloud package. You can find more versions and formats on the Nextcloud `download page <https://nextcloud.com/install/#instructions-server>`_.
 
 ``cd`` to your :manual:`document root <web-documentroot>`, download the latest Nextcloud release found at `https://download.nextcloud.com/server/releases/latest.tar.bz2 <https://download.nextcloud.com/server/releases/latest.tar.bz2>`_ and extract it on the fly, omitting the top-level directory from the archive:
 
@@ -128,12 +128,12 @@ Downloading
 
 Setup
 -----
-.. warning:: We strongly recommend to use the MySQL backend for NextCloud, consistent with the NextCloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/20/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
+.. warning:: We strongly recommend to use the MySQL backend, consistent with the Nextcloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
 
 Create the database
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
-First, create a MySQL database to hold your NextCloud installation
+First, create a MySQL database to hold your Nextcloud installation
 
 .. code-block:: console
 
@@ -146,10 +146,10 @@ First, create a MySQL database to hold your NextCloud installation
 Run the installation script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now, execute the NextCloud maintenance PHP script ``occ`` with the parameters shown below. Set the three highlighted parameters to your account-specific values before executing the command:
+Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters shown below. Set the three highlighted parameters to your account-specific values before executing the command:
 
-* ``NEXTCLOUD_ADMIN_USER`` the name of the NextCloud admin user you have to use when logging on for the first time on your new NextCloud Instance
-* ``NEXTCLOUD_ADMIN_PASS`` the password for the NextCloud admin user
+* ``NEXTCLOUD_ADMIN_USER`` the name of the Nextcloud admin user you have to use when logging on for the first time on your new Nextcloud Instance
+* ``NEXTCLOUD_ADMIN_PASS`` the password for the Nextcloud admin user
 * ``MYSQL_PASSWORD`` your :manual_anchor:`MySQL Password <database-mysql.html#login-credentials>`
 
 .. code-block:: console
@@ -165,7 +165,7 @@ Now, execute the NextCloud maintenance PHP script ``occ`` with the parameters sh
 Set the "truste" domain
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Set the :manual:`domain name <web-domains>` that your NextCloud will be accessed with as "trusted":
+Set the :manual:`domain name <web-domains>` that your Nextcloud will be accessed with as "trusted":
 
 .. code-block:: console
   :emphasize-lines: 1,3
@@ -322,7 +322,7 @@ If the web installation fails, install the app manually in your shell:
 
   [isabell@stardust html]$ cd apps
   [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
-  [isabell@stardust html]$
+  [isabell@stardust apps]$
 
 Reload the page and press the talk icon in the top menu bar.
 
