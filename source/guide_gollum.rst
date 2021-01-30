@@ -74,14 +74,6 @@ Gollum can now be installed via the ruby package manager by running:
   [isabell@stardust ~]$ gem install gollum
   [isabell@stardust ~]$
 
-You can now remove CMake (both the installer and the folder) again, if you want to. You should also edit your ``.bash_profile`` to remove the CMake folder from the ``PATH`` variable.
-
-::
-
-  [isabell@stardust ~]$ rm -rf cmake-3.17.3-Linux-x86_64.sh cmake-3.17.3-Linux-x86_64
-  [isabell@stardust ~]$
-
-
 Now you should be able to start Gollum via:
 
 ::
