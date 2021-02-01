@@ -40,6 +40,14 @@ License
 Prerequisites
 =============
 
+Due to some weird PHP we are using :manual:`PHP <lang-php>` version 7.3 and revert to 7.4 after the setup:	
+
+::	
+
+ [isabell@stardust ~]$ uberspace tools version use php 7.3
+ Using 'PHP' version: '7.3'
+ [isabell@stardust ~]$
+
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
@@ -116,6 +124,14 @@ User Details
 
 
 After you save the settings, you will be redirected to the login for the admin panel.
+
+We now can change back to PHP Version 7.4:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version use php 7.4
+ Using 'PHP' version: '7.4'
+ [isabell@stardust ~]$
 
 Tuning
 ======
