@@ -127,8 +127,8 @@ To automatically send recurring invoices and reminders we need to setup some cro
 
 ::
 
- 0 8 * * * /usr/bin/php /var/www/virtual/$USER/artisan ninja:send-invoices
- 0 8 * * * /usr/bin/php /var/www/virtual/$USER/artisan ninja:send-reminders
+ 0 8 * * * /usr/bin/php /var/www/virtual/$USER/html/artisan ninja:send-invoices
+ 0 8 * * * /usr/bin/php /var/www/virtual/$USER/html/artisan ninja:send-reminders
 
 You can learn more about cronjobs in the :manual:`uberspace manual cron article <daemons-cron>`.
 
