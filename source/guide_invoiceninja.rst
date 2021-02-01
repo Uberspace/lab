@@ -184,7 +184,7 @@ If you want to attach a PDF file of an invoice to the email a client is receivin
  2.1.1
  [isabell@stardust ~]$ 
 
-After phantomjs is installed you need to change some settings in the application. Edit the ``.env`` file in the root of the application folder (``/var/www/virtual/$USER/.env``). Replace these lines:
+After phantomjs is installed you need to change some settings in the application. Edit the ``.env`` file in the root of the application folder (``/var/www/virtual/$USER/html/.env``). Replace these lines:
 
 ::
 
@@ -202,7 +202,7 @@ Now you only have to enable the correct option in the admin panel (``https://isa
 Using the mobile apps
 ---------------------
 
-If you want to use the mobile apps for Invoice Ninja, you will need to add a secret key to the configuration file in the application directory (``/var/www/virtual/$USER/.env``).
+If you want to use the mobile apps for Invoice Ninja, you will need to add a secret key to the configuration file in the application directory (``/var/www/virtual/$USER/html/.env``).
 
 You can generate the secret key with this command:
 
