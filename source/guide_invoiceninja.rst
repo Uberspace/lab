@@ -164,7 +164,7 @@ After that you can :manual_anchor:`add a new supervisord service <daemons-superv
 
 ::
 
- /usr/bin/php /var/www/virtual/$USER/artisan queue:work --daemon
+ /usr/bin/php /var/www/virtual/$USER/html/artisan queue:work --daemon
 
 as the command.
 
