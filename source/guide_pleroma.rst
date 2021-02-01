@@ -50,13 +50,6 @@ We’re using :manual:`PostgreSQL <database-postgresql>` in the version 13. Plea
  Using 'postgresql' version: 13
  [isabell@stardust ~]$
 
-Please make sure you set ``listen_addresses`` in the config.
-
-.. code-block:: console
- :emphasize-lines: 1
-
- listen_addresses = '*'         # what IP address(es) to listen on;
-
 In PostgreSQL you need a database with your username as name. Otherwise there is an error when you create the database for pleroma with the later generated script.
 
 .. warning:: Please replace ``<username>`` with your Uberspace username created in :lab:`PostgreSQL <guide_postgresql>`!
