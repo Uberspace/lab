@@ -37,7 +37,7 @@ Select the desired MongoDB version using:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use mongodb 12
+ [isabell@stardust ~]$ uberspace tools version use mongodb 4.4
  Using 'MongoDB' version: '4.4'
  Selected mongodb version 4.4
  The new configuration is adapted immediately. Patch updates will be applied automatically.
