@@ -44,8 +44,8 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 13:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 13
- Selected Node.js version 13
+ [isabell@stardust ~]$ uberspace tools version use node 14
+ Selected Node.js version 14
  The new configuration is adapted immediately. Minor updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -103,8 +103,8 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.16.0b/bw_web_v2.16.0b.tar.gz
- [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.16.0b.tar.gz
+ [isabell@stardust bitwarden_rs]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.18.1/bw_web_v2.18.1.tar.gz
+ [isabell@stardust bitwarden_rs]$ tar -xvzf bw_web_v2.18.1.tar.gz
  [isabell@stardust bitwarden_rs]$ rm -r bw_web_v*.tar.gz
 
 
@@ -159,7 +159,7 @@ Now it's time to test if everything works. If there is no error, you are good to
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/bitwarden_rs
- [isabell@stardust bitwarden_rs]$ target/release/bitwarden_rs
+ [isabell@stardust bitwarden_rs]$ ./target/release/bitwarden_rs
  /--------------------------------------------------------------------\
  |                       Starting Bitwarden_RS                        |
  |                      Version 1.14.1-843604c9                       |
