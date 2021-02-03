@@ -40,7 +40,7 @@ Bitwarden_rs is released under the GNU General Public License_ version 3 or any 
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 13:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 14:
 
 ::
 
