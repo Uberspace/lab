@@ -131,7 +131,7 @@ The easiest way to update Piwigo is to use the web updater provided in the admin
 
 .. _Upgrade Manual: https://piwigo.org/doc/doku.php?id=user_documentation:learn:upgrade:upgrade_automatic
 .. _release: https://piwigo.org/download/dlcounter.php?code=latest
-.. _Piwigo: https://piwigo.org/get-piwigos
+.. _Piwigo: https://piwigo.org/get-piwigo
 .. _feed: https://github.com/Piwigo/Piwigo/releases.atom
 .. _GNU General Public License: https://github.com/Piwigo/Piwigo/blob/master/COPYING.txt
 .. _Github Repository: https://github.com/Piwigo/Piwigo/releases
