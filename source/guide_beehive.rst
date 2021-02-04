@@ -52,7 +52,7 @@ Nothing special
 Installation
 ============
 
-Install ``Beehive`` globally:
+Install ``Beehive``:
 
 .. code-block:: console
 
