@@ -96,7 +96,7 @@ You might want to review these and other available `options`_.
 Setup Service
 -------------
 
-Use your favorite editor to create the file ``~/etc/service.d/influxd.ini``
+Use your favorite editor to create the file ``~/etc/services.d/influxd.ini``
 with the following content.
 
 .. code-block:: ini
