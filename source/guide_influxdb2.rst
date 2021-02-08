@@ -134,10 +134,12 @@ And provide these:
 Outside Access
 ==============
 
-.. include:: includes/web-backend.rst
+.. note::
 
-Use ``8086`` as *port* (or whatever you set for ``http-bind-address`` in your
-``~/etc/influxd.toml`` configuration).
+    InfluxDB is running on port ``8086``, also see ``http-bind-address``
+    in your ``~/etc/influxd.toml``.
+
+.. include:: includes/web-backend.rst
 
 Best practice
 =============
