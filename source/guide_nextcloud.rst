@@ -307,7 +307,7 @@ Both apps can be installed optional during the main install, but the huge docume
 
   [isabell@stardust html]$ cd apps
   [isabell@stardust apps]$ curl -L https://github.com/nextcloud/documentserver_community/releases/latest/download/documentserver_community.tar.gz | tar -xvzf -
-  [isabell@stardust html]$
+  [isabell@stardust apps]$
 
 Reload the admin panel and enable the Community Document Server.
 A click on a text/spreadsheet document should now start the Onlyoffice Editor.
