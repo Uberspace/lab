@@ -40,14 +40,6 @@ License
 
 Beehive is released under the `AGPL-3.0 License`_.
 
-Prerequisites
-=============
-
-Nothing special
-.. warning:: But be careful, Beehive has no login and defaults to bind to localhost. So to connect you should use ssh tunnel or use any kind of .htaccess Basic Auth or similar.
-
-::
-
 
 Installation
 ============
@@ -72,6 +64,8 @@ Web Backend Config
 ------------------
 
 .. warning:: Beehive_ will bind to locahost per default. There is no login. Please make sure to secure it before using it with external interface.
+.. warning:: To securely connect to the admin interface you should use ssh tunnel or use any kind of .htaccess Basic Auth or similar.
+
 
 .. include:: includes/web-backend.rst
 
