@@ -38,7 +38,7 @@ Connecting those modules with each other lets you create immensly useful agents.
 License
 =======
 
-Beehive is released under the `AGPL-3.0 License`_.
+Beehive is released under the `AGPL-3.0 License`.
 
 Prerequisites
 =============
