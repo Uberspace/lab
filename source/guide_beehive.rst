@@ -22,7 +22,7 @@ agents that perform automated tasks triggered by events and filters. It is
 modular, flexible and really easy to extend for anyone. It has modules
 (we call them *Hives*), so it can interface with, talk to, or retrieve
 information from Twitter, Tumblr, Email, IRC, Jabber, RSS, Jenkins, Hue - to
-name just a few. Check out the full list of [available Hives](https://github.com/muesli/beehive/wiki/Available-Hives)
+name just a few. Check out the full list of `available Hives`_
 in our Wiki.
 
 Connecting those modules with each other lets you create immensly useful agents.
@@ -38,7 +38,7 @@ Connecting those modules with each other lets you create immensly useful agents.
 License
 =======
 
-Beehive is released under the `AGPL-3.0 License_`.
+Beehive is released under the `AGPL-3.0 License`_.
 
 Prerequisites
 =============
@@ -115,9 +115,10 @@ Update by downloading new binary for x86 64 from https://github.com/muesli/beehi
 .. _Beehive: https://github.com/muesli/beehive
 .. _Version 0.4.0: https://github.com/muesli/beehive/releases/tag/v0.4.0
 .. _AGPL-3.0 License: https://github.com/muesli/beehive/blob/master/LICENSE
+.. _available Hives: https://github.com/muesli/beehive/wiki/Available-Hives
 
 ----
 
-Tested on Uberspace U7 with Go v1.15.7, Beehive Version 0.4.0_
+Tested on Uberspace U7 with Go v1.15.7, Beehive `Version 0.4.0`_
 
 .. author_list::
