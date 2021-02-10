@@ -443,7 +443,21 @@ Here is an example you probably don't want to keep on your Uberspace. To get rid
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
+Fehlermeldung "PHP configuration option output_buffering must be disabled" beheben
+----------------------------------------------------------------------------------
 
+Wenn nach einer Aktualisierung der Nextcloud der Fehler "PHP configuration option output_buffering must be disabled" gemeldet wird, dann muss zunächst die zur Behebung erforderliche PHP-Konfiguration mit folgender Kommandozeile ergänzt werden:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ echo "output_buffering = Off" >  ~/etc/php.d/output-buffering-disabled.ini
+ 
+Um die geänderte Konfiguration abschließend anzuwenden, muss PHP mittels folgender Kommandozeile neu gestartet werden:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools restart php
+ 
 ----
 
 Tested with Nextcloud 20.0.4, Uberspace 7.8.0.0
