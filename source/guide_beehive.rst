@@ -38,7 +38,7 @@ Connecting those modules with each other lets you create immensly useful agents.
 License
 =======
 
-Beehive is released under the `AGPL-3.0 License`.
+Beehive is released under the `AGPL-3.0 License_`.
 
 Prerequisites
 =============
@@ -114,10 +114,10 @@ Update by downloading new binary for x86 64 from https://github.com/muesli/beehi
 
 .. _Beehive: https://github.com/muesli/beehive
 .. _Version 0.4.0: https://github.com/muesli/beehive/releases/tag/v0.4.0
-.. _ AGPL-3.0 License: https://github.com/muesli/beehive/blob/master/LICENSE
+.. _AGPL-3.0 License: https://github.com/muesli/beehive/blob/master/LICENSE
 
 ----
 
-Tested on Uberspace U7 with Go v1.15.7, Beehive v0.4.0 
+Tested on Uberspace U7 with Go v1.15.7, Beehive Version 0.4.0_
 
 .. author_list::
