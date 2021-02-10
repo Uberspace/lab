@@ -56,12 +56,11 @@ Install ``Beehive``:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd
   [isabell@stardust ~]$ mkdir beehive
-  [isabell@stardust ~]$ wget https://github.com/muesli/beehive/releases/download/v0.4.0/beehive_0.4.0_Linux_x86_64.tar.gz
   [isabell@stardust ~]$ cd beehive
-  [isabell@stardust ~]$ tar -xzvf beehive_0.4.0_Linux_x86_64.tar.gz
-  [isabell@stardust ~]$ rm beehive_0.4.0_Linux_x86_64.tar.gz
+  [isabell@stardust beehive]$ wget https://github.com/muesli/beehive/releases/download/v0.4.0/beehive_0.4.0_Linux_x86_64.tar.gz
+  [isabell@stardust beehive]$ tar -xzvf beehive_0.4.0_Linux_x86_64.tar.gz
+  [isabell@stardust beehive]$ rm beehive_0.4.0_Linux_x86_64.tar.gz
   
 
 Configuration
