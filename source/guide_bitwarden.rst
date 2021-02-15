@@ -118,9 +118,10 @@ Generate an ``openssl -base64`` key now and save it temporarily, you'll need it 
 Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following content:
 
 .. code-block:: ini
+  :emphasize-lines: 1,4,5,8,9,11
 
- ADMIN_TOKEN=PASTE YOUR TOKEN GENERATED ABOVE HERE # generate one with ~$ openssl rand -base64 48
- ROCKET_PORT=62714 # your port here
+ ADMIN_TOKEN=PASTE YOUR TOKEN GENERATED ABOVE HERE
+ ROCKET_PORT=62714
 
  SMTP_HOST=stardust.uberspace.de
  SMTP_FROM=isabell@uber.space
