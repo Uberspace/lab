@@ -93,36 +93,30 @@ Now it's time to change some entries in the configuration file ``~/etc/searx/set
 
 .. code-block:: console
 
-[isabell@stardust ~]$ openssl rand -hex 16
-012345678901234x
+  [isabell@stardust ~]$ openssl rand -hex 16
+  012345678901234x
 
 
 .. code-block:: yaml
  :emphasize-lines: 5,13,14,15
 
-use_default_settings: True
+  use_default_settings: True
 
-general:
-    debug : False # Debug mode, only for development
-    instance_name : "searx" # displayed name
+  general:
+      debug : False # Debug mode, only for development
+      instance_name : "searx" # displayed name
 
-search:
-    safe_search : 0 # Filter results. 0: None, 1: Moderate, 2: Strict
-    autocomplete : "" # Existing autocomplete backends: "dbpedia", "duckduckgo", "google", "startpage", "swisscows", "qwant", "wikipedia" - leave blank to turn it off by default
-    default_lang : "" # Default search language - leave blank to detect from browser information or use codes from 'languages.py'
+  search:
+      safe_search : 0 # Filter results. 0: None, 1: Moderate, 2: Strict
+      autocomplete : "" # Existing autocomplete backends: "dbpedia", "duckduckgo", "google", "startpage", "swisscows", "qwant", "wikipedia" - leave blank to turn it off by default
+      default_lang : "" # Default search language - leave blank to detect from browser information or use codes from 'languages.py'
 
-server:
-    port : 8888
-    bind_address : "0.0.0.0" # address to listen on
-    secret_key : "012345678901234x" # change this with your own secret key!
-    base_url : False # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
-    image_proxy : False # Proxying image results through searx
-
-# uncomment below section if you have running morty proxy
-#result_proxy:
-#    url : http://127.0.0.1:3000/
-#    key : !!binary "your_morty_proxy_key"
-
+  server:
+      port : 8888
+      bind_address : "0.0.0.0" # address to listen on
+      secret_key : "012345678901234x" # change this with your own secret key!
+      base_url : False # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
+      image_proxy : False # Proxying image results through searx
 
 Step 4 - Supervisord Setup
 --------------------------
@@ -131,11 +125,11 @@ At first we must create the service file ``~/etc/services.d/searx.ini`` with the
 
 .. code-block::
 
-[program:searx]
-environment=SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
-autostart=yes
-autorestart=yes
-command=python3 %(ENV_HOME)s/opt/searx/searx/webapp.py
+  [program:searx]
+  environment=SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
+  autostart=yes
+  autorestart=yes
+  command=python3 %(ENV_HOME)s/opt/searx/searx/webapp.py
 
 .. include:: includes/supervisord.rst
 
@@ -159,7 +153,7 @@ Any configuration changes will be considered with a restart of the daemon:
 
 .. code-block:: console
 
-[isabell@stardust ~]$ supervisorctl restart searx
+  [isabell@stardust ~]$ supervisorctl restart searx
 
 Tuning
 ======
