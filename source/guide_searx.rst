@@ -34,6 +34,7 @@ Searx is released under the `GNU Affero General Public License`_.
   * domains_
   * `web backends`_
 
+
 Installation
 ============
 
@@ -57,13 +58,13 @@ Step 2 - Python Module Installation
 
 ----
 
-.. note:: Here we use python 3. This is the reason, that these guide consider this version aspect to the installation tool like ``pip`` and later to ``python`` it self.
+.. note:: Here we use Python 3, instead of the default Python 2. For this reason, all ``pip`` and ``python`` commands need a version postfix ``3`` like below.
 
-Some python modules are necessary and will be installed in your uberspace with ``pip3`` and the option ``--user``:
+Some required Python modules are necessary and will be installed in your uberspace with ``pip3`` and the options ``--user``, ``--upgrade`` and ``--requirement``:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ pip3 install --user requests pyyaml pygments werkzeug babel flask flask_babel lxml langdetect python-dateutil
+ [isabell@stardust ~]$ pip3 install --user --upgrade --requirement ~/opt/searx/requirements.txt
 
 Step 3 - Searx Configuration
 ----------------------------
@@ -80,22 +81,21 @@ And copy the example file with basic default settings to the new directory:
 
  [isabell@stardust ~]$ cp ~/opt/searx/utils/templates/etc/searx/use_default_settings.yml ~/etc/searx/settings.yml
 
-Now it's time to change some entries in the configuration file:
+Now it's time to change some entries in the configuration file ``~/etc/searx/settings.yml`` with your favourite editor. But here are the aspects to consider:
 
-1. Searx requires for the own instance a secret key. This random number will be created with openssl (16 digits) and placed direct in the config file via sed, the stream editor.
+1. You can change the name of your own searx instance. The standard name is "searx".
 
-.. code-block:: console
-
- [isabell@stardust ~]$ sed -i -e "s/ultrasecretkey/`openssl rand -hex 16`/g" ~/etc/searx/settings.yml
-
-
-2. You can change the name of your own searx instance. The standard name is "searx".
+2. The port with ``8888`` will not be touched, but keep this number in your mind for later configurtations.
 
 3. The bind address must be changed to ``0.0.0.0``, to work with `web backends`_ in a common way.
 
-----
+4. Searx requires for the own instance a secret key. This random number will be created with openssl (16 digits) and please save it temporarily:
 
-.. note:: The port with ``8888`` will not be touched, but keep this number in your mind for later configurtations.
+.. code-block:: console
+
+[isabell@stardust ~]$ openssl rand -hex 16
+012345678901234x
+
 
 .. code-block:: yaml
  :emphasize-lines: 5,13,14,15
@@ -114,7 +114,7 @@ search:
 server:
     port : 8888
     bind_address : "0.0.0.0" # address to listen on
-    secret_key : "01234567890123456" # change this!
+    secret_key : "012345678901234x" # change this with your own secret key!
     base_url : False # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
     image_proxy : False # Proxying image results through searx
 
@@ -127,86 +127,51 @@ server:
 Step 4 - Supervisord Setup
 --------------------------
 
-At first we must create the service file ``~/etc/services.d/searx.ini`` and the following content:
-
-.. warning:: The PATH variable consider the installed Python modules regarding to the version 3.6 at this time point. Please have a look in the directory ``~/.local/lib/`` to be sure which version is the actual ones.
+At first we must create the service file ``~/etc/services.d/searx.ini`` with the following content:
 
 .. code-block::
- :emphasize-lines: 2
 
 [program:searx]
-environment =
- PATH="%(ENV_HOME)s/opt/searx/:%(ENV_HOME)s/.local/lib/python3.6/:%(ENV_PATH)s",
- SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
+environment=SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
 autostart=yes
 autorestart=yes
 command=python3 %(ENV_HOME)s/opt/searx/searx/webapp.py
 
 
-We must report to supervisord that there is a new ini file to consider:
+After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ supervisorctl reread
- searx: available
+[isabell@stardust ~]$ supervisorctl reread
+SERVICE: available
+[isabell@stardust ~]$ supervisorctl update
+SERVICE: added process group
+[isabell@stardust ~]$ supervisorctl status
+SERVICE                            RUNNING   pid 26020, uptime 0:03:14
+[isabell@stardust ~]$
 
 
- And then to start the daemon:
+At this time point, searx should run in the background.
 
- .. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl update
- searx: added process group
-
-
-At this time point, searx should be run in the background.
-
-Step 5 - Domain Setup
----------------------
-
-This guide consider a subdomain ``searx.isabell.example`` for your own searx instance.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ uberspace web domain add searx.isabell.example
-
-.. note:: Please be sure, that your new subdomain is configured at your domain provider too.
-
-If you want to find out that everthing is maintained for the web server on your Uberspace account, use the command:
-
-.. code-block:: console
-
-[isabell@stardust ~]$ uberspace web domain list
-isabell.example
-searx.isabell.example
-isabell.uber.space
-
-Step 6 - Web Backend Setup
+Step 5 - Web Backend Setup
 --------------------------
 
-This step is important, that your running searx instance is reachable from outside.
+This step is important, to make the application accessible from outside. Please configure a `web backend`_:
 
-If this your first time to use web backends, you have to set it up:
+----
+
+.. note:: Please remember, searx is listining on port 8888.
+
 
 .. code-block:: console
 
-[isabell@stardust ~]$ uberspace web backend
-
-Manage backends in web server configuration.
-
-Possible commands:
-  del — Delete web backend for a given domain and path.
-  list — List all configured web backends.
-  set — Set web backend for a given domain and path.
+[isabell@stardust ~]$ uberspace web backend set / --http --port <port>
+Set backend for / to port <port>; please make sure something is listening!
+You can always check the status of your backend using "uberspace web backend list".
+[isabell@stardust ~]$
 
 
-The following command supports the incomming request with the address http://searx.isabell.example and route this to the searx-daemon, listening on port ``8888``.
-
-.. code-block:: console
-
-[isabell@stardust ~]$ uberspace web backend set searx.isabell.example --http --port 8888
-
-Step 7 - Debugging
+Step 6 - Debugging
 ------------------
 
 In case of problems, the log file ``~/logs/supervisord.log`` is the first point for you.
@@ -223,7 +188,7 @@ The basic configuration is quiet well. Nearly all aspects to change are prossibl
 
 If you want to reduce the search services for example by default, than you have to change the standard configuration.
 
-The official documentation_ is a good address. A bigger configuration file example is available at ``~/opt/searx/searx/setting.yml``
+The official documentation_ is a good address. A bigger configuration file example is available at ``~/opt/searx/searx/setting.yml``.
 
 
 .. _Searx: https://github.com/searx/searx
@@ -234,6 +199,7 @@ The official documentation_ is a good address. A bigger configuration file examp
 .. _domains: https://manual.uberspace.de/web-domains/
 .. _web backends: https://manual.uberspace.de/web-backends/
 .. _documentation: https://searx.github.io/searx/
+.. _web backend: https://manual.uberspace.de/web-backends/
 
 ----
 
