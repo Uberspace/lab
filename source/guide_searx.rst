@@ -137,39 +137,18 @@ autostart=yes
 autorestart=yes
 command=python3 %(ENV_HOME)s/opt/searx/searx/webapp.py
 
+.. include:: includes/supervisord.rst
 
-After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
-[isabell@stardust ~]$ supervisorctl reread
-SERVICE: available
-[isabell@stardust ~]$ supervisorctl update
-SERVICE: added process group
-[isabell@stardust ~]$ supervisorctl status
-SERVICE                            RUNNING   pid 26020, uptime 0:03:14
-[isabell@stardust ~]$
-
-
-At this time point, searx should run in the background.
+If it's not in state RUNNING, check your configuration.
 
 Step 5 - Web Backend Setup
 --------------------------
 
-This step is important, to make the application accessible from outside. Please configure a `web backend`_:
+.. note::
 
-----
+    SearX is running on port 8888.
 
-.. note:: Please remember, searx is listining on port 8888.
-
-
-.. code-block:: console
-
-[isabell@stardust ~]$ uberspace web backend set / --http --port <port>
-Set backend for / to port <port>; please make sure something is listening!
-You can always check the status of your backend using "uberspace web backend list".
-[isabell@stardust ~]$
-
+.. include:: includes/web-backend.rst
 
 Step 6 - Debugging
 ------------------
