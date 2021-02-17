@@ -118,7 +118,7 @@ Generate an ``openssl -base64`` key now and save it temporarily, you'll need it 
 Use your favourite editor to create ``~/bitwarden_rs/.env`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 1,4,5,8,9,11
+ :emphasize-lines: 1,4,5,8,9,11
 
  ADMIN_TOKEN=PASTE YOUR TOKEN GENERATED ABOVE HERE
  ROCKET_PORT=62714
