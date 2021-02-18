@@ -60,9 +60,9 @@ We're installing a compiled restic binary for a 64-bit machine, and making it ex
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.11.0/restic_0.11.0_linux_amd64.bz2
- [isabell@stardust ~]$ bzip2 -d restic_0.11.0_linux_amd64.bz2
- [isabell@stardust ~]$ mv restic_0.11.0_linux_amd64 ~/bin/restic
+ [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.12.0/restic_0.12.0_linux_amd64.bz2
+ [isabell@stardust ~]$ bzip2 -d restic_0.12.0_linux_amd64.bz2
+ [isabell@stardust ~]$ mv restic_0.12.0_linux_amd64 ~/bin/restic
  [isabell@stardust ~]$ chmod 700 ~/bin/restic
  [isabell@stardust ~]$
 
@@ -197,6 +197,6 @@ The binaries can be updated by using the ``restic self-update`` command or by bu
 
 ----
 
-Tested with Restic 0.11.0, Uberspace 7.7.9.0
+Tested with Restic 0.12.0, Uberspace 7.9.0.0
 
 .. author_list::
