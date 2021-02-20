@@ -108,14 +108,12 @@ Clone the Baby Buddy source code from Github into the first folder.
 
 Dependencies
 ------------
-Install all the requirements. Since we are working with Python 3, we need to use a flag:
-
-  * ``--three``: Use Python 3 when creating virtualenv
+Install all the requirements.
 
 ::
 
  [isabell@stardust ~]$ cd ~/babybuddy/public/
- [isabell@stardust public]$ pipenv install --three
+ [isabell@stardust public]$ pipenv install --python python3.8
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 39/39 — 00:00:54
  To activate this project's virtualenv, run pipenv shell.
@@ -126,7 +124,7 @@ Also, install the package ``mysqlclient``:
 
 ::
 
- [isabell@stardust public]$ pipenv install mysqlclient --three
+ [isabell@stardust public]$ pipenv install mysqlclient
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 40/40 — 00:00:02
  To activate this project's virtualenv, run pipenv shell.
