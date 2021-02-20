@@ -66,7 +66,7 @@ You need `pipenv`_, a package manager/virtual environment tool for Python, so in
 Installation
 ============
 
-Step 1
+Python
 ------
 During the installation process, you want to use Python in version 3.6. Set an alias for that:
 
@@ -77,8 +77,8 @@ During the installation process, you want to use Python in version 3.6. Set an a
  Python 3.6.7
  [isabell@stardust ~]$
 
-Step 2
-------
+Database
+--------
 Baby Buddy will store its data in a :manual:`MySQL <database-mysql>` database. Create one with the name ``<username>_babybuddy``.
 
 ::
@@ -86,8 +86,8 @@ Baby Buddy will store its data in a :manual:`MySQL <database-mysql>` database. C
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_babybuddy DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
  [isabell@stardust ~]$
 
-Step 3
-------
+Download
+--------
 Create two folders, one for the source code and one for the application's data.
 
 ::
@@ -106,8 +106,8 @@ Clone the Baby Buddy source code from Github into the first folder.
  Resolving deltas: 100% (2734/2734), done.
  [isabell@stardust ~]$
 
-Step 4
-------
+Dependencies
+------------
 Install all the requirements. Since we are working with Python 3, we need to use a flag:
 
   * ``--three``: Use Python 3 when creating virtualenv
@@ -226,8 +226,8 @@ In our example, the file ``~/babybuddy/public/babybuddy/settings/production.py``
 
    USE_X_FORWARDED_HOST = True
 
-Step 6
-------
+Database Schema
+---------------
 
 Enter the virtual environment, initialize the database tables and exit the virtual environment again:
 
