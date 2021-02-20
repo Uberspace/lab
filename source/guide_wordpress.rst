@@ -74,7 +74,7 @@ You will need to enter the following information:
  Success: Generated 'wp-config.php' file.
  [isabell@stardust html]$ wp db create
  Success: Database created.
- [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
+ [isabell@stardust html]$ wp core install --url=${USER}.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
  Admin password: SuperSecretSecurePassword
  Success: WordPress installed successfully.
  [isabell@stardust html]$
