@@ -110,40 +110,6 @@ Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, `
       "QueryTimeout": 30
     },
 
-To configure plugins you have to change the plugin path under ``PluginSettings``:
-
-.. code-block:: javascript
- :emphasize-lines: 1,2
-
-      "Directory": "/home/isabell/mattermost/plugins",
-      "ClientDirectory": "/home/isabell/mattermost/client/plugins",
-
-Additionally, the file storage settings need to be adjusted. Find the ``FileSettings`` section and replace the ``Directory`` line:
-
-.. code-block:: javascript
- :emphasize-lines: 7
-
-    "FileSettings": {
-      "EnableFileAttachments": true,
-      "EnableMobileUpload": true,
-      "EnableMobileDownload": true,
-      "MaxFileSize": 52428800,
-      "DriverName": "local",
-      "Directory": "/home/isabell/mattermost/data/",
-      "EnablePublicLink": false,
-      "PublicLinkSalt": "",
-      "InitialFont": "nunito-bold.ttf",
-      "AmazonS3AccessKeyId": "",
-      "AmazonS3SecretAccessKey": "",
-      "AmazonS3Bucket": "",
-      "AmazonS3PathPrefix": "",
-      "AmazonS3Region": "",
-      "AmazonS3Endpoint": "s3.amazonaws.com",
-      "AmazonS3SSL": true,
-      "AmazonS3SignV2": false,
-      "AmazonS3SSE": false,
-      "AmazonS3Trace": false
-    },
 
 Configure web server
 --------------------
@@ -164,6 +130,7 @@ Create ``~/etc/services.d/mattermost.ini`` with the following content:
  [program:mattermost]
  command=%(ENV_HOME)s/mattermost/bin/mattermost
  autorestart=true
+ directory=%(ENV_HOME)s/mattermost
 
 
 .. include:: includes/supervisord.rst
