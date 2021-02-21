@@ -37,15 +37,15 @@ Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer
 Prerequisites
 =============
 
-We are using PHP_ in the stable version ``7.2``:
+We are using PHP_ in the stable version ``8.0``:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -216,11 +216,11 @@ Alternatively, the update can also be performed via the `Contao Manager`_ which 
 .. _feed: https://github.com/contao/contao/releases.atom
 .. _releases: https://github.com/contao/contao/releases
 .. _news: https://contao.org/news.html
-.. _Contao Manager: https://docs.contao.org/books/manager/
+.. _Contao Manager: https://docs.contao.org/manual/en/installation/contao-manager/
 .. _download: https://contao.org/download.html
 
 ----
 
-Tested with Contao 4.6.10 / Uberspace 7.1.18.0
+Tested with Contao 4.11.0 / Uberspace 7.9.0.0
 
 .. author_list::
