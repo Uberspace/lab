@@ -82,6 +82,7 @@ We will install synapse using pip, which makes it quite easy:
 .. note:: If you get a compilation error due to missing rust components in the cryptography library for python it may help to run:
 
 .. code-block:: console
+
   [isabell@stardust ~]$ pip3.6 install --user setuptools_rust
   [isabell@stardust ~]$ python3 -m pip install --upgrade  --user pip
   [isabell@stardust ~]$ 
