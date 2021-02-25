@@ -40,12 +40,13 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We are using :manual:`PHP <lang-php>` in the version 8.0:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -101,7 +102,7 @@ To disable output buffering, create the file ``~/etc/php.d/output_buffering.ini`
 
 .. code-block:: ini
 
- output_buffering=0
+ output_buffering=off
 
 .. note:: After setting these PHP parameters, restart PHP to activate the changes
 
@@ -278,6 +279,20 @@ To reduce load on the mysql server and also improve transactional file locking y
 
 In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
 
+default phone region
+^^^^^^^^^^^^^^^^^^^^
+
+| This sets the default phone region for phone numbers to allow users to add phone numbers to their profile without the country calling code.
+| Nextcloud will then automatically add the default country calling code (e.g. +49 for Germany).
+| Change the value for this setting according to your `ISO 3166-1 country code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ like ``DE`` in this case.
+
+.. code-block:: console
+  :emphasize-lines: 1
+
+  [isabell@stardust html]$ php occ config:system:set default_phone_region --value='DE'
+  System config value default_phone_region set to string DE
+  [isabell@stardust html]$
+
 Database maintenance
 --------------------
 
@@ -446,6 +461,6 @@ Here is an example you probably don't want to keep on your Uberspace. To get rid
 
 ----
 
-Tested with Nextcloud 20.0.4, Uberspace 7.8.0.0
+Tested with Nextcloud 21.0.0, Uberspace 7.9.0.0
 
 .. author_list::
