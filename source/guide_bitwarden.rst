@@ -207,9 +207,15 @@ You can create a backup of the database manually. ``cd`` to your project folder,
 
  [isabell@stardust ~]$ cd ~/bitwarden_rs/data
  [isabell@stardust data]$ mkdir db-backup
- [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '~/bitwarden_rs/data/db-backup/backup.sqlite3'"
+ [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '$HOME/bitwarden_rs/data/db-backup/backup.sqlite3'"
 
-.. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time.
+.. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time. If you want to save every version of the backup, please read further.
+
+Alternatively, you can do the backup with a timestamp and it can be useful if you don't want that the CRON job overwrites the backup file. ``$(date +%Y-%m-%d)`` in the file name in the following command will generate a name with current year, month and day.
+
+.. code-block:: console
+
+ [isabell@stardust data]$ sqlite3 ~/bitwarden_rs/data/db.sqlite3 ".backup '$HOME/bitwarden_rs/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
 
 Restore up your vault manually
 ------------------------------
@@ -220,7 +226,7 @@ Before you restore a database backup make sure to stop the service:
 
  [isabell@stardust ~]$ supervisorctl stop bitwarden_rs
 
-To restore your database simply overwrite ``db.sqlite3`` with ``backup.sqlite3``. After replacing the file successfully you can restart the service again.
+To restore your database simply overwrite ``db.sqlite3`` with ``backup.sqlite3`` or the one with a specific timestamp. After replacing the file successfully you can restart the service again.
 
 .. code-block:: console
 
