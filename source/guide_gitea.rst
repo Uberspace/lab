@@ -355,6 +355,7 @@ To update do:
 * Start the application ``supervisorctl start gitea``
 * Check if the application is running ``supervisorctl status gitea``
 
+.. note:: Upgrade vom version 1.12.x to 1.13.x doesn't seem to work. Consider staying on version 1.12.x till further notice.
 
 .. _Gitea: https://gitea.io/en-US/
 .. _Gogs: https://gogs.io
