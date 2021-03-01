@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Felix Franz <https://www.felix-franz.com/>
+.. author:: Felix Franz <https://www.felix-franz.com>
 
 .. tag:: web
 
@@ -256,3 +256,9 @@ Debugging
 =========
 
 Refer to the `official TS3AudioBot wiki <https://github.com/Splamy/TS3AudioBot/wiki>`_!
+
+----
+
+Tested with TS3AudioBot 0.11.0, Uberspace 7.9.0.0
+
+.. author_list::
