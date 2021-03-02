@@ -23,7 +23,7 @@ Adminer_ (formerly phpMinAdmin) is a full-featured database management tool writ
 
 .. note::
 
-  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everbody to use. Therefore this guide is mainly for people who would like to customize Adminer to there needs.
+  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everbody to use. Therefore this guide is mainly for people who would like to customize Adminer to their needs.
 
   * Adminer: https://mysql.uberspace.de/adminer/
   * phpMyAdmin: https://mysql.uberspace.de/phpmyadmin/
@@ -37,7 +37,7 @@ Adminer_ is released under `Apache License 2.0`_ or `GPL 2`_.
 Installation (with Plugin Support)
 ==================================
 
-Check the current version of Adminer at `GitHub <https://github.com/vrana/adminer/releases>`_ and go the the folder where you want Adminer to be installed
+Check the current version of Adminer at `GitHub <https://github.com/vrana/adminer/releases>`_ and go the the folder where you want Adminer to be installed.
 
 .. code-block:: console
 
