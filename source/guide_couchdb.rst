@@ -106,26 +106,7 @@ Create ``~/etc/services.d/couchdb.ini`` with the following content:
   autostart=yes
   autorestart=yes
 
-Afterwards, ask ``supervisord`` to look for our new service:
-
-.. code-block:: bash
-
-  [isabell@stardust ~]$ supervisorctl reread
-  couchdb: available
-
-And then start your daemon:
-
-.. code-block:: bash
-
-  [isabell@stardust ~]$ supervisorctl update
-  couchdb: added process group
-
-Check the status:
-
-.. code-block:: bash
-
-  [isabell@stardust ~]$ supervisorctl status
-  couchdb                          RUNNING   pid 1312, uptime 0:1:12
+.. include:: includes/web-domain-list.rst
 
 Finishing installation
 ======================
