@@ -16,98 +16,147 @@ CouchDB
 
 .. tag_list::
 
-CouchDB_ is a document-oriented database system. We provide binaries ready to start your own instance.
+Apache CouchDB_ is an open-source document-oriented NoSQL database, implemented in Erlang.
 
-Initialization
-==============
+CouchDB uses multiple formats and protocols to store, transfer, and process its data, it uses JSON to store data, JavaScript as its query language using MapReduce, and HTTP for an API.
 
-Environment
------------
+----
 
-First set the CouchDB admin password as an environment variable:
+.. note:: For this guide you should be familiar with the basic concepts of
+
+  * :manual:`the shell <basics-shell>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
+
+License
+=======
+
+All relevant legal information can be found here
+
+  * http://www.apache.org/licenses/LICENSE-2.0
+
+Prerequisites
+=============
+
+We're using :manual:`CouchDB <database-couchdb>` in the stable version 3:
 
 .. code-block:: bash
 
-  [eliza@dolittle ~]$ export COUCHDB_ADMIN_PASSWORD=asdfghjkl
+  [isabell@stardust ~]$ uberspace tools version use couchdb 3
+  Selected couchdb version 3
+  The new configuration is adapted immediately. Minor updates will be applied automatically.
+  [isabell@stardust ~]$
+
+.. include:: includes/my-print-defaults.rst
+
+Installation
+============
+
+Uberspace provides the latest binaries, see :manual:`CouchDB <database-couchdb>` on how to interact with them. No extra installation required!
+
+Configuration
+=============
+
+Environment setup
+-----------------
 
 Next we need to create directories for our configuration and application data:
 
 .. code-block:: bash
 
-  [eliza@dolittle ~]$ mkdir -p ~/etc/couchdb
-  [eliza@dolittle ~]$ mkdir -p ~/opt/couchdb
+  [isabell@stardust ~]$ mkdir -p ~/etc/couchdb
+  [isabell@stardust ~]$ mkdir -p ~/opt/couchdb
 
-Configuration
--------------
+Application config
+------------------
 
-We create the CouchDB configuration file at ``~/etc/couchdb/local.ini``:
+Create ``~/etc/couchdb/local.ini`` with the following content:
 
-.. code-block:: bash
+.. warning:: Replace ``<username>`` with your username!
 
-  [eliza@dolittle ~]$ mkdir -p $HOME/etc/couchdb
-  [eliza@dolittle ~]$ cat > $HOME/etc/couchdb/local.ini <<- EOM
+.. warning:: Replace ``<adminpassword>`` with your super secure password!
+
+.. code-block:: ini
+
   [couchdb]
   single_node=true
-  database_dir = /home/$USER/opt/couchdb/data
-  view_index_dir = /home/$USER/opt/couchdb/index
+  database_dir = /home/<username>/opt/couchdb/data
+  view_index_dir = /home/<username>/opt/couchdb/index
 
   [chttpd]
   port = 5984
   bind_address = 0.0.0.0
 
   [admins]
-  admin = $COUCHDB_ADMIN_PASSWORD
+  admin = <adminpassword>
   EOM
 
-Supervisor Service
-------------------
+.. note:: Make sure to set your own super secure admin password!
 
-Then we need a new supervisord service by creating the file ``~/etc/services.d/couchdb.ini`` with the following command:
+Setup daemon
+------------
 
-.. code-block:: bash
+Create ``~/etc/services.d/couchdb.ini`` with the following content:
 
-  [isabell@stardust ~]$ cat > ~/etc/services.d/couchdb.ini <<- EOM
+.. warning:: Replace ``<username>`` with your username!
+
+.. code-block:: ini
+
   [program:couchdb]
   command=couchdb -couch_ini /opt/couchdb/etc/default.ini %(ENV_HOME)s/etc/couchdb/local.ini
   autostart=yes
   autorestart=yes
   stderr_logfile=/home/$USER/logs/services.d/couchdb/err.log
   stdout_logfile=/home/$USER/logs/services.d/couchdb/out.log
-  EOM
 
 Afterwards, ask ``supervisord`` to look for our new service:
 
 .. code-block:: bash
 
-  [eliza@doolittle ~]$ supervisorctl reread
+  [isabell@stardust ~]$ supervisorctl reread
   couchdb: available
 
 And then start your daemon:
 
 .. code-block:: bash
 
-  [eliza@doolittle ~]$ supervisorctl update
+  [isabell@stardust ~]$ supervisorctl update
   couchdb: added process group
 
 Check the status:
 
 .. code-block:: bash
 
-  [eliza@doolittle ~]$ supervisorctl status
+  [isabell@stardust ~]$ supervisorctl status
   couchdb                          RUNNING   pid 1312, uptime 0:1:12
+
+Finishing installation
+======================
 
 If everything looks fine, you should now be able to query CouchDB using ``localhost:5984``:
 
 .. code-block:: bash
 
-  [eliza@dolittle ~]$ curl http://localhost:5984
+  [isabell@stardust ~]$ curl http://localhost:5984
   {"couchdb":"Welcome","version":"3.1.1","git_sha":"CENSORED","uuid":"CENSORED","features":["access-ready","partitioned","pluggable-storage-engines","reshard","scheduler"],"vendor":{"name":"The Apache Software Foundation"}}
+
+Best practices
+==============
+
+Security
+--------
+
+Change all default passwords. Especially the admin password within the config file. Don't get hacked!
 
 Web Backend
 -----------
 
-To expose your CouchDB using a web backend:
+To expose your CouchDB using a web backend (not recommended!):
 
 .. code-block:: bash
 
- [eliza@doolittle ~]$ uberspace web backend set /couchdb --http --port 5984 --remove-prefix
+ [isabell@stardust ~]$ uberspace web backend set /couchdb --http --port 5984 --remove-prefix
+
+----
+
+.. author_list::
