@@ -89,7 +89,6 @@ Create ``~/etc/couchdb/local.ini`` with the following content:
 
   [admins]
   admin = <adminpassword>
-  EOM
 
 .. note:: Make sure to set your own super secure admin password!
 
@@ -106,8 +105,6 @@ Create ``~/etc/services.d/couchdb.ini`` with the following content:
   command=couchdb -couch_ini /opt/couchdb/etc/default.ini %(ENV_HOME)s/etc/couchdb/local.ini
   autostart=yes
   autorestart=yes
-  stderr_logfile=/home/$USER/logs/services.d/couchdb/err.log
-  stdout_logfile=/home/$USER/logs/services.d/couchdb/out.log
 
 Afterwards, ask ``supervisord`` to look for our new service:
 
