@@ -2,7 +2,7 @@
 
 .. author:: Lukas Wolfsteiner <lukas@wolfsteiner.media>
 
-.. tag:: lang-c
+.. tag:: self-hosting
 .. tag:: database
 
 #######
