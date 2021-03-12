@@ -74,8 +74,6 @@ Create ``~/etc/couchdb/local.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username!
 
-.. warning:: Replace ``<adminpassword>`` with your super secure password!
-
 .. code-block:: ini
 
   [couchdb]
@@ -88,7 +86,7 @@ Create ``~/etc/couchdb/local.ini`` with the following content:
   bind_address = 0.0.0.0
 
   [admins]
-  admin = <adminpassword>
+  admin = SecureAdminPassword
 
 .. note:: Make sure to set your own super secure admin password!
 
@@ -118,13 +116,23 @@ If everything looks fine, you should now be able to query CouchDB using ``localh
   [isabell@stardust ~]$ curl http://localhost:5984
   {"couchdb":"Welcome","version":"3.1.1","git_sha":"CENSORED","uuid":"CENSORED","features":["access-ready","partitioned","pluggable-storage-engines","reshard","scheduler"],"vendor":{"name":"The Apache Software Foundation"}}
 
+Create database
+---------------
+
+Let's create a test database called ``testdb``:
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$ curl -X PUT http://admin:SecureAdminPassword@localhost:5984/testdb
+  {"couchdb":"Welcome","version":"3.1.1","git_sha":"CENSORED","uuid":"CENSORED","features":["access-ready","partitioned","pluggable-storage-engines","reshard","scheduler"],"vendor":{"name":"The Apache Software Foundation"}}
+
 Best practices
 ==============
 
 Security
 --------
 
-Change all default passwords. Especially the admin password within the config file. Don't get hacked!
+Change all default passwords. Especially the admin password within the config file ``~/etc/couchdb/local.ini``. Don't get hacked!
 
 Web Backend
 -----------
