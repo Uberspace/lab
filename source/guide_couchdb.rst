@@ -5,6 +5,11 @@
 .. tag:: self-hosting
 .. tag:: database
 
+.. sidebar:: About
+
+.. image:: _static/images/couchdb.svg
+      :align: center
+
 #######
 CouchDB
 #######
