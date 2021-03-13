@@ -66,7 +66,7 @@ Since the installer expects to be run with root privileges, we need to adjust so
   * ``--no-stack``: Disables the system stack check during setup. Since we're a shared hosting provider, the stack is maintained by us.
   * ``-no-setup-linux-user``: Skips creating a linux user. You can't do that without root privileges.
   * ``--no-setup-systemd``: Skips creation of a systemd unit file. We'll use supervisord_ later instead.
-  * ``--no-setup-nginx``: Skips webserver configuration. We'll use a htaccess_ file for apache_ later instead.
+  * ``--no-setup-nginx``: Skips web server configuration. We'll use an htaccess_ file for apache_ later instead.
   * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
 ```
 
@@ -186,11 +186,11 @@ Comple the code
 Configuration
 =============
 
-Configure Webserver
--------------------
+Configure the web server
+------------------------
 
-Setup daemon
-------------
+Set up the daemon
+-----------------
 
 Finishing installation
 ======================
@@ -231,6 +231,6 @@ Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) for all your changes. Start each commit message with `[toolname]` and a space, like `[wordpress] add update info`. If you create a new guide, your first commit message should be phrased as: `[wordpress] add guide for wordpress`.
 
-If you already commited your changes without following this styleguide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
+If you already committed your changes without following this style guide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
 
-When you're happy with your guide create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
+When you're happy with your guide, create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
