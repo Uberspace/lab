@@ -242,8 +242,6 @@ Open the file and insert the following content:
   * You can configure the service via the ``environment`` variables (highlighted!).
   * Multiple file server domains can be separated by ``|``.
   * By default, LibreOffice assumes the file server to be a WOPI host.
-  * To serve `LibreOffice Online`_ at a different port than 9980, add the option
-    ``--port <port>`` to ``extra_params``.
   * If you setup the web backend to a subpath of the document root, you must also
     set ``--o:net.service_root=<subpath>`` in ``extra_params``.
   * Options given as ``extra_params`` override options from the config file.
