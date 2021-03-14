@@ -31,7 +31,6 @@ Connecting those modules with each other lets you create immensly useful agents.
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Go <lang-go>`
-  * :manual:`Web Backends <web-backends>`
   * :manual:`Supervisord <daemons-supervisord>`
   * :manual:`Domains <web-domains>`
 
@@ -60,15 +59,6 @@ Configuration
 
 Beehive will generate default config on startup
 
-Web Backend Config
-------------------
-
-.. warning:: Beehive_ will bind to locahost per default. There is no login. Please make sure to secure it before using it with external interface.
-.. warning:: To securely connect to the admin interface you should use ssh tunnel or use any kind of .htaccess Basic Auth or similar.
-
-
-.. include:: includes/web-backend.rst
-
 Supervisord Daemon Setup
 ------------------------
 
@@ -81,25 +71,14 @@ Create ``~/etc/services.d/beehive.ini`` with the following content:
   autostart=yes
   autorestart=yes
 
-.. warning:: If you want public access then use the following content (be sure to secure your access, beehive will not do this):
-
-.. code-block:: ini 
-
-  [program:beehive]
-  command=%(ENV_HOME)s/beehive/beehive -bind "0.0.0.0:8181" -canonicalurl "https://isabell.uber.space"
-  autostart=yes
-  autorestart=yes
-
 .. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
 
-With internal access go to ``http://localhost:8181``
-with external access go to ``https://isabell.uber.space`` 
-configure your bees.
+.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_. 
 
-I recommend using beehive without external domain. Simply use ssh tunnel for configuration so no auth is needed.
+To finish the installation, go to ``http://localhost:8181``.
 
 Updates
 =======
@@ -110,6 +89,7 @@ Update by downloading new binary for x86 64 from https://github.com/muesli/beehi
 .. _Version 0.4.0: https://github.com/muesli/beehive/releases/tag/v0.4.0
 .. _AGPL-3.0 License: https://github.com/muesli/beehive/blob/master/LICENSE
 .. _available Hives: https://github.com/muesli/beehive/wiki/Available-Hives
+.. _SSH port forwarding: https://www.ssh.com/ssh/tunneling/example
 
 ----
 
