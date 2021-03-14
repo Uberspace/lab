@@ -240,6 +240,14 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
  */5  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
+Configure Nextcloud to rely on the configured cronjob:
+
+::
+
+  [isabell@stardust html]$ php occ background:cron
+  Set mode for background jobs to 'cron'
+
+
 Memcaching
 ----------
 
