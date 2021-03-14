@@ -436,7 +436,7 @@ Check the new version:
  psql (PostgreSQL) 13.2
  [isabell@stardust ~]$
 
-For the new database cluster, create the temporary password file. You can copy the existing .pgpass file as base, but finally only the password is necessary.
+For the new database cluster, create the temporary password file. You can copy the existing .pgpass file as a base, but make sure to delete everything (header, usernames, hostnames, etc.) except the password.
 
 In our example this would be:
 
