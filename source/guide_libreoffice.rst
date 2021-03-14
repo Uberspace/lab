@@ -162,10 +162,9 @@ First, configure `udocker`_ to use `fakechroot`_ instead of `proot`_:
 Configure webserver
 -------------------
 
-The LibreOffice web server listens on port 9980 by default. You can find out if
-another service is already listening on this port by running ``netstat -tulpen
-| grep 9980``. If nothing is displayed, everything is fine. If the port is
-blocked, configure an explicit port later.
+.. note::
+
+    The LibreOffice web server is running on port 9980.
 
 .. include:: includes/web-backend.rst
 
