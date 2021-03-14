@@ -81,11 +81,11 @@ Run ``psql --version`` to verify the installation so far:
 The Database Cluster
 --------------------
 
-A database cluster is the base for all new single databases. We will define the location for the cluster and the user password. The user name for the cluster is automatically predefined with your Uberspace name.
+A database cluster is the base for all new single databases. We will define the location for the cluster and the user password. The user name for the cluster is the same as your Uberspace name.
 
 To reduce the effort for the database cluster administration, we will define at first the password and save it to the file *.pgpass*.
 
-We will create a random number with openssl (64 characters) and save it direct into the password file:
+We will create a random string with openssl (64 characters) and save it direct into the password file:
 
 ::
 
@@ -158,7 +158,7 @@ Now create the database cluster:
 
  [isabell@stardust ~]$
 
-The temporary password file is not more necessary:
+The temporary password file is no longer necessary:
 
 ::
 
@@ -314,7 +314,7 @@ To configure your project with the PostgreSQL details, you should have the datab
 Updates
 =======
 
-The update process has some dependencies. Especially the free available space of your Uberspace, because the update process will take temporary ca. the same capacity of your existing data.
+The update process has one dependency, the free available space of your affected Uberspace. Because the update process will take temporary ca. the same capacity of your existing PostgreSQL instance data for a local backup. After the data migration the backup will be deleted and you will have the same capacity situation as before.
 
 Step 1 - Check the Database Volume
 ----------------------------------
@@ -436,7 +436,7 @@ Check the new version:
  psql (PostgreSQL) 13.2
  [isabell@stardust ~]$
 
-For the new database cluster, create the temporary password file. You can copy the existing .pgpass file as a base, but make sure to delete everything (header, usernames, hostnames, etc.) except the password.
+For the new database cluster, create the temporary password file. You can copy the existing .pgpass file as base, but make sure to delete everything (header, usernames, hostnames, etc.) except the password.
 
 In our example this would be:
 
