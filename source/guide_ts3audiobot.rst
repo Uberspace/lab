@@ -69,8 +69,7 @@ Copy your `unique id`.
 To configure the bot, start it interactively and input your configuration data (unique TeamSpeak user id, server name, server password, ...).
 After the configuration is done, the bot will automatically connect to the TeamSpeak3 server.
 
-::
-
+.. code-block:: console
  :emphasize-lines: 1,10,12,17,19
  
  [isabell@stardust ts3audiobot]$ dotnet TS3AudioBot.dll
