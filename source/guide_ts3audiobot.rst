@@ -258,13 +258,12 @@ Replace all files with the current release (backup your data in advance):
 Uninstallation
 ==============
 
-Remove reverse proxy to the web interface:
+Remove web backend:
 
 ::
 
- [isabell@stardust ~]$ rm ~/html/.htaccess
-
-.. include:: includes/supervisord.rst
+ [isabell@stardust ~]$ uberspace web backend del /
+ The web backend has been deleted.
 
 
 Remove Service file:
