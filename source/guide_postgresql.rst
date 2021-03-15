@@ -207,6 +207,7 @@ Consider using only unix sockets if possible.
 
  # - Connection Settings -
 
+#listen_addresses = '*'                 # what IP address(es) to listen on;
  listen_addresses = 'localhost'         # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
@@ -367,9 +368,11 @@ Check running daemons:
  postgresql                             RUNNING   pid 14711, uptime 0:00:05
  [isabell@stardust ~]$
 
- And stop all affected daemons:
+And stop all affected daemons:
 
 .. warning:: Please don't stop the PostgreSQL-Daemon.
+
+::
 
  [isabell@stardust ~]$ supervisorctl stop my-daemon
  my-daemon: stopped
