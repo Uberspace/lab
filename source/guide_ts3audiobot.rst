@@ -45,14 +45,14 @@ Download release file:
  [isabell@stardust ~]$ mkdir ts3audiobot
  [isabell@stardust ~]$ cd ts3audiobot
  [isabell@stardust ts3audiobot]$ wget https://github.com/Splamy/TS3AudioBot/releases/latest/download/TS3AudioBot_dotnet_core_3.1.zip
-(...)
-HTTP request sent, awaiting response... 200 OK
-Length: 12161538 (12M) [application/octet-stream]
-Saving to: ‘TS3AudioBot_dotnet_core_3.1.zip’
-
-100%[=====================================>] 12,161,538  49.3MB/s   in 0.2s   
-
-2021-03-14 16:09:26 (49.3 MB/s) - ‘TS3AudioBot_dotnet_core_3.1.zip’ saved [12161538/12161538]
+ (...)
+ HTTP request sent, awaiting response... 200 OK
+ Length: 12161538 (12M) [application/octet-stream]
+ Saving to: ‘TS3AudioBot_dotnet_core_3.1.zip’
+ 
+ 100%[=====================================>] 12,161,538  49.3MB/s   in 0.2s   
+ 
+ 2021-03-14 16:09:26 (49.3 MB/s) - ‘TS3AudioBot_dotnet_core_3.1.zip’ saved [12161538/12161538]
 
 Extract zip archive:
 
