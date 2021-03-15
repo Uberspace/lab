@@ -95,23 +95,6 @@ After the configuration is done, the bot will automatically connect to the TeamS
  16:12:41.2601| INFO|| Bot "default" connecting to "1.3.3.7:9987"
  16:12:41.8483| INFO|| Started Webserver on port 58913
 
-.. warning::
-
- The bot also starts a webinterface by default on port 58913. If the port is already used you need to change this port.
-
- If you see such a error message stop the bot by ``Ctrl+C`` and configure another port.
- You might re-try this process until you reach a freee port.
- Change ``~/ts3audiobot/ts3audiobot.toml`` from
-
- .. code-block:: toml
-
-  port = 58913
-
- to
-
- .. code-block:: toml
-
-  port = <another port>
 
 The bot should now be connected.
 Check it by connecting youself to the server.
