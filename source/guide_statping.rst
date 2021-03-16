@@ -56,12 +56,12 @@ Installation
 
 Now let's get started with installing Statping .
 
-Start with cloning the Statping binaries from Github_ and be sure to replace the version ``v0.80.70`` with the current release number!:
+Start with cloning the Statping binaries from Github_ and be sure to replace the version ``v0.90.74`` with the current release number!:
 
 ::
 
  [isabell@stardust ~]$ cd statping
- [isabell@stardust statping]$ curl -sL https://github.com/statping/statping/releases/download/v0.80.70/statping-linux-x64.tar.gz | tar xz
+ [isabell@stardust statping]$ curl -sL https://github.com/statping/statping/releases/download/v0.90.74/statping-linux-amd64.tar.gz | tar xz
  [isabell@stardust statping]$ ls
  statping  statping.asc
 
