@@ -17,10 +17,10 @@ Snibox is a self-hosted snippet manager. Developed to collect and organize code 
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PostgreSQL_
-  * Ruby_
-  * supervisord_
-  * domains_
+  * :lab:`PostgreSQL <guide_postgresql>`
+  * :manual:`Ruby <lang-ruby>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 
 License
