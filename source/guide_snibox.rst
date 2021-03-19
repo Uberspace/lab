@@ -41,12 +41,6 @@ For this service we need to use Ruby in the version 2.6 and PostgreSQL in the ve
     Selected ruby version 2.6
     The new configuration is adapted immediately. Patch updates will be applied automatically.
 
- [isabell@stardust ~]$ uberspace tools version list postgresql
-    - 10
-    - 11
-    - 12
-    - 13
-
  [isabell@stardust ~]$ uberspace tools version use postgresql 12
  Using 'postgresql' version: 13
 
