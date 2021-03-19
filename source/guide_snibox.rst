@@ -72,6 +72,11 @@ Step 1 - Download & Extract
 ::
 
  [isabell@stardust ~]$ git clone https://github.com/snibox/snibox.git
+ Cloning into 'snibox'...
+ remote: Enumerating objects: 2609, done.
+ remote: Total 2609 (delta 0), reused 0 (delta 0), pack-reused 2609
+ Receiving objects: 100% (2609/2609), 778.57 KiB | 15.57 MiB/s, done.
+ Resolving deltas: 100% (1528/1528), done.
  [isabell@stardust ~]$ cd snibox/
 
 Step 2 - Install bundler & dependencies
