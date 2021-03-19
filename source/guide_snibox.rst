@@ -54,8 +54,8 @@ If you want to use Snibox with your own domain you need to setup your domains fi
 Installation
 ============
 
-Step 1 - Download & Extract
----------------------------
+Download & Extract
+------------------
 
 ::
 
@@ -67,8 +67,8 @@ Step 1 - Download & Extract
  Resolving deltas: 100% (1528/1528), done.
  [isabell@stardust ~]$ cd snibox/
 
-Step 2 - Install bundler & dependencies
----------------------------------------
+Install bundler & dependencies
+------------------------------
 
 ::
 
@@ -80,28 +80,27 @@ Step 2 - Install bundler & dependencies
 Configuration
 =============
 
-Step 1: Copy the example config file
-------------------------------------
+Copy the example config file
+----------------------------
 
 ::
 
  [isabell@stardust snibox]$ cp .env.production.sample .env
 
 
-Step 2: Generate a secret key for the service
----------------------------------------------
+Generate a secret key for the service
+-------------------------------------
 
 ::
 
  [isabell@stardust snibox]$ ./bin/rake secret
 
 
-Step 3: Edit the configuration
-------------------------------
+Edit the configuration
+----------------------
 
-::
+Use your favourite editor to edit ``~/snibox/.env`` with the following content:
 
- [isabell@stardust snibox]$ vim .env
 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
 
@@ -138,8 +137,8 @@ Finishing installation
 ======================
 
 
-Step 1 - Set Snibox to production
----------------------------------
+Set Snibox to production
+------------------------
 
 ::
 
@@ -148,59 +147,34 @@ Step 1 - Set Snibox to production
 
 
 
-Step 2 - Setup the web backend
-----------------------------
-To ensure a connection between Snibox you need to setup a backend connection to the port 3000:
+Setup the web backend
+---------------------
 
-::
+.. note::
+    Snibox is running on port 3000.
 
- [isabell@stardust snibox]$ web backend set / --http --port 3000
- Set backend for / to port 3000; please make sure something is listening!
- You can always check the status of your backend using "uberspace web backend list".
-
- [isabell@stardust snibox]$ uberspace web backend list
- / http:3000 => OK, listening: PID 19995, puma 3.12.1 (tcp://0.0.0.0:3000) [snibox]
+.. include:: includes/web-backend.rst
 
 
+Create the snibox service
+-------------------------
+Use your favourite editor to create ``~/etc/services.d/snibox.ini`` with the following content:
 
-
-Step 3 - Create the snibox service
-----------------------------------
-Create the service file.
-
-::
-
- [isabell@stardust snibox]$ vim ~/etc/services.d/snibox.ini
-
-::
+.. code-block:: ini
 
  [program:snibox]
  environment=RAILS_ENV=production
  command=/home/testy/snibox/bin/rails s
+ autostart=yes
+ autorestart=yes
 
-Load the configuration.
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust snibox]$ supervisorctl reread
-
-Update supervisorctl.
-
-::
-
- [isabell@stardust snibox]$ supervisorctl update
-
-Check if snibox is running.
-
-::
-
- [isabell@stardust snibox]$ supervisorctl status
- postgresql                       RUNNING   pid 13101, uptime 10:04:45
- snibox                           RUNNING   pid 10247, uptime 0:00:05
+If snibox is not in state RUNNING, check your configuration
 
 
-Step 4 - Register new user
---------------------------
+Register new user
+-----------------
 Visit your domain ``https://isabell.uber.space/register`` to register a new Snibox user.
 
 
