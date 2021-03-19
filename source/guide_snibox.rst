@@ -45,7 +45,7 @@ For this service we need to use Ruby in the version 2.6 and PostgreSQL in the ve
  Using 'postgresql' version: 13
 
 Next, we need a running PostgreSQL database. A detailed description can be found in the
-`PostgreSQL Guide <https://lab.uberspace.de/guide_postgresql.html>`_
+:lab:`PostgreSQL Guide <guide_postgresql>`
 
 If you want to use Snibox with your own domain you need to setup your domains first:
 
