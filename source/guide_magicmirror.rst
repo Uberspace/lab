@@ -38,7 +38,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the latest version:
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '12'
+ Using 'Node.js' version: '14'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -115,6 +115,6 @@ Stop your service and repeat the installation step.
 
 ----
 
-Tested with MagicMirror² v2.10.1 and Uberspace 7.5.1
+Tested with MagicMirror² v2.14.0 and Uberspace 7.10.0
 
 .. author_list::
