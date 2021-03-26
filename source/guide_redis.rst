@@ -47,6 +47,7 @@ Now create the config file ``~/.redis/conf`` with an editor of your choice and e
  unixsocket /home/<user>/.redis/sock
  daemonize no
  port 0
+ dir /home/<user>/.redis/
 
 Setup daemon
 ------------
