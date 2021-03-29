@@ -49,8 +49,6 @@ We're using :manual:`CouchDB <database-couchdb>` in the stable version 3:
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
-.. include:: includes/my-print-defaults.rst
-
 Installation
 ============
 
