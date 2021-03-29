@@ -132,14 +132,16 @@ Security
 
 Change all default passwords. Especially the admin password within the config file ``~/etc/couchdb/local.ini``. Don't get hacked!
 
-Web Backend
+Web backend
 -----------
 
-To expose your CouchDB using a web backend (not recommended!):
+.. warning:: This exposes CouchDB to the global internet and allows anyone to query your CouchDB database. Not recommended without authentication!
 
-.. code-block:: bash
+.. note::
 
- [isabell@stardust ~]$ uberspace web backend set /couchdb --http --port 5984 --remove-prefix
+    couchdb is running on port 5984. Additionally, the ``--remove-prefix`` parameter is needed if you want to run CouchDB under a sub URI like ``/couchdb`` instead of the root URI ``/``.
+
+.. include:: includes/web-backend.rst
 
 ----
 
