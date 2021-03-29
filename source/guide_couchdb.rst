@@ -97,8 +97,6 @@ Setup daemon
 
 Create ``~/etc/services.d/couchdb.ini`` with the following content:
 
-.. warning:: Replace ``<username>`` with your username!
-
 .. code-block:: ini
 
   [program:couchdb]
