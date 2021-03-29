@@ -199,7 +199,7 @@ Consider using only unix sockets if possible.
 .. warning:: If you set listen_addresses you might open your postgres installation to the world!
 
 .. code-block:: postgres
- :emphasize-lines: 7,14
+ :emphasize-lines: 14
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
@@ -207,8 +207,7 @@ Consider using only unix sockets if possible.
 
  # - Connection Settings -
 
-#listen_addresses = '*'                 # what IP address(es) to listen on;
- listen_addresses = 'localhost'         # what IP address(es) to listen on;
+ #listen_addresses = 'localhost'        # what IP address(es) to listen on;
                                         # comma-separated list of addresses;
                                         # defaults to 'localhost'; use '*' for all
                                         # (change requires restart)
