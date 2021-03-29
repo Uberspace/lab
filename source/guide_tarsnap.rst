@@ -88,7 +88,7 @@ Create a working directory
 Create a user account and preload money to it
 ---------------------------------------------
 
-Go to https://www.tarsnap.com/register.cgi and register an account. After hat load some money to it. At least $5.
+Go to https://www.tarsnap.com/register.cgi and register an account. After that load some money to it. At least $5.
 
 
 Create some keyfiles
