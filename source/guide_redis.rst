@@ -58,6 +58,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
 
  [program:redis]
  command=redis-server %(ENV_HOME)s/.redis/conf
+ directory=%(ENV_HOME)s/.redis
  autostart=yes
  autorestart=yes
 
