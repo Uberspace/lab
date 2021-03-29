@@ -104,8 +104,6 @@ Create ``~/etc/services.d/couchdb.ini`` with the following content:
   autostart=yes
   autorestart=yes
 
-.. include:: includes/web-domain-list.rst
-
 Finishing installation
 ======================
 
