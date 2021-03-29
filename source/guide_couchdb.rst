@@ -42,7 +42,7 @@ Prerequisites
 
 We're using :manual:`CouchDB <database-couchdb>` in the stable version 3:
 
-.. code-block:: bash
+::
 
   [isabell@stardust ~]$ uberspace tools version use couchdb 3
   Selected couchdb version 3
