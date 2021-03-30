@@ -161,8 +161,8 @@ Create ``~/etc/services.d/writefreely.ini`` with the following content:
 .. code-block:: ini
 
   [program:writefreely]
-  directory=%(ENV_HOME)s/writefreely/
-  command=%(ENV_HOME)s/writefreely/writefreely
+  directory=%(ENV_HOME)/writefreely/
+  command=%(ENV_HOME)/writefreely/writefreely
   autostart=yes
   autorestart=yes
 
