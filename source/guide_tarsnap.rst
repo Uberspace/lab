@@ -182,6 +182,8 @@ Make sure to use your write-only keyfile under keyfile in the config file:
 Create a backup script
 ----------------------
 
+.. note:: The following scripts creates a backup of your web files, but leaves mails and other data untouched. Adapt the path as needed.
+
 Create a script ``~/bin/tarsnap-backup.sh`` using the editor of your choice with the following content:
 
 .. code-block:: bash
