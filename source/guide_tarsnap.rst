@@ -62,7 +62,7 @@ Extract and compile the code
  [isabell@stardust ~]$ tar -xzf tarsnap-autoconf-1.0.39.tgz
  [isabell@stardust ~]$ cd tarsnap-autoconf-1.0.39/
  [isabell@stardust tarsnap-autoconf-1.0.39]$ ./configure --prefix=/home/$USER
- [isabell@stardust tarsnap-autoconf-1.0.39]$ make
+ [isabell@stardust tarsnap-autoconf-1.0.39]$ make -j2
  [isabell@stardust tarsnap-autoconf-1.0.39]$ make install
  [isabell@stardust tarsnap-autoconf-1.0.39]$ cd ..
  [isabell@stardust ~]$ rm -rf tarsnap-autoconf-1.0.39
@@ -77,7 +77,8 @@ Create a working directory
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir /home/$USER/tarsnap
+ [isabell@stardust ~]$ mkdir ~/tarsnap
+ [isabell@stardust ~]$ mkdir ~/tarsnap/cache
  [isabell@stardust ~]$
  
 
@@ -91,12 +92,13 @@ Create some keyfiles
 --------------------
 
 .. code-block:: console
+:emphasize-lines: 3,4
 
  [isabell@stardust ~]$ tarsnap-keygen \
-							--keyfile /home/$USER/tarsnap/tarsnap.key \
-							--user your_registered_email_from_the_account_registration \
-							--machine some_nifty_name
-							--passphrased
+                         --keyfile ~/tarsnap/tarsnap.key \
+                         --user your_registered_email_from_the_account_registration \
+                         --machine some_nifty_name
+                         --passphrased
  [isabell@stardust ~]$
 
 As this key has all rights to manage your backups, you have to create a key with write-only access to do backups automatically per cronjob.
@@ -104,8 +106,8 @@ As this key has all rights to manage your backups, you have to create a key with
 .. code-block:: console
 
  [isabell@stardust ~]$ tarsnap-keymgmt \
-							--outkeyfile /home/$USER/tarsnap/tarsnapwrite.key \
-							-w /home/$USER/tarsnap/tarsnap.key``
+                         --outkeyfile ~/tarsnap/tarsnapwrite.key \
+                         -w ~/tarsnap/tarsnap.key``
  [isabell@stardust ~]$
 
 .. warning:: Please copy your keyfiles to a safe place! Without the keys you cannot access your backups anymore.
@@ -116,28 +118,55 @@ Set up the config file
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cp /home/$USER/etc/tarsnap.conf.sample /home/$USER/etc/tarsnap.conf
+ [isabell@stardust ~]$ cp ~/etc/tarsnap.conf.sample ~/etc/tarsnap.conf
  [isabell@stardust ~]$
 
-Now edit ``/home/$USER/etc/tarsnap.conf`` with the editor of your choice. The config file is already commented by the author.
-Make sure to use your write-only keyfile under keyfile in the config file.
+Now edit ``~/etc/tarsnap.conf`` with the editor of your choice. The config file is already commented by the author.
+Make sure to use your write-only keyfile under keyfile in the config file:
+
+.. code-block::
+ :emphasize-lines: 4,7,10,13,16,21
+
+### Recommended options
+
+# Tarsnap cache directory
+cachedir ~/tarsnap/cache
+
+# Tarsnap key file
+keyfile ~/tarsnap/tarsnapwrite.key
+
+# Don't archive files which have the nodump flag set.
+nodump
+
+# Print statistics when creating or deleting archives.
+print-stats
+
+# Create a checkpoint once per GB of uploaded data.
+checkpoint-bytes 1G
+
+### Commonly useful options
+
+# Use SI prefixes to make numbers printed by --print-stats more readable.
+humanize-numbers
 
 
 Create a backup script
 ----------------------
 
-Create a script ``/home/$USER/tarsnap-backup.sh`` using the editor of your choice with the following content:
+Create a script ``~/bin/tarsnap-backup.sh`` using the editor of your choice with the following content:
 
-``!/bin/sh
-/home/$USER/bin/tarsnap -c \
-	-f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
-	/var/www/virtual/$USER``
+.. code-block:: bash
+
+#!/bin/sh
+~/bin/tarsnap -c \
+   -f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
+   /var/www/virtual/$USER``
 
 Now make it executable.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ chmod u+x /home/$USER/tarsnap-backup.sh
+ [isabell@stardust ~]$ chmod u+x ~/bin/tarsnap-backup.sh
  [isabell@stardust ~]$
 
 
@@ -149,7 +178,7 @@ Setup automatic backups per cronjob
  [isabell@stardust ~]$ crontab -e
  [isabell@stardust ~]$
 
-Enter ``0 02 * * * /home/$USER/tarsnap-backup.sh`` to let the backup run every night at 2 am.
+Enter ``0 02 * * * tarsnap-backup.sh`` to let the backup run every night at 2 am.
 
 .. hint:: For help setting up cronjobs go to https://crontab.guru/
 
@@ -161,14 +190,14 @@ Start a backup using
 
 .. code-block:: console
 
- [isabell@stardust ~]$ /home/$USER/tarsnap-backup.sh
+ [isabell@stardust ~]$ tarsnap-backup.sh
  [isabell@stardust ~]$
 
 To show all your existing backups use
 
 .. code-block:: console
 
- [isabell@stardust ~]$ tarsnap --list-archives --keyfile /home/$USER/tarsnap/tarsnap.key | sort
+ [isabell@stardust ~]$ tarsnap --list-archives --keyfile ~/tarsnap/tarsnap.key | sort
  [isabell@stardust ~]$
 
 You should see one backup at the moment.
@@ -177,19 +206,19 @@ To restore this backup, create another directory as a testing destination using
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir /home/$USER/restoretest
+ [isabell@stardust ~]$ mkdir ~/restoretest
  [isabell@stardust ~]$
  
 Then use
 
 .. code-block:: console
 
- [isabell@stardust ~]$ tarsnap -x -v -f BACKUP --keyfile /home/$USER/tarsnap/tarsnap.key -C /home/$USER/restoretest
+ [isabell@stardust ~]$ tarsnap -x -v -f BACKUP --keyfile ~/tarsnap/tarsnap.key -C ~/restoretest
  [isabell@stardust ~]$
 
 to restore your backed up files to the testing directory.
 
-.. note:: BACKUP has to be replaced by the name listed by --list-archives in the step above.
+.. note:: BACKUP has to be replaced by the name listed by ``--list-archives`` in the step above.
 
 
 Commandline parameters
