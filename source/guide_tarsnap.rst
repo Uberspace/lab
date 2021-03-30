@@ -157,10 +157,10 @@ Create a script ``~/bin/tarsnap-backup.sh`` using the editor of your choice with
 
 .. code-block:: bash
 
-#!/bin/sh
-~/bin/tarsnap -c \
-   -f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
-   /var/www/virtual/$USER
+ #!/bin/sh
+ ~/bin/tarsnap -c \
+    -f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
+    /var/www/virtual/$USER
 
 Now make it executable.
 
