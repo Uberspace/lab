@@ -36,20 +36,40 @@ Installation
 Download GPG keys and the source and verify it
 ----------------------------------------------
 
+Import GPG key:
+
 .. code-block:: console
 
  [isabell@stardust ~]$ wget https://www.tarsnap.com/tarsnap-signing-key-2021.asc
- [isabell@stardust ~]$ gpg --list-packets tarsnap-signing-key-2021.asc | grep signature
+ (...)
+ 2021-03-30 14:52:12 (157 MB/s) - ‘tarsnap-signing-key-2021.asc’ saved [1810/1810]
  [isabell@stardust ~]$ gpg --import tarsnap-signing-key-2021.asc
+ gpg: /home/tsnap/.gnupg/trustdb.gpg: trustdb created
+ gpg: key 171F041B: public key "Tarsnap source code signing key (Tarsnap Backup Inc.) <cperciva@tarsnap.com>" imported
+ gpg: Total number processed: 1
+ gpg:               imported: 1  (RSA: 1)
+ gpg: no ultimately trusted keys found
  [isabell@stardust ~]$ rm tarsnap-signing-key-2021.asc
  [isabell@stardust ~]$
 
+Download and unpack tarsnap source:
+
 .. code-block:: console
+ :emphasize-lines: 10
 
  [isabell@stardust ~]$ wget https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz
+ (...)
+ 2021-03-30 22:49:04 (667 KB/s) - ‘tarsnap-autoconf-1.0.39.tgz.1’ saved [641089/641089]
  [isabell@stardust ~]$ wget https://www.tarsnap.com/download/tarsnap-sigs-1.0.39.asc
+ (...)
+ 2021-03-30 22:49:28 (97.8 MB/s) - ‘tarsnap-sigs-1.0.39.asc’ saved [972/972]
  [isabell@stardust ~]$ gpg --decrypt tarsnap-sigs-1.0.39.asc
- [isabell@stardust ~]$ shasum -a 256 tarsnap-autoconf-1.0.39.tgz
+ SHA256 (tarsnap-autoconf-1.0.39.tgz) = 5613218b2a1060c730b6c4a14c2b34ce33898dd19b38fb9ea0858c5517e42082
+ gpg: Signature made Wed 27 Jan 2021 02:40:40 CET using RSA key ID 171F041B
+ gpg: Good signature from "Tarsnap source code signing key (Tarsnap Backup Inc.) <cperciva@tarsnap.com>"
+ gpg: WARNING: This key is not certified with a trusted signature!
+ gpg:          There is no indication that the signature belongs to the owner.
+ Primary key fingerprint: CAEE 7C6B 11B1 7F77 D72F  E3A9 F6DD 38B1 171F 041B
  [isabell@stardust ~]$ rm tarsnap-sigs-1.0.39.asc
  [isabell@stardust ~]$
 
@@ -191,6 +211,13 @@ Start a backup using
 .. code-block:: console
 
  [isabell@stardust ~]$ tarsnap-backup.sh
+ Directory /home/isabell/tarsnap/cache created for "--cachedir /home/isabell/tarsnap/cache"
+ tarsnap: Removing leading '/' from member names
+                                        Total size  Compressed size
+ All archives                                 7751             2797
+   (unique data)                              7751             2797
+ This archive                                 7751             2797
+ New data                                     7751             2797
  [isabell@stardust ~]$
 
 To show all your existing backups use
