@@ -82,8 +82,19 @@ Extract and compile the code
  [isabell@stardust ~]$ tar -xzf tarsnap-autoconf-1.0.39.tgz
  [isabell@stardust ~]$ cd tarsnap-autoconf-1.0.39/
  [isabell@stardust tarsnap-autoconf-1.0.39]$ ./configure --prefix=/home/$USER
+ checking build system type... x86_64-unknown-linux-gnu
+ (...)
+ config.status: creating Makefile
+ config.status: creating config.h
+ config.status: config.h is unchanged
+ config.status: executing depfiles commands
  [isabell@stardust tarsnap-autoconf-1.0.39]$ make -j2
+ (...)
+ make[1]: Leaving directory '/home/isabell/tarsnap-autoconf-1.0.39'
  [isabell@stardust tarsnap-autoconf-1.0.39]$ make install
+ (...)
+ make[2]: Leaving directory '/home/tsnap/tarsnap-autoconf-1.0.39'
+ make[1]: Leaving directory '/home/tsnap/tarsnap-autoconf-1.0.39'
  [isabell@stardust tarsnap-autoconf-1.0.39]$ cd ..
  [isabell@stardust ~]$ rm -rf tarsnap-autoconf-1.0.39
  [isabell@stardust ~]$ rm tarsnap-autoconf-1.0.39.tgz
