@@ -102,6 +102,10 @@ Create ``~/etc/services.d/couchdb.ini`` with the following content:
   autostart=yes
   autorestart=yes
 
+.. include:: includes/supervisord.rst
+
+If it's not in state RUNNING, check your configuration.
+
 Finishing installation
 ======================
 
