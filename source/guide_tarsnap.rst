@@ -92,12 +92,12 @@ Create some keyfiles
 --------------------
 
 .. code-block:: console
-:emphasize-lines: 3,4
+ :emphasize-lines: 3,4
 
  [isabell@stardust ~]$ tarsnap-keygen \
                          --keyfile ~/tarsnap/tarsnap.key \
                          --user your_registered_email_from_the_account_registration \
-                         --machine some_nifty_name
+                         --machine some_nifty_name \
                          --passphrased
  [isabell@stardust ~]$
 
@@ -107,7 +107,7 @@ As this key has all rights to manage your backups, you have to create a key with
 
  [isabell@stardust ~]$ tarsnap-keymgmt \
                          --outkeyfile ~/tarsnap/tarsnapwrite.key \
-                         -w ~/tarsnap/tarsnap.key``
+                         -w ~/tarsnap/tarsnap.key
  [isabell@stardust ~]$
 
 .. warning:: Please copy your keyfiles to a safe place! Without the keys you cannot access your backups anymore.
@@ -127,27 +127,27 @@ Make sure to use your write-only keyfile under keyfile in the config file:
 .. code-block::
  :emphasize-lines: 4,7,10,13,16,21
 
-### Recommended options
-
-# Tarsnap cache directory
-cachedir ~/tarsnap/cache
-
-# Tarsnap key file
-keyfile ~/tarsnap/tarsnapwrite.key
-
-# Don't archive files which have the nodump flag set.
-nodump
-
-# Print statistics when creating or deleting archives.
-print-stats
-
-# Create a checkpoint once per GB of uploaded data.
-checkpoint-bytes 1G
-
-### Commonly useful options
-
-# Use SI prefixes to make numbers printed by --print-stats more readable.
-humanize-numbers
+ ### Recommended options
+ 
+ # Tarsnap cache directory
+ cachedir ~/tarsnap/cache
+ 
+ # Tarsnap key file
+ keyfile ~/tarsnap/tarsnapwrite.key
+ 
+ # Don't archive files which have the nodump flag set.
+ nodump
+ 
+ # Print statistics when creating or deleting archives.
+ print-stats
+ 
+ # Create a checkpoint once per GB of uploaded data.
+ checkpoint-bytes 1G
+ 
+ ### Commonly useful options
+ 
+ # Use SI prefixes to make numbers printed by --print-stats more readable.
+ humanize-numbers
 
 
 Create a backup script
@@ -160,7 +160,7 @@ Create a script ``~/bin/tarsnap-backup.sh`` using the editor of your choice with
 #!/bin/sh
 ~/bin/tarsnap -c \
    -f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
-   /var/www/virtual/$USER``
+   /var/www/virtual/$USER
 
 Now make it executable.
 
