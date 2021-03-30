@@ -1,4 +1,4 @@
-. highlight:: console
+.. highlight:: console
 
 .. author:: Torsten Meyer <https://knodderdachs.de>
 
