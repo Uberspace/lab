@@ -9,9 +9,9 @@
   .. image:: _static/images/tarsnap.png
       :align: center
 
-##########
-Guide to compiling and using Tarsnap on an Uberspace host.
-##########
+#######
+Tarsnap
+#######
 
 .. tag_list::
 
