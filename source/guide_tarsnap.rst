@@ -96,8 +96,7 @@ Extract and compile the code
  make[2]: Leaving directory '/home/tsnap/tarsnap-autoconf-1.0.39'
  make[1]: Leaving directory '/home/tsnap/tarsnap-autoconf-1.0.39'
  [isabell@stardust tarsnap-autoconf-1.0.39]$ cd ..
- [isabell@stardust ~]$ rm -rf tarsnap-autoconf-1.0.39
- [isabell@stardust ~]$ rm tarsnap-autoconf-1.0.39.tgz
+ [isabell@stardust ~]$ rm -rf tarsnap-autoconf-1.0.39 tarsnap-autoconf-1.0.39.tgz
  [isabell@stardust ~]$
 
 Configuration
@@ -108,8 +107,7 @@ Create a working directory
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir ~/tarsnap
- [isabell@stardust ~]$ mkdir ~/tarsnap/cache
+ [isabell@stardust ~]$ mkdir -p ~/tarsnap/cache
  [isabell@stardust ~]$
  
 
@@ -189,7 +187,7 @@ Create a script ``~/bin/tarsnap-backup.sh`` using the editor of your choice with
 .. code-block:: bash
 
  #!/bin/sh
- ~/bin/tarsnap -c \
+ tarsnap -c \
     -f "BACKUP-$(date +%d-%m-%Y_%H-%M-%S)" \
     /var/www/virtual/$USER
 
