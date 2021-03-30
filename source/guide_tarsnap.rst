@@ -37,7 +37,6 @@ Download GPG keys and the source and verify it
 ----------------------------------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ wget https://www.tarsnap.com/tarsnap-signing-key-2021.asc
  [isabell@stardust ~]$ gpg --list-packets tarsnap-signing-key-2021.asc | grep signature
@@ -46,7 +45,6 @@ Download GPG keys and the source and verify it
  [isabell@stardust ~]$
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ wget https://www.tarsnap.com/download/tarsnap-autoconf-1.0.39.tgz
  [isabell@stardust ~]$ wget https://www.tarsnap.com/download/tarsnap-sigs-1.0.39.asc
@@ -60,7 +58,6 @@ Extract and compile the code
 ----------------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ tar -xzf tarsnap-autoconf-1.0.39.tgz
  [isabell@stardust ~]$ cd tarsnap-autoconf-1.0.39/
@@ -79,7 +76,6 @@ Create a working directory
 --------------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ mkdir /home/$USER/tarsnap
  [isabell@stardust ~]$
@@ -95,7 +91,6 @@ Create some keyfiles
 --------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ tarsnap-keygen \
 							--keyfile /home/$USER/tarsnap/tarsnap.key \
@@ -107,7 +102,6 @@ Create some keyfiles
 As this key has all rights to manage your backups, you have to create a key with write-only access to do backups automatically per cronjob.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ tarsnap-keymgmt \
 							--outkeyfile /home/$USER/tarsnap/tarsnapwrite.key \
@@ -121,7 +115,6 @@ Set up the config file
 ----------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cp /home/$USER/etc/tarsnap.conf.sample /home/$USER/etc/tarsnap.conf
  [isabell@stardust ~]$
@@ -143,7 +136,6 @@ Create a script ``/home/$USER/tarsnap-backup.sh`` using the editor of your choic
 Now make it executable.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ chmod u+x /home/$USER/tarsnap-backup.sh
  [isabell@stardust ~]$
@@ -153,7 +145,6 @@ Setup automatic backups per cronjob
 -----------------------------------
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ crontab -e
  [isabell@stardust ~]$
@@ -169,7 +160,6 @@ Test your backup
 Start a backup using
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ /home/$USER/tarsnap-backup.sh
  [isabell@stardust ~]$
@@ -177,7 +167,6 @@ Start a backup using
 To show all your existing backups use
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ tarsnap --list-archives --keyfile /home/$USER/tarsnap/tarsnap.key | sort
  [isabell@stardust ~]$
@@ -187,7 +176,6 @@ You should see one backup at the moment.
 To restore this backup, create another directory as a testing destination using
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ mkdir /home/$USER/restoretest
  [isabell@stardust ~]$
@@ -195,7 +183,6 @@ To restore this backup, create another directory as a testing destination using
 Then use
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ tarsnap -x -v -f BACKUP --keyfile /home/$USER/tarsnap/tarsnap.key -C /home/$USER/restoretest
  [isabell@stardust ~]$
