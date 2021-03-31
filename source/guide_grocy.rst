@@ -75,7 +75,7 @@ DocumentRoot to grocy's public folder:
 
 ::
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s grocy/public html
  [isabell@stardust isabell]$
 

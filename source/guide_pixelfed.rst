@@ -101,7 +101,7 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/pixelfed/public html
  [isabell@stardust isabell]$
 

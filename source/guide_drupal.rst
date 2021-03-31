@@ -123,7 +123,7 @@ symbolic link to make it accessible to the web.
 
 .. code-block:: console
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/drupal/web/ html
  [isabell@stardust isabell]$
 

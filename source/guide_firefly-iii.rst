@@ -61,7 +61,7 @@ After the installation has finished, remove your unused :manual:`DocumentRoot <w
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/firefly_iii/public html
  [isabell@stardust isabell]$
 

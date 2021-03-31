@@ -84,7 +84,7 @@ Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new sy
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/Neos/Web html
  [isabell@stardust isabell]$
 

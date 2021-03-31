@@ -55,7 +55,7 @@ We create the database and install Flarum using composer.
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project flarum/flarum flarum --stability=beta
  […]
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s flarum/public html
  [isabell@stardust isabell]$
 
