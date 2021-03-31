@@ -72,9 +72,6 @@ Since Sulu CMS uses the subdirectory ``public/`` as document root of your websit
 
 Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``sulucms/public`` directory.
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html

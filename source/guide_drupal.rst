@@ -118,9 +118,6 @@ document root of your website, you should **not** install Drupal in your default
 :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a
 symbolic link to make it accessible to the web.
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html

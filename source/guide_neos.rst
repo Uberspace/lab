@@ -79,8 +79,6 @@ Since Neos uses the subdirectory Web/ as web root you should not install Neos in
 
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the Neos/Web directory:
 
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any.
-
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/

@@ -83,8 +83,6 @@ Install all necessary dependencies using Composer. This can take some time.
 
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``kimai2/public`` directory:
 
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any.
-
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/

@@ -77,8 +77,6 @@ Installation
 
 Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS-master/p/``:
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep in ``html``, you can also rename the folder instead of deleting it.
-
 ::
 
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html

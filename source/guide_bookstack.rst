@@ -116,8 +116,6 @@ To make your BookStack installation safe you need to create a unique application
 
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``BookStack/public`` directory.
 
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any. You can also rename the folder to something that's not ``html``.
-
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/

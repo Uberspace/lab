@@ -116,11 +116,7 @@ Composer
 
  [isabell@stardust isabell]$
 
-Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory:
-
-.. warning:: Please make sure your :manual:`DocumentRoot <web-documentroot>` is empty before removing it!
-
-  Again, replace ``<target>`` by the folder name where the Contao project files sit in.
+Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory. Again, replace ``<target>`` by the folder name where the Contao project files sit in.
 
 .. code-block:: console
  :emphasize-lines: 1,3

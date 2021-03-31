@@ -74,9 +74,6 @@ URL with the one you just copied.
 Since Shopware uses the sub directory public/ as the :manual:`DocumentRoot <web-documentroot>`,
 you need to remove your DocumentRoot and create a symlink to the shopware/public/ directory:
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
