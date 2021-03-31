@@ -124,7 +124,7 @@ Let's create a test database called ``testdb``:
 .. code-block:: bash
 
   [isabell@stardust ~]$ curl -X PUT http://admin:SecureAdminPassword@localhost:5984/testdb
-  {"couchdb":"Welcome","version":"3.1.1","git_sha":"CENSORED","uuid":"CENSORED","features":["access-ready","partitioned","pluggable-storage-engines","reshard","scheduler"],"vendor":{"name":"The Apache Software Foundation"}}
+  {"ok":true}
 
 Best practices
 ==============
