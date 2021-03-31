@@ -28,17 +28,6 @@ Create needed folders and files for uwsgi:
  [isabell@stardust ~]$ touch ~/uwsgi/out.log
  [isabell@stardust ~]$
 
-Tell ``supervisord`` to refresh its configuration and start the service:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- uwsgi: available
- [isabell@stardust ~]$ supervisorctl update
- uwsgi: added process group
- [isabell@stardust ~]$ supervisorctl status
- uwsgi                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-
-If it's not in state RUNNING, check your configuration.
+If it's not in state ``RUNNING``, check the logs.

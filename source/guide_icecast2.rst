@@ -196,19 +196,9 @@ Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini
   autostart=yes
   autorestart=yes
 
-.. code-block:: console
+.. include:: includes/supervisord.rst
 
-  [isabell@stardust ~]$ supervisorctl reread
-  [isabell@stardust ~]$ supervisorctl update
-
-Check the status of your icecast2 service.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl status
-  [isabell@stardust ~]$
-
-If your service is not running, check your config.
+If it's not in state ``RUNNING``, check the logs.
 
 Configure web server
 --------------------

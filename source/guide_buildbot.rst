@@ -175,17 +175,9 @@ Create the file ``~/etc/services.d/buildbot-worker.ini`` with the following cont
  [program:buildbot-worker]
  command=buildbot-worker start --nodaemon %(ENV_HOME)s/bb-workers/example-worker
 
-After saving, update :manual:`supervisord <daemons-supervisord>` and check on the worker's status:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust bb-master] supervisorctl reread && supervisorctl update
- [isabell@stardust bb-master] supervisorctl status
- buildbot-master                  RUNNING   pid 3032, uptime 0 days, 0:06:35
- buildbot-worker                  RUNNING   pid 3092, uptime 0 days, 0:03:14
-
-If it does not show ``RUNNING`` as a status, check the ``twistd.log`` for errors again.
-
+If it's not in state ``RUNNING``, check the ``twistd.log`` for errors again.
 
 Securing the BuildBot Installation
 ==================================

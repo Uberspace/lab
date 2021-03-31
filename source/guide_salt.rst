@@ -89,18 +89,9 @@ Create ``~/etc/services.d/salt-master.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Tell ``supervisord`` to refresh its configuration and start the service:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- salt-master: available
- [isabell@stardust ~]$ supervisorctl update
- salt-master: added process group
- [isabell@stardust ~]$ supervisorctl status
- salt-master                      RUNNING   pid 24968, uptime 0:00:05
-
-If it's not in state RUNNING, check your configuration.
+If it's not in state ``RUNNING``, check the logs.
 
 Finishing installation
 ======================
