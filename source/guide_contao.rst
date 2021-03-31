@@ -77,7 +77,7 @@ Create a folder for Contao Manager, download it and make it accessible:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ mkdir -p contao/web
- [isabell@stardust web]$ cd contao/web
+ [isabell@stardust isabell]$ cd contao/web
  [isabell@stardust web]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
  [isabell@stardust web]$ mv contao-manager.phar contao-manager.phar.php
  [isabell@stardust web]$ cd /var/www/virtual/$USER/
