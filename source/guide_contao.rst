@@ -1,4 +1,5 @@
 .. author:: xchs <https://github.com/xchs>
+.. author:: luto <http://luto.at>
 
 .. tag:: lang-php
 .. tag:: web
@@ -60,41 +61,24 @@ Your :manual_anchor:`website domain <web-domains.html#setup>` needs to be set up
  [isabell@stardust ~]$
 
 
+Create Database
+===============
+
+Contao saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_contao``) instead of the default database.
+
+.. note:: You need to create the database **before** you enter the database :manual_anchor:`credentials <database-mysql.html#login-credentials>` in the `Contao install tool`_.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_contao"
+ [isabell@stardust ~]$
+
+
 Installation
 ============
 
 Since Contao uses the subdirectory ``web/`` as web root of your website you should **not** install Contao in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
-
-``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use either Contao Manager or the PHP Dependency Manager Composer_ to create a new project based on the **Contao Managed Edition**.
-
-Contao Manager
---------------
-
-Create a folder for Contao Manager, download it and make it accessible:
-
-.. code-block:: console
- :emphasize-lines: 1,8
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ mkdir -p contao/web
- [isabell@stardust isabell]$ cd contao/web
- [isabell@stardust web]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
- [isabell@stardust web]$ mv contao-manager.phar contao-manager.phar.php
- [isabell@stardust web]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/contao/web/ html
- [isabell@stardust isabell]$
-
-Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.example/contao-manager.phar.php``) to run the Contao Manager.
-
-Follow the steps to install Contao. Make sure to use the Cloud Resolver as it will resolve the dependencies in the cloud, rather on the local Uberspace host.
-
-When the setup is done, continue with the `Configuration`_. section in this guide.
-
-Composer
---------
-
-.. warning:: Your ``php`` command line processes might not be able to allocate enough memory to complete the expensive ``composer`` call.
 
 .. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition contao '42.23.*'``
 
@@ -117,9 +101,7 @@ Composer
 Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory. Again, replace ``contao`` by the folder name where the Contao project files sit in.
 
 .. code-block:: console
- :emphasize-lines: 1,3
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/contao/web/ html
  [isabell@stardust isabell]$
@@ -127,21 +109,6 @@ Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a n
 
 Configuration
 =============
-
-.. _create-database:
-
-Create Database
----------------
-
-Contao saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_contao``) instead of the default database.
-
-.. note:: You need to create the database **before** you enter the database :manual_anchor:`credentials <database-mysql.html#login-credentials>` in the `Contao install tool`_.
-
-.. code-block:: console
- :emphasize-lines: 1
-
- [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_contao"
- [isabell@stardust ~]$
 
 Contao Install Tool
 -------------------
@@ -161,8 +128,6 @@ Point your web browser to your website URL and append ``/contao/install`` (e.g. 
   * MySQL password
   * Contao database name (e.g. ``isabell_contao``)
 
-.. warning:: You have to create the database yourself (see :ref:`create-database`). The Contao install tool does not automatically create the database for you.
-
 **Step 3:** Update the database (this will create the database table structure).
 
 **Step 4:** Create a Contao back end administrator account.
@@ -174,8 +139,6 @@ Contao Back End
 ===============
 
 Point your web browser to your website URL and append ``/contao`` (or ``/contao/login``) to open the Contao back end login mask (e.g. ``https://isabell.example/contao/login``)
-
-.. note:: The URL fragment ``/contao/login`` is only a Contao *route* and not a physical path within your installation.
 
 Log into the Contao back end by entering the credentials of the administrator account.
 
@@ -197,8 +160,6 @@ To update an existing Contao installation just perform a Composer Update in the 
  [...]
 
  [isabell@stardust contao]$
-
-Alternatively, the update can also be performed via the `Contao Manager`_ which can be downloaded from the official Contao download_ page.
 
 .. warning:: The Contao Managed Edition and especially **additional bundles and modules** are **not** updated automatically, so make sure to regularly check for security and maintenance updates.
 
