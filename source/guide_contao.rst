@@ -66,8 +66,6 @@ Create Database
 
 Contao saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_contao``) instead of the default database.
 
-.. note:: You need to create the database **before** you enter the database :manual_anchor:`credentials <database-mysql.html#login-credentials>` in the `Contao install tool`_.
-
 .. code-block:: console
  :emphasize-lines: 1
 
