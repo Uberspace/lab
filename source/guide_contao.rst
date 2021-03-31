@@ -76,13 +76,13 @@ Create a folder for Contao Manager, download it and make it accessible:
  :emphasize-lines: 1,8
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ mkdir -p <target>/web
- [isabell@stardust web]$ cd <target>/web
+ [isabell@stardust isabell]$ mkdir -p contao/web
+ [isabell@stardust web]$ cd contao/web
  [isabell@stardust web]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
  [isabell@stardust web]$ mv contao-manager.phar contao-manager.phar.php
  [isabell@stardust web]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/<target>/web/ html
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/contao/web/ html
  [isabell@stardust isabell]$
 
 Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.example/contao-manager.phar.php``) to run the Contao Manager.
@@ -96,34 +96,32 @@ Composer
 
 .. warning:: Your ``php`` command line processes might not be able to allocate enough memory to complete the expensive ``composer`` call.
 
-.. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition <target> '42.23.*'``
+.. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition contao '42.23.*'``
 
   Composer_ will install all necessary dependencies Contao needs to run. This can take some time though.
-
-.. warning:: You have to replace the ``<target>`` parameter with a path to a folder where the Contao project files should be created. If the target folder does not exist yet, it will be created automatically.
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project contao/managed-edition <target>
+ [isabell@stardust isabell]$ composer create-project contao/managed-edition contao
  Installing contao/managed-edition (42.23.1)
    - Installing contao/managed-edition (42.23.1): Downloading (100%)
- Created project in <target>
+ Created project in contao
  Loading composer repositories with package information
  Installing dependencies (including require-dev) from lock file
  [...]
 
  [isabell@stardust isabell]$
 
-Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory. Again, replace ``<target>`` by the folder name where the Contao project files sit in.
+Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory. Again, replace ``contao`` by the folder name where the Contao project files sit in.
 
 .. code-block:: console
  :emphasize-lines: 1,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/<target>/web/ html
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/contao/web/ html
  [isabell@stardust isabell]$
 
 
@@ -187,18 +185,18 @@ Updates
 
 .. note:: Check the GitHub repository releases_ and the update feed_ regularly to stay informed about new updates and releases. Also read the news_ and announcements posted on `contao.org <https://contao.org/>`_.
 
-To update an existing Contao installation just perform a Composer Update in the root directory of your application (e.g. ``/var/www/virtual/$USER/<target>/``). This will update the Contao Managed Edition core application and all its dependencies as well as all your installed third-party packages:
+To update an existing Contao installation just perform a Composer Update in the root directory of your application (e.g. ``/var/www/virtual/$USER/contao/``). This will update the Contao Managed Edition core application and all its dependencies as well as all your installed third-party packages:
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/<target>/
- [isabell@stardust <target>]$ composer update
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/contao/
+ [isabell@stardust contao]$ composer update
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
  [...]
 
- [isabell@stardust <target>]$
+ [isabell@stardust contao]$
 
 Alternatively, the update can also be performed via the `Contao Manager`_ which can be downloaded from the official Contao download_ page.
 
