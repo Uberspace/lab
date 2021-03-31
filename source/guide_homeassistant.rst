@@ -72,9 +72,9 @@ Just run the following command in the created `homeassistant` directory with act
 .. code-block:: console
 
  [isabell@stardust homeassistant]$ hass
- [isabell@stardust homeassistant]$ 
+ [isabell@stardust homeassistant]$
 
-A directory containing config files is created at /home/isabell/.homeassistant. 
+A directory containing config files is created at /home/isabell/.homeassistant.
 So you can terminate the homeassistant using Strg-C.
 
 
@@ -122,7 +122,7 @@ Setup a web backend
     Home Assistant is running on port 8123.
 
 .. include:: includes/web-backend.rst
- 
+
 Create a supervisord service entry
 -------------------
 

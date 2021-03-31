@@ -85,7 +85,7 @@ We will install synapse using pip, which makes it quite easy:
 
   [isabell@stardust ~]$ pip3.6 install --user setuptools_rust
   [isabell@stardust ~]$ python3 -m pip install --upgrade  --user pip
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Configuration
 =============
@@ -199,13 +199,13 @@ Setup a dedicated postgres user and database for synapse:
     --template=template0 \
     synapse
   [isabell@stardust ~]$
-  
+
 You can verify access with:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ psql synapse synapse
-  
+
 
 Modify the config file again to give synapse access to the database:
 
@@ -223,7 +223,7 @@ Modify the config file again to give synapse access to the database:
             host: "/home/isabell/tmp"
             cp_min: 5
             cp_max: 10
-            
+
 Comment out the active sqlite database. If you are using a different port for postgres, add a port property below host.
 
 Option B: Sqlite

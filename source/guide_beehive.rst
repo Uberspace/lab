@@ -52,7 +52,7 @@ Install ``Beehive``:
   [isabell@stardust beehive]$ wget https://github.com/muesli/beehive/releases/download/v0.4.0/beehive_0.4.0_Linux_x86_64.tar.gz
   [isabell@stardust beehive]$ tar -xzvf beehive_0.4.0_Linux_x86_64.tar.gz
   [isabell@stardust beehive]$ rm beehive_0.4.0_Linux_x86_64.tar.gz
-  
+
 
 Configuration
 =============
@@ -76,7 +76,7 @@ Create ``~/etc/services.d/beehive.ini`` with the following content:
 Finishing installation
 ======================
 
-.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_. 
+.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_.
 
 To finish the installation, go to ``http://localhost:8181``.
 

@@ -27,7 +27,7 @@ Reach outside your own site with federation via ActivityPub. WriteFreely lets an
   * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
-  
+
 License
 =======
 
@@ -76,7 +76,7 @@ Change to `writefreely` directory and start config mode to create a config file:
   [isabell@stardust ~]$ cd ~/writefreely
   [isabell@stardust writefreely]$ ./writefreely config start
   [isabell@stardust writefreely]$
-  
+
 Setup Writefreely interactively. Use ``Production behind reverse proxy`` in `Server setup` and confirm default port:
 
 .. code-block::
@@ -93,7 +93,7 @@ Setup Writefreely interactively. Use ``Production behind reverse proxy`` in `Ser
   server manually, instead run: writefreely --create-config and edit that
   file.
 
-  Server setup 
+  Server setup
   Production, behind reverse proxy
   Local port: 8080
 
@@ -101,7 +101,7 @@ Choose ``MySQL`` in `Database Setup` and use credentials shown earlier. Use ``<u
 
 .. code-block::
 
-  Database setup 
+  Database setup
   MySQL
   Username: isabell
   Password: *******************
@@ -113,7 +113,7 @@ Enter admin and blog details as needed, enter your domain with ``https://`` and 
 
 .. code-block::
 
-  App setup 
+  App setup
   Single user blog
   Admin username: admin
   Admin password: <choose_a_password>
@@ -121,9 +121,9 @@ Enter admin and blog details as needed, enter your domain with ``https://`` and 
   Public URL: https://isabell.uber.space
 
   ...
-  
+
   2020/11/08 23:52:14 Done!
-  
+
 After interactive configuration alter `bind` key in ``config.ini``; look for the ``[server]`` block:
 
 .. code-block:: ini
@@ -145,14 +145,14 @@ Generate the encryption keys for your instance:
 
   [isabell@stardust writefreely]$ ./writefreely keys generate
   [isabell@stardust writefreely]$
-  
+
 Web Backend Config
 ------------------
 
 .. note:: Writefreely is running on port 8080.
 
 .. include:: includes/web-backend.rst
-  
+
 Supervisord Daemon Setup
 ------------------------
 
@@ -191,7 +191,7 @@ Updates
   [isabell@stardust ~]$ tar xzf writefreely_0.13.0_linux_amd64.tar.gz
   [isabell@stardust ~]$ cp ~/writefreely-backup/config.ini ~/writefreely/config.ini
   [isabell@stardust ~]$ cp ~/writefreely-backup/keys/ ~/writefreely/keys/
-  
+
 Restart Writefreely by ``supervisorctl restart writefreely`` command. If it's not starting, repeat `config mode procedure`_.
 
 ----

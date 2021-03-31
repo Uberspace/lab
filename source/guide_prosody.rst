@@ -336,7 +336,7 @@ Create your first user:
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
- 
+
 Voice/Video calls
 =================
 

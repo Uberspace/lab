@@ -109,7 +109,7 @@ Create a working directory
 
  [isabell@stardust ~]$ mkdir -p ~/tarsnap/cache
  [isabell@stardust ~]$
- 
+
 
 Create a user account and preload money to it
 ---------------------------------------------
@@ -157,24 +157,24 @@ Make sure to use your write-only keyfile under keyfile in the config file:
  :emphasize-lines: 4,7,10,13,16,21
 
  ### Recommended options
- 
+
  # Tarsnap cache directory
  cachedir ~/tarsnap/cache
- 
+
  # Tarsnap key file
  keyfile ~/tarsnap/tarsnapwrite.key
- 
+
  # Don't archive files which have the nodump flag set.
  nodump
- 
+
  # Print statistics when creating or deleting archives.
  print-stats
- 
+
  # Create a checkpoint once per GB of uploaded data.
  checkpoint-bytes 1G
- 
+
  ### Commonly useful options
- 
+
  # Use SI prefixes to make numbers printed by --print-stats more readable.
  humanize-numbers
 
@@ -246,7 +246,7 @@ To restore this backup, create another directory as a testing destination using
 
  [isabell@stardust ~]$ mkdir ~/restoretest
  [isabell@stardust ~]$
- 
+
 Then use
 
 .. code-block:: console

@@ -55,7 +55,7 @@ Your taskd domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-Taskd listens on a port (by default ``53589``). We need to open a port in the firewall that our client can connect to the task server. 
+Taskd listens on a port (by default ``53589``). We need to open a port in the firewall that our client can connect to the task server.
 
 ::
 
@@ -107,7 +107,7 @@ Now install the required taskd binaries ...
 ::
 
  [isabell@stardust ~]$ taskd -v
- 
+
  taskd 1.1.0 built for linux
  Copyright (C) 2010 - 2015 Göteborg Bit Factory.
  ...
@@ -341,7 +341,7 @@ After that you can always sync your tasks by. If you run it directly you get the
 
 
   .. code-block:: bash
-  
+
 	trap "task sync" exit   # does not work on zsh correctly
 	zshexit() { task sync } # only zsh
 

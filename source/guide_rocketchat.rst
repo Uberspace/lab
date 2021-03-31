@@ -239,7 +239,7 @@ Create ``~/etc/services.d/rocket.chat.ini`` with the following content:
         ROOT_URL="https://%(ENV_USER)s.uber.space/",
         PORT=3000,
         TMPDIR="%(ENV_HOME)s/tmp"
- startsecs=90       
+ startsecs=90
  autostart=yes
  autorestart=yes
 

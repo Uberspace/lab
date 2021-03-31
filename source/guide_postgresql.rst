@@ -192,7 +192,7 @@ PostgreSQL Configuration
 ------------------------
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
-Consider using only unix sockets if possible. 
+Consider using only unix sockets if possible.
 
 .. warning:: Please replace ``<username>`` with your username!
 
@@ -325,7 +325,7 @@ A simple check will show the used capacity of your PostgreSQL instance.
 
  [isabell@stardust ~]$ du -sh ~/opt/postgresql/data
  1,0G    /home/isabell/opt/postgresql/data
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 More details about your Uberspace space in total shows the command ``quota``:
 
@@ -335,7 +335,7 @@ More details about your Uberspace space in total shows the command ``quota``:
  Disk quotas for group isabell (gid 1013):
       Filesystem   space   quota   limit   grace   files   quota   limit   grace
        /dev/sda2    713M  10240M  11264M              38       0       0
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Further tools and details are described in the Uberspace manual and section :manual_anchor:`storge <basics-resources#storage>`.
 
@@ -355,7 +355,7 @@ A PostgreSQL update is in most cases necessary in relation of another software u
  - 13
  [isabell@stardust ~]$
 
-Step 3 - Stop all Daemons with relation to PosgreSQL 
+Step 3 - Stop all Daemons with relation to PosgreSQL
 ----------------------------------------------------
 
 Check running daemons:
@@ -451,7 +451,7 @@ Create the new database cluster:
 ::
 
  [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
- 
+
  The files belonging to this database system will be owned by user "<username>".
  This user must also own the server process.
 
@@ -528,7 +528,7 @@ Check the cluster, if all databases are available:
 
  [isabell@stardust ~]$ psql -l
                                 List of databases
-    Name    | Owner  | Encoding |   Collate   |    Ctype    | Access privileges 
+    Name    | Owner  | Encoding |   Collate   |    Ctype    | Access privileges
  -----------+--------+----------+-------------+-------------+-------------------
   my-program| user   | UTF8     | de_DE.UTF-8 | de_DE.UTF-8 |
   postgres  | isabell| UTF8     | de_DE.UTF-8 | de_DE.UTF-8 |

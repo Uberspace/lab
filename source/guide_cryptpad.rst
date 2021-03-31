@@ -156,7 +156,7 @@ Now let's start the service:
 
 .. include:: includes/supervisord.rst
 
-	
+
 Configure web server
 --------------------
 

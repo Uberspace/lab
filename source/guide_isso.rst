@@ -20,7 +20,7 @@ Isso
 
 Isso_ is a simple, self-hosted commenting server which can easily be included inside blogging platforms such as :lab:`Ghost <guide_ghost>` or :lab:`Wordpress <guide_wordpress>`.
 
-Users can format comments by using Markdown. Isso has spam protection and an admin panel to administrate comments. 
+Users can format comments by using Markdown. Isso has spam protection and an admin panel to administrate comments.
 
 The Isso Server is written in Python and the client side is realized by a small javascript. Comments are stored inside a sqlite database.
 
@@ -73,7 +73,7 @@ Install Isso and create a folder for the database and config file:
  Successfully installed Jinja2-2.11.1 MarkupSafe-1.1.1 bleach-3.1.4 cffi-1.14.0 html5lib-1.0.1 isso-0.12.2 itsdangerous-1.1.0 misaka-2.1.1 pycparser-2.20 six-1.14.0 webencodings-0.5.1 werkzeug-1.0.1
 
  [isabell@stardust ~]$ mkdir ~/isso
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Configuration
 =============
@@ -147,7 +147,7 @@ Configure web server
 .. note::
 
     Isso is running on port 1234, as defined in ``~/isso/user.cfg``. Be aware that the comment domain has to be a subdomain of the main domain (read about CORS_ for more information). Replace ``comments.isabell.uber.space`` with your own subdomain for isso that you configured in the first step.
-    
+
 ::
 
   [isabell@stardust ~]$ uberspace web backend set comments.isabell.uber.space --http --port <port>
@@ -158,7 +158,7 @@ Configure web server
 Finishing installation
 ======================
 
-Now you can include Isso to your website by following the client-manual_. 
+Now you can include Isso to your website by following the client-manual_.
 If you enabled the admin functionality inside the configuration you can access the admin panel by adding the path ``/admin``.
 
 

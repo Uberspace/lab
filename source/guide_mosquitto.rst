@@ -76,7 +76,7 @@ The last two values ensure that only registered users are allowed.
 
 ::
 
- cafile /etc/ssl/certs/ca-bundle.crt                                          
+ cafile /etc/ssl/certs/ca-bundle.crt
  certfile /home/isabell/etc/certificates/isabell.uber.space.crt
  keyfile /home/isabell/etc/certificates/isabell.uber.space.key
  port 40132

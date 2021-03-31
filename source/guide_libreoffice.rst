@@ -88,7 +88,7 @@ Then, install the latest stable version of `udocker`_:
   Info: searching for udockertools 1.1.4
   Info: installing udockertools 1.1.4
   Info: installation of udockertools successful
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 This installs the binaries and libraries needed by udocker into ``$HOME/.udocker/``.
 
@@ -126,7 +126,7 @@ Assume you chose `collabora/code`_. Pull the image from dockerhub and create
 a container:
 
 ::
-  
+
   [isabell@stardust ~]$ udocker pull collabora/code
   Downloading layer: sha256:7595c8c21622ea8a8b9778972e26dbbe063f7a1c4b0a28a80a34ebb3d343b586
   Downloading layer: sha256:d13af8ca898f36af68711cb67c345f65046a78ccd802453f4b129adf9205b1f8
@@ -134,7 +134,7 @@ a container:
   Downloading layer: sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4
   [isabell@stardust ~]$ udocker create --name=collabora-code collabora/code
   dbe828ab-d8a7-3a09-bf41-5deea8ec162c
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 .. note::
 
@@ -335,7 +335,7 @@ Updates
 
   Check the `CODE feed`_ regularly to stay informed about the newest version of CODE.
   Unfortunately, there is no automatic way to get informed about docker image updates.
- 
+
 To update, for example to CODE version 6.5, run the following:
 
 ::

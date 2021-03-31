@@ -248,13 +248,13 @@ After having changed the ``icecast.xml`` you need to restart the service.
 Best practices
 ==============
 
-Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to encode to `Ogg Vorbis`_ format. 
+Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to encode to `Ogg Vorbis`_ format.
 
 .. code-block:: console
 
   [isabell@localhost ~]$ ffmpeg -i $yourinputfile -vn -acodec libvorbis -b:a 128k -f ogg -y /dev/stdout |
   oggfwd isabell.uber.space $yourlisteningport y0uRS3cR3t_1! /stream.ogg
-  
+
 A more detailed setup for live streaming concerts with JACK audio server can be found at: https://wikis.ven.pm/streaming_setup
 
 Updates

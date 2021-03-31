@@ -110,7 +110,7 @@ If not already there, go to the ``html`` directory before running ``mv``.
 Changing index.php
 ------------------
 
-Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of the folders. 
+Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of the folders.
 
 .. code-block:: php
 

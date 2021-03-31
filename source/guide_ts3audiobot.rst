@@ -49,9 +49,9 @@ Download release file:
  HTTP request sent, awaiting response... 200 OK
  Length: 12161538 (12M) [application/octet-stream]
  Saving to: ‘TS3AudioBot_dotnet_core_3.1.zip’
- 
- 100%[=====================================>] 12,161,538  49.3MB/s   in 0.2s   
- 
+
+ 100%[=====================================>] 12,161,538  49.3MB/s   in 0.2s
+
  2021-03-14 16:09:26 (49.3 MB/s) - ‘TS3AudioBot_dotnet_core_3.1.zip’ saved [12161538/12161538]
 
 Extract zip archive:
@@ -71,7 +71,7 @@ After the configuration is done, the bot will automatically connect to the TeamS
 
 .. code-block:: console
  :emphasize-lines: 1,10,12,17,19
- 
+
  [isabell@stardust ts3audiobot]$ dotnet TS3AudioBot.dll
  16:10:54.4473| INFO|| [============ TS3AudioBot started =============]
  16:10:54.5198| INFO|| [ Date/Time: Sunday, 14 March 2021 16:10:54

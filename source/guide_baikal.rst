@@ -58,7 +58,7 @@ Remove your ``html`` directory and download the current version of Baïkal from 
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
 
-You can also choose not to replace your ``html`` directory (and e.g. install Baïkal in a subdirectory or under a subdomain). In that case, you need to perform additional configuration steps. 
+You can also choose not to replace your ``html`` directory (and e.g. install Baïkal in a subdirectory or under a subdomain). In that case, you need to perform additional configuration steps.
 
 Configuration
 =============

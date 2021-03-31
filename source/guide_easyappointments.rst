@@ -57,7 +57,7 @@ Installation
 ``cd`` into your :manual:`document root <web-documentroot>`, download the latest build, unzip and remove the zip file:
 
 .. code-block:: console
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget https://github.com/alextselegidis/easyappointments/releases/download/1.3.2/easyappointments_1.3.2.zip
  [isabell@stardust html]$ unzip easyappointments_1.3.2.zip
@@ -112,7 +112,7 @@ Tuning
 Translations
 ------------
 
-Easy Appointments' inbuilt language translations are not always perfect and you might want to change some wordings to better fit your needs. You can remove unneeded translations by removing them from the array in ``/var/www/virtual/$USER/html/application/config/config.php``, for instance: 
+Easy Appointments' inbuilt language translations are not always perfect and you might want to change some wordings to better fit your needs. You can remove unneeded translations by removing them from the array in ``/var/www/virtual/$USER/html/application/config/config.php``, for instance:
 
 .. code-block:: ini
  :emphasize-lines: 12,13,14
@@ -133,11 +133,11 @@ Easy Appointments' inbuilt language translations are not always perfect and you 
   'german'
  ];
 
-You can also add a new translation by copying and renaming a translation-folder in ``/var/www/virtual/$USER/html/application/language/`` and adding its name to the array above. 
+You can also add a new translation by copying and renaming a translation-folder in ``/var/www/virtual/$USER/html/application/language/`` and adding its name to the array above.
 
 You can modify an existing translation by editing the ``translation_lang.php`` file in the desired language folder. For english this would be ``/var/www/virtual/$USER/html/application/language/english/translation_lang.php``
 
-.. note:: The `official documentation`_ contains additional information on translation and other topics. 
+.. note:: The `official documentation`_ contains additional information on translation and other topics.
 
 Updates
 =======

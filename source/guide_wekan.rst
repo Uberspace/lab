@@ -62,7 +62,7 @@ Let's create a password for a new database:
 
 Once we have that, let's create the new database for Wekan itself.
 
-.. code-block:: 
+.. code-block::
 
  [isabell@stardust ~]$ mongo
  MongoDB shell version v4.4.1
@@ -122,7 +122,7 @@ Change into the server folder of wekan and delete two files before installing al
 
  [isabell@stardust ~]$ cd bundle/programs/server
  [isabell@stardust server]$ rm node_modules/.bin/node-gyp
- [isabell@stardust server]$ rm node_modules/.bin/node-pre-gyp 
+ [isabell@stardust server]$ rm node_modules/.bin/node-pre-gyp
  [isabell@stardust server]$ npm install node-gyp node-pre-gyp fibers
  [isabell@stardust server]$ cd
  [isabell@stardust ~]$

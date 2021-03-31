@@ -4,7 +4,7 @@
 
 .. tag:: lang-ruby
 .. tag:: web
-.. tag:: shortlinks 
+.. tag:: shortlinks
 
 ##########
 Guillotine

@@ -86,7 +86,7 @@ Create a ``ghost`` directory in your home, ``cd`` to it and then run the install
 
 You will need to enter the following information:
 
-  * `y` or `yes` to just continue after the reputed MySQL error (everything is fine here, ghost does just look at the wrong places) 
+  * `y` or `yes` to just continue after the reputed MySQL error (everything is fine here, ghost does just look at the wrong places)
   * your blog URL: The URL for your blog. Since we don't allow HTTP, use HTTPS. For example: https://isabell.uber.space
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * your Ghost database name: we suggest you use a :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_ghost

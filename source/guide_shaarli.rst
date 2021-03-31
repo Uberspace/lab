@@ -55,12 +55,12 @@ Enter your document root, download the `latest <https://github.com/shaarli/Shaar
   [isabell@stardust ~]$ cd ~/html
   [isabell@stardust html]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.12.1/shaarli-v0.12.1-full.tar.gz
   [isabell@stardust html]$ tar xvzf shaarli-v0.12.1-full.tar.gz --strip-components=1
-  [isabell@stardust html]$ 
+  [isabell@stardust html]$
 
 Finishing installation
 ======================
 
-Once all files have been placed at the correct location, go to ``https://isabell.uber.space``. 
+Once all files have been placed at the correct location, go to ``https://isabell.uber.space``.
 Enter a username and a secure password, choose your preferred language and timezone, then click on "Install".
 
 Updates
@@ -86,7 +86,7 @@ version is available, enter your document root, download the archive, unpack it 
   [isabell@stardust html]$ wget https://github.com/shaarli/Shaarli/releases/download/v0.X.Y/shaarli-v0.X.Y-full.tar.gz
   [isabell@stardust html]$ tar xvzf shaarli-v0.X.Y-full.tar.gz --strip-components=1
   [isabell@stardust html]$ cp -r ~/shaarli-data-backup/* /var/www/virtual/isabell/html/data/
-  [isabell@stardust html]$ 
+  [isabell@stardust html]$
 
 .. _Shaarli: https://github.com/shaarli/Shaarli#readme
 .. _Documentation: https://shaarli.readthedocs.io/en/master/

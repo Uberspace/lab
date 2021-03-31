@@ -124,7 +124,7 @@ Create needed folders and files for uwsgi:
 ::
 
  [isabell@stardust ~]$ mkdir -p ~/uwsgi/apps-enabled
- [isabell@stardust ~]$ touch ~/uwsgi/err.log 
+ [isabell@stardust ~]$ touch ~/uwsgi/err.log
  [isabell@stardust ~]$ touch ~/uwsgi/out.log
  [isabell@stardust ~]$
 
