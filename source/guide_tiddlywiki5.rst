@@ -146,6 +146,8 @@ Now you can edit the service configuration (``~/etc/services.d/tiddlywiki.ini``)
 Update
 ======
 
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
 Use the `npm` tool to update the TiddlyWiki installation:
 
 ::
@@ -175,6 +177,7 @@ Moreover, the ``tiddlywiki`` binary offers the ``--verbose`` parameter.
 
 .. _TiddlyWiki: https://tiddlywiki.com/
 .. _permissive BSD 3-Clause License: https://github.com/Jermolene/TiddlyWiki5/blob/master/license
+.. _feed: https://github.com/Jermolene/TiddlyWiki5/releases.atom
 
 
 ----
