@@ -58,8 +58,11 @@ phpBB3 saves your data in a :manual:`MySQL <database-mysql>` database. It is rec
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_phpbb3"
- [isabell@stardust ~]$
+[isabell@stardust html]$ mysql --verbose --execute="CREATE DATABASE ${USER}_phpbb"
+--------------
+CREATE DATABASE isabell_phpbb
+--------------
+[isabell@stardust html]$
 
 Installation
 ============
