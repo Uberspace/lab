@@ -83,6 +83,7 @@ Now TiddlyWiki server can be started:
 
 ::
 
+ [isabell@stardust ~]$ cd tiddlywiki
  [isabell@stardust tiddlywiki]$ tiddlywiki mynewwiki --listen host=0.0.0.0
  syncer-server-filesystem: Dispatching 'save' task: $:/StoryList
  Serving on http://0.0.0.0:8080
@@ -117,9 +118,10 @@ To restrict the permissions, add a users file named ``myusers.csv`` into the `ti
 
 ::
 
- [isabell@stardust ~]$ nano tiddlywiki/myusers.csv
+ [isabell@stardust ~]$ cd tiddlywiki
+ [isabell@stardust tiddlywiki]$ touch myusers.csv
 
-Add now a comma seperated list of usernames and passwords (as cleartext). The first header row ``username,password`` must be added.
+Use your favorite editor to add a comma seperated list of usernames and passwords (as cleartext) into the created file. The first header row ``username,password`` must be added.
 
 ::
 
