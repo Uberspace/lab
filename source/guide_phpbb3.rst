@@ -28,6 +28,11 @@ phpBB3_ is a free flat-forum bulletin board software solution that can be used t
   * :manual:`domains <web-domains>`
   * :manual:`mail <mail-access>`
 
+License
+=======
+
+phpBB3_ is released under the `GPLv2 License`_.
+
 Prerequisites
 =============
 
@@ -109,9 +114,6 @@ Now Navigate to the database updater, e.g. ``https://ostest.uber.space/install/a
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-.. _phpBB3: https://www.phpbb.com/
-.. _download: https://www.phpbb.com/downloads/
-.. _feed: https://github.com/phpbb/phpbb/releases.atom
 
 Backup
 ======
@@ -126,6 +128,10 @@ Additionally, backup the MySQL database:
 
   [isabell@stardust ~]$ mysqldump isabell_phpbb3 | xz - > ~/isabell_phpbb3.sql.xz
 
+.. _phpBB3: https://www.phpbb.com/
+.. _download: https://www.phpbb.com/downloads/
+.. _feed: https://github.com/phpbb/phpbb/releases.atom
+.. _GPLv2 License: https://github.com/phpbb/phpbb/blob/master/LICENSE
 
 ----
 
