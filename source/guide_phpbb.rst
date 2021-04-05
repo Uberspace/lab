@@ -69,21 +69,20 @@ Installation
 Step 1
 ------
 
-Go to the phpBB download_ website and copy the URL of the latest ZIP release, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip``.
+Go to the phpBB download_ website and copy the URL of the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2``.
 
 Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the latest release of phpBB and extract it:
 
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip -o phpbb.zip
+ [isabell@stardust html]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2 -o phpbb.tar.bz2
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
   100 5138k  100 5138k    0     0   769k      0  0:00:06  0:00:06 --:--:-- 1108k
- [isabell@stardust html]$ unzip phpbb.zip
- [isabell@stardust html]$ mv phpBB3/* . && mv phpBB3/.htaccess .
- [isabell@stardust html]$ rm phpbb.zip && rm phpBB3/ -rf
+ [isabell@stardust html]$ tar --strip-components 1 -xf phpbb.tar.bz2
+ [isabell@stardust html]$ rm phpbb.tar.bz2
  [isabell@stardust html]$
 
 Step 2
