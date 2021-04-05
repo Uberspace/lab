@@ -65,7 +65,7 @@ Install the OpenSlides Python package:
  [...]
  [isabell@stardust ~]$
 
- Check if OpenSlides is installed by typing:
+Check if OpenSlides is installed by typing:
 
 ::
 
