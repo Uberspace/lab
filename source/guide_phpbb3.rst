@@ -120,7 +120,7 @@ Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the
 
 The commands first extracts the archive into an own subfolder ``_update``. After that, some files and folders are removed, as they are not needed. All new files will now the copied over the existing installation. When all finished, the update files are removed.
 
-Now Navigate to the database updater, e.g. ``https://ostest.uber.space/install/app.php/update`` and start the database update.
+Now Navigate to the database updater, e.g. ``https://isabell.uber.space/install/app.php/update`` and start the database update.
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
