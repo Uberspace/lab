@@ -134,8 +134,9 @@ Updates
 If there is a new version available, update the following command to update your OpenSlides python package:
 
 ::
-
- [isabell@stardust ~]$ pip install --upgrade openslides
+ [isabell@stardust ~]$ servicectl stop openslides
+ [isabell@stardust ~]$ pip3.9 install --upgrade openslides
+ [isabell@stardust ~]$ servicectl start openslides
  [isabell@stardust ~]$
 
 Backup
