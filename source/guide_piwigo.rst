@@ -129,6 +129,19 @@ Updates
 
 The easiest way to update Piwigo is to use the web updater provided in the admin section of the Web Interface: ``Tools > Updates``.
 
+Backup
+======
+
+Backup the following directories:
+
+  * ``~/html/``
+
+Additionally, backup the MySQL database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysqldump isabell_piwigo | xz - > ~/isabell_piwigo.sql.xz
+
 .. _Upgrade Manual: https://piwigo.org/doc/doku.php?id=user_documentation:learn:upgrade:upgrade_automatic
 .. _release: https://piwigo.org/download/dlcounter.php?code=latest
 .. _Piwigo: https://piwigo.org/get-piwigo
