@@ -130,6 +130,14 @@ If there is a new version available, update the following command to update your
  [isabell@stardust ~]$ pip install --upgrade openslides
  [isabell@stardust ~]$
 
+Backup
+======
+
+Backup the following directories:
+
+  * ``~/.local/share/openslides/``
+  * ``~/.config/openslides/``
+
 .. _OpenSlides: https://openslides.com/
 .. _feed: https://github.com/OpenSlides/OpenSlides/releases.atom
 .. _MIT License: https://github.com/OpenSlides/OpenSlides/blob/master/LICENSE
