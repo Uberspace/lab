@@ -128,12 +128,12 @@ Add now a comma seperated list of usernames and passwords (as cleartext). The fi
  andy,sm1th
  roger,m00re
 
-Now you can edit the startup process (``~/etc/services.d/tiddlywiki.ini``) to use the user file and apply reading and writing permissions, e.g. like this:
+Now you can edit the service configuration (``~/etc/services.d/tiddlywiki.ini``) to use the users file and apply reading and writing permissions, e.g. like this:
 
 .. code-block:: ini
 
  [program:tiddlywiki]
- command=tiddlywiki %(ENV_HOME)s/tiddlywiki/mynewwiki --listen host=0.0.0.0 credentials=%(ENV_HOME)s/tiddlywiki/myusers.csv readers=joe,mary writers=mary
+ command=tiddlywiki %(ENV_HOME)s/tiddlywiki/mynewwiki --listen host=0.0.0.0 credentials=%(ENV_HOME)s/tiddlywiki/myusers.csv readers=jane,andy writers=andy
  autostart=true
  autorestart=true
  stopsignal=INT
