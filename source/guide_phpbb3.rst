@@ -93,6 +93,14 @@ You will need to enter the following information:
 
 When the installer is finished, click on the link ``Take me to the ACP``. On the start page of the Admin Control Panel (ACP), you should disable the "Send statistical information" and the "VigLink" extension and submit your choises.
 
+Also, the board is only usable when you have deleted the ``install`` folder:
+
+::
+
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust html]$ rm install/ -rf
+ [isabell@stardust html]$
+
 Updates
 =======
 
@@ -121,6 +129,14 @@ Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the
 The commands first extracts the archive into an own subfolder ``_update``. After that, some files and folders are removed, as they are not needed. All new files will now the copied over the existing installation. When all finished, the update files are removed.
 
 Now Navigate to the database updater, e.g. ``https://isabell.uber.space/install/app.php/update`` and start the database update.
+
+When the update is done, delete the ``install`` folder:
+
+::
+
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust html]$ rm install/ -rf
+ [isabell@stardust html]$
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
