@@ -50,6 +50,17 @@ If you want to use your phpBB3 board with your own domain, you need to setup you
 
 .. include:: includes/web-domain-list.rst
 
+Create Database
+===============
+
+phpBB3 saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_phpbb3``) instead of the default database.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_phpbb3"
+ [isabell@stardust ~]$
+
 Installation
 ============
 
@@ -77,8 +88,7 @@ Click on the Tab "Install" to start the installation.
 You will need to enter the following information:
 
   * Administrator username and password: choose a username (maybe not *admin*) and a strong password for the admin user
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top. You can leave the Database server port empty.
-  * your phpBB3 database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_phpbb3``
+  * your MySQL hostname, username, password and database name: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top. You can leave the Database server port empty. As database name insert the name of the created additional database.
   * Make additional settings like :manual:`SMTP <mail-access>` for sending E-mails.
 
 When the installer is finished, click on the link ``Take me to the ACP``. On the start page of the Admin Control Panel (ACP), you should disable the "Send statistical information" and the "VigLink" extension and submit your choises.
