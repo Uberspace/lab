@@ -96,7 +96,6 @@ You will need to enter the following information:
 
   * Administrator username and password: choose a username (maybe not *admin*) and a strong password for the admin user
   * your MySQL hostname, username, password and database name: the hostname is ``localhost``. Check the beginning of the guide for your :manual_anchor:`database credentials <database-mysql.html#login-credentials>`. You can leave the Database server port empty. As database name insert the name of the created additional database, e.g. ``isabell_phpbb``.
-  * Make additional settings like :manual:`SMTP <mail-access>` for sending E-mails.
 
 When the installer is finished, click on the link ``Take me to the ACP``. On the start page of the Admin Control Panel (ACP), you should disable the "Send statistical information" and the "VigLink" extension and submit your choices.
 
