@@ -66,6 +66,9 @@ phpBB saves your data in a :manual:`MySQL <database-mysql>` database. It is reco
 Installation
 ============
 
+Step 1
+------
+
 Go to the phpBB download_ website and copy the URL of the latest ZIP release, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip``.
 
 Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the latest release of phpBB and extract it:
@@ -82,6 +85,9 @@ Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the
  [isabell@stardust html]$ mv phpBB3/* .
  [isabell@stardust html]$ rm phpbb.zip && rm phpBB3/ -rf
  [isabell@stardust html]$
+
+Step 2 - GUI
+------------
 
 Now point your browser to your uberspace URL ``https://isabell.uber.space`` and follow the instructions of the Installer Assistant.
 Click on the Tab "Install" to start the installation.
@@ -102,10 +108,99 @@ Also, the board is only usable when you have deleted the ``install`` folder:
  [isabell@stardust html]$ rm install/ -rf
  [isabell@stardust html]$
 
+Step 2 - CLI (alternatively)
+----------------------------
+Alternatively to installing phpBB via a graphical user interface (GUI), you can use the CLI to install phpBB.
+First, create the file ``~/phpbb/install-config.yml``.
+
+::
+
+ [isabell@stardust ~]$ mkdir phpbb
+ [isabell@stardust ~]$ cd phpbb
+ [isabell@stardust phpbb]$ touch install-config.yml
+ [isabell@stardust phpbb]$
+
+Use an editor of your choise to add the content below to the configuration file. Modify the admin section (``name``, ``password`` and ``email``), as well as the database section (``dbuser``, ``dbpasswd``, ``dbname``) and the server section (``server_name``).
+
+::
+
+ installer:
+    admin:
+        name: myAdminUser
+        password: myAdminPassword
+        email: isabell@uber.space
+
+    board:
+        lang: en
+        name: My Board
+        description: My amazing new phpBB board
+
+    database:
+        dbms: mysqli
+        dbhost: ~
+        dbport: ~
+        dbuser: isabell
+        dbpasswd: MySuperSecretMySQLPassword
+        dbname: isabell_phpbb
+        table_prefix: phpbb_
+
+    email:
+        enabled: true
+        smtp_delivery : false
+        smtp_host: ~
+        smtp_port: ~
+        smtp_auth: ~
+        smtp_user: ~
+        smtp_pass: ~
+
+    server:
+        cookie_secure: true
+        server_protocol: https://
+        force_server_vars: true
+        server_name: isabell.uber.space
+        server_port: 443
+        script_path: /
+
+    extensions: ['']
+
+Now validate your install configuration:
+
+::
+
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust html]$ php install/phpbbcli.php install:config:validate ~/phpbb/install-config.yml
+  [OK] The configuration file is valid
+ [isabell@stardust html]$
+
+If the configuration is valid, start the installation process:
+
+::
+
+ [isabell@stardust html]$ php install/phpbbcli.php install ~/phpbb/install-config.yml
+
+
+     11/13  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░   84%
+             Populating migrations
+ [isabell@stardust html]$
+
+Please note that it is normal that the process bar does not show ``100%``. As long as no error message is displayed, the installation was completed.
+
+Now delete the install folder:
+
+::
+
+ [isabell@stardust html]$ rm install/ -rf
+ [isabell@stardust html]$
+
+Finally, point your browser to the ACP URL ``https://isabell.uber.space/adm/index.php`` and continue with setting up your board.
+
 Updates
 =======
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+Download Update
+---------------
 
 Go to the phpBB.com download_ page and copy the link to the latest ZIP release, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip``.
 
@@ -125,7 +220,9 @@ Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the
  [isabell@stardust html]$ rm _update/ -rf && rm phpbb_update.zip
  [isabell@stardust html]$
 
-The commands first extracts the archive into an own subfolder ``_update``. After that, some files and folders are removed, as they are not needed. All new files will now the copied over the existing installation. When all finished, the update files are removed.
+The commands first extracts the archive into an own subfolder ``_update``. After that, some files and folders are removed, as they are not needed. All new files are copied over the existing installation. When the copying is done, the downloaded files are removed.
+
+Now continue with the database update.
 
 Database Update - GUI
 ---------------------
@@ -139,9 +236,9 @@ When the update is done, delete the ``install`` folder:
  [isabell@stardust html]$ rm install/ -rf
  [isabell@stardust html]$
 
-Database Update - CLI
----------------------
-Alternativley, the database update can be done via CLI.
+Database Update - CLI (alternatively)
+-------------------------------------
+Alternatively, the database update can be done via CLI.
 
 ::
 
