@@ -82,7 +82,7 @@ Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the
   100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
   100 5138k  100 5138k    0     0   769k      0  0:00:06  0:00:06 --:--:-- 1108k
  [isabell@stardust html]$ unzip phpbb.zip
- [isabell@stardust html]$ mv phpBB3/* .
+ [isabell@stardust html]$ mv phpBB3/* . && mv phpBB3/.htaccess .
  [isabell@stardust html]$ rm phpbb.zip && rm phpBB3/ -rf
  [isabell@stardust html]$
 
