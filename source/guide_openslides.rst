@@ -65,20 +65,15 @@ Install the OpenSlides Python package:
  [...]
  [isabell@stardust ~]$
 
-Step 2
-------
-Start the OpenSlides binary:
+ Check if OpenSlides is installed by typing:
 
 ::
 
- [isabell@stardust ~]$  openslides runserver 0.0.0.0:8000
- [2021-04-03 18:35:10 +0200] [16175] [INFO] openslides.utils.schema_version [SweN] No old schema version
- [...]
- Django version 2.2.19, using settings 'settings'
- Starting ASGI/Channels version 2.3.1 development server at http://0.0.0.0:8000/
- Quit the server with CONTROL-C.
+ [isabell@stardust ~]$ openslides --version
+ 3.3
+ [isabell@stardust ~]$
 
-Step 3
+Step 2
 ------
 
 .. note::
@@ -86,6 +81,19 @@ Step 3
     OpenSlides is running on port 8000.
 
 .. include:: includes/web-backend.rst
+
+Step 3
+------
+Start the OpenSlides binary:
+
+::
+
+ [isabell@stardust ~]$ openslides runserver 0.0.0.0:8000
+ [2021-04-03 18:35:10 +0200] [16175] [INFO] openslides.utils.schema_version [SweN] No old schema version
+ [...]
+ Django version 2.2.19, using settings 'settings'
+ Starting ASGI/Channels version 2.3.1 development server at http://0.0.0.0:8000/
+ Quit the server with CONTROL-C.
 
 
 Step 4
