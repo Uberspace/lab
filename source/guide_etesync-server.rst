@@ -22,10 +22,10 @@ EteSync_ is a secure, end-to-end encrypted, and privacy respecting sync for your
 You can set up your own `EteSync Server`_ to sync all your devices.
 It is written in :manual:`Python <lang-python>` and based on the popular :lab:`Django-Framework <guide_django>`.
 
+----
+
 .. warning:: EteSync Server v2 has been released_ in October 2020. This guide is about installing EteSync Server v1
     and seems to be not applicable to v2.
-
-----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
