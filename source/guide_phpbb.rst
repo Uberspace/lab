@@ -154,6 +154,38 @@ Additionally, backup the MySQL database:
 
   [isabell@stardust ~]$ mysqldump isabell_phpbb | xz - > ~/isabell_phpbb.sql.xz
 
+Debugging
+=========
+
+Logs
+----
+Enable the Uberspace PHP and Apache error logs:
+
+::
+
+  [isabell@stardust ~]$ uberspace web log php_error enable
+  php error log is enabled
+  [isabell@stardust ~]$ uberspace web log apache_error enable
+  apache error log is enabled
+  [isabell@stardust ~]$ 
+
+The PHP errors will be written to the file ``~/logs/error_log_php``, the Apache logs to the file ``~/logs/webserver/error_log_apache``.
+
+Debug Mode
+----------
+phpBB offers a debug functionality. To enable it, edit the file ``~/html/config/production/config.yml`` and add the following section:
+
+::
+
+ parameters:
+     debug.load_time: true
+     debug.sql_explain: true
+     debug.memory: true
+     debug.show_errors: true
+     debug.exceptions: true
+
+After that, purge the cache at the phpBB ACP. Under the "General" tab, there will be a button on the right side of the page that says "Purge Cache".  
+
 .. _phpBB: https://www.phpbb.com/
 .. _download: https://www.phpbb.com/downloads/
 .. _feed: https://github.com/phpbb/phpbb/releases.atom
