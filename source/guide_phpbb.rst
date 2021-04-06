@@ -111,25 +111,30 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Go to the phpBB.com download_ page and copy the link to the latest ZIP release, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip``.
+Go to the phpBB.com download_ page and copy the link to the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2``.
 
-Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the release package and extract it:
+Then, create a new folder for the update in your home folder and download the release package and extract it:
 
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.zip -o phpbb_update.zip
+ [isabell@stardust ~]$ mkdir phpbb_update
+ [isabell@stardust ~]$ cd phpbb_update
+ [isabell@stardust phpbb_update]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2 -o phpbb.tar.bz2
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
-  100 5138k  100 5138k    0     0   769k      0  0:00:06  0:00:06 --:--:-- 1108k
- [isabell@stardust html]$ unzip phpbb_update.zip -d _update
- [isabell@stardust html]$ rm _update/phpBB3/config.php && rm _update/phpBB3/files/ -rf && rm _update/phpBB3/images/ -rf && rm _update/phpBB3/ext/ -rf
- [isabell@stardust html]$ cp _update/phpBB3/* . -R
- [isabell@stardust html]$ rm _update/ -rf && rm phpbb_update.zip
- [isabell@stardust html]$
+  100 5138k  100 5138k    0     0   769k      0  0:00:06  0:00:06 --:--:-- 1108k 
+ [isabell@stardust phpbb_update]$ tar --strip-components 1 -xf phpbb.tar.bz2
 
-The commands first extracts the archive into an own subfolder ``_update``. After that, some files and folders are removed, as they are not needed. All new files are copied over the existing installation. When the copying is done, the downloaded files are removed.
+Now, some files are removed from the downloaded package, as they are not needed. After that, the new files are copied over your existing installation files.
+
+::
+
+ [isabell@stardust phpbb_update]$ rm phpbb.tar.bz2 && rm config.php && rm images/ -rf && rm store/ -rf && rm files/ -rf
+ [isabell@stardust phpbb_update]$ rm ~/html/vendor/ -rf && rm ~/html/cache/ -rf
+ [isabell@stardust phpbb_update]$ cp -r . ~/html/
+ [isabell@stardust phpbb_update]$ cd .. && rm phpbb_update -rf
+ [isabell@stardust ~]$ 
 
 Now Navigate to the database updater, e.g. ``https://isabell.uber.space/install/app.php/update`` and start the database update.
 
