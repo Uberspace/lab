@@ -148,6 +148,50 @@ Backup the following directories:
   * ``~/.local/share/openslides/``
   * ``~/.config/openslides/``
 
+Debugging
+=========
+
+In case of problems, the log file ``~/logs/supervisord.log`` is the first point for you.
+
+Moreover, you can adjust the logging of OpenSlides. For example, you can log the outputs to a file. To achieve that, edit the file ``~/.config/openslides/settings.py`` an replace the existing ``LOGGING`` section with the following one:
+
+::
+
+  LOGGING = {
+      'version': 1,
+      'disable_existing_loggers': False,
+      'formatters': {
+          'gunicorn': {
+              'format': '{asctime} [{process:d}] [{levelname}] {name} {message}',
+              'style': '{',
+              'datefmt': '[%Y-%m-%d %H:%M:%S %z]',
+          },
+      },
+      'handlers': {
+          'console': {
+              'class': 'logging.StreamHandler',
+              'formatter': 'gunicorn',
+          },
+      'file': {
+              'class': 'logging.FileHandler',
+              'filename': '/home/isabell/logs/openslides.log',
+          },
+      },
+      'loggers': {
+          'django': {
+              'handlers': ['file'],
+              'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+          },
+          'openslides': {
+              'handlers': ['file'],
+              'level': os.getenv('OPENSLIDES_LOG_LEVEL', 'INFO'),
+          }
+      },
+  }
+
+This will log everything to the file ``/home/isabell/logs/openslides.log`` instead being displayed in the console.  
+
+
 .. _OpenSlides: https://openslides.com/
 .. _feed: https://github.com/OpenSlides/OpenSlides/releases.atom
 .. _MIT License: https://github.com/OpenSlides/OpenSlides/blob/master/LICENSE
