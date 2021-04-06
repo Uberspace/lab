@@ -1,7 +1,7 @@
 $(function () {
   function checkLogoHeight() {
     var logo = $('div[itemprop="articleBody"] > .sidebar');
-    var hr = $('div[itemprop="articleBody"] > .section > hr');
+    var hr = $('div[itemprop="articleBody"] > section > hr');
     var logoEnd = 0;
     var hrPosition = 0;
     if (logo.length) {
