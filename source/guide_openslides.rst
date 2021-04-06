@@ -137,6 +137,11 @@ If there is a new version available, update the following command to update your
 
  [isabell@stardust ~]$ servicectl stop openslides
  [isabell@stardust ~]$ pip3.9 install --upgrade openslides
+ [...]
+        Successfully uninstalled openslides-3.2
+     Running setup.py install for openslides ... done
+ Successfully installed openslides-3.3
+ [...]
  [isabell@stardust ~]$ servicectl start openslides
  [isabell@stardust ~]$
 
