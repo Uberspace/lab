@@ -1,4 +1,5 @@
-/* footer */
+/* --- Foooter - Asteroid --------------------------------------------------- */
+
 .wy-nav-content {
   position: relative;
   background-image: url("../images/footer.svg");
@@ -15,7 +16,7 @@
 
 footer {
   position: absolute;
-  bottom:0;
+  bottom: 0;
   left: 0;
   right: 0;
   padding-bottom: 1rem;
@@ -24,7 +25,8 @@ footer {
   color: #222222;
 }
 
-/* navigation */
+/* --- Navigation / Sidebar ------------------------------------------------- */
+
 .wy-side-nav-search {
   padding-top: 170px;
   background-image: url("../images/rocket.svg");
@@ -40,22 +42,25 @@ footer {
   color: #fff;
 }
 
-.wy-menu-vertical header, .wy-menu-vertical p.caption :first-child::before {
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption :first-child::before {
   content: url("../images/icn-rocket.svg");
-  margin-left: -.1618em;
+  margin-left: -0.1618em;
   width: 30px;
   float: left;
-  padding: .1618em;
+  padding: 0.1618em;
 }
 
-.wy-menu-vertical header, .wy-menu-vertical p.caption {
-  margin-top: .809em;
-  color:  #999999;
+.wy-menu-vertical header,
+.wy-menu-vertical p.caption {
+  margin-top: 0.809em;
+  color: #999999;
 }
 
-.wy-menu-vertical header, .wy-menu-vertical ul.toctree-l1 {
-  margin-top: .809em;
-  color:  #999999;
+.wy-menu-vertical header,
+.wy-menu-vertical ul.toctree-l1 {
+  margin-top: 0.809em;
+  color: #999999;
 }
 
 nav li {
@@ -63,11 +68,22 @@ nav li {
 }
 
 /* search box */
-.wy-side-nav-search input[type=text] {
+.wy-side-nav-search input[type="text"] {
   border-color: #84000f;
 }
 
-/* logo box */
+/* --- Main Page ------------------------------------------------------------ */
+
+/* Index - Atomium Logo */
+.rst-content .document img[src="_images/atom.svg"] {
+  float: right;
+  width: 30%;
+  height: 30%;
+  shape-outside: url(/_images/atom.svg);
+  shape-margin: 1em;
+}
+
+/* Article - logo box */
 .sidebar + .section > .section:first-of-type > div {
   max-width: 55%;
 }
@@ -76,116 +92,111 @@ nav li {
   max-height: 150px;
 }
 
-/* Main Page - Atomium */
-.rst-content .document img[src='_images/atom.svg'] {
-    float: right;
-    width: 30%;
-    height: 30%;
-    shape-outside: url(/_images/atom.svg);
-    shape-margin: 1em;
-}
-
-/* Hall of Fame */
+/* --- Hall of Fame --------------------------------------------------------- */
 
 #hall-of-fame ol,
 #hall-of-fame ol li {
-    list-style: none !important;
-    margin: 0;
-    padding: 0;
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
 }
 
 #hall-of-fame ol > li {
-    display: grid;
-    grid-template-columns: 1fr 11fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "score author"
-        "score guides";
-    margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "score author"
+    "score guides";
+  margin-bottom: 1.5rem;
 }
 
 #hall-of-fame ol > li > div:first-child {
-    grid-area: score;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  grid-area: score;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #hall-of-fame ol > li > div:not(:first-child) {
-    grid-area: author;
-    margin-left: 1rem;
-    font-size: 120%;
+  grid-area: author;
+  margin-left: 1rem;
+  font-size: 120%;
 }
 
 #hall-of-fame ol > li > ul {
-    grid-area: guides;
-    margin-left: 1rem;
+  grid-area: guides;
+  margin-left: 1rem;
 }
 
 #hall-of-fame ol > li > ul:before {
-    content: url(../images/icn-rocket.svg);
-    width: 23px;
-    height: 15px;
+  content: url(../images/icn-rocket.svg);
+  width: 23px;
+  height: 15px;
 }
 
 #hall-of-fame ol > li > ul > li {
-    display: inline;
+  display: inline;
 }
 
 #hall-of-fame ol > li > ul > li:not(:last-child):after {
-    content: ', ';
+  content: ", ";
 }
 
 #hall-of-fame .circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    padding: .5rem;
-    margin: 0;
-    background-color: #b3b3b3;
-    color: #404040;
-    border-radius: 50%;
-    font-size: 160%;
-    font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0;
+  background-color: #b3b3b3;
+  color: #404040;
+  border-radius: 50%;
+  font-size: 160%;
+  font-weight: bold;
 }
 
 #hall-of-fame .author {
-    font-weight: bolder;
+  font-weight: bolder;
 }
 
 #hall-of-fame .autolink:before {
-    content: "<";
+  content: "<";
 }
 
 #hall-of-fame .autolink:after {
-    content: ">";
+  content: ">";
 }
 
+/* --- Taglist -------------------------------------------------------------- */
+
 .taglist .tag {
-    display: inline-block;
+  display: inline-block;
 }
 
 .taglist {
-    margin-top: -1.3em;
-    margin-bottom: 0.83em;
+  margin-top: -1.3em;
+  margin-bottom: 0.83em;
 }
 
 .tagguides {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    margin-left: -0.5em;
-    margin-right: -0.5em;
+  margin-left: -0.5em;
+  margin-right: -0.5em;
 }
 
 .tagguides a {
-    margin: 0.5em;
-    font-size: 1.2em;
+  margin: 0.5em;
+  font-size: 1.2em;
 }
 
-/* highlighted remove paddings */
+/* --- Misc ----------------------------------------------------------------- */
+
+/* remove paddings for highlights */
 .rst-content .highlighted {
   padding: 0;
 }
