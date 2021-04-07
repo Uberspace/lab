@@ -27,6 +27,7 @@ footer {
 
 /* --- Navigation / Sidebar ------------------------------------------------- */
 
+/* title image */
 .wy-side-nav-search {
   padding-top: 170px;
   background-image: url("../images/rocket.svg");
@@ -36,14 +37,19 @@ footer {
   background-position-x: 1.8em;
 }
 
-.wy-menu-vertical a:active {
-  background-color: #e2001a;
-  cursor: pointer;
-  color: #fff;
+/* nav aside */
+.wy-menu-vertical {
+  margin: 1rem 0;
 }
 
-.wy-menu-vertical header,
-.wy-menu-vertical p.caption :first-child::before {
+/* header items */
+.wy-menu-vertical > p {
+  margin: 1rem;
+  color: #999999;
+}
+
+/* header items - icon */
+.wy-menu-vertical > p::before {
   content: url("../images/icn-rocket.svg");
   margin-left: -0.1618em;
   width: 30px;
@@ -51,20 +57,16 @@ footer {
   padding: 0.1618em;
 }
 
-.wy-menu-vertical header,
-.wy-menu-vertical p.caption {
-  margin-top: 0.809em;
+/* menu items */
+.wy-menu-vertical .toctree-l1 {
   color: #999999;
 }
 
-.wy-menu-vertical header,
-.wy-menu-vertical ul.toctree-l1 {
-  margin-top: 0.809em;
-  color: #999999;
-}
-
-nav li {
-  padding-left: 10px;
+/* menu items - hover */
+.wy-menu-vertical a:active {
+  background-color: #e2001a;
+  cursor: pointer;
+  color: #fff;
 }
 
 /* search box */
