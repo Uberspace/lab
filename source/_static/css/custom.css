@@ -211,3 +211,14 @@ nav li {
 .rst-content .highlighted {
   padding: 0;
 }
+
+/* re-enabel list-style */
+blockquote .rst-content ul {
+  padding: 0;
+}
+.rst-content ul {
+  padding: 1rem;
+}
+.rst-content ul li {
+  list-style: disc;
+}
