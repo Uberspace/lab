@@ -124,7 +124,7 @@ Setup a web backend
 .. include:: includes/web-backend.rst
 
 Create a supervisord service entry
--------------------
+----------------------------------
 
 Create ``~/etc/services.d/homeassistant.ini`` with the following content:
 
