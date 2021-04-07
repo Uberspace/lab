@@ -11,9 +11,9 @@
   .. image:: _static/images/beehive.png
       :align: center
 
-#####
+#######
 Beehive
-#####
+#######
 
 .. tag_list::
 
@@ -26,7 +26,8 @@ name just a few. Check out the full list of `available Hives`_
 in our Wiki.
 
 Connecting those modules with each other lets you create immensly useful agents.
-----
+
+---
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
