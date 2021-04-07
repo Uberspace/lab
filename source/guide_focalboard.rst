@@ -32,6 +32,8 @@ Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
+It's recommended to use a PostgreSQL database. Install and configure PostgreSQL server as described in the :lab:`PostgreSQL guide <guide_postgresql>`.
+
 Installation
 ============
 
@@ -40,7 +42,8 @@ Download the latest release_ to your home directory and extract the application.
 .. code-block:: console
 
  [isabell@stardust ~]$ wget https://github.com/mattermost/focalboard/releases/download/v0.6.1/focalboard-linux.tar.gz
- [isabell@stardust ~]$ tar xzfv focalboard-linux.tar.gz
+ [isabell@stardust ~]$ tar --extract --gzip --file focalboard-linux.tar.gz
+ [isabell@stardust ~]$ rm focalboard-linux.tar.gz
  [isabell@stardust ~]$
 
 
@@ -48,6 +51,18 @@ Configuration
 =============
 
 You need to change ``"localOnly": true`` to ``"localOnly": false`` in ``~/focalboard-app/config.json``
+
+If PostgreSQL is used, the database configuration also needs to be adjusted. Edit the database config in the file ``~/focalboard-app/config.json``. These two values must be changed:
+.. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
+
+.. code-block:: json
+ "dbtype": "postgres",
+ "dbconfig": "postgres://<db_user>:<db_password>@localhost/<db_name>?sslmode=disable&connect_timeout=10",
+ 
+For example:
+.. code-block:: json
+ "dbtype": "postgres",
+ "dbconfig": "postgres://isabell_focalboard:sup3r-s3cr3t@localhost/focalboard?sslmode=disable&connect_timeout=10",
 
 Setup daemon
 ------------
@@ -58,7 +73,7 @@ Create ``~/etc/services.d/focalboard.ini`` with the following content:
 
  [program:focalboard]
  directory=%(ENV_HOME)s/focalboard-app
- command=/home/focal/focalboard-app/focalboard-server
+ command=/home/isabell/focalboard-app/focalboard-server
  autostart=yes
  autorestart=yes
 
@@ -80,6 +95,8 @@ Open a browser and point it to the domain and you should be redirected to the lo
 
 The first user registration will always be permitted, but subsequent registrations will require an invite link which includes a code. You can invite additional users by clicking on your username in the top left, then selecting "Invite users".
 
+More information can be found in the official documentation_
+
 Updates
 -------
 
@@ -89,6 +106,7 @@ To update the application, stop the daemon and repeat the installation step.
 
 .. _Focalboard: https://focalboard.com/
 .. _release: https://github.com/mattermost/focalboard/releases/
+.. _documentation: https://www.focalboard.com/guide/server-setup/
 .. _repository: https://github.com/mattermost/focalboard/
 
 ----
