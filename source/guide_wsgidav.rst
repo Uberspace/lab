@@ -105,7 +105,7 @@ To make the web server available as a web backend you have to explicitly set the
 
 ::
 
-host: 0.0.0.0
+    host: 0.0.0.0
 
 .. note::
 
