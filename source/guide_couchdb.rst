@@ -7,8 +7,6 @@
 
 .. sidebar:: About
 
-.. sidebar:: About
-
   .. image:: _static/images/couchdb.svg
         :align: center
 
