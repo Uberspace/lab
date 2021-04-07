@@ -164,7 +164,7 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
   [isabell@stardust html]$
 
 Set the "trusted" domain
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Set the :manual:`domain name <web-domains>` that your Nextcloud will be accessed with as "trusted":
 
