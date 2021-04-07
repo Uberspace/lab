@@ -153,7 +153,7 @@ Set up the config file
 Now edit ``~/etc/tarsnap.conf`` with the editor of your choice. The config file is already commented by the author.
 Make sure to use your write-only keyfile under keyfile in the config file:
 
-.. code-block::
+.. code-block:: ini
  :emphasize-lines: 4,7,10,13,16,21
 
  ### Recommended options
