@@ -157,4 +157,4 @@ exclude_patterns = ["404.rst", "includes/proxy-rewrite-static.rst"]
 
 
 def setup(app):
-    app.add_javascript("js/custom.js")
+    app.add_js_file("js/custom.js")
