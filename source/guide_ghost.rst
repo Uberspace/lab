@@ -238,7 +238,7 @@ Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ fo
  :emphasize-lines: 2,3
 
  [isabell@stardust ~]$ cd ~/ghost/versions/
- [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/23.42.1/Ghost-23.42.1.zip
+ [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/v23.42.1/Ghost-23.42.1.zip
  [isabell@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
  Archive:  Ghost-23.42.1.zip
  [isabell@stardust versions]$
@@ -340,6 +340,6 @@ As an alternative to this manual process of updating Ghost to a new version you 
 
 ----
 
-Tested with Ghost 3.13.4, Uberspace 7.6.0.0
+Tested with Ghost 4.2.0, Uberspace 7.10.0.0
 
 .. author_list::
