@@ -36,13 +36,6 @@ Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-Configure port
---------------
-
-.. include:: includes/open-port.rst
-
-Write down your port.
-
 Installation
 ============
 
@@ -126,10 +119,8 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
 ::
 
   <listen-socket>
-     <port>$yourlisteningport</port>
-     <!-- <bind-address>127.0.0.1</bind-address> -->
+     <port>8000</port>
      <shoutcast-mount>/stream</shoutcast-mount>
-     <ssl>1</ssl>
   </listen-socket>
 
 ::
@@ -205,7 +196,7 @@ Configure web server
 
 .. note::
 
-    Use the port you were assigned by ``uberspace port add`` above.
+    Icecast is running on port 8000.
 
 .. include:: includes/web-backend.rst
 
