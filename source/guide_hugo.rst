@@ -47,8 +47,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Create website root
+-------------------
 
 Create a new directory containing the sources for your website.
 
@@ -57,8 +57,8 @@ Create a new directory containing the sources for your website.
  [isabell@stardust ~]$ mkdir hugo_websites
  [isabell@stardust ~]$
 
-Step 2
-------
+Download
+--------
 
 Check the Hugo_ website or `Github Repository`_ for the latest release and copy the download link to the Linux-64bit.tar.gz file. Then use ``wget`` to download it. Replace the URL with the one you just got from GitHub.
 
@@ -92,8 +92,8 @@ After setting up, test if Hugo works. The output is the version number of Hugo.
  [isabell@stardust ~]$
 
 
-Step 3
-------
+Create first website
+--------------------
 
 Hugo is now installed on your Uberspace. This means you're ready to create your first Hugo site! To do this, switch to the corresponding directory and create the Hugo page there.
 
@@ -115,8 +115,8 @@ Hugo is now installed on your Uberspace. This means you're ready to create your 
  Visit https://gohugo.io/ for quickstart guide and full documentation.
  [isabell@stardust hugo_websites]$
 
-Step 4
-------
+Add theme
+---------
 
 Since Hugo is delivered without a theme, this must now be installed. To do so, look for a theme you like at https://themes.gohugo.io/ and install it into the ``themes`` directory of your site. This example uses the theme FutureImperfect_, but you are free to use any other theme. Then copy the sample files into the project root, to quickly bootstrap you new site.
 
