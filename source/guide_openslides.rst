@@ -49,8 +49,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Install Python package
+----------------------
 Install the OpenSlides Python package:
 
 ::
@@ -73,8 +73,31 @@ Check if OpenSlides is installed by typing:
  3.3
  [isabell@stardust ~]$
 
-Step 2
-------
+Create configuration
+--------------------
+Run the following command to create the configuration:
+
+::
+
+ [isabell@stardust ~]$ openslides createsettings
+ Settings created at /home/isabell/.config/openslides/settings.py
+
+Furthermore, populate the SQLite database by running the following command:
+
+::
+
+ [isabell@stardust ~]$ openslides migrate
+ Operations to perform:
+   Apply all migrations: agenda, assignments, auth, contenttypes, core, mediafiles, motions, sessions, topics, users
+ Running migrations:
+   Applying contenttypes.0001_initial... OK
+ [...]
+ [2021-04-11 20:59:34 +0200] [21317] [INFO] openslides.core.apps [zxnj] Updated config variables
+ [isabell@stardust ~]$
+
+ 
+Create web backend
+------------------
 
 .. note::
 
@@ -82,35 +105,16 @@ Step 2
 
 .. include:: includes/web-backend.rst
 
-Step 3
-------
-Start the OpenSlides binary:
 
-::
+Create service
+--------------
 
- [isabell@stardust ~]$ openslides runserver 0.0.0.0:8000
- [2021-04-03 18:35:10 +0200] [16175] [INFO] openslides.utils.schema_version [SweN] No old schema version
- [...]
- Django version 2.2.19, using settings 'settings'
- Starting ASGI/Channels version 2.3.1 development server at http://0.0.0.0:8000/
- Quit the server with CONTROL-C.
-
-
-Step 4
-------
-Now point your Browser to your installation URL ``https://isabell.uber.space``.
-
-Use ``admin`` as username and ``admin`` as password for your first login. You should change this password at ``https://isabell.uber.space/users/password`` immediately after login!
-
-Step 5
--------
-
-Finally, you should set up a service that keeps OpenSlides alive while you are gone. Use `CTRL+C` to terminate the current running OpenSlides process. After that, create the file ``~/etc/services.d/openslides.ini`` with the following content:
+You should set up a service that keeps OpenSlides alive while you are gone. We will use ``daphne`` as an ASGI backend server for the OpenSlides application. Create the file ``~/etc/services.d/openslides.ini`` with the following content:
 
 .. code-block:: ini
 
  [program:openslides]
- command=openslides runserver 0.0.0.0:8000
+ command=daphne -b 0.0.0.0 -p 8000 openslides.asgi:application
  autostart=true
  autorestart=true
  stopsignal=INT
@@ -118,6 +122,14 @@ Finally, you should set up a service that keeps OpenSlides alive while you are g
 .. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
+
+
+Access OpenSlides
+-----------------
+Now point your Browser to your installation URL ``https://isabell.uber.space``.
+
+Use ``admin`` as username and ``admin`` as password for your first login. You should change this password at ``https://isabell.uber.space/users/password`` immediately after login!
+
 
 Configuration
 =============
