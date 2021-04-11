@@ -87,8 +87,6 @@ Create databases
 
 Create the needed MySQL databases as the installer file won't work on uberspace.
 
-.. warning:: Replace ``isabell`` with your username!
-
 ::
 
  [isabell@stardust ~]$ mysql -e "create database ${USER}_ccnet character set = 'utf8';"
