@@ -228,8 +228,8 @@ Integration with gitea
 
 One useful thing to do with BuildBot_ is to use it as a continuous integration runner. Since :lab:`gitea <guide_gitea>` also works on Uberspace but doesn't support 'direct' CI/CD integration like github and gitlab, we can use :lab:`gitea <guide_gitea>`'s web hooks to trigger our BuildBot_ installation to do something.
 
-Step 1
-------
+Install
+-------
 
 For this, we will need to install the ``buildbot_gitea`` plugin for BuildBot, developed by Marvin Pohl of lab132. We will install directly from their git repository using pip:
 
@@ -237,8 +237,8 @@ For this, we will need to install the ``buildbot_gitea`` plugin for BuildBot, de
 
  [isabell@stardust ~] pip3.8 install git+https://github.com/lab132/buildbot-gitea.git --user
 
-Step 2
-------
+Configure
+---------
 
 Now that we installed the ``buildbot_gitea`` plugin, we can use ``gitea`` as a dialect for accepting incoming webhook messages via ``http://localhost:9989/change_hook/gitea``. For this, return to editing the ``master.cfg`` from earlier. There, add the following to enable incoming webhook messages from gitea:
 
@@ -251,8 +251,8 @@ Now that we installed the ``buildbot_gitea`` plugin, we can use ``gitea`` as a d
 
 That's it! Restart your BuildBot_ master via ``supervisorctl restart buildbot-master`` and continue by adding the webhook to the desired gitea repository!
 
-Step 3
-------
+Link to gitea
+-------------
 
 Adding the webhook to a repository works pretty much as expected. Go to the desired repository, click on ``Settings > Webhooks > Add Webhook > Gitea`` and enter ``http://localhost:9989/change_hook/gitea`` as the URL and whatever you entered as a secret as secret. This of course assumes that you installed gitea on the same Uberspace host as BuildBot_.
 
