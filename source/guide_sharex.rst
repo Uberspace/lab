@@ -40,30 +40,9 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-Step 1
-------
-Firstly we need to add a domain(in this case a subdomain).
+Your URL needs to be set up:
 
-::
-
-  [isabell@stardust ~] uberspace web domain add cdn.uberspace.de
-  The webserver's configuration has been adpated.
-  Now you can use the following records for your dns:
-     A -> 185.26.156.55
-     AAAA -> 2a00:d0c0:200:0:b9:1a:9c:37
-
-Step 2
-------
-
-Now we need to create the corresponding directory for our subdomain.
-
-::
-
-  [isabell@stardust ~] mkdir /var/www/virtual/$user/cdn.uberspace.de && cd "$_"
-  [isabell@stardust cdn.uberspace.de]
-
-
-
+.. include:: includes/web-domain-list.rst
 
 Installing and configuring the Windows client
 =============================================
@@ -82,6 +61,8 @@ Step 3
 ------
 Now write the following in the corresponding fields.
 
+.. warning:: Make sure to replace "isabell" in the next step with your own username!
+
 ::
 
   Name: IMG Uberspace
@@ -89,8 +70,8 @@ Now write the following in the corresponding fields.
   Host: stardust.uberspace.de
   Username: $ssh_user
   Password: $ssh_password
-  Remote directory: /var/www/virtual/$user/cdn.uberspace.de/img/%y/%mo/%d
-  URL path: https://   cdn.uberspace.de
+  Remote directory: /var/www/virtual/isabell/html/img/%y/%mo/%d
+  URL path: https://isabell.uber.space
 
 
 **The two checkboxes should be unchecked!**
