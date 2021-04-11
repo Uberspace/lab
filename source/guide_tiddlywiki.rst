@@ -10,9 +10,9 @@
   .. image:: _static/images/tiddlywiki.svg
       :align: center
 
-############
-TiddlyWiki 5
-############
+##########
+TiddlyWiki
+##########
 
 .. tag_list::
 
@@ -33,8 +33,8 @@ If you want to use TiddlyWiki with your own domain you need to setup your domain
 Installation
 ============
 
-Step 1
-------
+Install the Node package
+------------------------
 TiddlyWiki is installed via Nodes package manager `npm`:
 
 ::
@@ -53,8 +53,8 @@ Check if TiddlyWiki is installed by typing:
  5.1.23
  [isabell@stardust ~]$
 
-Step 2
-------
+Create a new wiki
+-----------------
 The following commands creates a folder in your home directory for TiddlyWiki. After that, a new wiki folder (named ``mynewwiki`` in this example) containing server-related components is created.
 
 ::
@@ -67,8 +67,8 @@ The following commands creates a folder in your home directory for TiddlyWiki. A
  mynewwiki
  [isabell@stardust tiddlywiki]$
 
-Step 3
-------
+Setup a web backend
+-------------------
 
 .. note::
 
@@ -76,42 +76,8 @@ Step 3
 
 .. include:: includes/web-backend.rst
 
-Step 4
-------
-
-Now TiddlyWiki server can be started:
-
-::
-
- [isabell@stardust ~]$ cd tiddlywiki
- [isabell@stardust tiddlywiki]$ tiddlywiki mynewwiki --listen host=0.0.0.0
- syncer-server-filesystem: Dispatching 'save' task: $:/StoryList
- Serving on http://0.0.0.0:8080
- (press ctrl-C to exit)
-
-Step 5
-------
-Now point your Browser to your installation URL ``https://isabell.uber.space``.
-
-Step 6
--------
-
-Finally, you should set up a service that keeps TiddlyWiki alive while you are gone. Use `CTRL+C` to terminate the current running TiddlyWiki process. After that, create the file ``~/etc/services.d/tiddlywiki.ini`` with the following content:
-
-.. code-block:: ini
-
- [program:tiddlywiki]
- command=tiddlywiki %(ENV_HOME)s/tiddlywiki/mynewwiki --listen host=0.0.0.0
- autostart=true
- autorestart=true
- stopsignal=INT
-
-.. include:: includes/supervisord.rst
-
-If it's not in state RUNNING, check your configuration.
-
-Permissions
-===========
+Configure permissions
+---------------------
 By default, anonymous users can read and edit the tiddlers.
 
 To restrict the permissions, add a users file named ``myusers.csv`` into the `tiddlywiki` folder:
@@ -130,7 +96,12 @@ Use your favorite editor to add a comma seperated list of usernames and password
  andy,sm1th
  roger,m00re
 
-Now you can edit the service configuration (``~/etc/services.d/tiddlywiki.ini``) to use the users file and apply reading and writing permissions, e.g. like this:
+You can assign the users to the group ``readers`` (reading access only) or to the group ``writers`` (writing access) in the service configuration (see next step).
+
+Setup TiddlyWiki as service
+---------------------------
+
+You should set up a service that keeps TiddlyWiki alive while you are gone. Create the file ``~/etc/services.d/tiddlywiki.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -141,6 +112,13 @@ Now you can edit the service configuration (``~/etc/services.d/tiddlywiki.ini``)
  stopsignal=INT
 
 .. include:: includes/supervisord.rst
+
+If it's not in state RUNNING, check your configuration.
+
+
+Access your TiddlyWiki
+----------------------
+Now point your Browser to your installation URL ``https://isabell.uber.space``.
 
 
 Update
