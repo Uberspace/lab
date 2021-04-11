@@ -132,8 +132,8 @@ Also, install the package ``mysqlclient``:
  [isabell@stardust public]$ cd
  [isabell@stardust ~]$
 
-Step 5
-------
+Configuration
+-------------
 Copy the template configuration file and adapt it based on the following example.
 
 ::

@@ -70,9 +70,6 @@ Finally, create the mysql database for grafana:
 Installation
 ============
 
-Step 1
-------
-
 Find the latest version of grafana_ for the platform ``linux`` from the `download page <https://grafana.com/grafana/download?platform=linux>`_, download and extract it and enter the extracted directory:
 
 ::
@@ -81,9 +78,6 @@ Find the latest version of grafana_ for the platform ``linux`` from the `downloa
  [isabell@stardust ~]$ tar xvzf grafana-6.7.3.linux-amd64.tar.gz
  [isabell@stardust ~]$ cd grafana-6.7.3
  [isabell@stardust grafana-6.7.3]$
-
-Step 2
-------
 
 Move the binary to ``~/bin`` and the default configuration and html files to ``~/usr/share/grafana``.
 

@@ -57,9 +57,6 @@ The second directory is for storing the configuration files:
 Installation
 ============
 
-Step 1
-------
-
 Find the latest version of prometheus_ for the operating system ``linux`` and the architecture ``amd64`` from the `download page <https://prometheus.io/download>`_, download and extract it and enter the extracted directory:
 
 ::
@@ -68,9 +65,6 @@ Find the latest version of prometheus_ for the operating system ``linux`` and th
  [isabell@stardust ~]$ tar xvzf prometheus-2.18.1.linux-amd64.tar.gz
  [isabell@stardust ~]$ cd prometheus-2.18.1.linux-amd64
  [isabell@stardust prometheus-2.18.1.linux-amd64]$
-
-Step 2
-------
 
 Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 

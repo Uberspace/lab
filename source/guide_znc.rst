@@ -37,8 +37,6 @@ Prerequisites
 Installation
 ============
 
-Step 1
-------
 Create a new directory, download the latest version and enter the directory you just created:
 
 ::
@@ -47,9 +45,6 @@ Create a new directory, download the latest version and enter the directory you 
  [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC ~/znc --strip-components=1
  [isabell@stardust ~]$ cd ~/znc
  [isabell@stardust znc]$
-
-Step 2
-------
 
 Compile and install ZNC to your home directory:
 

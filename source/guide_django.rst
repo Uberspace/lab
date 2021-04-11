@@ -43,16 +43,14 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-Installation
-============
-
-Step 1
-------
+uWSGI
+-----
 
 .. include:: includes/install-uwsgi.rst
 
-Step 2
-------
+Installation
+============
+
 Install django
 
 ::

@@ -78,8 +78,8 @@ Moodle saves files and data into a folder for persistency. We have to create thi
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 First, we're going to download Moodle and extract it. For this, we should first change into the html directory of your account.
 
 Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
@@ -99,8 +99,8 @@ The ``--strip-components=1`` option will unpack the contents of the moodle folde
  [isabell@stardust html]$ tar --gzip --extract --file=moodle.tgz
  [isabell@stardust html]$
 
-Step 2
-------
+Initialize
+----------
 Now we should be able to access the initialization process of the Moodle instance. Here, we used the uberspace domain, so our address is the one mentioned here:
 
 .. include:: includes/web-domain-list.rst
@@ -124,8 +124,8 @@ We visit the page in the browser of our choice.
 9. Enter a full and short name for your Moodle instance.
 10. Et voila, our Moodle is now installed.
 
-Step 3
-------
+Cronjob
+-------
 We definitely should configure a cron task for Moodle. This script is critical for several features of Moodle e.g. sending notification emails. Enter
 
 ::

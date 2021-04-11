@@ -38,8 +38,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
 Download grocy.
 
@@ -55,8 +55,8 @@ Download grocy.
  2020-08-26 12:09:31 (12,5 MB/s) - ‘grocy_latest.zip’ saved [57489683/57489683]
  [isabell@stardust isabell]$
 
-Step 2
-------
+Extract
+-------
 
 Unpack the downloaded grocy release
 
@@ -67,7 +67,7 @@ Unpack the downloaded grocy release
  [isabell@stardust isabell]$
 
 
-Step 3
+Expose
 ------
 
 If you want to only host grocy on your Uberspace (best practice since Uberspace 7) you should link your
@@ -88,8 +88,8 @@ If you instead want to host grocy alongside other applications, just leave the h
 
 Please note that this will require further tweaking in the config file.
 
-Step 4
-------
+Configure
+---------
 
 Copy the default config file to ``data/config.php`` and edit it to your liking
 

@@ -55,9 +55,6 @@ The second directory is for storing the configuration files:
 Installation
 ============
 
-Step 1
-------
-
 Find the latest version of alertmanager_ for the operating system ``linux`` and the architecture ``amd64`` from the `download page <https://prometheus.io/download>`_, download and extract it and enter the extracted directory:
 
 ::
@@ -66,9 +63,6 @@ Find the latest version of alertmanager_ for the operating system ``linux`` and 
  [isabell@stardust ~]$ tar xvzf alertmanager-0.20.0.linux-amd64.tar.gz
  [isabell@stardust ~]$ cd alertmanager-0.20.0.linux-amd64
  [isabell@stardust alertmanager-0.20.0.linux-amd64]$
-
-Step 2
-------
 
 Move the binary to ``~/bin`` and the configuration file to ``~/etc/alertmanager``.
 

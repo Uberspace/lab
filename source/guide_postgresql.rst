@@ -268,8 +268,8 @@ The following example considers a database and new user for Synapse, the Matrix 
 .. note:: Please start your PostgreSQL daemon before you maintain anything.
 
 
-Step 1 - New User
------------------
+Create User
+-----------
 
 To create a new database user, consider the following option:
 
@@ -286,17 +286,17 @@ To create a new database user, consider the following option:
  [isabell@stardust ~]$
 
 
-Step 2 - New Database
----------------------
+Create Database
+---------------
 
  The following options will be used to create the new database:
 
  * ``--encoding``: Set of UTF8 encoding
- * ``--owner``: The owner of the new database. In this example the new user of step 1.
+ * ``--owner``: The owner of the new database. In this example the newly created user.
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
  * ``database name``: And as last option the name of the database. In this example 'synapse'.
 
-.. warning:: Please replace ``<user>`` with your user name, created in step 1!
+.. warning:: Please replace ``<user>`` with the user name, created earlier!
 
 .. code-block:: console
  :emphasize-lines: 1
@@ -316,8 +316,8 @@ Updates
 
 The update process has one dependency, the free available space of your affected Uberspace. Because the update process will take temporary ca. the same capacity of your existing PostgreSQL instance data for a local backup. After the data migration the backup will be deleted and you will have the same capacity situation as before.
 
-Step 1 - Check the Database Volume
-----------------------------------
+Check the Database Volume
+-------------------------
 
 A simple check will show the used capacity of your PostgreSQL instance.
 
@@ -341,8 +341,8 @@ Further tools and details are described in the Uberspace manual and section :man
 
 Now you can identify, that you have enough space for the backup. If not, then try to get more space. Otherwise you cannot start the update.
 
-Step 2 - Check the Preconditions
---------------------------------
+Check the Preconditions
+-----------------------
 
 A PostgreSQL update is in most cases necessary in relation of another software update with new requirements. Check the new software requirements and compare this with existing PostgreSQL versions:
 
@@ -355,8 +355,8 @@ A PostgreSQL update is in most cases necessary in relation of another software u
  - 13
  [isabell@stardust ~]$
 
-Step 3 - Stop all Daemons with relation to PosgreSQL
-----------------------------------------------------
+Stop all Daemons with relation to PosgreSQL
+-------------------------------------------
 
 Check running daemons:
 
@@ -377,8 +377,8 @@ And stop all affected daemons:
  my-daemon: stopped
  [isabell@stardust ~]$
 
-Step 4 - Backup
----------------
+Backup
+------
 
 Create the target directory:
 
@@ -403,8 +403,8 @@ And copy the PostgreSQL config file:
 
 .. warning:: If you have further changes in other configuration files, please copy these to the backup directory too.
 
-Step 5 - PostgreSQL-Update
---------------------------
+PostgreSQL-Update
+-----------------
 
 Stop the PostgreSQL-Daemon:
 
@@ -539,8 +539,8 @@ Check the cluster, if all databases are available:
 
  [isabell@stardust ~]$
 
-Step 6 - Daemon Start
----------------------
+Daemon Start
+------------
 
 Start your Daemons with a relation to PostgreSQL:
 
@@ -550,8 +550,8 @@ Start your Daemons with a relation to PostgreSQL:
  my-daemon: started
  [isabell@stardust ~]$
 
-Step 7 - Cleanup
-----------------
+Cleanup
+-------
 
 The backup is not more necessary and can be removed:
 

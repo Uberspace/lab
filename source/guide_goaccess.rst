@@ -31,15 +31,15 @@ Configuration
 
 After the installation of GoAccess, it is necessary to enable the web server logs and to configure GoAccess with the right log format.
 
-Step 1 - Enable the Web Server Log
-----------------------------------
+Enable the Web Server Log
+-------------------------
 
 Please follow the instructions in :manual:`the uberspace manual <web-logs>` to enable the web server logs.
 
 .. note:: Please consider, after the web server log enabling, it needs some time to have some entries in your new log files. Depends on the web traffic.
 
-Step 2 - GoAccess Configuration
--------------------------------
+GoAccess Configuration
+----------------------
 
 Copy the default configuration:
 
@@ -67,8 +67,8 @@ Edit the configuration file and uncomment the following parameters:
 Launch
 ======
 
-Step 1 - First Try (or Realtime Analysis in the Shell)
-------------------------------------------------------
+First Try (or Realtime Analysis in the Shell)
+---------------------------------------------
 
 To get first results, to check that everything is maintained, please enter:
 
@@ -78,8 +78,8 @@ To get first results, to check that everything is maintained, please enter:
 
 Scroll with your cursor keys up and down. With "q" you can quit GoAccess.
 
-Step 2 - HTML Output
---------------------
+HTML Output
+-----------
 
 This is the graphical variant as static HTML web page. I consider a new folder inside the html location, that you have access from outside on your statistics.
 
@@ -98,8 +98,8 @@ The command to create a static file with GoAccess is:
 
 To view the statistics, point your browser to your uberspace URL, e.g. ``https://isabell.uber.space/statistics/report.html``.
 
-Step 3 - Script File
---------------------
+Script File
+-----------
 
 To create a GoAccess file with a cron job every hour as example, a script is helpful. The location and name for the script file is: ``~/bin/goaccess_generate_statistics.sh``
 
@@ -116,8 +116,8 @@ Make your script file executable with:
  [isabell@stardust ~]$ chmod +x ~/bin/goaccess_generate_statistics.sh
  [isabell@stardust ~]$
 
-Step 4 - Cron Job
------------------
+Cron Job
+--------
 
 `Cron jobs`_ are described in detail in the Uberspace manual. In this case i consider the following task:
 

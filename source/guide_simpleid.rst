@@ -47,8 +47,8 @@ Your URL needs to be setup for web:
 Installation
 ============
 
-Step 1 - Download & Extract
-------------------------------
+Download & Extract
+------------------
 
 ``cd`` to your :manual:`document root <web-documentroot>`, respectively the folder above, because not all files must/should be accessible via web, then download the latest release of *SimpleID* and extract it:
 
@@ -61,8 +61,8 @@ Step 1 - Download & Extract
  [isabell@stardust isabell]$ tar -xzf simpleid-42.23.1.tar.gz
  [isabell@stardust ~]$
 
-Step 2 - Symlink
-----------------
+Symlink
+-------
 
 The folder containing the frontend needs to be accessible via web. To achieve this, a symlink is created linking to the www folder.
 
@@ -71,16 +71,16 @@ The folder containing the frontend needs to be accessible via web. To achieve th
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/simpleid/www/ ~/html/simpleid
  [isabell@stardust ~]$
 
-Step 3 - Copy empty configuration
----------------------------------
+Copy empty configuration
+------------------------
 
 ::
 
  [isabell@stardust isabell]$ cp /var/www/virtual/$USER/simpleid/www/config.php.dist /var/www/virtual/$USER/simpleid/www/config.php
  [isabell@stardust ~]$
 
-Step 4 - Cleanup
-----------------
+Cleanup
+-------
 ::
 
  [isabell@stardust isabell]$ rm simpleid-42.23.1.tar.gz
