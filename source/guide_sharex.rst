@@ -46,20 +46,15 @@ Your URL needs to be set up:
 
 Installing and configuring the Windows client
 =============================================
-Go to your Windows PC and download the ShareX software from the `ShareX Website <https://getsharex.com/downloads/>`_.
 
-Step 1
-------
-Start the installer and follow the instructions.
+Install
+-------
+Go to your Windows PC and download the ShareX software from the `ShareX Website <https://getsharex.com/downloads/>`_. Start the installer and follow the instructions.
 
-Step 2
-------
+Configure
+---------
 Open ShareX and navigate to ":menuselection:`Destinations settings --> FTP / FTPS / SFTP`"
-Now click "**Add**" to create a new destination for our pictures.
-
-Step 3
-------
-Now write the following in the corresponding fields.
+Now click "**Add**" to create a new destination for our pictures. Now write the following in the corresponding fields.
 
 .. warning:: Make sure to replace "isabell" in the next step with your own username!
 
@@ -77,8 +72,8 @@ Now write the following in the corresponding fields.
 **The two checkboxes should be unchecked!**
 You can now close the "**Destination settings**" window.
 
-Step 4
-------
+Create workflow
+---------------
 To setup your Workflow do the following:
 
 
@@ -87,8 +82,8 @@ To setup your Workflow do the following:
  3. Navigate to "**After upload tasks**" and be sure to activate "**Copy URL to clipboard**".
 
 
-Step 5
-------
+Test
+----
 Now it’s time to setup your Hotkeys:
 
 
@@ -99,37 +94,19 @@ Now it’s time to setup your Hotkeys:
   3. Select "**Task: None**" and navigate to: ":menuselection:`Screen capture --> capture region`"
   4. Close the Task settings window and click on **None** and press your Hotkey (for example "**PRINT SCREEN**")
 
-
-Step 6 (Optional)
------------------
-Optional you can change the filename to something fancier.
-To do so, navigate to ":menuselection:`Task settings --> File nameing`" and change the two text fields to:
-::
-
-  %y-%mo-%d_%h-%mi-%s
-
 Usage
 =====
 
-Step 1
-------
-Press your Hotkey.
+1. Press the configured hotkey
+2. Make a screenshot
+3. If needed, edit your screenshot in the popup window. Then press "**enter**" to upload your screenshot and copy the corresponding URL to your clipboard.
 
-Step 2
-------
-Make a screenshot.
-
-Step 3
-------
-If needed edit your screenshot in the popup window.
-
-Then press "**enter**" to upload your screenshot and copy the corresponding URL to your clipboard.
-
+That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!
 
 .. _ShareX: https://getsharex.com/
 
 ----
 
-That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!
+Tested with ShareX ?, Uberspace ?
 
 .. author_list::
