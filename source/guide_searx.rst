@@ -38,8 +38,8 @@ Searx is released under the `GNU Affero General Public License`_.
 Installation
 ============
 
-Step 1 - Repository Cloning
----------------------------
+Repository Cloning
+------------------
 
 We will prepare the destination for the searx repository:
 
@@ -53,8 +53,8 @@ And clone the repository from GitHub:
 
  [isabell@stardust ~]$ git clone https://github.com/searx/searx.git ~/opt/searx/
 
-Step 2 - Python Module Installation
------------------------------------
+Python Module Installation
+--------------------------
 
 .. note:: Here we use Python 3, instead of the default Python 2. For this reason, all ``pip`` and ``python`` commands need a version postfix ``3`` like below.
 
@@ -64,8 +64,8 @@ Some required Python modules are necessary and will be installed in your uberspa
 
  [isabell@stardust ~]$ pip3 install --user --upgrade --requirement ~/opt/searx/requirements.txt
 
-Step 3 - Searx Configuration
-----------------------------
+Configuration
+-------------
 
 We create the configuration file destination directory:
 
@@ -116,8 +116,8 @@ Now it's time to change some entries in the configuration file ``~/etc/searx/set
       base_url : False # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
       image_proxy : False # Proxying image results through searx
 
-Step 4 - Supervisord Setup
---------------------------
+Supervisord Setup
+-----------------
 
 At first we must create the service file ``~/etc/services.d/searx.ini`` with the following content:
 
@@ -133,8 +133,8 @@ At first we must create the service file ``~/etc/services.d/searx.ini`` with the
 
 If it's not in state RUNNING, check your configuration.
 
-Step 5 - Web Backend Setup
---------------------------
+Web Backend Setup
+-----------------
 
 .. note::
 
@@ -142,8 +142,8 @@ Step 5 - Web Backend Setup
 
 .. include:: includes/web-backend.rst
 
-Step 6 - Debugging
-------------------
+Debugging
+---------
 
 In case of problems, the log file ``~/logs/supervisord.log`` is the first point for you.
 

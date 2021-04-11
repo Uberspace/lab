@@ -55,8 +55,8 @@ Your Framadate URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
 First download the files from the Framadate repository with Git into the folder ``~/html`` and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.10`` with the current version.
 
@@ -69,8 +69,8 @@ First download the files from the Framadate repository with Git into the folder 
   ...
   [isabell@stardust ~]$
 
-Step 2
-------
+Install dependencies
+--------------------
 
 Install the necessary libraries with composer:
 
@@ -80,8 +80,8 @@ Install the necessary libraries with composer:
   ...
   [isabell@stardust ~]$
 
-Step 3
-------
+Create database
+---------------
 
 Create a database for Framadate:
 

@@ -60,8 +60,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
 Download the seafile server and extract it to a folder called seafile.
 
@@ -72,8 +72,8 @@ Download the seafile server and extract it to a folder called seafile.
  [isabell@stardust ~]$ curl https://download.seadrive.org/seafile-server_6.3.4_x86-64.tar.gz | tar xzf -
  [isabell@stardust ~]$
 
-Step 2
-------
+Install dependencies
+--------------------
 
 Install the required python libraries.
 
@@ -82,8 +82,8 @@ Install the required python libraries.
  [isabell@stardust ~]$ pip install 'Pillow==3.*' --user
  [isabell@stardust ~]$
 
-Step 3
-------
+Create databases
+---------------
 
 Create the needed MySQL databases as the installer file won't work on uberspace.
 
@@ -96,8 +96,8 @@ Create the needed MySQL databases as the installer file won't work on uberspace.
  [isabell@stardust ~]$ mysql -e "create database ${USER}_seahub character set = 'utf8';"
  [isabell@stardust ~]$
 
-Step 4
-------
+Run installer
+-------------
 
 Run the seafile installer script.
 
@@ -141,8 +141,8 @@ Important answers:
 
   verifying user "isabell" access to database isabell_seahub ...  done
 
-Step 5
-------
+Configure
+---------
 
 Enter your domain name in config; Edit ``~/seafile/conf/ccnet.conf``
 
@@ -151,9 +151,6 @@ Enter your domain name in config; Edit ``~/seafile/conf/ccnet.conf``
 .. code-block:: console
 
   SERVICE_URL = https://isabell.uber.space/
-
-Step 6
-------
 
 Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the following lines:
 
@@ -184,7 +181,7 @@ Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the fo
     }
   }
 
-Step 7
+Expose
 ------
 
 .. note::
