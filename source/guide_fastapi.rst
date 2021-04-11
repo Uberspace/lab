@@ -105,7 +105,7 @@ Let's get this working:
 
 Gunicorn
 --------
-First, we are telling gunicorn to spin up several uvicorn processes and listen on port 8000 for incoming requests.
+First, we are telling gunicorn to spin up several uvicorn processes and listen on port 8000 for incoming requests. Create the config file ``~/fastapi/conf.py``:
 
 .. code-block:: python
 
@@ -124,7 +124,7 @@ First, we are telling gunicorn to spin up several uvicorn processes and listen o
 
 This is a minimal working example based on gunicorn's `example config`_, you can find a comprehensive `list of options here`_.
 
-.. note:: Test if everything is working with ``~/fastapi/.env/bin/gunicorn --config ~/fastapi/conf.py``
+.. note:: Test if everything is working with ``~/fastapi/.env/bin/gunicorn --config ~/fastapi/conf.py --check-config``. If there is no output, you're good.
 
 
 Supervisord
@@ -133,6 +133,7 @@ Next, create a configuration for supervisord in ``~/etc/services.d/fastapi.ini``
 
 .. code-block::
 
+  [program:fastapi]
   directory=%(ENV_HOME)s/fastapi
   command=%(ENV_HOME)s/fastapi/.env/bin/gunicorn --config %(ENV_HOME)s/fastapi/conf.py
 
