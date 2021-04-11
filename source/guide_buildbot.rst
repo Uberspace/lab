@@ -62,16 +62,17 @@ If you want e-mail notifications from BuildBot_ to work later on, you will also 
 Configuration of the master
 ===========================
 
-Step 1
-------
+Prepare folder
+--------------
+
 Prepare the BuildBot_ folders. We are going to use one folder for all of our masters and another for all the workers:
 
 ::
 
- [isabell@stardust ~]$ mkdir ~/bb-master ~/bb-workers
+ [isabell@stardust ~]$ mkdir ~/bb-master
 
-Step 2
-------
+Initialize
+----------
 
 Create the first master:
 
@@ -82,8 +83,8 @@ Create the first master:
 
 This will create the directory ``bb-master/master``, set up a sqlite database and deposit a sample configuration.
 
-Step 3
-------
+Add default configuration
+-------------------------
 
 Move the sample configuration:
 
@@ -91,15 +92,12 @@ Move the sample configuration:
 
  [isabell@stardust bb-master]$ mv master/master.cfg.sample master/master.cfg
 
-Step 5
-------
-
 You should read through the rest of the options, but leave things to their default values for now.
 
 .. note:: This step will leave the ``hello world`` demo that Buildbot_ automatically enters into the configuration file intact. In combination with a worker, the example builder will clone the ``buildbot/hello-world`` github repository and run the ``test_hello.py`` script from that repository. More information on how to configure builders is available in the `official Buildbot manual <https://docs.buildbot.net/latest/manual/index.html>`_.
 
-Step 6
-------
+Test the setup
+--------------
 
 That's it! Our master should be able to start now:
 
@@ -113,8 +111,8 @@ That's it! Our master should be able to start now:
 
 If you don't get the same output, check the log at ``master/twistd.log`` for errors.
 
-Step 7
-------
+Service
+-------
 
 In this step, we will set up :manual:`supervisord <daemons-supervisord>` to take control of our Buildbot_ master.
 
@@ -135,8 +133,17 @@ Configuration of the worker
 
 Now that the master is done, let's create the first worker!
 
-Step 1
-------
+Prepare folder
+--------------
+
+Prepare the BuildBot_ folders. We are going to use one folder for all of our masters and another for all the workers:
+
+::
+
+ [isabell@stardust ~]$ mkdir ~/bb-workers
+
+Initialize
+----------
 
 Change directories and create the worker:
 
@@ -147,8 +154,8 @@ Change directories and create the worker:
 
 This will create the directory ``example-worker`` and deposit the worker configuration file (``example-worker/buildbot.tac``) as well as some additional files with meta information about this worker. The creation tool will give you some output and instructions on what to edit afterwards - you should definitely take a look at the mentioned files and enter your information.
 
-Step 2
-------
+Service
+-------
 
 The worker also requires its own process for which we will use :manual:`supervisord <daemons-supervisord>` again.
 
