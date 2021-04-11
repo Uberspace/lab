@@ -130,10 +130,11 @@ Now, some files are removed from the downloaded package, as they are not needed.
 
 ::
 
- [isabell@stardust phpbb_update]$ rm phpbb.tar.bz2 && rm config.php && rm images/ -rf && rm store/ -rf && rm files/ -rf
- [isabell@stardust phpbb_update]$ rm ~/html/vendor/ -rf && rm ~/html/cache/ -rf
+ [isabell@stardust phpbb_update]$ rm phpbb.tar.bz2 config.php images/ store/ files/ -rf
+ [isabell@stardust phpbb_update]$ rm ~/html/vendor/ ~/html/cache/ -rf
  [isabell@stardust phpbb_update]$ cp -r . ~/html/
- [isabell@stardust phpbb_update]$ cd .. && rm phpbb_update -rf
+ [isabell@stardust phpbb_update]$ cd ..
+ [isabell@stardust ~]$ rm phpbb_update -rf
  [isabell@stardust ~]$ 
 
 Now Navigate to the database updater, e.g. ``https://isabell.uber.space/install/app.php/update`` and start the database update.
