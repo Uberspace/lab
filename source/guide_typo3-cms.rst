@@ -86,9 +86,6 @@ Now remove the :manual:`document root <web-documentroot>` and create a symlink t
 Configuration
 =============
 
-Step 1
-------
-
 Point your browser to your website URL and append ``/typo3`` (e.g. isabell.uber.space/typo3). You will be greeted with a
 "Thank you for choosing TYPO3" message.
 
@@ -104,18 +101,13 @@ in your browser. You will be redirected to the TYPO3 Install Tool which will gui
 
 For the purpose of this guide we assume there are none, so we can proceed with the next step.
 
-Step 2
-------
+Create database
+---------------
 
-Enter your database :manual_anchor:`credentials <database-mysql.html#login-credentials>`, keep the other settings unchanged, they are correct as they are.
+Enter your database :manual_anchor:`credentials <database-mysql.html#login-credentials>`, keep the other settings unchanged, they are correct as they are. Use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database, for example: ``isabell_typo3``.
 
-Step 3
-------
-
-Create an :manual_anchor:`additional <database-mysql.html#additional-databases>` database - for example: ``isabell_typo3``.
-
-Step 4
-------
+Create user
+-----------
 
 Enter a username and password for your first TYPO3 admin user (the password will also be configured for the Install Tool).
 
@@ -125,12 +117,6 @@ Enter your email address. This is used in case you forget your password and need
 to notify you by email when somebody logs in from your account.
 
 Choose a "site name" which will identify this installation (in the page tree and browser title).
-
-Step 5
-------
-
-Choose whether you want to start with an empty TYPO3 installation (no pages, templates, configuration) or if you want
-to have a preconfigured basis to start from.
 
 Next Steps
 ==========
