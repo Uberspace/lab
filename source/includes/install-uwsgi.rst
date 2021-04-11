@@ -28,6 +28,6 @@ Create needed folders and files for uwsgi:
  [isabell@stardust ~]$ touch ~/uwsgi/out.log
  [isabell@stardust ~]$
 
-.. include:: includes/supervisord.rst
+.. include:: /includes/supervisord.rst
 
 If it's not in state ``RUNNING``, check the logs.

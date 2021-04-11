@@ -83,7 +83,7 @@ Install the required python libraries.
  [isabell@stardust ~]$
 
 Create databases
----------------
+----------------
 
 Create the needed MySQL databases as the installer file won't work on uberspace.
 

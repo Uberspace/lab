@@ -176,7 +176,7 @@ Uncomment groupid and userid in the Playing rights part of ``~/ts3audiobot/right
 
 **More Configurations**
 
-Refer to the `official TS3AudioBot wiki <https://github.com/Splamy/TS3AudioBot/wiki/Configuration>`_ for more configuration options.
+Refer to the `official TS3AudioBot wiki configuration <https://github.com/Splamy/TS3AudioBot/wiki/Configuration>`_ for more configuration options.
 
 
 Control the bot via TeamSpeak
@@ -211,7 +211,7 @@ The run a command.
  * - ``!help``
    - Shows a (hopefully) helping message
 
-Refer to the `official TS3AudioBot wiki <https://github.com/Splamy/TS3AudioBot/wiki/CommandSystem>`_ for more commands.
+Refer to the `official TS3AudioBot wiki command system <https://github.com/Splamy/TS3AudioBot/wiki/CommandSystem>`_ for more commands.
 
 
 Control the bot via the web interface
