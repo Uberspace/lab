@@ -46,17 +46,17 @@ Buildbot is released under the `GNU General Public License v2.0 <https://www.gnu
 Installation
 ============
 
-You can install the BuildBot_ bundle using ``pip3.6``:
+You can install the BuildBot_ bundle using ``pip3.8``:
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install buildbot[bundle] --user
+ [isabell@stardust ~]$ pip3.8 install buildbot[bundle] --user
 
 If you want e-mail notifications from BuildBot_ to work later on, you will also need to install ``pyopenssl`` and ``service-identity``:
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install pyopenssl service-identity --user
+ [isabell@stardust ~]$ pip3.8 install pyopenssl service-identity --user
 
 
 Configuration of the master
@@ -244,7 +244,7 @@ For this, we will need to install the ``buildbot_gitea`` plugin for BuildBot, de
 
 ::
 
- [isabell@stardust ~] pip3.6 install git+https://github.com/lab132/buildbot-gitea.git --user
+ [isabell@stardust ~] pip3.8 install git+https://github.com/lab132/buildbot-gitea.git --user
 
 Step 2
 ------
