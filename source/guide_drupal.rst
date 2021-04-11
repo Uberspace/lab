@@ -178,20 +178,20 @@ Core Updates
 .. note:: Also see section 13.5. `Updating the Core Software`_ of the Drupal User Guide and the
     article `Update core via Composer`_ for up-to-date instructions.
 
-Step 1: Allow access to ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Allow access to ``update.php``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``/var/www/virtual/$USER/drupal/sites/default/settings.php``, find the line with the
 ``$settings['update_free_access']`` variable and set it to ``TRUE``.
 
-Step 2: Enable maintenance mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Enable maintenance mode
+^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Maintenance mode*,
 enable the *Put site into maintenance mode* option and click on *Save configuration*.
 
-Step 3: Update via Composer
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Update via Composer
+^^^^^^^^^^^^^^^^^^^
 
 Update the Drupal Core packages with Composer:
 
@@ -201,25 +201,25 @@ Update the Drupal Core packages with Composer:
  [isabell@stardust drupal]$ composer update drupal/core --with-dependencies
  [isabell@stardust drupal]$
 
-Step 4: Run ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Run ``update.php``
+^^^^^^^^^^^^^^^^^^
 
 Visit ``https://isabel.uber.space/update.php`` and click *Continue* to run the update.
 
-Step 5: Deny access to ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Deny access to ``update.php``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``/var/www/virtual/$USER/drupal/sites/default/settings.php``, find the line with the
 ``$settings['update_free_access']`` variable and set it to ``FALSE``.
 
-Step 6: Disable maintenance mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Disable maintenance mode
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Maintenance mode*,
 disable the *Put site into maintenance mode* option and click on *Save configuration*.
 
-Step 7: Clear caches
-^^^^^^^^^^^^^^^^^^^^
+Clear caches
+^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Performance* and
 click *Clear all caches*.
