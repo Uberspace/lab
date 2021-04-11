@@ -50,8 +50,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 Get the pretix source code from Github and clone it to ``~/pretix``, be sure to replace the pseudo branch number ``release/6.6.x`` here with the latest release branch from the Github repository at https://github.com/pretix/pretix/branches/active:
 
 ::
@@ -70,8 +70,8 @@ Also, you need to create an extra data folder:
  [isabell@stardust ~]$ mkdir ~/pretix_data
  [isabell@stardust ~]$
 
-Step 2
-------
+Install dependencies
+--------------------
 Install the requirements for pretix_:
 
 ::
@@ -84,8 +84,8 @@ Install the requirements for pretix_:
  [...]
  [isabell@stardust ~]$
 
-Step 3
-------
+Configuration
+-------------
 Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and insert the following content:
 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
@@ -115,8 +115,8 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     port=587
     tls=on
 
-Step 4
-------
+Create database
+---------------
 Run this code to create the database ``<username>_pretix`` in MySQL:
 
 .. code-block:: console
@@ -133,8 +133,8 @@ You will also need to install a mysqlclient package:
  Successfully installed mysqlclient-1.3.13
  [isabell@stardust ~]$
 
-Step 5
-------
+Initialize database
+-------------------
 Initialize the pretix_ database tables and generate the static files:
 
 ::
@@ -143,8 +143,9 @@ Initialize the pretix_ database tables and generate the static files:
  [isabell@stardust ~]$ python3.6 ~/pretix/src/manage.py rebuild
  [isabell@stardust ~]$
 
-Step 6
-------
+Gunicorn
+========
+
 Install Gunicorn_ as backend server:
 
 ::
@@ -152,8 +153,8 @@ Install Gunicorn_ as backend server:
  [isabell@stardust ~]$ pip3.6 install gunicorn --user
  [isabell@stardust ~]$
 
-Step 7
-------
+Web Backend
+-----------
 
 .. note::
 
@@ -161,7 +162,7 @@ Step 7
 
 .. include:: includes/web-backend.rst
 
-Step 8
+Service
 -------
 
 Finally, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
@@ -178,10 +179,7 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
 
 If it's not in state RUNNING, check your configuration.
 
-
-Step 9
 Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control``.
-------
 
 Use ``admin@localhost`` as username and ``admin`` as password for your first login. You should change this password immediately after login!
 
