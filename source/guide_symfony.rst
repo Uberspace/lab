@@ -162,6 +162,13 @@ Install the debug-package within our dev-environment
  [isabell@stardust ~]$ cd /var/www/virtual/isabell/my_project
  [isabell@stardust my_project]$ composer require --dev debug-pack
 
+To see the Debugger we have to disable the uberspace-error-page
+
+::
+
+ [isabell@stardust ~]$ uberspace web errorpage 500 disable
+ Error page for HTTP 500 is disabled.
+
 Updates
 =======
 
@@ -179,7 +186,7 @@ Check whether your project’s dependencies contain any known security vulnerabi
  =============================
 
  No packages have known vulnerabilities.
- 
+
  Note that this checker can only detect vulnerabilities that are referenced in the security advisories database.
  Execute this command regularly to check the newly discovered vulnerabilities.
 
