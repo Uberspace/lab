@@ -29,6 +29,7 @@ OpenSlides is a free, web-based presentation and assembly system for managing an
   * :manual:`Python <lang-python>` and its package manager pip
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`Web Backends <web-backends>`
+  * :manual:`MySQL <database-mysql>`
 
 License
 =======
@@ -46,22 +47,25 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
+.. include:: includes/my-print-defaults.rst
+
 Installation
 ============
 
-Install Python package
-----------------------
+Install Python packages
+-----------------------
 Install the OpenSlides Python package:
 
 ::
 
- [isabell@stardust ~]$ pip3.9 install openslides --user
+ [isabell@stardust ~]$ pip3.7 install openslides mysqlclient --user
  [...]
  Running setup.py install for pyrsistent ... done
  Running setup.py install for PyPDF2 ... done
  Running setup.py install for roman ... done
  Running setup.py install for websockets ... done
  Running setup.py install for openslides ... done
+ Running setup.py install for mysqlclient ... done
  [...]
  [isabell@stardust ~]$
 
@@ -72,6 +76,19 @@ Check if OpenSlides is installed by typing:
  [isabell@stardust ~]$ openslides --version
  3.3
  [isabell@stardust ~]$
+ 
+Create Database
+---------------
+For performance reasons, we will use a :manual:`MySQL <database-mysql>` database for storing the OpenSlides data. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_openslides``) instead of the default database.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ mysql --verbose --execute="CREATE DATABASE ${USER}_openslides"
+ --------------
+ CREATE DATABASE isabell_openslides
+ --------------
+ [isabell@stardust ~]$
+
 
 Create configuration
 --------------------
@@ -81,9 +98,30 @@ Run the following command to create the configuration:
 
  [isabell@stardust ~]$ openslides createsettings
  Settings created at /home/isabell/.config/openslides/settings.py
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
-Furthermore, populate the SQLite database by running the following command:
+Open the file ``~/.config/openslides/settings.py`` and replace the existing database configuration (``DATABASES``) with the following one:
+
+::
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'isabell_openslides',
+            'USER': 'isabell',
+            'PASSWORD': 'MySuperSecretPassword',
+            'HOST': 'localhost',
+            'PORT': '',
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
+        }
+    }
+    # This will suppress an error, which already was converted into a warning, see https://code.djangoproject.com/ticket/31144
+    SILENCED_SYSTEM_CHECKS = ['mysql.E001']
+
+
+Then, we will populate the database by running the following command:
 
 ::
 
@@ -149,7 +187,7 @@ If there is a new version available, update the following command to update your
 ::
 
  [isabell@stardust ~]$ servicectl stop openslides
- [isabell@stardust ~]$ pip3.9 install --upgrade openslides
+ [isabell@stardust ~]$ pip3.7 install --upgrade openslides
  [...]
         Successfully uninstalled openslides-3.2
      Running setup.py install for openslides ... done
