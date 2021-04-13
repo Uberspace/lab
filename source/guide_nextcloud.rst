@@ -40,12 +40,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We are using :manual:`PHP <lang-php>` in the version 8.0:
+We are using :manual:`PHP <lang-php>` in the version 7.4:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 7.4
+ Selected PHP version 7.4
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
