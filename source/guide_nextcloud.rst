@@ -448,6 +448,45 @@ Here is an example you probably don't want to keep on your Uberspace. To get rid
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 
+PHP fatal error
+---------------
+
+The update to Nextcloud 21.0.1 may fail with the following error message:
+
+.. code-block:: console
+
+  /PHP Fatal error:  Allowed memory size of XXXXXX bytes exhausted (tried to allocate XXXXXXX
+  bytes) in /var/www/virtual/isabell/html/lib/private/AppFramework/Utility/
+  SimpleContainer.php on line 133/
+
+To solve the issue, you need specify the option ``apc.enable_cli=1`` for PHP:
+
+Go to the ``php.d`` folder and open the file ``php.ini``.
+If the file doesn't exist before it will be created in the same way:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd etc/php.d/
+  [isabell@stardust php.d]$ nano php.ini
+  [isabell@stardust php.d]$
+
+In the editor add the following lines to the file:
+
+.. code-block:: console
+
+  [apcu]
+  apc.enable_cli=1
+
+Save and exit the file. Then restart the PHP and get the following output:
+
+.. code-block:: console
+
+  [isabell@stardust php.d]$ uberspace tools restart php
+  Your PHP configuration has been loaded.
+  [isabell@stardust php.d]$
+
+You should now be able to perform the update to Nextcloud 21.0.1.
+
 ----
 
 Tested with Nextcloud 21.0.0, Uberspace 7.9.0.0
