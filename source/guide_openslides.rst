@@ -81,6 +81,7 @@ Run the following command to create the configuration:
 
  [isabell@stardust ~]$ openslides createsettings
  Settings created at /home/isabell/.config/openslides/settings.py
+ [isabell@stardust ~]$ 
 
 Furthermore, populate the SQLite database by running the following command:
 
