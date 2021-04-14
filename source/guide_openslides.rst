@@ -204,6 +204,12 @@ Backup the following directories:
   * ``~/.local/share/openslides/``
   * ``~/.config/openslides/``
 
+Additionally, backup the MySQL database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysqldump isabell_openslides | xz - > ~/isabell_openslides.sql.xz
+
 Debugging
 =========
 
