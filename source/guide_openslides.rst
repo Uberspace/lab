@@ -120,6 +120,7 @@ Open the file ``~/.config/openslides/settings.py`` and replace the existing data
     # This will suppress an error, which already was converted into a warning, see https://code.djangoproject.com/ticket/31144
     SILENCED_SYSTEM_CHECKS = ['mysql.E001']
 
+Check the beginning of the guide for your :manual_anchor:`database credentials <database-mysql.html#login-credentials>` and replace name, user and password with your database name and database credentials.
 
 Then, we will populate the database by running the following command:
 
