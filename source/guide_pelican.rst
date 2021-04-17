@@ -2,7 +2,7 @@
 
 .. author:: Karsten Brusch <https://k11h.de>
 
-.. tag:: python
+.. tag:: lang-python
 .. tag:: web
 .. tag:: blog
 
@@ -27,20 +27,16 @@ Pelican was released for the first time in 2010 by Alexis Métaireau.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of
-
-  * Python_
-  * :manual:`domains <web-domains>`
-
 License
 =======
 
-Pelican is free and open source software licensed under `AGPL 3`_.
+Pelican is free and open source software licensed under `AGPL 3 <https://www.gnu.org/licenses/agpl-3.0.en.html>`_.
 
 Prerequisites
 =============
 
-Pelican currently runs best on 3.6+; earlier versions of Python are not supported. This version comes preinstalled on your uberspace.
+Pelican currently runs best on Python 3.6+; earlier versions are not supported. 
+This version comes preinstalled on your uberspace.
 
 .. note:: If you want to use your own website domain, refer to the uberspace manual for :manual:`domains <web-domains>`
 
@@ -53,17 +49,18 @@ Pelican is installed simply by using pip3
 
  [isabell@stardust isabell]$ pip3 install --upgrade --user "pelican[markdown]"
 
-.. note:: If you have Git installed and prefer to install the latest bleeding-edge version of Pelican rather than a stable release, use the following command:
+.. note:: If you prefer to install the latest bleeding-edge version of Pelican rather than a stable release, use the following command:
 
   ::
 
-    python -m pip install -e "git+https://github.com/getpelican/pelican.git#egg=pelican"
+    pip3 install --upgrade --user -e "git+https://github.com/getpelican/pelican.git#egg=pelican"
 
 
 Generate your website
-=============
+=====================
 
-Step 1: 
+**Step 1:** 
+
 Pelican comes with a handy quickstart wizard that creates the basic structure for you.
 Run it inside a subfolder. In this guide, we'll use ``~/pelican``
 
@@ -84,7 +81,7 @@ Run it inside a subfolder. In this guide, we'll use ``~/pelican``
   > Who will be the author of this web site? isabell
   > What will be the default language of this web site? [de] <enter>
   > Do you want to specify a URL prefix? e.g., https://example.com   (Y/n) <enter>
-  > What is your URL prefix? (see above example; no trailing slash) https://isabell.uber.space/ 
+  > What is your URL prefix? (see above example; no trailing slash) https://isabell.uber.space
   > Do you want to enable article pagination? (Y/n) <enter>
   > How many articles per page do you want? [10] <enter>
   > What is your time zone? [Europe/Paris] Europe/Berlin
@@ -100,9 +97,10 @@ Run it inside a subfolder. In this guide, we'll use ``~/pelican``
   [isabell@stardust isabell]$ 
 
 
-.. note:: In case you want to use a custom domain other than isabell.uber.space, you can enter it here or easily change it later 
+.. note:: In case you want to use a custom domain other than isabell.uber.space, you can enter it here or easily change it later in ``~/pelican/pelicanconf.py``
 
-Step 2:
+**Step 2:**
+
 You need to modify ``~/pelican/Makefile`` to make sure the publish process is working correctly on your uberspace.
 
 .. code-block:: diff
@@ -113,7 +111,8 @@ You need to modify ``~/pelican/Makefile`` to make sure the publish process is wo
 
   .PHONY: html help clean regenerate serve serve-global devserver publish 
 
-Step 3: 
+**Step 3:** 
+
 Now create your first blogpost by placing a markdown file in ``~/pelican/content/my-super-post.md``
 
 ::
@@ -129,9 +128,10 @@ Now create your first blogpost by placing a markdown file in ``~/pelican/content
 
   This is the content of my 1st super blog post.
 
-.. note:: More details how to write articles and pages can be found in the `official guide <https://docs.getpelican.com/en/latest/content.html>`_
+.. note:: More details how to write articles and pages can be found in the `official page <https://docs.getpelican.com/en/latest/content.html>`_
 
-Step 4:
+**Step 4:**
+
 To generate to final html files and publish them to your uberspace webserver, simply run 
 
 ::
@@ -145,29 +145,30 @@ Then you can simply open `https://isabell.uber.space/ <https://isabell.uber.spac
 Configuration
 ==============
 
-All configuration is done in two files. In our case in 
+All configuration is done in two files. 
+Please refer to the `official docs <https://docs.getpelican.com/en/latest/settings.html>`_ on how to customize them.
 
-  * ``~/pelican/pelicanconf.py`` and 
-  * ``~/pelican/publishconf.py``
-
-Please refer to the `official docs <https://docs.getpelican.com/en/latest/settings.html>`_ 
+1. ``~/pelican/pelicanconf.py`` 
+2. ``~/pelican/publishconf.py``
 
 
 Themes
 =======
 
-To install a theme other than the default, please check the `official guide <https://docs.getpelican.com/en/latest/pelican-themes.html>`_ 
+To install a theme other than the default, please check the `official guide <https://docs.getpelican.com/en/latest/pelican-themes.html>`_.
 
 You can simply choose one from `http://www.pelicanthemes.com/ <http://www.pelicanthemes.com/>`_ and run ``git clone``
-In this example I am using the theme maned `Flex` 
+In this example I am using the theme maned ``Flex`` 
 
 ::
+
   [isabell@stardust isabell]$ cd ~/pelican
   [isabell@stardust pelican]$ git clone git@github.com:alexandrevicenzi/Flex.git theme
 
 Then add following line to you ``~/pelican/pelicanconf.py``
 
 :: 
+
   THEME = "theme"
 
 
