@@ -40,6 +40,7 @@ To install a recent CMake version, the fastest way is to run the official instal
   [isabell@stardust ~]$ wget https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3-Linux-x86_64.sh
   [isabell@stardust ~]$ bash cmake-3.17.3-Linux-x86_64.sh --skip-license --prefix=$HOME
   [isabell@stardust ~]$ rm cmake-3.17.3-Linux-x86_64.sh
+  [isabell@stardust ~]$ hash -r # clear cache
   [isabell@stardust ~]$
 
 Afterwards, make sure that your new CMake version works correctly by checking the version number using this command:
