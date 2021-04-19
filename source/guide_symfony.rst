@@ -55,7 +55,7 @@ Install symfony cli
 
 ::
 
- [isabell@stardust ~]$ wget https://get.symfony.com/cli/installer -O - | bash
+ [isabell@stardust ~]$ wget https://get.symfony.com/cli/installer -O - | bash -s -- --install-dir $HOME/bin
 
 Modify ``~/.bash_profile`` to use symfony directly
 
@@ -195,4 +195,3 @@ Check whether your project’s dependencies contain any known security vulnerabi
 Tested with Symfony 5.2.6, Uberspace 7.10.0
 
 .. author_list::
-
