@@ -107,16 +107,11 @@ You need to modify ``~/pelican/Makefile`` to make sure the publish process is wo
 
 .. code-block:: diff
 
-  publish:
-    "$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
-  +	rsync -a --quiet --exclude /.htaccess --delete "$(OUTPUTDIR)/" /var/www/virtual/isabell/html 
+  BASEDIR=$(CURDIR)
+  INPUTDIR=$(BASEDIR)/content
+-  OUTPUTDIR=$(BASEDIR)/output
++  OUTPUTDIR=/var/www/virtual/$(USER)/html
 
-  .PHONY: html help clean regenerate serve serve-global devserver publish 
-
-.. note:: 
-
-  This extra step was added (instead of modifying ``$(OUTPUTDIR)``) to allow you to add excludes like ``.htaccess``. 
-  Be aware that changing ``$(OUTPUTDIR)`` might have destructive effects when used together with the pelican setting ``DELETE_OUTPUT_DIRECTORY``
 
 Create Content
 --------------
@@ -148,8 +143,11 @@ To generate to final html files and publish them to your uberspace webserver, si
   [isabell@stardust isabell]$ cd ~/pelican
   [isabell@stardust pelican]$ make publish
 
-Then you can simply open `https://isabell.uber.space/ <https://isabell.uber.space/>`_
+.. warning:: 
 
+  This step will delete all content in ``~/html``, if any.
+
+Then you can simply open `https://isabell.uber.space/ <https://isabell.uber.space/>`_
 
 Configuration
 ==============
