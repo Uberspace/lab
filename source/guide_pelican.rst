@@ -59,7 +59,8 @@ Pelican is installed simply by using pip3
 Generate your website
 =====================
 
-**Step 1:** 
+Initialize
+----------
 
 Pelican comes with a handy quickstart wizard that creates the basic structure for you.
 Run it inside a subfolder. In this guide, we'll use ``~/pelican``
