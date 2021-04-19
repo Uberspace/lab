@@ -100,7 +100,8 @@ Run it inside a subfolder. In this guide, we'll use ``~/pelican``
 
 .. note:: In case you want to use a custom domain other than isabell.uber.space, you can enter it here or easily change it later in ``~/pelican/pelicanconf.py``
 
-**Step 2:**
+Prepare Publish
+---------------
 
 You need to modify ``~/pelican/Makefile`` to make sure the publish process is working correctly on your uberspace.
 
@@ -112,7 +113,8 @@ You need to modify ``~/pelican/Makefile`` to make sure the publish process is wo
 
   .PHONY: html help clean regenerate serve serve-global devserver publish 
 
-**Step 3:** 
+Create Content
+--------------
 
 Now create your first blogpost by placing a markdown file in ``~/pelican/content/my-super-post.md``
 
@@ -131,7 +133,8 @@ Now create your first blogpost by placing a markdown file in ``~/pelican/content
 
 .. note:: More details how to write articles and pages can be found in the `official page <https://docs.getpelican.com/en/latest/content.html>`_
 
-**Step 4:**
+Publish Content
+---------------
 
 To generate to final html files and publish them to your uberspace webserver, simply run 
 
