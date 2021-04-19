@@ -113,6 +113,11 @@ You need to modify ``~/pelican/Makefile`` to make sure the publish process is wo
 
   .PHONY: html help clean regenerate serve serve-global devserver publish 
 
+.. note:: 
+
+  This extra step was added (instead of modifying ``$(OUTPUTDIR)``) to allow you to add excludes like ``.htaccess``. 
+  Be aware that changing ``$(OUTPUTDIR)`` might have destructive effects when used together with the pelican setting ``DELETE_OUTPUT_DIRECTORY``
+
 Create Content
 --------------
 
