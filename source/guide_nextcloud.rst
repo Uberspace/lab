@@ -86,6 +86,15 @@ OPcache caches script bytecode in shared memory, so scripts need not to be loade
  opcache.save_comments=1
  opcache.revalidate_freq=1
 
+APCu
+^^^^
+
+APCu is an in-memory key-value store for PHP. Installations after 21.0.1 may fail to update without this setting. To enable it, create the file ``~/etc/php.d/apcu.ini`` with the following content:
+
+.. code-block:: ini
+
+ apc.enable_cli=1
+
 PHP Memory
 ^^^^^^^^^^
 
@@ -440,6 +449,19 @@ Here is an example you probably don't want to keep on your Uberspace. To get rid
     1,6 GiB [########  ] /nextcloud-19.0.4.0-1601738662
 
   Total disk usage:   4,9 GiB  Apparent size:   4,7 GiB  Items: 132481
+
+PHP fatal error
+---------------
+
+The update to Nextcloud 21.0.1 may fail with the following error message:
+
+.. code-block:: console
+
+  /PHP Fatal error:  Allowed memory size of XXXXXX bytes exhausted (tried to allocate XXXXXXX
+  bytes) in /var/www/virtual/isabell/html/lib/private/AppFramework/Utility/
+  SimpleContainer.php on line 133/
+
+To solve the issue, apply the ``apc.enable_cli=1`` step above to your installation.
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
