@@ -95,7 +95,7 @@ Run it inside a subfolder. In this guide, we'll use ``~/pelican``
   > Do you want to upload your website using GitHub Pages? (y/N) <enter>
   Done. Your new project is available at /home/isabell/pelican
 
-  [isabell@stardust isabell]$ 
+  [isabell@stardust pelican]$ 
 
 
 .. note:: In case you want to use a custom domain other than isabell.uber.space, you can enter it here or easily change it later in ``~/pelican/pelicanconf.py``
