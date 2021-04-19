@@ -74,7 +74,7 @@ Create symfony project
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ symfony new my_project
  * Creating a new Symfony project with Composer
    (running /usr/local/bin/composer create-project symfony/skeleton /var/www/virtual/isabell/my_project  --no-interaction)
