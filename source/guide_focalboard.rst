@@ -50,8 +50,11 @@ Download the latest release_ to your home directory and extract the application.
 Configuration
 =============
 
-You need to change ``"localOnly": true`` to ``"localOnly": false`` in ``~/focalboard-app/config.json``
-
+You need to modify ``~/focalboard-app/config.json``:
+ * Change ``"localOnly": true,`` to ``"localOnly": false,``
+ * Add ``"session_expire_time": 2592000,``
+ * Add ``"session_refresh_time": 18000,``
+ 
 If PostgreSQL is used, the database configuration also needs to be adjusted. Edit the database config in the file ``~/focalboard-app/config.json``. These two values must be changed:
 .. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
 
