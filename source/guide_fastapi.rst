@@ -131,7 +131,7 @@ Supervisord
 -----------
 Next, create a configuration for supervisord in ``~/etc/services.d/fastapi.ini``:
 
-.. code-block::
+.. code-block:: ini
 
   [program:fastapi]
   directory=%(ENV_HOME)s/fastapi
