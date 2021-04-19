@@ -7,7 +7,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/matomo.png
+  .. image:: _static/images/matomo.svg
       :align: center
 
 #########
