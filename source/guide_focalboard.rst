@@ -76,7 +76,7 @@ Create ``~/etc/services.d/focalboard.ini`` with the following content:
 
  [program:focalboard]
  directory=%(ENV_HOME)s/focalboard-app
- command=/home/isabell/focalboard-app/focalboard-server
+ command=%(ENV_HOME)s/focalboard-app/focalboard-server
  autostart=yes
  autorestart=yes
 
