@@ -51,6 +51,7 @@ Configuration
 =============
 
 You need to modify ``~/focalboard-app/config.json``:
+
  * Change ``"localOnly": true,`` to ``"localOnly": false,``
  * Add ``"session_expire_time": 2592000,``
  * Add ``"session_refresh_time": 18000,``
@@ -59,11 +60,13 @@ If PostgreSQL is used, the database configuration also needs to be adjusted. Edi
 .. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
 
 .. code-block:: json
+
  "dbtype": "postgres",
  "dbconfig": "postgres://<db_user>:<db_password>@localhost/<db_name>?sslmode=disable&connect_timeout=10",
  
 For example:
 .. code-block:: json
+
  "dbtype": "postgres",
  "dbconfig": "postgres://isabell_focalboard:sup3r-s3cr3t@localhost/focalboard?sslmode=disable&connect_timeout=10",
 
