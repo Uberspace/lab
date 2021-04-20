@@ -106,12 +106,11 @@ Prepare Publish
 You need to modify ``~/pelican/Makefile`` to make sure the publish process is working correctly on your uberspace.
 
 .. code-block:: diff
+  :emphasize-lines: 3
 
   BASEDIR=$(CURDIR)
   INPUTDIR=$(BASEDIR)/content
--  OUTPUTDIR=$(BASEDIR)/output
-+  OUTPUTDIR=/var/www/virtual/$(USER)/html
-
+  OUTPUTDIR=/var/www/virtual/$(USER)/html
 
 Create Content
 --------------
