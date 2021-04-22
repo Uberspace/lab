@@ -130,6 +130,7 @@ Downloading
 .. code-block:: console
 
  [isabell@stardust ~]$ cd html
+ [isabell@stardust html]$ rm nocontent.html
  [isabell@stardust html]$ curl https://download.nextcloud.com/server/releases/latest.tar.bz2 | tar -xjf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
