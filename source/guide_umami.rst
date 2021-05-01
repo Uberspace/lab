@@ -65,15 +65,13 @@ We clone the repository to our home directory and install the application.
 Configuration
 =============
 
-After the installation you need to setup the database and do some configuration.
+After the installation you need to create the database and import the database setup.
 
 .. code-block:: console
 
  [isabell@stardust umami]$ mysql -e "CREATE DATABASE ${USER}_umami"
  [isabell@stardust umami]$ mysql "${USER}_umami" < sql/schema.mysql.sql
  [isabell@stardust umami]$
-
-Enter your MySQL password.
 
 Use your favorite editor to create ``~/umami/.env`` with the following content:
 
@@ -82,11 +80,10 @@ Use your favorite editor to create ``~/umami/.env`` with the following content:
   DATABASE_URL=mysql://isabell:mypassword@localhost:3306/isabell_umami
   HASH_SALT=(any random string)
 
-Generate the database client and create the production build:
+Now you can create the production build:
 
 .. code-block:: console
 
- [isabell@stardust umami]$ npm run build-mysql-client
  [isabell@stardust umami]$ npm run build
  [isabell@stardust umami]$
 
@@ -135,6 +132,6 @@ To update the application, stop the daemon and repeat the installation step.
 
 ----
 
-Tested with umami 2020-08-19 and Uberspace 7.7.4
+Tested with umami 1.17.0 and Uberspace 7.11.0
 
 .. author_list::
