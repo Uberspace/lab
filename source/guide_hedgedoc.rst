@@ -288,13 +288,16 @@ Create ``~/bin/hedgedoc-update`` with the following content:
 .. code-block:: bash
 
   #!/usr/bin/env bash
-  ORG=hedgedoc # Organisation or GitHub user
-  REPO=hedgedoc
+  APP_NAME=hedgedoc
+  ORG=$APP_NAME # Organisation or GitHub user
+  REPO=$APP_NAME
   LOCAL=$(jq --raw-output .version ~/hedgedoc/package.json)
   LATEST=$(curl -s https://api.github.com/repos/$ORG/$REPO/releases/latest | jq --raw-output .tag_name)
 
   function do_upgrade() {
     supervisorctl stop hedgedoc
+    echo "waiting 1 minute until all processes are stopped"
+    sleep 1m
     mv --verbose ~/hedgedoc ~/hedgedoc_$LOCAL
     VERSION=$LATEST
     cd
@@ -304,37 +307,53 @@ Create ``~/bin/hedgedoc-update`` with the following content:
     cp --verbose hedgedoc_$LOCAL/config.json hedgedoc/config.json
     cd hedgedoc
     bin/setup
+    echo "You may need to wait a minute until HedgeDoc is up and running."
     supervisorctl start hedgedoc
-    echo "You may need to wait a minute until you can access the HedgeDoc web interface"
     echo "If everything works fine you can delete ~/hedgedoc_$LOCAL"
     #rm --recursive ~/hedgedoc_$LOCAL
   }
 
+  function ask_for_update() {
+    echo "The latest Version is $LATEST"
+    echo "Your local Version is $LOCAL"
+    echo "Upgrades to next major releases are not tested."
+    echo "Please read the release notes."
+    echo "Also check if the upgrade instructions have changed."
+    echo "Your instance might break."
+    while true; do
+      read -p "Do you wish to proceed with the upgrade? (Y/n) " ANSWER
+      if [ "$ANSWER" = "" ]; then
+        ANSWER='Y'
+      fi
+      case $ANSWER in
+        [Yy]* | [Jj]* )
+          do_upgrade
+          do_unsets
+          break;;
+        [Nn]* )
+          do_unsets
+          exit;;
+        * ) echo "Please answer yes or no. ";;
+      esac
+    done
+  }
+
+  function do_unsets() {
+    unset APP_NAME
+    unset ORG
+    unset REPO
+    unset LOCAL
+    unset LATEST
+  }
+
   if [ "$LOCAL" = "$LATEST" ]; then
-    echo "Your HedgeDoc is already up to date."
+    echo "Your $APP_NAME is already up to date."
+  elif [[ "$LOCAL" < "$LATEST" ]]; then
+    echo "There is a new Version available of $APP_NAME"
+    ask_for_update
   else
-    if [[ "$LOCAL" < "$LATEST" ]]; then
-      echo "There is a new Version available of HedgeDoc"
-      echo "The latest Version is $LATEST"
-      echo "Your local Version is $LOCAL"
-      echo "Upgrades to next major releases are not tested."
-      echo "Please read the release notes."
-      echo "Also check if the upgrade instructions have changed."
-      echo "Your instance might break."
-      while true; do
-        read -p "Do you wish to proceed with the upgrade? (Y/n) " ANSWER
-        if [ "$ANSWER" = "" ]; then
-          ANSWER='Y'
-        fi
-        case $ANSWER in
-          [Yy]* | [Jj]* )
-            do_upgrade
-            break;;
-          [Nn]* ) exit;;
-          * ) echo "Please answer yes or no. ";;
-        esac
-      done
-    fi
+    echo "Something went wrong with the check, it looks like you are using a beta or rc version"
+    ask_for_update
   fi
 
 To make this script executable you have to run this once:
