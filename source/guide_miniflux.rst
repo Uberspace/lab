@@ -119,7 +119,7 @@ Configure web server
 
 .. note::
 
-    Miniflux is running on port 9000.
+    Miniflux is running on port 9000. To let the installation run somewhere else but your base directory change the '/' to your domain.
 
 .. include:: includes/web-backend.rst
 
@@ -225,7 +225,7 @@ Check the `Miniflux`_ website for news and/or breaking changes.
 .. _Github: https://github.com/miniflux/miniflux
 .. _Apache License 2.0: https://github.com/miniflux/miniflux/blob/master/LICENSE
 .. _latest release: https://github.com/miniflux/miniflux/releases/latest
-.. _Miniflux documentation: https://docs.miniflux.app/en/latest/configuration.html
+.. _Miniflux documentation: https://miniflux.app/docs/configuration.html
 .. _Feed: https://github.com/miniflux/miniflux/releases.atom
 
 ----
