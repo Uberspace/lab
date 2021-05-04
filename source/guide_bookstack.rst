@@ -88,7 +88,7 @@ We suggest you use an :manual_anchor:`additional database <database-mysql.html#a
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_bookstack"
  [isabell@stardust ~]$
 
-Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and save the file.
+Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and ``APP_URL`` to reflect your domain, then save the file.
 
 
 .. code-block:: console
