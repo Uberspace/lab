@@ -50,16 +50,10 @@ Copy the default configuration:
 Edit the configuration file and uncomment the following parameters:
 
 .. code-block:: bash
- :emphasize-lines: 2,5,8,11
+ :emphasize-lines: 2,5
 
- # Time Format Options (required)
- time-format %H:%M:%S
-
- # Date Format Options (required)
- date-format %d/%b/%Y
-
- # NCSA Combined Log Format (is in use by Uberspace)
- log-format %h %^[%d:%t %^] "%r" %s %b "%R" "%u"
+ # NCSA Combined Log Format with Vitual Host
+ log-format VCOMBINED
 
  # Set HTML report page title and header.
  html-report-title My Uberspace
