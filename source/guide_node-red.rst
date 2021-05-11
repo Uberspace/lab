@@ -84,7 +84,7 @@ Configure web server
 
 .. note::
 
-    Node-RED is running on port 1880. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/nodered`` instead of the root URI ``/``.
+    Node-RED is running on port 1880. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Node-RED under a sub URI like ``/nodered`` instead of the root URI ``/``.
 
 .. include:: includes/web-backend.rst
 
