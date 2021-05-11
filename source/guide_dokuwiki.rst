@@ -109,6 +109,6 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 ----
 
-Tested with DokuWiki 2020-07-29 "Hogfather", Uberspace 7.11.1.1
+Tested with DokuWiki 2020-07-29 "Hogfather", Uberspace 7.11.1.1, PHP 7.4
 
 .. author_list::
