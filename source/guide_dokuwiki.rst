@@ -39,12 +39,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 Your blog domain needs to be setup:
@@ -109,6 +109,6 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 ----
 
-Tested with DokuWiki 2018-04-22b "Greebo", Uberspace 7.2.1.0
+Tested with DokuWiki 2020-07-29 "Hogfather", Uberspace 7.11.1.1, PHP 7.4
 
 .. author_list::
