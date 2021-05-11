@@ -115,7 +115,7 @@ After changing the configuration, restart Node-RED to reload configuration:
 Updates
 =======
 
-To update Node-RED
+Use ``npm`` update Node-RED:
 
 ::
 
@@ -124,6 +124,16 @@ To update Node-RED
  + node-red@1.3.4
  updated 7 packages in 29.546s
 
+Then restart the service:
+
+::
+
+ [isabell@stardust ~]$ supervisorctl restart node-red
+ node-red: stopped
+ node-red: started
+ [isabell@stardust ~]$ supervisorctl status
+ node-red                         RUNNING   pid 4711, uptime 0:00:42
+ [isabell@stardust ~]$
 
 .. _Node-RED: https://nodered.org/
 
