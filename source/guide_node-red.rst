@@ -82,24 +82,13 @@ If it's not in state RUNNING, check your configuration.
 Configure web server
 --------------------
 
-Node-RED is listening on port 1880 and cannot be accessed from outside, yet.
-To make it accessible, configure a `web backend <webbackend_>`_:
-
-::
-
-  [isabell@stardust ~]$ uberspace web backend set /node-red --http --port 1880 --remove-prefix
-  Set backend for /node-red to port 1880; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
-
-.. _webbackend: https://manual.uberspace.de/web-backends.html
-
-
-
-Node-RED can now be accessed via https://isabell.uber.space/node-red.
-
 .. note::
-    If you get an error like `Cannot GET /nodered`, you most probably missed the command line parameter ``--remove-prefix`` while setting up the web backend.
+
+    Node-RED is running on port 1880. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/nodered`` instead of the root URI ``/``.
+
+.. include:: includes/web-backend.rst
+
+Node-RED can now be accessed via https://isabell.uber.space/.
 
 Securing
 ========
