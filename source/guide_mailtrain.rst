@@ -18,6 +18,13 @@ Mailtrain
 
 Mailtrain_ is a self-hosted open-source newsletter app built on top of `Nodemailer <https://nodemailer.com/>`_.
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Mailtrain, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1026
+
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
