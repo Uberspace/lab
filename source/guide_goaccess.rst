@@ -68,7 +68,7 @@ To get first results, to check that everything is maintained, please enter:
 
 ::
 
- [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file <(cat ~/logs/webserver/access_log*)
 
 Scroll with your cursor keys up and down. With "q" you can quit GoAccess.
 
@@ -86,7 +86,7 @@ The command to create a static file with GoAccess is:
 
 ::
 
- [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
+ [isabell@stardust ~]$ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file <(cat ~/logs/webserver/access_log*) --output ~/html/statistics/report.html
 
 .. warning:: The content of ``~/html`` is publicly accessible. To protect it from unintended visitors, set up HTTP basic authentication using an ``.htaccess`` file.
 
@@ -101,7 +101,7 @@ To create a GoAccess file with a cron job every hour as example, a script is hel
 
  #!/bin/bash
 
- goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file ~/logs/webserver/access_log --output ~/html/statistics/report.html
+ goaccess --agent-list --config-file ~/etc/goaccess.conf --log-file <(cat ~/logs/webserver/access_log*) --output ~/html/statistics/report.html
 
 Make your script file executable with:
 
@@ -129,7 +129,7 @@ and content:
 Best Practices
 ==============
 
-The actual readable web log file is valid for one day. Uberspace consider a rolling aspect and create archives of the last seven days. With other words, a long term statistics is not possible, otherwise the next script level consider the archives per day too.
+The actual readable web log file is valid for one week. With other words, a long term statistics is not possible.
 
 .. _GoAccess: https://goaccess.io/
 .. _man page: https://goaccess.io/man
@@ -140,6 +140,8 @@ The actual readable web log file is valid for one day. Uberspace consider a roll
 
 ----
 
-Tested with Uberspace 7.3.10 and GoAccess 1.3
+Tested with Uberspace 7.11.1.1 and GoAccess 1.3
 
 .. author_list::
+
+Frederik Niedernolte <peleke7@uber.space>
