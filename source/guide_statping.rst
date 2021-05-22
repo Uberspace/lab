@@ -21,7 +21,7 @@ Statping
 .. tag_list::
 
 
-`Statping`_ is a lightweight and easy to install monitoring tool written in Go.
+Statping_ is a lightweight and easy to install monitoring tool written in Go.
 It is published under the GNU General Public License v3.0.
 
 
@@ -134,7 +134,7 @@ If there is a new version available, you can get the binary with the same comman
    [isabell@stardust statping]$ curl -sL https://github.com/statping/statping/releases/download/v0.80.70/statping-linux-x64.tar.gz | tar xz
    [isabell@stardust statping]$ supervisorctl start statping
 
-
+.. _Statping: https://statping.com/
 .. _Github: https://github.com/statping/statping/
 .. _feed: https://github.com/statping/statping/releases
 .. _`Statping Wiki`: https://github.com/statping/statping/wiki
