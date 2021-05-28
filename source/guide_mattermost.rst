@@ -154,6 +154,8 @@ Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/h
 Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
 
 .. _`Mattermost website`: https://mattermost.com/download/
+.. _`Mattermost`: https://mattermost.com/
+
 
 ----
 
