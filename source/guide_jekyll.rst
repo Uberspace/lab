@@ -43,12 +43,12 @@ All relevant legal information can be found here
 
 Prerequisites
 =============
-We're using :manual:`Ruby <lang-ruby>` in the version 2.5.3:
+We're using :manual:`Ruby <lang-ruby>` in the version 2.7.2:
 
 ::
 
  [isabell@stardust ~]$ ruby -v
- ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-linux]
+ ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-linux]
  [isabell@stardust ~]$
 
 Your domain needs to be setup:
@@ -59,11 +59,18 @@ You need to install a gem called Jekyll:
 ::
 
  [isabell@stardust ~]$ gem install bundler jekyll
- Fetching bundler-2.0.1.gem
+ Fetching bundler-2.2.19.gem
+ WARNING:  You don't have /home/isabell/.local/share/gem/ruby/2.7.0/bin in your PATH,
+ 	  gem executables will not run.
  [...]
- Successfully installed jekyll-3.8.5
- 26 gems installed
+ Building native extensions. This could take a while...
+ [...]
+ Successfully installed jekyll-4.2.0
+ 27 gems installed
  [isabell@stardust ~]$
+ 
+
+You can ignore the warning regarding your PATH.
 
 Installation
 ============
@@ -78,24 +85,21 @@ Just let Jekyll create a new folder containing your website by typing:
  New jekyll site installed in /home/isabell/website.
  [isabell@stardust ~]$
 
-After Jekyll finished, navigate into your website folder and install all needed gems for your website:
+After Jekyll finished, navigate into your website folder. 
+
+Set the local path for bundler, then install all needed gems for your website:
 ::
 
  [isabell@stardust ~]$ cd ~/website
- [isabell@stardust website]$ bundle install --path vendor/bundle
- The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
-
- Fetching gem metadata from https://rubygems.org/...........
+ [isabell@stardust website]$ bundle config set --local path 'vendor/bundle'
+ [isabell@stardust website]$ bundle install
  [...]
- Bundle complete! 4 Gemfile dependencies, 29 gems now installed.
+ Bundle complete! 6 Gemfile dependencies, 31 gems now installed.
  Bundled gems are installed into `./vendor/bundle`
  [...]
 
  [isabell@stardust website]$
 
-Since it is not allowed to install gems at the system default path, you have to add an option for installing gems:
-
-  * ``--path``: Specifies another path for installing gems (here ``vendor/bundle``).
 
 Now you can build and deploy your website to your document root:
 ::
@@ -211,6 +215,6 @@ Since Jekyll is a ruby gem, you can update Jekyll and every gem needed by your w
 
 ----
 
-Tested with Ruby 2.5.3, Jekyll 3.8.5, Uberspace 7.2.2
+Tested with Ruby 2.7.2, Jekyll 4.2.0, Uberspace 7.10.0
 
 .. author_list::
