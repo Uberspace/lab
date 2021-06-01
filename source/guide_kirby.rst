@@ -40,12 +40,12 @@ Kirby is licensed under the `Kirby End User License Agreement`_ which you can fi
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using PHP_ in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -61,12 +61,14 @@ To install Kirby we create a new Kirby Starterkit project using Composer (which 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust ~]$ composer create-project getkirby/starterkit html
-  Installing getkirby/starterkit (3.0.0)
-   - Installing getkirby/starterkit (3.0.0): Downloading (100%)
-  Created project in html
-  Loading composer repositories with package information
-  Updating dependencies (including require-dev)
-  [...]
+ Creating a "getkirby/starterkit" project at "./html"
+ Installing getkirby/starterkit (3.5.5)
+   - Downloading getkirby/starterkit (3.5.5)
+   - Installing getkirby/starterkit (3.5.5): Extracting archive
+ Created project in /var/www/virtual/sbtest/html
+ Loading composer repositories with package information
+ Updating dependencies
+ [...]
  [isabell@stardust ~]$
 
 That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit.
@@ -145,6 +147,6 @@ If you've enabled the cache, you might need to empty the page cache directory to
 
 ----
 
-Tested with Kirby 3.0.0 and Uberspace 7.2.1
+Tested with Kirby 3.5.5 and Uberspace 7.11.1.1
 
 .. author_list::
