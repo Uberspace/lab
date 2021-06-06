@@ -267,7 +267,27 @@ Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to
 
   [isabell@stardust ~]$ pip3.6 install --user -U matrix-synapse
   [isabell@stardust ~]$
+  
+Automate the update process with a bash script called `~/bin/synapse-update` containing:
 
+.. code-block:: bash
+
+#!/bin/bash
+# update synapse and restart the service
+
+pip3.6 install --user -U matrix-synapse
+supervisorctl restart synapse
+
+Make it executeable:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ chmod +x ~/bin/synapse-update
+  [isabell@stardust ~]$
+
+.. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
+
+``@weekly $HOME/bin/synapse-update > $HOME/logs/synapse-update.log 2>&1`` update weekly and output to log
 
 Administration
 ==============
