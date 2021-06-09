@@ -77,17 +77,17 @@ Paste the following command into your ssh window:
 
 ::
 
-[isabell@stardust ~]$ uberspace tools version use node 14
-Selected Node.js version 14
-[isabell@stardust ~]$
+ [isabell@stardust ~]$ uberspace tools version use node 14
+ Selected Node.js version 14
+ [isabell@stardust ~]$
 
 To verify the change you can enter:
 
 ::
 
-[isabell@stardust ~]$ uberspace tools version show node
-Using 'Node.js' version: '14'
-[isabell@stardust ~]$
+ [isabell@stardust ~]$ uberspace tools version show node
+ Using 'Node.js' version: '14'
+ [isabell@stardust ~]$
 
 Installation
 ======================
@@ -191,10 +191,10 @@ Start Foundry by first updating the service, and then telling it to start:
 
 ::
 
-[isabell@stardust ~]$ supervisorctl update
-[isabell@stardust ~]$ supervisorctl start all
-foundry: started
-[isabell@stardust ~]$
+ [isabell@stardust ~]$ supervisorctl update
+ [isabell@stardust ~]$ supervisorctl start all
+ foundry: started
+ [isabell@stardust ~]$
 
 Finishing installation
 ======================
