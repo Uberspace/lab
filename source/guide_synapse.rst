@@ -272,11 +272,11 @@ Automate the update process with a bash script called `~/bin/synapse-update` con
 
 .. code-block:: bash
 
-#!/bin/bash
-# update synapse and restart the service
+  #!/bin/bash
+  # update synapse and restart the service
 
-pip3.6 install --user -U matrix-synapse
-supervisorctl restart synapse
+  pip3.6 install --user -U matrix-synapse
+  supervisorctl restart synapse
 
 Make it executeable:
 
@@ -285,9 +285,10 @@ Make it executeable:
   [isabell@stardust ~]$ chmod +x ~/bin/synapse-update
   [isabell@stardust ~]$
 
-.. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
+.. tip::
 
-``@weekly $HOME/bin/synapse-update > $HOME/logs/synapse-update.log 2>&1`` update weekly and output to log
+  You can automate this script as a :manual:`cronjob <daemons-cron>`.
+  ``@weekly $HOME/bin/synapse-update > $HOME/logs/synapse-update.log 2>&1`` update weekly and output to log
 
 Administration
 ==============
