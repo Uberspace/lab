@@ -54,7 +54,7 @@ For this demo we are going to assume that your Uberspace user is called ``isabel
 
 On Windows open a **command prompt**, on Mac open the **Terminal** app.
 
-Enter `isabell@isabell.uber.space` and press return.
+Enter ``ssh isabell@isabell.uber.space`` and press return.
 
 You will be prompted for a password.
 
