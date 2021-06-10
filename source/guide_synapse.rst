@@ -345,7 +345,10 @@ Check federation
 
 The Matrix_ project provides a federation checker at MatrixFederationChecker_ .
 
+Bridges
+-------
 
+Using Matrix you can connect other platforms and communication services with bridges_. There are different types of bridges described in the docs_. If you're intent to integrate a lot of other services :lab:`matterbridge <guide_matterbidge>` can be used.
 
 Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
@@ -354,6 +357,9 @@ Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 .. _Matrix: https://matrix.org/
 .. _Synapse: https://matrix.org/docs/projects/server/synapse
 .. _MatrixFederationChecker: https://federationtester.matrix.org/
+.. _docs: https://matrix.org/docs/guides/types-of-bridging
+.. _bridges: https://matrix.org/bridges/
+.. _Matterbridge: https://github.com/42wim/matterbridge
 
 ----
 
