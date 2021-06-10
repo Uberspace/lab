@@ -161,29 +161,15 @@ For every following user use it without ``-c``:
 Configure web server
 --------------------
 
-In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
+In order for your Radicale instance to be reachable from the web, you need to connect it to the uberspace frontend using a web backend (:manual:`web backends <web-backends>`):
 
-.. code-block:: ini
-  :emphasize-lines: 3,9
+.. code-block:: console
 
-  AuthType      Basic
-  AuthName      "Radicale - Password Required"
-  AuthUserFile  "/var/www/virtual/<username>/htpasswd"
-  Require       valid-user
-
-  DirectoryIndex disabled
-
-  RewriteEngine On
-  RewriteRule ^(.*) http://<username>.local.uberspace.de:8000/$1 [P]
-
-Again, don't forget to fill in your username!
-
-
-.. note:: If you want to setup radicale to be accessible in a subfolder (not in the home directory), add the "X-Script-Name" Header to the end of the ``.htaccess`` file:
-
-.. code-block:: ini
-
-    RequestHeader set X-Script-Name /<foldername>
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000 
+  Set backend for / to port 8000; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$ uberspace web backend list  
+  / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
 
 Start Service
@@ -212,6 +198,6 @@ Updates
 
 ----
 
-Tested with Radicale 2.1.11, Uberspace 7.1.17
+Tested with Radicale 3.0.6, Uberspace 7.11.1
 
 .. author_list::
