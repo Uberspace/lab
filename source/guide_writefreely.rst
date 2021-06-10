@@ -1,4 +1,4 @@
-.. author:: this.ven <this@ven.uber.space>
+.. author:: this.ven <this.ven.uber.space>
 
 .. tag:: blog
 .. tag:: lang-go
