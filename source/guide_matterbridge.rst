@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/matterbridge-logo.svg
+  .. image:: _static/images/matterbridge-notext.gif
       :align: center
 
 ############
