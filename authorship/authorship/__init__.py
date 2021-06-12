@@ -91,6 +91,7 @@ class TagListDisplay(SphinxDirective):
 
     From rst markup like::
 
+        .. tag_list::
 
     """
 
