@@ -17,7 +17,8 @@ phpBB
 
 .. tag_list::
 
-phpBB_ is a free flat-forum bulletin board software solution that can be used to stay in touch with a group of people.
+.. abstract::
+  phpBB_ is a free flat-forum bulletin board software solution that can be used to stay in touch with a group of people.
 
 ----
 

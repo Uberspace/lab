@@ -17,9 +17,10 @@ searX
 
 .. tag_list::
 
-Searx_ (Wikipedia_) is a free and open-source metasearch engine which aggregate results from more than 70 search services (e.g. Google, Bing etc.) and to avoid user tracking and profiling by these ones.
+.. abstract::
+  Searx_ (Wikipedia_) is a free and open-source metasearch engine which aggregate results from more than 70 search services (e.g. Google, Bing etc.) and to avoid user tracking and profiling by these ones.
 
-There are public instances_ of searx available, to get a personal practice before you install your own.
+  There are public instances_ of searx available, to get a personal practice before you install your own.
 
 License
 =======

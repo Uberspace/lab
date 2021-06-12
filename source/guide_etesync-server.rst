@@ -18,9 +18,10 @@ EteSync Server
 
 .. tag_list::
 
-EteSync_ is a secure, end-to-end encrypted, and privacy respecting sync for your contacts, calendars and tasks.
-You can set up your own `EteSync Server`_ to sync all your devices.
-It is written in :manual:`Python <lang-python>` and based on the popular :lab:`Django-Framework <guide_django>`.
+.. abstract::
+  EteSync_ is a secure, end-to-end encrypted, and privacy respecting sync for your contacts, calendars and tasks.
+  You can set up your own `EteSync Server`_ to sync all your devices.
+  It is written in :manual:`Python <lang-python>` and based on the popular :lab:`Django-Framework <guide_django>`.
 
 ----
 

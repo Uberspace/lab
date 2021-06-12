@@ -16,8 +16,9 @@ MinIO
 
 .. tag_list::
 
-MinIO_ is an open source object storage server,
-compatible with Amazon S3 written in go.
+.. abstract::
+  MinIO_ is an open source object storage server,
+  compatible with Amazon S3 written in go.
 
 ----
 

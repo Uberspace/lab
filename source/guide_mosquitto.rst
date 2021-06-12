@@ -19,7 +19,8 @@ Mosquitto
 
 .. tag_list::
 
-Mosquitto_ is an open source MQTT message broker written in C. It also provides the tools ``mosquitto_sub`` and ``mosquitto_pub`` for subscription and publication.
+.. abstract::
+  Mosquitto_ is an open source MQTT message broker written in C. It also provides the tools ``mosquitto_sub`` and ``mosquitto_pub`` for subscription and publication.
 
 
 License

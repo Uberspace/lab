@@ -20,7 +20,8 @@ ionCube Loader
 
 .. tag_list::
 
-Using ionCube encoded and secured PHP files requires a file called the ionCube Loader to be installed on the web server and made available to PHP.
+.. abstract::
+  Using ionCube encoded and secured PHP files requires a file called the ionCube Loader to be installed on the web server and made available to PHP.
 
 ----
 

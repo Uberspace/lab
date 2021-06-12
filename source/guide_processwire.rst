@@ -17,7 +17,8 @@ ProcessWire
 
 .. tag_list::
 
-Processwire_ is a free content management system (CMS) and framework (CMF) written in PHP.
+.. abstract::
+  Processwire_ is a free content management system (CMS) and framework (CMF) written in PHP.
 
 ----
 

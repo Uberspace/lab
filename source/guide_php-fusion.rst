@@ -16,7 +16,8 @@ PHP-Fusion
 
 .. tag_list::
 
-PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
+.. abstract::
+  PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
 
 ----
 

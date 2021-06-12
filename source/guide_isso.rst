@@ -18,11 +18,12 @@ Isso
 
 .. tag_list::
 
-Isso_ is a simple, self-hosted commenting server which can easily be included inside blogging platforms such as :lab:`Ghost <guide_ghost>` or :lab:`Wordpress <guide_wordpress>`.
+.. abstract::
+  Isso_ is a simple, self-hosted commenting server which can easily be included inside blogging platforms such as :lab:`Ghost <guide_ghost>` or :lab:`Wordpress <guide_wordpress>`.
 
-Users can format comments by using Markdown. Isso has spam protection and an admin panel to administrate comments.
+  Users can format comments by using Markdown. Isso has spam protection and an admin panel to administrate comments.
 
-The Isso Server is written in Python and the client side is realized by a small javascript. Comments are stored inside a sqlite database.
+  The Isso Server is written in Python and the client side is realized by a small javascript. Comments are stored inside a sqlite database.
 
 ----
 

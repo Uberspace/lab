@@ -17,7 +17,8 @@ Commento
 
 .. tag_list::
 
-Commento_ is an open source, fast, privacy-focused commenting platform written in golang.
+.. abstract::
+  Commento_ is an open source, fast, privacy-focused commenting platform written in golang.
 
 ----
 

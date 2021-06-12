@@ -16,7 +16,8 @@ Embetty
 
 .. tag_list::
 
-Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to embed Tweets and videos from YouTube, Facebook, and Vimeo on your website without compromising your visitor's privacy. It is developed by `Heise online`_ and is released under the MIT license.
+.. abstract::
+  Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to embed Tweets and videos from YouTube, Facebook, and Vimeo on your website without compromising your visitor's privacy. It is developed by `Heise online`_ and is released under the MIT license.
 
 ----
 

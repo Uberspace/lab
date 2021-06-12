@@ -19,7 +19,8 @@ EtherCalc
 
 .. tag_list::
 
-EtherCalc_ is a web spreadsheet based on node-js and redis. People can edit the same document at the same time. Everybody's changes are instantly reflected on all screens. Work together on inventories, survey forms, list management, brainstorming sessions and more!
+.. abstract::
+  EtherCalc_ is a web spreadsheet based on node-js and redis. People can edit the same document at the same time. Everybody's changes are instantly reflected on all screens. Work together on inventories, survey forms, list management, brainstorming sessions and more!
 
 ----
 

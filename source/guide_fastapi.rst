@@ -16,7 +16,8 @@ FastAPI
 
 .. tag_list::
 
-FastAPI_ is a modern, async web-framework for building APIs with Python 3.6+ making use of type hints. It is a microframework, in many ways quite `similar to Flask`_ and uses the MIT license_.
+.. abstract::
+  FastAPI_ is a modern, async web-framework for building APIs with Python 3.6+ making use of type hints. It is a microframework, in many ways quite `similar to Flask`_ and uses the MIT license_.
 
 ----
 

@@ -19,7 +19,8 @@ Baïkal
 
 .. tag_list::
 
-Baïkal_ is a lightweight CalDAV+CardDAV server.
+.. abstract::
+  Baïkal_ is a lightweight CalDAV+CardDAV server.
 
 ----
 

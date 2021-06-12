@@ -18,13 +18,14 @@ Contao
 
 .. tag_list::
 
-Contao_ is a free, web-based Open Source Content Management System (CMS) written in PHP and distributed under the LGPL 3.0 or later licence.
+.. abstract::
+  Contao_ is a free, web-based Open Source Content Management System (CMS) written in PHP and distributed under the LGPL 3.0 or later licence.
 
-Contao is used to build and manage professional websites of different types and size ranges that are easy to maintain.
+  Contao is used to build and manage professional websites of different types and size ranges that are easy to maintain.
 
-As of Contao 4, it is based on Symfony_, a popular high performance PHP framework for web development. Contao 4 has been designed as a Symfony bundle, which can be used to add CMS functionality to any Symfony application.
+  As of Contao 4, it is based on Symfony_, a popular high performance PHP framework for web development. Contao 4 has been designed as a Symfony bundle, which can be used to add CMS functionality to any Symfony application.
 
-Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer. Since then it has been continuously developed and it is actively maintained by the Contao Core Development Workgroup and other contributors.
+  Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer. Since then it has been continuously developed and it is actively maintained by the Contao Core Development Workgroup and other contributors.
 
 ----
 

@@ -12,10 +12,11 @@ ezmlm-idx
 
 .. tag_list::
 
-ezmlm_ is a set of programs to run mailing lists either from a web interface, via mail or from the command line.
-It can be used as an alternative to Mailman.
-This guide covers only the command line and the mail interface, not the web. It does not use a database but just
-flat files. For using a database and the web see the detailed docs.
+.. abstract::
+  ezmlm_ is a set of programs to run mailing lists either from a web interface, via mail or from the command line.
+  It can be used as an alternative to Mailman.
+  This guide covers only the command line and the mail interface, not the web. It does not use a database but just
+  flat files. For using a database and the web see the detailed docs.
 
 ----
 

@@ -17,7 +17,8 @@ Redis
 
 .. tag_list::
 
-Redis_ is a key-value store NoSQL database. It is primarily used because of its high read and write rates. Redis uses two columns, storing pairs of one key and one corresponding value.
+.. abstract::
+  Redis_ is a key-value store NoSQL database. It is primarily used because of its high read and write rates. Redis uses two columns, storing pairs of one key and one corresponding value.
 
 ----
 

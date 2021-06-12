@@ -17,11 +17,12 @@ Kirby
 
 .. tag_list::
 
-Kirby_ is a modern, fast, flexible, file-based (no database) content management system written in PHP.
+.. abstract::
+  Kirby_ is a modern, fast, flexible, file-based (no database) content management system written in PHP.
 
-The idea behind Kirby is to provide a tool for developing websites or applications that is both easy to use for developers and at the same time gives you all the freedom you want to structure your content and render your output.
+  The idea behind Kirby is to provide a tool for developing websites or applications that is both easy to use for developers and at the same time gives you all the freedom you want to structure your content and render your output.
 
-Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code of Kirby is available for download, a per website license_ is required to use it in production.
+  Kirby was released for the first time in 2009 and is actively developed by the Bastian Allgeier GmbH. Although the code of Kirby is available for download, a per website license_ is required to use it in production.
 
 ----
 

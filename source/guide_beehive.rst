@@ -17,15 +17,16 @@ Beehive
 
 .. tag_list::
 
-Beehive is an event and agent system, which allows you to create your own
-agents that perform automated tasks triggered by events and filters. It is
-modular, flexible and really easy to extend for anyone. It has modules
-(we call them *Hives*), so it can interface with, talk to, or retrieve
-information from Twitter, Tumblr, Email, IRC, Jabber, RSS, Jenkins, Hue - to
-name just a few. Check out the full list of `available Hives`_
-in our Wiki.
+.. abstract::
+  Beehive is an event and agent system, which allows you to create your own
+  agents that perform automated tasks triggered by events and filters. It is
+  modular, flexible and really easy to extend for anyone. It has modules
+  (we call them *Hives*), so it can interface with, talk to, or retrieve
+  information from Twitter, Tumblr, Email, IRC, Jabber, RSS, Jenkins, Hue - to
+  name just a few. Check out the full list of `available Hives`_
+  in our Wiki.
 
-Connecting those modules with each other lets you create immensly useful agents.
+  Connecting those modules with each other lets you create immensly useful agents.
 
 ---
 

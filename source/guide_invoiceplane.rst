@@ -18,7 +18,8 @@ InvoicePlane
 
 .. tag_list::
 
-InvoicePlane_ is a self-hosted open source application for managing your quotes, invoices, clients and payments.
+.. abstract::
+  InvoicePlane_ is a self-hosted open source application for managing your quotes, invoices, clients and payments.
 
 ----
 

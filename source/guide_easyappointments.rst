@@ -19,9 +19,10 @@ Easy Appointments
 
 .. tag_list::
 
-`Easy Appointments`_ is an open source web application for booking / scheduling appointments. It allows for many customization options and use-cases and provides optional sync to Google Calendar.
+.. abstract::
+  `Easy Appointments`_ is an open source web application for booking / scheduling appointments. It allows for many customization options and use-cases and provides optional sync to Google Calendar.
 
-Easy Appointments was first released 2016 and is maintained by Alex Tselegidis. It is distributed under GPL 3.0.
+  Easy Appointments was first released 2016 and is maintained by Alex Tselegidis. It is distributed under GPL 3.0.
 
 
 

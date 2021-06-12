@@ -17,7 +17,8 @@ FreshRSS
 
 .. tag_list::
 
-FreshRSS_ is a multi-user self-hosted RSS feed aggregator.
+.. abstract::
+  FreshRSS_ is a multi-user self-hosted RSS feed aggregator.
 
 ----
 

@@ -16,17 +16,18 @@ Radicale
 
 .. tag_list::
 
-Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
+.. abstract::
+  Radicale_ is a Free and Open-Source CalDAV and CardDAV Server.
 
-* Shares calendars through CalDAV, WebDAV and HTTP.
-* Shares contacts through CardDAV, WebDAV and HTTP.
-* Supports events, todos, journal entries and business cards.
-* Works out-of-the-box, no installation nor configuration required.
-* Can warn users on concurrent editing.
-* Can limit access by authentication.
-* Can secure connections.
-* Works with many CalDAV and CardDAV clients.
-* Is GPLv3-licensed free software.
+  * Shares calendars through CalDAV, WebDAV and HTTP.
+  * Shares contacts through CardDAV, WebDAV and HTTP.
+  * Supports events, todos, journal entries and business cards.
+  * Works out-of-the-box, no installation nor configuration required.
+  * Can warn users on concurrent editing.
+  * Can limit access by authentication.
+  * Can secure connections.
+  * Works with many CalDAV and CardDAV clients.
+  * Is GPLv3-licensed free software.
 
 
 ----
@@ -165,10 +166,10 @@ In order for your Radicale instance to be reachable from the web, you need to co
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000 
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000
   Set backend for / to port 8000; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$ uberspace web backend list  
+  [isabell@stardust ~]$ uberspace web backend list
   / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
 

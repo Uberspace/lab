@@ -12,7 +12,8 @@ Gollum
 
 .. tag_list::
 
-Gollum_ is a simple wiki software written in :manual:`Ruby <lang-ruby>`. It is the software component that drives many popular wiki integrations (e.g. GitHub and GitLab wikis). It is a very simple, small and fast wiki alternative to larger systems like :lab:`Dokuwiki <guide_dokuwiki>`. Gollum is Git-backed, so all changes made through the web interface are also committed to the underlying Git repository.
+.. abstract::
+  Gollum_ is a simple wiki software written in :manual:`Ruby <lang-ruby>`. It is the software component that drives many popular wiki integrations (e.g. GitHub and GitLab wikis). It is a very simple, small and fast wiki alternative to larger systems like :lab:`Dokuwiki <guide_dokuwiki>`. Gollum is Git-backed, so all changes made through the web interface are also committed to the underlying Git repository.
 
 ----
 

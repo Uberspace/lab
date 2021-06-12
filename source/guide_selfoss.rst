@@ -17,8 +17,9 @@ selfoss
 
 .. tag_list::
 
-selfoss_ is a free and open source web-based news feed reader and
-aggregator.
+.. abstract::
+  selfoss_ is a free and open source web-based news feed reader and
+  aggregator.
 
 ----
 

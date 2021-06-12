@@ -16,7 +16,8 @@ Shaarli
 
 .. tag_list::
 
-Shaarli_ is a minimalist link sharing service. It can be used to share, comment and save interesting links. It is designed to be personal (single-user), fast and handy.
+.. abstract::
+  Shaarli_ is a minimalist link sharing service. It can be used to share, comment and save interesting links. It is designed to be personal (single-user), fast and handy.
 
 ----
 

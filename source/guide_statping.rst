@@ -21,8 +21,9 @@ Statping
 .. tag_list::
 
 
-Statping_ is a lightweight and easy to install monitoring tool written in Go.
-It is published under the GNU General Public License v3.0.
+.. abstract::
+  Statping_ is a lightweight and easy to install monitoring tool written in Go.
+  It is published under the GNU General Public License v3.0.
 
 
 ----

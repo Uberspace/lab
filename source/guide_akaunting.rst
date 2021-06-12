@@ -19,9 +19,10 @@ Akaunting
 
 .. tag_list::
 
-Akaunting_  is a free, open source accounting software designed for small businesses and freelancers. With features like invoicing, expense tracking and accounting it can be used to manage money online while retaining full data ownership.
+.. abstract::
+  Akaunting_  is a free, open source accounting software designed for small businesses and freelancers. With features like invoicing, expense tracking and accounting it can be used to manage money online while retaining full data ownership.
 
-The software is based on top of the Laravel_ framework and therefore written in PHP_.
+  The software is based on top of the Laravel_ framework and therefore written in PHP_.
 
 ----
 

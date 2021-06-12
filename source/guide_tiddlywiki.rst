@@ -16,7 +16,8 @@ TiddlyWiki
 
 .. tag_list::
 
-TiddlyWiki_ is a personal wiki and a non-linear notebook for organising and sharing complex information.
+.. abstract::
+  TiddlyWiki_ is a personal wiki and a non-linear notebook for organising and sharing complex information.
 
 License
 =======
@@ -43,7 +44,7 @@ TiddlyWiki is installed via Nodes package manager `npm`:
  [...]
  + tiddlywiki@5.1.23
  added 1 package from 1 contributor in 5.102s
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Check if TiddlyWiki is installed by typing:
 

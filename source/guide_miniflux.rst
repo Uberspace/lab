@@ -16,7 +16,8 @@ Miniflux
 
 .. tag_list::
 
-Miniflux_ is a minimalist and opinionated feed reader.
+.. abstract::
+  Miniflux_ is a minimalist and opinionated feed reader.
 
 ----
 

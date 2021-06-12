@@ -17,9 +17,10 @@ Prosody
 
 .. tag_list::
 
-Prosody_ is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.
+.. abstract::
+  Prosody_ is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.
 
-XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organization, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
+  XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organization, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
 
 ----
 

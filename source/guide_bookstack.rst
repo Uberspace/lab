@@ -17,9 +17,10 @@ BookStack
 
 .. tag_list::
 
-BookStack_ is a simple, self-hosted, easy-to-use platform for organising and storing information (wiki).
+.. abstract::
+  BookStack_ is a simple, self-hosted, easy-to-use platform for organising and storing information (wiki).
 
-It is specially designed to allow new users with basic word-processing skills to get involved in creating content. However, it offers advanced power features for users who need them.
+  It is specially designed to allow new users with basic word-processing skills to get involved in creating content. However, it offers advanced power features for users who need them.
 
 ----
 

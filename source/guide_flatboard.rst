@@ -17,7 +17,8 @@ Flatboard
 
 .. tag_list::
 
-Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON and Markdown [1]_ or BBcode.
+.. abstract::
+  Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON and Markdown [1]_ or BBcode.
 
 ----
 

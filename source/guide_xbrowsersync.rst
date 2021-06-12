@@ -17,9 +17,10 @@ xBrowserSync API
 
 .. tag_list::
 
-xBrowserSync is a free and open-source browser bookmark syncing tool with support for Chrome, Firefox and Android (via app).
+.. abstract::
+  xBrowserSync is a free and open-source browser bookmark syncing tool with support for Chrome, Firefox and Android (via app).
 
-The xBrowserSync API provides an individual sync server where your bookmarks stored encrypted.
+  The xBrowserSync API provides an individual sync server where your bookmarks stored encrypted.
 
 ----
 

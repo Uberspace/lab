@@ -18,8 +18,9 @@ PhantomBot
 
 .. tag_list::
 
-PhantomBot_ is an actively developed open source interactive Twitch bot written in Java
-that provides entertainment and moderation for your channel.
+.. abstract::
+  PhantomBot_ is an actively developed open source interactive Twitch bot written in Java
+  that provides entertainment and moderation for your channel.
 
 ----
 

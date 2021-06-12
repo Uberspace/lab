@@ -18,7 +18,8 @@ Mailman 2
 
 .. tag_list::
 
-Mailman_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
+.. abstract::
+  Mailman_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
 
 .. note:: This guide is for the older Mailman 2. Unless you have specific requirements, head over to the newer :lab:`Mailman 3 <guide_mailman-3>`!
 

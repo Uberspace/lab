@@ -18,7 +18,8 @@ Ackee
 
 .. tag_list::
 
-Ackee_ is a self-hosted open-source web analytics tool built with :manual:`Node.js <lang-nodejs>`.
+.. abstract::
+  Ackee_ is a self-hosted open-source web analytics tool built with :manual:`Node.js <lang-nodejs>`.
 
 ----
 

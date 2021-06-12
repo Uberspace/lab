@@ -15,7 +15,8 @@ Firefly III
 
 .. tag_list::
 
-"Firefly III" is a (self-hosted) manager for your personal finances. It can help you keep track of your expenses and income, so you can spend less and save more.
+.. abstract::
+  "Firefly III" is a (self-hosted) manager for your personal finances. It can help you keep track of your expenses and income, so you can spend less and save more.
 
 ----
 

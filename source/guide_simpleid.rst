@@ -16,7 +16,8 @@ SimpleID
 
 .. tag_list::
 
-SimpleID is a simple, personal OpenID provider written in PHP.
+.. abstract::
+  SimpleID is a simple, personal OpenID provider written in PHP.
 
 ----
 

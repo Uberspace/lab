@@ -17,12 +17,13 @@ TYPO3 CMS
 
 .. tag_list::
 
-`TYPO3 CMS`_ is an Open Source Enterprise Content Management System licensed under `GPL v2`_ and provides the basis for
-more than 500.000 websites, intranets and other web applications worldwide.
+.. abstract::
+  `TYPO3 CMS`_ is an Open Source Enterprise Content Management System licensed under `GPL v2`_ and provides the basis for
+  more than 500.000 websites, intranets and other web applications worldwide.
 
-First released in 1997 by Kasper Skårhøj, a Danish developer, when the term "Content Management" was still widely
-unknown, it is represented today by the `TYPO3 Association`_ responsible for coordinating and funding the further
-development of the platform.
+  First released in 1997 by Kasper Skårhøj, a Danish developer, when the term "Content Management" was still widely
+  unknown, it is represented today by the `TYPO3 Association`_ responsible for coordinating and funding the further
+  development of the platform.
 
 ----
 

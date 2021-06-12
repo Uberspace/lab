@@ -17,7 +17,8 @@ OctoberCMS
 
 .. tag_list::
 
-October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ PHP Framework. It is especially known for its simplicity, flexibility and modern design.
+.. abstract::
+  October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ PHP Framework. It is especially known for its simplicity, flexibility and modern design.
 
 ----
 

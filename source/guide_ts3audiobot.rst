@@ -14,9 +14,10 @@ TS3AudioBot
 
 .. tag_list::
 
-TS3AudioBot_ is a open-source TeamSpeak3 bot, playing music and much more.
+.. abstract::
+  TS3AudioBot_ is a open-source TeamSpeak3 bot, playing music and much more.
 
-.. warning:: To use the bot, you also need a TeamSpeak3_ server!
+  .. warning:: To use the bot, you also need a TeamSpeak3_ server!
 
 ----
 

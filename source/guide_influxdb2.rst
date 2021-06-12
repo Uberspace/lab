@@ -16,15 +16,16 @@ InfluxDB 2
 
 .. tag_list::
 
-InfluxDB_ is an *open source* time series database (TSDB). Or *"a platform for
-building and operating time series applications"*. It is developed by
-*InfluxData*, written in Go and optimized for fast, high-availability storage
-and retrieval of time series data in fields such as operations monitoring,
-application metrics, Internet of Things sensor data, and real-time analytics.
+.. abstract::
+  InfluxDB_ is an *open source* time series database (TSDB). Or *"a platform for
+  building and operating time series applications"*. It is developed by
+  *InfluxData*, written in Go and optimized for fast, high-availability storage
+  and retrieval of time series data in fields such as operations monitoring,
+  application metrics, Internet of Things sensor data, and real-time analytics.
 
-It can scrape data from `OpenMetrics`_ endpoints. And has support for
-processing a wide assortment of sources via `Telegraf`_. As well as multiple
-"officially recognized" `language bindings`_.
+  It can scrape data from `OpenMetrics`_ endpoints. And has support for
+  processing a wide assortment of sources via `Telegraf`_. As well as multiple
+  "officially recognized" `language bindings`_.
 
 ----
 

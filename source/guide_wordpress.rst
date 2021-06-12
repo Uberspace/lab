@@ -18,9 +18,10 @@ WordPress
 
 .. tag_list::
 
-WordPress_ is an open source blogging platform written in PHP and distributed under the GPLv2 licence.
+.. abstract::
+  WordPress_ is an open source blogging platform written in PHP and distributed under the GPLv2 licence.
 
-WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
+  WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
 
 ----
 

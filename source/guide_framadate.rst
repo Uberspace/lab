@@ -20,9 +20,10 @@ Framadate
 
 .. tag_list::
 
-Framadate is an online service for planning an appointment or making a decision quickly and easily.
+.. abstract::
+  Framadate is an online service for planning an appointment or making a decision quickly and easily.
 
-This guide is based on `the offical guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
+  This guide is based on `the offical guide <https://framacloud.org/en/cultivate-your-garden/framadate.html>`_ with some changes to make it work on Uberspace 7.
 
 ----
 

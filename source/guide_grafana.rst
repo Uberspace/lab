@@ -17,7 +17,8 @@ Grafana
 
 .. tag_list::
 
-The leading open source software for time series analytics.
+.. abstract::
+  The leading open source software for time series analytics.
 
 ----
 

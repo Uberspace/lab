@@ -17,7 +17,8 @@ MongoDB
 
 .. tag_list::
 
-MongoDB_ is a NoSQL database, developed by MongoDB Inc.
+.. abstract::
+  MongoDB_ is a NoSQL database, developed by MongoDB Inc.
 
 ----
 

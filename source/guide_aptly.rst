@@ -12,7 +12,8 @@ aptly
 
 .. tag_list::
 
-aptly_ is described on its website like this:
+.. abstract::
+  aptly_ is described on its website like this:
     *aptly is a swiss army knife for Debian repository management: it allows you to mirror remote repositories, manage local package repositories, take snapshots, pull new versions of packages along with dependencies, publish as Debian repository.*
 
 ----

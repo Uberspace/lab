@@ -19,7 +19,8 @@ Invoice Ninja
 
 .. tag_list::
 
-`Invoice Ninja`_ is a free, open-source, self-hosted invoicing software with built-in support for recurring invoices, time-tracking and online payments.
+.. abstract::
+  `Invoice Ninja`_ is a free, open-source, self-hosted invoicing software with built-in support for recurring invoices, time-tracking and online payments.
 
 ----
 

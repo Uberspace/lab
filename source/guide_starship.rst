@@ -16,8 +16,9 @@ Starship
 
 .. tag_list::
 
-Starship_ is the minimal, blazing-fast, and infinitely customisable prompt for
-any shell!
+.. abstract::
+  Starship_ is the minimal, blazing-fast, and infinitely customisable prompt for
+  any shell!
 
 
 ----

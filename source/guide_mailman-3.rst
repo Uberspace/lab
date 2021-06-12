@@ -18,14 +18,15 @@ Mailman 3
 
 .. tag_list::
 
-`Mailman`_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
+.. abstract::
+  `Mailman`_ is free software for managing electronic mail discussion and e-newsletter lists. Mailman is integrated with the web, making it easy for users to manage their accounts and for list owners to administer their lists. Mailman supports built-in archiving, automatic bounce processing, content filtering, digest delivery, spam filters, and more.
 
-`Mailman 3`_ is a complete re-write of previous versions, consisting of a suite of programs that work together:
+  `Mailman 3`_ is a complete re-write of previous versions, consisting of a suite of programs that work together:
 
-  * **Mailman Core**; the core delivery engine. This is where you are right now.
-  * **Postorius**; the web user interface for list members and administrators.
-  * **HyperKitty**; the web-based archiver
-  * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
+    * **Mailman Core**; the core delivery engine. This is where you are right now.
+    * **Postorius**; the web user interface for list members and administrators.
+    * **HyperKitty**; the web-based archiver
+    * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
 ----
 

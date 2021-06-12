@@ -18,15 +18,16 @@ Drupal
 
 .. tag_list::
 
-Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework
-written in PHP and distributed under the GPL 2.0 (or later) licence.
+.. abstract::
+  Drupal_ is a free, web-based Open Source Content Management System (CMS) and Framework
+  written in PHP and distributed under the GPL 2.0 (or later) licence.
 
-According to  W3Techs (2011-07-15), at least 2.3% of all websites worldwide are running with Drupal.
+  According to  W3Techs (2011-07-15), at least 2.3% of all websites worldwide are running with Drupal.
 
-Drupal 8 is based on Symfony_, a popular high performance PHP framework for web development.
+  Drupal 8 is based on Symfony_, a popular high performance PHP framework for web development.
 
-Drupal was released for the first time in 2000 by Dries Buytaert. Since then it has been
-continuously developed and it is actively maintained by various contributors.
+  Drupal was released for the first time in 2000 by Dries Buytaert. Since then it has been
+  continuously developed and it is actively maintained by various contributors.
 
 ----
 

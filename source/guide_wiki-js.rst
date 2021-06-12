@@ -17,11 +17,12 @@ Wiki.js
 
 .. tag_list::
 
-Wiki.js_ is a self-hosted open source wiki software with version tracking written in JavaScript and distributed under the AGPLv3 License.
+.. abstract::
+  Wiki.js_ is a self-hosted open source wiki software with version tracking written in JavaScript and distributed under the AGPLv3 License.
 
-It is highly extensible via a variety of modules, allowing for different ways of handling authentication, storage, and connecting various databases as well as a optional search engine of your choice.
+  It is highly extensible via a variety of modules, allowing for different ways of handling authentication, storage, and connecting various databases as well as a optional search engine of your choice.
 
-Wiki.js has a WYSIWYG editor as well as support for markdown, html. Migration from MediaWiki is currently being developed.
+  Wiki.js has a WYSIWYG editor as well as support for markdown, html. Migration from MediaWiki is currently being developed.
 
 ----
 

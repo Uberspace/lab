@@ -16,7 +16,8 @@ Haste
 
 .. tag_list::
 
-Haste_  is an open-source pastebin software written in :manual:`Node.js <lang-nodejs>`, which is easily installable in any network. It can be backed by either redis or filesystem, and has a very easy adapter interface for other stores. A publicly available version can be found at hastebin.com_.
+.. abstract::
+  Haste_  is an open-source pastebin software written in :manual:`Node.js <lang-nodejs>`, which is easily installable in any network. It can be backed by either redis or filesystem, and has a very easy adapter interface for other stores. A publicly available version can be found at hastebin.com_.
 
 ----
 

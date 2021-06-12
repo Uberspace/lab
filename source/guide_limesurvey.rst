@@ -17,7 +17,8 @@ LimeSurvey
 
 .. tag_list::
 
-LimeSurvey_ is a free and open source survey web application.
+.. abstract::
+  LimeSurvey_ is a free and open source survey web application.
 
 ----
 

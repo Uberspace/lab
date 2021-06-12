@@ -17,7 +17,8 @@ YOURLS
 
 .. tag_list::
 
-YOURLS_ is a set of PHP scripts that will allow you to run Your Own URL Shortener with complete control over your data, detailed stats, plugins, and more.
+.. abstract::
+  YOURLS_ is a set of PHP scripts that will allow you to run Your Own URL Shortener with complete control over your data, detailed stats, plugins, and more.
 
 ----
 

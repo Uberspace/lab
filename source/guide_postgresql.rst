@@ -16,9 +16,10 @@ PostgreSQL
 
 .. tag_list::
 
-PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
+.. abstract::
+  PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
 
-Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
+  Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
 
 License
 =======

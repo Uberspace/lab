@@ -19,7 +19,8 @@ Moodle
 
 .. tag_list::
 
-Moodle_ Moodle is an acronym for "Modular Object-Oriented Dynamic Learning Environment." It is a free and open-source learning management system (LMS) written in PHP and distributed under the GNU General Public License. More information on Wikipedia_ or the official Moodle_ page.
+.. abstract::
+  Moodle_ Moodle is an acronym for "Modular Object-Oriented Dynamic Learning Environment." It is a free and open-source learning management system (LMS) written in PHP and distributed under the GNU General Public License. More information on Wikipedia_ or the official Moodle_ page.
 
 ----
 

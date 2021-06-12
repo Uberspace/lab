@@ -19,9 +19,10 @@ Kimai
 
 .. tag_list::
 
-Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers.
+.. abstract::
+  Kimai_ is a free, open source time-tracking software written in PHP and designed for small businesses and freelancers.
 
-The times tracked in the software can be directly priced, aggregated, invoiced and integrated in automated processes utilizing the RESTful API.
+  The times tracked in the software can be directly priced, aggregated, invoiced and integrated in automated processes utilizing the RESTful API.
 
 ----
 

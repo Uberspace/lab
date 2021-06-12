@@ -18,13 +18,14 @@ WordPress with Bedrock
 
 .. tag_list::
 
-WordPress_ is an open source blogging platform written in PHP and distributed under the GPLv2 licence.
+.. abstract::
+  WordPress_ is an open source blogging platform written in PHP and distributed under the GPLv2 licence.
 
-WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
+  WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2/cafelog. It is maintained by the WordPress foundation.
 
-Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer. Since Bedrock separates the non-web files from the document root, it is also more secure.
+  Bedrock_ is a Wordpress-Boilerplate with an improved folder structure, easier configuration options and development. Dependencies like themes or plugins are managed with Composer. Since Bedrock separates the non-web files from the document root, it is also more secure.
 
-It is maintained by roots.io and released and distributed under MIT Licence.
+  It is maintained by roots.io and released and distributed under MIT Licence.
 
 ----
 

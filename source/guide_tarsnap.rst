@@ -15,8 +15,9 @@ Tarsnap
 
 .. tag_list::
 
-Tarsnap is a secure online backup service for UNIX-like operating systems, including BSD, Linux, and OS X. It was created in 2008 by Colin Percival. Tarsnap encrypts data, and then stores it on Amazon S3.
-The service is designed for efficiency, only uploading and storing data that has directly changed since the last backup. Its security keys are known only to the user.
+.. abstract::
+  Tarsnap is a secure online backup service for UNIX-like operating systems, including BSD, Linux, and OS X. It was created in 2008 by Colin Percival. Tarsnap encrypts data, and then stores it on Amazon S3.
+  The service is designed for efficiency, only uploading and storing data that has directly changed since the last backup. Its security keys are known only to the user.
 
 ----
 

@@ -17,7 +17,8 @@ Docusaurus
 
 .. tag_list::
 
-Docusaurus_ makes it easy to maintain Open Source documentation websites.
+.. abstract::
+  Docusaurus_ makes it easy to maintain Open Source documentation websites.
 
 ----
 

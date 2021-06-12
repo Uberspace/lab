@@ -22,9 +22,10 @@ LibreOffice Online
 
 .. tag_list::
 
-`LibreOffice Online <LOOL_>`_ is a free online office suite based on the
-desktop office suite LibreOffice. It comprises a word processor, a spreadsheet
-and a presentation software.
+.. abstract::
+  `LibreOffice Online <LOOL_>`_ is a free online office suite based on the
+  desktop office suite LibreOffice. It comprises a word processor, a spreadsheet
+  and a presentation software.
 
 ----
 

@@ -18,9 +18,10 @@ Grav
 
 .. tag_list::
 
-Grav_ is an open source flat-file (no database) content management system written in PHP.
+.. abstract::
+  Grav_ is an open source flat-file (no database) content management system written in PHP.
 
-It was developed with a focus on speed, simplicity, and flexibility. Content can be managed by easily editing folders and markdown files or using an admin panel (GUI).
+  It was developed with a focus on speed, simplicity, and flexibility. Content can be managed by easily editing folders and markdown files or using an admin panel (GUI).
 
 ----
 

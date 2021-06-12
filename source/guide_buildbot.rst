@@ -17,9 +17,10 @@ Buildbot
 
 .. tag_list::
 
-Buildbot is an open-source framework for automating software build, test, and release processes. At its core, Buildbot is a job scheduling system: it queues jobs, executes the jobs when the required resources are available, and reports the results. It can be easily installed and serve as a continuous integration platform to be used together with a variety of version control solutions, including gitea.
+.. abstract::
+  Buildbot is an open-source framework for automating software build, test, and release processes. At its core, Buildbot is a job scheduling system: it queues jobs, executes the jobs when the required resources are available, and reports the results. It can be easily installed and serve as a continuous integration platform to be used together with a variety of version control solutions, including gitea.
 
-In this tutorial, we will first follow along with the official installation manual and set up a ``hello world``-system and will extend the standard installation of Buildbot_ with a :lab:`gitea <guide_gitea>`-Plugin.
+  In this tutorial, we will first follow along with the official installation manual and set up a ``hello world``-system and will extend the standard installation of Buildbot_ with a :lab:`gitea <guide_gitea>`-Plugin.
 
 ----
 

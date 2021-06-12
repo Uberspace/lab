@@ -11,7 +11,8 @@ Chez Scheme
 
 .. tag_list::
 
-`Chez Scheme`_ is a programming language, a dialect and implementation of the language Scheme which is a type of Lisp.
+.. abstract::
+  `Chez Scheme`_ is a programming language, a dialect and implementation of the language Scheme which is a type of Lisp.
 
 License
 =======

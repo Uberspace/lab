@@ -17,9 +17,10 @@ Offen
 
 .. tag_list::
 
-Offen_ is an open alternative to common web analytics tools.
-Gain insights while your users have full access to their data.
-Lightweight, self hosted and free.
+.. abstract::
+  Offen_ is an open alternative to common web analytics tools.
+  Gain insights while your users have full access to their data.
+  Lightweight, self hosted and free.
 
 ----
 

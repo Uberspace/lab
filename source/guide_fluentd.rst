@@ -17,8 +17,9 @@ Fluentd
 
 .. tag_list::
 
-Fluentd_ is an open source data collector for unified logging layer. It allows you to unify data collection and
-consumption for a better use and understanding of data.
+.. abstract::
+  Fluentd_ is an open source data collector for unified logging layer. It allows you to unify data collection and
+  consumption for a better use and understanding of data.
 
 ----
 

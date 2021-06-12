@@ -12,9 +12,10 @@ Web Key Directory (WKD)
 
 .. tag_list::
 
-[WKD] stands for "`Web Key Directory`_" and is a standard for making a users GnuPG / OpenPGP public key available via their e-mail provider or server with the domain that corresponds to their e-mail address. There's several clients (such as Enigmail in Thunderbird or OpenKeyChain on Android) that will use this standard to automatically fetch a user's public key, when writing an e-mail to them.
+.. abstract::
+  [WKD] stands for "`Web Key Directory`_" and is a standard for making a users GnuPG / OpenPGP public key available via their e-mail provider or server with the domain that corresponds to their e-mail address. There's several clients (such as Enigmail in Thunderbird or OpenKeyChain on Android) that will use this standard to automatically fetch a user's public key, when writing an e-mail to them.
 
-Web Key Directories provide an easy way to discover public keys through HTTPS. They provide an important piece to the infrastructure to improve the user experience for exchanging secure emails and files. In contrast to the public keyservers a Web Key Directory does not publish mail addresses and it is an authoritative pubkey source for its domain.
+  Web Key Directories provide an easy way to discover public keys through HTTPS. They provide an important piece to the infrastructure to improve the user experience for exchanging secure emails and files. In contrast to the public keyservers a Web Key Directory does not publish mail addresses and it is an authoritative pubkey source for its domain.
 
 ----
 

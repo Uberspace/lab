@@ -17,7 +17,8 @@ Memcached
 
 .. tag_list::
 
-Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering.
+.. abstract::
+  Memcached is an in-memory key-value store for small chunks of arbitrary data (strings, objects) from results of database calls, API calls, or page rendering.
 
 ----
 

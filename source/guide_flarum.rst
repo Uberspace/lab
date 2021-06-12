@@ -17,7 +17,8 @@ Flarum
 
 .. tag_list::
 
-Flarum_ is the next-generation forum software that makes online discussion fun. It's simple, fast, and free.
+.. abstract::
+  Flarum_ is the next-generation forum software that makes online discussion fun. It's simple, fast, and free.
 
 ----
 

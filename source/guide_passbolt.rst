@@ -17,9 +17,10 @@ Passbolt
 
 .. tag_list::
 
-Passbolt_
+.. abstract::
+  Passbolt_
 
-The password manager your team was waiting for. Free, open source, self-hosted, extensible, OpenPGP based.
+  The password manager your team was waiting for. Free, open source, self-hosted, extensible, OpenPGP based.
 
 ----
 

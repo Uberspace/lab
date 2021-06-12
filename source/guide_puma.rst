@@ -15,7 +15,8 @@ Puma
 
 .. tag_list::
 
-Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for running Rack_ apps only. It is licensed under the BSD 3-Clause license. This guide explains how to install Puma and run a minimal, custom Ruby application.
+.. abstract::
+  Puma_ is a Ruby_ web server built for speed and parallelism. It is designed for running Rack_ apps only. It is licensed under the BSD 3-Clause license. This guide explains how to install Puma and run a minimal, custom Ruby application.
 
 ----
 

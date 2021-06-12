@@ -17,7 +17,8 @@ Etherpad Lite
 
 .. tag_list::
 
-`Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
+.. abstract::
+  `Etherpad Lite`_ is a real-time collaborative writing tool. It is based on :manual:`Node.js <lang-nodejs>` and comes with lots of possible plugins.
 
 ----
 

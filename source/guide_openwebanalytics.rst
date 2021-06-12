@@ -17,7 +17,8 @@ Open Web Analytics
 
 .. tag_list::
 
-`Open Web Analytics`_ is an open source web analytics software framework that you can use to track and analyze how people use your websites and applications.
+.. abstract::
+  `Open Web Analytics`_ is an open source web analytics software framework that you can use to track and analyze how people use your websites and applications.
 
 ----
 

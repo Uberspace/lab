@@ -17,7 +17,8 @@ MagicMirror²
 
 .. tag_list::
 
-MagicMirror²_ is an open source modular smart mirror platform. With a growing list of installable modules, the MagicMirror² allows you to convert your hallway or bathroom mirror into your personal assistant. MagicMirror² is built by the creator of the original MagicMirror with the incredible help of a growing community of contributors.
+.. abstract::
+  MagicMirror²_ is an open source modular smart mirror platform. With a growing list of installable modules, the MagicMirror² allows you to convert your hallway or bathroom mirror into your personal assistant. MagicMirror² is built by the creator of the original MagicMirror with the incredible help of a growing community of contributors.
 
 ----
 

@@ -17,7 +17,8 @@ Mattermost
 
 .. tag_list::
 
-`Mattermost`_ is an open-source, self-hosted online chat service written in Go and JavaScript.
+.. abstract::
+  `Mattermost`_ is an open-source, self-hosted online chat service written in Go and JavaScript.
 
 ----
 

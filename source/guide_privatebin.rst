@@ -18,9 +18,10 @@ PrivateBin
 
 .. tag_list::
 
-PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
+.. abstract::
+  PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
 
-Data is encrypted and decrypted in the browser using 256bit AES in Galois Counter mode.
+  Data is encrypted and decrypted in the browser using 256bit AES in Galois Counter mode.
 
 ----
 

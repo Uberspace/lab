@@ -18,7 +18,8 @@ Resilio Sync
 
 .. tag_list::
 
-Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
+.. abstract::
+  Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service similar to Dropbox that works with private peer-to-peer connections between connected devices. The peer-to-peer technology is based on the BitTorrent protocol. Resilio Inc., the company behind Resilio Sync, uses a freemium business model with a free tier called "Sync Home".
 
 ----
 

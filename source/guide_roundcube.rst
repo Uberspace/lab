@@ -18,7 +18,8 @@ Roundcube
 
 .. tag_list::
 
-Roundcube is a browser-based IMAP client with an easy-to-use user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.
+.. abstract::
+  Roundcube is a browser-based IMAP client with an easy-to-use user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.
 
 ----
 

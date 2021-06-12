@@ -16,7 +16,8 @@ Symfony
 
 .. tag_list::
 
-`Symfony <https://symfony.com/what-is-symfony>`_ is a set of PHP Components, a Web Application framework, a Philosophy, and a Community — all working together in harmony.
+.. abstract::
+  `Symfony <https://symfony.com/what-is-symfony>`_ is a set of PHP Components, a Web Application framework, a Philosophy, and a Community — all working together in harmony.
 
 ----
 

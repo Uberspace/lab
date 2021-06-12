@@ -17,7 +17,8 @@ Pleroma
 
 .. tag_list::
 
-Pleroma_ is a free, federated social networking server built on open protocols. It is compatible with `GNU Social`_, Mastodon_, and many other ActivityPub implementations.
+.. abstract::
+  Pleroma_ is a free, federated social networking server built on open protocols. It is compatible with `GNU Social`_, Mastodon_, and many other ActivityPub implementations.
 
 ----
 

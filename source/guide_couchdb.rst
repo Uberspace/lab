@@ -16,9 +16,10 @@ CouchDB
 
 .. tag_list::
 
-Apache CouchDB_ is an open-source document-oriented NoSQL database, implemented in Erlang.
+.. abstract::
+  Apache CouchDB_ is an open-source document-oriented NoSQL database, implemented in Erlang.
 
-CouchDB uses multiple formats and protocols to store, transfer, and process its data, it uses JSON to store data, JavaScript as its query language using MapReduce, and HTTP for an API.
+  CouchDB uses multiple formats and protocols to store, transfer, and process its data, it uses JSON to store data, JavaScript as its query language using MapReduce, and HTTP for an API.
 
 ----
 

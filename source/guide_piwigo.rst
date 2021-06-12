@@ -18,7 +18,8 @@ Piwigo
 
 .. tag_list::
 
-Piwigo is an open source photo gallery. It allows you to create several galleries and share them with yourself, selected individuals or the world.
+.. abstract::
+  Piwigo is an open source photo gallery. It allows you to create several galleries and share them with yourself, selected individuals or the world.
 
 ----
 

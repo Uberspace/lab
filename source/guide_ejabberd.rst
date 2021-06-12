@@ -20,7 +20,8 @@ ejabberd
 .. tag_list::
 
 
-`ejabberd <https://www.process-one.net/en/ejabberd/>`_ is a distributed, fault-tolerant technology that allows the creation of large-scale instant messaging applications. The server can reliably support thousands of simultaneous users on a single node and has been designed to provide exceptional standards of fault tolerance. As an open source technology, based on industry-standards, ejabberd can be used to build bespoke solutions very cost effectively.
+.. abstract::
+  `ejabberd <https://www.process-one.net/en/ejabberd/>`_ is a distributed, fault-tolerant technology that allows the creation of large-scale instant messaging applications. The server can reliably support thousands of simultaneous users on a single node and has been designed to provide exceptional standards of fault tolerance. As an open source technology, based on industry-standards, ejabberd can be used to build bespoke solutions very cost effectively.
 
 ----
 

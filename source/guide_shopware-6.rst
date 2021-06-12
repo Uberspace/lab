@@ -18,8 +18,9 @@ Shopware 6
 
 .. tag_list::
 
-Shopware_ is a open source e-commerce software powered by Symfony_ and Vue.js_. The community
-edition is distributed under the MIT license. It's the successor of Shopware 5.
+.. abstract::
+  Shopware_ is a open source e-commerce software powered by Symfony_ and Vue.js_. The community
+  edition is distributed under the MIT license. It's the successor of Shopware 5.
 
 ----
 

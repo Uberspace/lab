@@ -17,8 +17,9 @@ Writefreely
 
 .. tag_list::
 
-WriteFreely_ is built around writing. There's no news feed, notifications, or unnecessary likes or claps to take you away from your train of thought.
-Reach outside your own site with federation via ActivityPub. WriteFreely lets anyone on Mastodon, Pleroma, or any ActivityPub-enabled service follow your blog, bookmark your posts, and share them with their followers. WriteFreely is written in Go (golang), so it runs anywhere and takes up very few resources.
+.. abstract::
+  WriteFreely_ is built around writing. There's no news feed, notifications, or unnecessary likes or claps to take you away from your train of thought.
+  Reach outside your own site with federation via ActivityPub. WriteFreely lets anyone on Mastodon, Pleroma, or any ActivityPub-enabled service follow your blog, bookmark your posts, and share them with their followers. WriteFreely is written in Go (golang), so it runs anywhere and takes up very few resources.
 
 ----
 

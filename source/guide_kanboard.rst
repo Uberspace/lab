@@ -17,7 +17,8 @@ Kanboard
 
 .. tag_list::
 
-Kanboard_ is a free and open source Kanban project management software.
+.. abstract::
+  Kanboard_ is a free and open source Kanban project management software.
 
 ----
 

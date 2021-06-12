@@ -15,7 +15,8 @@ Grocy
 
 .. tag_list::
 
-Grocy_ is a web-based self-hosted groceries & household management solution for your home.
+.. abstract::
+  Grocy_ is a web-based self-hosted groceries & household management solution for your home.
 
 ----
 

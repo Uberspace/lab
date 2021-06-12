@@ -17,7 +17,8 @@ Shell In A Box
 
 .. tag_list::
 
-_`Shell In A Box` emulates a terminal in your browser. It implements a web server that works with purely JavaScript and CSS across most modern web browsers. This is helpful if you are e.g. behind a corporate firewall that blocks port 22, which is usually used for :manual:`SSH <basics-ssh>` connections.
+.. abstract::
+  _`Shell In A Box` emulates a terminal in your browser. It implements a web server that works with purely JavaScript and CSS across most modern web browsers. This is helpful if you are e.g. behind a corporate firewall that blocks port 22, which is usually used for :manual:`SSH <basics-ssh>` connections.
 
 ----
 

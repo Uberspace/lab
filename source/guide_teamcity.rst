@@ -20,7 +20,8 @@ TeamCity
 
 .. tag_list::
 
-TeamCity_ is a build management tool by JetBrains. It is not open source and requires a license, though it offers a freemium model with up to 100 build configurations and 3 build agents. TeamCity makes it possible to attach a server to your projects in different Version Control Systems so that it runs build steps on pre-configured triggers.
+.. abstract::
+  TeamCity_ is a build management tool by JetBrains. It is not open source and requires a license, though it offers a freemium model with up to 100 build configurations and 3 build agents. TeamCity makes it possible to attach a server to your projects in different Version Control Systems so that it runs build steps on pre-configured triggers.
 
 ----
 

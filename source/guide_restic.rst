@@ -18,7 +18,8 @@ Restic
 
 .. tag_list::
 
-Restic_ is a fast and secure backup program, which have compatibility with multiple cloud providers.
+.. abstract::
+  Restic_ is a fast and secure backup program, which have compatibility with multiple cloud providers.
 
 ----
 

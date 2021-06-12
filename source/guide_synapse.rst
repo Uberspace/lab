@@ -16,9 +16,10 @@ Synapse
 
 .. tag_list::
 
-Synapse_ is the reference implementation of a matrix server.
-Matrix_ is federated chat protocol aiming to replace xmpp.
-This guide was inspired by `Jan Willhaus's guide for Uberspace 6 <https://janw.xyz/blog/installing-a-matrix-org-synapse-server-on-uberspace/>`_.
+.. abstract::
+  Synapse_ is the reference implementation of a matrix server.
+  Matrix_ is federated chat protocol aiming to replace xmpp.
+  This guide was inspired by `Jan Willhaus's guide for Uberspace 6 <https://janw.xyz/blog/installing-a-matrix-org-synapse-server-on-uberspace/>`_.
 
 ----
 
@@ -267,7 +268,7 @@ Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to
 
   [isabell@stardust ~]$ pip3.6 install --user -U matrix-synapse
   [isabell@stardust ~]$
-  
+
 Automate the update process with a bash script called `~/bin/synapse-update` containing:
 
 .. code-block:: bash

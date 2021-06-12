@@ -12,8 +12,9 @@ Guillotine
 
 .. tag_list::
 
-Guillotine_ is a simple URL Shortener written in Ruby and powers GitHubs URL Shortener Git.io_.
-It supports multiple storage adapters, including :manual:`MySQL <database-mysql>`, :lab:`PostgreSQL <guide_postgresql>`, SQLite, :lab:`Redis <guide_redis>`, Riak and Cassandra.
+.. abstract::
+  Guillotine_ is a simple URL Shortener written in Ruby and powers GitHubs URL Shortener Git.io_.
+  It supports multiple storage adapters, including :manual:`MySQL <database-mysql>`, :lab:`PostgreSQL <guide_postgresql>`, SQLite, :lab:`Redis <guide_redis>`, Riak and Cassandra.
 
 ----
 

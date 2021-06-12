@@ -17,9 +17,10 @@ The Lounge
 
 .. tag_list::
 
-`The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License, this self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
+.. abstract::
+  `The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License, this self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
 
-The Lounge is based on the project Shout_ from which it is a community driven fork.
+  The Lounge is based on the project Shout_ from which it is a community driven fork.
 
 ----
 

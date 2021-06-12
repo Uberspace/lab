@@ -19,12 +19,13 @@ Jekyll
 
 .. tag_list::
 
-Jekyll_ is an easy to use static site generator that builds fast, blog-aware, responsive websites.
+.. abstract::
+  Jekyll_ is an easy to use static site generator that builds fast, blog-aware, responsive websites.
 
-The website is created with markdown and Jekyll generates the html files and deploys it to the webserver.
-It is possible to connect Jekyll to git, so that the website can be created on a local machine and then pushed to git where it gets deployed automatically via git hooks.
+  The website is created with markdown and Jekyll generates the html files and deploys it to the webserver.
+  It is possible to connect Jekyll to git, so that the website can be created on a local machine and then pushed to git where it gets deployed automatically via git hooks.
 
-Jekyll is written in Ruby and licensed under the MIT license.
+  Jekyll is written in Ruby and licensed under the MIT license.
 
 ----
 
@@ -68,7 +69,7 @@ You need to install a gem called Jekyll:
  Successfully installed jekyll-4.2.0
  27 gems installed
  [isabell@stardust ~]$
- 
+
 
 You can ignore the warning regarding your PATH.
 
@@ -85,7 +86,7 @@ Just let Jekyll create a new folder containing your website by typing:
  New jekyll site installed in /home/isabell/website.
  [isabell@stardust ~]$
 
-After Jekyll finished, navigate into your website folder. 
+After Jekyll finished, navigate into your website folder.
 
 Set the local path for bundler, then install all needed gems for your website:
 ::

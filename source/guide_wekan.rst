@@ -16,7 +16,8 @@ Wekan
 
 .. tag_list::
 
-Wekan_ - Open Source kanban
+.. abstract::
+  Wekan_ - Open Source kanban
 
 ----
 

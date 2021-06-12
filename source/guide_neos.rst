@@ -17,11 +17,12 @@ Neos
 
 .. tag_list::
 
-Neos_ is an open source Content Application Platform based on its own PHP framework Flow.
+.. abstract::
+  Neos_ is an open source Content Application Platform based on its own PHP framework Flow.
 
-The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences.
+  The system is best known for its intuitive approach of editing content directly in the website (also known as frontend editing) and the mighty marketing features like content dimensions which allow to display optimized contents for different target audiences.
 
-Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
+  Neos (formerly TYPO3 Neos) was released for the first time in 2013. It is maintained by the Neos Team and Contributors.
 
 ----
 

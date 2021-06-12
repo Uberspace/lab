@@ -16,7 +16,8 @@ Part-DB
 
 .. tag_list::
 
-Part-DB_ is a web-based database for managing electronic components and distributed under the GPL-2.0 License.
+.. abstract::
+  Part-DB_ is a web-based database for managing electronic components and distributed under the GPL-2.0 License.
 
 
 ----

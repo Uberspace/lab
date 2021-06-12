@@ -18,7 +18,8 @@ ShareX
 
 .. tag_list::
 
-ShareX_ is a program that makes it easy to upload screenshots and share them with your friends. If you follow these instructions, you will end up with fully functional screenshot automation.
+.. abstract::
+  ShareX_ is a program that makes it easy to upload screenshots and share them with your friends. If you follow these instructions, you will end up with fully functional screenshot automation.
 
 ----
 

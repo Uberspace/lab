@@ -21,11 +21,12 @@ Icecast2
 .. tag_list::
 
 
-`Icecast`_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
+.. abstract::
+  `Icecast`_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
 
-Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
+  Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
 
-Find the Icecast2 docu here_
+  Find the Icecast2 docu here_
 
 ----
 

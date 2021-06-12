@@ -19,13 +19,14 @@ Taskd
 
 .. tag_list::
 
-Taskd_ is a free and open-source Taskwarrior server for synchronization between multiple Taskwarrior clients.
-Taskwarrior is free and Open Source Software that manages your TODO list from the command line. It is flexible, fast, and unobtrusive. It does its job then gets out of your way.
+.. abstract::
+  Taskd_ is a free and open-source Taskwarrior server for synchronization between multiple Taskwarrior clients.
+  Taskwarrior is free and Open Source Software that manages your TODO list from the command line. It is flexible, fast, and unobtrusive. It does its job then gets out of your way.
 
-* Multiple clients
-* TLS secured
-* Android-App available (also in FDroid)
-* MIT-licensed free software.
+  * Multiple clients
+  * TLS secured
+  * Android-App available (also in FDroid)
+  * MIT-licensed free software.
 
 ----
 

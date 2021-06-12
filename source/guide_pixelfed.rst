@@ -19,7 +19,8 @@ Pixelfed
 
 .. tag_list::
 
-Pixelfed_ is a free, decentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similar to Instagram.
+.. abstract::
+  Pixelfed_ is a free, decentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similar to Instagram.
 
 ----
 

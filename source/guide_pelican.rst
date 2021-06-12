@@ -18,12 +18,13 @@ Pelican
 
 .. tag_list::
 
-Pelican_ is a static site generator implemented in Python_ that combines Jinja templates with content written in Markdown or reStructuredText to produce websites.
-The most prominent example is probably `kernel.org <https://www.kernel.org/pelican.html>`_
-It is possible to `import <https://docs.getpelican.com/en/latest/importer.html>`_ an existing sites from Wordpress, Tumblr, Blogger and RSS/Atom feeds.
-Pelican's source code is available on `GitHub <https://github.com/getpelican/pelican>`_ and it is an implementation of the static site generators concept.
+.. abstract::
+  Pelican_ is a static site generator implemented in Python_ that combines Jinja templates with content written in Markdown or reStructuredText to produce websites.
+  The most prominent example is probably `kernel.org <https://www.kernel.org/pelican.html>`_
+  It is possible to `import <https://docs.getpelican.com/en/latest/importer.html>`_ an existing sites from Wordpress, Tumblr, Blogger and RSS/Atom feeds.
+  Pelican's source code is available on `GitHub <https://github.com/getpelican/pelican>`_ and it is an implementation of the static site generators concept.
 
-Pelican was released for the first time in 2010 by Alexis Métaireau.
+  Pelican was released for the first time in 2010 by Alexis Métaireau.
 
 ----
 
@@ -35,7 +36,7 @@ Pelican is free and open source software licensed under `AGPL 3 <https://www.gnu
 Prerequisites
 =============
 
-Pelican currently runs best on Python 3.6+; earlier versions are not supported. 
+Pelican currently runs best on Python 3.6+; earlier versions are not supported.
 This version comes preinstalled on your uberspace.
 
 .. note:: If you want to use your own website domain, refer to the uberspace manual for :manual:`domains <web-domains>`
@@ -65,7 +66,7 @@ Initialize
 Pelican comes with a handy quickstart wizard that creates the basic structure for you.
 Run it inside a subfolder. In this guide, we'll use ``~/pelican``
 
-:: 
+::
 
   [isabell@stardust isabell]$ mkdir ~/pelican && cd ~/pelican
   [isabell@stardust pelican]$ pelican-quickstart
@@ -95,7 +96,7 @@ Run it inside a subfolder. In this guide, we'll use ``~/pelican``
   > Do you want to upload your website using GitHub Pages? (y/N) <enter>
   Done. Your new project is available at /home/isabell/pelican
 
-  [isabell@stardust pelican]$ 
+  [isabell@stardust pelican]$
 
 
 .. note:: In case you want to use a custom domain other than isabell.uber.space, you can enter it here or easily change it later in ``~/pelican/pelicanconf.py``
@@ -135,14 +136,14 @@ Now create your first blogpost by placing a markdown file in ``~/pelican/content
 Publish Content
 ---------------
 
-To generate to final html files and publish them to your uberspace webserver, simply run 
+To generate to final html files and publish them to your uberspace webserver, simply run
 
 ::
 
   [isabell@stardust isabell]$ cd ~/pelican
   [isabell@stardust pelican]$ make publish
 
-.. warning:: 
+.. warning::
 
   This step will delete all content in ``~/html``, if any.
 
@@ -151,10 +152,10 @@ Then you can simply open `https://isabell.uber.space/ <https://isabell.uber.spac
 Configuration
 ==============
 
-All configuration is done in two files. 
+All configuration is done in two files.
 Please refer to the `official docs <https://docs.getpelican.com/en/latest/settings.html>`_ on how to customize them.
 
-1. ``~/pelican/pelicanconf.py`` 
+1. ``~/pelican/pelicanconf.py``
 2. ``~/pelican/publishconf.py``
 
 
@@ -164,7 +165,7 @@ Themes
 To install a theme other than the default, please check the `official guide <https://docs.getpelican.com/en/latest/pelican-themes.html>`_.
 
 You can simply choose one from `http://www.pelicanthemes.com/ <http://www.pelicanthemes.com/>`_ and run ``git clone``
-In this example I am using the theme maned ``Flex`` 
+In this example I am using the theme maned ``Flex``
 
 ::
 
@@ -173,7 +174,7 @@ In this example I am using the theme maned ``Flex``
 
 Then add following line to you ``~/pelican/pelicanconf.py``
 
-:: 
+::
 
   THEME = "theme"
 

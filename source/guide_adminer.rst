@@ -17,13 +17,14 @@ Adminer
 
 .. tag_list::
 
-Adminer_ (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. Adminer is available for :manual:`MySQL <database-mysql>`, MariaDB, :lab:`PostgreSQL <guide_postgresql>`, SQLite, MS SQL, Oracle, Firebird, SimpleDB, Elasticsearch and :lab:`MongoDB <guide_mongodb>`.
+.. abstract::
+  Adminer_ (formerly phpMinAdmin) is a full-featured database management tool written in PHP. Conversely to phpMyAdmin, it consist of a single file ready to deploy to the target server. Adminer is available for :manual:`MySQL <database-mysql>`, MariaDB, :lab:`PostgreSQL <guide_postgresql>`, SQLite, MS SQL, Oracle, Firebird, SimpleDB, Elasticsearch and :lab:`MongoDB <guide_mongodb>`.
 
 ----
 
 .. note::
 
-  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everbody to use. Therefore this guide is mainly for people who would like to customize Adminer to their needs.
+  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everybody to use. Therefore this guide is mainly for people who would like to customize Adminer to their needs.
 
   * Adminer: https://mysql.uberspace.de/adminer/
   * phpMyAdmin: https://mysql.uberspace.de/phpmyadmin/

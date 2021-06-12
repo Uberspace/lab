@@ -12,9 +12,10 @@ autossh
 
 .. tag_list::
 
-autossh_ is a program to start an SSH session and monitor it, restarting it as necessary should it die or stop passing traffic.
+.. abstract::
+  autossh_ is a program to start an SSH session and monitor it, restarting it as necessary should it die or stop passing traffic.
 
-When following best practices laid out by Uberspace (every service should use its own Uberspace account), it can sometimes be necessary to connect two Uberspace hosts with each other privately. For example, this is  the case if you are running an OpenLDAP installation on host A and want to use it for authentication for a Nextcloud installation on host B. autossh_ allows you to set up an automatically monitored tunnel between hosts to use for port forwarding.
+  When following best practices laid out by Uberspace (every service should use its own Uberspace account), it can sometimes be necessary to connect two Uberspace hosts with each other privately. For example, this is  the case if you are running an OpenLDAP installation on host A and want to use it for authentication for a Nextcloud installation on host B. autossh_ allows you to set up an automatically monitored tunnel between hosts to use for port forwarding.
 
 ----
 

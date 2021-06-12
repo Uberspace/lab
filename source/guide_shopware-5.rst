@@ -18,8 +18,9 @@ Shopware 5
 
 .. tag_list::
 
-Shopware_ is a open source e-commerce software written in PHP. The community edition is distributed
-under the AGPLv3  license.
+.. abstract::
+  Shopware_ is a open source e-commerce software written in PHP. The community edition is distributed
+  under the AGPLv3  license.
 
 ----
 

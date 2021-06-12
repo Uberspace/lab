@@ -20,9 +20,10 @@ HedgeDoc
 
 .. tag_list::
 
-HedgeDoc_ (formerly CodiMD / HackMD) is an open-source software written in :manual:`Node.js <lang-nodejs>`. HedgeDoc lets you create real-time collaborative markdown notes. It is inspired by Hackpad, :lab:`Etherpad <guide_etherpad>` and similar collaborative editors.
+.. abstract::
+  HedgeDoc_ (formerly CodiMD / HackMD) is an open-source software written in :manual:`Node.js <lang-nodejs>`. HedgeDoc lets you create real-time collaborative markdown notes. It is inspired by Hackpad, :lab:`Etherpad <guide_etherpad>` and similar collaborative editors.
 
-HedgeDoc_ is licensed under the AGPLv3_.
+  HedgeDoc_ is licensed under the AGPLv3_.
 
 ----
 

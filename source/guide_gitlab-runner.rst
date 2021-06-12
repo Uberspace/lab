@@ -18,7 +18,8 @@ GitLab Runner
 
 .. tag_list::
 
-GitLab Runner is the open source project that is used to run your jobs and send the results back to `GitLab`_. It is used in conjunction with `GitLab`_ CI, the open-source continuous integration service included with `GitLab`_ that coordinates the jobs.
+.. abstract::
+  GitLab Runner is the open source project that is used to run your jobs and send the results back to `GitLab`_. It is used in conjunction with `GitLab`_ CI, the open-source continuous integration service included with `GitLab`_ that coordinates the jobs.
 
 ----
 
