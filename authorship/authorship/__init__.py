@@ -111,6 +111,18 @@ class TagListDisplay(SphinxDirective):
         return [container]
 
 
+def link_wrapper(destination):
+    '''
+    I can't figure out a way to get the link and title from a page name..
+    '''
+    link = destination + '.html'
+    title = destination.partition('_')[2].title()
+    link_wrapper = addnodes.compact_paragraph()
+    link_wrapper += nodes.reference(
+        '', '', nodes.Text(title), internal=True, refuri=link, anchorname=''
+    )
+    return link_wrapper
+
 def add_list_type(app, name, list_cls):
     list_name = name + '_list'
 
@@ -189,16 +201,7 @@ def process_authorlists(app, doctree, fromdocname):
                 # guide
                 link_entry = nodes.list_item()
                 link_list += link_entry
-
-                # I can't figure out a way to get the link and title from a page name..
-                link = guide + '.html'
-                title = guide.partition('_')[2].title()
-
-                link_wrapper = addnodes.compact_paragraph()
-                link_wrapper += nodes.reference(
-                    '', '', nodes.Text(title), internal=True, refuri=link, anchorname=''
-                )
-                link_entry += link_wrapper
+                link_entry += link_wrapper(guide)
 
         node.replace_self([author_list])
 
