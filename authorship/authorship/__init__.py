@@ -215,7 +215,7 @@ def process_abstractlists(app, doctree, fromdocname):
 
             # guide name + link
             guide_div = nodes.container()
-            guide_div += link_wrapper(destination)
+            guide_div += link_wrapper(guide)
             abstract_entry += guide_div
 
             # guide abstract
