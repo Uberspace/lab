@@ -38,6 +38,7 @@ Thank you and have fun experimenting!
    :glob:
 
    hall_of_fame
+   overview
    Repository <https://github.com/Uberspace/lab>
    Changelog <https://github.com/Uberspace/lab/commits/main>
    Legal Notice <https://uberspace.de/imprint>
