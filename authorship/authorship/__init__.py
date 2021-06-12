@@ -11,10 +11,13 @@ import itertools
 import os.path
 import re
 
-from docutils import nodes
-from docutils.parsers.rst import directives
-from sphinx.util.docutils import SphinxDirective
 import sphinx.addnodes as addnodes
+from docutils import nodes
+from docutils.frontend import OptionParser
+from docutils.parsers.rst import directives
+from docutils.utils import new_document
+from sphinx.parsers import RSTParser
+from sphinx.util.docutils import SphinxDirective
 
 
 def comma_list(nodes_, separator):
@@ -111,6 +114,23 @@ class TagListDisplay(SphinxDirective):
         return [container]
 
 
+def parse_text_to_rst_document(env, text):
+    """
+    Parses a rst formatted text to a html document
+    """
+
+    parser = RSTParser()
+    parser.set_application(env.app)
+    settings = OptionParser(
+        defaults=env.settings,
+        components=(RSTParser,),
+        read_config_files=True,
+    ).get_default_values()
+    document = new_document("<rst-doc>", settings=settings)
+    parser.parse(text, document)
+    return document
+
+
 def link_wrapper(destination):
     '''
     I can't figure out a way to get the link and title from a page name..
@@ -122,6 +142,90 @@ def link_wrapper(destination):
         '', '', nodes.Text(title), internal=True, refuri=link, anchorname=''
     )
     return link_wrapper
+
+
+class AbstractDisplay(SphinxDirective):
+    """
+    Adds a container with the provided abstract
+    and adds the resolved rst to an enviroment
+    variable `abstract_list` which contains
+    the document name as key and abstract as
+    values.
+
+    From rst markup like::
+
+        .. abstract::
+          This is a short description.
+
+    """
+
+    has_content = True
+    marker_list_name = 'abstract_list'
+
+    def add_to_env(self, env, docname, container):
+        assert self.marker_list_name
+
+        l = getattr(env, self.marker_list_name)
+        l.setdefault(docname, [])
+        l[env.docname].append(container)
+
+    def run(self):
+        env = self.state.document.settings.env
+
+        container = nodes.container()
+        container.set_class('abstract')
+
+        document = parse_text_to_rst_document(self.env, self.content)
+        self.add_to_env(env, env.docname, document.children)
+
+        container += document.children
+        return [container]
+
+
+class allabstracts(nodes.General, nodes.Element):
+    """Maker node later to be replaced by list of all abstracts."""
+    pass
+
+
+class AllAbstracts(SphinxDirective):
+    """
+    Outputs a list of all abstracts.
+
+    From rst markup like::
+
+        .. allabstracts::
+
+    """
+
+    def run(self):
+        return [allabstracts('')]
+
+
+def process_abstractlists(app, doctree, fromdocname):
+    """Build list of abstracts."""
+    env = app.builder.env
+
+    for node in doctree.traverse(allabstracts):
+        abstract_list = nodes.enumerated_list()
+
+        for (guide, abstract) in env.abstract_list.items():
+            # list item
+            abstract_entry = nodes.list_item()
+            abstract_list += abstract_entry
+
+            # guide name + link
+            guide_div = nodes.container()
+            guide_div += link_wrapper(destination)
+            abstract_entry += guide_div
+
+            # guide abstract
+            abstract_div = nodes.container()
+            for abstract_item in abstract:
+                abstract_div += abstract_item
+            abstract_entry += abstract_div
+
+        node.replace_self([abstract_list])
+
 
 def add_list_type(app, name, list_cls):
     list_name = name + '_list'
@@ -138,8 +242,11 @@ def add_list_type(app, name, list_cls):
         if hasattr(env, list_name):
             getattr(env, list_name).pop(docname, None)
 
-    directives.register_directive(name, ListItemImpl)
-    directives.register_directive(list_name, list_cls)
+    if name == "abstract":
+        directives.register_directive(name, AbstractDisplay)
+    else:
+        directives.register_directive(name, ListItemImpl)
+        directives.register_directive(list_name, list_cls)
 
     app.connect('builder-inited', init_list)
     app.connect('env-purge-doc', purge)
@@ -159,6 +266,7 @@ class AllAuthors(SphinxDirective):
         .. allauthors::
 
     """
+
     def run(self):
         return [allauthors('')]
 
@@ -273,6 +381,11 @@ def setup(app):
     add_list_type(app, 'tag', TagListDisplay)
     app.connect('html-collect-pages', tag_pages)
     app.connect('html-collect-pages', tag_list)
+
+    add_list_type(app, 'abstract', AbstractDisplay)
+    app.add_node(allabstracts)
+    directives.register_directive('allabstracts', AllAbstracts)
+    app.connect('doctree-resolved', process_abstractlists)
 
     return {
         'version': '1.0.0',
