@@ -261,7 +261,7 @@ Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ~/gitea/gitea admin create-user --username adminuser --password ${ADMPWD} --email ${USER}@uber.space --admin
+  [isabell@stardust ~]$ ~/gitea/gitea admin user create --username adminuser --password ${ADMPWD} --email ${USER}@uber.space --admin
   [isabell@stardust ~]$
   ...
   New user 'adminuser' has been successfully created!
