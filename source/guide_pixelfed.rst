@@ -232,7 +232,7 @@ Run the following command to import the Places data:
 Installing Horizon
 ------------------
 
-.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures.
+.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures. It is also needed to execute the queue jobs, for example for thumbnail generation - so this step is not optional.
 
 To install Horizon, run the following commands and recache the routes:
 
