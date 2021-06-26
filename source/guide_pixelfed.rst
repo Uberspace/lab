@@ -108,7 +108,7 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
 Configuration
 =============
 
-.. warning:: Whenever you edit the ``.env`` file, you must ``run php artisan config:cache`` in the root directory for the changes to take effect.
+.. warning:: Whenever you edit the ``.env`` file, you must run ``php artisan config:cache`` in the root directory for the changes to take effect.
 
 Copy the example configuration file ``.env.example`` to ``.env`` and generate a key into the config:
 
@@ -116,9 +116,6 @@ Copy the example configuration file ``.env.example`` to ``.env`` and generate a 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ cp .env.example .env
- [isabell@stardust pixelfed]$ php artisan key:generate
- Application key set successfully.
- [isabell@stardust pixelfed]$
 
 Open the file ``.env`` in your favourite editor and adjust the following blocks accordingly. For minimum privacy we recommend to disable the open registrations:
 
@@ -146,12 +143,20 @@ Open the file ``.env`` in your favourite editor and adjust the following blocks 
  MAIL_HOST=stardust.uberspace.de
  MAIL_PORT=587
  MAIL_USERNAME=isabell@uber.space
- MAIL_PASSWORD=MySuperSecretPassword
+ MAIL_PASSWORD="MySuperSecretPassword"
  MAIL_ENCRYPTION=tls
  MAIL_FROM_ADDRESS="isabell@uber.space"
  MAIL_FROM_NAME="Pixelfed"
 
  OPEN_REGISTRATION=false
+
+Generate the application key
+
+:: 
+
+ [isabell@stardust pixelfed]$ php artisan key:generate
+ Application key set successfully.
+ [isabell@stardust pixelfed]$
 
 Run database migrations:
 
