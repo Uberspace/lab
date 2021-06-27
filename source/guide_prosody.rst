@@ -44,34 +44,34 @@ Prerequisites
 Web domain
 ----------
 
-.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``isabell.org``. To understand and setup the domains easier I use the following (recommended) subdomains:
+.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``example.org``. To understand and setup the domains easier I use the following (recommended) subdomains:
 
- * ``xmpp.isabell.org``
- * ``conference.isabell.org``
- * ``upload.isabell.org``
+ * ``xmpp.example.org``
+ * ``conference.example.org``
+ * ``upload.example.org``
 
-Your domain ``isabell.org`` and subdomains ``conference.isabell.org``, ``upload.isabell.org`` and ``xmpp.isabell.org`` needs to be setup:
+Your domain ``example.org`` and subdomains ``conference.example.org``, ``upload.example.org`` and ``xmpp.example.org`` needs to be setup:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
- isabell.org
- conference.isabell.org
- upload.isabell.org
- xmpp.isabell.org
+ example.org
+ conference.example.org
+ upload.example.org
+ xmpp.example.org
  [isabell@stardust ~]$
 
 Uberspace creates certificates automatically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
 
 ::
 
- [isabell@stardust ~]$ curl --silent --head https://isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://conference.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://conference.example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://upload.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://upload.example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://xmpp.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://xmpp.example.org | head -n 1
  [...]
  [isabell@stardust ~]$
 
@@ -96,25 +96,25 @@ Your DNS needs to be setup with the following values:
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
 |                    name                  |   ttl  | class |   type | priority | weight |    port  |       target     |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|                 isabell.org              |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
+|                 example.org              |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|                 isabell.org              |   3600 |    IN |   AAAA |          |        |          | 2001:db8::42:42  |
+|                 example.org              |   3600 |    IN |   AAAA |          |        |          | 2001:db8::42:42  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|          conference.isabell.org          |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
+|          conference.example.org          |   3600 |    IN | CNAME  |          |        |          |     example.org  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|             upload.isabell.org           |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
+|             upload.example.org           |   3600 |    IN | CNAME  |          |        |          |     example.org  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|              xmpp.isabell.org            |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
+|              xmpp.example.org            |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|              xmpp.isabell.org            |   3600 |    IN |  AAAA  |          |        |          | 2001:db8::42:42  |
+|              xmpp.example.org            |   3600 |    IN |  AAAA  |          |        |          | 2001:db8::42:42  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|        _xmpp-client._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | C2S-PORT | xmpp.isabell.org |
+|        _xmpp-client._tcp.example.org     | 18000  |    IN |   SRV  |      0   |     5  | C2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|        _xmpp-server._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
+|        _xmpp-server._tcp.example.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-| _xmpp-server._tcp.conference.isabell.org | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
+| _xmpp-server._tcp.conference.example.org | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-| _xmpp-server._tcp.upload.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
+| _xmpp-server._tcp.upload.example.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
 
 Configure luarocks
@@ -265,7 +265,7 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
 .. code-block:: lua
 
  ---------- Server-wide settings ----------
- admins = { "isabell@isabell.org" }
+ admins = { "isabell@example.org" }
  plugin_paths = { "/home/isabell/var/lib/prosody/prosody-modules" }
  modules_enabled = {
    "mam"; -- Store messages in an archive and allow users to access it
@@ -292,15 +292,15 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
- https_certificate = "/home/isabell/etc/certificates/upload.isabell.org.crt"
+ https_certificate = "/home/isabell/etc/certificates/upload.example.org.crt"
  http_ports = { }
  https_ports = { FILEUPLOAD-PORT }
 
  ----------- Virtual hosts -----------
- VirtualHost "isabell.org"
- Component "conference.isabell.org" "muc"
+ VirtualHost "example.org"
+ Component "conference.example.org" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "upload.isabell.org" "http_upload"
+ Component "upload.example.org" "http_upload"
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
@@ -332,7 +332,7 @@ Create your first user:
 .. code-block:: console
  :emphasize-lines: 1-3
 
- [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.org
+ [isabell@stardust ~]$ prosodyctl adduser isabell@example.org
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
