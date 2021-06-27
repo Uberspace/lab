@@ -422,7 +422,7 @@ As a personal note I want to recommend following XMPP clients:
 
 * Gajim_ for Linux / Windows.
 * Conversations_ for Android.
-* ChatSecure_ for iOS.
+* Siskin_ for iOS.
 
 ----
 
@@ -442,6 +442,6 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _`external service`: https://prosody.im/doc/modules/mod_external_services
 .. _Gajim: https://gajim.org
 .. _Conversations: https://conversations.im
-.. _ChatSecure: https://chatsecure.org
+.. _Siskin: https://siskin.im
 
 .. author_list::
