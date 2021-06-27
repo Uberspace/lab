@@ -1,6 +1,7 @@
 .. highlight:: console
 .. author:: Arian Malek <https://fetziverse.de>
 .. author:: fapsi
+.. author:: magicfelix
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -28,7 +29,6 @@ XMPP is an open and free alternative to commercial messaging and chat providers.
   * :manual:`Domains <web-domains>`
   * :manual:`Firewall Ports <basics-ports>`
   * :manual:`HTTPS <web-https>`
-  * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
 
 This guide is based on the initial `pull request`_ from fapsi_.
@@ -155,13 +155,10 @@ The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and 
  luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
-Further optional ones (``luadbi-mysql``, ``luabitop`` and ``luaevent``) can be installed with these commands:
+Further optional ones (``luabitop`` and ``luaevent``) can be installed with these commands:
 
 ::
 
- [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64"
- luadbi [...] is now built and installed in [...]
- luadbi-mysql [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luabitop --local
  luabitop [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luaevent --local
@@ -171,18 +168,6 @@ Further optional ones (``luadbi-mysql``, ``luabitop`` and ``luaevent``) can be i
 .. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
 To list the installed packages with their versions use the command ``luarocks list``.
-
-MySQL
------
-
-.. include:: includes/my-print-defaults.rst
-
-Create a database for prosody:
-
-::
-
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_prosody"
- [isabell@stardust ~]$
 
 Installation
 ============
@@ -265,6 +250,7 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  ---------- Server-wide settings ----------
  admins = { "isabell@example.org" }
  plugin_paths = { "/home/isabell/var/lib/prosody/prosody-modules" }
+ data_path = "/home/isabell/var/lib/prosody"
  modules_enabled = {
    "mam"; -- Store messages in an archive and allow users to access it
    "csi_simple"; -- Simple Mobile optimizations
@@ -278,14 +264,6 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  }
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize = false;
- storage = "sql"
- sql = {
-   driver = "MySQL",
-   database = "isabell_prosody",
-   username = "isabell",
-   password = "MySuperSecretPassword",
-   host = "localhost"
- }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
  https_certificate = "/home/isabell/etc/certificates/upload.example.org.crt"
@@ -300,7 +278,7 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
-.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, omit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
+.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, and paths! Don't delete, omit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
 
 Setup daemon
 ============
