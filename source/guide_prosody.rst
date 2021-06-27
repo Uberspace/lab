@@ -256,8 +256,6 @@ Configure prosody
 
 Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explanation of the config file under the `example configuration file`_ from Prosody.
 
-Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
-
 .. note:: Make sure to adapt ``VirtualHost "localhost"`` with your domain.
 
 Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following lines in your ``prosody.cfg.lua``:
@@ -277,8 +275,6 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  ssl = {
    dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";
    cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
-   ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
-   options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize = false;
@@ -434,7 +430,6 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _dns: https://prosody.im/doc/dns
 .. _known issue: https://issues.prosody.im/1375
 .. _dependencies: https://prosody.im/doc/depends
-.. _IM Observatory: https://xmpp.net
 .. _example configuration file: https://prosody.im/doc/example_config
 .. _update feed: https://blog.prosody.im/index.xml
 .. _coturn: https://prosody.im/doc/coturn
