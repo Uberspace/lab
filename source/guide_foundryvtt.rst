@@ -187,14 +187,7 @@ When you are finished press **Ctrl + O** then **Enter** to confirm.
 You have now saved the file and closed nano.
 
 
-Start Foundry by first updating the service, and then telling it to start:
-
-::
-
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$ supervisorctl start all
- foundry: started
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
