@@ -204,7 +204,7 @@ Security
 When you open Foundry for the first time you will have to provide your license key and accept the Service Agreement.
 **Immediately after doing this set an administrator password in the Config tab.**
 
-As of version ``0.8.7`` Foudnry has greatly improved password security for world users. **It is strongly reccomended to use ``0.8.7`` or higher for this reason.**
+As of version ``0.8.7`` Foundry has greatly improved password security for world users. **It is strongly reccomended to use 0.8.7 or higher for this reason.**
 
 
 ----
