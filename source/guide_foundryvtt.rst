@@ -122,7 +122,7 @@ First change the folder you are in from the home folder to **foundryvtt** by usi
 [isabell@stardust ~]$ cd foundryvtt
 [isabell@stardust foundryvtt]$
 
-You will need to get a link from the foundry website, the link expires after a few minutes.
+You will need to get a link from the Foundry VTT website, the link expires after a few minutes.
 
 Copy the link for the linux version that you can find on your purchased licenses page.
 
@@ -161,7 +161,7 @@ So that you and your players can connect to Foundry you need to run the followin
 [isabell@stardust ~]$ uberspace web backend set / --http --port 30000
 [isabell@stardust ~]$
 
-Set Foudnry to Autorun
+Set Foundry to Autorun
 ----------------------
 
 So that Foundry automatically gets started we need to create a service.
@@ -192,7 +192,7 @@ You have now saved the file and closed nano.
 Finishing installation
 ======================
 
-Your foundry server can now be visited at https://isabell.uber.space
+Your Foundry server can now be visited at https://isabell.uber.space
 
 
 Best practices
@@ -204,11 +204,10 @@ Security
 When you open Foundry for the first time you will have to provide your license key and accept the Service Agreement.
 **Immediately after doing this set an administrator password in the Config tab.**
 
-"Please note that the user access keys are certainly not passwords - as they aren't intended to have that level of personal security" - `@aaclayton 2021-01-09 <https://gitlab.com/foundrynet/foundryvtt/-/issues/4462#note_481528096>`_
-**Do not treat player passwords as secure.**
+As of version ``0.8.7`` Foudnry has greatly improved password security for world users. **It is strongly reccomended to use ``0.8.7`` or higher for this reason.**
 
 
 ----
 Tested with Foundry 0.8.6, Uberspace 7.1.1
 
-.. author_list
+.. author_list::
