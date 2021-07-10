@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Achim | pxlfrk <hallo@pxlfrk.de>
+.. author:: Martin | pc-coholic <martin@pc-coholic.de>
 
 .. tag:: passwordmanager
 .. tag:: rust
@@ -57,8 +58,22 @@ If you want to use vaultwarden with your own domain you need to set up your doma
 Installation
 ============
 
-Install Vaultwarden
---------------------
+Below are two possible paths explained to installing vaultwarden: :ref:`the proper way<Install from source>`, where you
+manually build the server binary from source, and :ref:`the lazy one<Install from docker>`, where you're relying on the
+prebuilt docker images.
+
+.. warning :: Using the :ref:`"easy route"<Install from docker>` and extracting the prebuilt vaultwarden binaries from
+    the official docker containers will save you a lot of time (you don't need to wait for the source to be compiled)
+    and space (no need to download the rust toolchain) - but it also means that you are trusting that the creator of
+    the docker container to not have manipulated the files.
+
+    It is up to you to decide if you are that trusting enough towards a random person on the internet to potentially
+    have full access to your passwords.
+
+.. _Install from source:
+
+Install Vaultwarden from source
+-------------------------------
 
 Clone the repository into your home directory. It will create the directory ``~/vaultwarden`` automatically.
 
@@ -107,6 +122,57 @@ In the next step we will download the latest build for the web vault. Check `thi
  [isabell@stardust vaultwarden]$ tar -xvzf bw_web_v2.19.0d.tar.gz
  [isabell@stardust vaultwarden]$ rm -r bw_web_v*.tar.gz
 
+.. _Install from docker:
+
+Install Vaultwarden from prebuilt containers
+--------------------------------------------
+
+First, you will need to prepare your environment for your new vaultwarden installation. This includes creating a
+directory to host everything, as well as downloading the extraction tool. Since uberspace does not provide the docker
+binaries, we will need to use a third party tool to do the extraction.
+
+Once we have the extraction tool in hand, we can instruct it to download the latest vaultwarden docker container and
+extract it into the output container.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ mkdir vaultwarden
+ [isabell@stardust ~]$ cd vaultwarden
+ [isabell@stardust vaultwarden]$ wget https://raw.githubusercontent.com/jjlin/docker-image-extract/main/docker-image-extract
+ [isabell@stardust vaultwarden]$ chmod +x docker-image-extract
+ [isabell@stardust vaultwarden]$ ./docker-image-extract vaultwarden/server:alpine
+ [isabell@stardust vaultwarden]$
+
+The extraction process will leave us with an `output` directory, from where we'll copy out the ``vaultwarden`` binary
+and - optionally if you want to use the web vault feature - also the `web-vault`-folder.
+
+.. note :: If you don't want to use the web-vault feature (web-app access to your vaults) for any security reasons you
+    can skip this step. Please note that without the web-vault, newly created users can't verify their email address.
+    So it would be best to disable the web-vault after you've created your user accounts. Add the following line to
+    your ``env`` file later if you do so:
+    ``WEB_VAULT_ENABLED=false``
+
+.. code-block:: console
+
+ [isabell@stardust vaultwarden]$ cp output/vaultwarden .
+ [isabell@stardust vaultwarden]$ cp -r output/web-vault .
+ [isabell@stardust vaultwarden]$
+
+To finish up, create a ``data`` directory to hold your password database and keys, and clean up the site by deleting
+the ``output``-folder - it has served its purpose and is no longer required.
+
+.. code-block:: console
+
+ [isabell@stardust vaultwarden]$ mkdir data
+ [isabell@stardust vaultwarden]$ rm -rf output/
+ [isabell@stardust vaultwarden]$
+
+
+Configuration
+=============
+
+Basic configuration
+-------------------
 
 Generate an ``openssl -base64`` key now and save it temporarily, you'll need it in the next step.
 
@@ -138,10 +204,6 @@ Replace the mail placeholder variables with your valid IMAP credentials, otherwi
 .. note :: You can configure any type of service here, you're not limited to an uberspace IMAP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_Port`` etc. accordingly.
 
 You can edit other options, look into .env.template to see a list of available options.
-
-
-Configuration
-=============
 
 Setup web backend
 -----------------
