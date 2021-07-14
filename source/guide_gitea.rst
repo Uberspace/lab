@@ -56,10 +56,10 @@ Check current version of Gitea at releases_ page.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.11.5
+  [isabell@stardust ~]$ VERSION=1.14.4
   [isabell@stardust ~]$ mkdir -p ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
-  --2020-06-01 21:00:31--  https://github.com/go-gitea/gitea/releases/download/v1.11.5/gitea-1.11.5-linux-amd64
+  --2020-06-01 21:00:31--  https://github.com/go-gitea/gitea/releases/download/v1.14.4/gitea-1.14.4-linux-amd64
   Resolving github.com (github.com)... 140.82.118.3
   Connecting to github.com (github.com)|140.82.118.3|:443... connected.
   HTTP request sent, awaiting response... 302 Found
@@ -89,7 +89,7 @@ We use ``gpg`` to download the pgp key and verify our download.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ gpg --keyserver keys.gnupg.net --recv-keys 7C9E68152594688862D62AF62D9AE806EC1592E2
+  [isabell@stardust ~]$ gpg --keyserver keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
   gpg: directory `/home/isabell/.gnupg' created
   gpg: new configuration file `/home/isabell/.gnupg/gpg.conf' created
   gpg: WARNING: options in `/home/isabell/.gnupg/gpg.conf' are not yet active during this run
@@ -366,6 +366,6 @@ To update do:
 
 ----
 
-Tested with Gitea 1.11.5, Uberspace 7.6.2.0
+Tested with Gitea 1.14.4, Uberspace 7.6.2.0
 
 .. author_list::
