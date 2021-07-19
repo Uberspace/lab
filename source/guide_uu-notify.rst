@@ -5,10 +5,9 @@
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: lang-nodejs
 
-.. sidebar:: About
+.. sidebar:: Logo
 
-.. todo: don't have an image for uuNotify yet.
-  .. image:: _static/images/loremipsum.png
+  .. image:: _static/images/uu-notify-icon.png
       :align: center
 
 ##########
@@ -41,6 +40,9 @@ All relevant legal information is mentioned in uuNotify's LICENSE_.
 Prerequisites
 =============
 
+Node.js version
+---------------
+
 We're using :manual:`Node.js <lang-nodejs>` version 14.
 
 .. code-block:: console
@@ -50,6 +52,9 @@ We're using :manual:`Node.js <lang-nodejs>` version 14.
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
+
+Gotify Server
+-------------
 
 You have installed and configured your gotify server, :lab:`as described in the respective guide <guide_gotify>`.
 
