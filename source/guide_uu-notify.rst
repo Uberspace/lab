@@ -31,6 +31,8 @@ It requires a `gotify server <https://gotify.net/>`_, which will send notificati
 
   Furthermore, you need a GitHub account to create a `personal access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_.
 
+.. note:: Wherever mentioned, replace ``v0.0.0`` with the latest_ version tag.
+
 License
 =======
 
@@ -59,13 +61,17 @@ Since uuNotify uses the GitHub API, only software available on GitHub is checked
 Installation
 ============
 
-Clone the `GitHub repository <https://github.com/franok/uu-notify>`_ and run the setup script:
+Clone the `GitHub repository <https://github.com/franok/uu-notify>`_, checkout the latest_ version and run the setup script.
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ UUN_VERSION=v0.0.0
   [isabell@stardust ~]$ git clone https://github.com/franok/uu-notify
   [isabell@stardust ~]$ cd uu-notify/
-  [isabell@stardust uu-notify]$ chmod +x setup.sh
+  [isabell@stardust uu-notify]$ git checkout $UUN_VERSION
+  [isabell@stardust uu-notify]$ git branch
+  * (HEAD detached at <latest version>)
+    main
   [isabell@stardust uu-notify]$ ./setup.sh
   --- uuNotify setup ---
   Existing files in config/ will not be overwritten.
@@ -221,10 +227,15 @@ You can update uuNotify to the latest_ version as follows:
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ UUN_VERSION=v0.0.0
   [isabell@stardust ~]$ cd uu-notify/
   [isabell@stardust uu-notify]$ cp -rp config/ backup-config/
-  [isabell@stardust uu-notify]$ git pull
+  [isabell@stardust uu-notify]$ git fetch
   [...]
+  [isabell@stardust uu-notify]$ git checkout $UUN_VERSION
+  [isabell@stardust uu-notify]$ git branch
+  * (HEAD detached at <latest version>)
+    main
   [isabell@stardust uu-notify]$ ./setup.sh
   --- uuNotify setup ---
   Existing files in config/ will not be overwritten.
@@ -254,6 +265,6 @@ Double check your configuration (``config/config.json`` and ``config/software-de
 
 ----
 
-Tested with uuNotify 1.1.0, Uberspace 7.11.3.0
+Tested with uuNotify 1.1.2, Uberspace 7.11.3.0
 
 .. author_list::
