@@ -62,9 +62,18 @@ $(function () {
     ele.append(author, " ", extra);
   }
 
+  function addTagListToToc() {
+    let toc_tags = $('<li class="toctree-l1"><a class="reference internal" href="/tags/">Tags</a></li>');
+    let toc_01 = $('[aria-label="main navigation"] > ul > li:eq(0)');
+    toc_01.after(toc_tags);
+  }
+
   // Auf gehts…
 
   console.log("UberLab launched…");
+
+  // add a link to the teg list view to the side navigation
+  addTagListToToc()
 
   // fix spacing between border and text
   checkLogoHeight();
