@@ -24,14 +24,6 @@ Thank you and have fun experimenting!
 .. _support: https://uberspace.de/support
 
 .. toctree::
-   :caption: Guides
-   :hidden:
-   :maxdepth: 1
-   :glob:
-
-   guide_*
-
-.. toctree::
    :caption: Meta
    :hidden:
    :maxdepth: 1
@@ -42,3 +34,11 @@ Thank you and have fun experimenting!
    Changelog <https://github.com/Uberspace/lab/commits/main>
    Legal Notice <https://uberspace.de/imprint>
    Privacy <https://uberspace.de/privacy>
+
+.. toctree::
+   :caption: Guides
+   :hidden:
+   :maxdepth: 1
+   :glob:
+
+   guide_*
