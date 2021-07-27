@@ -36,11 +36,8 @@ class ListItem(SphinxDirective):
     Store a list of things (e.g. authors, tags) in the environment of each
     document.
 
-    Usage::
-
-        .. author:: YourName <YourURL/YourMail>
-
     """
+
     required_arguments = 1
     final_argument_whitespace = True
 
@@ -76,9 +73,11 @@ class AuthorListDisplay(SphinxDirective):
         item_nodes = (nodes.Text(a) for a in items)
 
         if items:
-            return [nodes.Text('Written by: ')] + \
-                comma_list(item_nodes, ', ') + \
-                [nodes.raw('', '<br>', format='html')]
+            return (
+                [nodes.Text("Written by: ")]
+                + comma_list(item_nodes, ", ")
+                + [nodes.raw("", "<br>", format="html")]
+            )
         else:
             return []
 
@@ -91,6 +90,7 @@ class TagListDisplay(SphinxDirective):
 
     From rst markup like::
 
+        .. tag_list::
 
     """
 
@@ -98,20 +98,32 @@ class TagListDisplay(SphinxDirective):
         env = self.state.document.settings.env
 
         container = nodes.container()
-        container.set_class('taglist')
+        container.set_class("taglist")
 
         for item in env.tag_list.get(env.docname, []):
             elem = nodes.inline()
-            elem += nodes.reference('', '#' + item, refuri='/tags/' + item)
-            elem.set_class('tag')
+            elem += nodes.reference("", "#" + item, refuri="/tags/" + item)
+            elem.set_class("tag")
             container += elem
-            container += nodes.raw('', '&nbsp;', format='html')
+            container += nodes.raw("", "&nbsp;", format="html")
 
         return [container]
 
 
 def add_list_type(app, name, list_cls):
-    list_name = name + '_list'
+    """
+    Register directives for *name* with *list_cls* and connect them with *app*.
+
+    1. Register directive `<name>`: it stores entries in the environemnt under
+       the key `<name>_list` (by subclassing :cls:`ListItem`).
+
+    1. Register directive `<name>_list`: it outputs the stored elements as
+       goverend by *list_class*.
+
+    1. Connect handlers for the directives.
+
+    """
+    list_name = name + "_list"
 
     class ListItemImpl(ListItem):
         marker_list_name = list_name
@@ -128,12 +140,13 @@ def add_list_type(app, name, list_cls):
     directives.register_directive(name, ListItemImpl)
     directives.register_directive(list_name, list_cls)
 
-    app.connect('builder-inited', init_list)
-    app.connect('env-purge-doc', purge)
+    app.connect("builder-inited", init_list)
+    app.connect("env-purge-doc", purge)
 
 
 class allauthors(nodes.General, nodes.Element):
     """Maker node later to be replaced by list of all authors."""
+
     pass
 
 
@@ -146,8 +159,9 @@ class AllAuthors(SphinxDirective):
         .. allauthors::
 
     """
+
     def run(self):
-        return [allauthors('')]
+        return [allauthors("")]
 
 
 def process_authorlists(app, doctree, fromdocname):
@@ -190,12 +204,12 @@ def process_authorlists(app, doctree, fromdocname):
                 link_list += link_entry
 
                 # I can't figure out a way to get the link and title from a page name..
-                link = guide + '.html'
-                title = guide.partition('_')[2].title()
+                link = guide + ".html"
+                title = guide.partition("_")[2].title()
 
                 link_wrapper = addnodes.compact_paragraph()
                 link_wrapper += nodes.reference(
-                    '', '', nodes.Text(title), internal=True, refuri=link, anchorname=''
+                    "", "", nodes.Text(title), internal=True, refuri=link, anchorname=""
                 )
                 link_entry += link_wrapper
 
@@ -208,25 +222,27 @@ def tag_list(app):
 
     return [
         (
-            'tags/index',
+            "tags/index",
             {
-                'tags': tags,
-                'title': 'Tags',
+                "tags": tags,
+                "title": "Tags",
             },
-            'tags.html'
+            "tags.html",
         )
     ]
 
 
 def tag_intro(tag):
-    intro_file = os.path.normpath(os.path.join(os.path.dirname(__file__), '../../source/tags', tag + '.txt'))
+    intro_file = os.path.normpath(
+        os.path.join(os.path.dirname(__file__), "../../source/tags", tag + ".txt")
+    )
 
     try:
         with open(intro_file) as f:
             intro = f.read()
 
         # replace #tags with links to their tag pages
-        intro = re.sub(r'#([a-z0-9]+)', r'<a href="/tags/\1">#\1</a>', intro)
+        intro = re.sub(r"#([a-z0-9]+)", r'<a href="/tags/\1">#\1</a>', intro)
 
         return intro
     except OSError:
@@ -243,33 +259,31 @@ def tag_pages(app):
 
     return [
         (
-            'tags/' + t,
+            "tags/" + t,
             {
-                'tag': t,
-                'parents': [
-                    {'title': 'Tags', 'link': '/tags'}
-                ],
-                'title': '#' + t,
-                'guides': guides_by_tag[t],
-                'titles': env.titles,
-                'intro': tag_intro(t),
+                "tag": t,
+                "parents": [{"title": "Tags", "link": "/tags"}],
+                "title": "#" + t,
+                "guides": guides_by_tag[t],
+                "titles": env.titles,
+                "intro": tag_intro(t),
             },
-            'tag.html'
+            "tag.html",
         )
         for t in guides_by_tag
     ]
 
 
 def setup(app):
-    add_list_type(app, 'author', AuthorListDisplay)
+    add_list_type(app, "author", AuthorListDisplay)
     app.add_node(allauthors)
-    directives.register_directive('allauthors', AllAuthors)
-    app.connect('doctree-resolved', process_authorlists)
+    directives.register_directive("allauthors", AllAuthors)
+    app.connect("doctree-resolved", process_authorlists)
 
-    add_list_type(app, 'tag', TagListDisplay)
-    app.connect('html-collect-pages', tag_pages)
-    app.connect('html-collect-pages', tag_list)
+    add_list_type(app, "tag", TagListDisplay)
+    app.connect("html-collect-pages", tag_pages)
+    app.connect("html-collect-pages", tag_list)
 
     return {
-        'version': '1.0.0',
+        "version": "1.0.0",
     }
