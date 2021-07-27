@@ -27,7 +27,6 @@ Thank you and have fun experimenting!
    :caption: Meta
    :hidden:
    :maxdepth: 1
-   :glob:
 
    hall_of_fame
    Repository <https://github.com/Uberspace/lab>
