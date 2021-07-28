@@ -103,6 +103,12 @@ Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_man
 .. code-block:: ini
 
  memory_limit=512M
+ 
+If you still see an error in the web UI, edit ``~/etc/php.d/php.ini`` with the following content:
+
+.. code-block:: ini
+
+ memory_limit=512M
 
 Output Buffering
 ^^^^^^^^^^^^^^^^
