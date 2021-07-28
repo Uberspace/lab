@@ -27,6 +27,10 @@ footer {
 
 /* --- Navigation / Sidebar ------------------------------------------------- */
 
+.wy-side-scroll {
+  width: auto;
+}
+
 /* title image */
 .wy-side-nav-search {
   padding-top: 170px;
