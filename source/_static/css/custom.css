@@ -74,13 +74,12 @@ footer {
   border-color: #84000f;
 }
 
-/* make (only) guide section scrollable  */
+/* make side navigation scrollable  */
 
 .wy-body-for-nav,
 .wy-grid-for-nav
 .wy-nav-side,
-.wy-side-scroll,
-.wy-menu-vertical
+.wy-side-scroll
 {
   display: flex;
   flex-direction: column;
@@ -88,7 +87,7 @@ footer {
   flex-grow: 1;
 }
 
-.wy-side-scroll [aria-label~="navigation"]> ul:last-of-type {
+.wy-menu-vertical {
   overflow: auto;
 }
 
