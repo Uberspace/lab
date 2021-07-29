@@ -48,6 +48,12 @@ To lint all files, you can use `pre-commit`:
 make lint
 ```
 
+Or just to check the guides for consisitency:
+
+```shell
+make check-guides
+```
+
 ### Spellcheck
 
 To check the spelling you can use the spell check function of sphinx.
