@@ -74,6 +74,24 @@ footer {
   border-color: #84000f;
 }
 
+/* make (only) guide section scrollable  */
+
+.wy-body-for-nav,
+.wy-grid-for-nav
+.wy-nav-side,
+.wy-side-scroll,
+.wy-menu-vertical
+{
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.wy-side-scroll [aria-label~="navigation"]> ul:last-of-type {
+  overflow: auto;
+}
+
 /* --- Main Page ------------------------------------------------------------ */
 
 /* Index - Atomium Logo */
