@@ -6,15 +6,14 @@ dictionary, where the keys are the names of the documents and the values a list
 of author names.
 
 """
-
 import itertools
 import os.path
 import re
 
+import sphinx.addnodes as addnodes
 from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
-import sphinx.addnodes as addnodes
 
 
 def comma_list(nodes_, separator):

@@ -76,7 +76,7 @@ Check if OpenSlides is installed by typing:
  [isabell@stardust ~]$ openslides --version
  3.3
  [isabell@stardust ~]$
- 
+
 Create Database
 ---------------
 For performance reasons, we will use a :manual:`MySQL <database-mysql>` database for storing the OpenSlides data. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_openslides``) instead of the default database.
@@ -135,7 +135,7 @@ Then, we will populate the database by running the following command:
  [2021-04-11 20:59:34 +0200] [21317] [INFO] openslides.core.apps [zxnj] Updated config variables
  [isabell@stardust ~]$
 
- 
+
 Create web backend
 ------------------
 
@@ -252,7 +252,7 @@ Moreover, you can adjust the logging of OpenSlides. For example, you can log the
       },
   }
 
-This will log everything to the file ``/home/isabell/logs/openslides.log`` instead being displayed in the console.  
+This will log everything to the file ``/home/isabell/logs/openslides.log`` instead being displayed in the console.
 
 
 .. _OpenSlides: https://openslides.com/

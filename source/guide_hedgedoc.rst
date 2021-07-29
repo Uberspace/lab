@@ -381,4 +381,3 @@ You can run this script with:
 Tested with HedgeDoc 1.7.1, Uberspace 7.8.1.0
 
 .. author_list::
-
