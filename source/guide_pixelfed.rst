@@ -152,7 +152,7 @@ Open the file ``.env`` in your favourite editor and adjust the following blocks 
 
 Generate the application key
 
-:: 
+::
 
  [isabell@stardust pixelfed]$ php artisan key:generate
  Application key set successfully.

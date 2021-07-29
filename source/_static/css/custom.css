@@ -77,10 +77,9 @@ footer {
 /* make side navigation scrollable  */
 
 .wy-body-for-nav,
-.wy-grid-for-nav
+.wy-grid-for-nav,
 .wy-nav-side,
-.wy-side-scroll
-{
+.wy-side-scroll {
   display: flex;
   flex-direction: column;
   min-height: 0;

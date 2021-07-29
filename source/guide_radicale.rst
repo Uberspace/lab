@@ -165,10 +165,10 @@ In order for your Radicale instance to be reachable from the web, you need to co
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000 
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000
   Set backend for / to port 8000; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$ uberspace web backend list  
+  [isabell@stardust ~]$ uberspace web backend list
   / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
 

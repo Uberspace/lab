@@ -160,4 +160,3 @@ It might take a few minutes before your EtherCalc comes back online because ``np
 Tested with EtherCalc 0.20200306.0, Uberspace 7.5.0.0
 
 .. author_list::
-

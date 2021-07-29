@@ -273,7 +273,7 @@ Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to
 
   [isabell@stardust ~]$ pip3.6 install --user -U matrix-synapse
   [isabell@stardust ~]$
-  
+
 Automate the update process with a bash script called `~/bin/synapse-update` containing:
 
 .. code-block:: bash

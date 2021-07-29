@@ -61,6 +61,6 @@ make spelling
 All text and code in this repository is licensed under [CC-BY-NC-SA 4.0][].
 All project logos are property of the respective project.
 
-[CC-BY-NC-SA 4.0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa 4.0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
 [contributing guidelines]: CONTRIBUTING.md
 [list of guides]: https://github.com/Uberspace/lab/issues?q=is%3Aopen+is%3Aissue+label%3Aguide
