@@ -9,6 +9,8 @@ Before you begin writing:
 -   To signify intent and prevent duplicate work, please create an issue **before** working on your pull request.
 -   Check out our [style guide](STYLE.md).
 
+## News Feed
+
 If you want to stay informed of changes to your guide or a guide in your interest you can subscribe to its commit feed.
 e.g. for Nextcloud it would be: https://github.com/Uberspace/lab/commits/main/source/guide_nextcloud.rst.atom
 

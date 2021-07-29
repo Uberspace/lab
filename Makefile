@@ -14,7 +14,7 @@ PYTHON_VERSION = $(shell cat runtime.txt)
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help setup setup-venv setup-pre-commit lint Makefile
+.PHONY: help setup setup-venv setup-pre-commit lint check-guides Makefile
 
 setup: setup-venv setup-pre-commit
 
@@ -29,6 +29,9 @@ setup-pre-commit:
 
 lint:
 	.venv/bin/pre-commit run --all-files
+
+check-guides:
+	.venv/bin/python check-guides.py --check --warn source/guide_*.rst
 
 serve:
 	sphinx-autobuild -b html $(SOURCEDIR) $(BUILDDIR)/html
