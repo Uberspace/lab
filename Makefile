@@ -14,13 +14,21 @@ PYTHON_VERSION = $(shell cat runtime.txt)
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help setup Makefile
+.PHONY: help setup setup-venv setup-pre-commit lint Makefile
 
-setup:
+setup: setup-venv setup-pre-commit
+
+setup-venv:
 	python$(PYTHON_VERSION) -m venv .venv
 	.venv/bin/pip install --upgrade pip
 	.venv/bin/pip install --upgrade wheel
 	.venv/bin/pip install -r requirements.txt
+
+setup-pre-commit:
+	.venv/bin/pre-commit install --overwrite --install-hooks
+
+lint:
+	.venv/bin/pre-commit run --all-files
 
 serve:
 	sphinx-autobuild -b html $(SOURCEDIR) $(BUILDDIR)/html
