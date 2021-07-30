@@ -94,7 +94,12 @@ Web Backend Config
 
 .. note:: Ackee_ is running on port 3000.
 
-.. include:: includes/web-backend.rst
+.. code-block:: console
+    [isabell@stardust ~]$ uberspace web backend set /<domain> --http --port 3000
+    Set backend for /<domain> to port 3000; please make sure something is listening!
+    You can always check the status of your backend using "uberspace web backend list".
+    [isabell@stardust ~]$
+    
 
 Supervisord Daemon Setup
 ------------------------
