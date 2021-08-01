@@ -17,8 +17,7 @@ Foundry VTT
 
 .. tag_list::
 
-
-  `Foundry Virtual Tabletop <https://foundryvtt.com/>`_ is an alternative to Roll20 and many other platforms that enable you to play tabletop role playing games online.
+`Foundry Virtual Tabletop <https://foundryvtt.com/>`_ is an alternative to Roll20 and many other platforms that enable you to play tabletop role playing games online.
 
 Prerequisites
 ==============
