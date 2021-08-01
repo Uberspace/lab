@@ -68,6 +68,7 @@ Before you start the Nextcloud installation you should adapt some PHP settings:
  #. enable the `PHP OPcache <https://www.php.net/manual/en/book.opcache.php>`_
  #. increase the PHP memory limit
  #. disable PHP output buffering
+ #. restart PHP
 
 Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
 
@@ -320,6 +321,8 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
 
   [isabell@stardust ~]$ cd html
   [isabell@stardust html]$ php occ db:add-missing-indices --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-columns --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-primary-keys --no-interaction
   [isabell@stardust html]$ php occ db:convert-filecache-bigint --no-interaction
   [isabell@stardust html]$
 
@@ -366,9 +369,7 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ maintenance:mode --on
 
  ## database optimisations
- ## The following command works from Nextcloud 20.
- ## remove '#' so it is working
- #php ~/html/occ db:add-missing-primary-keys --no-interaction
+ php ~/html/occ db:add-missing-primary-keys --no-interaction
  php ~/html/occ db:add-missing-columns --no-interaction
  php ~/html/occ db:add-missing-indices --no-interaction
  php ~/html/occ db:convert-filecache-bigint --no-interaction
