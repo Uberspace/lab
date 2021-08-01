@@ -106,6 +106,12 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --report-stats=[yes|no]
   [isabell@stardust ~]$
 
+Replace the ``public_baseurl`` in the config file ``~/synapse/homeserver.yaml`` with the url of your Synapse_.
+
+.. code-block:: yaml
+
+  public_baseurl: https://my.domain.name/
+
 Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the ``listeners:`` section and modify the entry with ``port: 8008``:
 
 .. code-block:: yaml

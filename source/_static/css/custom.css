@@ -74,6 +74,38 @@ footer {
   border-color: #84000f;
 }
 
+/* make side navigation scrollable  */
+
+.wy-body-for-nav,
+.wy-grid-for-nav
+.wy-nav-side,
+.wy-side-scroll
+{
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.wy-menu-vertical {
+  overflow: auto;
+  scrollbar-color: #999 #222;
+}
+
+.wy-menu-vertical::-webkit-scrollbar {
+  width: 12px;
+}
+
+.wy-menu-vertical::-webkit-scrollbar-track {
+  background: #222;
+}
+
+.wy-menu-vertical::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border: 3px solid rgba(0, 0, 0, 255);
+  border-radius: 20px;
+}
+
 /* --- Main Page ------------------------------------------------------------ */
 
 /* Index - Atomium Logo */

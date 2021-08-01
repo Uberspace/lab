@@ -8,11 +8,19 @@ SPHINXPROJ    = Uberspace7lab
 SOURCEDIR     = source
 BUILDDIR      = build
 
+PYTHON_VERSION = $(shell cat runtime.txt)
+
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+.PHONY: help setup Makefile
+
+setup:
+	python$(PYTHON_VERSION) -m venv .venv
+	.venv/bin/pip install --upgrade pip
+	.venv/bin/pip install --upgrade wheel
+	.venv/bin/pip install -r requirements.txt
 
 serve:
 	sphinx-autobuild -b html $(SOURCEDIR) $(BUILDDIR)/html
