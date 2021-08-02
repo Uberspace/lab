@@ -40,7 +40,7 @@ make clean serve
 This will start a local webserver on http://127.0.0.1:8000, which always serves
 the most recent version.
 
-### Linting
+## Linting
 
 To lint all files, you can use `pre-commit`:
 
@@ -48,19 +48,42 @@ To lint all files, you can use `pre-commit`:
 make lint
 ```
 
-Or just to check the guides for consisitency:
+Or just to check the guides for consistency:
 
 ```shell
 make check-guides
 ```
 
-### Spellcheck
+## Spellcheck
 
-To check the spelling you can use the spell check function of sphinx.
+To check the spelling you can use the spell check function of Sphinx:
 
 ```shell
 make spelling
 ```
+
+### Add Words to Guide
+
+If your guide needs to use words, that should not go into the _global
+dictionary_ (see below), you can flag them with the `spelling` directive like
+this (usually near the top of your guide):
+
+```rst
+.. spelling::
+    passwörd
+    anotherword
+```
+
+### Add Words to Global Dictionary
+
+1. run `make get-new-words` to write a list of all spelling errors found
+   to `new_words.txt`
+1. edit the resulting `new_words.txt`
+    1. decide wich words to keep for the global dict,
+    1. and wich might be better put into a guide local list (see the `spelling`
+       directive above for that)
+1. if satisfied, run `make add-new-words` to merge them to the global dictionary
+1. commit your changes :pencil2:
 
 ## License
 

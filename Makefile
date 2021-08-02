@@ -33,6 +33,12 @@ lint:
 check-guides:
 	.venv/bin/python check-guides.py --check --warn source/guide_*.rst
 
+get-new-words: clean spelling
+	.venv/bin/python spelling_tools.py
+
+add-new-words:
+	.venv/bin/python spelling_tools.py --merge
+
 serve:
 	sphinx-autobuild -b html $(SOURCEDIR) $(BUILDDIR)/html
 
