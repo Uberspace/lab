@@ -224,3 +224,5 @@ Create ``~/etc/services.d/flask.ini`` with the following content:
 Now let's start the service:
 
 .. include:: includes/supervisord.rst
+
+.. author_list::
