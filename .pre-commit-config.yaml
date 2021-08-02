@@ -56,3 +56,11 @@ repos:
         args:
           - "--line-length=88"
           - "--target-version=py38"
+  # local hooks
+  - repo: local
+    hooks:
+      - id: guide-syntax
+        name: check guide syntax
+        language: script
+        entry: .venv/bin/python check-guides.py --check
+        files: source/guide_.+\.rst
