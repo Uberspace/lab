@@ -16,7 +16,7 @@ Gotify
 .. tag_list::
 
 Gotify_ is a self-hosted push notification service written in Go and distributed under the MIT License.
-It consists of a server for sending and receiving messages in real-time per WebSocket which is distributed as a single binary. It can be accessed via the built-in web-ui, the `cli <https://github.com/gotify/cli>`_ or `the Android app <https://github.com/gotify/android>`_ (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_ and `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ ).
+It consists of a server for sending and receiving messages in real-time per WebSocket which is distributed as a single binary. It can be accessed via the built-in web-UI, the `cli <https://github.com/gotify/cli>`_ or `the Android app <https://github.com/gotify/android>`_ (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_ and `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ ).
 
 ----
 

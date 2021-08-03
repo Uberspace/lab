@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    Chez
+
 .. author:: luto <http://luto.at>
 
 .. tag:: lang-c

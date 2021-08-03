@@ -16,7 +16,7 @@ Shiori
 
 .. tag_list::
 
-Shiori_ is a simple bookmarks manager written in Go and distributed under the MIT License. It can be used as a `command line application <https://github.com/go-shiori/shiori/wiki/Usage#using-command-line-interface>`_ or via the built-in web-ui.
+Shiori_ is a simple bookmarks manager written in Go and distributed under the MIT License. It can be used as a `command line application <https://github.com/go-shiori/shiori/wiki/Usage#using-command-line-interface>`_ or via the built-in web-UI.
 
 ----
 

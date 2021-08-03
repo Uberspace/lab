@@ -271,7 +271,7 @@ Configuring Scheduler
 
 .. note:: The scheduler is used to run periodic commands in the background. The following commands are used in the scheduler:
 
- * ``media:optimize`` - Finds any un-optimized media and performs optimization
+ * ``media:optimize`` - Finds any not optimized media and performs optimization
  * ``media:gc`` - Finds any media not used in statuses older than 1 hour and deletes them
  * ``horizon:snapshot`` - Generates Horizon analytics snapshot
  * ``story:gc`` - Finds expired Stories and deletes them

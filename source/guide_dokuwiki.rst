@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    superduper
+
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 
 .. tag:: lang-php

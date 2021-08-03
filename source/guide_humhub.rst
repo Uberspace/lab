@@ -89,7 +89,7 @@ Point your browser to your domain (e.g. isabell.uber.space) to set up and config
 Updates
 =======
 
-Check the news_ regularly to stay informed about the newest version. You will be additionally notified about available updates in the built in humhub update module. You can update the installation via the update module which can be found in the humhub administration menue.
+Check the news_ regularly to stay informed about the newest version. You will be additionally notified about available updates in the built in humhub update module. You can update the installation via the update module which can be found in the humhub administration menu.
 
 
 .. _HumHub: https://humhub.org

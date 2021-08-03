@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    cr
+
 .. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: web

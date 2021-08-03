@@ -96,7 +96,7 @@ After the configuration is done, the bot will automatically connect to the TeamS
 
 
 The bot should now be connected.
-Check it by connecting youself to the server.
+Check it by connecting yourself to the server.
 
 You can also test if the bot plays music by connecting to the bot's TeamSpeak channel and send it following private message:
 
@@ -104,7 +104,7 @@ You can also test if the bot plays music by connecting to the bot's TeamSpeak ch
 
  !play https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3
 
-Because the TS3AudioBot programm will be stopped if you disconnect your terminal, you need to configure a service.
+Because the TS3AudioBot program will be stopped if you disconnect your terminal, you need to configure a service.
 Stop the bot by inserting ``Ctrl+C``.
 Create ``~/etc/services.d/ts3audiobot.ini`` with following content:
 

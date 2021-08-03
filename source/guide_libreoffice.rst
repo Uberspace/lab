@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    memproportion
+
 .. author:: jorsn <johannes@jorsn.eu>
 
 .. tag:: office-suite
@@ -155,7 +158,7 @@ First, configure `udocker`_ to use `fakechroot`_ instead of `proot`_:
 .. note::
 
   By default, `udocker`_ uses `proot`_ to fake `chroot`_. However, `proot`_ does
-  not support real multi-threading and leads to a noticeable lag when editing
+  not support real multithreading and leads to a noticeable lag when editing
   documents. An overview of the execution modes of udocker can be found in the
   `udocker manual <https://github.com/indigo-dc/udocker/blob/master/doc/user_manual.md#327-setup>`_.
 
@@ -308,7 +311,7 @@ memproportion
   below the 1.5 GB limit of your Uberspace, e.g. ``5.0``,
 per_document.max_concurrency
   the number of threads one document renderer may use. An Uberspace has plenty of
-  cpus, so you can set this to a higher value, e.g. ``10``, if you edit only
+  CPUs, so you can set this to a higher value, e.g. ``10``, if you edit only
   few different documents simultaneously.
 
 Troubleshooting

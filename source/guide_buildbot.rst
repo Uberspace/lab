@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    Pohl
+
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>
 
 .. tag:: lang-python

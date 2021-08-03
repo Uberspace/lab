@@ -1,12 +1,14 @@
 .. highlight:: console
 
+.. spelling::
+    Nodemule
+
 .. author:: Achim | pxlfrk <hallo@pxlfrk.de>
 
 .. tag:: spreadsheet
 .. tag:: lang-nodejs
 .. tag:: web
 .. tag:: collaborative-editing
-
 
 .. sidebar:: Logo
 

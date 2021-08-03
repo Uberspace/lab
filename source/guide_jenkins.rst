@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    sbt
+
 .. author:: Raphael Höser <raphael@hoeser.info>
 
 .. tag:: lang-java

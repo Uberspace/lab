@@ -25,7 +25,8 @@ information from Twitter, Tumblr, Email, IRC, Jabber, RSS, Jenkins, Hue - to
 name just a few. Check out the full list of `available Hives`_
 in our Wiki.
 
-Connecting those modules with each other lets you create immensly useful agents.
+Connecting those modules with each other lets you create immensely useful
+agents.
 
 ---
 

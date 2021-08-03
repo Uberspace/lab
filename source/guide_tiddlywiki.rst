@@ -87,7 +87,7 @@ To restrict the permissions, add a users file named ``myusers.csv`` into the `ti
  [isabell@stardust ~]$ cd tiddlywiki
  [isabell@stardust tiddlywiki]$ touch myusers.csv
 
-Use your favorite editor to add a comma seperated list of usernames and passwords (as cleartext) into the created file. The first header row ``username,password`` must be added.
+Use your favorite editor to add a comma separated list of usernames and passwords (as cleartext) into the created file. The first header row ``username,password`` must be added.
 
 ::
 
