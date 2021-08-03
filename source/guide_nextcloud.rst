@@ -345,7 +345,7 @@ Updates
 
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
-Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimisation.
+Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimization.
 The release cycle of Nextcloud is very short. A prepared script with some common checks would ensure you don't need to run them.
 
 .. warning:: Before updating to the next major release, such as version 19.x.x to 20.x.x, make sure your apps are compatible or there exists updates. Otherwise the incompatible apps will get disabled. If the web based admin overview displays an available update it also checks if there are any incompatible apps. You can also check for compatible versions in the `Nextcloud App Store`_.

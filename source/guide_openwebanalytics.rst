@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    owa
+
 .. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php

@@ -1,6 +1,9 @@
 .. highlight:: console
 .. author:: Arian Malek <https://fetziverse.de>
 
+.. spelling::
+    pleroma
+
 .. tag:: lang-elixir
 .. tag:: microblogging
 .. tag:: fediverse

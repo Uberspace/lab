@@ -1,5 +1,8 @@
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. spelling::
+    xxxx
+
 .. tag:: lang-php
 .. tag:: blog
 .. tag:: cms

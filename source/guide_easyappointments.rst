@@ -1,10 +1,15 @@
 .. author:: Lukas Herzog <hallo@lukasherzog.de>
 
+.. spelling::
+    Tselegidis
+    english
+    french
+    german
+
 .. tag:: lang-php
 .. tag:: web
 .. tag:: calendar
 .. tag:: scheduler
-
 
 .. highlight:: console
 
@@ -135,7 +140,7 @@ Easy Appointments' inbuilt language translations are not always perfect and you 
 
 You can also add a new translation by copying and renaming a translation-folder in ``/var/www/virtual/$USER/html/application/language/`` and adding its name to the array above.
 
-You can modify an existing translation by editing the ``translation_lang.php`` file in the desired language folder. For english this would be ``/var/www/virtual/$USER/html/application/language/english/translation_lang.php``
+You can modify an existing translation by editing the ``translation_lang.php`` file in the desired language folder. For English this would be ``/var/www/virtual/$USER/html/application/language/english/translation_lang.php``
 
 .. note:: The `official documentation`_ contains additional information on translation and other topics.
 

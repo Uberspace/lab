@@ -150,7 +150,7 @@ Schema
 When designing your schema, think about when to use **fields** and when to use
 **tags** for your data:
 
-- Fields aren’t indexed, but required.
+- Fields aren't indexed, but required.
 - Tags are indexed, but optional.
 
 *Queries that filter field values must scan all field values to match query
@@ -163,7 +163,7 @@ Downsampling
 ------------
 
 To keep memory usage within acceptable limits and performance up, remember to
-downsample your data regularily. Here's an intro on how to set up **tasks**, to
+downsample your data regularly. Here's an intro on how to set up **tasks**, to
 do that with **Flux**: https://www.influxdata.com/blog/downsampling-influxdb-v2-0/
 
 Updates

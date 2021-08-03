@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    Wi
+    Fi
+
 .. author:: Daniel Hannaske <https://github.com/dahanbn/>
 
 .. tag:: lang-cpp

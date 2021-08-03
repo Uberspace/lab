@@ -1,6 +1,7 @@
+.. highlight:: console
+
 .. author:: 927589452
 .. author:: luto <http://luto.at>
-.. highlight:: console
 
 .. tag:: lang-python
 .. tag:: chat

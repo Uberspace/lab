@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    bg
+    BG
+
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 
 .. tag:: lang-php

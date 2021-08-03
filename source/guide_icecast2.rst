@@ -25,7 +25,7 @@ Icecast2
 
 Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
 
-Find the Icecast2 docu here_
+Find the Icecast2 documentation here_
 
 ----
 
