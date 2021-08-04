@@ -141,7 +141,7 @@ footer {
   grid-template-areas:
     "score author"
     "score guides";
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 /* HOF Entry: Score */
@@ -158,12 +158,14 @@ footer {
 #hall-of-fame ol > li > div:not(:first-child) {
   grid-area: author;
   font-size: 120%;
+  margin-bottom: 0.5rem;
 }
 
 /* HOF Entry: Guides */
 
 #hall-of-fame ol > li > ul {
   grid-area: guides;
+  padding: 0;
 }
 
 #hall-of-fame ol > li > ul:before {
