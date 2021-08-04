@@ -177,7 +177,7 @@ def process_authorlists(app, doctree, fromdocname):
         author_list = nodes.enumerated_list(classes=["hof__list"])
 
         for author, count in sorted(
-            count_by_author.items(), key=lambda x: (-x[1], x[0])
+            count_by_author.items(), key=lambda x: (-x[1], x[0].lower())
         ):
             # list entry
             author_entry = nodes.list_item(classes=["hof__entry"])
