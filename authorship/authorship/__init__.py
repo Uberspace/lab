@@ -99,7 +99,7 @@ class TagListDisplay(SphinxDirective):
         container = nodes.container()
         container.set_class("taglist")
 
-        for item in env.tag_list.get(env.docname, []):
+        for item in sorted(env.tag_list.get(env.docname, []), key=str.lower):
             elem = nodes.inline()
             elem += nodes.reference("", "#" + item, refuri="/tags/" + item)
             elem.set_class("tag")
@@ -221,7 +221,9 @@ def process_authorlists(app, doctree, fromdocname):
 
 def tag_list(app):
     env = app.builder.env
-    tags = set(itertools.chain(*[tags for tags in env.tag_list.values()]))
+    tags = sorted(
+        set(itertools.chain(*[tags for tags in env.tag_list.values()])), key=str.lower
+    )
 
     return [
         (
