@@ -174,33 +174,37 @@ def process_authorlists(app, doctree, fromdocname):
     count_by_author = {a: len(guides_by_author[a]) for a in authors}
 
     for node in doctree.traverse(allauthors):
-        author_list = nodes.enumerated_list()
+        author_list = nodes.enumerated_list(classes=["hof__list"])
 
         for author, count in sorted(
             count_by_author.items(), key=lambda x: (-x[1], x[0])
         ):
-            # list item
-            author_entry = nodes.list_item()
+            # list entry
+            author_entry = nodes.list_item(classes=["hof__entry"])
             author_list += author_entry
 
             # counter
-            counter_div = nodes.container()
+            counter_div = nodes.container(classes=["hof__counter"])
             counter_div += addnodes.compact_paragraph(text=count)
             author_entry += counter_div
 
             # author
-            author_div = nodes.container()
+            author_div = nodes.container(classes=["hof__author"])
             author_div += addnodes.compact_paragraph(text=author)
             author_entry += author_div
 
+            # guide list
+            guides_div = nodes.container(classes=["hof__guides"])
+            author_entry += guides_div
+
             # linklist
-            link_list = nodes.bullet_list()
-            author_entry += link_list
+            guides_list = nodes.bullet_list(classes=["hof__guide_list"])
+            guides_div += guides_list
 
             for guide in sorted(guides_by_author[author]):
                 # guide
-                link_entry = nodes.list_item()
-                link_list += link_entry
+                link_entry = nodes.list_item(classes=["hof__guide"])
+                guides_list += link_entry
 
                 # I can't figure out a way to get the link and title from a page name..
                 link = guide + ".html"

@@ -125,8 +125,8 @@ footer {
 
 /* --- Hall of Fame --------------------------------------------------------- */
 
-#hall-of-fame ol,
-#hall-of-fame ol li {
+#hall-of-fame .hof__list,
+#hall-of-fame .hof__entry {
   list-style: none !important;
   margin: 0;
   padding: 0;
@@ -134,7 +134,7 @@ footer {
 
 /* HOF Entry */
 
-#hall-of-fame ol > li {
+#hall-of-fame .hof__entry {
   display: grid;
   grid-template-columns: 1fr 11fr;
   grid-template-rows: auto;
@@ -146,41 +146,39 @@ footer {
 
 /* HOF Entry: Score */
 
-#hall-of-fame ol > li > div:first-child {
+#hall-of-fame .hof__counter {
   grid-area: score;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 1rem;
+  margin-right: 1rem;
 }
 
 /* HOF Entry: Author */
-#hall-of-fame ol > li > div:not(:first-child) {
+#hall-of-fame .hof__author {
   grid-area: author;
   font-size: 120%;
   margin-bottom: 0.5rem;
 }
 
 /* HOF Entry: Guides */
-
-#hall-of-fame ol > li > ul {
+#hall-of-fame .hof__guides {
   grid-area: guides;
-  padding: 0;
+  background: url(../images/icn-rocket.svg) NO-REPEAT;
+  padding-left: 2rem;
 }
 
-#hall-of-fame ol > li > ul:before {
-  content: url(../images/icn-rocket.svg);
-  width: 23px;
-  height: 15px;
+#hall-of-fame .hof__guide_list {
+  padding: 0;
 }
 
 /* HOF Entry: Guides Entry */
 
-#hall-of-fame ol > li > ul > li {
+#hall-of-fame .hof__guide {
   display: inline;
 }
 
-#hall-of-fame ol > li > ul > li:not(:last-child):after {
+#hall-of-fame .hof__guide:not(:last-child):after {
   content: ", ";
 }
 
