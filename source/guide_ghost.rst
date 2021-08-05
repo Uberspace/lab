@@ -232,7 +232,7 @@ Updates
 Download and unzip new version
 ------------------------------
 
-Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``.zip`` archive. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``Ghost-23.42.1.zip`` archive. Make sure not to use the source code zip. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
 
 .. code-block:: console
  :emphasize-lines: 2,3
