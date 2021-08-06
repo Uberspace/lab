@@ -241,6 +241,30 @@ CHECKLIST = Checklist(
         help="missing `.. tag_list::` directive",
     ),
     Check(
+        "error-structure-title",
+        action="regex",
+        argument=r"###+\n.+\n###+\n\n",
+        help="missing title section",
+    ),
+    Check(
+        "error-structure-tested",
+        action="search",
+        argument="Tested on Uberspace",
+        help="no `Tested on Uberspace` part",
+    ),
+    Check(
+        "error-structure-break-intro",
+        action="regex",
+        argument=r"###+\n.+\n###+\n\n([^=].+\n+)+\n+----+\n\n",
+        help="no break `----` after intro section",
+    ),
+    Check(
+        "warning-structure-break-outro",
+        action="regex",
+        argument=r"\n\n----+\n\nTested on Uberspace",
+        help="no break `----` after outro section",
+    ),
+    Check(
         "error-files-image",
         action="function",
         argument=check_image_file,
@@ -273,7 +297,7 @@ CHECKLIST = Checklist(
     Check(
         "warning-structure-intro",
         action="regex",
-        argument=r"###+\n\w+\n###+\n\n([^=].+\n+)+\n---+\n\n",
+        argument=r"###+\n.+\n###+\n\n([^=].+\n)+",
         help="no introductory section",
     ),
     Check(
@@ -294,30 +318,24 @@ CHECKLIST = Checklist(
         argument="Updates\n===+",
         help="no `Updates` section",
     ),
-    Check(
-        "warning-structure-tested",
-        action="search",
-        argument="Tested on Uberspace v",
-        help="no `Tested on Uberspace` part",
-    ),
-    Check(
-        "warning-structure-pre",
-        action="search",
-        argument="a",
-        help="no `Prerequisites` section",
-    ),
-    Check(
-        "warning-structure-finishing",
-        action="search",
-        argument="a",
-        help="no `Finishing` section",
-    ),
-    Check(
-        "warning-structure-practices",
-        action="search",
-        argument="a",
-        help="no `Best Practices` section",
-    ),
+    # Check(
+    #     "warning-structure-pre",
+    #     action="search",
+    #     argument="a",
+    #     help="no `Prerequisites` section",
+    # ),
+    # Check(
+    #     "warning-structure-finishing",
+    #     action="search",
+    #     argument="a",
+    #     help="no `Finishing` section",
+    # ),
+    # Check(
+    #     "warning-structure-practices",
+    #     action="search",
+    #     argument="a",
+    #     help="no `Best Practices` section",
+    # ),
 )
 
 
