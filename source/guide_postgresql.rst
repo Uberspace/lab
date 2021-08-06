@@ -1,9 +1,11 @@
 .. highlight:: console
 
 .. author:: FM <git.fm@mmw9.de>
+.. author:: CHHEI <chhei@paleoearthlabs.org>
 
 .. tag:: lang-c
 .. tag:: database
+
 
 .. sidebar:: Logo
 
@@ -16,11 +18,13 @@ PostgreSQL
 
 .. tag_list::
 
-PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available in the Wikipedia_.
+PostgreSQL_ is a free and object-relational database system. It is also compatible to the familiar SQL standard. More details are available on Wikipedia_.
 
 Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
 
-----
+In addition to basic PostgreSQL functionality, Uberspace provides a number of additional `PostgreSQL Extensions`_ which allow to add functionality to the PostgreSQL_ database, for example using PostGIS_ for geospatial objects.
+
+-----
 
 License
 =======
@@ -194,6 +198,7 @@ PostgreSQL Configuration
 ------------------------
 
 Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+
 Consider using only unix sockets if possible.
 
 .. warning:: Please replace ``<username>`` with your username!
@@ -226,8 +231,55 @@ Consider using only unix sockets if possible.
  #bonjour_name = ''                     # defaults to the computer name
                                         # (change requires restart)
 
+.. code-block:: postgres
+ :emphasize-lines: 14
+
+Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.conf`` to enable logging. Consider setting the ``log_directory`` to your preferred log file output location (here we use ``/home/<username>/logs`` where ``username`` is the name of your Uberspace).
+
+ #------------------------------------------------------------------------------
+ # REPORTING AND LOGGING
+ #------------------------------------------------------------------------------
+
+ # - Where to Log -
+
+ log_destination = 'stderr'              # Valid values are combinations of
+                                         # stderr, csvlog, syslog, and eventlog,
+                                         # depending on platform.  csvlog
+                                         # requires logging_collector to be on.
+
+ # This is used when logging to stderr:
+ logging_collector = on                  # Enable capturing of stderr and csvlog
+                                         # into log files. Required to be on for
+                                         # csvlogs.
+                                         # (change requires restart)
+
+ # These are only used if logging_collector is on:
+ log_directory = '/home/<username>/logs'                    # directory where log files are written,
+                                         # can be absolute or relative to PGDATA
+ log_filename = 'postgresql-%a.log'      # log file name pattern,
+                                         # can include strftime() escapes
+ #log_file_mode = 0600                   # creation mode for log files,
+                                         # begin with 0 to use octal notation
+ log_truncate_on_rotation = on           # If on, an existing log file with the
+                                         # same name as the new log file will be
+                                         # truncated rather than appended to.
+                                         # But such truncation only occurs on
+                                         # time-driven rotation, not on restarts
+                                         # or size-driven rotation.  Default is
+                                         # off, meaning append to existing files
+                                         # in all cases.
+ log_rotation_age = 1d                   # Automatic rotation of logfiles will
+                                         # happen after that time.  0 disables.
+ log_rotation_size = 0                   # Automatic rotation of logfiles will
+                                         # happen after that much log output.
+                                         # 0 disables.
+
+
 
 Later you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
+
+
+
 
 Setup Daemon
 ------------
@@ -298,13 +350,95 @@ Create Database
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
  * ``database name``: And as last option the name of the database. In this example 'synapse'.
 
-.. warning:: Please replace ``<user>`` with the user name, created earlier!
+.. warning:: Please replace ``<user>`` with the user name, created earlier, and <database name> with the name of the database you want to create!
 
 .. code-block:: console
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<user> --template=template0 synapse
  [isabell@stardust ~]$
+
+PostgreSQL Extensions
+=====================
+
+PostgreSQL `extensions <https://wiki.postgresql.org/wiki/Extensions>`_ allow to extend the functionality and user-visible functions of a database. A number of extensions for PostgreSQL are available (see `list <https://www.postgresql.org/download/products/6-postgresql-extensions/>`_), with the geospatial extension PostGIS_ being one of the most widely used ones.
+
+Available extensions for PostgreSQL on U7 can be found in the ``/usr/pgsql-<MajorVersion>/share/extension`` directory, where ``<MajorVersion>`` refers to the PostgreSQL `Version`_ of your installation.
+
+.. Note:: In order to create extensions, the PostgreSQL user will need to have administrator rights. These are automatically assigned to the database owner using the ``--owner`` flag, as shown in the `Create database` section.
+
+
+PostGIS: Spatially enabling the database using PostGIS
+----------------------------------------------------------
+
+PostGIS_ adds support for geographic objects to the database, allowing to run spatial
+queries. The PostgreSQL installation on Uberspace comes with pre-compiled versions
+of the PostGIS extension saving you from having to compile PostGIS and its FOSS GIS software stack dependencies (such as `GDAL <https://gdal.org>`_, `PROJ <http://proj.org>`_, `GEOS <https://trac.osgeo.org/geos/>`_ and `SFCGAL <http://www.sfcgal.org/>`_) from source.
+
+To check whether PostGIS_ exists for the PostgreSQL version do a quick ``ls`` of the ``share``
+directory. In this guide we use PostGIS_ version 3.1 with a PostgreSQL major version 12:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ ls -rtl /usr/pgsql-12/share/extension/postgis--3*.sql
+ [isabell@stardust ~]$ -rw-r--r--. 1 root root 7.9M May 26 15:59 /usr/pgsql-12/share/extension/postgis--3.1.2.sql
+
+
+Once you have convinced yourself that the right PostGIS_ extension is available, simply enter the database which you have just created (`Create Database`_) as administrator and spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using the PostGIS extension:
+
+.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ psql <database name> -U<user>
+ databaseName=# CREATE EXTENSION IF NOT EXISTS plpgsql;
+ databaseName=# CREATE EXTENSION postgis;
+ databaseName=# CREATE EXTENSION postgis_raster; -- OPTIONAL
+ databaseName=# CREATE EXTENSION postgis_topology; -- OPTIONAL
+
+The ``raster`` and ``topology`` functionality of PostGIS_ are optional. Test whether the extensions have been properly installed and can be found by PostgreSQL using the ``\dx`` - you should get output similar to this:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ psql <database name> -U<user>
+ databaseName=# \dx
+                                     List of installed extensions
+        Name       | Version |   Schema   |                        Description
+ ------------------+---------+------------+------------------------------------------------------------
+  plpgsql          | 1.0     | pg_catalog | PL/pgSQL procedural language
+  postgis          | 3.1.2   | public     | PostGIS geometry and geography spatial types and functions
+  postgis_raster   | 3.1.2   | public     | PostGIS raster types and functions
+  postgis_topology | 3.1.2   | topology   | PostGIS topology spatial types and functions
+
+
+The database should now be spatially enabled, allowing you to load geospatial data with the help of PostGIS_ auxiliary programs such as ``shp2pgsql`` (for `ESRI Shapefiles <https://en.wikipedia.org/wiki/Shapefile>`_).
+
+
+UUID: Generating UUIDs
+----------------------
+
+PostgreSQL provides storage and comparison functions for the standardised `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
+
+.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ psql <database name> -U<user>
+ databaseName=# CREATE EXTENSION IF NOT EXISTS uuid-ossp;
+
+After creating the extension, check whether PostgreSQL can find it using the ``\dx`` command in the interactive ``psql`` shell:
+
+.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ psql <database name> -U<user>
+ databaseName=# \dx
+                                     List of installed extensions
+        Name       | Version |   Schema   |                        Description
+ ------------------+---------+------------+------------------------------------------------------------
+  uuid-ossp        | 1.1     | public     | generate universally unique identifiers (UUIDs)
+
 
 
 Best Practices
@@ -339,7 +473,7 @@ More details about your Uberspace space in total shows the command ``quota``:
        /dev/sda2    713M  10240M  11264M              38       0       0
  [isabell@stardust ~]$
 
-Further tools and details are described in the Uberspace manual and section :manual_anchor:`storge <basics-resources#storage>`.
+Further tools and details are described in the Uberspace manual and section :manual_anchor:`Storage <basics-resources#storage>`.
 
 Now you can identify, that you have enough space for the backup. If not, then try to get more space. Otherwise you cannot start the update.
 
@@ -566,12 +700,15 @@ The backup is not more necessary and can be removed:
 .. _PostgreSQL: https://www.postgresql.org
 .. _Wikipedia: https://en.wikipedia.org/wiki/PostgreSQL
 .. _PostgreSQL License: https://www.postgresql.org/about/licence/
-.. _documentation: https://www.postgresql.org/docs/9.6/static/install-procedure.html
+.. _documentation: https://www.postgresql.org/docs/12/static/install-procedure.html
 .. _download server: https://download.postgresql.org/pub/source/
 .. _uberspace_resources: https://manual.uberspace.de/basics-resources/#storage
+.. _PostGIS: https://postgis.net
+.. _doc-postgis-extn: http://postgis.net/docs/postgis_administration.html#create_spatial_db
+
 
 ----
 
-Tested with Uberspace 7.9.0.0 and PostgreSQL 12/13
+Tested with Uberspace 7.11.3, PostgreSQL 12/13 and PostGIS 3.1.2
 
 .. author_list::
