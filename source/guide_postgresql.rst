@@ -20,6 +20,8 @@ PostgreSQL_ is a free and object-relational database system. It is also compatib
 
 Some projects (e.g. Miniflux2 and Matrix) require PostgreSQL and many others support it as an alternative to MySQL.
 
+----
+
 License
 =======
 

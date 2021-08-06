@@ -16,6 +16,8 @@ GoAccess_ is an open source realtime web log analyzer and viewer. It use the sta
 
 This documentation describe the way to let create a static web page as overview, which will be updated every hour with a cron job. More details are on the `man page`_ and on GitHub_ available.
 
+----
+
 License
 =======
 

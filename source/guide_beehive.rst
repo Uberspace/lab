@@ -28,7 +28,7 @@ in our Wiki.
 Connecting those modules with each other lets you create immensely useful
 agents.
 
----
+----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 

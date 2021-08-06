@@ -18,6 +18,8 @@ TiddlyWiki
 
 TiddlyWiki_ is a personal wiki and a non-linear notebook for organising and sharing complex information.
 
+----
+
 License
 =======
 

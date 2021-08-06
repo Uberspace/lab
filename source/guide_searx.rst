@@ -21,12 +21,13 @@ Searx_ (Wikipedia_) is a free and open-source metasearch engine which aggregate 
 
 There are public instances_ of searx available, to get a personal practice before you install your own.
 
+----
+
 License
 =======
 
 Searx is released under the `GNU Affero General Public License`_.
 
-----
 
 .. note:: For this guide you should be familiar with the uberspace basic concepts of
 
