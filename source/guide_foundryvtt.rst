@@ -96,7 +96,7 @@ Configure web server
 
 .. note::
 
-    Foundry is running on port 3000.
+    Foundry is running on port 30000.
 
 .. include:: includes/web-backend.rst
 
