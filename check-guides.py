@@ -248,8 +248,8 @@ CHECKLIST = Checklist(
     ),
     Check(
         "error-structure-tested",
-        action="search",
-        argument="Tested on Uberspace",
+        action="regex",
+        argument=r"Tested (on|with) [^\n]*Uberspace",
         help="no `Tested on Uberspace` part",
     ),
     Check(
@@ -261,7 +261,7 @@ CHECKLIST = Checklist(
     Check(
         "warning-structure-break-outro",
         action="regex",
-        argument=r"\n\n----+\n\nTested on Uberspace",
+        argument=r"\n\n----+\n\nTested",
         help="no break `----` after outro section",
     ),
     Check(
