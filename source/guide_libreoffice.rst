@@ -378,8 +378,6 @@ If everything is fine, you can delete the old container:
 
 ----
 
-Tested with
-LibreOffice Online 2020-09-08, CODE 6.4.6.2, udocker 1.1.4, on Uberspace 7.9.0,
-connected to a Nextcloud 19.0.7 with the app Collabora Online 3.7.14.
+Tested with LibreOffice Online 2020-09-08, CODE 6.4.6.2, udocker 1.1.4, on Uberspace 7.9.0, connected to a Nextcloud 19.0.7 with the app Collabora Online 3.7.14.
 
 .. author_list::
