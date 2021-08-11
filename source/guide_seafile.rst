@@ -63,14 +63,16 @@ Installation
 Download
 --------
 
-Download the seafile server and extract it to a folder called seafile.
+Check the `Seafile website`_ for the latest ``Server for generic Linux`` release, copy the download link and replace the URL in the following command with the one you just copied.
+
+.. _Seafile website: https://www.seafile.com/en/download/
 
 ::
 
  [isabell@stardust ~]$ mkdir seafile
  [isabell@stardust ~]$ cd seafile/
- [isabell@stardust ~]$ curl https://download.seadrive.org/seafile-server_6.3.4_x86-64.tar.gz | tar xzf -
- [isabell@stardust ~]$
+ [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
+ [isabell@stardust seafile]$
 
 Install dependencies
 --------------------
@@ -79,8 +81,8 @@ Install the required python libraries.
 
 ::
 
- [isabell@stardust ~]$ pip install 'Pillow==3.*' --user
- [isabell@stardust ~]$
+ [isabell@stardust seafile]$ pip3 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust seafile]$
 
 Create databases
 ----------------
@@ -89,10 +91,10 @@ Create the needed MySQL databases as the installer file won't work on uberspace.
 
 ::
 
- [isabell@stardust ~]$ mysql -e "create database ${USER}_ccnet character set = 'utf8';"
- [isabell@stardust ~]$ mysql -e "create database ${USER}_seafile character set = 'utf8';"
- [isabell@stardust ~]$ mysql -e "create database ${USER}_seahub character set = 'utf8';"
- [isabell@stardust ~]$
+ [isabell@stardust seafile]$ mysql -e "create database ${USER}_ccnet character set = 'utf8';"
+ [isabell@stardust seafile]$ mysql -e "create database ${USER}_seafile character set = 'utf8';"
+ [isabell@stardust seafile]$ mysql -e "create database ${USER}_seahub character set = 'utf8';"
+ [isabell@stardust seafile]$
 
 Run installer
 -------------
@@ -101,9 +103,8 @@ Run the seafile installer script.
 
 ::
 
- [isabell@stardust ~]$ cd ~/seafile/seafile-server-*
- [isabell@stardust ~]$ ./setup-seafile-mysql.sh
- [isabell@stardust ~]$
+ [isabell@stardust seafile]$ ( cd ~/seafile/seafile-server-* && ./setup-seafile-mysql.sh )
+ [isabell@stardust seafile]$
 
 Important answers:
 
@@ -150,6 +151,13 @@ Enter your domain name in config; Edit ``~/seafile/conf/ccnet.conf``
 
   SERVICE_URL = https://isabell.uber.space/
 
+
+Change gunicorn config; Edit ``~/seafile/conf/gunicorn.conf.py`` and change the ``bind =`` line to:
+
+.. code-block:: console
+
+  bind = "0.0.0.0:8000"
+  
 Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the following lines:
 
 .. warning:: Replace ``isabell`` with your username!
@@ -198,10 +206,10 @@ Restart seafile and seahub
 
 ::
 
- [isabell@stardust ~]$ cd ~/seafile/seafile-server-*
- [isabell@stardust ~]$ ./seafile.sh restart
- [isabell@stardust ~]$ ./seahub.sh restart
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd ~/seafile/seafile-server-latest
+ [isabell@stardust seafile-server-latest]$ ./seafile.sh restart
+ [isabell@stardust seafile-server-latest]$ ./seahub.sh restart
+ [isabell@stardust seafile-server-latest]$
 
 With starting seahub for the first time, you have to create an admin account.
 
@@ -211,17 +219,18 @@ Now you can point your browser to your domain and login with your admin account.
 Updates
 =======
 
-Updating seafile is pretty easy. Just untar the new package into the "seafile" directory you created during the installation. Restart seafile and seahub after that.
+Updating seafile is pretty easy. Just untar the new package into the "seafile" directory you created during the installation, recreate the symlink to the latest version and restart seafile and seahub after that.
 
 ::
 
+ [isabell@stardust ~]$ pip3 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust ~]$ cd ~/seafile/
- [isabell@stardust ~]$ curl https://download.seadrive.org/seafile-server_6.3.4_x86-64.tar.gz | tar xzf -
- [isabell@stardust ~]$
-
+ [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
+ [isabell@stardust seafile]$ ln -sfn /home/seafile/seafile/seafile-server-8.0.7 /home/seafile/seafile/seafile-server-latest
+ [isabell@stardust seafile]$ (cd seafile-server-latest/ && ./seafile.sh restart && ./seahub.sh restart)
 
 ----
 
-Tested with seafile-server-6.3.4, Uberspace 7.1.13.0
+Tested with seafile-server-8.0.7, Uberspace 7.11.3.0
 
 .. author_list::
