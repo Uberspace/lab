@@ -25,7 +25,7 @@ Icecast2
 
 Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
 
-Find the Icecast2 docu here_
+Find the Icecast2 documentation here_
 
 ----
 
@@ -151,7 +151,7 @@ Change permissions and execute this script initially.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod +x ~/var/log/icecast/
+  [isabell@stardust ~]$ chmod +x ~/share/icecast/update-cert.sh
   [isabell@stardust ~]$ ~/share/icecast/update-cert.sh
   [isabell@stardust ~]$
 
@@ -236,7 +236,7 @@ Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to e
   [isabell@localhost ~]$ ffmpeg -i $yourinputfile -vn -acodec libvorbis -b:a 128k -f ogg -y /dev/stdout |
   oggfwd isabell.uber.space $yourlisteningport y0uRS3cR3t_1! /stream.ogg
 
-A more detailed setup for live streaming concerts with JACK audio server can be found at: https://wikis.ven.pm/streaming_setup
+A more detailed setup for live streaming concerts with JACK audio server can be found at: https://lar.ven.uber.space/streaming_setup
 
 Updates
 =======

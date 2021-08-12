@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -62,7 +62,7 @@ We create the database and install Flarum using composer.
 Configuration
 =============
 
-After the installation you need to open isabell.uber.space/public in your browser to finish your setup.
+After the installation you need to open `https://isabell.uber.space` in your browser to finish your setup.
 
 Fill out your forum title, admin user and edit the following database settings:
  * MySQL Database: ``isabell_flarum``

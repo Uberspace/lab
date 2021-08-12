@@ -1,5 +1,17 @@
 .. highlight:: console
 
+.. spelling::
+    Benutzer
+    Datenbank
+    Passwort
+    Datenbankzugang
+    speichern
+    und
+    weiter
+    starten
+    erfolgreich
+    zum
+
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
@@ -19,7 +31,7 @@ GSALES 2
 
 .. tag_list::
 
-GSALES 2 is a very flexible german billing application specialized for generating recurring invoices.
+GSALES 2 is a very flexible German billing application specialized for generating recurring invoices.
 Equipped with a well documented SOAP API you can easily attach tools and third party apps to GSALES 2 to fit your needs.
 
 

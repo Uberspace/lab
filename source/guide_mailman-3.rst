@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########
@@ -442,7 +442,7 @@ Using Mailman
 
 Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues.
 
-Now you can create a new list using the Postorious web UI.
+Now you can create a new list using the Postorius web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 

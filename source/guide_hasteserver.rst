@@ -81,7 +81,7 @@ Configuration
 Storage
 -------
 
-haste-server_ currently supports six storage solutions, of which File, Redis and Postgres are supported by Uberspace. The File backend is the most basic option and does not require additional sofware, Redis and Postgres do require additional steps. With Redis and Postgres you can set the ``expire`` option. This is off by default, but will constantly kick back expirations on each view or post.
+haste-server_ currently supports six storage solutions, of which File, Redis and Postgres are supported by Uberspace. The File backend is the most basic option and does not require additional software, Redis and Postgres do require additional steps. With Redis and Postgres you can set the ``expire`` option. This is off by default, but will constantly kick back expirations on each view or post.
 
 .. note::
 
@@ -244,12 +244,10 @@ It might take a few minutes before Haste server comes back online because ``npm`
 
 ----
 
-Tested with haste-server and
+Tested on Uberspace 7.5.1. with haste-server and
 
 * File storage
 * :lab:`Redis 5.0.8 <guide_redis>`
 * :lab:`PostgreSQL 9.6.17 <guide_postgres>`
-
-on Uberspace 7.5.1.
 
 .. author_list::

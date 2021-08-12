@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -17,7 +17,7 @@ osTicket
 
 .. tag_list::
 
-osTicket_ is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multi-user web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
+osTicket_ is a widely-used open source support ticket system. It seamlessly integrates inquiries created via email, phone and web-based forms into a simple easy-to-use multiuser web interface. Manage, organize and archive all your support requests and responses in one place while providing your customers with accountability and responsiveness they deserve.
 
 ----
 

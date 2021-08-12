@@ -172,4 +172,3 @@ To update memcached, repeat the Installation steps followed by a restart using `
 Tested with memcached 1.5.20, Uberspace 7.3.10.0
 
 .. author_list::
-

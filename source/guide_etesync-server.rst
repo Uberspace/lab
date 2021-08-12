@@ -319,5 +319,3 @@ Set up a cron job by using the ``crontab -e`` command and adding the line:
 Tested with EteSync server 0.3.0 and Uberspace 7.7.1.2
 
 .. author_list::
-
-

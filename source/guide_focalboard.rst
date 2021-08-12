@@ -1,6 +1,9 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. spelling::
+    cr
+
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: web
 .. tag:: project-management
@@ -16,7 +19,7 @@ Focalboard
 
 .. tag_list::
 
-Focalboard_ is an open source, self-hosted alternative to Trello, Notion, and Asana. 
+Focalboard_ is an open source, self-hosted alternative to Trello, Notion, and Asana.
 
 ----
 
@@ -55,7 +58,7 @@ You need to modify ``~/focalboard-app/config.json``:
  * Change ``"localOnly": true,`` to ``"localOnly": false,``
  * Add ``"session_expire_time": 2592000,``
  * Add ``"session_refresh_time": 18000,``
- 
+
 If PostgreSQL is used, the database configuration also needs to be adjusted. Edit the database config in the file ``~/focalboard-app/config.json``. These two values must be changed:
 .. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
 
@@ -63,7 +66,7 @@ If PostgreSQL is used, the database configuration also needs to be adjusted. Edi
 
  "dbtype": "postgres",
  "dbconfig": "postgres://<db_user>:<db_password>@localhost/<db_name>?sslmode=disable&connect_timeout=10",
- 
+
 For example:
 .. code-block:: json
 

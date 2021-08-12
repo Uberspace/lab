@@ -82,7 +82,7 @@ Domains
 Your ejabberd domain ``isabell.example`` needs to be setup. We will additionally
 use the following subdomains:
 
-  * ``conference.isabell.example``: Multi-user chat rooms
+  * ``conference.isabell.example``: Multiuser chat rooms
   * ``proxy.isabell.example``: File transfer proxy
   * ``pubsub.isabell.example``: PubSub
   * ``xmpp.isabell.example``: Web-based features like file uploads and web sockets

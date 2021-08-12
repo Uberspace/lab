@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    Offen
+    offen
+
 .. author:: Frederik Ring <hioffen@posteo.de>
 
 .. tag:: web

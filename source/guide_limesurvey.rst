@@ -159,4 +159,3 @@ When a new version is released, copy the download link and download it as above,
 Tested with LimeSurvey 3.14.11+180926, Uberspace 7.1.13.0
 
 .. author_list::
-
