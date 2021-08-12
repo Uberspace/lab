@@ -18,7 +18,7 @@ notify_push
 
 .. tag_list::
 
-notify_push is a backend service to inform Nextcloud clients on file changes. 
+notify_push is a backend service to inform Nextcloud clients on file changes.
 The default behavior of the client is to periodically, at short intervals, request changes from the server.
 This results in a large proportion of the server load.
 With notify_push the requests can be greatly reduced.
@@ -73,7 +73,7 @@ Create the configuration ``${HOME}/etc/services.d/notify_push.ini``:
 .. Note:: As argument we need to set the path to our ``config.php`` from our Nextcloud. Adjust the path to your location.
 
 .. code-block:: ini
-    
+
     [program:notify_push]
     command=notify_push %(ENV_HOME)s/html/config/config.php
     enviroment=PORT=7867
@@ -116,7 +116,7 @@ Add Uberspace user specific VETH IP to trusted proxies
 ------------------------------------------------------
 We need to get the ip address:
 
-.. code-block:: console 
+.. code-block:: console
     :emphasize-lines: 10
 
     [isabell@stardust ~]$ ip addr
@@ -124,19 +124,19 @@ We need to get the ip address:
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
         valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
+    inet6 ::1/128 scope host
         valid_lft forever preferred_lft forever
     71: veth_isabell@if72: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
     link/ether 42:2e:5c:a9:10:a6 brd ff:ff:ff:ff:ff:ff link-netnsid 0
     inet 100.64.35.2/30 scope global veth_push
        valid_lft forever preferred_lft forever
-    inet6 fd75:6272:7370:23::2/64 scope global 
+    inet6 fd75:6272:7370:23::2/64 scope global
        valid_lft forever preferred_lft forever
-    inet6 fe80::402e:5cff:fea9:10a6/64 scope link 
+    inet6 fe80::402e:5cff:fea9:10a6/64 scope link
        valid_lft forever preferred_lft forever
-    [isabell@stardust ~]$ 
+    [isabell@stardust ~]$
 
-From the command above we get the ip ``100.64.35.2`` 
+From the command above we get the ip ``100.64.35.2``
 
 Now we add this ip to the trusted proxies list:
 
@@ -156,7 +156,7 @@ To configure the notify_push app with the notify_push backend, run following com
 
 .. code-block:: console
 
-    [isabell@stardust ~]$  php occ notify_push:setup https://isabell.uber.space/push           
+    [isabell@stardust ~]$  php occ notify_push:setup https://isabell.uber.space/push
     ✓ redis is configured
     ✓ push server is receiving redis messages
     ✓ push server can load mount info from database
@@ -164,10 +164,10 @@ To configure the notify_push app with the notify_push backend, run following com
     ✓ push server is a trusted proxy
     ✓ push server is running the same version as the app
     configuration saved
-    [isabell@stardust ~]$ 
+    [isabell@stardust ~]$
 
-Updating
---------
+Updates
+=======
 
 The app and the backend have to be on the same version.
 After updating the app just stop the service an replace the binary with the newer version.
@@ -176,6 +176,6 @@ After updating the app just stop the service an replace the binary with the newe
 
 ----
 
-Tested with Nextcloud 22.1.0, Uberspace 7.11.3.0
+Tested with Nextcloud 22.1.0,notify_push 0.2.2, Uberspace 7.11.3.0
 
 .. author_list::
