@@ -57,7 +57,7 @@ Update ``npm`` to the latest stable version. This includes ``npx`` (to execute n
 
 ::
 
- [isabell@stardust ~]$ /usr/bin/npm install --global npm@latest
+ [isabell@stardust ~]$ npm install --global npm@latest
  [isabell@stardust ~]$
 
 Create directory ``directus`` and sub directory ``logs``.
