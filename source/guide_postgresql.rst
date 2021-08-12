@@ -203,10 +203,10 @@ Consider using only unix sockets if possible.
 
 .. warning:: Please replace ``<username>`` with your username!
 
-.. warning:: If you set listen_addresses you might open your postgres installation to the world!
+.. warning:: If you set ``listen_addresses`` you might open your postgres installation to the world!
 
 .. code-block:: postgres
- :emphasize-lines: 14
+ :emphasize-lines: 7,11,14
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
@@ -231,10 +231,12 @@ Consider using only unix sockets if possible.
  #bonjour_name = ''                     # defaults to the computer name
                                         # (change requires restart)
 
-.. code-block:: postgres
- :emphasize-lines: 14
+Later you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
 
 Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.conf`` to enable logging. Consider setting the ``log_directory`` to your preferred log file output location (here we use ``/home/<username>/logs`` where ``username`` is the name of your Uberspace).
+
+.. code-block:: postgres
+ :emphasize-lines: 19
 
  #------------------------------------------------------------------------------
  # REPORTING AND LOGGING
@@ -254,7 +256,7 @@ Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.c
                                          # (change requires restart)
 
  # These are only used if logging_collector is on:
- log_directory = '/home/<username>/logs'                    # directory where log files are written,
+ log_directory = '/home/<username>/logs' # directory where log files are written,
                                          # can be absolute or relative to PGDATA
  log_filename = 'postgresql-%a.log'      # log file name pattern,
                                          # can include strftime() escapes
@@ -273,13 +275,6 @@ Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.c
  log_rotation_size = 0                   # Automatic rotation of logfiles will
                                          # happen after that much log output.
                                          # 0 disables.
-
-
-
-Later you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
-
-
-
 
 Setup Daemon
 ------------
@@ -315,9 +310,14 @@ Check out the :manual:`supervisord manual <daemons-supervisord>` for further det
 Database and User Management
 ============================
 
-It is highly recommended to use a separate user together with a strong password for every single usage (project). Please don't use the database cluster user, it is like a root user.
+The default setup on Uberspace is that the Uberspace account name is the database cluster user/PostgreSQL superuser
+with root-type priveliges to adminster the database (create/delete new databases and users, install extensions,
+run maintenance).
 
-The following example considers a database and new user for Synapse, the Matrix (https://matrix.org) reference server. You can use this example for other projects as well.
+It is highly recommended to use a separate user(s) together with a strong passwords for every single usage (project).
+
+The following example considers a database and new user for Synapse, the Matrix (https://matrix.org) reference server.
+You can use this template setup for other projects as well.
 
 .. note:: Please start your PostgreSQL daemon before you maintain anything.
 
@@ -339,6 +339,7 @@ To create a new database user, consider the following option:
  Enter it again:
  [isabell@stardust ~]$
 
+For more options when creating new PostgreSQL users, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createuser.html>`_.
 
 Create Database
 ---------------
@@ -348,14 +349,15 @@ Create Database
  * ``--encoding``: Set of UTF8 encoding
  * ``--owner``: The owner of the new database. In this example the newly created user.
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
- * ``database name``: And as last option the name of the database. In this example 'synapse'.
+ * ``database name``: And as last option the name of the database. In this example ``synapse``.
+For more options when creating new PostgreSQL databases, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createdb.html>`_.
 
 .. warning:: Please replace ``<user>`` with the user name, created earlier, and <database name> with the name of the database you want to create!
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<user> --template=template0 synapse
+ [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<user> --template=template0 <database name>
  [isabell@stardust ~]$
 
 PostgreSQL Extensions
@@ -365,15 +367,33 @@ PostgreSQL `extensions <https://wiki.postgresql.org/wiki/Extensions>`_ allow to 
 
 Available extensions for PostgreSQL on U7 can be found in the ``/usr/pgsql-<MajorVersion>/share/extension`` directory, where ``<MajorVersion>`` refers to the PostgreSQL `Version`_ of your installation.
 
-.. Note:: In order to create extensions, the PostgreSQL user will need to have administrator rights. These are automatically assigned to the database owner using the ``--owner`` flag, as shown in the `Create database` section.
+.. Note:: In order to create extensions, the PostgreSQL user will need to have **"superuser"** rights. These are automatically granted to the database cluster user (your Uberspace account name) and to any database user where the ``--superuser`` flag was used with the ``createuser`` command (see Sections `Create Database` and `Create User`).
 
+The ``select * from pg_roles;`` SQL command allows you to check which roles and privileges exist for the current database (``rolsuper`` needs to be ``t`` (true)):
+
+.. warning:: Please replace <database name> with the name of the database you would like to install extensions in! Commonly ``psql <database name>`` is automatically interpreted by PostgreSQL as ``psql <database name> --username <login account name>``, so here, the "login account name" is automagically taken as your UberSpace name/database cluster user.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ psql <database name>
+ databaseName=# select * from pg_roles;
+
+ test=# select * from pg_roles;
+           rolname          | rolsuper | rolinherit | rolcreaterole | rolcreatedb | rolcanlogin | rolreplication | rolconnlimit | rolpassword | rolvaliduntil | rolbypassrls | rolconfig |  oid
+ ---------------------------+----------+------------+---------------+-------------+-------------+----------------+--------------+-------------+---------------+--------------+-----------+-------
+ ...
+  <db owner>                | f        | t          | f             | f           | t           | f              |           -1 | ********    |               | f            |           | 16386
+  <uberspace account name>  | t        | t          | t             | t           | t           | t              |           -1 | ********    |               | t            |           |    10
+ ...
 
 PostGIS: Spatially enabling the database using PostGIS
 ----------------------------------------------------------
 
 PostGIS_ adds support for geographic objects to the database, allowing to run spatial
 queries. The PostgreSQL installation on Uberspace comes with pre-compiled versions
-of the PostGIS extension saving you from having to compile PostGIS and its FOSS GIS software stack dependencies (such as `GDAL <https://gdal.org>`_, `PROJ <http://proj.org>`_, `GEOS <https://trac.osgeo.org/geos/>`_ and `SFCGAL <http://www.sfcgal.org/>`_) from source.
+of the PostGIS extension saving you from having to compile PostGIS and its FOSS GIS
+software stack dependencies (such as `GDAL <https://gdal.org>`_, `PROJ <http://proj.org>`_,
+`GEOS <https://trac.osgeo.org/geos/>`_ and `SFCGAL <http://www.sfcgal.org/>`_) from source.
 
 To check whether PostGIS_ exists for the PostgreSQL version do a quick ``ls`` of the ``share``
 directory. In this guide we use PostGIS_ version 3.1 with a PostgreSQL major version 12:
@@ -383,14 +403,21 @@ directory. In this guide we use PostGIS_ version 3.1 with a PostgreSQL major ver
  [isabell@stardust ~]$ ls -rtl /usr/pgsql-12/share/extension/postgis--3*.sql
  [isabell@stardust ~]$ -rw-r--r--. 1 root root 7.9M May 26 15:59 /usr/pgsql-12/share/extension/postgis--3.1.2.sql
 
+Once you have convinced yourself that the right PostGIS_ extension is available, you need
+to enable the extensions. This is done using the interactive ``psql`` shell.
+Make sure you do this as the database cluster user or a user with "superuser" privileges.
+Enter your newly  created database (Section `Create Database`_), then issue the below SQL statements to spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using  the PostGIS extension.
 
-Once you have convinced yourself that the right PostGIS_ extension is available, simply enter the database which you have just created (`Create Database`_) as administrator and spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using the PostGIS extension:
+Note that PostGIS requires the `PL/pgSQL https://www.postgresql.org/docs/12/plpgsql.html`_
+extension as prerequisite. It should be readily installed when the database is created,
+however, the ``CREATE EXTENSION IF NOT EXSITS plpgsql`` statement in the code block below
+provides an additional safety net prior to enabling the PostGIS_ extension.
 
-.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
+.. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ psql <database name> -U<user>
+ [isabell@stardust ~]$ psql <database name>
  databaseName=# CREATE EXTENSION IF NOT EXISTS plpgsql;
  databaseName=# CREATE EXTENSION postgis;
  databaseName=# CREATE EXTENSION postgis_raster; -- OPTIONAL
@@ -400,7 +427,7 @@ The ``raster`` and ``topology`` functionality of PostGIS_ are optional. Test whe
 
 .. code-block:: console
 
- [isabell@stardust ~]$ psql <database name> -U<user>
+ [isabell@stardust ~]$ psql <database name>
  databaseName=# \dx
                                      List of installed extensions
         Name       | Version |   Schema   |                        Description
@@ -419,33 +446,28 @@ UUID: Generating UUIDs
 
 PostgreSQL provides storage and comparison functions for the standardised `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
 
-.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
+.. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ psql <database name> -U<user>
+ [isabell@stardust ~]$ psql <database name>
  databaseName=# CREATE EXTENSION IF NOT EXISTS uuid-ossp;
 
 After creating the extension, check whether PostgreSQL can find it using the ``\dx`` command in the interactive ``psql`` shell:
 
-.. warning:: Please replace ``<user>`` with the user name, created earlier, and ``<database name>`` with the name of the database you want to create!
-
 .. code-block:: console
 
- [isabell@stardust ~]$ psql <database name> -U<user>
+ [isabell@stardust ~]$ psql <database name>
  databaseName=# \dx
                                      List of installed extensions
         Name       | Version |   Schema   |                        Description
  ------------------+---------+------------+------------------------------------------------------------
   uuid-ossp        | 1.1     | public     | generate universally unique identifiers (UUIDs)
 
-
-
 Best Practices
 ==============
 
 To configure your project with the PostgreSQL details, you should have the database name, user and password, localhost as server address and your port number.
-
 
 Updates
 =======
@@ -709,6 +731,21 @@ The backup is not more necessary and can be removed:
 
 ----
 
-Tested with Uberspace 7.11.3, PostgreSQL 12/13 and PostGIS 3.1.2
+Tested on Uberspace 7.11.3, with PostgreSQL 12/13 and PostGIS 3.1.2
+
+.. list-table:: Tested with:
+   :widths: 50 25
+   :header-rows: 1
+
+   * - Software/Platform
+     - Version #
+   * - UberSpace
+     - 7.11.3
+   * - PostgreSQL
+     - 12/13
+   * - PostGIS
+     - 3.1.2
+
+
 
 .. author_list::
