@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    serverVersion
+    sulu
+
 .. author:: Clemens Krack <info@clemenskrack.com>
 
 .. tag:: lang-php
@@ -17,7 +21,7 @@ Sulu CMS
 
 .. tag_list::
 
-`Sulu CMS`_ is a content management platform based on Symfony made for businesses. It's a flexible CMS to create and manage enterprise multi-sites and a reliable development environment for high-performance apps. With powerful features for developers and a simple UI for editors it's the ideal engine for state-of-the-art business websites and web-based software.
+`Sulu CMS`_ is a content management platform based on Symfony made for businesses. It's a flexible CMS to create and manage enterprise multiple sites and a reliable development environment for high-performance apps. With powerful features for developers and a simple UI for editors it's the ideal engine for state-of-the-art business websites and web-based software.
 
 ----
 

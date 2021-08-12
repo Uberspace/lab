@@ -68,6 +68,7 @@ Before you start the Nextcloud installation you should adapt some PHP settings:
  #. enable the `PHP OPcache <https://www.php.net/manual/en/book.opcache.php>`_
  #. increase the PHP memory limit
  #. disable PHP output buffering
+ #. restart PHP
 
 Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
 
@@ -103,6 +104,7 @@ Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_man
 .. code-block:: ini
 
  memory_limit=512M
+ 
 
 Output Buffering
 ^^^^^^^^^^^^^^^^
@@ -320,6 +322,8 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
 
   [isabell@stardust ~]$ cd html
   [isabell@stardust html]$ php occ db:add-missing-indices --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-columns --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-primary-keys --no-interaction
   [isabell@stardust html]$ php occ db:convert-filecache-bigint --no-interaction
   [isabell@stardust html]$
 
@@ -345,7 +349,7 @@ Updates
 
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
-Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimisation.
+Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimization.
 The release cycle of Nextcloud is very short. A prepared script with some common checks would ensure you don't need to run them.
 
 .. warning:: Before updating to the next major release, such as version 19.x.x to 20.x.x, make sure your apps are compatible or there exists updates. Otherwise the incompatible apps will get disabled. If the web based admin overview displays an available update it also checks if there are any incompatible apps. You can also check for compatible versions in the `Nextcloud App Store`_.
@@ -366,9 +370,7 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ maintenance:mode --on
 
  ## database optimisations
- ## The following command works from Nextcloud 20.
- ## remove '#' so it is working
- #php ~/html/occ db:add-missing-primary-keys --no-interaction
+ php ~/html/occ db:add-missing-primary-keys --no-interaction
  php ~/html/occ db:add-missing-columns --no-interaction
  php ~/html/occ db:add-missing-indices --no-interaction
  php ~/html/occ db:convert-filecache-bigint --no-interaction
@@ -427,6 +429,15 @@ If files are missing like if you move files or restore backups on the machine an
  [isabell@stardust html]$ php occ files:scan --all
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
+ 
+memory limit after migration from U6
+------------------------------------
+
+If you still see an error in the web UI, edit ``~/etc/php.d/php.ini`` with the following content:
+
+.. code-block:: ini
+
+ memory_limit=512M
 
 storage capacity problems
 -------------------------

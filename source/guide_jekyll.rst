@@ -68,7 +68,7 @@ You need to install a gem called Jekyll:
  Successfully installed jekyll-4.2.0
  27 gems installed
  [isabell@stardust ~]$
- 
+
 
 You can ignore the warning regarding your PATH.
 
@@ -85,7 +85,7 @@ Just let Jekyll create a new folder containing your website by typing:
  New jekyll site installed in /home/isabell/website.
  [isabell@stardust ~]$
 
-After Jekyll finished, navigate into your website folder. 
+After Jekyll finished, navigate into your website folder.
 
 Set the local path for bundler, then install all needed gems for your website:
 ::

@@ -32,7 +32,7 @@ Data is encrypted and decrypted in the browser using 256bit AES in Galois Counte
 License
 =======
 
-PrivateBin consists of PHP and JS code which was originally written by Sébastien Sauvage in 2012 and falls unter the Zlib/libpng license.
+PrivateBin consists of PHP and JS code which was originally written by Sébastien Sauvage in 2012 and falls under the Zlib/libpng license.
 All relevant legal information can be found in the Github_ repository of the project.
 
 
@@ -161,7 +161,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Updating ist quite easy. Just repeat all steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
+Updating is quite easy. Just repeat all steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
 Your configuration file won't get overwritten.
 
 Check the Release-Notes if the configuration changed between ``cfg/conf.sample.php`` and your ``conf.php``.

@@ -1,6 +1,7 @@
+.. highlight:: console
+
 .. author:: 927589452
 .. author:: luto <http://luto.at>
-.. highlight:: console
 
 .. tag:: lang-python
 .. tag:: chat
@@ -105,6 +106,12 @@ Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name 
     --generate-config \
     --report-stats=[yes|no]
   [isabell@stardust ~]$
+
+Replace the ``public_baseurl`` in the config file ``~/synapse/homeserver.yaml`` with the url of your Synapse_.
+
+.. code-block:: yaml
+
+  public_baseurl: https://my.domain.name/
 
 Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the ``listeners:`` section and modify the entry with ``port: 8008``:
 
@@ -267,7 +274,7 @@ Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to
 
   [isabell@stardust ~]$ pip3.6 install --user -U matrix-synapse
   [isabell@stardust ~]$
-  
+
 Automate the update process with a bash script called `~/bin/synapse-update` containing:
 
 .. code-block:: bash
@@ -347,7 +354,7 @@ The Matrix_ project provides a federation checker at MatrixFederationChecker_ .
 
 
 
-Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
+Tested on Uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
 .. _MatrixFederation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
 .. _MatrixRSS: https://matrix.org/blog/feed

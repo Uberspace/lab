@@ -1,6 +1,9 @@
-.. author:: cblte <https://cbrueggenolte.de>
-
 .. highlight:: console
+
+.. spelling::
+    IPofYourServer
+
+.. author:: cblte <https://cbrueggenolte.de>
 
 .. tag:: voip
 .. tag:: ports

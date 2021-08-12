@@ -138,7 +138,7 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 Test installation
 -----------------
 
-Perform a CURL request to djangos port to see if your installation succeeded:
+Perform a CURL request to Django's port to see if your installation succeeded:
 
 ::
 

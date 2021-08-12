@@ -1,5 +1,8 @@
 .. author:: Daniel Kratz <https://danielkratz.com>
 
+.. spelling::
+    Allgeier
+
 .. tag:: lang-php
 .. tag:: web
 .. tag:: cms

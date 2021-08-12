@@ -304,18 +304,19 @@ Acknowledgements
 ================
 This guide is based on the official `vaultwarden documentation`_ as well as the `bitwarden_rs guide from Tom Schneider <https://vigonotion.com/blog/install-bitwarden-rs-on-uberspace/>`_.
 
+.. _async: https://github.com/dani-garcia/vaultwarden/tree/async
 .. _At the moment: https://github.com/dani-garcia/bitwarden_rs/pull/728
-.. _this page: https://github.com/dani-garcia/bw_web_builds/releases
-.. _rust toolchain: https://rustup.rs/
-.. _isn't supported: https://wiki.uberspace.de/faq#docker
 .. _bitwarden server repository: https://github.com/bitwarden/server
+.. _Bitwarden: https://bitwarden.com/
+.. _feed: https://github.com/dani-garcia/vaultwarden/releases
+.. _Github: https://github.com/dani-garcia/vaultwarden
+.. _GNU General Public License: https://github.com/dani-garcia/vaultwarden/blob/master/LICENSE.txt
+.. _isn't supported: https://wiki.uberspace.de/faq#docker
+.. _rust toolchain: https://rustup.rs/
+.. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Building-binary
 .. _Vaultwarden: https://github.com/dani-garcia/vaultwarden
-.. _Bitwarden: https://bitwarden.com/
-.. _Github: https://github.com/dani-garcia/vaultwarden
-.. _feed: https://github.com/dani-garcia/vaultwarden/releases
 .. _web-vault-feed: https://github.com/dani-garcia/vaultwarden/releases/latest
-.. _GNU General Public License: https://github.com/dani-garcia/vaultwarden/blob/master/LICENSE.txt
 
 ----
 

@@ -12,7 +12,7 @@
       :align: center
 
 #####
-searX
+Searx
 #####
 
 .. tag_list::
@@ -21,12 +21,13 @@ Searx_ (Wikipedia_) is a free and open-source metasearch engine which aggregate 
 
 There are public instances_ of searx available, to get a personal practice before you install your own.
 
+----
+
 License
 =======
 
 Searx is released under the `GNU Affero General Public License`_.
 
-----
 
 .. note:: For this guide you should be familiar with the uberspace basic concepts of
 
@@ -138,7 +139,7 @@ Web Backend Setup
 
 .. note::
 
-    SearX is running on port 8888.
+    Searx is running on port 8888.
 
 .. include:: includes/web-backend.rst
 
@@ -155,7 +156,7 @@ Any configuration changes will be considered with a restart of the daemon:
 
 Tuning
 ======
-The basic configuration is quiet well. Nearly all aspects to change are prossible from the searx front-end. These changes will be saved in a cookie, a temporary solution.
+The basic configuration is quiet well. Nearly all aspects to change are possible from the searx front-end. These changes will be saved in a cookie, a temporary solution.
 
 If you want to reduce the search services for example by default, than you have to change the standard configuration.
 
