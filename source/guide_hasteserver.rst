@@ -244,12 +244,10 @@ It might take a few minutes before Haste server comes back online because ``npm`
 
 ----
 
-Tested with haste-server and
+Tested on Uberspace 7.5.1. with haste-server and
 
 * File storage
 * :lab:`Redis 5.0.8 <guide_redis>`
 * :lab:`PostgreSQL 9.6.17 <guide_postgres>`
-
-on Uberspace 7.5.1.
 
 .. author_list::

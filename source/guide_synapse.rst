@@ -354,7 +354,7 @@ The Matrix_ project provides a federation checker at MatrixFederationChecker_ .
 
 
 
-Tested on uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
+Tested on Uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
 
 .. _MatrixFederation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
 .. _MatrixRSS: https://matrix.org/blog/feed
