@@ -2,6 +2,7 @@
 
 .. tag:: lang-rust
 .. tag:: chat
+.. tag:: matrix
 
 .. highlight:: console
 
@@ -65,7 +66,7 @@ Conduit manages it's own database files. Create a directory for it:
 ::
 
   [isabell@stardust ~]$ mkdir -p ~/conduit_data/
-
+  [isabell@stardust ~]$ 
 
 Create ``~/conduit.toml`` with the following content:
 
@@ -84,7 +85,7 @@ Create ``~/conduit.toml`` with the following content:
  # and https://matrix.org/docs/spec/server_server/r0.1.4#get-well-known-matrix-server
  # for more information
 
- #server_name = "<username>.uber.space"
+ server_name = "<username>.uber.space"
 
  # This is the only directory where Conduit will save its data
  database_path = "/home/<username>/conduit_data/conduit.db"
@@ -124,14 +125,11 @@ Setup daemon
 
 Create ``~/etc/services.d/conduit.ini`` with the following content:
 
-.. warning:: Replace all place holders such as ``<username>`` with your actual values!
-
 .. code-block:: ini
- :emphasize-lines: 2,3
 
  [program:conduit]
- command=/home/<username>/bin/conduit
- environment=CONDUIT_CONFIG="/home/<username>/conduit.toml"
+ command=%(ENV_HOME)s/bin/conduit
+ environment=CONDUIT_CONFIG="%(ENV_HOME)s/conduit.toml"
  process_name=%(program_name)s
  autostart=true
  startsecs=5
@@ -154,7 +152,14 @@ Configure web server
   This is mostly practical for bigger Matrix servers with many users, where you don't want to run the website (uberspace.de) on the same hardware as the matrix server.
   In this guide however, we will just host the Matrix server and your potential website side by side on the same uberspace account.
 
-Create ``~/html/.well-known/matrix/server`` with the following content.
+Create the directory ``~/html/.well-known/matrix/``:
+
+::
+
+  [isabell@stardust ~]$ mkdir -p ~/conduit_data/
+  [isabell@stardust ~]$ 
+
+Then create ``~/html/.well-known/matrix/server`` with the following content.
 Remember to replace <username> with your actual user name:
 
 .. code-block:: json
@@ -191,7 +196,7 @@ Usage
 
 Congratulations, you now got your own little Matrix server up and running.
 
-To test if everything is working, you can open https://app.element.io and register an account with it.
+To test if everything is working, you can open https://app.element.io - a matrix web client - and register an account with it.
 If everything worked, you should see the "Admin Room" in your chat list.
 
 .. warning:: Remember to set ``allow_registration = false`` in the Conduit config and restart it, if you don't want anyone else to use your server.
