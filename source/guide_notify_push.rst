@@ -80,17 +80,7 @@ Create the configuration ``${HOME}/etc/services.d/notify_push.ini``:
     autostart=yes
     autorestart=yes
 
-After creating the configuration, tell supervisord to refresh its configuration and start the service:
-
-.. code-block:: console
-
-    [isabell@stardust ~]$ supervisorctl reread
-    SERVICE: available
-    [isabell@stardust ~]$ supervisorctl update
-    SERVICE: added process group
-    [isabell@stardust ~]$ supervisorctl status
-    notify_push                      RUNNING   pid 28088, uptime 0:00:07
-    [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 
 Configure the web backend
