@@ -117,23 +117,10 @@ Add Uberspace user specific VETH IP to trusted proxies
 We need to get the ip address:
 
 .. code-block:: console
-    :emphasize-lines: 10
+    :emphasize-lines: 2
 
-    [isabell@stardust ~]$ ip addr
-    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host
-        valid_lft forever preferred_lft forever
-    71: veth_isabell@if72: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 42:2e:5c:a9:10:a6 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 100.64.35.2/30 scope global veth_push
-       valid_lft forever preferred_lft forever
-    inet6 fd75:6272:7370:23::2/64 scope global
-       valid_lft forever preferred_lft forever
-    inet6 fe80::402e:5cff:fea9:10a6/64 scope link
-       valid_lft forever preferred_lft forever
+    [isabell@stardust ~]$ ip route
+    100.64.35.0/30 dev veth_isabell proto kernel scope link src 100.64.35.2
     [isabell@stardust ~]$
 
 From the command above we get the ip ``100.64.35.2``
