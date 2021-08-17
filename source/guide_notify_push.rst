@@ -76,7 +76,6 @@ Create the configuration ``${HOME}/etc/services.d/notify_push.ini``:
 
     [program:notify_push]
     command=notify_push %(ENV_HOME)s/html/config/config.php
-    enviroment=PORT=7867
     autostart=yes
     autorestart=yes
 
