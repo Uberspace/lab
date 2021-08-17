@@ -103,8 +103,8 @@ Run the seafile installer script.
 
 ::
 
- [isabell@stardust seafile]$ ( cd ~/seafile/seafile-server-* && ./setup-seafile-mysql.sh )
- [isabell@stardust seafile]$
+ [isabell@stardust seafile]$ cd ~/seafile/seafile-server-* 
+ [isabell@stardust seafile-server-8.0.7]$  ./setup-seafile-mysql.sh
 
 Important answers:
 
@@ -219,7 +219,7 @@ Now you can point your browser to your domain and login with your admin account.
 Updates
 =======
 
-Updating seafile is pretty easy. Just untar the new package into the "seafile" directory you created during the installation, recreate the symlink to the latest version and restart seafile and seahub after that.
+Updating seafile is pretty easy. First update the pip3 packagesx, then download the new version and untar the new package into the "seafile" directory you created during the installation, recreate the symlink to the latest version and restart seafile and seahub after that.
 
 ::
 
@@ -227,7 +227,9 @@ Updating seafile is pretty easy. Just untar the new package into the "seafile" d
  [isabell@stardust ~]$ cd ~/seafile/
  [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
  [isabell@stardust seafile]$ ln -sfn /home/seafile/seafile/seafile-server-8.0.7 /home/seafile/seafile/seafile-server-latest
- [isabell@stardust seafile]$ (cd seafile-server-latest/ && ./seafile.sh restart && ./seahub.sh restart)
+ [isabell@stardust seafile]$ cd seafile-server-latest
+ [isabell@stardust seafile-server-latest]$ ./seafile.sh restart 
+ [isabell@stardust seafile-server-latest]$ ./seahub.sh restart
 
 ----
 
