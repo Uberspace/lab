@@ -147,7 +147,12 @@ Updates
 =======
 
 The app and the backend have to be on the same version.
-After updating the app just stop the service an replace the binary with the newer version.
+After updating the app just restart the service so it runs the latest binary file.
+
+If you are doing your updates with the script you may add the following line or you just run it via console.
+.. code-block:: console
+
+ supervisorctl restart notify_push
 
 .. _`Client Push`: https://apps.nextcloud.com/apps/notify_push
 
