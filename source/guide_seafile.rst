@@ -219,7 +219,7 @@ Now you can point your browser to your domain and login with your admin account.
 Updates
 =======
 
-Updating seafile is pretty easy. First update the pip3 packagesx, then download the new version and untar the new package into the "seafile" directory you created during the installation, recreate the symlink to the latest version and restart seafile and seahub after that.
+Updating seafile is pretty easy. First update the pip3 packages, then download the new version and untar the new package into the "seafile" directory you created during the installation, recreate the symlink to the latest version and restart seafile and seahub after that.
 
 ::
 
