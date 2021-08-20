@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: franok <franok.de>
+.. author:: franok <https://franok.de>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: lang-nodejs
