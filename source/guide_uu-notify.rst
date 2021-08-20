@@ -28,7 +28,7 @@ It requires a `gotify server <https://gotify.net/>`_, which will send notificati
   * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
   * The concepts mentioned in the :lab:`Gotify Guide <guide_gotify>`
 
-  Furthermore, you need a GitHub account to create a `personal access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_. The token is only used for notifictions and you can set the scope accordingly.
+  Furthermore, you need a GitHub account to create a `personal access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_. The token is only used for fetching the latest release information from GitHub. No scopes required.
 
 .. note:: Wherever mentioned, replace ``v0.0.0`` with the latest_ version tag.
 
@@ -134,7 +134,7 @@ Add your gotify server url and the app token from the previous step. Example:
   | Bad example: ``https://isabell.uber.space/gotify/``
 
 
-Now add your `personal GitHub access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_. Example:
+Now add your `personal GitHub access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_. No scopes are required. Example:
 
 .. code-block:: json
 
