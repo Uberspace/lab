@@ -44,7 +44,7 @@ Create application directory and files
 
   [isabell@stardust ~]$ mkdir basic_flask_template
   [isabell@stardust ~]$ mkdir basic_flask_template/templates
-  [isabell@stardust ~]$ mkdir basic_flask_template/style
+  [isabell@stardust ~]$ mkdir basic_flask_template/static
   [isabell@stardust ~]$
 
 Create ``~/basic_flask_template/app.py`` with the following content:
