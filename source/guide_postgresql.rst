@@ -6,7 +6,6 @@
 .. tag:: lang-c
 .. tag:: database
 
-
 .. sidebar:: Logo
 
   .. image:: _static/images/postgresql.png
@@ -34,26 +33,28 @@ PostgreSQL is released under the `PostgreSQL License`_, a liberal Open Source li
 Version
 =======
 
-At first get an overview which versions are available and will be supported for your project:
+At first get an overview which versions are available and will be supported for your project::
 
-::
+    [isabell@stardust ~]$ uberspace tools version list postgresql
+    - 10
+    - 11
+    - 12
+    - 13
+    [isabell@stardust ~]$
 
- [isabell@stardust ~]$ uberspace tools version list postgresql
- - 10
- - 11
- - 12
- - 13
- [isabell@stardust ~]$
+Select the desired postgresql version using::
 
-Select the desired postgresql version using:
+    [isabell@stardust ~]$ uberspace tools version use postgresql 12
+    Using 'Postgresql' version: '12'
+    Selected postgresql version 12
+    The new configuration is adapted immediately. Patch updates will be applied automatically.
+    [isabell@stardust ~]$
 
-::
+Run ``psql --version`` to verify the installation so far::
 
- [isabell@stardust ~]$ uberspace tools version use postgresql 12
- Using 'Postgresql' version: '12'
- Selected postgresql version 12
- The new configuration is adapted immediately. Patch updates will be applied automatically.
- [isabell@stardust ~]$
+    [isabell@stardust ~]$ psql --version
+    psql (PostgreSQL) 12.4
+    [isabell@stardust ~]$
 
 Initialization
 ==============
@@ -65,24 +66,19 @@ Please add the following lines to your ``~/.bash_profile``:
 
 .. code-block:: bash
 
- # Postgresql Environment
- export PGPASSFILE=$HOME/.pgpass
+    # Postgresql Environment
+    export PGPASSFILE=$HOME/.pgpass
 
-Reload the ``.bash_profile`` with:
+Reload the ``.bash_profile`` with::
 
-::
+    [isabell@stardust ~]$ source ~/.bash_profile
+    [isabell@stardust ~]$
 
- [isabell@stardust ~]$ source ~/.bash_profile
- [isabell@stardust ~]$
+And check the results::
 
-Run ``psql --version`` to verify the installation so far:
-
-::
-
- [isabell@stardust ~]$ psql --version
- psql (PostgreSQL) 12.4
- [isabell@stardust ~]$
-
+    [isabell@stardust ~]$ echo $PGPASSFILE
+    /home/isabell/.pgpass
+    [isabell@stardust ~]$
 
 The Database Cluster
 --------------------
@@ -91,13 +87,11 @@ A database cluster is the base for all new single databases. We will define the 
 
 To reduce the effort for the database cluster administration, we will define at first the password and save it to the file *.pgpass*.
 
-We will create a random string with openssl (64 characters) and save it direct into the password file:
+We will create a random string with openssl (64 characters) and save it direct to a temporary file (we need that soon) and copy it to the password file::
 
-::
-
- [isabell@stardust ~]$ openssl rand -hex 32 > ~/.pgpass
- [isabell@stardust ~]$
-
+    [isabell@stardust ~]$ openssl rand -hex 32 > ~/pgpass.temp
+    [isabell@stardust ~]$ cp ~/pgpass.temp ~/.pgpass
+    [isabell@stardust ~]$
 
 Edit the file ``~/.pgpass`` file and complete the content:
 
@@ -106,70 +100,56 @@ Edit the file ``~/.pgpass`` file and complete the content:
 .. warning:: Replace the dummy password with your own!
 
 .. code-block:: console
- :emphasize-lines: 1,2
+    :emphasize-lines: 2
 
- #hostname:port:database:username:password (min 64 characters)
- *:*:*:<username>:1234567890123456789012345678901234567890123456789012345678901234
+    #hostname:port:database:username:password (min 64 characters)
+    *:*:*:<username>:1234567890123456789012345678901234567890123456789012345678901234
 
-In our example this would be:
+In our example this would be::
 
-.. code-block:: console
+    #hostname:port:database:username:password (min 64 characters)
+    *:*:*:isabell:1234567890123456789012345678901234567890123456789012345678901234
 
- #hostname:port:database:username:password (min 64 characters)
- *:*:*:isabell:1234567890123456789012345678901234567890123456789012345678901234
+And change the permissions with::
 
-And change the permissions with:
+    [isabell@stardust ~]$ chmod 0600 ~/.pgpass
+    [isabell@stardust ~]$
 
-::
-
- [isabell@stardust ~]$ chmod 0600 ~/.pgpass
- [isabell@stardust ~]$
-
-To use the pure password for the database cluster creation, create a temporary password file ``~/pgpass.temp``, containing only your password.
-
-In our example this would be:
+We now use the temporary password file ``~/pgpass.temp`` (containing only your password), to create the database cluster:
 
 .. code-block:: console
+    :emphasize-lines: 1
 
- 1234567890123456789012345678901234567890123456789012345678901234
+    [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
+    The files belonging to this database system will be owned by user "isabell".
+    This user must also own the server process.
 
-Now create the database cluster:
+    The database cluster will be initialized with locale "de_DE.UTF-8".
+    The default text search configuration will be set to "german".
 
-.. code-block:: console
- :emphasize-lines: 1
+    Data page checksums are disabled.
 
- [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
- The files belonging to this database system will be owned by user "<username>".
- This user must also own the server process.
+    creating directory /home/isabell/opt/postgresql/data ... ok
+    creating subdirectories ... ok
+    selecting dynamic shared memory implementation ... posix
+    selecting default max_connections ... 100
+    selecting default shared_buffers ... 128MB
+    selecting default time zone ... Europe/Berlin
+    creating configuration files ... ok
+    running bootstrap script ... ok
+    performing post-bootstrap initialization ... ok
+    syncing data to disk ... ok
 
- The database cluster will be initialized with locale "de_DE.UTF-8".
- The default text search configuration will be set to "german".
+    Success. You can now start the database server using:
 
- Data page checksums are disabled.
+        pg_ctl -D /home/isabell/opt/postgresql/data/ -l logfile start
 
- creating directory /home/<username>/opt/postgresql/data ... ok
- creating subdirectories ... ok
- selecting dynamic shared memory implementation ... posix
- selecting default max_connections ... 100
- selecting default shared_buffers ... 128MB
- selecting default time zone ... Europe/Berlin
- creating configuration files ... ok
- running bootstrap script ... ok
- performing post-bootstrap initialization ... ok
- syncing data to disk ... ok
+    [isabell@stardust ~]$
 
- Success. You can now start the database server using:
+The temporary password file is no longer necessary::
 
-    pg_ctl -D /home/<username>/opt/postgresql/data/ -l logfile start
-
- [isabell@stardust ~]$
-
-The temporary password file is no longer necessary:
-
-::
-
- [isabell@stardust ~]$ rm ~/pgpass.temp
- [isabell@stardust ~]$
+    [isabell@stardust ~]$ rm ~/pgpass.temp
+    [isabell@stardust ~]$
 
 Configuration
 =============
@@ -401,17 +381,16 @@ directory. In this guide we use PostGIS_ version 3.1 with a PostgreSQL major ver
 .. code-block:: console
 
  [isabell@stardust ~]$ ls -rtl /usr/pgsql-12/share/extension/postgis--3*.sql
- [isabell@stardust ~]$ -rw-r--r--. 1 root root 7.9M May 26 15:59 /usr/pgsql-12/share/extension/postgis--3.1.2.sql
+ -rw-r--r--. 1 root root 7.9M May 26 15:59 /usr/pgsql-12/share/extension/postgis--3.1.2.sql
 
 Once you have convinced yourself that the right PostGIS_ extension is available, you need
 to enable the extensions. This is done using the interactive ``psql`` shell.
-Make sure you do this as the database cluster user or a user with "superuser" privileges.
-Enter your newly  created database (Section `Create Database`_), then issue the below SQL statements to spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using  the PostGIS extension.
 
-Note that PostGIS requires the `PL/pgSQL https://www.postgresql.org/docs/12/plpgsql.html`_
-extension as prerequisite. It should be readily installed when the database is created,
-however, the ``CREATE EXTENSION IF NOT EXSITS plpgsql`` statement in the code block below
-provides an additional safety net prior to enabling the PostGIS_ extension.
+.. note:: Make sure you do this as the database cluster user or a user with "superuser" privileges.
+
+Enter your newly created database (Section `Create Database`_), then issue the SQL statements below to spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using  the PostGIS extension.
+
+Note that PostGIS requires the `PL/pgSQL https://www.postgresql.org/docs/12/plpgsql.html`_ extension as prerequisite. It should be readily installed when the database is created, however, the ``CREATE EXTENSION IF NOT EXSITS plpgsql`` statement in the code block below provides an additional safety net prior to enabling the PostGIS_ extension.
 
 .. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
@@ -437,9 +416,7 @@ The ``raster`` and ``topology`` functionality of PostGIS_ are optional. Test whe
   postgis_raster   | 3.1.2   | public     | PostGIS raster types and functions
   postgis_topology | 3.1.2   | topology   | PostGIS topology spatial types and functions
 
-
 The database should now be spatially enabled, allowing you to load geospatial data with the help of PostGIS_ auxiliary programs such as ``shp2pgsql`` (for `ESRI Shapefiles <https://en.wikipedia.org/wiki/Shapefile>`_).
-
 
 UUID: Generating UUIDs
 ----------------------
@@ -451,7 +428,7 @@ PostgreSQL provides storage and comparison functions for the standardised `UUID 
 .. code-block:: console
 
  [isabell@stardust ~]$ psql <database name>
- databaseName=# CREATE EXTENSION IF NOT EXISTS uuid-ossp;
+ databaseName=# CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 After creating the extension, check whether PostgreSQL can find it using the ``\dx`` command in the interactive ``psql`` shell:
 
@@ -596,7 +573,7 @@ Check the new version:
  psql (PostgreSQL) 13.2
  [isabell@stardust ~]$
 
-For the new database cluster, create the temporary password file ``~/pgpass.temp``. You can copy the existing .pgpass file as base, but make sure to delete everything (header, usernames, hostnames, etc.) except the password.
+For the new database cluster, create the temporary password file ``~/pgpass.temp``. You can copy the existing ``.pgpass`` file as base, but make sure to delete everything (header, usernames, hostnames, etc.) except the password.
 
 In our example this would be:
 
