@@ -35,7 +35,7 @@ Download the latest development build and mark it as executable:
 
 ::
 
-  [isabell@stardust ~]$ wget https://gitlab.com/famedly/conduit/-/jobs/artifacts/master/raw/conduit-x86_64-unknown-linux-musl?job=build:cargo:x86_64-unknown-linux-musl -O ~/bin/conduit
+  [isabell@stardust ~]$ wget https://gitlab.com/famedly/conduit/-/jobs/artifacts/master/raw/conduit-x86_64-unknown-linux-musl?job=build:release:cargo:x86_64-unknown-linux-musl -O ~/bin/conduit
   Resolving gitlab.com (gitlab.com)... 172.65.251.78, 2606:4700:90:0:f22e:fbec:5bed:a9b9
   Saving to: ‘conduit’
 
@@ -211,7 +211,7 @@ If you care about your data, you might want to make a backup first.
 
 [isabell@stardust ~]$ supervisorctl stop conduit
 [isabell@stardust ~]$ cp -r ~/conduit_data ~/conduit_data_backup
-[isabell@stardust ~]$ wget https://gitlab.com/famedly/conduit/-/jobs/artifacts/master/raw/conduit-x86_64-unknown-linux-musl?job=build:cargo:x86_64-unknown-linux-musl -O ~/bin/conduit
+[isabell@stardust ~]$ wget https://gitlab.com/famedly/conduit/-/jobs/artifacts/master/raw/conduit-x86_64-unknown-linux-musl?job=build:release:cargo:x86_64-unknown-linux-musl -O ~/bin/conduit
 [isabell@stardust ~]$ chmod +x ~/conduit
 [isabell@stardust ~]$ supervisorctl start conduit
 [isabell@stardust ~]$
