@@ -14,6 +14,12 @@
 Wekan
 ########
 
+.. error::
+
+  This guide seems to be **broken**. We would be happy if you want to work on
+  a solution and create a Pull Request. See also the related issue:
+  https://github.com/Uberspace/lab/issues/1095
+
 .. tag_list::
 
 Wekan_ - Open Source kanban
