@@ -72,6 +72,7 @@ Since the installer expects to be run with root privileges, we need to adjust so
   * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
 ```
 
+-   If the app is writing extra logs, add a symlink to `~/logs`
 -   Try to find an RSS feed for updates and document it.
 -   If there are any standard passwords, tell the user to change them _immediately_.
 -   If there are files to edit, don't do stuff like `cat > ~/.npmrc <<__EOF__`, just tell the user to _edit_ the file. Don't mention an editor like `vi` or `nano`. Example:
@@ -116,6 +117,8 @@ Please use the following structure. Only document applicable steps, leave out he
 -   Best practices
 -   Tuning
 -   Updates
+-   Debugging
+-   Backup data
 
 ## Boilerplate
 
@@ -182,7 +185,7 @@ Installation
 Download the source
 -------------------
 
-Comple the code
+Compile the code
 ---------------
 
 Configuration
@@ -221,6 +224,16 @@ Updates
 .. _Loremipsum: https://en.wikipedia.org/wiki/Lorem_ipsum
 .. _feed: https://github.com/lorem/ipsum/releases.atom
 
+Debugging
+=========
+
+If something fails with this specific error, you should have a look at this specific config, or just reload that service. Try to look into the log at this path.
+
+Backup
+======
+
+All generated data you should backup regularly is saved to the database and there is this specific folder with uploaded pictures.
+
 ----
 
 Tested with Loremipsum 1.22.1, Uberspace 7.1.1
@@ -236,3 +249,7 @@ Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) 
 If you already committed your changes without following this style guide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
 
 When you're happy with your guide, create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
+
+## Keep track of your guide and issues around it
+
+If possible for you, we would be happy if you would be approachable for issues and questions even after publishing and maybe could keep track of issues showing up concerning the guide.
