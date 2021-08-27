@@ -44,21 +44,18 @@ Installation
 
 Install Client Push App in Nextcloud
 ------------------------------------
-We need to install the client_push_app from the Nextcloud AppStore.
+We need to install the `Client Push`_ app from the Nextcloud AppStore.
 
-`Client Push`_
-
-Download Binary
----------------
-Download the latest release and make it executable:
+Install the latest release and make it executable:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ curl -L https://github.com/nextcloud/notify_push/releases/latest/download/notify_push-x86_64-unknown-linux-musl -o ${HOME}/bin/notify_push
-        % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                    Dload  Upload   Total   Spent    Left  Speed
-        100   169  100   169    0     0    401      0 --:--:-- --:--:-- --:--:--   402
-    [isabell@stardust ~]$ chmod u+x ${HOME}/bin/notify_push
+    [isabell@stardust ~]$ php html/occ app:install notify_push
+    notify_push 0.2.2 installed
+    notify_push enabled
+    [isabell@stardust ~]$ chmod u+x html/apps/notify_push/bin/x86_64/notify_push
+    [isabell@stardust ~]$ ln --symbolic --verbose $HOME/html/apps/notify_push/bin/x86_64/notify_push bin/notify_push
+    ‘bin/notify_push’ -> ‘/home/isabell/html/apps/notify_push/bin/x86_64/notify_push’
     [isabell@stardust ~]$
 
 
