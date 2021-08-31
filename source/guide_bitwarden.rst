@@ -16,6 +16,12 @@
 Vaultwarden
 ############
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of 1.22.2, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1100
+
 .. tag_list::
 
 Bitwarden_ is an open source password manager. Your vault is encrypted with your master key, so even if your server is compromised the hacker will only get some unreadable gibberish. Hosting your own Bitwarden server can be useful if you are paranoid about the server security and want to be in full control, or want the premium features for free because you have a webspace anyway.
