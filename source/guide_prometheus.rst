@@ -46,14 +46,14 @@ The first directory is for storing the timeseries database:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p var/lib/prometheus
+ [isabell@stardust ~]$ mkdir -p ~/var/lib/prometheus
  [isabell@stardust ~]$
 
 The second directory is for storing the configuration files:
 
 ::
 
- [isabell@stardust ~]$ mkdir etc/prometheus
+ [isabell@stardust ~]$ mkdir -p ~/etc/prometheus
  [isabell@stardust ~]$
 
 
@@ -65,8 +65,8 @@ Find the latest version of Prometheus_ for the operating system ``linux`` and th
 ::
 
  [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.18.1/prometheus-2.18.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf prometheus-2.18.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd prometheus-2.18.1.linux-amd64
+ [isabell@stardust ~]$ tar xvzf ~/prometheus-2.18.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ cd ~/prometheus-2.18.1.linux-amd64
  [isabell@stardust prometheus-2.18.1.linux-amd64]$
 
 Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
