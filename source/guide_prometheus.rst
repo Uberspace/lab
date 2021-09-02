@@ -75,7 +75,18 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 
  [isabell@stardust prometheus-2.18.1.linux-amd64]$ mv prometheus ~/bin/
  [isabell@stardust prometheus-2.18.1.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
- [isabell@stardust prometheus-2.18.1.linux-amd64]$
+ [isabell@stardust prometheus-2.18.1.linux-amd64]$ cd ~
+ [isabell@stardust ~]$
+
+Cleanup
+=======
+
+Since we only need the binary and the configuration file we can savely remove the downloaded archive and the extracted directory.
+
+::
+
+ [isabell@stardust ~]$ rm -r ~/prometheus-2.18.1.linux-amd64
+ [isabell@stardust ~]$ rm ~/prometheus-2.18.1.linux-amd64.tar.gz
 
 Configuration
 =============
