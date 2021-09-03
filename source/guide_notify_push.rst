@@ -93,7 +93,7 @@ Create the web backend for notify_push:
     Set backend for /push to port 7867; please make sure something is listening!
     You can always check the status of your backend using "uberspace web backend list".
     [isabell@stardust ~]$ uberspace web backend list
-    /push http:7867 => OK, listening: PID 28088, notify_push /home/push/html/config/config.php
+    /push http:7867 => OK, listening: PID 28088, notify_push /home/isabell/html/config/config.php
     / apache (default)
     [isabell@stardust ~]$
 
@@ -129,7 +129,7 @@ To configure the notify_push app with the notify_push backend, run following com
 
 .. code-block:: console
 
-    [isabell@stardust ~]$  php occ notify_push:setup https://isabell.uber.space/push
+    [isabell@stardust ~]$  php html/occ notify_push:setup https://isabell.uber.space/push
     ✓ redis is configured
     ✓ push server is receiving redis messages
     ✓ push server can load mount info from database
