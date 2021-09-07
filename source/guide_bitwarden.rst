@@ -316,7 +316,7 @@ This guide is based on the official `vaultwarden documentation`_ as well as the 
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Building-binary
 .. _Vaultwarden: https://github.com/dani-garcia/vaultwarden
-.. _web-vault-feed: https://github.com/dani-garcia/vaultwarden/releases/latest
+.. _web-vault-feed: https://github.com/dani-garcia/bw_web_builds/releases
 
 ----
 
