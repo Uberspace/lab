@@ -36,8 +36,7 @@ With notify_push the requests can be greatly reduced.
 Prerequisites
 =============
 
-We need a running Nextcloud instance with  version >= 21.
-With configured redis.
+We need a running Nextcloud instance with  version >= 21 with configured redis.
 
 Installation
 ============
@@ -100,23 +99,23 @@ Create the web backend for notify_push:
 
 Add Uberspace user specific VETH IP to trusted proxies
 ------------------------------------------------------
-We need to get the ip address:
+We need to get the IP address:
 
 .. code-block:: console
     :emphasize-lines: 2
 
     [isabell@stardust ~]$ ip route
-    100.64.35.0/30 dev veth_isabell proto kernel scope link src 100.64.35.2
+    10x.xx.xx.x/30 dev veth_isabell proto kernel scope link src 10x.xx.xx.x
     [isabell@stardust ~]$
 
-From the command above we get the ip ``100.64.35.2``
+From the output of the command above we get the IP ``10x.xx.xx.x``
 
-Now we add this ip to the trusted proxies list:
+Now we add this IP to the trusted proxies list:
 
 .. code-block:: console
 
-   [isabell@stardust ~]$  php html/occ config:system:set trusted_proxies 0 --value="100.64.35.2"
-   System config value trusted_proxies => 0 set to string 100.64.35.2
+   [isabell@stardust ~]$  php html/occ config:system:set trusted_proxies 0 --value="10x.xx.xx.x"
+   System config value trusted_proxies => 0 set to string 10x.xx.xx.x
    [isabell@stardust ~]$
 
 
@@ -146,6 +145,7 @@ The app and the backend have to be on the same version.
 After updating the app just restart the service so it runs the latest binary file.
 
 If you are doing your updates with the script you may add the following line or you just run it via console.
+
 .. code-block:: console
 
  supervisorctl restart notify_push
