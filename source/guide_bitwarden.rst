@@ -288,6 +288,7 @@ Updating bitwarden_rs is really easy. Just stop the server, pull everything and 
  [isabell@stardust ~]$ cd ~/vaultwarden
  [isabell@stardust bitwarden_rs]$ supervisorctl stop vaultwarden
  [isabell@stardust bitwarden_rs]$ git pull
+ [isabell@stardust bitwarden_rs]$ git checkout origin/async
  [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault
  [isabell@stardust bitwarden_rs]$ wget new-release.tar.gz
  [isabell@stardust bitwarden_rs]$ tar -xvzf new-release.tar.gz
@@ -316,7 +317,7 @@ This guide is based on the official `vaultwarden documentation`_ as well as the 
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Building-binary
 .. _Vaultwarden: https://github.com/dani-garcia/vaultwarden
-.. _web-vault-feed: https://github.com/dani-garcia/vaultwarden/releases/latest
+.. _web-vault-feed: https://github.com/dani-garcia/bw_web_builds/releases
 
 ----
 
