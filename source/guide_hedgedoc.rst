@@ -100,6 +100,8 @@ Then install the dependencies. This step may take a few minutes.
   Read more info at https://docs.hedgedoc.org/configuration/
 
   * config.json           -- HedgeDoc config
+  [isabell@stardust hedgedoc]$ mkdir --verbose ~/hedgedoc_uploads
+  mkdir: created directory ‘/home/isabell/hedgedoc_uploads’
   [isabell@stardust hedgedoc]$
 
 Database
@@ -120,11 +122,11 @@ Configuration
 =============
 
 | In order to run ``bin/manage_users`` the script needs to know the database credentials.
-| Edit the ``config.json`` file with the following lines and adapt your database credentials.
+| Edit the ``~/hedgedoc/config.json`` file with the following lines and adapt your database credentials, domain and uploads path.
 | You can delete everything else as we only run the app in production mode.
 
 .. code-block:: json
-  :emphasize-lines: 4-6
+  :emphasize-lines: 4-6, 11-12
 
   {
     "production": {
@@ -135,7 +137,10 @@ Configuration
         "host": "localhost",
         "port": "3306",
         "dialect": "mysql"
-      }
+      },
+      "domain": "isabell.uber.space",
+      "uploadsPath": "/home/isabell/hedgedoc_uploads",
+      "protocolUseSSL": "true"
     }
   }
 
@@ -167,7 +172,7 @@ Setup daemon
 Create ``~/etc/services.d/hedgedoc.ini`` with the following content:
 
 .. code-block:: ini
-  :emphasize-lines: 8-9
+  :emphasize-lines: 8
 
   [program:hedgedoc]
   environment=
@@ -176,8 +181,7 @@ Create ``~/etc/services.d/hedgedoc.ini`` with the following content:
     CMD_ALLOW_ANONYMOUS="false",
     CMD_ALLOW_FREEURL="true",
     CMD_REQUIRE_FREEURL_AUTH="true",
-    CMD_SESSION_SECRET="somethingSuperRandom",
-    CMD_DB_URL="mysql://isabell:YourMySQL-Password@localhost:3306/isabell_hedgedoc"
+    CMD_SESSION_SECRET="somethingSuperRandom"
   directory=%(ENV_HOME)s/hedgedoc
   command=yarn start
   startsecs=60
@@ -186,7 +190,7 @@ Create ``~/etc/services.d/hedgedoc.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
-If it's not in state ``RUNNING`` after one minute (at first you will see ``STARTING``), check your configuration. You can also check the run log with ``supervisorctl tail -f hedgedoc``. You can ignore the warnings about the domain, port and ssl settings.
+If it's not in state ``RUNNING`` after one minute (at first you will see ``STARTING``), check your configuration. You can also check the run log with ``supervisorctl tail -f hedgedoc``.
 
 Configure web server
 --------------------
@@ -217,7 +221,7 @@ Updates
 
 .. note:: Check the `release notes`_ regularly or subscribe to the project's `GitHub release feed`_ with your favorite feed reader to stay informed about new updates and releases.
 
-While HedgeDoc 2.0 is currently under development and 1.8 as latest release is also having changes you should watch HedgeDocs `manual installation guide <https://docs.hedgedoc.org/setup/manual-setup/>`_ to notice if instructions have been changed. You should also read the release notes. Make sure you always download the already build tarball as the building process needs at least 2 GB RAM, so building is not possible on uberspace.
+While HedgeDoc 2.0 is currently under development and the 1.x releases are also having changes you should watch HedgeDocs `manual installation guide <https://docs.hedgedoc.org/setup/manual-setup/>`_ to notice if instructions have been changed. You should also read the release notes. Make sure you always download the already build tarball as the building process needs at least 2 GB RAM, so building is not possible on uberspace.
 
 Manual update
 -------------
@@ -303,13 +307,14 @@ Create ``~/bin/hedgedoc-update`` with the following content:
     echo "You may need to wait a minute until HedgeDoc is up and running."
     supervisorctl start hedgedoc
     echo "If everything works fine you can delete ~/hedgedoc_$LOCAL"
+    echo "Please consider that there might be uploaded files in ~/hedgedoc_$LOCAL/public/uploads which were not migrated to the new version if you are using the default setting."
     #rm --recursive ~/hedgedoc_$LOCAL
   }
 
   function ask_for_update() {
     echo "The latest Version is $LATEST"
-    echo "Your local Version is $LOCAL"
-    echo "Upgrades to next major releases are not tested."
+    echo "Your currently used Version is $LOCAL"
+    echo "Upgrades to next major releases are not tested, especially to version 2.x."
     echo "Please read the release notes."
     echo "Also check if the upgrade instructions have changed."
     echo "Your instance might break."
