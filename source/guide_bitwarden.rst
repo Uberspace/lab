@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/bitwarden.svg
+  .. image:: _static/images/vaultwarden.png
       :align: center
 
 ############
@@ -89,7 +89,7 @@ In order to build vaultwarden successfully you'll need to set an environment var
 
 Build the server executable:
 
-.. note :: If that doesn't work the first time and the build failed, **just try again until it's done**.
+.. note :: If that doesn't work the first time and the build failed, **just try again until it's done**. Further ignore compiler-warnings regarding unused imports as they sould be gone as soon as the dependencies are updated (see linked Issue above). The build process of vaultwarden can take from 10 to 25 minutes will consume almost the entire system memory. Preferably stop other running services on your uberspace temporarily to prevent running into system memory issues.
 
 .. code-block:: console
 
@@ -103,8 +103,8 @@ In the next step we will download the latest build for the web vault. Check `thi
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust vaultwarden]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.19.0d/bw_web_v2.19.0d.tar.gz
- [isabell@stardust vaultwarden]$ tar -xvzf bw_web_v2.19.0d.tar.gz
+ [isabell@stardust vaultwarden]$ wget https://github.com/dani-garcia/bw_web_builds/releases/download/v2.22.3/bw_web_v2.22.3.tar.gz
+ [isabell@stardust vaultwarden]$ tar -xvzf bw_web_v2.22.3.tar.gz
  [isabell@stardust vaultwarden]$ rm -r bw_web_v*.tar.gz
 
 
@@ -173,7 +173,7 @@ Now it's time to test if everything works. If there is no error, you are good to
  |   https://github.com/dani-garcia/vaultwarden/issues/new            |
  \--------------------------------------------------------------------/
 
- [2020-04-03 17:27:40][start][INFO] Rocket has launched from http://0.0.0.0:62714
+ [2021-09-08 13:37:42][start][INFO] Rocket has launched from http://0.0.0.0:62714
 
 Setup daemon
 ------------
@@ -320,6 +320,6 @@ This guide is based on the official `vaultwarden documentation`_ as well as the 
 
 ----
 
-Tested with vaultwarden 1.21.0 and Web-Vault v2.19.0d, Uberspace 7.11.1.1
+Tested with vaultwarden 1.22.2 and Web-Vault v2.22.3, Uberspace 7.11.4
 
 .. author_list::
