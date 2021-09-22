@@ -51,10 +51,12 @@ As the cmake on uberspace is relatively old, a newer cmake has to be installed. 
  [isabell@stardust ~]$ mv ninja ~/bin
  [isabell@stardust ~]$ mv ninja bin/
  
+
 libarchive has to be installed manually as it is not present on uberspace.
  
- .. code-block:: console
-  
+ 
+.. code-block:: console
+ 
  [isabell@stardust ~]$ wget https://www.libarchive.org/downloads/libarchive-3.5.2.tar.gz
  [isabell@stardust ~]$ ./configure --prefix=$HOME
  [isabell@stardust ~]$ make && make install
@@ -133,7 +135,8 @@ Setup daemon
 
  [isabell@stardust ~]$ swipl daemon.pl --http --port=3050
  
- (or replace with whatever port is free or you prefer)
+ 
+(or replace with whatever port is free or you prefer)
 
 Setting up the web backend
 -----------------
@@ -160,6 +163,6 @@ Updates
 
 ----
 
-Tested with Swish and SWI Prolog 8.x, Uberspace 7.x
+Tested with Swish and SWI Prolog 8.x, Uberspace 7.11.4
 
 .. author_list::
