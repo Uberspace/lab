@@ -104,7 +104,7 @@ Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_man
 .. code-block:: ini
 
  memory_limit=512M
- 
+
 
 Output Buffering
 ^^^^^^^^^^^^^^^^
@@ -429,7 +429,7 @@ If files are missing like if you move files or restore backups on the machine an
  [isabell@stardust html]$ php occ files:scan --all
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
- 
+
 memory limit after migration from U6
 ------------------------------------
 
