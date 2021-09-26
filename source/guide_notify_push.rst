@@ -127,8 +127,9 @@ To configure the notify_push app with the notify_push backend, run following com
 .. Note:: Use your URL
 
 .. code-block:: console
+    :emphasize-lines: 1
 
-    [isabell@stardust ~]$  php html/occ notify_push:setup https://isabell.uber.space/push
+    [isabell@stardust ~]$ php html/occ notify_push:setup https://isabell.uber.space/push
     ✓ redis is configured
     ✓ push server is receiving redis messages
     ✓ push server can load mount info from database
@@ -136,6 +137,32 @@ To configure the notify_push app with the notify_push backend, run following com
     ✓ push server is a trusted proxy
     ✓ push server is running the same version as the app
     configuration saved
+    [isabell@stardust ~]$
+
+You can test that all clients to a given user (in this case isabell) are receiving push notifications with the following command:
+
+.. code-block:: console
+    :emphasize-lines: 1
+
+    [isabell@stardust ~]$ php ~/html/occ notification:test-push isabell
+    Trying to push to 2 devices
+
+    Language is set to de
+    Private user key size: 4242
+    Public user key size: 420
+    Identified 1 Talk devices and 1 others.
+
+    Device token:4242
+    Device public key size: 420
+    Data to encrypt is: {"nid":420,"app":"admin_notifications","subject":"Testing push notifications","type":"admin_notifications","id":"6424242a"}
+    Signed encrypted push subject
+    Push notification sent successfully
+    [isabell@stardust ~]$ php ~/html/occ notify_push:metrics
+    Active connection count: 2
+    Total connection count: 5
+    Total database query count: 2
+    Events received: 9
+    Messages send: 10
     [isabell@stardust ~]$
 
 Updates
@@ -154,6 +181,6 @@ If you are doing your updates with the script you may add the following line or 
 
 ----
 
-Tested with Nextcloud 22.1.0,notify_push 0.2.2, Uberspace 7.11.3.0
+Tested with Nextcloud 22.1.1, notify_push 0.2.4, Uberspace 7.11.4
 
 .. author_list::
