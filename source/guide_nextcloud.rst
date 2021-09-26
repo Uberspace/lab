@@ -105,7 +105,6 @@ Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_man
 
  memory_limit=512M
 
-
 Output Buffering
 ^^^^^^^^^^^^^^^^
 
@@ -352,6 +351,8 @@ Reload the page and press the talk icon in the top menu bar.
 Updates
 =======
 
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
+
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
 Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimization.
@@ -359,7 +360,7 @@ The release cycle of Nextcloud is very short. A prepared script with some common
 
 .. warning:: Before updating to the next major release, such as version 19.x.x to 20.x.x, make sure your apps are compatible or there exists updates. Otherwise the incompatible apps will get disabled. If the web based admin overview displays an available update it also checks if there are any incompatible apps. You can also check for compatible versions in the `Nextcloud App Store`_.
 
-Create `~/bin/nextcloud-update` with the following content:
+Create ``~/bin/nextcloud-update`` with the following content:
 
 .. code-block:: bash
 
@@ -406,8 +407,6 @@ Then you can run the script whenever you need it to perform the update.
 
  ``@daily $HOME/bin/nextcloud-update`` output as email
  ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
-
-.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
 
 Troubleshooting
 ===============
