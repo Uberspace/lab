@@ -313,6 +313,11 @@ default phone region
   System config value default_phone_region set to string DE
   [isabell@stardust html]$
 
+Client Push
+-----------
+
+To prevent clients from regularly asking the server for updates in short periods of time you can use the service: :lab:`Client Push <guide_notify_push>`.
+
 Database maintenance
 --------------------
 
@@ -378,6 +383,9 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
  /usr/sbin/restorecon -R ~/html
+
+ ## If you have set up the notify_push service uncomment the following line by removing the #
+ #supervisorctl restart notify_push
 
 Make the script executable:
 
