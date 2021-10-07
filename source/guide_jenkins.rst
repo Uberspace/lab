@@ -18,6 +18,12 @@
 Jenkins
 ########
 
+.. error::
+
+  This guide is broken since Jenkins does not support `Java 16 <https://jenkins.io/doc/administration/requirements/java/>`_. 
+  Feel free to look for a solution and create a Pull Request, see the `related issue <https://github.com/Uberspace/lab/issues/1098>`_.
+
+
 .. tag_list::
 
 Jenkins_ is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat. It supports version control tools, including AccuRev, CVS, Subversion, Git, Mercurial, Perforce, TD/OMS, ClearCase and RTC, and can execute Apache Ant, Apache Maven and sbt based projects as well as arbitrary shell scripts and Windows batch commands. The creator of Jenkins is Kohsuke Kawaguchi. Released under the MIT License, Jenkins is free software.
