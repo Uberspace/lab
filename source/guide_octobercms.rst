@@ -35,12 +35,12 @@ The OctoberCMS platform is released under the `MIT License`_. All relevant infor
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -137,6 +137,6 @@ To update October and your installed plugins you can use the ``october:update`` 
 
 ----
 
-Tested with OctoberCMS 1.0.443, Uberspace 7.1.14
+Tested with OctoberCMS 2.1, Uberspace 7.11.5
 
 .. author_list::
