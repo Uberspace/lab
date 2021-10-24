@@ -92,10 +92,10 @@ Create css file ``~/basic_flask_template/static/style.css`` with the following c
   }
 
 
-Setup python environment and install required packages
+Setup Python environment and install required packages
 ------------------------------------------------------
 
-You definitely want to create a isolated python environment. That way the required packages you are going to install with ``pip`` are encapsulated form your systemwide python installation. For more info check https://virtualenv.pypa.io/en/latest/
+You definitely want to create an isolated Python environment. That way the required packages you are going to install with ``pip`` are encapsulated from your system's Python installation. For more info check https://virtualenv.pypa.io/en/latest/
 
 ::
 
@@ -105,7 +105,7 @@ You definitely want to create a isolated python environment. That way the requir
   (ENV) [isabell@stardust basic_flask_template]$ pip install Click==7.0 Flask==1.1.1 itsdangerous==1.1.0 Jinja2==2.10.3 MarkupSafe==1.1.1 uWSGI==2.0.18 Werkzeug==0.16.0
   (ENV) [isabell@stardust basic_flask_template]$
 
-You can activate your new python environment like this:
+You can activate your new Python environment like this:
 
 ::
 
@@ -138,14 +138,14 @@ Start your application
 Using Werkzeug for development
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can use Werkzeug which get's shipped with Flask to spin up a small development server. But be aware: **Do not use it in a production deployment.** For more info head to https://www.palletsprojects.com/p/werkzeug/.
+You can use Werkzeug which gets shipped with Flask to spin up a small development server. But be aware: **Do not use it in a production deployment.** For more info head to https://www.palletsprojects.com/p/werkzeug/.
 
 Note that if you run your application under a path different from ``/``, this
 approach does not work because the requests don't match the configured routes
 and because the server does not set the ``SCRIPT_NAME`` variable.
 The proper fix is using a uWSGI deployment as we will do in the next step.
 
-To start Werkzeug execute the following commands. It enables the virtual python environment and uses executes ``app.py``. Stop it by pressing ``Ctrl + C``.
+To start Werkzeug execute the following commands. This enables the virtual Python environment and loads ``app.py``. Stop it by pressing ``Ctrl + C``.
 
 ::
 
@@ -163,7 +163,6 @@ To start Werkzeug execute the following commands. It enables the virtual python 
    ℹ * Debugger PIN: 000-000-000
   ^C
   [isabell@stardust basic_flask_template]$
-  [isabell@stardust basic_flask_template]$
 
 
 Using UWSGI for production
@@ -172,7 +171,7 @@ Using UWSGI for production
 A more suited approach to serve your application would be to use uWSGI.
 The uWSGI project aims at developing a full stack for building hosting services. For more info head to https://uwsgi-docs.readthedocs.io/en/latest/.
 
-Create ini file ``~/basic_flask_template/uwsgi.ini`` with the following content:
+Create the ini file ``~/basic_flask_template/uwsgi.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -187,7 +186,7 @@ Create ini file ``~/basic_flask_template/uwsgi.ini`` with the following content:
 
 
 If your application does not run under ``/`` but under, say, ``/your/path/``,
-replace the ``module = ...`` line with
+replace the ``module = ...`` line with:
 
 .. code-block:: ini
 
