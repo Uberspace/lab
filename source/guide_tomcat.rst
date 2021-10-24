@@ -93,7 +93,7 @@ You could explicitely set further environment variables like ``JAVA_HOME`` (requ
 
 .. include:: includes/supervisord.rst
 
-For your convenience, you may also want to create a symbolic link to the log file:
+For your convenience, you may also want to create a symbolic link to the log file. Note the differences between ``catalina.out`` and ``catalina.YYYY-MM-DD.log`` explained `here <https://stackoverflow.com/questions/51985958/what-is-the-difference-between-catalina-out-and-catalina-yyyy-mm-dd-log-log>`_ .
 
 ::
 
