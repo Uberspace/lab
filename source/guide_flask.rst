@@ -122,21 +122,11 @@ Once you're done playing with it, deactivate it with the following command:
 
 
 
-Setup nginx
------------
-
-.. note::
-
-    Flask is running on port 1024.
-
-.. include:: includes/web-backend.rst
-
-
 Start your application
-----------------------
+======================
 
 Using Werkzeug for development
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------
 
 You can use Werkzeug which gets shipped with Flask to spin up a small development server. But be aware: **Do not use it in a production deployment.** For more info head to https://www.palletsprojects.com/p/werkzeug/.
 
@@ -165,8 +155,8 @@ To start Werkzeug execute the following commands. This enables the virtual Pytho
   [isabell@stardust basic_flask_template]$
 
 
-Using UWSGI for production
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using uWSGI for production
+--------------------------
 
 A more suited approach to serve your application would be to use uWSGI.
 The uWSGI project aims at developing a full stack for building hosting services. For more info head to https://uwsgi-docs.readthedocs.io/en/latest/.
@@ -210,9 +200,9 @@ To serve your application via uWSGI execute the following commands. Stop it by p
   [isabell@stardust basic_flask_template]$
 
 Setup daemon
-^^^^^^^^^^^^
+------------
 
-Create ``~/etc/services.d/flask.ini`` with the following content:
+When serving a website with Flask, we want to have uWSGI running all the time. To do this, uberspace uses :manual_anchor:`supervisord <daemons-supervisord>` to start and restart processes. Create ``~/etc/services.d/flask.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -223,3 +213,17 @@ Create ``~/etc/services.d/flask.ini`` with the following content:
 Now let's start the service:
 
 .. include:: includes/supervisord.rst
+
+
+
+Setup nginx
+-----------
+
+.. note::
+
+    Flask is running on port 1024.
+
+Flask is now running on the server, but because of Uberspace's :manual_anchor:`network infrastructure <background-network>` can not yet be accessed from the web.
+
+.. include:: includes/web-backend.rst
+
