@@ -32,8 +32,8 @@ All relevant legal information can be found here
 Installation
 ============
 
-The name of the application you are going to set up is called **basic_flask_template**.
-If you wish to use another name make sure to replace **basic_flask_template** in all of the following steps with the name of your choice.
+The name of the application you are going to set up is called **basic_flask**.
+If you wish to use another name make sure to replace **basic_flask** in all of the following steps with the name of your choice.
 
 
 
@@ -42,12 +42,12 @@ Create application directory and files
 
 ::
 
-  [isabell@stardust ~]$ mkdir basic_flask_template
-  [isabell@stardust ~]$ mkdir basic_flask_template/templates
-  [isabell@stardust ~]$ mkdir basic_flask_template/style
+  [isabell@stardust ~]$ mkdir basic_flask
+  [isabell@stardust ~]$ mkdir basic_flask/templates
+  [isabell@stardust ~]$ mkdir basic_flask/style
   [isabell@stardust ~]$
 
-Create ``~/basic_flask_template/app.py`` with the following content:
+Create ``~/basic_flask/app.py`` with the following content:
 
 .. code-block:: python
 
@@ -67,14 +67,14 @@ Create ``~/basic_flask_template/app.py`` with the following content:
     app.run(host='0.0.0.0', port=1024, debug=True)
 
 
-Create a html template file ``~/basic_flask_template/templates/index.html`` with the following content:
+Create an html template file ``~/basic_flask/templates/index.html`` with the following content:
 
 .. code-block:: html
 
   <!-- templates/index.html -->
   <html>
     <head>
-      <title>basic_flask_template</title>
+      <title>basic_flask</title>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
@@ -83,7 +83,7 @@ Create a html template file ``~/basic_flask_template/templates/index.html`` with
   </html>
 
 
-Create css file ``~/basic_flask_template/static/style.css`` with the following content:
+Create a css file ``~/basic_flask/static/style.css`` with the following content:
 
 .. code-block:: css
 
@@ -95,35 +95,28 @@ Create css file ``~/basic_flask_template/static/style.css`` with the following c
 Setup Python environment and install required packages
 ------------------------------------------------------
 
-You definitely want to create an isolated Python environment. That way the required packages you are going to install with ``pip`` are encapsulated from your system's Python installation. For more info check https://virtualenv.pypa.io/en/latest/
+You definitely want to create an isolated Python environment. That way the required packages you are going to install with ``pip`` are encapsulated from your system's Python installation. We are using the ``venv`` module to first create a local environment called ``ENV`` (or whatever name you prefer) that we activate with ``source``. Once active, use the venv's ``pip`` to install ``flask`` and its dependencies as well as a local version of ``uwsgi``.
 
 ::
 
-  [isabell@stardust ~]$ cd basic_flask_template
-  [isabell@stardust basic_flask_template]$ virtualenv -p python3 ENV
-  [isabell@stardust basic_flask_template]$ source ENV/bin/activate
-  (ENV) [isabell@stardust basic_flask_template]$ pip install Click==7.0 Flask==1.1.1 itsdangerous==1.1.0 Jinja2==2.10.3 MarkupSafe==1.1.1 uWSGI==2.0.18 Werkzeug==0.16.0
-  (ENV) [isabell@stardust basic_flask_template]$
+  [isabell@stardust ~]$ cd basic_flask
+  [isabell@stardust basic_flask]$ python3 -m venv ENV
+  [isabell@stardust basic_flask]$ source ENV/bin/activate
+  (ENV) [isabell@stardust basic_flask]$ pip install flask uwsgi
+  (ENV) [isabell@stardust basic_flask]$
 
-You can activate your new Python environment like this:
 
-::
-
-  [isabell@stardust ~]$ cd basic_flask_template
-  [isabell@stardust basic_flask_template]$ source ENV/bin/activate
-  (ENV) [isabell@stardust basic_flask_template]$
-
-Once you're done playing with it, deactivate it with the following command:
+Once you're done playing with it, you can deactivate the virtual environment:
 
 ::
 
-  (ENV) [isabell@stardust basic_flask_template]$ deactivate
-  [isabell@stardust basic_flask_template]$
+  (ENV) [isabell@stardust basic_flask]$ deactivate
+  [isabell@stardust basic_flask]$
 
 
 
-Start your application
-======================
+Configuration
+=============
 
 Using Werkzeug for development
 ------------------------------
@@ -139,9 +132,9 @@ To start Werkzeug execute the following commands. This enables the virtual Pytho
 
 ::
 
-  [isabell@stardust ~]$ cd basic_flask_template
-  [isabell@stardust basic_flask_template]$ source ENV/bin/activate
-  (ENV) [isabell@stardust basic_flask_template]$ python app.py
+  [isabell@stardust ~]$ cd basic_flask
+  [isabell@stardust basic_flask]$ source ENV/bin/activate
+  (ENV) [isabell@stardust basic_flask]$ python app.py
    ℹ * Serving Flask app "app" (lazy loading)
    ℹ * Environment: production
        WARNING: This is a development server. Do not use it in a production deployment.
@@ -152,7 +145,7 @@ To start Werkzeug execute the following commands. This enables the virtual Pytho
    ℹ * Debugger is active!
    ℹ * Debugger PIN: 000-000-000
   ^C
-  [isabell@stardust basic_flask_template]$
+  [isabell@stardust basic_flask]$
 
 
 Using uWSGI for production
@@ -161,13 +154,13 @@ Using uWSGI for production
 A more suited approach to serve your application would be to use uWSGI.
 The uWSGI project aims at developing a full stack for building hosting services. For more info head to https://uwsgi-docs.readthedocs.io/en/latest/.
 
-Create the ini file ``~/basic_flask_template/uwsgi.ini`` with the following content:
+Create the ini file ``~/basic_flask/uwsgi.ini`` with the following content:
 
 .. code-block:: ini
 
   [uwsgi]
   module = app:app
-  pidfile = basic_flask_template.pid
+  pidfile = basic_flask.pid
   master = true
   processes = 1
   http-socket = :1024
@@ -187,17 +180,17 @@ To serve your application via uWSGI execute the following commands. Stop it by p
 
 ::
 
-  [isabell@stardust ~]$ cd basic_flask_template
-  [isabell@stardust basic_flask_template]$ source ENV/bin/activate
-  [isabell@stardust basic_flask_template]$ uwsgi uwsgi.ini
+  [isabell@stardust ~]$ cd basic_flask
+  [isabell@stardust basic_flask]$ source ENV/bin/activate
+  [isabell@stardust basic_flask]$ uwsgi uwsgi.ini
   ℹ [uWSGI] getting INI configuration from uwsgi.ini
-  ℹ *** Starting uWSGI 2.0.18 (64bit) on [Tue Jan 21 15:47:41 2020] ***
+  ℹ *** Starting uWSGI 2.0.20 (64bit) on [Tue Jan 21 15:47:41 2020] ***
   ℹ ...
   ℹ *** uWSGI is running in multiple interpreter mode ***
   ℹ spawned uWSGI master process (pid: 23422)
   ℹ spawned uWSGI worker 1 (pid: 23455, cores: 1)
-  [isabell@stardust basic_flask_template]$ ^C
-  [isabell@stardust basic_flask_template]$
+  [isabell@stardust basic_flask]$ ^C
+  [isabell@stardust basic_flask]$
 
 Setup daemon
 ------------
@@ -207,8 +200,8 @@ When serving a website with Flask, we want to have uWSGI running all the time. T
 .. code-block:: ini
 
  [program:flask]
- directory=%(ENV_HOME)s/basic_flask_template
- command=%(ENV_HOME)s/basic_flask_template/ENV/bin/uwsgi uwsgi.ini
+ directory=%(ENV_HOME)s/basic_flask
+ command=%(ENV_HOME)s/basic_flask/ENV/bin/uwsgi uwsgi.ini
 
 Now let's start the service:
 
@@ -227,3 +220,6 @@ Flask is now running on the server, but because of Uberspace's :manual_anchor:`n
 
 .. include:: includes/web-backend.rst
 
+
+Best Practices
+==============
