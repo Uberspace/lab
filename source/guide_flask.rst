@@ -223,3 +223,5 @@ Flask is now running on the server, but because of Uberspace's :manual_anchor:`n
 
 Best Practices
 ==============
+
+uWSGI can be configured extensively and has its own page on `best practices <https://uwsgi-docs.readthedocs.io/en/latest/ThingsToKnow.html>`_. Further recommendations can also be found in this `write-up from EuroPython 2019 <https://www.techatbloomberg.com/blog/configuring-uwsgi-production-deployment/>`_.
