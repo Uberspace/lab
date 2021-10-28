@@ -302,6 +302,16 @@ After the REST backend has been configured, we need to configure the Django fron
     ('text/x-scss', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
     ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
+ 
+ [...]
+ 
+ Q_CLUSTER = {
+    'timeout': 100,
+    'retry': 200,
+    'save_limit': 100,
+    'orm': 'default',
+    'workers': 4,
+}
 
  # Comment the following lines out to test sending mail
  #if DEBUG == True:
