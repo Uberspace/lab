@@ -4,6 +4,7 @@
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: lang-nodejs
+.. tag:: updates
 
 .. sidebar:: Logo
 
@@ -56,7 +57,7 @@ We're using :manual:`Node.js <lang-nodejs>` version 14.
 Gotify Server
 -------------
 
-You have installed and configured your gotify server, :lab:`as described in the respective guide <guide_gotify>`.
+You have installed and configured your Gotify server, :lab:`as described in the respective guide <guide_gotify>`.
 
 Limitations
 ===========
@@ -97,12 +98,16 @@ Clone the `GitHub repository <https://github.com/franok/uu-notify>`_, checkout t
 Configuration
 =============
 
+.. _id-gotify-application:
+
 Gotify application
 ------------------
 
-Create a gotify application.
-Log in to your Gotify server's WebUI, click the ``Apps``-tab in the menu bar and create an application. An app token is generated automatically. You'll need it in the next step.
+Create a Gotify application.
+Log in to your Gotify server's WebUI, click the ``Apps``-tab in the menu bar and create an application. An app token is generated automatically. You'll need it in the :ref:`next step <id-configure-uuNotify>`.
 
+
+.. _id-configure-uuNotify:
 
 Configure uuNotify
 ------------------
@@ -116,7 +121,7 @@ In the uuNotify directory, navigate into the ``config/`` folder:
 
 Edit the file ``config.json``.
 
-Add your gotify server url and the app token from the previous step. Example:
+Add your Gotify server url and the app token from the previous step. Example:
 
 .. code-block:: json
 
@@ -174,10 +179,12 @@ Edit the file ``software-deps.mjs`` and add a new object into the array for ever
 
 If you wish to add further software later, just update this file. With the next (scheduled) execution, uuNotify will also check for updates for the newly added entries.
 
+.. _id-client-side:
+
 Client side
 ===========
 
-To receive the uuNotify update notifications, you need to have a gotify client in place. You can use gotify's built-in web-ui, or the Android app (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_, `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ or `direct APK download <https://github.com/gotify/android/releases/latest>`_). There is `no native iOS App <https://github.com/gotify/server/issues/87>`_, but iPhone users could use the web-ui and get browser notifications.
+To receive the uuNotify update notifications, you need to have a Gotify client in place. You can use Gotify's built-in web-ui, or the Android app (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_, `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ or `direct APK download <https://github.com/gotify/android/releases/latest>`_). There is `no native iOS App <https://github.com/gotify/server/issues/87>`_, but iPhone users could use the web-ui and get browser notifications.
 
 
 Finishing installation
@@ -219,6 +226,36 @@ Check your crontab configuration:
   [isabell@stardust ~]$ crontab -l
   #MAILTO=""
   0 18 * * SUN /usr/bin/node /home/isabell/uu-notify/index.mjs
+
+
+Optional
+========
+
+Add an icon to your Gotify app
+--------------------------------------------
+
+The :ref:`Gotify app you created <id-gotify-application>` will show up in your :ref:`Gotify client<id-client-side>` when notifications are received. You can customize it with an app icon, replacing the default "Go Gopher" mascot icon.
+
+#. Create a client token in the Gotify WebUI (``Client``-tab).
+#. Retrieve your app id. Adjust the placeholders in the following curl command and run it from your local computer:
+
+   .. code-block:: console
+
+     [user@localhost ~]$ curl --header "X-Gotify-Key:<gotify-client-token>" https://<gotify-url>/application
+     [{"id":42,"token":"********","name":"uuNotify","description":"uuNotify","internal":false,"image":"static/defaultapp.png"}]
+     [user@localhost ~]$
+
+#. Using the app id (in this case 42) run the next command:
+
+   .. code-block:: console
+     
+      [user@localhost ~]$ curl --header "X-Gotify-Key:<gotify-client-token>"  -k -X POST -F 'file=@/home/<localuser>/path/to/image/uu-notify-icon.png'  https://<gotify-url>/application/42/image
+      {"id":42,"token":"********","name":"uuNotify","description":"uuNotify","internal":false,"image":"image/RTHDR0253KDdQyw_FUBOEDom4.png"}
+      [user@localhost ~]$
+
+The app should now have a custom icon.
+
+For further details, see the `Gotify API <https://gotify.net/api-docs#/application/uploadAppImage>`_.
 
 
 Updates
