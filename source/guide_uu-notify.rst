@@ -263,6 +263,12 @@ Double check your configuration (``config/config.json`` and ``config/software-de
   [isabell@stardust uu-notify]$
 
 
+Troubleshooting
+===============
+
+If you encounter any issues, e.g. during the installation or update process, you might want to check for the project's GitHub issues that have a `workaround <https://github.com/franok/uu-notify/labels/workaround>`_ label for a quick solution.
+If you don't find any useful information there, you can `report a bug <https://github.com/franok/uu-notify/blob/main/contributing.md#bug-reporting>`_.
+
 .. _uuNotify: https://github.com/franok/uu-notify
 .. _latest: https://github.com/franok/uu-notify/releases/latest
 .. _`GitHub release page`: https://github.com/franok/uu-notify/releases
