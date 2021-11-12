@@ -35,12 +35,12 @@ YOURLS is released under the `MIT License`_. All relevant information can be fou
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -143,6 +143,6 @@ To update YOURLS you can use Git to pull the newest release.
 
 ----
 
-Tested with YOURLS 1.7.4 and Uberspace 7.3.6
+Tested with YOURLS 1.8.3 and Uberspace 7.11.5
 
 .. author_list::
