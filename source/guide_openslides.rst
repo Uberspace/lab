@@ -182,6 +182,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+.. note:: Important: An update to version 3.4 and higher of OpenSlides is no longer possible!
 
 If there is a new version available, update the following command to update your OpenSlides python package:
 
