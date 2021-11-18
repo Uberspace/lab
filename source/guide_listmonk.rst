@@ -112,7 +112,7 @@ Generate the config file:
     [isabell@stardust ~]$ ./listmonk --new-config
     [isabell@stardust ~]$
 
-Edit the config file and change the predefined values of the admin user and database settings:
+Edit the config file ``~/opt/listmonk/config.toml`` and change the predefined values of the admin user and database settings:
 
 .. code-block:: console
     :emphasize-lines: 6,12,13,19,20,21
