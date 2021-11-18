@@ -71,13 +71,6 @@ Delete the archive file:
     [isabell@stardust ~]$ rm listmonk_2.0.0_linux_amd64.tar.gz
     [isabell@stardust ~]$
 
-And make the binary file executable:
-
-.. code-block:: console
-
-    [isabell@stardust ~]$ chmod +x listmonk
-    [isabell@stardust ~]$
-
 Database Setup
 ==============
 
