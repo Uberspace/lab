@@ -53,22 +53,22 @@ Make some space
 ---------------
 .. code-block:: bash
 
-  [isabell@stardust ~]$ mkdir jellyfin
+  [isabell@stardust ~]$ mkdir ~/jellyfin
   [isabell@stardust ~]$
 
 Download the source
 -------------------
 .. code-block:: bash
 
-  [isabell@stardust ~]$ wget -O jellyfin/jellyfin.tar.gz https://repo.jellyfin.org/releases/server/linux/stable/combined/jellyfin_10.7.7_amd64.tar.gz
+  [isabell@stardust ~]$ wget -O ~/jellyfin/jellyfin.tar.gz https://repo.jellyfin.org/releases/server/linux/stable/combined/jellyfin_10.7.7_amd64.tar.gz
   [isabell@stardust ~]$
 
 Extract the binary
 ---------------
 .. code-block:: bash
 
-  [isabell@stardust ~]$ tar --strip-components=1 -xzf jellyfin/jellyfin.tar.gz -C jellyfin
-  [isabell@stardust ~]$ rm jellyfin/jellyfin.tar.gz
+  [isabell@stardust ~]$ tar --strip-components=1 -xzf ~/jellyfin/jellyfin.tar.gz -C jellyfin
+  [isabell@stardust ~]$ rm ~/jellyfin/jellyfin.tar.gz
   [isabell@stardust ~]$
 
 Configuration
