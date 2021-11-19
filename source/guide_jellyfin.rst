@@ -71,6 +71,15 @@ Extract the binary
   [isabell@stardust ~]$ rm ~/jellyfin/jellyfin.tar.gz
   [isabell@stardust ~]$
 
+Create a symbolic link
+---------------
+So it is easier to upgrade (or rollback) your service, which we will configure below. Note the version number.
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$ ln -s ~/jellyfin/jellyfin_10.7.7 ~/jellyfin/current
+  [isabell@stardust ~]$
+
 Configuration
 =============
 
@@ -90,7 +99,7 @@ To start Jellyfin automatically and run it in the background, create ``~/etc/ser
 .. code-block:: ini
 
   [program:jellyfin]
-  command=%(ENV_HOME)s/jellyfin/jellyfin_10.7.7/jellyfin
+  command=%(ENV_HOME)s/jellyfin/current/jellyfin
 
 .. include:: includes/supervisord.rst
 
