@@ -45,39 +45,61 @@ Your dashboard URL needs to be setup:
 Installation
 ============
 
-We will install Jellyfin as a self contained binary. To install the stable version of Jellyfin, we will download the `.tar.gz` files from release_, then use a TAR utility to extract the files and launch `jellyfin`.
+Create a directory in ``/home/isabell`` for jellyfin and its files.
 
-We will pick up the combined archives, including both the server and WebUI, as we need both of them.
-
-Make some space
----------------
 .. code-block:: bash
 
   [isabell@stardust ~]$ mkdir ~/jellyfin
   [isabell@stardust ~]$
 
-Download the source
--------------------
+Download the combined archive from release_, including both the server and WebUI, as we will need both of them.
+
 .. code-block:: bash
 
   [isabell@stardust ~]$ wget -O ~/jellyfin/jellyfin.tar.gz https://repo.jellyfin.org/releases/server/linux/stable/combined/jellyfin_10.7.7_amd64.tar.gz
   [isabell@stardust ~]$
 
-Extract the binary
----------------
+Extract the archive. Delete the archive post extraction.
+
 .. code-block:: bash
 
-  [isabell@stardust ~]$ tar --strip-components=1 -xzf ~/jellyfin/jellyfin.tar.gz -C jellyfin
+  [isabell@stardust ~]$ tar -xvzf ~/jellyfin/jellyfin.tar.gz  -C jellyfin
   [isabell@stardust ~]$ rm ~/jellyfin/jellyfin.tar.gz
   [isabell@stardust ~]$
 
-Create a symbolic link
----------------
-So it is easier to upgrade (or rollback) your service, which we will configure below. Note the version number.
+Create a symbolic link to the Jellyfin 10.7.7 directory. This allows an upgrade by repeating the above steps and enabling it by simply re-creating the symbolic link to the new version.
 
 .. code-block:: bash
 
-  [isabell@stardust ~]$ ln -s ~/jellyfin/jellyfin_10.7.7 ~/jellyfin/current
+  [isabell@stardust ~]$ ln -s ~/jellyfin/jellyfin_10.7.7 ~/jellyfin/jellyfin
+  [isabell@stardust ~]$
+
+Create four sub-directories for Jellyfin data, and one to store your media library.
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$  mkdir data cache config log library
+  [isabell@stardust ~]$
+
+Create a small script to run Jellyfin, ``jellyfin.sh`` in ``~/jellyfin`` with the following content.
+
+.. code-block:: sh
+  :emphasize-lines: 2
+
+  #!/bin/bash
+  JELLYFINDIR="/home/isabell/jellyfin"
+
+  $JELLYFINDIR/jellyfin/jellyfin \
+  -d $JELLYFINDIR/data \
+  -C $JELLYFINDIR/cache \
+  -c $JELLYFINDIR/config \
+  -l $JELLYFINDIR/log
+
+Make the startup script above executable.
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$  chmod u+x ~/jellyfin/jellyfin.sh
   [isabell@stardust ~]$
 
 Configuration
@@ -87,7 +109,7 @@ Configure the web server
 ------------------------
 
 .. note::
-    Syncthing is running on port 8096.
+    Jellyfin will run on port 8096.
 
 .. include:: includes/web-backend.rst
 
@@ -99,7 +121,7 @@ To start Jellyfin automatically and run it in the background, create ``~/etc/ser
 .. code-block:: ini
 
   [program:jellyfin]
-  command=%(ENV_HOME)s/jellyfin/current/jellyfin
+  command=bash %(ENV_HOME)s/jellyfin/jellyfin.sh
 
 .. include:: includes/supervisord.rst
 
@@ -110,13 +132,17 @@ To start Jellyfin automatically and run it in the background, create ``~/etc/ser
 Finishing installation
 ======================
 
+User Setup
+------------------
+
 Point your browser to ``https://isabell.uber.space/`` and follow the initial setup wizard.
 
--  Libraries and users can always be added later from the dashboard.
-- Remember the username and password so you can login after the setup.
+.. note::
 
-Best practices
-==============
+  - Under ``Setup your media libraries``, you can point it to your previously created Library: ``/home/isabell/jellyfin/library``.
+  - Libraries and users can always be added later from the dashboard.
+  - Remember the username and password so you can login after the setup.
+
 
 Tuning
 ------
@@ -130,7 +156,7 @@ Make sure to go into the Admin Dashboard and set the ``Transcoding thread count`
 
   -> [Hamburger-Menu] -> [Admin - Dashboard]
   -> [Server - Playback] -> [Transcoding thread count] : Set to 1
-
+  -> [Scroll all the way down] -> [Save]
 
 
 Updates
