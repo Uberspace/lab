@@ -68,6 +68,7 @@ Use ``tar`` to extract the archive and delete the archive. Replace the version i
 
  [isabell@stardust ~]$ tar -xvzf keycloak-15.0.2.tar.gz
  keycloak-15.0.2
+ [isabell@stardust ~]$ ln -s ~/keycloak-15.0.2 ~/keycloak-current
  [isabell@stardust ~]$
 
 You can now delete the archive:
@@ -83,16 +84,16 @@ Configuration
 Change the configuration
 ------------------------
 
-Find the following block in file :file:`standalone/configuration/standalone.xml` and add the ``proxy-address-forwarding="true"`` attribute to ``<http-listener>`` element under ``<server>``.
+Find the following block in file :file:`~/keycloak-current/standalone/configuration/standalone.xml` and add the ``proxy-address-forwarding="true"`` attribute to ``<http-listener>`` element under ``<server>``.
 
 .. code-block:: xml
  :emphasize-lines: 4
 
- <subsystem xmlns="urn:jboss:domain:undertow:10.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
+ <subsystem xmlns="urn:jboss:domain:undertow:12.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
      <buffer-cache name="default"/>
      <server name="default-server">
-         <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true" read-timeout="30000" proxy-address-forwarding="true"/>
-         <https-listener name="https" socket-binding="https" security-realm="ApplicationRealm" enable-http2="true" read-timeout="30000"/>
+         <http-listener name="default" socket-binding="http" redirect-socket="https" enable-http2="true" proxy-address-forwarding="true"/>
+         <https-listener name="https" socket-binding="https" security-realm="ApplicationRealm" enable-http2="true"/>
          <host name="default-host" alias="localhost">
              <location name="/" handler="welcome-content"/>
              <http-invoker security-realm="ApplicationRealm"/>
@@ -105,27 +106,26 @@ Find the following block in file :file:`standalone/configuration/standalone.xml`
 Create an admin user
 --------------------
 
-Replace ``<username>`` with a user name of your choice and enter a password when your a asked to
+Replace ``<username>`` with a user name of your choice and enter a password when you are asked to
 
 .. code-block::
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd ~/keycloak-15.0.2/bin
- [isabell@stardust keycloak-15.0.2]$ ./add-user-keycloak.sh -u <username>
+ [isabell@stardust ~]$ cd ~/keycloak-current/bin
+ [isabell@stardust keycloak-current]$ ./add-user-keycloak.sh -u <username>
  Press ctrl-d (Unix) or ctrl-z (Windows) to exit
  Password:
- [isabell@stardust keycloak-15.0.2]$
+ [isabell@stardust keycloak-current]$
 
 Setup daemon
 ------------
 
-Use your favourite editor to create the file :file:`~/etc/services.d/keycloak.ini` with the following content. Replace the version in the archive file name with the one you just downloaded.
+Use your favourite editor to create the file :file:`~/etc/services.d/keycloak.ini` with the following content.
 
 .. code-block:: ini
- :emphasize-lines: 2
 
  [program:keycloak]
- command=%(ENV_HOME)s/keycloak-15.0.2/bin/standalone.sh -b 0.0.0.0
+ command=%(ENV_HOME)s/keycloak-current/bin/standalone.sh -b 0.0.0.0
  autostart=yes
  autorestart=yes
 
@@ -150,7 +150,7 @@ Since Keycloak writes logs to :file:`standalone/logs` we want to create a symlin
 
 ::
 
- [isabell@stardust ~]$ ln -s ~/keycloak-15.0.2/standalone/log ~/logs/keycloak-15.02
+ [isabell@stardust ~]$ ln -s ~/keycloak-current/standalone/log ~/logs/keycloak
  [isabell@stardust ~]$
 
 
@@ -162,29 +162,36 @@ Point your Browser to your installation URL ``https://isabell.uber.space`` and u
 Tuning
 ======
 
-For further information on configuration and usage go to https://www.keycloak.org/documentation.
+For further information on configuration and usage read the `Keycloak Documentation`_.
 
 Updates
 =======
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-To update Keycloak install the new version as described under :lab_anchor:`Installation <guide_keycloak.html#installation>`, but without the configuration steps.
+To update Keycloak you need to remove the symlink to :file:`~/keyclok-current` first.
+
+::
+
+ [isabell@stardust ~]$ rm ~/keycloak-current
+ [isabell@stardust ~]$
+
+Now install the new version as described under :lab_anchor:`Installation <guide_keycloak.html#installation>`, but without the configuration steps.
 
 Migrate data
 ------------
 
-Copy the :file:`standalone` directory from the previous installation over the directory in the new installation:
+Copy the :file:`standalone` directory from the previous installation (version 12.0.0 in this example) over the directory in the new installation:
 
 ::
 
- [isabell@stardust ~]$ cp -r keycloak-12.0.0/standalone keycloak-15.0.2
+ [isabell@stardust ~]$ cp -r keycloak-12.0.0/standalone keycloak-current
  keycloak: stopped
  [isabell@stardust ~]$
 
 You also need to copy any custom modules that have been added to the :file:`modules` directory in the same way.
 
-For some versions manual migration steps are needed: https://www.keycloak.org/docs/latest/upgrading/index.html#migration-changes
+For some versions manual migration steps are needed: `Migration Guide`_.
 
 Stop the process of the previous version
 ----------------------------------------
@@ -209,7 +216,7 @@ Unfortunately stopping the daemon is not enough so you need to identify the runn
  isabell   1786  0.4  1.5 1659844 477116 ?      Sl   Nov02 116:23 java -D[Standalone] -server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true - Djboss.modules.system.pkgs=org.jboss.byteman
  isabell  23108  0.0  0.0 116912  3556 pts/6    Ss   22:25   0:00 -bash
  isabell  26803  0.0  0.0 155452  1844 pts/6    R+   23:18   0:00 ps aux
- isabell  32155  0.0  0.0 737800 27388 ?        Ss   Nov18   0:11 php-fpm: master process (/opt/uberspace/etc/smartlab/php-fpm.conf)
+ isabell  32155  0.0  0.0 737800 27388 ?        Ss   Nov18   0:11 php-fpm: master process (/opt/uberspace/etc/isabell/php-fpm.conf)
  [isabell@stardust ~]$
 
 And kill the process. Replace ``PID`` by the PID identified in the previous step.
@@ -228,8 +235,8 @@ Now run the script:
 
 ::
 
- [isabell@stardust ~]$ cd keycloak-15.0.2
- [isabell@stardust keycloak-15.0.2]$ bin/jboss-cli.sh --file=bin/migrate-standalone.cli
+ [isabell@stardust ~]$ cd keycloak-current
+ [isabell@stardust keycloak-current]$ bin/jboss-cli.sh --file=bin/migrate-standalone.cli
  *** WARNING ***
 
  ** If the following embed-server command fails, manual intervention is needed.
@@ -241,14 +248,16 @@ Now run the script:
  *** Begin Migration ***
  [...]
  *** End Migration ***
- [isabell@stardust keycloak-15.0.2]$
+ [isabell@stardust keycloak-current]$
 
-Update and restart the daemon
------------------------------
+Start the daemon again
+----------------------
 
-Edit :file:`~/etc/services.d/keycloak.ini` with your favourite editor to point to the directory of the new version.
+::
 
-After updating the configuration reread and start the daemon as described under :lab_anchor:`Setup daemon <guide_keycloak.html#setup-daemon>`.
+ [isabell@stardust ~]$ supervisorctl start keycloak
+  keycloak: started
+ [isabell@stardust ~]$
 
 Clean up
 --------
@@ -257,7 +266,7 @@ Once you made sure had success and everything works as expected you can delete t
 
 ::
 
- [isabell@stardust ~]$ rm -r keycloak-12.0.0 logs/keycloak-15.02
+ [isabell@stardust ~]$ rm -r keycloak-12.0.0
  [isabell@stardust ~]$
 
 
@@ -266,6 +275,8 @@ Once you made sure had success and everything works as expected you can delete t
 .. _feed: https://github.com/keycloak/keycloak/releases.atom
 .. _Apache 2.0 License: https://github.com/gohugoio/hugo/blob/master/LICENSE
 .. _Github Repository: https://github.com/keycloak/keycloak/releases
+.. _Keycloak Documentation: https://www.keycloak.org/documentation
+.. _Migration Guide: https://www.keycloak.org/docs/latest/upgrading/index.html#migration-changes
 
 ----
 
