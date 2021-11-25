@@ -177,7 +177,7 @@ Load the new settings:
 PostgreSQL Configuration
 ------------------------
 
-Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_addresses``, ``port`` and ``unix_socket_directories``.
 
 Consider using only unix sockets if possible.
 
