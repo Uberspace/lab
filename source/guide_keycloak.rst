@@ -121,7 +121,7 @@ Setup daemon
 
 Use your favourite editor to create the file :file:`~/etc/services.d/keycloak.ini` with the following content. Replace the version in the archive file name with the one you just downloaded.
 
-.. code-block::
+.. code-block:: ini
  :emphasize-lines: 2
 
  [program:keycloak]
