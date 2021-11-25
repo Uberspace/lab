@@ -109,7 +109,16 @@ First stop MongoDB
  mongodb: stopped
  [isabell@stardust ~]$
 
-Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the option ``--replSet rs01``:
+Generate a keyfile
+
+::
+
+ [isabell@stardust ~]$ openssl rand -base64 756 > ~/mongodb/security.key
+ [isabell@stardust ~]$ chmod 400 ~/mongodb/security.key
+ [isabell@stardust ~]$ 
+
+
+Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the options ``  --keyFile %(ENV_HOME)s/mongodb/security.key`` and ``--replSet rs01``:
 
 .. code-block:: ini
 
@@ -118,6 +127,7 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
    --auth
+   --keyFile %(ENV_HOME)s/mongodb/security.key
    --unixSocketPrefix %(ENV_HOME)s/mongodb
    --replSet rs01
  autostart=yes
