@@ -251,6 +251,7 @@ In case of no problems you can delete your old version:
     [isabell@stardust ~]$
 
 ----
+
 .. _listmonk: https://github.com/knadh/listmonk
 .. _Github: https://github.com/knadh/listmonk/releases
 .. _Lab-Guide: https://lab.uberspace.de/guide_postgresql.html
