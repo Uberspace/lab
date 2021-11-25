@@ -125,7 +125,7 @@ Use your favourite editor to create the file :file:`~/etc/services.d/keycloak.in
  :emphasize-lines: 2
 
  [program:keycloak]
- command=/home/smartlab/keycloak-15.0.2/bin/standalone.sh -b 0.0.0.0
+ command=%(ENV_HOME)s/keycloak-15.0.2/bin/standalone.sh -b 0.0.0.0
  autostart=yes
  autorestart=yes
 
