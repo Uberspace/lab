@@ -84,10 +84,9 @@ Create four sub-directories for Jellyfin data, and one to store your media libra
 Create a small script to run Jellyfin, ``jellyfin.sh`` in ``~/jellyfin`` with the following content.
 
 .. code-block:: sh
-  :emphasize-lines: 2
 
   #!/bin/bash
-  JELLYFINDIR="/home/isabell/jellyfin"
+  JELLYFINDIR="/home/$USER/jellyfin"
 
   $JELLYFINDIR/jellyfin/jellyfin \
   -d $JELLYFINDIR/data \
