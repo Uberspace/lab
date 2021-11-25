@@ -63,7 +63,7 @@ Extract the archive. Delete the archive post extraction.
 
 .. code-block:: bash
 
-  [isabell@stardust ~]$ tar -xvzf ~/jellyfin/jellyfin.tar.gz  -C jellyfin
+  [isabell@stardust ~]$ tar -xvzf ~/jellyfin/jellyfin.tar.gz  -C ~/jellyfin
   [isabell@stardust ~]$ rm ~/jellyfin/jellyfin.tar.gz
   [isabell@stardust ~]$
 
@@ -78,7 +78,7 @@ Create four sub-directories for Jellyfin data, and one to store your media libra
 
 .. code-block:: bash
 
-  [isabell@stardust ~]$  mkdir data cache config log library
+  [isabell@stardust ~]$  mkdir ~/jellyfin/data ~/jellyfin/cache ~/jellyfin/config ~/jellyfin/log ~/jellyfin/library
   [isabell@stardust ~]$
 
 Create a small script to run Jellyfin, ``jellyfin.sh`` in ``~/jellyfin`` with the following content.
