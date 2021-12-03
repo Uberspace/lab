@@ -37,12 +37,12 @@ HedgeDoc_ is licensed under the AGPLv3_.
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` version 14.
+Use the recommended :manual:`Node.js <lang-nodejs>` version as mentioned in the `HedgeDoc setup documentation`_.
 
 ::
 
-  [isabell@stardust ~]$ uberspace tools version use node 14
-  Selected Node.js version 14
+  [isabell@stardust ~]$ uberspace tools version use node 16
+  Selected Node.js version 16
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
@@ -62,13 +62,13 @@ Check whether the marked line is the latest_ release.
 .. code-block:: console
   :emphasize-lines: 1
 
-  [isabell@stardust ~]$ VERSION=1.8.2
+  [isabell@stardust ~]$ VERSION=1.9.2
   [isabell@stardust ~]$ wget https://github.com/hedgedoc/hedgedoc/releases/download/$VERSION/hedgedoc-$VERSION.tar.gz
   [...]
   100%[======================================================>] 50,784,713  16.8MB/s   in 2.9s
   [isabell@stardust ~]$ tar --extract --gzip --file=hedgedoc-$VERSION.tar.gz
   [isabell@stardust ~]$ rm --verbose hedgedoc-$VERSION.tar.gz
-  removed hedgedoc-1.8.2.tar.gz
+  removed hedgedoc-1.X.Y.tar.gz
   [isabell@stardust ~]$
 
 Setup
@@ -375,10 +375,11 @@ You can run this script with:
 .. _latest: https://hedgedoc.org/latest-release/
 .. _`Github release feed`: https://github.com/hedgedoc/hedgedoc/releases.atom
 .. _`configuration documentation`: https://docs.hedgedoc.org/configuration/
+.. _`HedgeDoc setup documentation`: https://docs.hedgedoc.org/setup/manual-setup/
 .. _AGPLv3: https://github.com/hedgedoc/hedgedoc/blob/master/LICENSE
 
 ----
 
-Tested with HedgeDoc 1.8.2, Uberspace 7.11.1.1
+Tested with HedgeDoc 1.9.2, Uberspace 7.11.5
 
 .. author_list::
