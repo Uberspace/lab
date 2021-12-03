@@ -288,32 +288,34 @@ Create ``~/bin/hedgedoc-update`` with the following content:
   APP_NAME=hedgedoc
   ORG=$APP_NAME # Organisation or GitHub user
   REPO=$APP_NAME
-  LOCAL=$(jq --raw-output .version ~/hedgedoc/package.json)
-  LATEST=$(curl -s https://api.github.com/repos/$ORG/$REPO/releases/latest | jq --raw-output .tag_name)
+  LOCAL_VERSION=$(jq --raw-output .version ~/hedgedoc/package.json)
+  ## ask the GitHub REST API for the git tag of the release that is marked as latest
+  LATEST_VERSION=$(curl --silent https://api.github.com/repos/$ORG/$REPO/releases/latest |
+    jq --raw-output .tag_name)
 
   function do_upgrade() {
     supervisorctl stop hedgedoc
     echo "waiting 1 minute until all processes are stopped"
     sleep 1m
-    mv --verbose ~/hedgedoc ~/hedgedoc_$LOCAL
-    VERSION=$LATEST
+    mv --verbose ~/hedgedoc ~/hedgedoc_$LOCAL_VERSION
+    VERSION=$LATEST_VERSION
     cd
     wget https://github.com/hedgedoc/hedgedoc/releases/download/$VERSION/hedgedoc-$VERSION.tar.gz
     tar --extract --gzip --file=hedgedoc-$VERSION.tar.gz
     rm --verbose hedgedoc-$VERSION.tar.gz
-    cp --verbose hedgedoc_$LOCAL/config.json hedgedoc/config.json
+    cp --verbose hedgedoc_$LOCAL_VERSION/config.json hedgedoc/config.json
     cd hedgedoc
     bin/setup
     echo "You may need to wait a minute until HedgeDoc is up and running."
     supervisorctl start hedgedoc
-    echo "If everything works fine you can delete ~/hedgedoc_$LOCAL"
-    echo "Please consider that there might be uploaded files in ~/hedgedoc_$LOCAL/public/uploads which were not migrated to the new version if you are using the default setting."
-    #rm --recursive ~/hedgedoc_$LOCAL
+    echo "If everything works fine you can delete ~/hedgedoc_$LOCAL_VERSION"
+    echo "Please consider that there might be uploaded files in ~/hedgedoc_$LOCAL_VERSION/public/uploads which were not migrated to the new version if you are using the default setting."
+    #rm --recursive ~/hedgedoc_$LOCAL_VERSION
   }
 
   function ask_for_update() {
-    echo "The latest Version is $LATEST"
-    echo "Your currently used Version is $LOCAL"
+    echo "The latest version is $LATEST_VERSION"
+    echo "Your currently used version is $LOCAL_VERSION"
     echo "Upgrades to next major releases are not tested, especially to version 2.x."
     echo "Please read the release notes."
     echo "Also check if the upgrade instructions have changed."
@@ -340,14 +342,14 @@ Create ``~/bin/hedgedoc-update`` with the following content:
     unset APP_NAME
     unset ORG
     unset REPO
-    unset LOCAL
-    unset LATEST
+    unset LOCAL_VERSION
+    unset LATEST_VERSION
   }
 
-  if [ "$LOCAL" = "$LATEST" ]; then
+  if [ "$LOCAL_VERSION" = "$LATEST_VERSION" ]; then
     echo "Your $APP_NAME is already up to date."
-  elif [[ "$LOCAL" < "$LATEST" ]]; then
-    echo "There is a new Version available of $APP_NAME"
+  elif [[ "$LOCAL_VERSION" < "$LATEST_VERSION" ]]; then
+    echo "There is a new version available of $APP_NAME"
     ask_for_update
   else
     echo "Something went wrong with the check, it looks like you are using a beta or rc version"
