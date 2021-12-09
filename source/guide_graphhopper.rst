@@ -7,6 +7,11 @@
 .. tag:: navigation
 .. tag:: audience-admins
 
+.. sidebar:: Logo
+
+  .. image:: _static/images/graphhopper.png
+      :align: center
+
 ###########
 GraphHopper
 ###########
