@@ -88,8 +88,8 @@ Create the file ``~/etc/services.d/graphhopper.ini`` with the following content:
 .. code-block:: ini
 
  [program:graphhopper]
- directory=/home/isabell/graphhopper
  command=java -Ddw.graphhopper.datareader.file=berlin-latest.osm.pbf -jar graphhopper-web-4.0.jar server config.yml
+ directory=%(ENV_HOME)s/graphhopper
  autostart=true
  autorestart=true
 
