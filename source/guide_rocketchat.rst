@@ -73,7 +73,7 @@ And then extract the archive, use ``--strip-components=1`` to remove the ``bundl
 ::
 
  [isabell@stardust ~]$ mkdir ~/rocket.chat
- [isabell@stardust ~]$ tar -xzf ~/rocket.chat.tgz -C ~/rocket.chat --strip-components=1
+ [isabell@stardust ~]$ tar -xzf ~/rocket.chat.tgz -C ~/rocket.chat --strip-components=1 --mode=o+w
  [isabell@stardust ~]$
 
 You can delete the archive now:
