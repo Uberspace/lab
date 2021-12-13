@@ -162,7 +162,7 @@ You will have to manually add a table to your postgres database:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ pqsl haste haste
+  [isabell@stardust ~]$ psql haste haste
   Password for user haste:
   psql (9.6.17)
   Type "help" for help.
