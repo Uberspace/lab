@@ -241,7 +241,7 @@ Hardening
 Disable registration and invitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, bitwarden_rs allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your bitwarden_rs server.
+By default, vaultwarden allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your vaultwarden server.
 
 Use your favourite editor to edit ``~/vaultwarden/.env`` and add the following content:
 
@@ -267,7 +267,7 @@ In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific d
 Disable password hint display
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-bitwarden_rs displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
+Vaultwarden displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
 
 Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the following content:
 
@@ -280,19 +280,19 @@ Update
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Updating bitwarden_rs is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again. To get the download link for the newest version of the web-vault look here web-vault-feed_.
+Updating vaultwarden is really easy. Just stop the server, pull everything and download the new web vault, build the executable and start the server again. To get the download link for the newest version of the web-vault look here web-vault-feed_.
 
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/vaultwarden
- [isabell@stardust bitwarden_rs]$ supervisorctl stop vaultwarden
- [isabell@stardust bitwarden_rs]$ git pull
- [isabell@stardust bitwarden_rs]$ mv web-vault web-vault.old && mkdir web-vault
- [isabell@stardust bitwarden_rs]$ wget new-release.tar.gz
- [isabell@stardust bitwarden_rs]$ tar -xvzf new-release.tar.gz
- [isabell@stardust bitwarden_rs]$ rm new-release.tar.gz
- [isabell@stardust bitwarden_rs]$ cargo build -j 1 --release --features sqlite
+ [isabell@stardust vaultwarden]$ supervisorctl stop vaultwarden
+ [isabell@stardust vaultwarden]$ git pull origin async
+ [isabell@stardust vaultwarden]$ mv web-vault web-vault.old && mkdir web-vault
+ [isabell@stardust vaultwarden]$ wget new-release.tar.gz
+ [isabell@stardust vaultwarden]$ tar -xvzf new-release.tar.gz
+ [isabell@stardust vaultwarden]$ rm new-release.tar.gz
+ [isabell@stardust vaultwarden]$ cargo build -j 1 --release --features sqlite
  ....
  [isabell@stardust vaultwarden]$
 
