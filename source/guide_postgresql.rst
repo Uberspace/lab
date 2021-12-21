@@ -196,8 +196,6 @@ Consider using only unix sockets if possible.
  #unix_socket_group = ''                # (change requires restart)
 
 
-You might also be interested in ``listen_addresses`` or ``port``, if you plan on accessing your instance from outside your uberspace. Later, you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
-
 Logging
 -------
 
@@ -642,6 +640,30 @@ The backup is not more necessary and can be removed:
 
  [isabell@stardust ~]$ rm -r ~/opt/postgresql/backup
  [isabell@stardust ~]$
+
+Connecting from outside
+=======================
+
+If you want to connect somehow "directly" from a remote host, you can do so by using a SSH tunnel.
+
+
+.. _postgres-ssh-tunnel-using-linux:
+
+Using Linux, macOS, any other Unix, or Windows 10
+-------------------------------------------------
+
+On Linux, macOS and practically every other Unix operating system, as well as Windows 10 since the September 2017 “Fall Creators Update” version, `OpenSSH <https://www.openssh.com/>`_
+comes preinstalled so you can use it out of the box.
+
+This is how you can initiate a SSH connection offering a tunnel for port 5432,
+your local workstation is represented by a ``[localuser@localhost ~]$`` prompt:
+
+.. code-block:: console
+
+  [localuser@localhost ~]$ ssh -L 5432:127.0.0.1:5432 isabell@stardust.uberspace.de
+
+From now on, you can talk to 127.0.0.1:5432 on your local host to connect to your database.
+In fact, it's OpenSSH listening on port 5432 of your local host, tunneling the connection to your uberspace.
 
 
 .. _PostgreSQL: https://www.postgresql.org
