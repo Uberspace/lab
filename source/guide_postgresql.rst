@@ -177,84 +177,29 @@ Load the new settings:
 PostgreSQL Configuration
 ------------------------
 
-Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the ``unix_socket_directories``:
 
 Consider using only unix sockets if possible.
 
 .. warning:: Please replace ``<username>`` with your username!
 
-.. warning:: If you set ``listen_addresses`` you might open your postgres installation to the world!
-
 .. code-block:: postgres
- :emphasize-lines: 7,11,14
+ :emphasize-lines: 6
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
  #------------------------------------------------------------------------------
 
- # - Connection Settings -
-
- #listen_addresses = 'localhost'        # what IP address(es) to listen on;
-                                        # comma-separated list of addresses;
-                                        # defaults to 'localhost'; use '*' for all
-                                        # (change requires restart)
- port = 5432                            # (change requires restart)
- max_connections = 100                  # (change requires restart)
  #superuser_reserved_connections = 3    # (change requires restart)
  unix_socket_directories = '/home/<username>/tmp'      # comma-separated list of directories
                                         # (change requires restart)
  #unix_socket_group = ''                # (change requires restart)
- #unix_socket_permissions = 0777        # begin with 0 to use octal notation
-                                        # (change requires restart)
- #bonjour = off                         # advertise server via Bonjour
-                                        # (change requires restart)
- #bonjour_name = ''                     # defaults to the computer name
-                                        # (change requires restart)
 
-Later you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
 
-Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.conf`` to enable logging. Consider setting the ``log_directory`` to your preferred log file output location (here we use ``/home/<username>/logs`` where ``username`` is the name of your Uberspace).
+Logging
+-------
 
-.. code-block:: postgres
- :emphasize-lines: 19
-
- #------------------------------------------------------------------------------
- # REPORTING AND LOGGING
- #------------------------------------------------------------------------------
-
- # - Where to Log -
-
- log_destination = 'stderr'              # Valid values are combinations of
-                                         # stderr, csvlog, syslog, and eventlog,
-                                         # depending on platform.  csvlog
-                                         # requires logging_collector to be on.
-
- # This is used when logging to stderr:
- logging_collector = on                  # Enable capturing of stderr and csvlog
-                                         # into log files. Required to be on for
-                                         # csvlogs.
-                                         # (change requires restart)
-
- # These are only used if logging_collector is on:
- log_directory = '/home/<username>/logs' # directory where log files are written,
-                                         # can be absolute or relative to PGDATA
- log_filename = 'postgresql-%a.log'      # log file name pattern,
-                                         # can include strftime() escapes
- #log_file_mode = 0600                   # creation mode for log files,
-                                         # begin with 0 to use octal notation
- log_truncate_on_rotation = on           # If on, an existing log file with the
-                                         # same name as the new log file will be
-                                         # truncated rather than appended to.
-                                         # But such truncation only occurs on
-                                         # time-driven rotation, not on restarts
-                                         # or size-driven rotation.  Default is
-                                         # off, meaning append to existing files
-                                         # in all cases.
- log_rotation_age = 1d                   # Automatic rotation of logfiles will
-                                         # happen after that time.  0 disables.
- log_rotation_size = 0                   # Automatic rotation of logfiles will
-                                         # happen after that much log output.
-                                         # 0 disables.
+Postgres writes its logs to ``~/opt/postgresql/data/log/``. To change this, adapt the ``log_directory`` setting in ``postgresql.conf``.
 
 Setup Daemon
 ------------
@@ -695,6 +640,30 @@ The backup is not more necessary and can be removed:
 
  [isabell@stardust ~]$ rm -r ~/opt/postgresql/backup
  [isabell@stardust ~]$
+
+Connecting from outside
+=======================
+
+If you want to connect somehow "directly" from a remote host, you can do so by using a SSH tunnel.
+
+
+.. _postgres-ssh-tunnel-using-linux:
+
+Using Linux, macOS, any other Unix, or Windows 10
+-------------------------------------------------
+
+On Linux, macOS and practically every other Unix operating system, as well as Windows 10 since the September 2017 “Fall Creators Update” version, `OpenSSH <https://www.openssh.com/>`_
+comes preinstalled so you can use it out of the box.
+
+This is how you can initiate a SSH connection offering a tunnel for port 5432,
+your local workstation is represented by a ``[localuser@localhost ~]$`` prompt:
+
+.. code-block:: console
+
+  [localuser@localhost ~]$ ssh -L 5432:127.0.0.1:5432 isabell@stardust.uberspace.de
+
+From now on, you can talk to 127.0.0.1:5432 on your local host to connect to your database.
+In fact, it's OpenSSH listening on port 5432 of your local host, tunneling the connection to your uberspace.
 
 
 .. _PostgreSQL: https://www.postgresql.org

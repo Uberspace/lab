@@ -74,6 +74,7 @@ And then extract the archive, use ``--strip-components=1`` to remove the ``bundl
 
  [isabell@stardust ~]$ mkdir ~/rocket.chat
  [isabell@stardust ~]$ tar -xzf ~/rocket.chat.tgz -C ~/rocket.chat --strip-components=1
+ [isabell@stardust ~]$ chmod -R ug=rwX,o= rocket.chat
  [isabell@stardust ~]$
 
 You can delete the archive now:
@@ -109,7 +110,16 @@ First stop MongoDB
  mongodb: stopped
  [isabell@stardust ~]$
 
-Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the option ``--replSet rs01``:
+Generate a keyfile
+
+::
+
+ [isabell@stardust ~]$ openssl rand -base64 756 > ~/mongodb/security.key
+ [isabell@stardust ~]$ chmod 400 ~/mongodb/security.key
+ [isabell@stardust ~]$ 
+
+
+Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the options ``  --keyFile %(ENV_HOME)s/mongodb/security.key`` and ``--replSet rs01``:
 
 .. code-block:: ini
 
@@ -118,6 +128,7 @@ Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the o
    --dbpath %(ENV_HOME)s/mongodb
    --bind_ip 127.0.0.1
    --auth
+   --keyFile %(ENV_HOME)s/mongodb/security.key
    --unixSocketPrefix %(ENV_HOME)s/mongodb
    --replSet rs01
  autostart=yes
