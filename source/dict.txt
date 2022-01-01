@@ -136,6 +136,8 @@ expirations
 ezmlm
 favourite
 FDroid
+Fediverse
+fediverse
 Feyer
 filename
 filenames
@@ -152,8 +154,11 @@ formulae
 Framadata
 Framadate
 freemium
+Friendica
+friendica
 frontend
 frontends
+Funkwhale
 gamers
 Gitea
 gitea
@@ -192,6 +197,7 @@ htm
 html
 httpd
 https
+Hubzilla
 hugo
 Humhub
 humhub
@@ -320,6 +326,7 @@ openpgpkey
 openssl
 Oplog
 organising
+OStatus
 osTicket
 packagist
 partdb
