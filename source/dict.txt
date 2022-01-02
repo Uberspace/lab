@@ -9,6 +9,7 @@ amd
 Ampache
 ampache
 analytics
+Antragsgrün
 apache
 api
 appserver
@@ -104,6 +105,8 @@ dev
 devs
 dhparam
 Diffie
+Directus
+directus
 disqus
 Django
 django
@@ -160,6 +163,7 @@ frontend
 frontends
 Funkwhale
 gamers
+geospatial
 Gitea
 gitea
 gitfs
@@ -224,6 +228,8 @@ isabell
 Isso
 isso
 javascript
+Jellyfin
+jellyfin
 Jingo
 Jinja
 Joomla
@@ -237,6 +243,7 @@ kanban
 Kanboard
 Kasper
 Kawaguchi
+keyFile
 keyfile
 keyfiles
 keyring
@@ -254,6 +261,7 @@ licence
 licenced
 Lindberg
 linux
+listmonk
 localhost
 logfile
 Logfiles
@@ -293,6 +301,7 @@ minio
 mnesia
 Mongo
 mongo
+mongodb
 mongorc
 Monolog
 Moodle
@@ -380,6 +389,7 @@ quickstart
 Rackup
 Radicale
 radicale
+rc
 Readline
 realtime
 recache
@@ -482,6 +492,7 @@ tinymce
 tld
 todos
 transactional
+transcodes
 Trello
 ttl
 Tumblr
@@ -495,6 +506,7 @@ Uberspaces
 udocker
 udp
 UI
+ui
 Umami
 umami
 uncheck
@@ -512,6 +524,7 @@ userid
 Username
 username
 usernames
+uuNotify
 uvicorn
 uWSGI
 uwsgi
