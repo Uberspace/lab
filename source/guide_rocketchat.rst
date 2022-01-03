@@ -116,7 +116,7 @@ Generate a keyfile
 
  [isabell@stardust ~]$ openssl rand -base64 756 > ~/mongodb/security.key
  [isabell@stardust ~]$ chmod 400 ~/mongodb/security.key
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Update the daemon configuration file ``~/etc/services.d/mongodb.ini``, add the options ``  --keyFile %(ENV_HOME)s/mongodb/security.key`` and ``--replSet rs01``:

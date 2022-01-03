@@ -303,9 +303,9 @@ After the REST backend has been configured, we need to configure the Django fron
     ('text/x-scss', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
     ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
- 
+
  [...]
- 
+
  Q_CLUSTER = {
      'timeout': 100,
      'retry': 200,
