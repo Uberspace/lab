@@ -81,7 +81,7 @@ Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 Cleanup
 =======
 
-Since we only need the binary and the configuration file we can savely remove the downloaded archive and the extracted directory.
+Since we only need the binary and the configuration file we can safely remove the downloaded archive and the extracted directory.
 
 ::
 

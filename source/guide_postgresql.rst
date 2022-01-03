@@ -154,7 +154,7 @@ The temporary password file is no longer necessary::
 Configuration
 =============
 
-After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via an Unix socket is not supported by every project.
+After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via a Unix socket is not supported by every project.
 
 Configure the Unix Socket
 -------------------------
@@ -237,10 +237,10 @@ Database and User Management
 ============================
 
 The default setup on Uberspace is that the Uberspace account name is the database cluster user/PostgreSQL superuser
-with root-type priveliges to adminster the database (create/delete new databases and users, install extensions,
+with root-type privileges to administer the database (create/delete new databases and users, install extensions,
 run maintenance).
 
-It is highly recommended to use a separate user(s) together with a strong passwords for every single usage (project).
+It is highly recommended to use a separate user(s) together with a strong password for every single usage (project).
 
 The following example considers a database and new user for Synapse, the Matrix (https://matrix.org) reference server.
 You can use this template setup for other projects as well.
@@ -297,7 +297,7 @@ Available extensions for PostgreSQL on U7 can be found in the ``/usr/pgsql-<Majo
 
 The ``select * from pg_roles;`` SQL command allows you to check which roles and privileges exist for the current database (``rolsuper`` needs to be ``t`` (true)):
 
-.. warning:: Please replace <database name> with the name of the database you would like to install extensions in! Commonly ``psql <database name>`` is automatically interpreted by PostgreSQL as ``psql <database name> --username <login account name>``, so here, the "login account name" is automagically taken as your UberSpace name/database cluster user.
+.. warning:: Please replace <database name> with the name of the database you would like to install extensions in! Commonly ``psql <database name>`` is automatically interpreted by PostgreSQL as ``psql <database name> --username <login account name>``, so here, the "login account name" is automatically taken as your UberSpace name/database cluster user.
 
 .. code-block:: console
 
@@ -367,7 +367,7 @@ The database should now be spatially enabled, allowing you to load geospatial da
 UUID: Generating UUIDs
 ----------------------
 
-PostgreSQL provides storage and comparison functions for the standardised `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
+PostgreSQL provides storage and comparison functions for the standardized `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
 
 .. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
