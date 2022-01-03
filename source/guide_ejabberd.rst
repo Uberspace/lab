@@ -4,7 +4,7 @@
 
 .. tag:: XMPP
 .. tag:: Jabber
-.. tag:: Instant Messanging
+.. tag:: Instant Messaging
 
 .. highlight:: console
 

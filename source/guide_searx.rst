@@ -3,7 +3,7 @@
 .. author:: FM <git.fm@mmw9.de>
 
 .. tag:: web
-.. tag:: python
+.. tag:: lang-python
 
 .. sidebar:: Logo
 
