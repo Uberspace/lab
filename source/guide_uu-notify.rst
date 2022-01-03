@@ -81,17 +81,17 @@ Clone the `GitHub repository <https://github.com/franok/uu-notify>`_, checkout t
   [isabell@stardust uu-notify]$ ./setup.sh
   --- uuNotify setup ---
   Existing files in config/ will not be overwritten.
-  
+
   Running 'npm clean-install' ...
   [...]
   Done.
-  
+
   Copy configuration files...
   Creating config.json from config.json.template ...
   Done.
   Creating software-deps.mjs from software-deps.mjs.example ...
   Done.
-  
+
   --- COMPLETED uuNotify setup ---
   [isabell@stardust uu-notify]$
 
@@ -117,7 +117,7 @@ In the uuNotify directory, navigate into the ``config/`` folder:
 .. code-block:: console
 
   [isabell@stardust uu-notify]$ cd config/
-  [isabell@stardust config]$ 
+  [isabell@stardust config]$
 
 Edit the file ``config.json``.
 
@@ -134,7 +134,7 @@ Add your Gotify server url and the app token from the previous step. Example:
   }
 
 .. note:: The gotify server URL must end **without** trailing forward slash ``/``
-  
+
   | Good example: ``https://isabell.uber.space/gotify``
   | Bad example: ``https://isabell.uber.space/gotify/``
 
@@ -210,12 +210,12 @@ After that, register uuNotify in your :manual:`crontab <daemons-cron>`.
 Copy and paste the following lines into your crontab, by appending them to the end of the existing entries:
 
 .. code-block:: bash
-  
+
   #MAILTO=""
   0 18 * * SUN /usr/bin/node /home/isabell/uu-notify/index.mjs
 
 This crontab configuration will run uuNotify every Sunday at 18:00.
-If there are any software updates, you'll receive a notification. 
+If there are any software updates, you'll receive a notification.
 
 If you want uuNotify to check for updates more often, you can adjust the time and frequency to your needs. I suggest you to double check your cron schedule expression with `crontab guru <https://crontab.guru/>`_.
 
@@ -248,7 +248,7 @@ The :ref:`Gotify app you created <id-gotify-application>` will show up in your :
 #. Using the app id (in this case 42) run the next command:
 
    .. code-block:: console
-     
+
       [user@localhost ~]$ curl --header "X-Gotify-Key:<gotify-client-token>"  -k -X POST -F 'file=@/home/<localuser>/path/to/image/uu-notify-icon.png'  https://<gotify-url>/application/42/image
       {"id":42,"token":"********","name":"uuNotify","description":"uuNotify","internal":false,"image":"image/RTHDR0253KDdQyw_FUBOEDom4.png"}
       [user@localhost ~]$
@@ -284,11 +284,11 @@ You can update uuNotify to the latest_ version as follows:
   Running 'npm clean-install' ...
   [...]
   Done.
-  
+
   Copy configuration files...
   config.json already exists. Skipping...
   software-deps.mjs already exists. Skipping...
-  
+
   --- COMPLETED uuNotify setup ---
   [isabell@stardust uu-notify]$
 

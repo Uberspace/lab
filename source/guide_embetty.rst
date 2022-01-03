@@ -73,7 +73,7 @@ Use ``npm`` to install the latest version of Embetty server:
   [...]
   added 182 packages
   [isabell@stardust ~]$
-  
+
 
 
 Configuration
