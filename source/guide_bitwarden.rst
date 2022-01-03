@@ -3,7 +3,7 @@
 .. author:: Achim | pxlfrk <hallo@pxlfrk.de>
 .. author:: knhash <https://knhash.in>
 
-.. tag:: passwordmanager
+.. tag:: password-manager
 .. tag:: rust
 .. tag:: web
 
