@@ -15,7 +15,7 @@ Antragsgrün
 
 .. tag_list::
 
-Antragsgrün_ is an open source web tool used by organisations such as the European and German Green Parties for discussing motions, amendments, and candidacies. It is written in PHP and distributed under the GPLv3 license
+Antragsgrün_ is an open source web tool used by organizations such as the European and German Green Parties for discussing motions, amendments, and candidacies. It is written in PHP and distributed under the GPLv3 license.
 
 ----
 

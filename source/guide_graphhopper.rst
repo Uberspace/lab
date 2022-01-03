@@ -54,7 +54,7 @@ In order to minimize resource usage, please choose only a small map, preferably 
 
   A map of Berlin will be used as an example.
   Please replace the map names according to your needs.
-  Choose small maps in oder to not overuse the shared resources.
+  Choose small maps in order to not overuse the shared resources.
 
 
 ::

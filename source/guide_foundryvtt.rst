@@ -8,7 +8,7 @@
 .. tag:: RPG
 
 .. sidebar:: Logo
- 
+
   .. image:: _static/images/foundryvtt.png
       :align: center
 
@@ -32,12 +32,12 @@ Foundry VTT
 License
 =======
 
-Foundry Virtual Tabletop is not free software, but you can host it on your own server. 
+Foundry Virtual Tabletop is not free software, but you can host it on your own server.
 
 Prerequisites
 ==============
 
-You need to purchase a `license key <https://foundryvtt.com/purchase/>`_ to run your own version of Foundry Virtual Tabletop. 
+You need to purchase a `license key <https://foundryvtt.com/purchase/>`_ to run your own version of Foundry Virtual Tabletop.
 
 Foundry requires the use of :manual:`Node.js <lang-nodejs>` 14.
 
@@ -127,8 +127,8 @@ Best practices
 Security
 --------
 
-  * Change the default admin passwort in the config tab **immediately** after installation.
-  * When you create a new world in Foundry it does not have a password by default. Keep in mind to setup a passwort after world creation.
+  * Change the default admin password in the config tab **immediately** after installation.
+  * When you create a new world in Foundry it does not have a password by default. Keep in mind to setup a password after world creation.
 
 ----
 Tested with Foundry 0.8.7, Uberspace 7.1.1
