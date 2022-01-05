@@ -88,7 +88,7 @@ Create ``~/conduit.toml`` with the following content:
  server_name = "<username>.uber.space"
 
  # This is the only directory where Conduit will save its data
- database_path = "/home/<username>/conduit_data/conduit.db"
+ database_path = "/home/<username>/conduit_data"
 
  port = 6167
 
