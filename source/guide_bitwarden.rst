@@ -189,9 +189,8 @@ You can create a backup of the database manually. ``cd`` to your project folder,
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd ~/vaultwarden/output/data
- [isabell@stardust data]$ mkdir db-backup
- [isabell@stardust data]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/backup.sqlite3'"
+ [isabell@stardust ~]$ mkdir ~/vaultwarden/output/data/db-backup
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/backup.sqlite3'"
 
 .. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time. If you want to save every version of the backup, please read further.
 
@@ -199,7 +198,7 @@ Alternatively, you can do the backup with a timestamp and it can be useful if yo
 
 .. code-block:: console
 
- [isabell@stardust data]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
 
 Restore up your vault manually
 ------------------------------
