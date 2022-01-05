@@ -14,14 +14,14 @@
       :align: center
 
 ############
-Vaultwarden
+vaultwarden
 ############
 
 .. tag_list::
 
 Bitwarden_ is an open source password manager. Your vault is encrypted with your master key, so even if your server is compromised the hacker will only get some unreadable gibberish. Hosting your own Bitwarden server can be useful if you are paranoid about the server security and want to be in full control, or want the premium features for free because you have a webspace anyway.
 
-.. note :: The installation of the official `bitwarden server repository`_ via docker is heavy, difficult and relies on docker, which `isn't supported`_ at uberspace due to the fact of shared hosting. In this guide we'll use the Rust implementation `Vaultwarden`_ (formerly Bitwarden_rs) of the Bitwarden API, so you can still use the official clients.
+.. note :: The installation of the official `bitwarden server repository`_ via docker is heavy, difficult and relies on docker, which `isn't supported`_ at uberspace due to the fact of shared hosting. In this guide we'll use the Rust implementation `vaultwarden`_ (formerly Bitwarden_rs) of the Bitwarden API, so you can still use the official clients.
 
 ----
 
@@ -49,7 +49,7 @@ If you want to use vaultwarden with your own domain you need to set up your doma
 Installation
 ============
 
-Install Vaultwarden
+Install vaultwarden
 --------------------
 
 We will be installing vaultwarden by extracting a standalone, statically-linked binary from the official Docker image.
@@ -58,7 +58,7 @@ Create a directory in ``/home/isabell`` for vaultwarden and its files.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir vaultwarden
+ [isabell@stardust ~]$ mkdir ~/vaultwarden
  [isabell@stardust ~]$
 
 Download the Docker Image Extractor
@@ -97,10 +97,10 @@ Use your favourite editor to create ``~/vaultwarden/output/.env`` with the follo
  SMTP_PASSWORD=MySuperSecretPassword
  DOMAIN=https://isabell.uber.space
 
-Replace the mail placeholder variables with your valid IMAP credentials, otherwise the Vaultwarden server will not be able to send you mail notifications or tokens to verify newly created user accounts.
+Replace the mail placeholder variables with your valid SMTP credentials, otherwise the vaultwarden server will not be able to send you mail notifications or tokens to verify newly created user accounts.
 ``SMTP_USERNAME`` and ``SMTP_PASSWORD`` must be the login data from a valid mail account. Replace the server domain with your final URL.
 
-.. note :: You can configure any type of service here, you're not limited to an uberspace SMTP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_Port`` etc. accordingly.
+.. note :: You can configure any type of service here, you're not limited to an uberspace SMTP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_PORT`` etc. accordingly.
 
 You can edit other options, look into .env.template to see a list of available options.
 
@@ -167,6 +167,7 @@ Use your favourite editor to create ``~/etc/services.d/vaultwarden.ini`` with th
   command=%(ENV_HOME)s/vaultwarden/output/vaultwarden
   autostart=yes
   autorestart=yes
+  startsecs=60
 
 .. include:: includes/supervisord.rst
 
@@ -247,7 +248,7 @@ In addition to ``SIGNUPS_ALLOWED=false`` you can create an except for specific d
 Disable password hint display
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Vaultwarden displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
+vaultwarden displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
 
 Use your favourite editor to edit ``~/vaultwarden/output/.env`` and add the the following content:
 
@@ -308,7 +309,7 @@ This guide is based on the official `vaultwarden documentation`_. Previously, it
 .. _rust toolchain: https://rustup.rs/
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries#extracting-binaries-without-docker-installed
-.. _Vaultwarden: https://github.com/dani-garcia/vaultwarden
+.. _vaultwarden: https://github.com/dani-garcia/vaultwarden
 .. _web-vault-feed: https://github.com/dani-garcia/bw_web_builds/releases
 .. _backup of the data: https://github.com/dani-garcia/vaultwarden/wiki/General-%28not-docker%29#backup
 
