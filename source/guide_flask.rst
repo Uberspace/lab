@@ -1,7 +1,7 @@
 .. highlight:: console
 
 .. author:: Benjamin Wießneth <bwiessneth@gmail.com>
-.. author:: Christian Macht <github.com/cmacht>
+.. author:: Christian Macht <https://github.com/cmacht>
 
 .. tag:: lang-python
 .. tag:: web
@@ -226,5 +226,9 @@ Best Practices
 ==============
 
 uWSGI can be configured extensively and has its own page on `best practices <https://uwsgi-docs.readthedocs.io/en/latest/ThingsToKnow.html>`_. Further recommendations can also be found in this `write-up from EuroPython 2019 <https://www.techatbloomberg.com/blog/configuring-uwsgi-production-deployment/>`_.
+
+----
+
+Tested with Uberspace 7.11.5 and Flask 2.0.0 on Python 3.6.
 
 .. author_list::
