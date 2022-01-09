@@ -9,4 +9,3 @@ After creating the configuration, tell :manual:`supervisord <daemons-supervisord
  [isabell@stardust ~]$ supervisorctl status
  SERVICE                            RUNNING   pid 26020, uptime 0:03:14
  [isabell@stardust ~]$
-

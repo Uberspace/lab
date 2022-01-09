@@ -30,7 +30,7 @@ It is focused on supporting guilds and clans playing online games, especially MM
 License
 =======
 
-EQdkp-Plus_ is released under the `AGPLv3 License`_.  
+EQdkp-Plus_ is released under the `AGPLv3 License`_.
 
 Prerequisites
 =============

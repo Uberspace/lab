@@ -128,7 +128,7 @@ The installation is now done, what's missing is the connection to the webserver.
 Connecting the webserver
 ------------------------
 
-A Ruby speciality is that it requires a so called »appserver« as connector
+A Ruby specialty is that it requires a so called »appserver« as connector
 between your application and the webserver. The webserver, like Nginx or Apache,
 will handle all incoming web request and pass only request for the Ruby app along
 to the appserver. The appserver will then actually run your Rails app.

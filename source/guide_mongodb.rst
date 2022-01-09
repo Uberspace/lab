@@ -178,4 +178,3 @@ command to update your installation. Afterwards, restart your instance.
 Tested with MongoDB 4.4.3, MongoDB Tools 100.2.0, Uberspace 7.8.1.0
 
 .. author_list::
-

@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    sbt
+
 .. author:: Raphael Höser <raphael@hoeser.info>
 
 .. tag:: lang-java
@@ -14,6 +17,12 @@
 ########
 Jenkins
 ########
+
+.. error::
+
+  This guide is broken since Jenkins does not support `Java 16 <https://jenkins.io/doc/administration/requirements/java/>`_. 
+  Feel free to look for a solution and create a Pull Request, see the `related issue <https://github.com/Uberspace/lab/issues/1098>`_.
+
 
 .. tag_list::
 

@@ -1,4 +1,4 @@
-.. author:: this.ven <lab@thisven.tuttle.uberspace.de>
+.. author:: this.ven <this@ven.uber.space>
 
 .. tag:: blog
 .. tag:: lang-go

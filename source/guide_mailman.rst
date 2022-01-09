@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########

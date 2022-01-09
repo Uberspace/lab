@@ -44,7 +44,7 @@ Create a file ``~/fastapi/main.py`` with the following content:
 
 .. code-block:: python
 
-  #!/usr/bin/env python3.6
+  #!/usr/bin/env python3.9
   import fastapi
   import uvicorn
 
@@ -62,22 +62,22 @@ Create a file ``~/fastapi/main.py`` with the following content:
 
 Python Virtual Environment
 --------------------------
-To install the packages your application depends on, you want to use a virtual environment that is isolated from the system python's packages.
-FastAPI requires Python 3.6+ so we are going to use the latest working version, which is Python 3.8 (due to a `dependency issue`_):
+To install the packages your application depends on, you want to use a virtual environment that is isolated from the system's Python packages.
+FastAPI requires Python 3.6+ but we are going to use the latest version available, which is currently Python 3.9:
 
 ::
 
   [isabell@stardust ~]$ cd ~/fastapi
-  [isabell@stardust fastapi]$ python3.8 -m venv .env
-  [isabell@stardust fastapi]$ source .env/bin/activate
-  (.env) [isabell@stardust fastapi]$
+  [isabell@stardust fastapi]$ python3.9 -m venv venv
+  [isabell@stardust fastapi]$ source venv/bin/activate
+  (venv) [isabell@stardust fastapi]$
 
 In your virtual environment, install the dependencies we are using in ``main.py``:
 
 ::
 
-  (.env) [isabell@stardust fastapi]$ pip install fastapi uvicorn
-  (.env) [isabell@stardust fastapi]$
+  (venv) [isabell@stardust fastapi]$ pip install fastapi uvicorn
+  (venv) [isabell@stardust fastapi]$
 
 .. note:: You can already check if your application is working by uncommenting the ``ucivorn.run()`` line and executing ``python main.py`` in the virtual environment. Open a second ssh connection and get the output with ``curl localhost:8000``
 
@@ -85,14 +85,14 @@ While uvicorn_ handles the asynchronous side of FastAPI, we want gunicorn_ as a 
 
 ::
 
-  (.env) [isabell@stardust fastapi]$ pip install gunicorn uvloop httptools
-  (.env) [isabell@stardust fastapi]$
+  (venv) [isabell@stardust fastapi]$ pip install gunicorn uvloop httptools
+  (venv) [isabell@stardust fastapi]$
 
 You can deactivate the virtual environment context like this:
 
 ::
 
-  (.env) [isabell@stardust fastapi]$ deactivate
+  (venv) [isabell@stardust fastapi]$ deactivate
   [isabell@stardust fastapi]$
 
 
@@ -124,7 +124,7 @@ First, we are telling gunicorn to spin up several uvicorn processes and listen o
 
 This is a minimal working example based on gunicorn's `example config`_, you can find a comprehensive `list of options here`_.
 
-.. note:: Test if everything is working with ``~/fastapi/.env/bin/gunicorn --config ~/fastapi/conf.py --check-config``. If there is no output, you're good.
+.. note:: Test if everything is working with ``~/fastapi/venv/bin/gunicorn --config ~/fastapi/conf.py --check-config``. If there is no output, you're good.
 
 
 Supervisord
@@ -135,7 +135,7 @@ Next, create a configuration for supervisord in ``~/etc/services.d/fastapi.ini``
 
   [program:fastapi]
   directory=%(ENV_HOME)s/fastapi
-  command=%(ENV_HOME)s/fastapi/.env/bin/gunicorn --config %(ENV_HOME)s/fastapi/conf.py
+  command=%(ENV_HOME)s/fastapi/venv/bin/gunicorn --config %(ENV_HOME)s/fastapi/conf.py
 
 .. include:: includes/supervisord.rst
 
@@ -157,7 +157,6 @@ This concludes the setup. Point your browser to :manual:`your url <web-domains>`
 .. _FastAPI: https://github.com/tiangolo/fastapi
 .. _similar to Flask: https://fastapi.tiangolo.com/alternatives/#flask
 .. _license: https://github.com/tiangolo/fastapi/blob/master/LICENSE
-.. _dependency issue: https://github.com/MagicStack/httptools/issues/59
 .. _uvicorn: https://www.uvicorn.org
 .. _gunicorn: https://gunicorn.org/
 .. _example config: https://github.com/benoitc/gunicorn/blob/master/examples/example_config.py

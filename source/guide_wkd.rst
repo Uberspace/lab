@@ -1,5 +1,10 @@
 .. highlight:: console
 
+.. spelling::
+    WKD
+    mmuhurigesr
+    cmfsnmiiyyr
+
 .. author:: Starkstromkonsument <it@starkstromkonsument.de>
 
 .. tag:: audience-admins

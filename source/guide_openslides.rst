@@ -76,7 +76,7 @@ Check if OpenSlides is installed by typing:
  [isabell@stardust ~]$ openslides --version
  3.3
  [isabell@stardust ~]$
- 
+
 Create Database
 ---------------
 For performance reasons, we will use a :manual:`MySQL <database-mysql>` database for storing the OpenSlides data. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_openslides``) instead of the default database.
@@ -135,7 +135,7 @@ Then, we will populate the database by running the following command:
  [2021-04-11 20:59:34 +0200] [21317] [INFO] openslides.core.apps [zxnj] Updated config variables
  [isabell@stardust ~]$
 
- 
+
 Create web backend
 ------------------
 
@@ -182,19 +182,20 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+.. note:: Important: An update to version 3.4 and higher of OpenSlides is longer possible!
 
 If there is a new version available, update the following command to update your OpenSlides python package:
 
 ::
 
- [isabell@stardust ~]$ servicectl stop openslides
+ [isabell@stardust ~]$ supervisorctl stop openslides
  [isabell@stardust ~]$ pip3.7 install --upgrade openslides
  [...]
         Successfully uninstalled openslides-3.2
      Running setup.py install for openslides ... done
  Successfully installed openslides-3.3
  [...]
- [isabell@stardust ~]$ servicectl start openslides
+ [isabell@stardust ~]$ supervisorctl start openslides
  [isabell@stardust ~]$
 
 Backup
@@ -252,7 +253,7 @@ Moreover, you can adjust the logging of OpenSlides. For example, you can log the
       },
   }
 
-This will log everything to the file ``/home/isabell/logs/openslides.log`` instead being displayed in the console.  
+This will log everything to the file ``/home/isabell/logs/openslides.log`` instead being displayed in the console.
 
 
 .. _OpenSlides: https://openslides.com/

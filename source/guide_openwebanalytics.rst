@@ -1,6 +1,9 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. spelling::
+    owa
+
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web

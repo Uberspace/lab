@@ -144,7 +144,7 @@ TeamCity has extensive documentation. Check it out under TeamCity-Docs_.
 Tuning
 ======
 
-You can add extra functionalities of TeamCity with plugins. Check out the TeamCity-Plugins_ page.
+You can add extra functionality to TeamCity with plugins. Check out the TeamCity-Plugins_ page.
 
 .. _TeamCity: https://www.jetbrains.com/teamcity/
 .. _TeamCity-Download: https://www.jetbrains.com/teamcity/download/#section=get

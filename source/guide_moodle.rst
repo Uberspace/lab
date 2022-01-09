@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    Et
+    voilà
+
 .. author:: Direnc <direnc99@gmail.com>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
@@ -122,7 +126,7 @@ We visit the page in the browser of our choice.
 7. This could take a while to finish. We should shortly after be redirected to the process page. We can watch the process while installing missing plugins. After all installations have finished, at the end of the page we click on ``Continue``
 8. After that, we should be shown the admin user creation page. We enter our information here which we later will also use to login.
 9. Enter a full and short name for your Moodle instance.
-10. Et voila, our Moodle is now installed.
+10. Et voilà, our Moodle is now installed.
 
 Cronjob
 -------

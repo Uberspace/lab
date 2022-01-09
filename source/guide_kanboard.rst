@@ -36,12 +36,12 @@ The software is licensed under `MIT License`_. All relevant information can be f
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -220,6 +220,6 @@ Check the `Kanboard documentation`_ if the configuration changed between ``confi
 
 ----
 
-Tested with Kanboard 1.2.6, Uberspace 7.1.14.0
+Tested with Kanboard 1.2.20, Uberspace 7.11.5
 
 .. author_list::

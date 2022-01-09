@@ -40,12 +40,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We are using :manual:`PHP <lang-php>` in the version 7.4:
+Use the recommended :manual:`PHP <lang-php>` version as listed in the `system requirements`_:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 7.4
- Selected PHP version 7.4
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -68,6 +68,7 @@ Before you start the Nextcloud installation you should adapt some PHP settings:
  #. enable the `PHP OPcache <https://www.php.net/manual/en/book.opcache.php>`_
  #. increase the PHP memory limit
  #. disable PHP output buffering
+ #. restart PHP
 
 Otherwise Nextcloud would warn you after each command execution because of the wrong set memory limit.
 
@@ -130,6 +131,7 @@ Downloading
 .. code-block:: console
 
  [isabell@stardust ~]$ cd html
+ [isabell@stardust html]$ rm nocontent.html
  [isabell@stardust html]$ curl https://download.nextcloud.com/server/releases/latest.tar.bz2 | tar -xjf - --strip-components=1
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -310,6 +312,11 @@ default phone region
   System config value default_phone_region set to string DE
   [isabell@stardust html]$
 
+Client Push
+-----------
+
+To prevent clients from regularly asking the server for updates in short periods of time you can use the service: :lab:`Client Push <guide_notify_push>`.
+
 Database maintenance
 --------------------
 
@@ -319,6 +326,8 @@ To adapt some database configs to make Nextcloud run smoother execute these comm
 
   [isabell@stardust ~]$ cd html
   [isabell@stardust html]$ php occ db:add-missing-indices --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-columns --no-interaction
+  [isabell@stardust html]$ php occ db:add-missing-primary-keys --no-interaction
   [isabell@stardust html]$ php occ db:convert-filecache-bigint --no-interaction
   [isabell@stardust html]$
 
@@ -342,14 +351,16 @@ Reload the page and press the talk icon in the top menu bar.
 Updates
 =======
 
+.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
+
 The easiest way to update Nextcloud is to use the web updater provided in the admin section of the Web Interface.
 
-Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimisation.
+Updating via console command is also a comfortable way to perform upgrades. While new major releases of Nextcloud also introduce new features the updater might ask you to run some commands e.g. for database optimization.
 The release cycle of Nextcloud is very short. A prepared script with some common checks would ensure you don't need to run them.
 
 .. warning:: Before updating to the next major release, such as version 19.x.x to 20.x.x, make sure your apps are compatible or there exists updates. Otherwise the incompatible apps will get disabled. If the web based admin overview displays an available update it also checks if there are any incompatible apps. You can also check for compatible versions in the `Nextcloud App Store`_.
 
-Create `~/bin/nextcloud-update` with the following content:
+Create ``~/bin/nextcloud-update`` with the following content:
 
 .. code-block:: bash
 
@@ -365,9 +376,7 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ maintenance:mode --on
 
  ## database optimisations
- ## The following command works from Nextcloud 20.
- ## remove '#' so it is working
- #php ~/html/occ db:add-missing-primary-keys --no-interaction
+ php ~/html/occ db:add-missing-primary-keys --no-interaction
  php ~/html/occ db:add-missing-columns --no-interaction
  php ~/html/occ db:add-missing-indices --no-interaction
  php ~/html/occ db:convert-filecache-bigint --no-interaction
@@ -375,6 +384,9 @@ Create `~/bin/nextcloud-update` with the following content:
  php ~/html/occ app:update --all
  php ~/html/occ maintenance:mode --off
  /usr/sbin/restorecon -R ~/html
+
+ ## If you have set up the notify_push service uncomment the following line by removing the #
+ #supervisorctl restart notify_push
 
 Make the script executable:
 
@@ -395,8 +407,6 @@ Then you can run the script whenever you need it to perform the update.
 
  ``@daily $HOME/bin/nextcloud-update`` output as email
  ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
-
-.. note:: Check the `changelog <https://nextcloud.com/changelog/>`_ regularly or subscribe to the project's `Github release feed <https://github.com/nextcloud/server/releases.atom/>`_ with your favorite feed reader to stay informed about new updates and releases.
 
 Troubleshooting
 ===============
@@ -426,6 +436,15 @@ If files are missing like if you move files or restore backups on the machine an
  [isabell@stardust html]$ php occ files:scan --all
  [isabell@stardust html]$ php occ files:scan-app-data
  [isabell@stardust html]$
+
+memory limit after migration from U6
+------------------------------------
+
+If you still see an error in the web UI, edit ``~/etc/php.d/php.ini`` with the following content:
+
+.. code-block:: ini
+
+ memory_limit=512M
 
 storage capacity problems
 -------------------------
@@ -465,6 +484,7 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
+.. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
 .. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#email
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction

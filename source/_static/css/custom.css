@@ -74,6 +74,35 @@ footer {
   border-color: #84000f;
 }
 
+/* make side navigation scrollable  */
+
+.wy-nav-side,
+.wy-side-scroll {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex-grow: 1;
+}
+
+.wy-menu-vertical {
+  overflow: auto;
+  scrollbar-color: #999 #222;
+}
+
+.wy-menu-vertical::-webkit-scrollbar {
+  width: 12px;
+}
+
+.wy-menu-vertical::-webkit-scrollbar-track {
+  background: #222;
+}
+
+.wy-menu-vertical::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border: 3px solid rgba(0, 0, 0, 255);
+  border-radius: 20px;
+}
+
 /* --- Main Page ------------------------------------------------------------ */
 
 /* Index - Atomium Logo */
@@ -96,8 +125,8 @@ footer {
 
 /* --- Hall of Fame --------------------------------------------------------- */
 
-#hall-of-fame ol,
-#hall-of-fame ol li {
+#hall-of-fame .hof__list,
+#hall-of-fame .hof__entry {
   list-style: none !important;
   margin: 0;
   padding: 0;
@@ -105,51 +134,51 @@ footer {
 
 /* HOF Entry */
 
-#hall-of-fame ol > li {
+#hall-of-fame .hof__entry {
   display: grid;
   grid-template-columns: 1fr 11fr;
   grid-template-rows: auto;
   grid-template-areas:
     "score author"
     "score guides";
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 /* HOF Entry: Score */
 
-#hall-of-fame ol > li > div:first-child {
+#hall-of-fame .hof__counter {
   grid-area: score;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 1rem;
+  margin-right: 1rem;
 }
 
 /* HOF Entry: Author */
-#hall-of-fame ol > li > div:not(:first-child) {
+#hall-of-fame .hof__author {
   grid-area: author;
   font-size: 120%;
+  margin-bottom: 0.5rem;
 }
 
 /* HOF Entry: Guides */
-
-#hall-of-fame ol > li > ul {
+#hall-of-fame .hof__guides {
   grid-area: guides;
+  background: url(../images/icn-rocket.svg) NO-REPEAT;
+  padding-left: 2rem;
 }
 
-#hall-of-fame ol > li > ul:before {
-  content: url(../images/icn-rocket.svg);
-  width: 23px;
-  height: 15px;
+#hall-of-fame .hof__guide_list {
+  padding: 0;
 }
 
 /* HOF Entry: Guides Entry */
 
-#hall-of-fame ol > li > ul > li {
+#hall-of-fame .hof__guide {
   display: inline;
 }
 
-#hall-of-fame ol > li > ul > li:not(:last-child):after {
+#hall-of-fame .hof__guide:not(:last-child):after {
   content: ", ";
 }
 

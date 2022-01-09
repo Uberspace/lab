@@ -23,7 +23,7 @@ Adminer_ (formerly phpMinAdmin) is a full-featured database management tool writ
 
 .. note::
 
-  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everbody to use. Therefore this guide is mainly for people who would like to customize Adminer to their needs.
+  Uberspace provides instances of Adminer_ and phpMyAdmin_ for everybody to use. Therefore this guide is mainly for people who would like to customize Adminer to their needs.
 
   * Adminer: https://mysql.uberspace.de/adminer/
   * phpMyAdmin: https://mysql.uberspace.de/phpmyadmin/

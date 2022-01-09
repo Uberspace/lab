@@ -108,7 +108,7 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
 Configuration
 =============
 
-.. warning:: Whenever you edit the ``.env`` file, you must ``run php artisan config:cache`` in the root directory for the changes to take effect.
+.. warning:: Whenever you edit the ``.env`` file, you must run ``php artisan config:cache`` in the root directory for the changes to take effect.
 
 Copy the example configuration file ``.env.example`` to ``.env`` and generate a key into the config:
 
@@ -116,9 +116,6 @@ Copy the example configuration file ``.env.example`` to ``.env`` and generate a 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ cp .env.example .env
- [isabell@stardust pixelfed]$ php artisan key:generate
- Application key set successfully.
- [isabell@stardust pixelfed]$
 
 Open the file ``.env`` in your favourite editor and adjust the following blocks accordingly. For minimum privacy we recommend to disable the open registrations:
 
@@ -146,12 +143,20 @@ Open the file ``.env`` in your favourite editor and adjust the following blocks 
  MAIL_HOST=stardust.uberspace.de
  MAIL_PORT=587
  MAIL_USERNAME=isabell@uber.space
- MAIL_PASSWORD=MySuperSecretPassword
+ MAIL_PASSWORD="MySuperSecretPassword"
  MAIL_ENCRYPTION=tls
  MAIL_FROM_ADDRESS="isabell@uber.space"
  MAIL_FROM_NAME="Pixelfed"
 
  OPEN_REGISTRATION=false
+
+Generate the application key
+
+::
+
+ [isabell@stardust pixelfed]$ php artisan key:generate
+ Application key set successfully.
+ [isabell@stardust pixelfed]$
 
 Run database migrations:
 
@@ -227,7 +232,7 @@ Run the following command to import the Places data:
 Installing Horizon
 ------------------
 
-.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures.
+.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures. It is also needed to execute the queue jobs, for example for thumbnail generation - so this step is not optional.
 
 To install Horizon, run the following commands and recache the routes:
 
@@ -266,7 +271,7 @@ Configuring Scheduler
 
 .. note:: The scheduler is used to run periodic commands in the background. The following commands are used in the scheduler:
 
- * ``media:optimize`` - Finds any un-optimized media and performs optimization
+ * ``media:optimize`` - Finds any not optimized media and performs optimization
  * ``media:gc`` - Finds any media not used in statuses older than 1 hour and deletes them
  * ``horizon:snapshot`` - Generates Horizon analytics snapshot
  * ``story:gc`` - Finds expired Stories and deletes them

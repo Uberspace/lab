@@ -268,7 +268,7 @@ Here is a list of all parameters used in this tutorial if not obvious by its nam
   * ``-x``: restore a backup
   * ``-f``: specifies the backup to create or restore
   * ``-t``: list the contents of a backup archive
-  * ``-v``: shows the filenames during backup or restor
+  * ``-v``: shows the filenames during backup or restore
   * ``-C``: changes the directory
 
 

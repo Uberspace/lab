@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########
@@ -160,6 +160,7 @@ At first, we need to configure the REST interface of the core component. Create 
  smtp_host: stardust.uberspace.de
  lmtp_port: 8024
  smtp_port: 587
+ smtp_secure_mode: starttls
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
 
@@ -302,6 +303,16 @@ After the REST backend has been configured, we need to configure the Django fron
     ('text/x-scss', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
     ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
+ 
+ [...]
+ 
+ Q_CLUSTER = {
+     'timeout': 100,
+     'retry': 200,
+     'save_limit': 100,
+     'orm': 'default',
+     'workers': 4,
+ }
 
  # Comment the following lines out to test sending mail
  #if DEBUG == True:
@@ -442,7 +453,7 @@ Using Mailman
 
 Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues.
 
-Now you can create a new list using the Postorious web UI.
+Now you can create a new list using the Postorius web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 

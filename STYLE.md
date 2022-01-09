@@ -4,26 +4,28 @@ You're welcome to add your own guides to this repository.
 
 Please follow our rules to keep the guides maintainable and consistent.
 
- * Guides have to be written in [reST](http://www.sphinx-doc.org/en/stable/rest.html).
- * Use English language. You don't have to be a native speaker or a poet.
- * Upload a logo to `_static/images/`, preferably SVG, a PNG file with transparent background is also fine.
- * If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not available, use the newest version instead.
- * Always use the same username `isabell`.
- * Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
- * Always use full paths in commands. Don't assume the home directory or the html folder.
- * Don't mention additional document roots. *Keep it simple*. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
- * Use the templates in `source/includes/` where appropriate.
- For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
- ```
- ::
+-   Guides have to be written in [reST](http://www.sphinx-doc.org/en/stable/rest.html).
+-   Use English language. You don't have to be a native speaker or a poet.
+-   Upload a logo to `_static/images/`, preferably SVG, a PNG file with transparent background is also fine.
+-   If possible use a download URL that points to the latest version (e.g. `latest.zip` on some platforms). If such an URL is not available, use the newest version instead.
+-   Always use the same username `isabell`.
+-   Always use the same hostname `stardust`. For bash snippets, use `[isabell@stardust ~]$`.
+-   Always use full paths in commands. Don't assume the home directory or the html folder.
+-   Don't mention additional document roots. _Keep it simple_. Don't use subfolders. Always use the standard document root `~/html`. Always assume the document root is empty.
+-   Use the templates in `source/includes/` where appropriate.
+    For example `.. include:: includes/web-domain-list.rst` generates the following snippet:
 
- [isabell@stardust ~]$ uberspace web domain list
- isabell.uber.space
- [isabell@stardust ~]$
- ```
- * Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
- * When there is a license needed for the software mention it.
- * If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
+```
+::
+
+[isabell@stardust ~]$ uberspace web domain list
+isabell.uber.space
+[isabell@stardust ~]$
+```
+
+-   Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
+-   When there is a license needed for the software mention it.
+-   If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
 
 ```
 .. code-block:: console
@@ -57,8 +59,8 @@ Please follow our rules to keep the guides maintainable and consistent.
  [isabell@stardust ghost]$
 ```
 
- * Always end your console code blocks with `[isabell@stardust ~]$`.
- * If you use flags and their function cannot be determined by just reading their name, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
+-   Always end your console code blocks with `[isabell@stardust ~]$`.
+-   If you use flags and their function cannot be determined by just reading their name, explain them. Don't use short flags, always use the long versions. We want everybody to be able to know what they're doing. Example:
 
 ```
 Since the installer expects to be run with root privileges, we need to adjust some settings_:
@@ -70,9 +72,10 @@ Since the installer expects to be run with root privileges, we need to adjust so
   * ``--no-setup-mysql``: Skips setup of MySQL_. You can't do that without root privileges.
 ```
 
- * Try to find an RSS feed for updates and document it.
- * If there are any standard passwords, tell the user to change them *immediately*.
- * If there are files to edit, don't do stuff like `cat > ~/.npmrc <<__EOF__`, just tell the user to _edit_ the file. Don't mention an editor like `vi` or `nano`. Example:
+-   If the app is writing extra logs, add a symlink to `~/logs`
+-   Try to find an RSS feed for updates and document it.
+-   If there are any standard passwords, tell the user to change them _immediately_.
+-   If there are files to edit, don't do stuff like `cat > ~/.npmrc <<__EOF__`, just tell the user to _edit_ the file. Don't mention an editor like `vi` or `nano`. Example:
 
 ```
 Create ``~/etc/services.d/ghost.ini`` with the following content:
@@ -94,7 +97,7 @@ In our example this would be:
  command=env NODE_ENV=production /bin/node current/index.js
 ```
 
- * If you want to include links to https://manual.uberspace.de, please use the corresponding directives `manual` and `manual_anchor`. Use the `lab` and `lab_anchor` directives for linking other UberLab guides. Examples:
+-   If you want to include links to https://manual.uberspace.de, please use the corresponding directives `manual` and `manual_anchor`. Use the `lab` and `lab_anchor` directives for linking other UberLab guides. Examples:
 
 ```
 This is a link to the Python manual: :manual:`Python <lang-python>`.
@@ -106,14 +109,16 @@ This is a link to another guide: :lab:`Django <guide_django>`.
 
 Please use the following structure. Only document applicable steps, leave out headlines you don't need.
 
- * Short description
- * Prerequisites
- * Installation
- * Configuration
- * Finishing installation
- * Best practices
- * Tuning
- * Updates
+-   Short description
+-   Prerequisites
+-   Installation
+-   Configuration
+-   Finishing installation
+-   Best practices
+-   Tuning
+-   Updates
+-   Debugging
+-   Backup data
 
 ## Boilerplate
 
@@ -180,7 +185,7 @@ Installation
 Download the source
 -------------------
 
-Comple the code
+Compile the code
 ---------------
 
 Configuration
@@ -219,6 +224,16 @@ Updates
 .. _Loremipsum: https://en.wikipedia.org/wiki/Lorem_ipsum
 .. _feed: https://github.com/lorem/ipsum/releases.atom
 
+Debugging
+=========
+
+If something fails with this specific error, you should have a look at this specific config, or just reload that service. Try to look into the log at this path.
+
+Backup
+======
+
+All generated data you should backup regularly is saved to the database and there is this specific folder with uploaded pictures.
+
 ----
 
 Tested with Loremipsum 1.22.1, Uberspace 7.1.1
@@ -234,3 +249,7 @@ Please choose a [good commit message](https://chris.beams.io/posts/git-commit/) 
 If you already committed your changes without following this style guide, you are still able to [change the message](https://help.github.com/en/articles/changing-a-commit-message) afterwards.
 
 When you're happy with your guide, create a [pull request](https://github.com/Uberspace/lab/compare). We'll look at it and we'll give you feedback until we're happy too.
+
+## Keep track of your guide and issues around it
+
+If possible for you, we would be happy if you would be approachable for issues and questions even after publishing and maybe could keep track of issues showing up concerning the guide.

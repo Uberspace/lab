@@ -9,8 +9,8 @@
 
 .. sidebar:: About
 
-  .. image:: _static/images/babybuddy.png
-      :align: center
+.. image:: _static/images/babybuddy.png
+    :align: center
 
 ##########
 Baby Buddy

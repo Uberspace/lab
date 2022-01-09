@@ -14,6 +14,12 @@
 Wekan
 ########
 
+.. error::
+
+  This guide seems to be **broken**. We would be happy if you want to work on
+  a solution and create a Pull Request. See also the related issue:
+  https://github.com/Uberspace/lab/issues/1095
+
 .. tag_list::
 
 Wekan_ - Open Source kanban
@@ -178,7 +184,7 @@ To update, simply download the newest version from the `latest release`_ website
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version. Wekan is updated often.
 
-.. _wekan: https://wekan.org/
+.. _wekan: https://wekan.github.io/
 .. _MIT License: https://github.com/wekan/wekan/blob/master/LICENSE
 .. _Wekan Wiki: https://github.com/wekan/wekan/wiki
 .. _Github: https://github.com/wekan/wekan

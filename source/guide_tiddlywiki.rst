@@ -18,6 +18,8 @@ TiddlyWiki
 
 TiddlyWiki_ is a personal wiki and a non-linear notebook for organising and sharing complex information.
 
+----
+
 License
 =======
 
@@ -43,7 +45,7 @@ TiddlyWiki is installed via Nodes package manager `npm`:
  [...]
  + tiddlywiki@5.1.23
  added 1 package from 1 contributor in 5.102s
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Check if TiddlyWiki is installed by typing:
 
@@ -87,7 +89,7 @@ To restrict the permissions, add a users file named ``myusers.csv`` into the `ti
  [isabell@stardust ~]$ cd tiddlywiki
  [isabell@stardust tiddlywiki]$ touch myusers.csv
 
-Use your favorite editor to add a comma seperated list of usernames and passwords (as cleartext) into the created file. The first header row ``username,password`` must be added.
+Use your favorite editor to add a comma separated list of usernames and passwords (as cleartext) into the created file. The first header row ``username,password`` must be added.
 
 ::
 
