@@ -113,7 +113,7 @@ Install all the requirements.
 ::
 
  [isabell@stardust ~]$ cd ~/babybuddy/public/
- [isabell@stardust public]$ pipenv install --python python3.8
+ [isabell@stardust public]$ pipenv install --python python3.6
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 39/39 — 00:00:54
  To activate this project's virtualenv, run pipenv shell.
