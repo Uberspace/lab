@@ -71,7 +71,7 @@ suspicious, to abort the installation you would need to remove the file's conten
  [isabell@stardust ~]$ eval "$(starship init bash)"
  isabell on stardust in ~
 
-To make the prompt permanent, add a newline and the below eval statement to your ``.bashrc``:
+To make the prompt permanent, add a newline and the below eval statement to your ``~/.bashrc``:
 
 .. code-block:: console
 
@@ -91,11 +91,11 @@ That's it, you have successfully installed Starship_ to your Uberspace console:
  [...]
  isabell on stardust in ~
 
-To start customizing your prompt, have a look at `Starship's Presets`_. The configuration file lives
+To start customizing your prompt, have a look at `Starship's Presets`_'. The configuration file lives
 in ``~/.config/starship.toml``.
 
 .. _Starship: https://starship.rs/
-.. _Starship's Presets: https://starship.rs/presets/#presets
+.. _`Starship's Presets`: https://starship.rs/presets/#presets
 .. _`Nerd Font`: https://www.nerdfonts.com/
 .. _NerdFonts: https://www.nerdfonts.com/font-downloads
 .. _`Windows 10`: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
