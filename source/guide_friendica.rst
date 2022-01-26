@@ -88,7 +88,7 @@ installation to the next pre-release or development version.
 For this guide, we'll use the stable branch of friendica.
 
 First, go one level above your :manual:`DocumentRoot <web-documentroot>`
-and use ``git clone`` to get the the friendica repository as well as
+and use ``git clone`` to get the friendica repository as well as
 the addons. Please note, that friendica currently does not support
 composer v2, so you need to use composer v1, which is included in
 the git repository in the directory :file:`bin`.
