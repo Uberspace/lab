@@ -52,7 +52,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install Grav we use Composer_ to create a new project in our :manual:`document root <web-documentroot>`.  
+To install Grav we use Composer_ to create a new project in our :manual:`document root <web-documentroot>`.
 
 .. code-block:: console
  :emphasize-lines: 1,2

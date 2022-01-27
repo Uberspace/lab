@@ -2,7 +2,7 @@
 
 .. author:: Dirk <https://github.com/universalappfactory/>
 
-.. tag:: python
+.. tag:: lang-python
 .. tag:: iot
 .. tag:: mqtt
 .. tag:: web

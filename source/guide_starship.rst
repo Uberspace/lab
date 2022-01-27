@@ -3,7 +3,7 @@
 .. author:: Michi <https://github.com/michi-zuri/>
 
 .. tag:: console
-.. tag:: rust
+.. tag:: lang-rust
 
 .. sidebar:: Logo
 

@@ -66,7 +66,7 @@ Conduit manages it's own database files. Create a directory for it:
 ::
 
   [isabell@stardust ~]$ mkdir -p ~/conduit_data/
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Create ``~/conduit.toml`` with the following content:
 
@@ -88,7 +88,7 @@ Create ``~/conduit.toml`` with the following content:
  server_name = "<username>.uber.space"
 
  # This is the only directory where Conduit will save its data
- database_path = "/home/<username>/conduit_data/conduit.db"
+ database_path = "/home/<username>/conduit_data"
 
  port = 6167
 
@@ -157,7 +157,7 @@ Create the directory ``~/html/.well-known/matrix/``:
 ::
 
   [isabell@stardust ~]$ mkdir -p ~/conduit_data/
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Then create ``~/html/.well-known/matrix/server`` with the following content.
 Remember to replace <username> with your actual user name:

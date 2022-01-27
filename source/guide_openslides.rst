@@ -3,7 +3,7 @@
 .. author:: GodMod <godmod@eqdkp-plus.eu>
 .. tag:: lang-python
 .. tag:: django
-.. tag:: presentations
+.. tag:: presentation
 .. tag:: web
 .. tag:: assemblies
 .. tag:: meetings

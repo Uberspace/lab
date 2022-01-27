@@ -145,8 +145,8 @@ Since we do not run a public server we have to add users before we can use The L
  :emphasize-lines: 2, 3
 
  [isabell@stardust ~]$ thelounge add isabell
- 2021-10-21 11:46:33 [PROMPT] Enter password: 
- 2021-10-21 11:46:39 [PROMPT] Save logs to disk? (yes) 
+ 2021-10-21 11:46:33 [PROMPT] Enter password:
+ 2021-10-21 11:46:39 [PROMPT] Save logs to disk? (yes)
  2021-10-21 11:46:41 [INFO] User isabell created.
  2021-10-21 11:46:41 [INFO] User file located at  /home/isabell/.lounge/users/isabel.json.
  [isabell@stardust ~]$

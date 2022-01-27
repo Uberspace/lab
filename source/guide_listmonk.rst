@@ -16,7 +16,7 @@ listmonk
 
 .. tag_list::
 
-listmonk_ is a selfhosted newsletter and mailing list manager.
+listmonk_ is a self-hosted newsletter and mailing list manager.
 
 -----
 
@@ -48,7 +48,7 @@ Jump into the new directory:
     [isabell@stardust ~]$ cd ~/opt/listmonk/
     [isabell@stardust ~]$
 
-.. note:: Please check the Github_ project page for the latest release and copy the archive download link named with listmonk_<version>_linux_amd64. 
+.. note:: Please check the Github_ project page for the latest release and copy the archive download link named with listmonk_<version>_linux_amd64.
 
 Download the archive file:
 
@@ -123,7 +123,7 @@ Edit the config file ``~/opt/listmonk/config.toml`` and change the predefined va
     # listen on all interfaces use '0.0.0.0'. To listen on the default web address
     # port, use port 80 (this will require running with elevated permissions).
     address = "0.0.0.0:9000"
-    
+
     # BasicAuth authentication for the admin dashboard. This will eventually
     # be replaced with a better multi-user, role-based authentication system.
     # IMPORTANT: Leave both values empty to disable authentication on admin
@@ -147,7 +147,7 @@ Create the database structure:
 
 .. code-block:: bash
 
-    [isabell@stardust ~]$ ./listmonk --install 
+    [isabell@stardust ~]$ ./listmonk --install
     [isabell@stardust ~]$
 
 Daemon setup
@@ -259,4 +259,3 @@ In case of no problems you can delete your old version:
 Tested with listmonk 2.0.0 on Uberspace 7.11.5 with PostgreSQL 13
 
 .. author_list::
-

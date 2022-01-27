@@ -68,10 +68,12 @@ If PostgreSQL is used, the database configuration also needs to be adjusted. Edi
  "dbconfig": "postgres://<db_user>:<db_password>@localhost/<db_name>?sslmode=disable&connect_timeout=10",
 
 For example:
+
 .. code-block:: json
 
  "dbtype": "postgres",
  "dbconfig": "postgres://isabell_focalboard:sup3r-s3cr3t@localhost/focalboard?sslmode=disable&connect_timeout=10",
+
 
 Setup daemon
 ------------
