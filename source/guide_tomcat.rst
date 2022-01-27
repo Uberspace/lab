@@ -121,7 +121,7 @@ At this point, Tomcat should be visible at ``https://isabell.uber.space``. Howev
 Set up web management users
 ---------------------------
 
-To make the management interface usable, edit ``~/tomcat/conf/tomcat-users.xml``. You will find several blocks of comments that you may want to delete or simply uncomment. Make sure to add or uncomment the following line and set an appropriate password:
+To make the management interface usable, edit ``~/tomcat/conf/tomcat-users.xml``. You will find several blocks of comments that you may want to delete or simply uncomment. Make sure to add or uncomment the following line within the ``<tomcat-users [...]></tomcat-users>`` tag and set an appropriate password:
 
 .. code-block:: xml
 
