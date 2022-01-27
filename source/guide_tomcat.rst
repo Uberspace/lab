@@ -32,7 +32,7 @@ Prerequisites
 
 After logging in :manual_anchor:`with ssh <basics-ssh>`, check which Java version you are running and where it is located:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ java --version
  openjdk 17 2021-09-14
@@ -55,23 +55,24 @@ Create application directory and files
 
 First create a folder called ``tomcat``:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ mkdir ~/tomcat
  [isabell@stardust ~]$
 
 
-Next, download the `current version <https://tomcat.apache.org/download-10.cgi>`_ of Tomcat and unpack it into your new folder:
+Next, look for the `latest version <https://tomcat.apache.org/download-10.cgi>`_ of Tomcat and unpack it into your new folder:
 
-::
+.. code-block:: console
 
- [isabell@stardust ~]$ wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.12/bin/apache-tomcat-10.0.12.tar.gz
+ [isabell@stardust ~]$ wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.16/bin/apache-tomcat-10.0.16.tar.gz
  Resolving dlcdn.apache.org (dlcdn.apache.org)... 151.101.2.132, 2a04:4e42::644
  Connecting to dlcdn.apache.org (dlcdn.apache.org)|151.101.2.132|:443... connected.
  HTTP request sent, awaiting response... 200 OK
- Length: 11890640 (11M) [application/x-gzip]
- Saving to: ‘apache-tomcat-10.0.12.tar.gz’
- [isabell@stardust ~]$ tar --extract --file=apache-tomcat-10.0.12.tar.gz --directory=tomcat/ --strip-components=1
+ Length: 11906902 (11M) [application/x-gzip]
+ Saving to: ‘apache-tomcat-10.0.16.tar.gz’
+ [isabell@stardust ~]$ tar --extract --file=apache-tomcat-10.0.16.tar.gz --directory=tomcat/ --strip-components=1
+ [isabell@stardust ~]$ rm apache-tomcat-10.0.16.tar.gz
  [isabell@stardust ~]$
 
 
@@ -83,19 +84,19 @@ Set up service
 
 Create the service file ``~/etc/services.d/tomcat.ini`` and fill it with:
 
-::
+.. code-block:: ini
 
  [program:tomcat]
  environment=CATALINA_HOME=%(ENV_HOME)s/tomcat
  command=%(ENV_HOME)s/tomcat/bin/catalina.sh run
 
-You could explicitely set further environment variables like ``JAVA_HOME`` (required for debugging) or ``CATALINA_BASE`` (specify directories for multiple instances). These are documented in the initial comment block of ``~/tomcat/bin/catalina.sh`` but are not required for a minimal installation.
+You could explicitly set further environment variables like ``JAVA_HOME`` (required for debugging) or ``CATALINA_BASE`` (specify directories for multiple instances). These are documented in the initial comment block of ``~/tomcat/bin/catalina.sh`` but are not required for a minimal installation.
 
 .. include:: includes/supervisord.rst
 
 For your convenience, you may also want to create a symbolic link to the log file. Note the differences between ``catalina.out`` and ``catalina.YYYY-MM-DD.log`` explained `here <https://stackoverflow.com/questions/51985958/what-is-the-difference-between-catalina-out-and-catalina-yyyy-mm-dd-log-log>`_ .
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ ln -s ~/tomcat/logs/catalina.out ~/logs/tomcat.log
 
@@ -120,17 +121,15 @@ At this point, Tomcat should be visible at ``https://isabell.uber.space``. Howev
 Set up web management users
 ---------------------------
 
-To make the management interface usable, edit ``~/tomcat/conf/tomcat-users.xml``. You will find several blocks of comments that you may want to delete or simply uncomment. Make sure to add this line and set an appropriate password:
+To make the management interface usable, edit ``~/tomcat/conf/tomcat-users.xml``. You will find several blocks of comments that you may want to delete or simply uncomment. Make sure to add or uncomment the following line and set an appropriate password:
 
-::
+.. code-block:: xml
 
- <tomcat-users>
-     <user username="admin" password="SET-YOUR-PASSWORD" roles="manager-gui,admin-gui"/>
- </tomcat-users>
+ <user username="admin" password="SET-YOUR-PASSWORD" roles="manager-gui,admin-gui"/>
 
 By default, Tomcat only allows connections coming from the server itself to access the Manager and Host Manager apps. Since it is installed on a remote machine, you will probably want to remove this restriction. Open the files at ``~/tomcat/webapps/manager/META-INF/context.xml`` and ``~/tomcat/webapps/host-manager/META-INF/context.xml`` and comment out the IP restrictions in **both** of them by adding ``<!-- ... -->`` like this:
 
-::
+.. code-block:: xml
 
  <Context antiResourceLocking="false" privileged="true" >
    <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve"
@@ -139,7 +138,7 @@ By default, Tomcat only allows connections coming from the server itself to acce
 
 Afterwards, restart the ``supervisord`` service:
 
-::
+.. code-block:: console
 
  [isabell@stardust ~]$ supervisorctl restart tomcat
  [isabell@stardust ~]$
@@ -149,7 +148,7 @@ Tomcat should now be fully usable!
 
 ----
 
-Tested with Uberspace 7.11.5 and Tomcat 10.0.12 on OpenJDK 17.
+Tested with Uberspace 7.11.5 and Tomcat 10.0.16 on OpenJDK 17.
 
 
 .. _Tomcat: http://tomcat.apache.org/
