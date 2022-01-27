@@ -1,7 +1,7 @@
 .. highlight:: console
 
 .. author:: Benjamin Wießneth <bwiessneth@gmail.com>
-.. author:: Christian Macht <github.com/cmacht>
+.. author:: Christian Macht <https://github.com/cmacht>
 
 .. tag:: lang-python
 .. tag:: web
@@ -41,7 +41,7 @@ If you wish to use another name make sure to replace **basic_flask** in all of t
 Create application directory and files
 --------------------------------------
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ mkdir basic_flask
   [isabell@stardust ~]$ mkdir basic_flask/templates
@@ -98,7 +98,7 @@ Setup Python environment and install required packages
 
 You definitely want to create an isolated Python environment. That way the required packages you are going to install with ``pip`` are encapsulated from your system's Python installation. We are using the ``venv`` module to first create a local environment called ``ENV`` (or whatever name you prefer) that we activate with ``source``. Once active, use the venv's ``pip`` to install ``flask`` and its dependencies as well as a local version of ``uwsgi``.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ cd basic_flask
   [isabell@stardust basic_flask]$ python3 -m venv ENV
@@ -109,7 +109,7 @@ You definitely want to create an isolated Python environment. That way the requi
 
 Once you're done playing with it, you can deactivate the virtual environment:
 
-::
+.. code-block:: console
 
   (ENV) [isabell@stardust basic_flask]$ deactivate
   [isabell@stardust basic_flask]$
@@ -131,7 +131,7 @@ The proper fix is using a uWSGI deployment as we will do in the next step.
 
 To start Werkzeug execute the following commands. This enables the virtual Python environment and loads ``app.py``. Stop it by pressing ``Ctrl + C``.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ cd basic_flask
   [isabell@stardust basic_flask]$ source ENV/bin/activate
@@ -179,7 +179,7 @@ replace the ``module = ...`` line with:
 
 To serve your application via uWSGI execute the following commands. Stop it by pressing ``Ctrl + C``.
 
-::
+.. code-block:: console
 
   [isabell@stardust ~]$ cd basic_flask
   [isabell@stardust basic_flask]$ source ENV/bin/activate
@@ -226,5 +226,9 @@ Best Practices
 ==============
 
 uWSGI can be configured extensively and has its own page on `best practices <https://uwsgi-docs.readthedocs.io/en/latest/ThingsToKnow.html>`_. Further recommendations can also be found in this `write-up from EuroPython 2019 <https://www.techatbloomberg.com/blog/configuring-uwsgi-production-deployment/>`_.
+
+----
+
+Tested with Uberspace 7.11.5 and Flask 2.0.0 on Python 3.6.
 
 .. author_list::
