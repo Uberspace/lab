@@ -372,9 +372,6 @@ Create ``~/bin/nextcloud-update`` with the following content:
  ## Deactivate NC-updater Backups with --no-backup (works from 19.0.4, 18.0.10 and 17.0.10)
  php ~/html/updater/updater.phar -vv --no-backup --no-interaction
 
- ## re-enable maintenance mode for occ commands
- php ~/html/occ maintenance:mode --on
-
  ## database optimisations
  php ~/html/occ db:add-missing-primary-keys --no-interaction
  php ~/html/occ db:add-missing-columns --no-interaction
@@ -382,7 +379,6 @@ Create ``~/bin/nextcloud-update`` with the following content:
  php ~/html/occ db:convert-filecache-bigint --no-interaction
 
  php ~/html/occ app:update --all
- php ~/html/occ maintenance:mode --off
  /usr/sbin/restorecon -R ~/html
 
  ## If you have set up the notify_push service uncomment the following line by removing the #
