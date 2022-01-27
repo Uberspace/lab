@@ -160,6 +160,7 @@ At first, we need to configure the REST interface of the core component. Create 
  smtp_host: stardust.uberspace.de
  lmtp_port: 8024
  smtp_port: 587
+ smtp_secure_mode: starttls
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
 

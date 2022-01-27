@@ -3,7 +3,7 @@
 .. author:: GodMod <godmod@eqdkp-plus.eu>
 .. tag:: lang-python
 .. tag:: django
-.. tag:: presentations
+.. tag:: presentation
 .. tag:: web
 .. tag:: assemblies
 .. tag:: meetings
@@ -182,19 +182,20 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+.. note:: Important: An update to version 3.4 and higher of OpenSlides is longer possible!
 
 If there is a new version available, update the following command to update your OpenSlides python package:
 
 ::
 
- [isabell@stardust ~]$ servicectl stop openslides
+ [isabell@stardust ~]$ supervisorctl stop openslides
  [isabell@stardust ~]$ pip3.7 install --upgrade openslides
  [...]
         Successfully uninstalled openslides-3.2
      Running setup.py install for openslides ... done
  Successfully installed openslides-3.3
  [...]
- [isabell@stardust ~]$ servicectl start openslides
+ [isabell@stardust ~]$ supervisorctl start openslides
  [isabell@stardust ~]$
 
 Backup

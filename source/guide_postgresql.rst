@@ -154,7 +154,7 @@ The temporary password file is no longer necessary::
 Configuration
 =============
 
-After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via an Unix socket is not supported by every project.
+After the installation of PostgreSQL, it is necessary to configure the network environment. This installation considers the loopback interface as well as access via an Unix socket.  Access via a Unix socket is not supported by every project.
 
 Configure the Unix Socket
 -------------------------
@@ -177,84 +177,29 @@ Load the new settings:
 PostgreSQL Configuration
 ------------------------
 
-Edit ``~/opt/postgresql/data/postgresql.conf`` and set the key values ``listen_adresses``, ``port`` and ``unix_socket_directories``.
+Edit ``~/opt/postgresql/data/postgresql.conf`` and set the ``unix_socket_directories``:
 
 Consider using only unix sockets if possible.
 
 .. warning:: Please replace ``<username>`` with your username!
 
-.. warning:: If you set ``listen_addresses`` you might open your postgres installation to the world!
-
 .. code-block:: postgres
- :emphasize-lines: 7,11,14
+ :emphasize-lines: 6
 
  #------------------------------------------------------------------------------
  # CONNECTIONS AND AUTHENTICATION
  #------------------------------------------------------------------------------
 
- # - Connection Settings -
-
- #listen_addresses = 'localhost'        # what IP address(es) to listen on;
-                                        # comma-separated list of addresses;
-                                        # defaults to 'localhost'; use '*' for all
-                                        # (change requires restart)
- port = 5432                            # (change requires restart)
- max_connections = 100                  # (change requires restart)
  #superuser_reserved_connections = 3    # (change requires restart)
  unix_socket_directories = '/home/<username>/tmp'      # comma-separated list of directories
                                         # (change requires restart)
  #unix_socket_group = ''                # (change requires restart)
- #unix_socket_permissions = 0777        # begin with 0 to use octal notation
-                                        # (change requires restart)
- #bonjour = off                         # advertise server via Bonjour
-                                        # (change requires restart)
- #bonjour_name = ''                     # defaults to the computer name
-                                        # (change requires restart)
 
-Later you can see the socket in the filesystem by using ``ls -a ~/tmp``. It is listed as ``.s.PGSQL.5432``.
 
-Edit the "Reporting and Logging" section in ``~/opt/postgresql/data/postgresql.conf`` to enable logging. Consider setting the ``log_directory`` to your preferred log file output location (here we use ``/home/<username>/logs`` where ``username`` is the name of your Uberspace).
+Logging
+-------
 
-.. code-block:: postgres
- :emphasize-lines: 19
-
- #------------------------------------------------------------------------------
- # REPORTING AND LOGGING
- #------------------------------------------------------------------------------
-
- # - Where to Log -
-
- log_destination = 'stderr'              # Valid values are combinations of
-                                         # stderr, csvlog, syslog, and eventlog,
-                                         # depending on platform.  csvlog
-                                         # requires logging_collector to be on.
-
- # This is used when logging to stderr:
- logging_collector = on                  # Enable capturing of stderr and csvlog
-                                         # into log files. Required to be on for
-                                         # csvlogs.
-                                         # (change requires restart)
-
- # These are only used if logging_collector is on:
- log_directory = '/home/<username>/logs' # directory where log files are written,
-                                         # can be absolute or relative to PGDATA
- log_filename = 'postgresql-%a.log'      # log file name pattern,
-                                         # can include strftime() escapes
- #log_file_mode = 0600                   # creation mode for log files,
-                                         # begin with 0 to use octal notation
- log_truncate_on_rotation = on           # If on, an existing log file with the
-                                         # same name as the new log file will be
-                                         # truncated rather than appended to.
-                                         # But such truncation only occurs on
-                                         # time-driven rotation, not on restarts
-                                         # or size-driven rotation.  Default is
-                                         # off, meaning append to existing files
-                                         # in all cases.
- log_rotation_age = 1d                   # Automatic rotation of logfiles will
-                                         # happen after that time.  0 disables.
- log_rotation_size = 0                   # Automatic rotation of logfiles will
-                                         # happen after that much log output.
-                                         # 0 disables.
+Postgres writes its logs to ``~/opt/postgresql/data/log/``. To change this, adapt the ``log_directory`` setting in ``postgresql.conf``.
 
 Setup Daemon
 ------------
@@ -292,10 +237,10 @@ Database and User Management
 ============================
 
 The default setup on Uberspace is that the Uberspace account name is the database cluster user/PostgreSQL superuser
-with root-type priveliges to adminster the database (create/delete new databases and users, install extensions,
+with root-type privileges to administer the database (create/delete new databases and users, install extensions,
 run maintenance).
 
-It is highly recommended to use a separate user(s) together with a strong passwords for every single usage (project).
+It is highly recommended to use a separate user(s) together with a strong password for every single usage (project).
 
 The following example considers a database and new user for Synapse, the Matrix (https://matrix.org) reference server.
 You can use this template setup for other projects as well.
@@ -352,7 +297,7 @@ Available extensions for PostgreSQL on U7 can be found in the ``/usr/pgsql-<Majo
 
 The ``select * from pg_roles;`` SQL command allows you to check which roles and privileges exist for the current database (``rolsuper`` needs to be ``t`` (true)):
 
-.. warning:: Please replace <database name> with the name of the database you would like to install extensions in! Commonly ``psql <database name>`` is automatically interpreted by PostgreSQL as ``psql <database name> --username <login account name>``, so here, the "login account name" is automagically taken as your UberSpace name/database cluster user.
+.. warning:: Please replace <database name> with the name of the database you would like to install extensions in! Commonly ``psql <database name>`` is automatically interpreted by PostgreSQL as ``psql <database name> --username <login account name>``, so here, the "login account name" is automatically taken as your UberSpace name/database cluster user.
 
 .. code-block:: console
 
@@ -422,7 +367,7 @@ The database should now be spatially enabled, allowing you to load geospatial da
 UUID: Generating UUIDs
 ----------------------
 
-PostgreSQL provides storage and comparison functions for the standardised `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
+PostgreSQL provides storage and comparison functions for the standardized `UUID data type <https://www.postgresql.org/docs/12/datatype-uuid.html>`_ (`Universally unique identifier <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_). However, the core database functions cannot generate standard UUIDs. The `uuid-ossp <https://www.postgresql.org/docs/12/uuid-ossp.html>`_ module provides this functionality and can easily be installed as PostgreSQL extension:
 
 .. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
@@ -695,6 +640,30 @@ The backup is not more necessary and can be removed:
 
  [isabell@stardust ~]$ rm -r ~/opt/postgresql/backup
  [isabell@stardust ~]$
+
+Connecting from outside
+=======================
+
+If you want to connect somehow "directly" from a remote host, you can do so by using a SSH tunnel.
+
+
+.. _postgres-ssh-tunnel-using-linux:
+
+Using Linux, macOS, any other Unix, or Windows 10
+-------------------------------------------------
+
+On Linux, macOS and practically every other Unix operating system, as well as Windows 10 since the September 2017 “Fall Creators Update” version, `OpenSSH <https://www.openssh.com/>`_
+comes preinstalled so you can use it out of the box.
+
+This is how you can initiate a SSH connection offering a tunnel for port 5432,
+your local workstation is represented by a ``[localuser@localhost ~]$`` prompt:
+
+.. code-block:: console
+
+  [localuser@localhost ~]$ ssh -L 5432:127.0.0.1:5432 isabell@stardust.uberspace.de
+
+From now on, you can talk to 127.0.0.1:5432 on your local host to connect to your database.
+In fact, it's OpenSSH listening on port 5432 of your local host, tunneling the connection to your uberspace.
 
 
 .. _PostgreSQL: https://www.postgresql.org

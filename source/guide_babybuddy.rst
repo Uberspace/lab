@@ -7,10 +7,10 @@
 .. tag:: activity-tracking
 .. tag:: audience-family
 
-.. sidebar:: About
+.. sidebar:: Logo
 
-.. image:: _static/images/babybuddy.png
-    :align: center
+  .. image:: _static/images/babybuddy.png
+      :align: center
 
 ##########
 Baby Buddy
@@ -113,7 +113,7 @@ Install all the requirements.
 ::
 
  [isabell@stardust ~]$ cd ~/babybuddy/public/
- [isabell@stardust public]$ pipenv install --python python3.8
+ [isabell@stardust public]$ pipenv install --python python3.6
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 39/39 — 00:00:54
  To activate this project's virtualenv, run pipenv shell.

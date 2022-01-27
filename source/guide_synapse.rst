@@ -272,7 +272,7 @@ Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ pip3.6 install --user -U matrix-synapse
+  [isabell@stardust ~]$ python3.6 -m pip install --user -U matrix-synapse
   [isabell@stardust ~]$
 
 Automate the update process with a bash script called `~/bin/synapse-update` containing:
@@ -282,7 +282,7 @@ Automate the update process with a bash script called `~/bin/synapse-update` con
   #!/bin/bash
   # update synapse and restart the service
 
-  pip3.6 install --user -U matrix-synapse
+  python3.6 -m pip install --user -U matrix-synapse
   supervisorctl restart synapse
 
 Make it executeable:

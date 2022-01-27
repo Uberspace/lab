@@ -40,12 +40,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-We are using :manual:`PHP <lang-php>` in the version 7.4:
+Use the recommended :manual:`PHP <lang-php>` version as listed in the `system requirements`_:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 7.4
- Selected PHP version 7.4
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -372,9 +372,6 @@ Create ``~/bin/nextcloud-update`` with the following content:
  ## Deactivate NC-updater Backups with --no-backup (works from 19.0.4, 18.0.10 and 17.0.10)
  php ~/html/updater/updater.phar -vv --no-backup --no-interaction
 
- ## re-enable maintenance mode for occ commands
- php ~/html/occ maintenance:mode --on
-
  ## database optimisations
  php ~/html/occ db:add-missing-primary-keys --no-interaction
  php ~/html/occ db:add-missing-columns --no-interaction
@@ -382,7 +379,6 @@ Create ``~/bin/nextcloud-update`` with the following content:
  php ~/html/occ db:convert-filecache-bigint --no-interaction
 
  php ~/html/occ app:update --all
- php ~/html/occ maintenance:mode --off
  /usr/sbin/restorecon -R ~/html
 
  ## If you have set up the notify_push service uncomment the following line by removing the #
@@ -484,6 +480,7 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
+.. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
 .. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#email
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction

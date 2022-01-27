@@ -37,12 +37,12 @@ Grav is released under the `MIT License`_. All relevant information can be found
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using PHP_ in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -149,6 +149,6 @@ After updating the Grav core use the ``update`` command to update all plugins an
 
 ----
 
-Tested with Grav 1.5.2, Uberspace 7.1.13
+Tested with Grav 1.7.24, Uberspace 7.11.5
 
 .. author_list::

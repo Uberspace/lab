@@ -103,7 +103,7 @@ Run the seafile installer script.
 
 ::
 
- [isabell@stardust seafile]$ cd ~/seafile/seafile-server-* 
+ [isabell@stardust seafile]$ cd ~/seafile/seafile-server-*
  [isabell@stardust seafile-server-8.0.7]$  ./setup-seafile-mysql.sh
 
 Important answers:
@@ -157,7 +157,7 @@ Change gunicorn config; Edit ``~/seafile/conf/gunicorn.conf.py`` and change the 
 .. code-block:: console
 
   bind = "0.0.0.0:8000"
-  
+
 Change seahub config; Edit ``~/seafile/conf/seahub_settings.py`` and  add the following lines:
 
 .. warning:: Replace ``isabell`` with your username!
@@ -228,7 +228,7 @@ Updating seafile is pretty easy. First update the pip3 packages, then download t
  [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
  [isabell@stardust seafile]$ ln -sfn /home/seafile/seafile/seafile-server-8.0.7 /home/seafile/seafile/seafile-server-latest
  [isabell@stardust seafile]$ cd seafile-server-latest
- [isabell@stardust seafile-server-latest]$ ./seafile.sh restart 
+ [isabell@stardust seafile-server-latest]$ ./seafile.sh restart
  [isabell@stardust seafile-server-latest]$ ./seahub.sh restart
 
 ----
