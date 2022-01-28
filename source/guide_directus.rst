@@ -1,6 +1,7 @@
 .. highlight:: console
 
-.. author:: j3n57h0m45 <https://github.com/j3n57h0m45>, André Lehner <https://github.com/Adashi12>
+.. author:: j3n57h0m45 <https://github.com/j3n57h0m45> 
+.. author:: André Lehner <https://github.com/Adashi12>
 
 .. tag:: self-hosting
 .. tag:: database
@@ -135,15 +136,14 @@ In ``~/directus/.env`` change the PUBLIC_URL to ``http://0.0.0.0``.
 
   PUBLIC_URL="http://0.0.0.0"
 
-Create web backend
+Configure web server
 ------------
 
-::
+.. note::
 
-  [isabell@stardust ~]$ uberspace web backend set / --http --port 8055
-  Set backend for / to port 8055; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$
+    Directus is running on port 8055.
+
+.. include:: includes/web-backend.rst
   
 You can now reach Directus on your public domain, e.g. ``https://isabell.uber.space``
 
