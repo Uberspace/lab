@@ -89,7 +89,7 @@ We use ``gpg`` to download the pgp key and verify our download.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ gpg --keyserver keys.openpgp.org --recv 7C9E68152594688862D62AF62D9AE806EC1592E2
+  [isabell@stardust ~]$ curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/7C9E68152594688862D62AF62D9AE806EC1592E2 | gpg --import
   gpg: directory `/home/isabell/.gnupg' created
   gpg: new configuration file `/home/isabell/.gnupg/gpg.conf' created
   gpg: WARNING: options in `/home/isabell/.gnupg/gpg.conf' are not yet active during this run
