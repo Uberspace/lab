@@ -38,7 +38,10 @@ We need a database:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_gitea"
+  [isabell@stardust ~]$ mysql --verbose --execute="CREATE DATABASE ${USER}_gitea"
+  --------------
+  CREATE DATABASE isabell_gitea
+  --------------
   [isabell@stardust ~]$
 
 We can use the uberspace or your own domain:
@@ -56,10 +59,10 @@ Check current version of Gitea at releases_ page.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.14.4
+  [isabell@stardust ~]$ VERSION=1.16.3
   [isabell@stardust ~]$ mkdir -p ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
-  --2020-06-01 21:00:31--  https://github.com/go-gitea/gitea/releases/download/v1.14.4/gitea-1.14.4-linux-amd64
+  --2020-06-01 21:00:31--  https://github.com/go-gitea/gitea/releases/download/vX.Y.Z/gitea-X.Y.Z-linux-amd64
   Resolving github.com (github.com)... 140.82.118.3
   Connecting to github.com (github.com)|140.82.118.3|:443... connected.
   HTTP request sent, awaiting response... 302 Found
@@ -114,7 +117,8 @@ If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/gitea/gitea
+  [isabell@stardust ~]$ chmod u+x --verbose ~/gitea/gitea
+  mode of '/home/isabell/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
   [isabell@stardust ~]$
 
 
@@ -142,6 +146,7 @@ Create a custom directory.
 The minimum set of ``~/gitea/custom/conf/app.ini`` is:
 
 .. code-block:: ini
+  :emphasize-lines: 3
 
   [server]
   HTTP_PORT = 9000
@@ -162,6 +167,7 @@ For more information about the possibilities and configuration options see the G
 .. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
 .. code-block:: ini
+  :emphasize-lines: 2,7,14-16,23,31,36
 
   APP_NAME = Gitea
   RUN_USER = isabell
@@ -366,6 +372,6 @@ To update do:
 
 ----
 
-Tested with Gitea 1.14.4, Uberspace 7.6.2.0
+Tested with Gitea 1.16.3, Uberspace 7.6.2.0
 
 .. author_list::
