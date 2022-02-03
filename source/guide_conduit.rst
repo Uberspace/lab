@@ -212,7 +212,7 @@ If you care about your data, you might want to make a backup first.
 [isabell@stardust ~]$ supervisorctl stop conduit
 [isabell@stardust ~]$ cp -r ~/conduit_data ~/conduit_data_backup
 [isabell@stardust ~]$ wget https://gitlab.com/famedly/conduit/-/jobs/artifacts/master/raw/conduit-x86_64-unknown-linux-musl?job=build:release:cargo:x86_64-unknown-linux-musl -O ~/bin/conduit
-[isabell@stardust ~]$ chmod +x ~/conduit
+[isabell@stardust ~]$ chmod +x ~/bin/conduit
 [isabell@stardust ~]$ supervisorctl start conduit
 [isabell@stardust ~]$
 
