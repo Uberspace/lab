@@ -75,12 +75,7 @@ To make the prompt permanent, add a newline and the below eval statement to your
 
 .. code-block:: console
 
- isabell on stardust in ~
- > echo -e '\n' >> .bashrc
- isabell on stardust in ~
- > echo 'eval "$(~/bin/starship init bash)"' >> .bashrc
- isabell on stardust in ~
- >
+ eval "$(~/bin/starship init bash)"
 
 That's it, you have successfully installed Starship_ to your Uberspace console:
 
