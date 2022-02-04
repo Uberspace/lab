@@ -66,7 +66,7 @@ suspicious, to abort the installation you would need to remove the file's conten
 
 .. code-block:: console
 
-[isabell@stardust ~]$ curl -fsSL https://starship.rs/install.sh | vipe | sh -s -- --bin-dir ~/bin --yes
+ [isabell@stardust ~]$ curl -fsSL https://starship.rs/install.sh | vipe | sh -s -- --bin-dir ~/bin --yes
  [...]
  [isabell@stardust ~]$ eval "$(starship init bash)"
  isabell on stardust in ~
