@@ -1,6 +1,7 @@
 .. highlight:: console
 
-.. author:: Michi <https://github.com/michi-zuri/>
+.. author:: Michi <https://github.com/michi-zuri>
+.. author:: Mike <https://github.com/fooforge>
 
 .. tag:: console
 .. tag:: lang-rust
@@ -47,22 +48,37 @@ work out of the box.
 
 Installation
 ============
+
+To install the prebuilt binary you need to curl the install script from the project's
+website. Once installed, you can execute Starship_ to update your current shell's prompt.
+
 .. code-block:: console
 
- [isabell@stardust ~]$ cargo install starship
+ [isabell@stardust ~]$ sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --bin-dir ~/bin --yes
+ [...]
+ [isabell@stardust ~]$ eval "$(~/bin/starship init bash)"
+ isabell on stardust in ~
+
+Piping install scripts into a shell can be dangerous! Less so on a virtual host with
+non-elevated user rights, but still. To review the install script before any action is being taken
+you can run the above command like below. This will open your default editor. If anything looks
+suspicious, to abort the installation you would need to remove the file's content and save your changes.
+
+.. code-block:: console
+
+[isabell@stardust ~]$ curl -fsSL https://starship.rs/install.sh | vipe | sh -s -- --bin-dir ~/bin --yes
  [...]
  [isabell@stardust ~]$ eval "$(starship init bash)"
  isabell on stardust in ~
- >
 
-To make the prompt permanent, add one line to your .bashrc:
+To make the prompt permanent, add a newline and the below eval statement to your ``~/.bashrc``:
 
 .. code-block:: console
 
  isabell on stardust in ~
  > echo -e '\n' >> .bashrc
  isabell on stardust in ~
- > echo 'eval "$(starship init bash)"' >> .bashrc
+ > echo 'eval "$(~/bin/starship init bash)"' >> .bashrc
  isabell on stardust in ~
  >
 
@@ -70,20 +86,22 @@ That's it, you have successfully installed Starship_ to your Uberspace console:
 
 .. code-block:: console
 
- [isabell@localhost ~]$ ssh <username>@<username>.uber.space
+ [isabell@localhost ~]$ ssh isabell@stardust
  Welcome to Uberspace7!
  [...]
  isabell on stardust in ~
- >
 
+To start customizing your prompt, have a look at `Starship's Presets`_'. The configuration file lives
+in ``~/.config/starship.toml``.
 
 .. _Starship: https://starship.rs/
+.. _`Starship's Presets`: https://starship.rs/presets/#presets
 .. _`Nerd Font`: https://www.nerdfonts.com/
 .. _NerdFonts: https://www.nerdfonts.com/font-downloads
 .. _`Windows 10`: https://support.microsoft.com/en-us/help/314960/how-to-install-or-remove-a-font-in-windows
 .. _macOS: https://support.apple.com/en-us/HT201749
 .. _blink.sh: https://blink.sh/
 
-Tested with Starship v0.44.0 and Uberspace version 7.7.7.0
+Tested with Starship v1.2.1 and Uberspace version 7.12.
 
 .. author_list::
