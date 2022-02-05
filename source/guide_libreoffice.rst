@@ -63,13 +63,13 @@ Licensing information about containers on Dockerhub in general is available in S
 Prerequisites
 =============
 
-`LibreOffice Online`_ is only an editor. To store the files and provide access
-to them you must have WOPI host or a WebDAV server running.
+`LibreOffice Online`_ is only an editor, and it is meant to be integrated into
+other web applications. To store the files and provide web access
+to them you must have a WOPI host running.
 For example, :lab:`Nextcloud <guide_nextcloud>` with the Collabora app and
 :lab:`Seafile <guide_seafile>` Professional Edition integrate LibreOffice
 Online via WOPI. A list of integrations can be found at the `CODE`_ website.
 
-For this guide, WebDAV was not tested.
 It is assumed that you use a WOPI host accessible at ``cloud.example.org``.
 
 Setup the domain where your office installation will be accessible.
@@ -115,35 +115,13 @@ This installs the binaries and libraries needed by udocker into ``$HOME/.udocker
 Installation
 ============
 
-There are three officially endorsed docker distributions of LibreOffice:
+The only maintained docker distribution with reliable licensing information
+is currently `Collabora Office Development Edition <CODE_>`_ (CODE)
+by Collabora_ (2022-02-04; see the project `status page
+<https://wiki.documentfoundation.org/Development/LibreOffice_Online#Current_Status>`_).
 
-  * `LibreOffice Online`_, by `The Document Foundation
-    <https://www.documentfoundation.org/>`_ is the basis for all three. There
-    is no official stable build, but an unstable docker image
-    `libreoffice/online <https://hub.docker.com/r/libreoffice/online>`_.
-  * `Collabora Office Development Edition <CODE_>`_ (CODE) is a more
-    active development version of LibreOffice Online by Collabora_
-    provided as docker image `collabora/code
-    <https://hub.docker.com/r/collabora/code>`_.
-  * `LibreOffice Powered by CIB`_ is a commercially supported distribution with
-    the stable docker image `cibsoftware/libreoffice-online
-    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_. It is not
-    covered in this guide, as there is no reliable licensing information
-    available for it.
-
-On first sight, the main differences are the sizes of the docker images
-and slightly different default configurations and look-and-feels. However, the new
-*notebookbar* (ribbon-styled) design `introduced in CODE 6.4
-<https://www.collaboraoffice.com/press-releases/code-6-4-0-release/>`_ does not
-yet work correctly in the `libreoffice/online`_ docker image at the time of
-writing (2021-02-16).
-
-In the following, LibreOffice refers to both `LibreOffice Online`_ and `CODE`_.
-A listing of the ways to get LibreOffice Online is available on the
-`official download page <LOOL_>`_ by The Document Foundation.
-
-Assume you chose `collabora/code`_. Pull the image from dockerhub and create
-a container:
+To install, pull the `CODE docker image <https://hub.docker.com/r/collabora/code>`_
+from dockerhub and create a container:
 
 ::
 
@@ -202,14 +180,15 @@ embedding only in websites served from the same domain and port.
 Configuration file
 ------------------
 
-There is a configuration file ``$HOME/.udocker/containers/collabora-code/ROOT/etc/loolwsd/loolwsd.xml``,
+There is a configuration file ``$HOME/.udocker/containers/collabora-code/ROOT/etc/coolwsd/coolwsd.xml``,
 which contains also explanations of the configuration options.
 But since some options cannot be set there, in this guide configuration
 is done via the commandline.
 
 Documentation about the commandline and environment options is
 available in the `docker setup instructions
-<https://www.collaboraoffice.com/code/docker/>`_ by Collabora.
+<https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html>`_
+by Collabora.
 
 Setup daemon
 ------------
@@ -287,7 +266,7 @@ Run on the command line:
 
 If you get an ``OK`` the service is running and can be accessed.
 
-Now you can navigate to https://isabell.uber.space/loleaflet/dist/admin/admin.html
+Now you can navigate to https://isabell.uber.space/browser/dist/admin/admin.html
 to try out the admin console. You can also configure your file host at
 ``cloud.example.org`` to use your libreoffice installation.
 
@@ -391,13 +370,12 @@ If everything is fine, you can delete the old container:
 .. _Collabora Online: https://www.collaboraoffice.com/collabora-online/
 .. _Docker Terms of Service: https://www.docker.com/legal/docker-terms-service
 .. _fakechroot: https://github.com/dex4er/fakechroot/wiki
-.. _Libreoffice powered by CIB: https://libreoffice.cib.de/
 .. _LOOL: https://www.libreoffice.org/download/libreoffice-online/
 .. _proot: https://proot-me.github.io/
 .. _udocker: https://github.com/indigo-dc/udocker/
 
 ----
 
-Tested with LibreOffice Online 2020-09-08, CODE 6.4.6.2, udocker 1.1.4, on Uberspace 7.9.0, connected to a Nextcloud 19.0.7 with the app Collabora Online 3.7.14.
+Tested with CODE 21.11.1.4.1, udocker 1.3.1, on Uberspace 7.12.0, connected to a Nextcloud 23.0.0 with the app Collabora Online 5.0.1.
 
 .. author_list::
