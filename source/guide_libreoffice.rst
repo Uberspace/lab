@@ -220,10 +220,9 @@ Open the file and insert the following content:
                    < %(ENV_HOME)s/.udocker/containers/"$container"/container.json)" \
       --env=DONT_GEN_SSL_CERT=1 \
       --workdir=/ \
-      --env=domain="$(echo "$fileserver" | sed "s/\./\\\\./g")" \
       --env=username="$username" --env=password="$password" \
       --env=dictionaries="$dictionaries" \
-      --env="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:security.capabilities=false $extra_params" \
+      --env="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:security.capabilities=false --o:storage.wopi.host[0]=$(echo "$fileserver" | sed "s/\./\\\\./g") $extra_params" \
       "$container" \
       '
   startsecs=45
