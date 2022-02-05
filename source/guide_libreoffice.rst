@@ -76,20 +76,37 @@ Setup the domain where your office installation will be accessible.
 
 .. include:: includes/web-domain-list.rst
 
-Then, install the latest stable version of `udocker`_:
+Then, look for the latest version number of `udocker`_ on the
+`github page <https://github.com/indigo-dc/udocker/releases>`_.
+Here, we assume that the version is 1.3.1.
 
 ::
 
-  [isabell@stardust ~]$ curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > $HOME/bin/udocker
+  [isabell@stardust ~]$ curl -L https://github.com/indigo-dc/udocker/releases/download/v1.3.1/udocker-1.3.1.tar.gz > udocker.tar.gz
     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                    Dload  Upload   Total   Spent    Left  Speed
-  100  338k  100  338k    0     0   522k      0 --:--:-- --:--:-- --:--:--  521k
+  100   657  100   657    0     0   1294      0 --:--:-- --:--:-- --:--:--  1293
+  100 75791  100 75791    0     0  64650      0  0:00:01  0:00:01 --:--:-- 64650
+  [isabell@stardust ~]$ tar zxvf udocker-1.3.1.tar.gz
+  [isabell@stardust ~]$
+
+Then, create a wrapper script ``$HOME/bin/udocker`` with the following content:
+
+.. code-block:: sh
+
+  #!/bin/sh
+
+  exec $HOME/udocker/udocker "$@"
+
+Make the wrapper executable and finish the `udocker`_ installation by running
+
+::
+
   [isabell@stardust ~]$ chmod 0740 $HOME/bin/udocker
   [isabell@stardust ~]$ udocker install
-  Info: setup repo: /home/isabell/.udocker
-  Info: udocker command line interface 1.1.4
-  Info: searching for udockertools 1.1.4
-  Info: installing udockertools 1.1.4
+  Info: udocker command line interface 1.3.1
+  Info: searching for udockertools 1.2.8
+  Info: installing udockertools 1.2.8
   Info: installation of udockertools successful
   [isabell@stardust ~]$
 
@@ -160,7 +177,7 @@ First, configure `udocker`_ to use `fakechroot`_ instead of `proot`_:
   By default, `udocker`_ uses `proot`_ to fake `chroot`_. However, `proot`_ does
   not support real multithreading and leads to a noticeable lag when editing
   documents. An overview of the execution modes of udocker can be found in the
-  `udocker manual <https://github.com/indigo-dc/udocker/blob/master/doc/user_manual.md#327-setup>`_.
+  `udocker manual <https://indigo-dc.github.io/udocker/user_manual.html#327-setup>`_.
 
 Configure webserver
 -------------------
@@ -327,6 +344,9 @@ Watch the :manual_anchor:`logs <daemons-supervisord#logging>`:
 * *I restarted the service, but it keeps dying, because it cannot listen at the
   port.* Sometimes the old instance doesn't shut down correctly, especially if
   aborted while starting. Kill it in ``htop``.
+
+* If you have problems installing udocker, have a look at the official
+  `installation manual <https://indigo-dc.github.io/udocker/installation_manual.html>`_.
 
 Other trouble? `Mail the author <johannes@jorsn.eu>`_, post under an existing
 issue or create an `issue on GitHub <https://github.com/Uberspace/lab/issues>`_.
