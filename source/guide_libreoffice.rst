@@ -214,7 +214,7 @@ Open the file and insert the following content:
       ,username="admin"
       ,password="<my super secret password>"
       ,extra_params=""
-  command=bash -c '\
+  command=bash -c '
       %(ENV_HOME)s/bin/udocker run \
       --user="$(jq -r .container_config.User \
                    < %(ENV_HOME)s/.udocker/containers/"$container"/container.json)" \
@@ -222,10 +222,16 @@ Open the file and insert the following content:
       --workdir=/ \
       --env=username="$username" --env=password="$password" \
       --env=dictionaries="$dictionaries" \
-      --env="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:security.capabilities=false --o:storage.wopi.host[0]=$(echo "$fileserver" | sed "s/\./\\\\./g") $extra_params" \
-      "$container" \
+      --env="extra_params=
+          --o:ssl.enable=false
+          --o:ssl.termination=true
+          --o:security.capabilities=false
+          --o:storage.wopi.host[0]=$(echo "$fileserver" | sed "s/\./\\\\\\./g")
+          $extra_params
+          " \
+      "$container"
       '
-  startsecs=45
+  startsecs=30
   autorestart=yes
   stopasgroup=yes
   killasgroup=yes
