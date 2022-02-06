@@ -83,8 +83,8 @@ Run the following code to create the database ``<username>_linkace`` in MySQL:
 .. code-block:: console
  :emphasize-lines: 1
 
-  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_linkace COLLATE utf8mb4_bin;"
-  [isabell@stardust ~]$
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_linkace COLLATE utf8mb4_bin;"
+ [isabell@stardust ~]$
 
 .. note:: Other collations like utf8mb4_general_ci may cause issues with different Unicode characters.
 
@@ -120,7 +120,7 @@ Point your browser to ``https://isabell.uber.space/`` The built-in setup should 
 Updates
 =======
 
-Check Linkace's `release page`_ for the latest version. If a newer version is available, download the package. Overwrite all existing files with the new ones.
+Check LinkAce's `release page`_ for the latest version. If a newer version is available, download the package. Overwrite all existing files with the new ones.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,6,7
