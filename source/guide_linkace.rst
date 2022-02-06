@@ -47,7 +47,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then download LinkAce. You can find the latest version on the `release page`_, replace the version below with the version number.
+``cd`` to the directory one level above your :manual:`DocumentRoot <web-documentroot>`, then download LinkAce. You can find the latest version on the `release page`_, replace the version below with the version number.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,6,7
