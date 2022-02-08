@@ -35,6 +35,14 @@ Thank you and have fun experimenting!
    Privacy <https://uberspace.de/privacy>
 
 .. toctree::
+   :caption: Howto
+   :hidden:
+   :maxdepth: 1
+   :glob:
+
+   howto_*
+
+.. toctree::
    :caption: Guides
    :hidden:
    :maxdepth: 1
