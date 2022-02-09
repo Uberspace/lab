@@ -50,7 +50,7 @@ Installation
 ============
 
 To install the prebuilt binary you first need to download the install script from the project's
-website via `curl`.
+website via ``curl``.
 
 .. code-block:: console
 
