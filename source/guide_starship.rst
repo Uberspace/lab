@@ -49,29 +49,31 @@ work out of the box.
 Installation
 ============
 
-To install the prebuilt binary you need to curl the install script from the project's
-website. Once installed, you can execute Starship_ to update your current shell's prompt.
+To install the prebuilt binary you first need to download the install script from the project's
+website via `curl`.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --bin-dir ~/bin --yes
+ [isabell@stardust ~]$ curl -fsSL https://starship.rs/install.sh -o install-starship.sh
+ isabell on stardust in ~
+
+Once you have the file, in order to be able to run the script, you need to set the executable bit.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ chmod +x install-starship.sh
+ isabell on stardust in ~
+
+Afterwards, you can install Starship_ and run it.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ ./install-starship.sh --bin-dir ~/bin --yes
  [...]
  [isabell@stardust ~]$ eval "$(~/bin/starship init bash)"
  isabell on stardust in ~
 
-Piping install scripts into a shell can be dangerous! Less so on a virtual host with
-non-elevated user rights, but still. To review the install script before any action is being taken
-you can run the above command like below. This will open your default editor. If anything looks
-suspicious, to abort the installation you would need to remove the file's content and save your changes.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ curl -fsSL https://starship.rs/install.sh | vipe | sh -s -- --bin-dir ~/bin --yes
- [...]
- [isabell@stardust ~]$ eval "$(starship init bash)"
- isabell on stardust in ~
-
-To make the prompt permanent, add a newline and the below eval statement to your ``~/.bashrc``:
+To make the new prompt permanent, add a newline and the below eval statement to your ``~/.bashrc``:
 
 .. code-block:: console
 
@@ -97,6 +99,6 @@ in ``~/.config/starship.toml``.
 .. _macOS: https://support.apple.com/en-us/HT201749
 .. _blink.sh: https://blink.sh/
 
-Tested with Starship v1.2.1 and Uberspace version 7.12.
+Tested with Starship v1.3.0 and Uberspace version 7.12.
 
 .. author_list::
