@@ -39,17 +39,6 @@ Kimai is released under the `MIT License`_. All relevant information can be foun
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
- The new configuration is adapted immediately. Patch updates will be applied automatically.
- [isabell@stardust ~]$
-
-.. include:: includes/my-print-defaults.rst
-
 Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
