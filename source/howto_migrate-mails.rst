@@ -1,8 +1,8 @@
 .. highlight:: console
 
-#####################
-Import mail addresses
-#####################
+######################
+Migrate mail addresses
+######################
 
 If you have your own domain with email addresses currently hosted at another site
 you can move to Uberspace as your new mailprovider. This *HOWTO* explains how to set
@@ -15,7 +15,7 @@ Prerequisites
 - You have your own domain like ``example.com`` with the ability to change DNS records
 - You currently have set up this domain to an external mailserver like ``gmail.com``
 - You have mail addresses like ``info@example.com`` with existing mails and want to move all of them to your Uberspace
-- You have created a fresh Uberspace account and you have `ssh access <https://manual.uberspace.de/basics-ssh/>`_ there
+- You have `created <https://dashboard.uberspace.de/register>`_ a fresh Uberspace account and you have `ssh access <https://manual.uberspace.de/basics-ssh/>`_ there
 
 
 Set up your mailaddresses
@@ -155,20 +155,48 @@ run the Uberspace command to get the current status:
 When the ``DNS INVALID`` warning is not shown any longer, the settings are correct and mails might already be delivered to your new Uberspace.
 
 .. warning::
-    Mails sent to your domain within 2 hours after updating the DNS records could still be sent to your old mail provider, because other mailservers
-    will take longer to update their DNS resolvers. You should check your old mailbox on this.
+    Mails sent to your domain within your domain's `time-to-live (TTL) <https://en.wikipedia.org/wiki/Time_to_live#DNS_records>`_ after updating
+    the DNS records could still be sent to your old mail provider. You should check your old mailbox on received mails for this time frame.
 
 
 Troubleshooting
 ---------------
+
+
+Accessing your new mailbox
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you use a mail client like Thunderbird you will have to update your settings there to connect correctly to the Uberspace mail server. For that
+have a look at our `manual mail access <https://manual.uberspace.de/mail-access>`_ page.
+
+You may also simply use our `Webmailer <https://webmail.uberspace.de>`_ to check if your mail address migration was successfull at first.
+
+
+DNS invalid
+~~~~~~~~~~~
 
 If the mail domain status stays ``DNS INVALID`` for a longer time after you have updated the ``MX`` records, first check if this was done correctly:
 
 .. code-block::
 
     [isabell@stardust ~]$ dig example.com MX +short
-    0 stardust.uberspace.de
+    0 stardust.uberspace.de.
 
     [isabell@stardust ~]$
 
 The output should look like this with your domain and hostname instead.
+
+
+Multiple spamfolders
+~~~~~~~~~~~~~~~~~~~~
+
+Due to deviating labels it is possible that some special folders like `junk` seem to show up multiple times. In this case you should just move them
+to the newer folder which should be highlighted by your client.
+
+
+Missing calendars and contacts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This *HOWTO* covers only the migration of mail domains, mailboxes and their archives. If you also want to migrate your *calendars* and *addressbooks* have a look
+at our guides for installing groupware services like `Nextcloud <https://lab.uberspace.de/guide_nextcloud>`_, `Baïkal <https://lab.uberspace.de/guide_baikal>`_,
+`Radicale <https://lab.uberspace.de/guide_radicale>`_ etc.
