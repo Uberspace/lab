@@ -24,9 +24,9 @@ Starting your local shell
 To connect to your account, you will first need to start a shell on your local device. How this is done
 and how it will look like depends on your Operating System but is pretty much the same for Linux, MacOS or Windows.
 
-Whether Windows, Linux or MacOs there are many names to look for your shell app. On your device search for an app called ``Terminal``,
+Whether you are using Windows, Linux/Unix or MacOS there are many names to look for your shell app. On your device search for an app called ``Terminal``,
 ``Command Line`` or ``Shell`` to start it. Sometimes you can just use the keyboard shortcut ``strg+alt+t`` or ``super+t``
-to start your local shell.
+to open your local shell.
 
 .. tip::
   If this does not work for you and are not able to find and open the shell on your local device, you should search the internet for your Operating System together
@@ -65,10 +65,10 @@ machine in our data centers where your personal account is registered.
 So fasten your seat belts! we will very soon make contact with your Uberspace! But first we will need to check for *ssh* on your device and get your *login data*.
 
 
-Check for ssh command
-~~~~~~~~~~~~~~~~~~~~~
+Prepare the SSH command
+~~~~~~~~~~~~~~~~~~~~~~~
 
-To even start using SSH, we need to check if the command is available, do so by typing
+Before using SSH, we need to check if the command is available, do so by typing
 ``ssh -V`` to your shell:
 
 .. code-block:: console
@@ -76,10 +76,14 @@ To even start using SSH, we need to check if the command is available, do so by 
   [localuser@localhost ~]$ ssh -V
   OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
 
-If the output in the second line is anything like this but somehow different it is totally fine and we can be sure that you are able to use SSH on your device without further obstacles.
+If the output in the second line is anything like this it is totally fine and we can be sure that you are able to use SSH on your device without further obstacles.
 
 .. note::
   The ``-V`` here is a so called "switch" or "argument" that can modify the command ``ssh``, in this case it will just return the current version of SSH.
+
+.. tip::
+  When using Windows 8.1 or any other not up-to-date versions of Windows, you will most probably get an error message when trying to execute the ``ssh`` command.
+  You will either need to update to a more recent version of Windows or use our `howto for Putty <https://lab.uberspace.de/howto_putty.html>`_ instead of this one here.
 
 
 Prepare your login data
@@ -133,27 +137,29 @@ If the fingerprint is correct, just type ``yes`` and press enter to go on. (The 
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh isabell@stardust.uberspace.de
-  The authenticity of host 'stardust.uberspace.de (ip.ip.ip.ip)' can't be established.
-  ED25519 key fingerprint is SHA256:DtwUpr0MzHCZBej70iWO9CyzxXRDPK3jr14PJPMQIP4.
+  [..]
   Are you sure you want to continue connecting (yes/no)? yes
   Warning: Permanently added 'stardust.uberspace.de,ip.ip.ip.ip' (ED25519) to the list of known hosts.
-  isabell@stardust.uberspace.de's password:
 
 Next you're getting asked for your password. Nothing is shown while entering it; that's absolutely correct and works as intended - just **enter it blindly** and press Enter!
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh isabell@stardust.uberspace.de
-  The authenticity of host 'stardust.uberspace.de (ip.ip.ip.ip)' can't be established.
-  ED25519 key fingerprint is SHA256:DtwUpr0MzHCZBej70iWO9CyzxXRDPK3jr14PJPMQIP4.
-  Are you sure you want to continue connecting (yes/no)? yes
-  Warning: Permanently added 'stardust.uberspace.de,ip.ip.ip.ip' (ED25519) to the list of known hosts.
+  [..]
   isabell@stardust.uberspace.de's password:
+
+And then finally! The ``[isabell@stardust ~]$`` prompt shows that you're now successfully connected!
+
+.. code-block:: console
+
+  [..]
+  Welcome to Uberspace 7!
+
+  Current version: 7.12.0
+  [..]
   [isabell@stardust ~]$
 
-
-Finally! The ``[isabell@stardust ~]$`` prompt shows that you're now successfully connected! Every command you're about to enter will get executed on your Uberspace.
+Every command you're about to enter will get executed on your Uberspace.
 
 
 First steps on your account shell
@@ -162,7 +168,7 @@ First steps on your account shell
 .. note::
   Because you are now on our system, it will be much easier to support you with clean information and instructions, we no longer depend (that much) on your local prerequisites.
 
-While you're already logged in now, take a look around and try yourself out. For example use the command ``pwd`` to show the current working directory you are in:
+While you're already logged in now, take the chance try yourself out. For example use the command ``pwd`` to show the current working directory you are in:
 
 .. code-block:: console
 
@@ -193,7 +199,7 @@ Change directories with ``cd``, show a file content with ``cat`` etc.:
   [isabell@stardust userfacts]$ cat quota.yaml
   soft: 10
 
-These are just some basic commands to show you what this looks like, you will get to know a lot more while using our guides and howtos.
+These are just a few basic commands to show you how it looks like, you will get to know a lot more when you use our guides and howtos.
 
 To leave the shell on your Uberspace you just need to enter ``exit``:
 
