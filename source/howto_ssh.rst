@@ -34,11 +34,10 @@ to open your local shell.
 
 After starting your shell app you should see a window with something like this:
 
-.. code-block:: console
+  .. image:: _static/images/howto-ssh-terminal.png
+      :align: center
 
-  [localuser@localhost ~]$
-
-The exact letters again depend very much on your operating system and the app you use for providing the shell. It can also come in all colors from black background
+The exact appearance again depend very much on your operating system and the app you use for providing the shell. It can also come in all colors from black background
 with green letters to simple black on white. It is just important that you are able to type simple text commands here.
 
 We can try this now with a very basic command that should work for most operating systems. The following is a code-block which you will see
@@ -46,7 +45,7 @@ a lot in our manuals and guides:
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ whoami
+  localuser@localhost ~ $ whoami
   localuser
 
 This means as much as ``type the word "whoami" and then press Enter``, the second line will show the output of your command,
@@ -73,7 +72,7 @@ Before using SSH, we need to check if the command is available, do so by typing
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh -V
+  localuser@localhost ~ $ ssh -V
   OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
 
 If the output in the second line is anything like this it is totally fine and we can be sure that you are able to use SSH on your device without further obstacles.
@@ -109,7 +108,7 @@ We will now use the SSH command and your login data to connect to your Uberspace
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh isabell@stardust.uberspace.de
+  localuser@localhost ~ $ ssh isabell@stardust.uberspace.de
   The authenticity of host 'stardust.uberspace.de (ip.ip.ip.ip)' can't be established.
   ED25519 key fingerprint is SHA256:DtwUpr0MzHCZBej70iWO9CyzxXRDPK3jr14PJPMQIP4.
   Are you sure you want to continue connecting (yes/no)?
@@ -207,7 +206,7 @@ To leave the shell on your Uberspace you just need to enter ``exit``:
 
   [isabell@stardust ~]$ exit
   Connection to stardust.uberspace.de closed.
-  [localuser@localhost ~]$
+  localuser@localhost ~ $
 
 You're now back on your local workstation.
 

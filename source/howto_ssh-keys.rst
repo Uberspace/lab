@@ -18,7 +18,7 @@ We will again use *OpenSSH* to generate the pair of keys, open your `local shell
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh-keygen -t ed25519 -a 100
+  localuser@localhost ~ $ ssh-keygen -t ed25519 -a 100
   Generating public/private ed25519 key pair.
   [..]
 
@@ -63,7 +63,7 @@ or you may again use the shell to show its content (the command may differ on yo
 
 ..  code-block:: console
 
-  [localuser@localhost ~]$ cat ~/.ssh/id_ed25519.pub
+  localuser@localhost ~ $ cat ~/.ssh/id_ed25519.pub
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXeB9uga0aDoGLCMNkCJN4EoFlsI3MZi+8Xa6K5hMGF localuser@localhost
 
 Then login to your Uberspace `Dashboard <https://dashboard.uberspace.de>`_ and copy the content (aka your public key) to the ``Add a SSH public key`` field on the
@@ -75,9 +75,9 @@ Login using the SSH key
 
 You may use the same simple SSH command to use your key for login to your Uberspace:
 
-.. code-block::
+.. code-block:: console
 
-  [localuser@localhost ~]$ ssh isabell@stardust.uberspace.de
+  localuser@localhost ~ $ ssh isabell@stardust.uberspace.de
 
 For the first time doing so you will need to *unlock your private key* with the password you have chosen before when *generating your private key*.
 (Do not get confused, this is **not** the password you entered in the Uberspace Dashboard for your first key-less SSH login.)
@@ -96,7 +96,7 @@ Simply add your private key to the agent's keyring:
 
 .. code-block:: console
 
-  [localuser@localhost ~]$ ssh-add ~/.ssh/id_ed25519
+  localuser@localhost ~ $ ssh-add ~/.ssh/id_ed25519
   Enter passphrase for ~/.ssh/id_ed25519:
   Identity added: ~/.ssh/id_ed25519 (localuser@localhost)
 
