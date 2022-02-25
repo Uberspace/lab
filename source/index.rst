@@ -40,7 +40,9 @@ Thank you and have fun experimenting!
    :maxdepth: 1
    :glob:
 
-   howto_*
+   howto_ssh
+   howto_ssh-keys
+   howto_migrate-mails
 
 .. toctree::
    :caption: Guides

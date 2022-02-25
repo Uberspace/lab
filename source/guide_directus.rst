@@ -1,6 +1,7 @@
 .. highlight:: console
 
-.. author:: j3n57h0m45 <https://github.com/j3n57h0m45>
+.. author:: j3n57h0m45 <https://github.com/j3n57h0m45> 
+.. author:: André Lehner <https://github.com/Adashi12>
 
 .. tag:: self-hosting
 .. tag:: database
@@ -126,6 +127,28 @@ Create ``~/etc/services.d/directus.ini`` with the following content:
 
 If it's not in state RUNNING, check your configuration.
 
+Change listening URL
+------------
+
+In ``~/directus/.env`` change the PUBLIC_URL to ``http://0.0.0.0``.
+
+::
+
+  PUBLIC_URL="http://0.0.0.0"
+
+Configure web server
+------------
+
+.. note::
+
+    Directus is running on port 8055.
+
+.. include:: includes/web-backend.rst
+  
+You can now reach Directus on your public domain, e.g. ``https://isabell.uber.space``
+
+To set up a specific domain or subdomain you can follow this guide: https://manual.uberspace.de/web-backends/#specific-domain
+
 Updates
 =======
 
@@ -149,6 +172,6 @@ Check GitHub_ repository of the project regularly to stay informed about the new
 
 ----
 
-Tested with directus v9.0.0-rc.89, Uberspace 7.11.3
+Tested with directus v9.4.1, Uberspace 7.12.0
 
 .. author_list::
