@@ -43,6 +43,7 @@ Thank you and have fun experimenting!
    howto_ssh
    howto_ssh-keys
    howto_migrate-mails
+   howto_website
 
 .. toctree::
    :caption: Guides
