@@ -35,7 +35,9 @@ to open your local shell.
 After starting your shell app you should see a window with something like this:
 
   .. image:: _static/images/howto-ssh-terminal.png
+      :width: 986
       :align: center
+      :alt: terminal window
 
 The exact appearance again depend very much on your operating system and the app you use for providing the shell. It can also come in all colors from black background
 with green letters to simple black on white. It is just important that you are able to type simple text commands here.
