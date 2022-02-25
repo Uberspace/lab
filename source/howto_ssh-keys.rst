@@ -1,6 +1,6 @@
-########
-SSH keys
-########
+############
+use SSH keys
+############
 
 Connecting to your account using a SSH *password* is quite ok, but using **keys** is the preferred way of authentication. To do so you will need to create a pair
 of keys on your local system and copy the public part to your Uberspace. That way you can login there without re-entering your password each time and

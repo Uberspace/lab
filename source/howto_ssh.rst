@@ -1,8 +1,8 @@
 .. _ssh:
 
-##########
-SSH basics
-##########
+###############
+connect via SSH
+###############
 
 Here at Uberspace, many administrative tasks are preferably done on the **shell**, a text-based command line interface.
 At first glance this might seem complex or even confusing for people that are more used to web interfaces.
