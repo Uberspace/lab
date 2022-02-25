@@ -1,8 +1,8 @@
 .. highlight:: console
 
-##############################
-How to create a static website
-##############################
+#######################
+Create a static website
+#######################
 
 You can transfer data to your Asteroid via SFTP protocol, for this you need a SFTP client. We use FileZilla because it is widely used and available for all major platforms and operating systems.
 
