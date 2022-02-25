@@ -87,7 +87,7 @@ Here, we assume that the version is 1.3.1.
                                    Dload  Upload   Total   Spent    Left  Speed
   100   657  100   657    0     0   1294      0 --:--:-- --:--:-- --:--:--  1293
   100 75791  100 75791    0     0  64650      0  0:00:01  0:00:01 --:--:-- 64650
-  [isabell@stardust ~]$ tar zxvf udocker-1.3.1.tar.gz
+  [isabell@stardust ~]$ tar zxvf udocker.tar.gz
   [isabell@stardust ~]$
 
 Then, create a wrapper script ``$HOME/bin/udocker`` with the following content:
