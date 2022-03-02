@@ -1,5 +1,5 @@
 ############
-use SSH keys
+Use SSH keys
 ############
 
 Connecting to your account using a SSH *password* is quite ok, but using **keys** is the preferred way of authentication. To do so you will need to create a pair
