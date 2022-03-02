@@ -65,7 +65,7 @@ function addTagListToToc() {
   let toc_tags = $(
     '<li class="toctree-l1"><a class="reference internal" href="/tags/">Tags</a></li>'
   );
-  let toc_01 = $('[aria-label="main navigation"] > ul > li:eq(2)');
+  let toc_01 = $('[aria-label="main navigation"] > ul:nth-child(6) > li:eq(0)');
   toc_01.after(toc_tags);
 }
 
