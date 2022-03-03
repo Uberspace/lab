@@ -163,8 +163,8 @@ And then finally! The ``[isabell@stardust ~]$`` prompt shows that you're now suc
 Every command you're about to enter will get executed on your Uberspace.
 
 
-First steps on your account shell
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+First steps on your uberspace shell
+===================================
 
 .. note::
   Because you are now on our system, it will be much easier to support you with clean information and instructions, we no longer depend (that much) on your local prerequisites.
