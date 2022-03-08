@@ -346,6 +346,36 @@ Installed files and folders are:
 * ``~/etc/services.d/gitea.ini``
 * ``~/.gem/ruby/2.7.0/*/asciidoctor*``, if AsciiDoctor is installed.
 
+Backup
+======
+
+The Gitea CLI (command line interface) has a build-in backup command to create a full backup in a zip file with the database, repos, config, log, data
+
+.. note:: To restore a backup follow the `backup and restore documentation <https://docs.gitea.io/en-us/backup-and-restore/#restore-command-restore>`_
+
+Execute the following command:
+
+::
+
+  [isabell@stardust ~]$ ~/gitea/gitea dump
+  2022/03/08 17:26:01 ...dules/setting/log.go:283:newLogService() [I] Gitea v1.16.3 built with GNU Make 4.1, go1.17.7 : bindata, sqlite, sqlite_unlock_notify
+  [...]
+  2022/03/08 17:26:01 ...s/storage/storage.go:171:initAttachments() [I] Initialising Attachment storage with type:
+  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/gitea/data/attachments
+  2022/03/08 17:26:01 ...s/storage/storage.go:165:initAvatars() [I] Initialising Avatar storage with type:
+  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/gitea/data/avatars
+  2022/03/08 17:26:01 ...s/storage/storage.go:183:initRepoAvatars() [I] Initialising Repository Avatar storage with type:
+  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/gitea/data/repo-avatars
+  2022/03/08 17:26:01 ...s/storage/storage.go:177:initLFS() [I] Initialising LFS storage with type:
+  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/gitea/data/lfs
+  2022/03/08 17:26:01 ...s/storage/storage.go:189:initRepoArchives() [I] Initialising Repository Archive storage with type:
+  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/gitea/data/repo-archive
+  2022/03/08 17:26:01 cmd/dump.go:270:runDump() [I] Dumping database...
+  [...]
+  2022/03/08 17:26:01 cmd/dump.go:282:runDump() [I] Adding custom configuration file from /home/isabell/gitea/custom/conf/app.ini
+  2022/03/08 17:26:01 cmd/dump.go:310:runDump() [I] Packing data directory.../home/isabell/gitea/data
+  2022/03/08 17:26:01 cmd/dump.go:379:runDump() [I] Finish dumping in file gitea-dump-1646756761.zip
+  [isabell@stardust ~]$
 
 Updates
 =======
