@@ -36,12 +36,12 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using PHP_ in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -53,7 +53,7 @@ Your blog domain needs to be setup:
 Installation
 ============
 
-``cd`` to your :manual:`document root <web-documentroot>`, then download and configure WordPress with ``wp-cli``:
+``cd`` to your :manual:`document root <web-documentroot>`, then download and configure WordPress with ``wp`` (wp-cli):
 
 You will need to enter the following information:
 
@@ -69,15 +69,15 @@ You will need to enter the following information:
  :emphasize-lines: 1,6,10
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wp core download
- Downloading WordPress 23.42.1 (en_US)...
- md5 hash verified: f009061b9d24854bfdc999c7fbeb7579
+ [isabell@stardust html]$ wp core download --locale=en_US
+ Downloading WordPress 5.9.1 (en_US)...
+ md5 hash verified: 5bbe205b48cf9255fd7c954040aeb125
  Success: WordPress downloaded.
- [isabell@stardust html]$ wp config create --dbname=${USER}_wordpress --dbuser=${USER} --dbpass=MySuperSecretPassword
+ [isabell@stardust html]$ wp config create --dbname=${USER}_wordpress --dbuser=${USER} --dbpass=<password>
  Success: Generated 'wp-config.php' file.
  [isabell@stardust html]$ wp db create
  Success: Database created.
- [isabell@stardust html]$ wp core install --url=isabell.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
+ [isabell@stardust html]$ wp core install --url=${USER}.uber.space --title="Super Blog" --admin_user=<adminuser> --admin_email=<emailadress>
  Admin password: SuperSecretSecurePassword
  Success: WordPress installed successfully.
  [isabell@stardust html]$
@@ -97,10 +97,10 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 
 .. _Wordpress: https://wordpress.org
 .. _PHP: http://www.php.net/
-.. _automatically updates: https://codex.wordpress.org/Configuring_Automatic_Background_Updates
+.. _automatically updates: https://wordpress.org/support/article/configuring-automatic-background-updates/
 
 ----
 
-Tested with WordPress 4.9.6, Uberspace 7.1.2
+Tested with WordPress 5.9.1, Uberspace 7.12.1
 
 .. author_list::
