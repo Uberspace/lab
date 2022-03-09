@@ -299,9 +299,11 @@ If we're using the same ssh key for auth to uberspace and Gitea, we need to modi
 
   command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
 
-.. note:: Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+.. warning::
+  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+  * Take care that there is no second line propagating the same ssh key.
 
-.. note:: You can still use the Uberspace dashboard_ to add ssh keys.
+.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
 
 To interact with Gitea at our local machine like ``git clone isabell@isabell.uber.space:giteauser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
 
