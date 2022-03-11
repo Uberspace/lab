@@ -44,6 +44,13 @@ Also, the domain you want to use for Wallabag must be set up as well:
 
 .. include:: includes/web-domain-list.rst
 
+Remove the placeholder html file from the html folder:
+
+::
+
+ [isabell@stardust ~]$ rm ~/html/nocontent.html
+ [isabell@stardust ~]$ 
+
 Installation & Configuration
 ==============================
 
