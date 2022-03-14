@@ -145,20 +145,8 @@ Create a custom directory.
   [isabell@stardust ~]$ mkdir -p ~/gitea/custom/conf/
   [isabell@stardust ~]$
 
-The minimum set of ``~/gitea/custom/conf/app.ini`` is:
-
-.. code-block:: ini
-  :emphasize-lines: 3
-
-  [server]
-  HTTP_PORT = 9000
-  DOMAIN = isabell.uber.space
-  ROOT_URL = https://%(DOMAIN)s
-
-  [service]
-  DISABLE_REGISTRATION = true
-
-When using this, we have to finish the installation via gitea web service https://isabell.uber.space/install. This is exposed without any password request. We improve the configuration with some modifications, e.g.:
+Create ``~/gitea/custom/conf/app.ini`` with the content of the following code block:
+We improve the configuration with some modifications, e.g.:
 
 * Filling the database access data that we would otherwise enter in the web installation step. (``[database]`` section)
 * As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
