@@ -218,23 +218,25 @@ Above we locked the registration and the web installation feature, so this servi
 Gitea admin user
 ----------------
 
-We generate a safe password for the admin user. We use ``pwgen`` to create one set of 16 characters and write them into a variable to use it during the next two steps.
+Here we set our admin login credentials:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ADMPWD=$(pwgen 16 1)
+
+  [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
+  [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
   [isabell@stardust ~]$
 
-Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. We choose ``adminuser`` and the generated password from above. To ensure we remember the password beyond this installation session we store the password in a text file.
+Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. To ensure we remember the password beyond this installation session we store the password in a text file.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ~/gitea/gitea admin user create --username adminuser --password ${ADMPWD} --email ${USER}@uber.space --admin
+  [isabell@stardust ~]$ ~/gitea/gitea admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
   [isabell@stardust ~]$
   ...
   New user 'adminuser' has been successfully created!
-  [isabell@stardust ~]$ echo "usr: adminuser" > ~/gitea/gitea-admin.txt
-  [isabell@stardust ~]$ echo "pwd: ${ADMPWD}" >> ~/gitea/gitea-admin.txt
+  [isabell@stardust ~]$ echo "usr: ${ADMIN_USERNAME}" > ~/gitea/gitea-admin.txt
+  [isabell@stardust ~]$ echo "pwd: ${ADMIN_PASSWORD}" >> ~/gitea/gitea-admin.txt
   [isabell@stardust ~]$
 
 Finishing installation
