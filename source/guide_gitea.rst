@@ -196,34 +196,6 @@ For more information about the possibilities and configuration options see the G
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
 
-
-Gitea using external renderer (optional)
-----------------------------------------
-
-We can install an extra `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension AsciiDoc.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ gem install asciidoctor
-  Fetching asciidoctor-2.0.10.gem
-  WARNING:  You don't have /home/isabell/.gem/ruby/2.7.0/bin in your PATH,
-  	  gem executables will not run.
-  Successfully installed asciidoctor-2.0.10
-  1 gem installed
-  [isabell@stardust ~]$
-
-.. note:: Don't be irritated by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
-
-Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
-
-.. code-block:: ini
-
-  [markup.asciidoc]
-  ENABLED = true
-  FILE_EXTENSIONS = .adoc,.asciidoc
-  RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
-  IS_INPUT_FILE = false
-
 Gitea initialization
 --------------------
 
@@ -264,45 +236,6 @@ Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us
   [isabell@stardust ~]$ echo "usr: adminuser" > ~/gitea/gitea-admin.txt
   [isabell@stardust ~]$ echo "pwd: ${ADMPWD}" >> ~/gitea/gitea-admin.txt
   [isabell@stardust ~]$
-
-Gitea ssh setup (optional)
---------------------------
-
-Gitea can manage the ssh keys. To use this feature we have to link the ssh folder into the gitea folder.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ ln -s ~/.ssh ~/gitea/.ssh
-  [isabell@stardust ~]$
-
-Now our Gitea users can add their ssh keys via the menu in the up right corner: ``->`` settings ``->`` tab: SSH/GPG Keys ``->`` Add Key. Gitea is automatically writing a ssh key command into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
-
-.. code-block:: bash
-
-  command="/home/isabell/gitea/gitea --config='/home/isabell/gitea/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAAC... youruser@yourhost
-
-If we're using the same ssh key for auth to uberspace and Gitea, we need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
-
-.. code-block:: bash
-
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
-
-.. warning::
-  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
-  * Take care that there is no second line propagating the same ssh key.
-
-.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
-
-To interact with Gitea at our local machine like ``git clone isabell@isabell.uber.space:giteauser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
-
-.. code-block::
-
-  Host isabell.uber.space
-      HostName isabell.uber.space
-      User isabell
-      IdentityFile ~/.ssh/id_your_git_key
-      IdentitiesOnly yes
-
 
 Finishing installation
 ======================
@@ -503,6 +436,74 @@ Run the updater
   Your Gitea is already up to date.
   You are running Gitea 1.16.3
   [isabell@stardust ~]$
+
+Additional configuration
+========================
+
+Gitea ssh setup (optional)
+--------------------------
+
+Gitea can manage the ssh keys. To use this feature we have to link the ssh folder into the gitea folder.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ ln -s ~/.ssh ~/gitea/.ssh
+  [isabell@stardust ~]$
+
+Now our Gitea users can add their ssh keys via the menu in the up right corner: ``->`` settings ``->`` tab: SSH/GPG Keys ``->`` Add Key. Gitea is automatically writing a ssh key command into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
+
+.. code-block:: bash
+
+  command="/home/isabell/gitea/gitea --config='/home/isabell/gitea/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAAC... youruser@yourhost
+
+If we're using the same ssh key for auth to uberspace and Gitea, we need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
+
+.. code-block:: bash
+
+  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
+
+.. warning::
+  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+  * Take care that there is no second line propagating the same ssh key.
+
+.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
+
+To interact with Gitea at our local machine like ``git clone isabell@isabell.uber.space:giteauser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
+
+.. code-block::
+
+  Host isabell.uber.space
+      HostName isabell.uber.space
+      User isabell
+      IdentityFile ~/.ssh/id_your_git_key
+      IdentitiesOnly yes
+
+Gitea using external renderer (optional)
+----------------------------------------
+
+We can install an extra `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension AsciiDoc.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ gem install asciidoctor
+  Fetching asciidoctor-2.0.10.gem
+  WARNING:  You don't have /home/isabell/.gem/ruby/2.7.0/bin in your PATH,
+  	  gem executables will not run.
+  Successfully installed asciidoctor-2.0.10
+  1 gem installed
+  [isabell@stardust ~]$
+
+.. note:: Don't be irritated by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
+
+Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
+
+.. code-block:: ini
+
+  [markup.asciidoc]
+  ENABLED = true
+  FILE_EXTENSIONS = .adoc,.asciidoc
+  RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
+  IS_INPUT_FILE = false
 
 ..
   ##### Link section #####
