@@ -1,4 +1,5 @@
 .. author:: Frank ℤisko <https://frank.zisko.io>
+.. author:: EV21 <uberlab@ev21.de>
 
 .. tag:: lang-go
 .. tag:: audience-developers
