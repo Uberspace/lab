@@ -250,7 +250,10 @@ Create a file ``~/etc/services.d/gitea.ini`` for the service ...
 .. code-block:: ini
 
   [program:gitea]
-  command=%(ENV_HOME)s/gitea/gitea web
+  directory=%(ENV_HOME)s/gitea
+  command=gitea web
+  startsecs=30
+  autorestart=yes
 
 .. include:: includes/supervisord.rst
 
