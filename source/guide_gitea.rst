@@ -135,14 +135,14 @@ Before we write the configuration we need the MySQL database password from earli
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/gitea/gitea generate secret SECRET_KEY
-  SomeRandomCharactersyHxLQeGr976f
+  <RANDOM_64_CHARACTERS_FROM_GENERATOR>
   [isabell@stardust ~]$
 
 Create a custom directory.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir -p ~/gitea/custom/conf/
+  [isabell@stardust ~]$ mkdir --parents ~/gitea/custom/conf/
   [isabell@stardust ~]$
 
 Create ``~/gitea/custom/conf/app.ini`` with the content of the following code block:
@@ -157,31 +157,25 @@ For more information about the possibilities and configuration options see the G
 .. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
 .. code-block:: ini
-  :emphasize-lines: 2,7,14-16,23,31,36
-
-  APP_NAME = Gitea
-  RUN_USER = isabell
-  RUN_MODE = prod ; Either "dev", "prod" or "test", default is "dev".
+  :emphasize-lines: 2,9-11,17,25,30
 
   [server]
-  HTTP_PORT            = 9000
   DOMAIN               = isabell.uber.space
   ROOT_URL             = https://%(DOMAIN)s
   OFFLINE_MODE         = true ; privacy option.
+  LFS_START_SERVER     = true ; Enables Git LFS support
 
   [database]
   DB_TYPE  = mysql
-  HOST     = 127.0.0.1:3306
   NAME     = isabell_gitea
   USER     = isabell
   PASSWD   = <MySQL_PASSWORD>
-  SSL_MODE = disable
 
   [security]
   INSTALL_LOCK        = true
   MIN_PASSWORD_LENGTH = 8
   PASSWORD_COMPLEXITY = lower
-  SECRET_KEY          = <RANDOM_32_CHARS>
+  SECRET_KEY          = <RANDOM_64_CHARACTERS_FROM_GENERATOR>
 
   [service]
   DISABLE_REGISTRATION       = true ; security option, only admins can create new users.
@@ -195,6 +189,9 @@ For more information about the possibilities and configuration options see the G
   ENABLED     = true
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
+
+  [repository]
+  DEFAULT_BRANCH = main
 
 Gitea initialization
 --------------------
@@ -262,7 +259,7 @@ Create a file ``~/etc/services.d/gitea.ini`` for the service ...
 Uberspace web backend
 ---------------------
 
-.. note:: gitea is running on port 9000.
+.. note:: gitea is running on port 3000.
 
 .. include:: includes/web-backend.rst
 
