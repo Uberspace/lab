@@ -263,8 +263,6 @@ Uberspace web backend
 
 .. include:: includes/web-backend.rst
 
-.. note:: If we run the service under a domain subfolder aka prefix, you need to append the above command like ``uberspace web backend set exampe.net/subfolder --http --port 9000 --remove-prefix``.
-
 Done. We can point our browser to https://isabell.uber.space/.
 
 Installed files and folders are:
