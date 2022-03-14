@@ -473,7 +473,8 @@ To interact with Gitea at our local machine like ``git clone isabell@isabell.ube
 Gitea using external renderer (optional)
 ----------------------------------------
 
-We can install an extra `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension AsciiDoc.
+| Gitea supports custom file renderings (i.e. Jupyter notebooks, asciidoc, etc.) through external binaries to provide a preview.
+| In this case we install an `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension for AsciiDoc.
 
 .. code-block:: console
 
