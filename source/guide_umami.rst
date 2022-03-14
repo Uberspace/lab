@@ -87,7 +87,7 @@ Now you can create the production build:
  [isabell@stardust umami]$ npm run build
  [isabell@stardust umami]$
 
-.. warning:: In newer versions, sometimes the build process fails without any errors in the `next build` stage. This is due to Uberspace killing the process for needing to much memory. If this happens, you will not be able to start the app – it will say `Error: Could not find a production build in the '/home/isabell/umami/.next [...]' directory`. Try running the build process via `NODE_OPTIONS=--max_old_space_size=512 npx next build --debug` to limit the RAM usage and build the app successfully.
+.. warning:: In newer versions, sometimes the build process fails without any errors in the `next build` stage. This is due to Uberspace killing the process for needing to much memory. If this happens, you will not be able to start the app – it will say `Error: Could not find a production build in the '/home/isabell/umami/.next [...]' directory`. Try running the build process via ``NODE_OPTIONS=--max_old_space_size=512 npx next build --debug`` to limit the RAM usage and build the app successfully.
 
 Setup daemon
 ------------
