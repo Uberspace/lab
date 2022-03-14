@@ -208,6 +208,7 @@ Gitea admin user
 ----------------
 
 Here we set our admin login credentials:
+Gitea does not allow ``admin`` as name.
 
 .. code-block:: console
 
@@ -215,7 +216,7 @@ Here we set our admin login credentials:
   [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
   [isabell@stardust ~]$
 
-Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. Gitea isn't allowing ``admin`` as name. To ensure we remember the password beyond this installation session we store the password in a text file.
+Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. To ensure we remember the password beyond this installation session we store the password in a text file.
 
 .. code-block:: console
 
