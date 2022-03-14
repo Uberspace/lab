@@ -134,7 +134,7 @@ Before we write the configuration we need the MySQL database password from earli
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ pwgen 32 1
+  [isabell@stardust ~]$ ~/gitea/gitea generate secret SECRET_KEY
   SomeRandomCharactersyHxLQeGr976f
   [isabell@stardust ~]$
 
