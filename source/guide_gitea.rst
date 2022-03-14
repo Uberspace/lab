@@ -196,20 +196,12 @@ For more information about the possibilities and configuration options see the G
 Gitea initialization
 --------------------
 
-Above we locked the registration and the web installation feature, so this service will never be exposed in an insecure way to the internet. So we have to do the provided steps to create the database layout and generate security keys manually.
+Above we locked the registration and the web installation feature, so this service will never be exposed in an insecure way to the internet. We create the database layout by running the migrate command without running the server.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/gitea/gitea migrate
   ... a lot of console output about the database commands.
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret INTERNAL_TOKEN
-  Some-Random-Characters-eyJhbUNIn6CJ9.eyJuYmYiOjE1OTEwNDAyNTB9.xYynv0JXwO-aqE5XEkGZE8mEeiQEOl-rU0JXpdPbLck
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret SECRET_KEY
-  Some-Random-Characters-omddgYYpZTiMbrtBtgHU1f8ASXvS9Tlx6ETYiCwbJ
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret JWT_SECRET
-  Some-Random-Characters-qRsvc0BtKZRmNvbo22a8
-  [isabell@stardust ~]$ ~/gitea/gitea generate secret LFS_JWT_SECRET
-  Some-Random-Characters-Lj7hGewx62tFGHZwRsVc
   [isabell@stardust ~]$
 
 Gitea admin user
@@ -218,7 +210,6 @@ Gitea admin user
 Here we set our admin login credentials:
 
 .. code-block:: console
-
 
   [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
   [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
