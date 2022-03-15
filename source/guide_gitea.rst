@@ -220,7 +220,6 @@ Installed files and folders are:
 
 * ``~/gitea``
 * ``~/etc/services.d/gitea.ini``
-* ``~/.gem/ruby/2.7.0/*/asciidoctor*``, if AsciiDoctor is installed.
 
 Backup
 ======
@@ -445,6 +444,7 @@ Gitea using external renderer (optional)
 
 | Gitea supports custom file renderings (i.e. Jupyter notebooks, asciidoc, etc.) through external binaries to provide a preview.
 | In this case we install an `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension for AsciiDoc.
+| AsciiDoctors location will be here: ``~/.gem/ruby/2.7.0/*/asciidoctor*``
 
 .. code-block:: console
 
