@@ -128,10 +128,7 @@ If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot
 Configuration
 =============
 
-Gitea configuration file
--------------------------
-
-Before we write the configuration we need the MySQL database password from earlier as well as some random characters as security key.
+We will need to create some random characters as a security key for the configuration:
 
 .. code-block:: console
 
@@ -139,23 +136,21 @@ Before we write the configuration we need the MySQL database password from earli
   <RANDOM_64_CHARACTERS_FROM_GENERATOR>
   [isabell@stardust ~]$
 
-Create a custom directory.
+Copy or save the output for later.
+
+Gitea configuration file
+-------------------------
+
+Create a custom directory for your configurations:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir --parents ~/gitea/custom/conf/
   [isabell@stardust ~]$
 
-Create ``~/gitea/custom/conf/app.ini`` with the content of the following code block:
-We improve the configuration with some modifications, e.g.:
+Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the following code block:
 
-* Filling the database access data that we would otherwise enter in the web installation step. (``[database]`` section)
-* As security feature we lock the web installation and change the default password complexity to allow well to remember and secure passwords. (See `XKCD No. 936 <https://xkcd.com/936/>`_  and `Explained XKCD No. 936 <https://explainxkcd.com/wiki/index.php/936:_Password_Strength>`_ for the math behind it. 😉 ``[security]`` section)
-* We disallow public registration and set some privacy settings. (``[service]`` section)
-
-For more information about the possibilities and configuration options see the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.example.ini>`_.
-
-.. warning:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
+.. note:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
 .. code-block:: ini
   :emphasize-lines: 2,9-11,17,25,30
@@ -175,8 +170,8 @@ For more information about the possibilities and configuration options see the G
   [security]
   INSTALL_LOCK        = true
   MIN_PASSWORD_LENGTH = 8
-  PASSWORD_COMPLEXITY = lower
-  SECRET_KEY          = <RANDOM_64_CHARACTERS_FROM_GENERATOR>
+  PASSWORD_COMPLEXITY = lower ; This allows well to remember but still secure passwords
+  SECRET_KEY          = <RANDOM_64_CHARACTERS_FROM_GENERATOR> ; the before generated security key
 
   [service]
   DISABLE_REGISTRATION       = true ; security option, only admins can create new users.
@@ -194,40 +189,40 @@ For more information about the possibilities and configuration options see the G
   [repository]
   DEFAULT_BRANCH = main
 
-Gitea initialization
---------------------
+.. note::
 
-Above we locked the registration and the web installation feature, so this service will never be exposed in an insecure way to the internet. We create the database layout by running the migrate command without running the server.
+  This config block contains a secure and convenient basic configuration. You may change it depending on your needs and knowledge.
+  See the Gitea documentation_ and the Gitea `configuration sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.example.ini>`_
+  for more configuration possibilities.
+
+Database initialization
+-----------------------
+
+Migrate the database configurations:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/gitea/gitea migrate
-  ... a lot of console output about the database commands.
+  [...]
+  2022/03/15 11:59:06 models/db/engine.go:194:InitEngineWithMigration() [I] [SQL] CREATE TABLE IF NOT EXISTS `upload` (`id` BIGINT(20) PRIMARY KEY AUTO_INCREMENT NOT NULL , `uuid` VARCHAR(40) NULL , `name` VARCHAR(255) NULL ) ENGINE=InnoDB DEFAULT CHARSET utf8mb4 ROW_FORMAT=DYNAMIC [] - 44.298441ms
+  2022/03/15 11:59:06 models/db/engine.go:194:InitEngineWithMigration() [I] [SQL] CREATE UNIQUE INDEX `UQE_upload_uuid` ON `upload` (`uuid`) [] - 30.158825ms
   [isabell@stardust ~]$
 
 Gitea admin user
 ----------------
 
-Here we set our admin login credentials:
-Gitea does not allow ``admin`` as name.
+Set your admin login credentials:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
   [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
-  [isabell@stardust ~]$
-
-Now we create an admin user via Gitea `command line <https://docs.gitea.io/en-us/command-line/#admin>`_. To ensure we remember the password beyond this installation session we store the password in a text file.
-
-.. code-block:: console
-
   [isabell@stardust ~]$ ~/gitea/gitea admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
   [isabell@stardust ~]$
-  ...
-  New user 'adminuser' has been successfully created!
-  [isabell@stardust ~]$ echo "usr: ${ADMIN_USERNAME}" > ~/gitea/gitea-admin.txt
-  [isabell@stardust ~]$ echo "pwd: ${ADMIN_PASSWORD}" >> ~/gitea/gitea-admin.txt
-  [isabell@stardust ~]$
+
+.. note::
+
+  Gitea does not allow ``admin`` as name, of course you should choose and replace the password.
 
 Finishing installation
 ======================
