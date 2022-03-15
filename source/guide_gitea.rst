@@ -41,10 +41,7 @@ We need a database:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql --verbose --execute="CREATE DATABASE ${USER}_gitea"
-  --------------
-  CREATE DATABASE isabell_gitea
-  --------------
+  [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_gitea"
   [isabell@stardust ~]$
 
 We can use the uberspace or your own domain:
@@ -120,8 +117,7 @@ If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x --verbose ~/gitea/gitea
-  mode of '/home/isabell/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
+  [isabell@stardust ~]$ chmod u+x ~/gitea/gitea
   [isabell@stardust ~]$
 
 
@@ -411,8 +407,7 @@ Now make the script executable.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x --verbose ~/bin/gitea-update
-  mode of '/home/isabell/bin/gitea-update' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
+  [isabell@stardust ~]$ chmod u+x ~/bin/gitea-update
   [isabell@stardust ~]$
 
 Run the updater
