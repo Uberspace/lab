@@ -60,66 +60,32 @@ Check current version of Gitea at releases_ page.
 .. code-block:: console
 
   [isabell@stardust ~]$ VERSION=1.16.3
-  [isabell@stardust ~]$ mkdir -p ~/gitea
+  [isabell@stardust ~]$ mkdir ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
-  --2020-06-01 21:00:31--  https://github.com/go-gitea/gitea/releases/download/vX.Y.Z/gitea-X.Y.Z-linux-amd64
-  Resolving github.com (github.com)... 140.82.118.3
-  Connecting to github.com (github.com)|140.82.118.3|:443... connected.
-  HTTP request sent, awaiting response... 302 Found
-  Location: [...]
-  HTTP request sent, awaiting response... 200 OK
-  Length: 83243800 (79M) [application/octet-stream]
+  [...]
   Saving to: ‘/home/isabell/gitea/gitea’
 
-  100%[====================================================================================================================>] 83,243,800  14.9MB/s   in 9.8s
+  100%[========================================================>] 83,243,800  14.9MB/s   in 9.8s
 
   2020-06-01 21:00:42 (8.11 MB/s) - ‘/home/isabell/gitea/gitea’ saved [83243800/83243800]
-  [isabell@stardust ~]$ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
-  Resolving github.com (github.com)... 140.82.118.4
-  Connecting to github.com (github.com)|140.82.118.4|:443... connected.
-  HTTP request sent, awaiting response... 302 Found
-  Location: [...]
-  HTTP request sent, awaiting response... 200 OK
-  Length: 833 [application/octet-stream]
-  Saving to: ‘/home/isabell/gitea/gitea.asc’
-
-  100%[====================================================================================================================>] 833         --.-K/s   in 0s
-
-  2020-06-01 21:03:17 (9.01 MB/s) - ‘/home/isabell/gitea/gitea.asc’ saved [833/833]
   [isabell@stardust ~]$
 
-We use ``gpg`` to download the pgp key and verify our download.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/7C9E68152594688862D62AF62D9AE806EC1592E2 | gpg --import
-  gpg: directory `/home/isabell/.gnupg' created
-  gpg: new configuration file `/home/isabell/.gnupg/gpg.conf' created
-  gpg: WARNING: options in `/home/isabell/.gnupg/gpg.conf' are not yet active during this run
-  gpg: keyring `/home/isabell/.gnupg/secring.gpg' created
-  gpg: keyring `/home/isabell/.gnupg/pubring.gpg' created
-  gpg: requesting key EC1592E2 from hkp server keys.gnupg.net
-  gpg: /home/isabell/.gnupg/trustdb.gpg: trustdb created
-  gpg: key EC1592E2: public key "Teabot <teabot@gitea.io>" imported
-  gpg: no ultimately trusted keys found
-  gpg: Total number processed: 1
-  gpg:               imported: 1  (RSA: 1)
-  [isabell@stardust ~]$ gpg --verify ~/gitea/gitea.asc ~/gitea/gitea
-  gpg: Signature made Sat 09 May 2020 10:19:06 PM CEST using RSA key ID 9753F4B0
-  gpg: Good signature from "Teabot <teabot@gitea.io>"
-  gpg: WARNING: This key is not certified with a trusted signature!
-  gpg:          There is no indication that the signature belongs to the owner.
-  Primary key fingerprint: 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
-       Subkey fingerprint: CC64 B1DB 67AB BEEC AB24  B645 5FC3 4632 9753 F4B0
-  [isabell@stardust ~]$
-
-If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line and we make the bin executable.
+Make the binary executable:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ chmod u+x ~/gitea/gitea
   [isabell@stardust ~]$
 
+| Optionally we can download the pgp signature file, trust key and verify our download with ``gpg``.
+| If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line.
+| For this execute the following commands.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
+  [isabell@stardust ~]$ curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/7C9E68152594688862D62AF62D9AE806EC1592E2 | gpg --import
+  [isabell@stardust ~]$ gpg --verify ~/gitea/gitea.asc ~/gitea/gitea
 
 Configuration
 =============
