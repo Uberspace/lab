@@ -327,7 +327,7 @@ After we have adjusted our configuration file, we need to compile and configure 
 
 .. note:: In case you get an error message when like ``django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).``, when running those `manage.py` commands, then you need a newer version of the sqlite library. Install ``pysqlite3-binary`` and create a symlink in order to override ``sqlite3``:
 
- .. code :: bash
+ ::
 
   [isabell@stardust ~]$ pip3.8 install --user pysqlite3-binary
   [...]
@@ -419,7 +419,7 @@ Setting up .qmail
 
 Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to adjust  ``~/.qmail-default`` to forward all incoming mails to our LMTP handler. Update it with the following content. Make sure that ``8024`` is the LMTP port your :lab_anchor:`Mailman Core <guide_mailman-3.html#configure-mailman-core>` is listening on and change your username twice:
 
-.. code :: bash
+::
 
  |/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de
 
@@ -427,13 +427,13 @@ Because Mailman_ doesn't handle our .qmail-configuration automatically, we need 
 
 To enable mail delivery for non-mailman addresses (such as ``info@isabell.uber.space``) you need to create individual ``.qmail-emailadress`` files such as ``.qmail-info``. If you just want to forward incoming mail to another email address, simply write one email address per line (see example below):
 
-.. code :: bash
+::
 
  isabell@example.com
 
 If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, use the following as content of your .qmail file:
 
-.. code :: bash
+::
 
  |/usr/bin/vdeliver
 
@@ -462,19 +462,77 @@ Updates
 =======
 As Mailman 3 consists of multiple independent projects, there is no single RSS feed. To check for updates, you can use ``pip`` on your uberspace:
 
-.. code :: bash
+::
 
  [isabell@stardust ~]$ pip3.8 list --outdated --user
  [isabell@stardust ~]$
 
 If there are outdated packages, update the mailman packages and their dependencies using:
 
-.. code :: bash
+::
 
  [isabell@stardust ~]$ pip3.8 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
  [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
+
+Migration from Mailman 2
+========================
+If you followed the :lab:`Mailman 2 Lab Guide <guide_mailman.html>`, your Mailman 2 installation is located at ``/var/www/virtual/isabell/mailman``.
+To migrate your existing Mailman 2 installation to Mailman 3, first install Mailman 3 according to this guide. Then, log into the Postorius web interface on ``https://isabell.uber.space`` and create a new domain entry.
+
+Migrate lists
+-------------
+You need to migrate each one of your lists separately. First, create a new list ``https://isabell.uber.space/postorius/lists/new/`` with the same name as the original list (e.g. ``foo-list``). Don't worry, we will import everything in the next step.
+Import the list from Mailman 2 and build the archives using:
+
+::
+
+ [isabell@stardust ~]$ mailman import21 foo-list@isabell.uber.space /var/www/virtual/isabell/mailman/lists/foo-list/config.pck
+ [isabell@stardust ~]$ cd ~/mailman-suite/
+ [isabell@stardust mailman-suite]$ python3.8 manage.py hyperkitty_import -l foo-list@isabell.uber.space /var/www/virtual/isabell/mailman/archives/private/foo-list.mbox/foo-list.mbox
+ [isabell@stardust mailman-suite]$ python3.8 manage.py update_index_one_list foo-list@isabell.uber.space
+ [isabell@stardust ~]$ cd ~
+
+In case you opted for the qmail configuration via ``.qmail-default``, you can delete the old list-specific ``.qmail`` files:
+
+::
+
+ [isabell@stardust ~]$ rm -r .qmail-foo-list*
+
+Otherwise, update the ``.qmail`` files to use ``qmail-lmtp`` instead of ``vdeliver``:
+
+::
+
+ [isabell@stardust ~]$ echo "|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de" | tee ~/.qmail-foo-list{,-admin,-bounces,-confirm,-join,-leave,-owner,-request,-subscribe,-unsubscribe}
+
+
+Remove Mailman 2
+----------------
+First, remove the supervisord configuration and stop the service:
+
+::
+
+ [isabell@stardust ~]$ rm ~/etc/services.d/mailman.ini
+ [isabell@stardust ~]$ supervisorctl reread
+ mailman: disappeared
+ [isabell@stardust ~]$ supervisorctl update
+ mailman: stopped
+ mailman: removed process group
+ [isabell@stardust ~]$
+
+Remove all Mailman 2 related cronjobs from ``crontab``:
+
+::
+
+ [isabell@stardust ~]$ crontab -e
+
+Finally, remove all Mailman 2 related files:
+
+::
+
+ [isabell@stardust ~]$ rm ~/html/{icons,mailman,pipermail}
+ [isabell@stardust ~]$ rm -r /var/www/virtual/isabell/mailman/
 
 Acknowledgements
 ================
