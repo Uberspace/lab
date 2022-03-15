@@ -238,6 +238,7 @@ To keep Gitea up and running in the background, you need to create a service tha
   directory=%(ENV_HOME)s/gitea
   command=gitea web
   startsecs=30
+  stopsignal=HUP
   autorestart=yes
 
 .. include:: includes/supervisord.rst
@@ -323,15 +324,13 @@ Create ``~/bin/gitea-update`` with the following content:
 
   function do_update_procedure
   {
+    $GITEA_LOCATION manager flush-queues
+    supervisorctl stop gitea
     wget --quiet --progress=bar:force --output-document $TMP_LOCATION/gitea "$DOWNLOAD_URL"
     verify_file
-    supervisorctl stop gitea
+    chmod u+x --verbose "$TMP_LOCATION/gitea"
     mv --verbose $TMP_LOCATION/gitea "$GITEA_LOCATION"
-    chmod u+x --verbose "$GITEA_LOCATION"
-    echo "Start gitea migration"
-    $GITEA_LOCATION migrate
     supervisorctl start gitea
-    sleep 5
     supervisorctl status gitea
   }
 
@@ -421,8 +420,22 @@ Run the updater
 .. code-block:: console
 
   [isabell@stardust ~]$ gitea-update
-  Your Gitea is already up to date.
-  You are running Gitea 1.16.3
+  There is a new version available.
+  Doing update from 1.16.3 to 1.16.4
+  Flushed
+  gitea: stopped
+  pub   4096R/EC1592E2 2018-06-24 [expires: 2022-06-24]
+        Key fingerprint = 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
+  uid                  Teabot <teabot@gitea.io>
+  sub   4096R/CBADB9A0 2018-06-24 [expires: 2022-06-24]
+  sub   4096R/9753F4B0 2018-06-24 [expires: 2022-06-24]
+
+  gpg: Signature made Mon Mar 14 23:02:56 2022 CET using RSA key ID 9753F4B0
+  gpg: Good signature from "Teabot <teabot@gitea.io>"
+  '/home/test42/tmp/gitea' -> '/home/test42/gitea/gitea'
+  mode of '/home/test42/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
+  gitea: started
+  gitea                            RUNNING   pid 6789, uptime 0:00:31
   [isabell@stardust ~]$
 
 Additional configuration
