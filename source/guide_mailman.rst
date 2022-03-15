@@ -222,6 +222,7 @@ Add the following options to the end of the file ``/var/www/virtual/$USER/mailma
  SMTP_USE_TLS = True
  SMTPHOST = 'stardust.uberspace.de'
  SMTPPORT = '587'
+ SMTP_MAX_RCPTS = 100
 
  SMTP_USER = 'mailmanbox@isabell.uber.space'
  SMTP_PASSWD = 'MySuperSecretPassword'
