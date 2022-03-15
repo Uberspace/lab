@@ -163,6 +163,7 @@ At first, we need to configure the REST interface of the core component. Create 
  smtp_secure_mode: starttls
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
+ max_recipients: 100
 
  [webservice]
  hostname: 0.0.0.0
@@ -215,7 +216,7 @@ HyperKitty is the part of mailman that takes care of archiving mail. It is confi
 Daemonizing Mailman Core
 ------------------------
 
-As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
+As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
 
 .. code :: ini
 
