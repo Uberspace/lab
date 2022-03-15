@@ -227,10 +227,10 @@ Set your admin login credentials:
 Finishing installation
 ======================
 
-Uberspace daemon for Gitea
----------------------------
+Service for Gitea
+-----------------
 
-Create a file ``~/etc/services.d/gitea.ini`` for the service ...
+To keep Gitea up and running in the background, you need to create a service that takes care for it. Create a config file ``~/etc/services.d/gitea.ini`` for the service:
 
 .. code-block:: ini
 
@@ -242,7 +242,7 @@ Create a file ``~/etc/services.d/gitea.ini`` for the service ...
 
 .. include:: includes/supervisord.rst
 
-.. note:: The status of gitea must be ``RUNNING``. If not, check the configuration file ``~/gitea/custom/conf/app.ini``.
+.. note:: The status of gitea must be ``RUNNING``. If its not check the log output at ``~/logs/supervisord.log`` and the configuration file ``~/gitea/custom/conf/app.ini``.
 
 Uberspace web backend
 ---------------------
