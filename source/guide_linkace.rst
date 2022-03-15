@@ -58,7 +58,7 @@ Installation
  Archive:  linkace-v1.9.1.zip
   inflating: linkace.zip
  [isabell@stardust isabell]$ unzip -d linkace/ linkace.zip
- [isabell@stardust isabell]$ rm "*".zip
+ [isabell@stardust isabell]$ rm linkace-v1.9.1.zip linkace.zip
  [...]
  [isabell@stardust isabell]$
 
