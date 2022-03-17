@@ -52,10 +52,11 @@ We can use the uberspace or your own domain:
 Installation
 ============
 
-Download and verify
--------------------
 
-Check current version of Gitea at releases_ page.
+Download
+--------
+
+Check current version of Gitea at releases_ page:
 
 .. code-block:: console
 
@@ -70,22 +71,41 @@ Check current version of Gitea at releases_ page.
   2020-06-01 21:00:42 (8.11 MB/s) - ‘/home/isabell/gitea/gitea’ saved [83243800/83243800]
   [isabell@stardust ~]$
 
-Make the binary executable:
+
+Verifying (optional)
+--------------------
+
+Optionally you can verify the downloaded file using ``gpg``. To do so, download the pgp signature file and trust key
+and verify the binary:
+
+.. code-block:: console
+  :emphasize-lines: 7
+
+  [isabell@stardust ~]$ wget --output-document ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
+  […]
+  [isabell@stardust ~]$ curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/7C9E68152594688862D62AF62D9AE806EC1592E2 | gpg --import
+  […]
+  [isabell@stardust ~]$ gpg --verify ~/gitea/gitea.asc ~/gitea/gitea
+  gpg: Signature made Do 03 Mär 2022 15:48:38 CET using RSA key ID 9753F4B0
+  gpg: Good signature from "Teabot <teabot@gitea.io>"
+  gpg: WARNING: This key is not certified with a trusted signature!
+  gpg:          There is no indication that the signature belongs to the owner.
+  Primary key fingerprint: 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
+       Subkey fingerprint: CC64 B1DB 67AB BEEC AB24  B645 5FC3 4632 9753 F4B0
+
+If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line. You need to ignore the ``WARNING`` here.
+
+
+Set permissions
+---------------
+
+Make the downloaded binary executable:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ chmod u+x ~/gitea/gitea
   [isabell@stardust ~]$
 
-| Optionally we can download the pgp signature file, trust key and verify our download with ``gpg``.
-| If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line.
-| For this execute the following commands.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ wget -O ~/gitea/gitea.asc https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64.asc
-  [isabell@stardust ~]$ curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/7C9E68152594688862D62AF62D9AE806EC1592E2 | gpg --import
-  [isabell@stardust ~]$ gpg --verify ~/gitea/gitea.asc ~/gitea/gitea
 
 Configuration
 =============
