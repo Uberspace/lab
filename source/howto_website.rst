@@ -27,7 +27,7 @@ When connecting for the first time, you should check the hostkey to make sure th
 .. image:: _static/images/howto_sftp_filezilla_key.png
   :alt: checking the host key
 
-Navigate to yout DocumentRoot
+Navigate to your DocumentRoot
 -----------------------------
 
 When the connection is established, the directory tree of your asteriod is displayed. The DocumentRoot of the web server is located at ``/var/www/virtual/$USER/html``. This is the directory from which the web server delivers your data by default.
