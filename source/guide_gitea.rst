@@ -277,18 +277,22 @@ Updates
 
 .. note:: Check the update feed_ or releases_ page regularly to stay informed about the newest version.
 
-To manually update do:
+
+Manual updating
+-----------------
 
 * Stop the application ``supervisorctl stop gitea``
-* Do the *download and verify* part from above.
+* Do the *Download* (and optionally *Verifying*) part from above.
 * Check if you have to modify the config file. (See documentation_ and the `file sample <https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample>`_.)
-* Do the application migration: ``~/gitea/gitea migrate``
+* Do the database migration: ``~/gitea/gitea migrate``
 * Start the application ``supervisorctl start gitea``
 * Check if the application is running ``supervisorctl status gitea``
 
-You can also automate the update by using the ``gitea-update`` script.
 
-Create ``~/bin/gitea-update`` with the following content:
+Automated updating by custom script
+-----------------------------------
+
+You can also automate the update by using a custom script that automatically executes all the update steps. Create ``~/bin/gitea-update`` with the following content:
 
 .. code-block:: bash
 
@@ -412,8 +416,8 @@ Run the updater
 
   gpg: Signature made Mon Mar 14 23:02:56 2022 CET using RSA key ID 9753F4B0
   gpg: Good signature from "Teabot <teabot@gitea.io>"
-  '/home/test42/tmp/gitea' -> '/home/test42/gitea/gitea'
-  mode of '/home/test42/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
+  '/home/isabell/tmp/gitea' -> '/home/isabell/gitea/gitea'
+  mode of '/home/isabell/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
   gitea: started
   gitea                            RUNNING   pid 6789, uptime 0:00:31
   [isabell@stardust ~]$
