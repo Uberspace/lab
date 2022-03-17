@@ -133,7 +133,7 @@ To do so, you can use Composer_ and yarn_:
 Now, generate an application key to be used, i.e., for encryption.
 There will be two interactive promts in which you would need to confirm with ``yes``.
 
- .. code-block:: console
+.. code-block:: console
  :emphasize-lines: 1,7,10,13
 
  [isabell@stardust monica]$ php artisan key:generate
@@ -150,7 +150,7 @@ There will be two interactive promts in which you would need to confirm with ``y
  You are about to setup and configure Monica. Do you wish to continue? (yes/no) [no]:
  > yes
 
-✓ Maintenance mode: on
+ ✓ Maintenance mode: on
  [...]
  [isabell@stardust monica]$
 
