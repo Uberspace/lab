@@ -229,6 +229,7 @@ As we want to make sure that Mailman is started automatically, we need to set it
  stderr_logfile = ~/var/logs/daemon_err.log
  stdout_logfile = ~/var/logs/daemon_out.log
  stopsignal=TERM
+ startsecs=30
 
 Afterwards, create necessary folders and files:
 
@@ -384,6 +385,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  process = 2
  threads = 2
  wsgi-file = wsgi.py
+ startsecs=30
 
  # your user name
  uid = isabell
