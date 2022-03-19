@@ -51,7 +51,7 @@ Create a new folder for code-server_ & its data in your home directory and switc
   [isabell@stardust code-server]$
 
 
-Then download the latest release_ for x86_64. Make sure to the ``x.x.x`` with the current version in all following snippets.
+Then download the latest release_ for x86_64. Make sure to replace the ``x.x.x`` with the current version in all following snippets.
 
 .. code-block:: console
 
