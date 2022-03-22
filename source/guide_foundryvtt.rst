@@ -86,7 +86,6 @@ After the download has completed, extract the archive with the following command
   Archive:  foundryvtt.zip
   [isabell@stardust foundryvtt]$
 
-::
 
 Configuration
 =============
@@ -131,6 +130,7 @@ Security
   * When you create a new world in Foundry it does not have a password by default. Keep in mind to setup a password after world creation.
 
 ----
+
 Tested with Foundry 0.8.7, Uberspace 7.1.1
 
 .. author_list::
