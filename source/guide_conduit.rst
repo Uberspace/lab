@@ -72,7 +72,7 @@ Create ``~/conduit.toml`` with the following content:
 
 .. warning:: Replace all place holders such as ``<username>`` with your actual values!
 
-.. code-block:: toml
+.. code-block:: cfg
  :emphasize-lines: 11,14
 
  [global]

@@ -62,14 +62,14 @@ You need to modify ``~/focalboard-app/config.json``:
 If PostgreSQL is used, the database configuration also needs to be adjusted. Edit the database config in the file ``~/focalboard-app/config.json``. These two values must be changed:
 .. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
 
-.. code-block:: json
+.. code-block:: cfg
 
  "dbtype": "postgres",
  "dbconfig": "postgres://<db_user>:<db_password>@localhost/<db_name>?sslmode=disable&connect_timeout=10",
 
 For example:
 
-.. code-block:: json
+.. code-block:: cfg
 
  "dbtype": "postgres",
  "dbconfig": "postgres://isabell_focalboard:sup3r-s3cr3t@localhost/focalboard?sslmode=disable&connect_timeout=10",

@@ -130,13 +130,13 @@ First clone the repo:
 
 Then configure the path in ``~/ts3audiobot/ts3audiobot.toml``, change
 
-.. code-block:: toml
+.. code-block::
 
  youtube-dl = { path = "" }
 
 to
 
-.. code-block:: toml
+.. code-block::
 
  youtube-dl = { path = "./youtube-dl" }
 

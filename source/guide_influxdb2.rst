@@ -85,7 +85,7 @@ Configure Influxd
 Use your favorite editor to create the file ``~/etc/influxd.toml`` with the
 following content:
 
-.. code-block:: toml
+.. code-block:: cfg
 
     http-bind-address = "0.0.0.0:8086"
     log-level = "error"

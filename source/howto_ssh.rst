@@ -94,7 +94,7 @@ You'll need three pieces of information to connect with your account by SSH:
 
 #. A **username** - this is the username you've chosen yourself when registering an account with us.
 #. A **hostname** - this is the hosting system we've created your account on.
-   You can find this hostname under the `Datasheet <https://uberspace.de/dashboard/datasheet>`_ section.
+   You can find this hostname under the `Datasheet <https://uberspace.de/dashboard/datasheet>`__ section.
    It's always in the form ``<something>.uberspace.de``.
 #. A **password** or **private key** - for this *HOWTO* we will start with a simple password but explain
    using a more secure and convenient key after the basics.
@@ -119,7 +119,7 @@ Most probably you will stuck at an interactive question like here in the last li
 
 This is a security measure because you are going to give your personal password somewhere else and you should be sure that it is actually
 our server and not another party which intercepted the connection. To make sure of it, check if the "host fingerprint" shown on your command output
-is also shown on your `Datasheet <https://dashboard.uberspace.de/dashboard/datasheet>`_.
+is also shown on your `Datasheet <https://dashboard.uberspace.de/dashboard/datasheet>`__.
 
 .. tip::
 

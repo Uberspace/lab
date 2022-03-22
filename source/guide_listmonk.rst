@@ -90,7 +90,7 @@ Create a new database (in this example listmonk):
     [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=listmonk --template=template0 listmonk
     [isabell@stardust ~]$
 
-.. info:: Please write down your database info with: ``user``, ``password`` and ``database``.
+.. tip:: Please write down your database info with: ``user``, ``password`` and ``database``.
 
 Configuration
 =============

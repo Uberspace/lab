@@ -123,7 +123,7 @@ Edit the file ``config.json``.
 
 Add your Gotify server url and the app token from the previous step. Example:
 
-.. code-block:: json
+.. code-block::
 
   {
     "gotify": {
@@ -141,7 +141,7 @@ Add your Gotify server url and the app token from the previous step. Example:
 
 Now add your `personal GitHub access token <https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token>`_. This token does not require any scopes. Example:
 
-.. code-block:: json
+.. code-block::
 
   {
     [...]

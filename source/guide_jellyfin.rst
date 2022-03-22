@@ -151,7 +151,7 @@ Tuning
 
 Make sure to go into the Admin Dashboard and set the ``Transcoding thread count`` to 1.
 
-.. code-block:: besteffort
+.. code-block::
 
   -> [Hamburger-Menu] -> [Admin - Dashboard]
   -> [Server - Playback] -> [Transcoding thread count] : Set to 1
@@ -168,6 +168,7 @@ Updates
 .. _GNU General Public License v2.0: https://github.com/jellyfin/jellyfin/blob/master/LICENSE
 .. _GitHub: https://github.com/jellyfin/jellyfin
 .. _feed: https://jellyfin.org/index.xml
+
 ----
 
 Tested with Jellyfin 10.7.7, Uberspace 7.11.5

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _putty:
 
 #####
@@ -5,13 +7,13 @@ PuTTY
 #####
 
 Older versions of Windows do not include a SSH client by default, but there are plenty of options,
-`PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_ probably being the choice of most Windows users.
+`PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`__ probably being the choice of most Windows users.
 
 Other popular choices include `Git BASH <https://git-for-windows.github.io/>`_ which provides a basic shell including
 the widely-used Git version control system and OpenSSH as an SSH client.
 If you're looking for a large distribution of GNU and Open Source utils that feels more-or-less like a Linux distribution,
 head over to `Cygwin <https://www.cygwin.com/>`_.
-If you opt for one of the last two, you should better follow :ref:`ssh-using-linux` after installation because you will then
+If you opt for one of the last two, you should better follow the standard `ssh tunnel <https://manual.uberspace.de/database-mysql/#external-connection>`_ after installation because you will then
 effectively use the OpenSSH command-line utils.
 
 .. warning:: Some SFTP clients do also offer a way to enter commands to be executed through SSH on the server,

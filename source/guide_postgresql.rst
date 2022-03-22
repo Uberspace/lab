@@ -265,7 +265,7 @@ To create a new database user, consider the following option:
  Enter it again:
  [isabell@stardust ~]$
 
-For more options when creating new PostgreSQL users, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createuser.html>`_.
+For more options when creating new PostgreSQL users, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createuser.html>`__.
 
 Create Database
 ---------------
@@ -276,7 +276,8 @@ Create Database
  * ``--owner``: The owner of the new database. In this example the newly created user.
  * ``--template``: PostgreSQL supports standard templates to create the database structure.
  * ``database name``: And as last option the name of the database. In this example ``synapse``.
-For more options when creating new PostgreSQL databases, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createdb.html>`_.
+
+For more options when creating new PostgreSQL databases, please refer to the `PostgreSQL manual <https://www.postgresql.org/docs/13/app-createdb.html>`__.
 
 .. warning:: Please replace ``<user>`` with the user name, created earlier, and <database name> with the name of the database you want to create!
 
@@ -336,7 +337,7 @@ to enable the extensions. This is done using the interactive ``psql`` shell.
 
 Enter your newly created database (Section `Create Database`_), then issue the SQL statements below to spatially `enable the database <http://postgis.net/docs/postgis_administration.html#create_spatial_db>`_ using  the PostGIS extension.
 
-Note that PostGIS requires the `PL/pgSQL https://www.postgresql.org/docs/12/plpgsql.html`_ extension as prerequisite. It should be readily installed when the database is created, however, the ``CREATE EXTENSION IF NOT EXSITS plpgsql`` statement in the code block below provides an additional safety net prior to enabling the PostGIS_ extension.
+Note that PostGIS requires the `PL/pgSQL <https://www.postgresql.org/docs/12/plpgsql.html>`_ extension as prerequisite. It should be readily installed when the database is created, however, the ``CREATE EXTENSION IF NOT EXSITS plpgsql`` statement in the code block below provides an additional safety net prior to enabling the PostGIS_ extension.
 
 .. warning:: Please replace ``<database name>`` with the name of the database in which you want to create the PostGIS extension! Keep in mind that PostgreSQL interprets no specified username as the Uberspace account name and hence as database superuser.
 
