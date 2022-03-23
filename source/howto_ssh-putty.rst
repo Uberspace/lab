@@ -23,8 +23,11 @@ effectively use the OpenSSH command-line utils.
 
 For this guide we're using PuTTY, but feel free to use any other SSH client of your personal taste.
 
-Downloading PuTTY
-~~~~~~~~~~~~~~~~~
+Setting up PuTTY
+================
+
+Downloading
+-----------
 
 First, download the *MSI (Windows installer)* package from the `PuTTY download page <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>`_
 which includes all PuTTY tools we're going to use (PuTTY itself, the PuTTYgen key pair generator and the Pageant SSH agent).
@@ -34,7 +37,7 @@ Installing the PuTTY tool suite should be pretty common; you don't need to do an
 
 
 Creating a session profile
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 Start PuTTY. The configuration dialog automatically opens.
 
@@ -48,8 +51,9 @@ For your convenience, save these settings under a session name of your choice.
 For that, enter a description (e.g. "isabell on stardust" or something like "My personal Uberspace") into the "Saved Sessions" text box.
 Click the "Save" button. From now on, you can simply double-click on your saved profile and PuTTY will automatically connect to your Uberspace.
 
+
 First connection
-~~~~~~~~~~~~~~~~
+----------------
 
 On your first connection PuTTY will present you the ``MD5`` fingerprint of the host key of the server you're about to connect. Unfortunately, checking the ``SHA256`` fingerprint is not possible with PuTTY, because it only supports insecure ``MD5`` fingerprints.
 
@@ -67,8 +71,9 @@ The ``[isabell@stardust ~]$`` prompt shows that you're now successfully connecte
 
 Entering ``exit`` (or pressing Ctrl+D) leaves the shell, closing your connection.
 
+
 Using PuTTY
-~~~~~~~~~~~
+-----------
 
 Header over to "Connections | SSH" in the tree menu on the left. Enable the checkbox at "Share SSH connections if possible".
 
@@ -79,3 +84,30 @@ When opening your first connection to a host, PuTTY will ask you for your passwo
 If you're now choosing "Duplicate session" from the window menu you'll get another session *immediately*, showing
 "Reusing a shared connection to this server" right before your prompt to indicate you're on a reused connection.
 
+
+Connect via PuTTY SSH tunnel to Mysql
+=====================================
+
+.. note::
+
+  For security reasons we don't allow external connections to your databases.However, if you want to connect somehow "directly" from a remote host,
+  you can do so by using a SSH tunnel.
+
+As an example, here's how you setup a SSH tunnel with PuTTY:
+
+#. Start PuTTY. The configuration dialog automatically opens.
+#. Head over to "Connection | Data" in the tree menu on the left. Enter your username (``isabell`` in our example)
+   into the "Auto-login username" text box.
+#. Head over to "Connection | SSH | Tunnels" in the tree menu on the left.
+   Enter "3306" into the "Source port:" text box, "127.0.0.1:3306" into the "Destination:" text box, and select "(o) Local".
+   Click "Add" to add the tunnel.
+#. Head over to "Session" in the tree menu on the left. Enter your hostname (``stardust.uberspace.de`` in our example)
+   into the "Host Name (or IP address)" text box.
+   For your convenience, save these settings under a session name of your choice.
+   For that, enter a description (e.g. "isabell on stardust w/MySQL" or something like "My personal Uberspace w/MySQL") into the "Saved Sessions" text box.
+   Click the "Save" button.
+
+If you want to connect to your database, start the connection by double-clicking it to establish the SSH tunnel.
+
+From now on, you can talk to 127.0.0.1:3306 on your local host to connect to your database.
+In fact, it's PuTTY listening on port 3306 of your local host, tunneling the connection to your uberspace.
