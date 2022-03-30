@@ -80,6 +80,13 @@ Use your favorite editor to create ``~/umami/.env`` with the following content:
   DATABASE_URL=mysql://isabell:mypassword@localhost:3306/isabell_umami
   HASH_SALT=(any random string)
 
+Create a ``~/umami/.babelrc`` file with the following content:
+
+.. code-block:: ini
+{
+  "presets": ["next/babel"]
+}
+
 Now you can create the production build:
 
 .. code-block:: console
