@@ -97,7 +97,7 @@ Edit the file ``~/.pgpass`` file and complete the content:
 
 .. warning:: Replace ``<username>`` with your Uberspace name!
 
-.. warning:: Replace the dummy password with your own!
+.. warning:: Replace the dummy password in both pgpass files with your own!
 
 .. code-block:: console
     :emphasize-lines: 2
