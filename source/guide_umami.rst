@@ -83,9 +83,10 @@ Use your favorite editor to create ``~/umami/.env`` with the following content:
 Create a ``~/umami/.babelrc`` file with the following content:
 
 .. code-block:: ini
-{
-  "presets": ["next/babel"]
-}
+
+  {
+    "presets": ["next/babel"]
+  }
 
 Now you can create the production build:
 
