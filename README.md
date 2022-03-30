@@ -1,5 +1,7 @@
 # Uberspace 7 Lab
 
+TEST
+
 Welcome to our laboratory! :tada:
 
 This is where we host the source code of the official version over at
