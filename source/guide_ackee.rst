@@ -101,9 +101,8 @@ Supervisord Daemon Setup
 
 Create ``~/etc/services.d/ackee.ini`` with the following content:
 
-.. code-block:: ini
-
-  [program:ackee]
+.. code-block:: lala
+[program:ackee]
   directory=%(ENV_HOME)s/Ackee
   command=yarn start
   autostart=yes
