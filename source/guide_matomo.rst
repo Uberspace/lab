@@ -87,7 +87,8 @@ and enter with your url (more configuration-details about :manual:`cron <daemons
 
 .. code-block::
 
-  5 * * * * /usr/bin/php /home/$USER/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+  # run matomo archiving outside of mysql backup hours
+  5 6-23,0-2 * * * /usr/bin/php /home/$USER/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
 
 
 Tracking
