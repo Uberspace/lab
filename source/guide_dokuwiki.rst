@@ -140,7 +140,10 @@ To use nice urls like ``https://isabell.uber.space/dokuwiki-on-uberspace`` inste
   ## to your document root.
   RewriteBase /
   
+After doing this, login to your dokuwiki and go into the **Configuration Manager** of the **Admin** interface. Scroll all the way down to the **Advanced**-section and change the ``userewrite`` option to ``.htaccess``. The scroll all the way to the bottom and save. If everything is correct, you now have nice urls enabled.
 
+If something went wrong, you can uncomment the ``RewriteEngine on`` line to access you dokuwiki again.
+  
 Updates
 =======
 
