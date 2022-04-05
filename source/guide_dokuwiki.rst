@@ -87,13 +87,59 @@ You will need to enter the following information:
   * Allow users to register themselves: your decision
   * Choose under which license your content will be published
 
-At least you have to delete the ``install.php``.
+At least you have to delete or rename the ``install.php``.
 
 Tuning
 ======
 
 For plugins, themes and other stuff go to DokuWiki_.
 
+Nice URLs
+=========
+
+To use nice urls like ``https://isabell.uber.space/dokuwiki-on-uberspace`` instead of ``https://isabell.uber.space/doku.php?id=dokuwiki-on-uberspace`` you need to create a ``.htaccess`` file in the root directory of your dokuwiki installation. You can either copy the existing ``.htaccess.dist`` file and start editing it or paste the following configuration text into a new ``.htaccess`` file.
+
+.. code-block:: ini
+
+  ## You should disable Indexes and MultiViews either here or in the
+  ## global config. Symlinks maybe needed for URL rewriting.
+  ## +SymLinksIfOwnerMatch is an uberspace requirement as +FollowSymLinks does not work.
+  Options -Indexes -MultiViews +SymLinksIfOwnerMatch
+  
+  ## make sure nobody gets the htaccess, README, COPYING or VERSION files
+  <Files ~ "^([\._]ht|README$|VERSION$|COPYING$)">
+      <IfModule mod_authz_core.c>
+          Require all denied
+      </IfModule>
+      <IfModule !mod_authz_core.c>
+          Order allow,deny
+          Deny from all
+      </IfModule>
+  </Files>
+
+  ## Don't allow access to git directories
+  <IfModule alias_module>
+      RedirectMatch 404 /\.git
+  </IfModule>
+
+  ## Uncomment these rules if you want to have nice URLs using
+  ## $conf['userewrite'] = 1 - not needed for rewrite mode 2
+  RewriteEngine on
+  
+  RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
+  RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1  [QSA,L]
+  RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2  [QSA,L]
+  RewriteRule ^$                        doku.php  [L]
+  RewriteCond %{REQUEST_FILENAME}       !-f
+  RewriteCond %{REQUEST_FILENAME}       !-d
+  RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
+  RewriteRule ^index.php$               doku.php
+  
+  ## Not all installations will require the following line.  If you do,
+  ## change "/dokuwiki" to the path to your dokuwiki directory relative
+  ## to your document root.
+  RewriteBase /
+  
 
 Updates
 =======
