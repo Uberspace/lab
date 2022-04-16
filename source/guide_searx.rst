@@ -57,13 +57,13 @@ And clone the repository from GitHub:
 Python Module Installation
 --------------------------
 
-.. note:: Here we use Python 3, instead of the default Python 2. For this reason, all ``pip`` and ``python`` commands need a version postfix ``3`` like below.
+.. note:: We are using Python 3.8 instead of the default Python 2 (or the ``python3`` alias, which links to Python 3.6), as some depencencies of searx require this. For this reason, all ``pip`` and ``python`` commands need a version postfix ``3.8`` like below. (``3.9`` should work as well.)
 
-Some required Python modules are necessary and will be installed in your uberspace with ``pip3`` and the options ``--user``, ``--upgrade`` and ``--requirement``:
+Some required Python modules are necessary and will be installed in your uberspace with ``pip3.8`` and the options ``--user``, ``--upgrade`` and ``--requirement``:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ pip3 install --user --upgrade --requirement ~/opt/searx/requirements.txt
+ [isabell@stardust ~]$ pip3.8 install --user --upgrade --requirement ~/opt/searx/requirements.txt
 
 Configuration
 -------------
@@ -128,7 +128,7 @@ At first we must create the service file ``~/etc/services.d/searx.ini`` with the
   environment=SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
   autostart=yes
   autorestart=yes
-  command=python3 %(ENV_HOME)s/opt/searx/searx/webapp.py
+  command=python3.8 %(ENV_HOME)s/opt/searx/searx/webapp.py
 
 .. include:: includes/supervisord.rst
 
