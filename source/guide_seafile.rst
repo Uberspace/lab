@@ -81,7 +81,7 @@ Install the required python libraries.
 
 ::
 
- [isabell@stardust seafile]$ pip3 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust seafile]$ pip3 install --upgrade pip Pillow==8.2.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust seafile]$
 
 Create databases
