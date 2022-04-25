@@ -156,7 +156,7 @@ Create the directory ``~/html/.well-known/matrix/``:
 
 ::
 
-  [isabell@stardust ~]$ mkdir -p ~/conduit_data/
+  [isabell@stardust ~]$ mkdir -p ~/html/.well-known/matrix/
   [isabell@stardust ~]$
 
 Then create ``~/html/.well-known/matrix/server`` with the following content.
