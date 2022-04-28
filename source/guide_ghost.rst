@@ -38,13 +38,13 @@ The concept of the Ghost platform was first floated publicly in November 2012 in
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 16:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 12
- Using 'Node.js' version: '12'
- Selected node version 12
+ [isabell@stardust ~]$ uberspace tools version use node 16
+ Using 'Node.js' version: '16'
+ Selected node version 16
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [eliza@dolittle ~]$
 
@@ -139,19 +139,14 @@ Configuration
 Change network interface
 ------------------------
 
-You need to adjust your ``~/ghost/config.production.json`` to use the right
-network interface. Find the following block and change host ``127.0.0.1`` to
-``0.0.0.0``:
+You need to change the network interface from ``127.0.0.1`` to
+``0.0.0.0`` and the process manager to ``local``:
 
 .. code-block:: none
- :emphasize-lines: 5
 
- {
-   "url": "https://isabell.uber.space",
-   "server": {
-     "port": 2368,
-     "host": "0.0.0.0"
-   },
+ [isabell@stardust ghost] ghost config --port 2368 --ip 0.0.0.0  --process local
+ [isabell@stardust ghost]
+
 
 Configure web server
 --------------------
@@ -183,8 +178,8 @@ Finishing installation
 
 Point your browser to your blog URL and Ghost Admin page (https://isabell.uber.space/ghost/) to create a user account.
 
-Changing internal uber.space URL to external URL
-================================================
+Replace uber.space domain with your own domain
+==============================================
 
 .. note::
 
@@ -196,22 +191,10 @@ Update URL with ghost-cli as followed. Change the URL to your external URL in th
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/ghost/
- [isabell@stardust ghost]$ ghost config url https://my-domain.com
+ [isabell@stardust ghost]$ ghost config --url https://example.com
  [isabell@stardust ghost]$
 
-You now need to readjust your ``~/ghost/config.production.json`` to change the URL for Ghost. Change the URL to your external URL in the respective highlighted line:
-
-.. code-block:: none
- :emphasize-lines: 2
-
- {
-   "url": "https://my-domain.com",
-   "server": {
-     "port": 2368,
-     "host": "0.0.0.0"
-   },
-
-Kill and restart Ghost (also check the restarted process with second command):
+Restart Ghost (also check the restarted process with second command):
 
 .. code-block:: console
 
@@ -229,110 +212,24 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Download and unzip new version
-------------------------------
+You can use ``ghost-cli``'s built-in update mechanism. Make sure that the process manager is set to local, then stop ghost, run ``ghost update`` and restart ghost. Sometimes ``ghost update`` will overwrite the port and network interface, so make sure to set that them to 2368 and 0.0.0.0 again.
 
-Check Ghost's `releases <https://github.com/TryGhost/Ghost/releases/latest>`_ for the latest version and copy the link to the ``Ghost-23.42.1.zip`` archive. Make sure not to use the source code zip. In this example the version is 23.42.1, which of course does not exist. Change the version to the latest one in the highlighted lines.
+.. code-block:: none
 
-.. code-block:: console
- :emphasize-lines: 2,3
-
- [isabell@stardust ~]$ cd ~/ghost/versions/
- [isabell@stardust versions]$ wget https://github.com/TryGhost/Ghost/releases/download/v23.42.1/Ghost-23.42.1.zip
- [isabell@stardust versions]$ unzip Ghost-23.42.1.zip -d 23.42.1
- Archive:  Ghost-23.42.1.zip
- [isabell@stardust versions]$
-
-Install the required ``node`` modules with ``yarn``
----------------------------------------------------
-
-.. code-block:: console
- :emphasize-lines: 1
-
- [isabell@stardust ~]$ cd ~/ghost/versions/23.42.1/content
- [isabell@stardust content]$ yarn install --production
- [...]
- Done in 121.15s.
- [isabell@stardust content]$
-
-Migrate your database
----------------------
-
-.. code-block:: console
- :emphasize-lines: 2
-
- [isabell@stardust ~]$ cd ~/ghost
- [isabell@stardust ~]$ NODE_ENV=production knex-migrator migrate --mgpath ./versions/23.42.1/
- [2018-08-22 14:18:21] INFO Creating database backup
+ [isabell@stardust ~] supervisorctl stop ghost
+ [isabell@stardust ~] cd ~/ghost
+ [isabell@stardust ghost] ghost config --process local
+ [isabell@stardust ghost] ghost update
+ ✔ Checking system Node.js version - found v16.14.2
  […]
- [2018-08-22 16:18:23] INFO Finished database migration!
+ ✔ Fetched release notes
+ ✔ Downloading and updating Ghost to v4.45.0
+ ✔ Linking latest Ghost and recording versions
+ ℹ Removing old Ghost versions [skipped]
+ [isabell@stardust ghost] ghost config --port 2368 --ip 0.0.0.0
+ [isabell@stardust ghost] supervisorctl start ghost
 
-Replace the ``current`` symlink and link to the newest version
---------------------------------------------------------------
-
-Again, replace the version number with the newest version.
-
-.. code-block:: console
- :emphasize-lines: 1
-
- [isabell@stardust ~]$ ln -sfn $HOME/ghost/versions/23.42.1 $HOME/ghost/current
- [isabell@stardust ~]$ supervisorctl restart ghost
- ghost: stopped
- ghost: started
- [isabell@stardust ~]$ supervisorctl status
- ghost                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-If it's not in state RUNNING, check your configuration.
-
-Update via script
------------------
-
-As an alternative to this manual process of updating Ghost to a new version you can also use the following script:
-
-.. code-block:: console
- :emphasize-lines: 4
-
- #!/bin/bash
- #set -v
- # created by peleke.de
- GHOSTDIR=~/ghost
- PACKAGE_VERSION_OLD=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $GHOSTDIR/current/package.json)
- CURRENT_GHOST=$(curl -s https://api.github.com/repos/TryGhost/Ghost/releases | grep tag_name | head -n 1 | cut -d '"' -f 4)
- CURRENT_GHOST_DOWNLOAD=$(curl -s https://api.github.com/repos/TryGhost/Ghost/releases/latest | grep browser_download_url | cut -d '"' -f 4)
- CURRENT_GHOST_FILE=$(echo $CURRENT_GHOST_DOWNLOAD | sed 's:.*/::')
- echo "installed version: $PACKAGE_VERSION_OLD"
- echo "available version: $CURRENT_GHOST"
- cd $GHOSTDIR
- if [[ $CURRENT_GHOST != $PACKAGE_VERSION_OLD ]]
- then
-   read -r -p "Do you want to update Ghost $PACKAGE_VERSION_OLD to version $CURRENT_GHOST? [Y/n] " response
-   if [[ $response =~ ^([yY]|"")$ ]]
-   then
-     echo "downloading and unpacking ghost $CURRENT_GHOST ..."
-     cd $GHOSTDIR/versions/
-     curl -LOk $CURRENT_GHOST_DOWNLOAD
-     unzip $GHOSTDIR/versions/$CURRENT_GHOST_FILE -d $CURRENT_GHOST
-     rm $GHOSTDIR/versions/$CURRENT_GHOST_FILE
-     echo "Updating ghost ..."
-     cd $GHOSTDIR/versions/$CURRENT_GHOST
-     yarn install --production
-     echo "Migrating ghost database ..."
-     cd $GHOSTDIR
-     NODE_ENV=production knex-migrator migrate --mgpath $GHOSTDIR/versions/$CURRENT_GHOST
-     ln -sfn $GHOSTDIR/versions/$CURRENT_GHOST $GHOSTDIR/current
-     PACKAGE_VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $GHOSTDIR/current/package.json)
-     echo "Ghost $PACKAGE_VERSION_OLD has been updated to version $PACKAGE_VERSION"
-     echo "Restarting Ghost. This may take a few seconds ..."
-     supervisorctl restart ghost
-     supervisorctl status
-     echo "If something seems wrong, please check the logs: 'supervisorctl tail ghost'"
-     echo "To revert to version $PACKAGE_VERSION_OLD run the following command: 'ln -sfn $GHOSTDIR/versions/$PACKAGE_VERSION_OLD $GHOSTDIR/current' and restart ghost using 'supervisorctl restart ghost'."
-   fi
- else
-   echo "-> Ghost is already up-to-date, no update needed."
- fi
-
+.. note:: If you previously updated Ghost manually or through the update script provided in earlier versions of this guide, make sure that your currently installed Ghost version is set correctly in ``~/ghost/.ghost-cli``.
 
 .. _Ghost: https://ghost.org
 .. _settings: https://docs.ghost.org/api/ghost-cli/
@@ -340,6 +237,6 @@ As an alternative to this manual process of updating Ghost to a new version you 
 
 ----
 
-Tested with Ghost 4.2.0, Uberspace 7.10.0.0
+Tested with Ghost v4.45.0, Uberspace 7.12.1
 
 .. author_list::
