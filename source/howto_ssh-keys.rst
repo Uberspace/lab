@@ -14,7 +14,7 @@ you have a much more convenient and secure way of managing your account(s).
 Generate the key on your local system
 -------------------------------------
 
-We will again use *OpenSSH* to generate the pair of keys, open your `local shell <https://lab.uberspace.de/XXX>`_ and enter the following command:
+We will again use *OpenSSH* to generate the pair of keys, open your :ref:`local shell <howto-local-shell>` and enter the following command:
 
 .. code-block:: console
 

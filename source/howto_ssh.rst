@@ -17,6 +17,7 @@ we're here to help, and we're pretty sure you will get used to it quickly, never
   To connect to the shell of your Uberspace account, Secure Shell (**SSH**) is the way to go.
   As a widely-used protocol it is supported by clients on basically all operating systems, even on smartphones.
 
+.. _howto-local-shell:
 
 Starting your local shell
 =========================
