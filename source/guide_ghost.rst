@@ -179,8 +179,8 @@ Finishing installation
 
 Point your browser to your blog URL and Ghost Admin page (https://isabell.uber.space/ghost/) to create a user account.
 
-Changing internal uber.space URL to external URL
-================================================
+Replace uber.space domain with your own domain
+==============================================
 
 .. note::
 
