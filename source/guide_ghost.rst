@@ -139,19 +139,15 @@ Configuration
 Change network interface
 ------------------------
 
-You need to adjust your ``~/ghost/config.production.json`` to use the right
-network interface. Find the following block and change host ``127.0.0.1`` to
-``0.0.0.0``:
+You need to change the network interface from ``127.0.0.1`` to
+``0.0.0.0`` and the process manager to ``local``:
 
 .. code-block:: none
- :emphasize-lines: 5
 
- {
-   "url": "https://isabell.uber.space",
-   "server": {
-     "port": 2368,
-     "host": "0.0.0.0"
-   },
+ [isabell@stardust ghost] ghost config --ip 0.0.0.0
+ [isabell@stardust ghost] ghost config --process local
+ [isabell@stardust ghost]
+
 
 Configure web server
 --------------------
