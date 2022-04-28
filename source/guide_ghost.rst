@@ -229,6 +229,7 @@ You can use ``ghost-cli``'s built-in update mechanism. Make sure that the proces
  [isabell@stardust ghost] ghost config --port 2368 --ip 0.0.0.0
  [isabell@stardust ghost] supervisorctl start ghost
 
+.. note:: If you previously updated Ghost manually or through the update script provided in earlier versions of this guide, make sure that your currently installed Ghost version is set correctly in ``~/ghost/.ghost-cli``.
 
 .. _Ghost: https://ghost.org
 .. _settings: https://docs.ghost.org/api/ghost-cli/
