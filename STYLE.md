@@ -97,6 +97,7 @@ In our example this would be:
  command=env NODE_ENV=production /bin/node current/index.js
 ```
 
+-   If you're setting up a supervisord-service, make sure to include `startsecs=60` in the service definition.
 -   If you want to include links to https://manual.uberspace.de, please use the corresponding directives `manual` and `manual_anchor`. Use the `lab` and `lab_anchor` directives for linking other UberLab guides. Examples:
 
 ```
