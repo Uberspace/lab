@@ -212,7 +212,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-You can use ``ghost-cli``'s built-in update mechanism. Make sure that local process manager is set to local, then stop ghost, run ``ghost update`` and restart ghost. Sometimes ``ghost update`` will overwrite the port and network interface, so make sure to set that them to 2368 and 0.0.0.0 again.
+You can use ``ghost-cli``'s built-in update mechanism. Make sure that the process manager is set to local, then stop ghost, run ``ghost update`` and restart ghost. Sometimes ``ghost update`` will overwrite the port and network interface, so make sure to set that them to 2368 and 0.0.0.0 again.
 
 .. code-block:: none
 
