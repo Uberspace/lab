@@ -287,6 +287,7 @@ Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure
  directory=%(ENV_HOME)s/pleroma
  autostart=true
  autorestart=true
+ startsecs=60
  environment =
    MIX_ENV=prod
 
