@@ -192,22 +192,10 @@ Update URL with ghost-cli as followed. Change the URL to your external URL in th
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/ghost/
- [isabell@stardust ghost]$ ghost config url https://my-domain.com
+ [isabell@stardust ghost]$ ghost config --url https://example.com
  [isabell@stardust ghost]$
 
-You now need to readjust your ``~/ghost/config.production.json`` to change the URL for Ghost. Change the URL to your external URL in the respective highlighted line:
-
-.. code-block:: none
- :emphasize-lines: 2
-
- {
-   "url": "https://my-domain.com",
-   "server": {
-     "port": 2368,
-     "host": "0.0.0.0"
-   },
-
-Kill and restart Ghost (also check the restarted process with second command):
+Restart Ghost (also check the restarted process with second command):
 
 .. code-block:: console
 
