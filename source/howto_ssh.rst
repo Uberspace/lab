@@ -214,4 +214,4 @@ You're now back on your local workstation.
 
 .. tip::
 
-  To improve your connection security and usability check out our `howto for ssh keys <howto_ssh-keys.html>`_.
+  To improve your connection security and usability check out our :doc:`howto for ssh keys <howto_ssh-keys>`.
