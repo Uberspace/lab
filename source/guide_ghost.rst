@@ -236,6 +236,6 @@ You can use ``ghost-cli``'s built-in update mechanism. Make sure that the proces
 
 ----
 
-Tested with Ghost 4.2.0, Uberspace 7.10.0.0
+Tested with Ghost v4.45.0, Uberspace 7.12.1
 
 .. author_list::
