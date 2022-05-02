@@ -251,12 +251,10 @@ To install Horizon, run the following commands and recache the routes:
 
 Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content:
 
-.. note:: Make sure to replace ``Isabell`` with your user name.
-
 .. code-block:: ini
 
  [program:horizon]
- command=php /var/www/virtual/isabell/pixelfed/artisan horizon
+ command=php /var/www/virtual/%(ENV_USER)s/pixelfed/artisan horizon
  autostart=yes
  autorestart=yes
 
