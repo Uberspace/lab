@@ -19,6 +19,12 @@ Friendica
 
 .. tag_list::
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of XYZ, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1254
+
 Friendica_ is a free and open-source distributed social network.
 It has built-in support for ActivityPub (e.g. Funkwhale, Hubzilla,
 Mastodon, Pleroma, Pixelfed), OStatus (e.g. StatusNet, GNU social,
