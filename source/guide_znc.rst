@@ -145,7 +145,7 @@ If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
-.. note:: Replace ``isabell`` with your username and ``40132`` with your port!
+.. warning:: Replace ``isabell`` with your username and ``40132`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 
