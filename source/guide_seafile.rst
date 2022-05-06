@@ -143,9 +143,9 @@ Important answers:
 Configure
 ---------
 
-Enter your domain name in config; Edit ``~/seafile/conf/ccnet.conf``
+Enter your domain name in config, if you haven't already done that when running the installer script above; Edit ``~/seafile/conf/ccnet.conf``
 
-.. warning:: Replace ``isabell`` with your username!
+.. warning:: Replace ``isabell`` with your username, and if you are using a custom domain, use it in place of ``isabell.user.space``!
 
 .. code-block:: console
 
