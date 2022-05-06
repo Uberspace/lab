@@ -63,7 +63,7 @@ Installation
 Download
 --------
 
-Check the `Seafile website`_ for the latest ``Server for generic Linux`` release, copy the download link and replace the URL in the following command with the one you just copied.
+Check the `Seafile website`_ for the latest ``Server for generic Linux`` release, copy the download link and replace the URL in the following command with the one you just copied. (This guide was tested with release 8.0.8.)
 
 .. _Seafile website: https://www.seafile.com/en/download/
 
@@ -71,7 +71,7 @@ Check the `Seafile website`_ for the latest ``Server for generic Linux`` release
 
  [isabell@stardust ~]$ mkdir seafile
  [isabell@stardust ~]$ cd seafile/
- [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
+ [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.8_x86-64.tar.gz | tar xzf -
  [isabell@stardust seafile]$
 
 Install dependencies
