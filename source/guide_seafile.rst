@@ -89,8 +89,10 @@ Install the required python libraries.
 
 ::
 
- [isabell@stardust seafile]$ pip3.8 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust seafile]$ pip3.8 install --upgrade pip Pillow captcha jinja2 sqlalchemy==1.4.3 django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust seafile]$
+
+.. note:: Two depencies, ``pylibmc`` and ``django-pylibmc`` cannot be installed because they would require the system packages ``memcached`` and ``libmemcached-devel`` to be installed on Uberspace. This is okay because memcached support in Seafile is `optional <https://manual.seafile.com/deploy/add_memcached/>`_ and only recommended for installations with more than 50 users.
 
 Create databases
 ----------------
@@ -231,7 +233,7 @@ Updating seafile is pretty easy. First update the pip3 packages, then download t
 
 ::
 
- [isabell@stardust ~]$ pip3.8 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust ~]$ pip3.8 install --upgrade pip Pillow captcha jinja2 sqlalchemy==1.4.3 django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust ~]$ cd ~/seafile/
  [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
  [isabell@stardust seafile]$ ln -sfn /home/seafile/seafile/seafile-server-8.0.7 /home/seafile/seafile/seafile-server-latest
