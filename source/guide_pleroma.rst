@@ -45,7 +45,7 @@ Your URL needs to be setup:
 Setup PostgreSQL
 ----------------
 
-We’re using :manual:`PostgreSQL <database-postgresql>` in the version 13. Please refer to the :lab:`PostgreSQL <guide_postgresql>` guide to setup your instance.
+We're using :manual:`PostgreSQL <database-postgresql>` in the version 13. Please refer to the :lab:`PostgreSQL <guide_postgresql>` guide to setup your instance.
 
 ::
 
@@ -65,12 +65,12 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
 Set Erlang version
 ------------------
 
-We’re using :manual:`Erlang <lang-erlang>` in the version 22:
+We're using :manual:`Erlang <lang-erlang>` in the version 24:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show erlang
- Using 'erlang' version: '22'
+ Using 'erlang' version: '24'
  [isabell@stardust ~]$
 
 Installation
@@ -113,7 +113,7 @@ Generate configuration file
 
 .. note:: The next step can take up to 10 minutes.
 
-Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``. Decide on your own for each point. We are using the default values.
+Run ``mix pleroma.instance gen`` in the pleroma directory. This will compile the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``. Decide on your own for each point. We are using the default values.
 
 .. warning:: Make sure to set the listen port to ``0.0.0.0`` instead of ``127.0.0.1`` !
 
@@ -156,7 +156,7 @@ Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling t
 Create new PostgreSQL user and database from file
 -------------------------------------------------
 
-You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additional it install the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database.
+You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additionally it installs the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database.
 Run the script with ``psql``:
 
 ::
@@ -180,7 +180,7 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$
 
-For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with remote posts older than 28 days to reduce space usage. Also add a database task queue timeout to avoid timeouts on the front end. Find the following block and change / add the highlighted lines:
+For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additionally we clear the database with remote posts older than 28 days to reduce space usage. Also add a database task queue timeout to avoid timeouts on the front end. Find the following block and change / add the highlighted lines:
 
 .. code-block:: none
  :emphasize-lines: 6, 7, 8, 17
@@ -203,7 +203,7 @@ For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to
    pool_size: 10,
    queue_target: 5000
 
-.. warning:: Pleroma uses ExifTool_ to read and write media files metadata in the default configuration but the ExifTool_ binaries doesn't exist on a default uberspace. There are two options to avoid media file upload issues.
+.. warning:: Pleroma uses ExifTool_ to read and write media file metadata in the default configuration but the ExifTool_ binaries don't exist on a default uberspace. There are two options to avoid media file upload issues.
 
 Option A: Disable ExifTool feature
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,7 +356,7 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.2.2, Uberspace 7.9.0.0
+Tested with Pleroma 2.4, Uberspace 7.12.1
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
