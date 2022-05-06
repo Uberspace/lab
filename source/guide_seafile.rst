@@ -77,11 +77,19 @@ Check the `Seafile website`_ for the latest ``Server for generic Linux`` release
 Install dependencies
 --------------------
 
+.. note:: Parts of Seafile call ``python3``, but don't work with Python 3.6, which is the version the default alias on Uberspace resolves to. A local symlink to ``python3.8`` and using ``pip3.8`` instead of just ``pip3`` remedy this. (Make sure that no other service depends on ``python3`` pointing to ``python3.6``!)
+
+First, create a symlink to ``python3``.
+
+::
+
+ [isabell@stardust seafile]$ ln -s /usr/bin/python3.8 $HOME/bin/python3
+
 Install the required python libraries.
 
 ::
 
- [isabell@stardust seafile]$ pip3 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust seafile]$ pip3.8 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust seafile]$
 
 Create databases
@@ -223,7 +231,7 @@ Updating seafile is pretty easy. First update the pip3 packages, then download t
 
 ::
 
- [isabell@stardust ~]$ pip3 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
+ [isabell@stardust ~]$ pip3.8 install --upgrade pip Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 django-pylibmc django-simple-captcha python3-ldap mysqlclient --user
  [isabell@stardust ~]$ cd ~/seafile/
  [isabell@stardust seafile]$ curl https://download.seadrive.org/seafile-server_8.0.7_x86-64.tar.gz | tar xzf -
  [isabell@stardust seafile]$ ln -sfn /home/seafile/seafile/seafile-server-8.0.7 /home/seafile/seafile/seafile-server-latest
