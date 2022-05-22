@@ -58,6 +58,21 @@ Run ``./configure --help`` to see all options.
   [isabell@stardust ejabberd-20.04]$ make
   [isabell@stardust ejabberd-20.04]$ make install
 
+.. note:: Since **ejabberd-22.05** ``make`` will output an error, caused by rebar which was build against a newer erlang/OTP version.
+
+  To work around this issue, you may download an older version of rebar and rebar3. 
+  
+  Read the ejabberd 22.05 release notes (https://github.com/processone/ejabberd/releases). You will find the download links in section **Erlang/OTP and elixir**
+  
+  * create an new subdirectory with ``mkdir bin`` and change to that directory
+  * download rebar and rebar3 in your subdirectory with ``wget`` (link from the ejabberd release notes)
+  * make both files executable ``chmod 755 rebar rebar3``
+  * edit your ``Makefile`` to reference your own copy of rebar in the very first line like
+  
+     ``REBAR = /opt/erlang21/lib/erlang/bin/escipt /home/isabell/ejabberd-22.05/bin/rebar``
+  
+  * run make again hopefully without errors :)
+
 The files will be installed to the following locations:
 
   * ``~/sbin/``: executables (``ejabberdctl``)
