@@ -199,6 +199,6 @@ Restart service after update
 
 ----
 
-Tested with Up1 1.11.1 and Uberspace 7.12.0
+Tested with Uptime-Kuma 1.15.1 and Uberspace 7.12.2
 
 .. author_list::
