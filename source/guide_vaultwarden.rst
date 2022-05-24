@@ -117,10 +117,11 @@ Setup web backend
 If you want to set a different port, set the environment variable ``ROCKET_PORT`` in the previously configured ``~/vaultwarden/output/.env`` like so:
 
 .. code-block:: ini
- :emphasize-lines: 3
+ :emphasize-lines: 3,4
 
  ...
  DOMAIN=https://isabell.uber.space
+ ROCKET_ADDRESS=0.0.0.0
  ROCKET_PORT=<your port number>
 
 
