@@ -218,7 +218,7 @@ To keep Gitea up and running in the background, you need to create a service tha
 
   [program:gitea]
   directory=%(ENV_HOME)s/gitea
-  command=gitea web
+  command=%(ENV_HOME)s/gitea/gitea web
   startsecs=30
   stopsignal=HUP
   autorestart=yes
