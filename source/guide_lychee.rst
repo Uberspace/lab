@@ -71,7 +71,7 @@ Next update the Composer repository:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer.phar update
+ [isabell@stardust isabell]$ composer --working-dir=./Lychee update
  Loading composer repositories with package information
  Updating dependencies (including require-dev)
  Package operations: 134 installs, 7 updates, 0 removals
@@ -82,7 +82,7 @@ After this, the required dependencies need to be installed:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer.phar install --no-dev
+ [isabell@stardust isabell]$ composer --working-dir=./Lychee install --no-dev
  Loading composer repositories with package information
  Installing dependencies from lock file
  Package operations: 0 installs, 0 updates, 52 removals
