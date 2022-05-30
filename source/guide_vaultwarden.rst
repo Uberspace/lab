@@ -114,7 +114,7 @@ Setup web backend
 .. note::
     vaultwarden will run on port 8000.
 
-If you want to set a different port, set the environment variable ``ROCKET_PORT`` in the previously configured ``~/vaultwarden/output/.env`` like so:
+If you want to set a different port, set the environment variables ``ROCKET_ADDRESS`` and ``ROCKET_PORT`` in the previously configured ``~/vaultwarden/output/.env`` like so:
 
 .. code-block:: ini
  :emphasize-lines: 3,4
