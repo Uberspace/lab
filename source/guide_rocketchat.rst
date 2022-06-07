@@ -21,6 +21,12 @@ Rocket.Chat_ is an self hosted, open source chat software written in JavaScript.
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of XYZ, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1272
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
