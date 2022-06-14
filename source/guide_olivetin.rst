@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/olivetin.png
+  .. image:: ./_static/images/olivetin.png
       :align: center
 
 ##########
@@ -24,9 +24,10 @@ OliveTin gives safe and simple access to predefined shell commands from a web in
 
 .. note:: For this guide you should be familiar with the uberspace basic concepts of
 
-  * supervisord_
-  * domains_
-  * `web backends`_
+  * :manual:`web backends <web-backends>`
+  * :manual:`Node.js <lang-nodejs>`
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`domains <web-domains>`
 
 License
 =======
@@ -114,7 +115,7 @@ Configure web backend
 Updates
 =======
 
-Periodically check the releases page_ to learn about new versions.
+Periodically check the latest release_ page to learn about new versions.
 
 To update OliveTin, stop the daemon:
 
@@ -140,10 +141,10 @@ When the daemon regains RUNNING status, you can now dispose of the old directory
  [isabell@stardust ~]$
 
 .. _Github: https://github.com/OliveTin/OliveTin
-.. _Revised BSD license: https://github.com/OliveTin/OliveTin/blob/main/LICENSE
 .. _documentation: https://docs.olivetin.app
 .. _configdoc: https://docs.olivetin.app/config.html#config
-.. _releases page: https://github.com/OliveTin/OliveTin/releases
+.. _latest release: https://github.com/OliveTin/OliveTin/releases
+.. _AGPL-3.0 License: https://github.com/OliveTin/OliveTin/blob/main/LICENSE
 
 ----
 
