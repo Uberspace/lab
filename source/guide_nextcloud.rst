@@ -381,8 +381,10 @@ Create ``~/bin/nextcloud-update`` with the following content:
  php ~/html/occ app:update --all
  /usr/sbin/restorecon -R ~/html
 
- ## If you have set up the notify_push service uncomment the following line by removing the #
- #supervisorctl restart notify_push
+ ## FYI: If that file exist...
+ if test -f ~/etc/services.d/notify_push.ini
+ then supervisorctl restart notify_push
+ fi
 
 Make the script executable:
 
