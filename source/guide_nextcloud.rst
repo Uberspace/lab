@@ -403,8 +403,8 @@ Then you can run the script whenever you need it to perform the update.
 
 .. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
 
- ``@daily $HOME/bin/nextcloud-update`` output as email
- ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
+ | ``@daily $HOME/bin/nextcloud-update`` output as email
+ | ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
 
 Troubleshooting
 ===============
