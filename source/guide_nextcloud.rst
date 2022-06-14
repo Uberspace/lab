@@ -490,6 +490,6 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 ----
 
-Tested with Nextcloud 21.0.0, Uberspace 7.9.0.0
+Tested with Nextcloud 24.0.1, Uberspace 7.12.2
 
 .. author_list::
