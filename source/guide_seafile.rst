@@ -23,6 +23,12 @@ Seafile is an enterprise file hosting platform with high reliability and perform
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of seafile, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1283
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>` and its package manager pip
