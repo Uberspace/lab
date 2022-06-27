@@ -92,7 +92,7 @@ Use your favourite editor to create ``~/vaultwarden/output/.env`` with the follo
  SMTP_HOST=stardust.uberspace.de
  SMTP_FROM=isabell@uber.space
  SMTP_PORT=587
- SMTP_SSL=true
+ SMTP_SECURITY=starttls
  SMTP_USERNAME=isabell@uber.space
  SMTP_PASSWORD=MySuperSecretPassword
  DOMAIN=https://isabell.uber.space
