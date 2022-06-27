@@ -157,6 +157,6 @@ To update the application, stop the daemon and repeat the installation step.
 
 ----
 
-Tested with umami 1.17.0 and Uberspace 7.11.0
+Tested with umami 1.33.0 and Uberspace 7.12.2
 
 .. author_list::
