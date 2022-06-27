@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Thomas Johnson <https://johnson.tj/>
+.. author:: Andreas Fuchs <https://anfuchs.de/>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -34,12 +35,12 @@ Prerequisites
 Node and npm
 ------------
 
-We're using :manual:`Node.js <lang-nodejs>` version 12:
+We're using :manual:`Node.js <lang-nodejs>` version 16:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '12'
+ Using 'Node.js' version: '16'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -57,7 +58,7 @@ We clone the repository to our home directory and install the application.
 
  [isabell@stardust ~]$ git clone https://github.com/mikecao/umami.git
  [isabell@stardust ~]$ cd umami
- [isabell@stardust umami]$ npm install
+ [isabell@stardust umami]$ yarn install
  (...)
  [isabell@stardust umami]$
 
@@ -65,19 +66,23 @@ We clone the repository to our home directory and install the application.
 Configuration
 =============
 
-After the installation you need to create the database and import the database setup.
+After the installation you need to create the database.
 
 .. code-block:: console
 
  [isabell@stardust umami]$ mysql -e "CREATE DATABASE ${USER}_umami"
- [isabell@stardust umami]$ mysql "${USER}_umami" < sql/schema.mysql.sql
  [isabell@stardust umami]$
-
+ 
 Use your favorite editor to create ``~/umami/.env`` with the following content:
 
 .. code-block:: ini
 
   DATABASE_URL=mysql://isabell:mypassword@localhost:3306/isabell_umami
+  
+Additionally you can define a HASH_SALT environment variable. That's no longer required, but optional if you still want to use it.
+
+.. code-block:: ini
+
   HASH_SALT=(any random string)
 
 Create a ``~/umami/.babelrc`` file with the following content:
@@ -92,10 +97,20 @@ Now you can create the production build:
 
 .. code-block:: console
 
- [isabell@stardust umami]$ npm run build
+ [isabell@stardust umami]$ yarn build
  [isabell@stardust umami]$
 
-.. warning:: In newer versions, sometimes the build process fails without any errors in the `next build` stage. This is due to Uberspace killing the process for needing to much memory. If this happens, you will not be able to start the app – it will say `Error: Could not find a production build in the '/home/isabell/umami/.next [...]' directory`. Try running the build process via ``NODE_OPTIONS=--max_old_space_size=512 npx next build --debug`` to limit the RAM usage and build the app successfully.
+.. warning:: In newer versions, sometimes the build process fails without any errors in the `next build` stage. This is due to Uberspace killing the process for needing to much memory. If this happens, you will not be able to start the app – it will say `Error: Could not find a production build in the '/home/isabell/umami/.next [...]' directory`. Try running the build process via ``NODE_OPTIONS=--max_old_space_size=512 npm run build --debug`` to limit the RAM usage and build the app successfully.
+
+Create database tables
+
+.. code-block:: console
+
+ [isabell@stardust umami]$ yarn update-db
+ [isabell@stardust umami]$
+
+This will also create a login account with username admin and password umami.
+
 
 Setup daemon
 ------------
@@ -106,7 +121,7 @@ Create ``~/etc/services.d/umami.ini`` with the following content:
 
  [program:umami]
  directory=%(ENV_HOME)s/umami
- command=npm start
+ command=yarn start
  autostart=yes
  autorestart=yes
 
