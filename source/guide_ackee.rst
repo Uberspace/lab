@@ -108,8 +108,16 @@ Create ``~/etc/services.d/ackee.ini`` with the following content:
   command=yarn start
   autostart=yes
   autorestart=yes
+  startsecs=30
 
 .. include:: includes/supervisord.rst
+
+Set a link to the log file destination so you can more easily access the logs:
+
+.. code-block:: console
+
+  [isabell@stardust html]$ ln --symbolic ~/.npm/_logs/ ~/logs/npm/
+  [isabell@stardust html]$ 
 
 Finishing installation
 ======================
