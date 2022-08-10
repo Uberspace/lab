@@ -190,7 +190,7 @@ Updates
   [isabell@stardust ~]$ wget https://github.com/writeas/writefreely/releases/download/v0.13.0/writefreely_0.13.0_linux_amd64.tar.gz
   [isabell@stardust ~]$ tar xzf writefreely_0.13.0_linux_amd64.tar.gz
   [isabell@stardust ~]$ cp ~/writefreely-backup/config.ini ~/writefreely/config.ini
-  [isabell@stardust ~]$ cp -r ~/writefreely-backup/keys/ ~/writefreely/keys/
+  [isabell@stardust ~]$ cp -r ~/writefreely-backup/keys ~/writefreely/keys
 
 Restart Writefreely by ``supervisorctl restart writefreely`` command. If it's not starting, repeat `config mode procedure`_.
 
