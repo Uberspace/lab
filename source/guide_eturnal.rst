@@ -64,7 +64,7 @@ eturnal Config
 
 Generate a DH-file and a random super long secret (64 characters).
 
-.. code-block:: bash
+.. code-block:: console
 
   [isabell@stardust ~]$ openssl dhparam -out $HOME/eturnal/etc/dh-parameters.pem 4096
   Generating DH parameters, 4096 bit long safe prime, generator 2
@@ -113,7 +113,7 @@ eturnal:
   
 Find other configuration options in the `reference documentation`_. You can now `first start`_ eturnal as daemon and check it's startup by invoking:
 
-.. code-block:: bash
+.. code-block:: console
 
   [isabell@stardust ~]$ ~/eturnal/bin/eturnalctl daemon
   [isabell@stardust ~]$ ~/eturnal/bin/eturnalctl info
@@ -173,7 +173,7 @@ As eturnal's startup procedure doesn't seem to work as supervisord_ program, it 
 
 Don't forget to make the bash script executable.
 
-.. code-block:: bash
+.. code-block:: console
 
   [isabell@stardust ~]$ chmod a+x ~/bin/eturnal
   [isabell@stardust ~]$
