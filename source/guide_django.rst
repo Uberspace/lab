@@ -17,6 +17,12 @@ Django
 
 .. tag_list::
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Django, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1297
+  
 Django_ is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
 
 ----
