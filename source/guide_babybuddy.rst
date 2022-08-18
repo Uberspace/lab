@@ -23,6 +23,12 @@ It is written in :manual:`Python <lang-python>` and based on the popular :lab:`D
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** as it requires a newer version of Python. We would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1184
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>` and its package manager :manual_anchor:`pip <lang-python.html#pip>`
