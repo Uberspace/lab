@@ -36,12 +36,12 @@ development of the platform.
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.2:
+We're using PHP_ in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -61,16 +61,15 @@ use a symlink to make it accessible.
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project "typo3/cms-base-distribution:^10.4" typo3-cms
- Creating a "typo3/cms-base-distribution:^10.4" project at "./typo3-cms"
- Installing typo3/cms-base-distribution (v10.4.1)
-   - Installing typo3/cms-base-distribution (v10.4.1): Downloading (100%)
+ [isabell@stardust isabell]$ composer create-project "typo3/cms-base-distribution:^11.5" typo3-cms
+ Creating a "typo3/cms-base-distribution:^11.5" project at "./typo3-cms"
+ Installing typo3/cms-base-distribution (v11.5.1)
+   - Downloading typo3/cms-base-distribution (v11.5.1)
+   - Installing typo3/cms-base-distribution (v11.5.1): Extracting archive
  Created project in /var/www/virtual/tstahn/typo3-cms
  Loading composer repositories with package information
- Updating dependencies (including require-dev)
- Package operations: 88 installs, 0 updates, 0 removals
-   - Installing typo3/cms-composer-installers (v2.2.4): Downloading (100%)
-   - Installing typo3/class-alias-loader (v1.0.2): Downloading (100%)
+ Updating dependencies
+ Lock file operations: 100 installs, 0 updates, 0 removals
  [...]
  [isabell@stardust isabell]$
 
@@ -139,7 +138,7 @@ To update TYPO3 ``cd`` into the directory you installed it in earlier and update
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/typo3-cms
- [isabell@stardust typo3-cms]$ composer update typo3/cms-core
+ [isabell@stardust typo3-cms]$ composer update "typo3/cms-*" --with-all-dependencies
 
 To update 3rd party packages, find the corresponding composer package name (e.g. from the official `TYPO3 extension repository`_),
 and update the package.
@@ -171,6 +170,6 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 
 ----
 
-Tested with TYPO3 10.4 LTS and Uberspace 7.6.0
+Tested with TYPO3 11.5 LTS and Uberspace 7.12.2
 
 .. author_list::
