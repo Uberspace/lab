@@ -42,7 +42,7 @@ Set up your URL:
 Installation
 ============
 
-Check the `latest release`_ and download a precompiled tarball from https://eturnal.net:
+Check the `latest release`_ and download a precompiled tarball from https://eturnal.net and adapt the download url to the most recent version in the commands below:
 
 .. code-block:: console
 
