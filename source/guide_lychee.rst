@@ -31,12 +31,14 @@ Lychee_ is a open source photo-management software written in PHP and distribute
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
+
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -69,38 +71,86 @@ Next update the Composer repository:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer.phar update
+ [isabell@stardust isabell]$ cd /var/www/virtual/$USER/Lychee
+ [isabell@stardust Lychee]$ composer update
  Loading composer repositories with package information
- Updating dependencies (including require-dev)
- Package operations: 134 installs, 7 updates, 0 removals
- ...
- [isabell@stardust isabell]$
+ Info from https://repo.packagist.org: #StandWithUkraine
+ Updating dependencies
+ Lock file operations: 0 installs, 25 updates, 0 removals
+  ...
+ [isabell@stardust Lychee]$
 
 After this, the required dependencies need to be installed:
 
 ::
 
- [isabell@stardust isabell]$ Lychee/composer.phar install --no-dev
- Loading composer repositories with package information
- Installing dependencies from lock file
- Package operations: 0 installs, 0 updates, 52 removals
- ...
- [isabell@stardust isabell]$
+  [isabell@stardust Lychee]$ composer install --no-dev
+  Installing dependencies from lock file
+  Verifying lock file contents can be installed on current platform.
+  Package operations: 0 installs, 0 updates, 51 removals
+  ...
+  [isabell@stardust Lychee]$
 
-Finally, setup a symbolic link for the ``public`` folder within the ``html`` folder or in the current folder if you use a custom subdomain:
+
+Set up the environment file:
 
 ::
 
- [isabell@stardust isabell]$ ln -s Lychee/public html/Lychee
+ [isabell@stardust Lychee]$ cp .env.example .env
+ [isabell@stardust Lychee]$
 
-Now point your browser to your Lychee URL and follow the instructions.
 
-You will need to enter the following information:
+Now edit following lines of your ``/var/www/virtual/$USER/Lychee/.env`` with 
+the editor of your choice. Replace ``isabell`` with your username and fill 
+the ``DB_PASSWORD`` password with yours.
 
-  * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
-  * your Lychee database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_lychee. Enter that, you can leave the prefix field empty.
+::
 
-For the last step you have to enter the username/password you want to use for the Lychee user.
+ DB_CONNECTION=mysql
+ DB_HOST=localhost
+ DB_PORT=3306
+ DB_DATABASE=isabell
+ DB_USERNAME=isabell
+ DB_PASSWORD=<MySQL_PASSWORD>
+
+
+.. hint ::
+
+  The file contains a lot more lines with configuration options, but for a working basic setup they can 
+  all just stay there untouched. You may change it depending on your needs and knowledge.
+  See https://lycheeorg.github.io/docs/configuration.html
+  for more configuration possibilities.
+
+
+Generate a application key:
+
+::
+
+  [isabell@stardust Lychee]$ php artisan key:generate 
+  [isabell@stardust Lychee]$
+
+
+And prepare the database:
+
+::
+
+  [isabell@stardust Lychee]$ php artisan migrate
+  [isabell@stardust Lychee]$
+
+
+Finally, replace your ``html`` directory with a symbolic link for the ``public`` folder:
+
+.. warning :: 
+  Please be aware that this tutorial is designed for a new fresh without any other projects or own content in the ``html`` directory.
+
+::
+
+ [isabell@stardust isabell]$ rm -r /var/www/virtual/$USER/html
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/Lychee/public /var/www/virtual/$USER/html
+ [isabell@stardust isabell]$ 
+
+Now point your browser to your Lychee URL and create your admin user.
+
 
 Updates
 =======
@@ -124,6 +174,6 @@ Or you use the automatic update function available in the web interface.
 
 ----
 
-Tested with Lychee 4.0.9, Uberspace 7.7.2.0
+Tested with Lychee 4.5.1, Uberspace 7.12.2
 
 .. author_list::

@@ -212,7 +212,7 @@ Create ``~/etc/services.d/postgresql.ini`` with the following content:
  command=postgres -D %(ENV_HOME)s/opt/postgresql/data/
  autostart=yes
  autorestart=yes
- startsec=15
+ startsecs=15
 
 .. include:: includes/supervisord.rst
 
