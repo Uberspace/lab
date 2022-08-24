@@ -186,7 +186,7 @@ Updates
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ python3 -m pip install --user --upgrade radicale
+  [isabell@stardust ~]$ python3.9 -m pip install --user --upgrade radicale
   [isabell@stardust ~]$ supervisorctl restart radicale
   radicale: stopped
   radicale: started
