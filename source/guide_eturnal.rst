@@ -126,7 +126,7 @@ If it's not running, check your configuration_.
 Custom service
 --------------
 
-As eturnal's startup procedure doesn't seem to work as supervisord_ program, it will be controlled using ``~/bin/eturnal`` bash script:
+As eturnal's startup procedure doesn't seem to work as supervisord program, it will be controlled using ``~/bin/eturnal`` bash script:
 
 .. code-block:: bash
 
