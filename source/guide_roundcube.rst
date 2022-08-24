@@ -194,7 +194,7 @@ Add the following to your ``~/html/config/config.inc.php``:
 .. code-block:: ini
 
  $rcmail_config['username_domain'] = 'domain.tld';
- $rcmail_config['force_username_domain'] = true;
+ $rcmail_config['username_domain_forced'] = true;
 
 All domains in the logins will be replaced by the specified domain above.
 If you want to specify *multiple domains* you'll have to create an array like the following:
