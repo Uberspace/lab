@@ -198,6 +198,6 @@ Updates
 
 ----
 
-Tested with Radicale 3.0.6, Uberspace 7.11.1
+Tested with Radicale 3.1.8, Uberspace 7.13.0
 
 .. author_list::
