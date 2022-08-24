@@ -79,39 +79,39 @@ Backup the standard config: ``mv ~/eturnal/etc/eturnal.yml ~/eturnal/etc/eturnal
 Create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in brackets ``<value>`` with your values.
 
 .. code-block:: yaml
-eturnal:
+  eturnal:
 
-  secret: "<super-long-secret>"
+    secret: "<super-long-secret>"
 
-  listen:
-    -
-      ip: "::"
-      port: <port-1>
-      transport: udp
-    -
-      ip: "::"
-      port: <port-1>
-      transport: tcp
-    -
-      ip: "::"
-      port: <port-2>
-      transport: tls
+    listen:
+      -
+        ip: "::"
+        port: <port-1>
+        transport: udp
+      -
+        ip: "::"
+        port: <port-1>
+        transport: tcp
+      -
+        ip: "::"
+        port: <port-2>
+        transport: tls
 
-  tls_crt_file: /home/isabell/etc/certificates/isabell.uber.space.crt
-  tls_key_file: /home/isabell/etc/certificates/isabell.uber.space.key
-  tls_dh_file: /home/isabell/eturnal/etc/dh-parameters.pem
+    tls_crt_file: /home/isabell/etc/certificates/isabell.uber.space.crt
+    tls_key_file: /home/isabell/etc/certificates/isabell.uber.space.key
+    tls_dh_file: /home/isabell/eturnal/etc/dh-parameters.pem
 
-  relay_min_port: <port-3>
-  relay_max_port: <port-5>
+    relay_min_port: <port-3>
+    relay_max_port: <port-5>
 
-  blacklist: 
-    - "127.0.0.0/8"
-    - "::1"
+    blacklist: 
+      - "127.0.0.0/8"
+      - "::1"
 
-  log_level: error
-  log_rotate_size: 10485760
-  log_rotate_count: 10
-  log_dir: stdout
+    log_level: error
+    log_rotate_size: 10485760
+    log_rotate_count: 10
+    log_dir: stdout
   
 Find other configuration options in the `reference documentation`_. You can now `first start`_ eturnal as daemon and check it's startup by invoking:
 
