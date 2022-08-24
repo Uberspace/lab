@@ -24,8 +24,8 @@ eturnal_ is a modern, straightforward STUN and TURN server written in Erlang. Cl
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`firewall ports <basics-ports>
-  * :manual:`cron jobs <daemons-cron>
+  * :manual:`firewall ports <basics-ports>`
+  * :manual:`cron jobs <daemons-cron>`
 
 License
 =======
