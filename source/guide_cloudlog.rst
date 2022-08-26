@@ -82,9 +82,30 @@ Point your browser to Cloudlog's setup wizard at ``https://<yourusername>.uber.s
 
 .. include:: includes/my-print-defaults.rst
 
-In the web form, you can leave the ``Directory`` field blank if you plan on hosting your Cloudlog instance at the root folder (i. e. ``https://isabell.uber.space/``) of your domain. The ``Website URL`` should already be pre-filled with your site's URL. You can change the ``Default Gridsquare`` if you like.
+Fill out the web form:
 
-For the ``Database settings``, use the hostname ``localhost``, your Uberspace user name as ``Username`` and your MySQL password as ``password``. Enter the ``Database name`` you created in the previous step (in our example this would be ``isabell_cloudlog``). Once all the required information has been entered, click install. You should now be redirected to your Cloudlog's home page. Log in with the default username ``m0abc`` and default password ``demo``, then open Admin -> User Accounts and create a new user. In order to delete the default user, log out and then log in again with your newly created Cloudlog user, head to Admin -> User Accounts again and delete ``m0abc``.
+#. Leave the ``Directory`` field blank.
+#. The ``Website URL`` field should already be pre-filled with your site's URL, leave it as it is.
+#. Optional: Change the ``Default Gridsquare`` if you like.
+
+For the ``Database settings``, use
+
+#. The hostname ``localhost``,
+#. Your Uberspace user name as ``Username``,
+#. Your MySQL password as ``password``.
+#. Enter the ``Database name`` you created in the previous step (in our example this would be ``isabell_cloudlog``).
+
+Once all the required information has been entered, click install. You should now be redirected to your Cloudlog's home page. Log in with the default username ``m0abc`` and default password ``demo``.
+
+Now, you need to set up your own admin user and delete the default user:
+
+#. Open Admin -> User Accounts
+#. Create a new user.
+
+In order to delete the default user, log out and then log in again with your newly created Cloudlog user. Then
+
+#. Open Admin -> User Accounts
+#. delete ``m0abc``.
 
 For security reasons, you should block web access to the ``.git`` directory. You can do so by setting an intentionally broken web backend:
 
