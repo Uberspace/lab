@@ -16,12 +16,6 @@ Django
 ##########
 
 .. tag_list::
-
-.. error::
-
-  This guide seems to be **broken** for the current versions of Django, we would be
-  happy if you want to work on a solution and create a Pull Request.
-  See also the related issue: https://github.com/Uberspace/lab/issues/1297
   
 Django_ is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
 
@@ -49,10 +43,36 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-uWSGI
+gunicorn
 -----
 
-.. include:: includes/install-uwsgi.rst
+Install the required gunicorn package with pip.
+
+::
+
+  [isabell@stardust ~]$ pip3.6 install gunicorn --user
+
+After that, continue with setting it up as a service.
+
+Create ~/etc/services.d/gunicorn.ini with the following content:
+
+::
+
+  [program:gunicorn]
+  command=bash -c '~/.local/bin/gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000   MyDjangoProject.wsgi:application'
+
+After creating the configuration, tell supervisord to refresh its configuration and start the service:
+
+::
+
+  [isabell@stardust ~]$ supervisorctl reread
+  gunicorn: available
+  [isabell@stardust ~]$ supervisorctl update
+  gunicorn: updated process group
+  [isabell@stardust ~]$ supervisorctl status
+  SERVICE                            RUNNING   pid 26020, uptime 0:03:14
+
+If it’s not in state RUNNING, check the logs (eg. logs/supervisord.log).
 
 Installation
 ============
