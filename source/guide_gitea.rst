@@ -60,7 +60,7 @@ Check current version of Gitea at releases_ page:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.16.3
+  [isabell@stardust ~]$ VERSION=1.17.2
   [isabell@stardust ~]$ mkdir ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
   [...]
@@ -380,8 +380,19 @@ You can also automate the update by using a custom script that automatically exe
       head --lines=1)" != "$1"
   }
 
+  function fix_stop_signal
+  {
+    if (grep --quiet HUP "$HOME"/etc/services.d/gitea.ini)
+    then
+      sed --in-place '/HUP/d' "$HOME"/etc/services.d/gitea.ini
+      supervisorctl reread
+      supervisorctl update
+    fi
+  }
+
   function main
   {
+    fix_stop_signal
     get_local_version
     get_latest_version
 
