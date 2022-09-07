@@ -168,9 +168,6 @@ Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the fol
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
 
-  [repository]
-  DEFAULT_BRANCH = main
-
 .. note::
 
   This config block contains a secure and convenient basic configuration. You may change it depending on your needs and knowledge.
