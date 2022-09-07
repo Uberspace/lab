@@ -220,7 +220,6 @@ To keep Gitea up and running in the background, you need to create a service tha
   directory=%(ENV_HOME)s/gitea
   command=%(ENV_HOME)s/gitea/gitea web
   startsecs=30
-  stopsignal=HUP
   autorestart=yes
 
 .. include:: includes/supervisord.rst
