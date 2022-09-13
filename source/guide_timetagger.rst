@@ -48,12 +48,12 @@ Installation
 
 To install TimeTagger we use :manual_anchor:`pip <lang-python.html#pip>`.
 
-.. note:: The ``pip``-command defaults to pip from python 2.7. Please use a modern version of pip instead. See the :manual:`manual <lang-python/#update-policy>` for currently supported versions. In this guide, we use python3.10.
+.. note:: The ``pip``-command defaults to pip from python 2.7. Please use a modern version of pip instead. See the :manual:`manual <lang-python/#update-policy>` for currently supported versions. In this guide, we use python3.9.
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ pip3.10 install --user --upgrade timetagger
+ [isabell@stardust ~]$ pip3.9 install --user --upgrade timetagger
  Collecting timetagger
   Downloading timetagger-22.6.6-py3-none-any.whl (2.9 MB)
   […]
@@ -72,7 +72,7 @@ To configure TimeTagger we need to create our own main file.
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ cp ~/.local/lib/python3.10/site-packages/timetagger/__main__.py ~/bin/mytimetagger.py
+ [isabell@stardust ~]$ cp ~/.local/lib/python3.9/site-packages/timetagger/__main__.py ~/bin/mytimetagger.py
  [isabell@stardust ~]$
 
 Next we select the port ``4800`` to serve TimeTagger from. It must be mapped in the backend.
@@ -89,9 +89,9 @@ Right now a user account is still missing. The app provides a dialogue to genera
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ python3.10 ~/bin/mytimetagger.py --bind=0.0.0.0:4800
+ [isabell@stardust ~]$ python3.9 ~/bin/mytimetagger.py --bind=0.0.0.0:4800
  […]
- [INFO 2022-07-08 12:14:34] Collected 4 assets from /home/isabell/.local/lib/python3.10/site-packages/timetagger/pages/.
+ [INFO 2022-07-08 12:14:34] Collected 4 assets from /home/isabell/.local/lib/python3.9/site-packages/timetagger/pages/.
  [INFO 2022-07-08 12:14:34] Server is starting up
 
 Finishing installation
@@ -115,9 +115,9 @@ First stop the running python script by sending ``CTRL+C`` to the console.
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ python3.10 ~/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
+ [isabell@stardust ~]$ python3.9 ~/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
  […]
- [INFO 2022-07-08 12:46:34] Collected 4 assets from /home/isabell/.local/lib/python3.10/site-packages/timetagger/pages/.
+ [INFO 2022-07-08 12:46:34] Collected 4 assets from /home/isabell/.local/lib/python3.9/site-packages/timetagger/pages/.
  [INFO 2022-07-08 12:46:34] Server is starting up
 
 We should now be able to successfully login. Finally we setup a daemon to run TimeTagger automatically.
@@ -132,7 +132,7 @@ Create the file ``~/etc/services.d/timetagger.ini`` with the following content:
  :emphasize-lines: 2
 
  [program:timetagger]
- command=python3.10 /home/isabell/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
+ command=python3.9 /home/isabell/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
  autostart=true
  autorestart=true
  startsecs=60
@@ -153,7 +153,7 @@ Updating is as simple as running pip again to update to the latest version and r
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ pip3.10 install --user --upgrade timetagger
+ [isabell@stardust ~]$ pip3.9 install --user --upgrade timetagger
  […]
  Successfully installed timetagger-22.6.6
  […]
