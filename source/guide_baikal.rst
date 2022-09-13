@@ -52,9 +52,9 @@ Remove your ``html`` directory and download the current version of Baïkal from 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.7.2/baikal-0.7.2.zip
- [isabell@stardust isabell]$ unzip baikal-0.7.2.zip
- [isabell@stardust isabell]$ rm baikal-0.7.2.zip
+ [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.9.2/baikal-0.9.2.zip
+ [isabell@stardust isabell]$ unzip baikal-0.9.2.zip
+ [isabell@stardust isabell]$ rm baikal-0.9.2.zip
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
 
@@ -97,6 +97,6 @@ Finish the update by open isabell.uber.space in your browser.
 
 ----
 
-Tested with Baïkal_ 0.7.2 and Uberspace 7.8.1
+Tested with Baïkal_ 0.9.2 and Uberspace 7.13.0
 
 .. author_list::
