@@ -59,7 +59,7 @@ Create ~/etc/services.d/gunicorn.ini with the following content:
 ::
 
   [program:gunicorn]
-  command=bash -c '~/.local/bin/gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000   MyDjangoProject.wsgi:application'
+  command=gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000 MyDjangoProject.wsgi:application
 
 After creating the configuration, tell supervisord to refresh its configuration and start the service:
 
