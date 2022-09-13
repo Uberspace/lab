@@ -132,7 +132,7 @@ Create the file ``~/etc/services.d/timetagger.ini`` with the following content:
  :emphasize-lines: 2
 
  [program:timetagger]
- command=python3.9 /home/isabell/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
+ command=python3.9 %(ENV_HOME)s/bin/mytimetagger.py --bind=0.0.0.0:4800 --credentials='isabell:$2a$08$SskWkSrYJnXvlwLPU7OAlecoCxMDs5vMr1Egs6INiqq1a4ZcH3wBa'
  autostart=true
  autorestart=true
  startsecs=60
