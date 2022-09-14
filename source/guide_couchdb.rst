@@ -139,7 +139,7 @@ Web backend
 
 .. note::
 
-    couchdb is running on port 5984. Also make sure to set ``bind_address = 0.0.0.0`` in ``~/etc/couchdb/local.ini``. A
+    couchdb is running on port 5984. Also make sure to set ``bind_address = 0.0.0.0`` in ``~/etc/couchdb/local.ini``.
 
 .. include:: includes/web-backend.rst
 
