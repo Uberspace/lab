@@ -249,7 +249,7 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
 Configure Nextcloud to rely on the configured cronjob:
 
