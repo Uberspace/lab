@@ -182,6 +182,11 @@ Now point your browser to your uberspace and you should see the Artifactory webi
 
 The default user is ``admin`` and the corresponding password ``password``. At first login you are prompted to change the password.
 
+Debugging
+=========
+
+Logs are saved at ``$JFROG_HOME/artifactory/var/log/console.log``.
+
 ----
 
 Tested with Artifactory CE 7.41.12, Uberspace 7.13.0
