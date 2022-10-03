@@ -70,11 +70,9 @@ Create your admin account.
 
  [isabell@stardust filebrowser]$ filebrowser users add '<username>' '<password>' --perm.admin
 
-Create a new `uberspace web backend`_.
+File Browser runs on port ``8080`` by default.
 
-.. code-block:: console
-
- [isabell@stardust filebrowser]$ uberspace web backend set / --http --port 8080
+.. include:: includes/web-backend.rst
 
 Create your file folder (the one you specified via the ``--root`` option).
 
@@ -87,8 +85,9 @@ At this point you should check if everything is working as expected by starting 
 .. code-block:: console
 
  [isabell@stardust filebrowser]$ filebrowser --database $HOME/filebrowser/filebrowser.db
+ 2022/10/03 19:31:02 Listening on [::]:8080
 
-File Browser should now be running on port ``8080``.
+File Browser should now be accessible via `https://isabell.uber.space`.
 
 .. note:: Changes to the configuration via the CLI can not be done while the server is running as the database access is blocked by the instance.
 
