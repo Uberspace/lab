@@ -132,11 +132,11 @@ Use the `npm` tool to update the TiddlyWiki installation:
 
 ::
 
- [isabell@stardust ~]$ servicectl stop tiddlywiki
+ [isabell@stardust ~]$ supervisorctl stop tiddlywiki
  tiddlywiki: stopped
  [isabell@stardust ~]$ npm update -g tiddlywiki
  [...]
- [isabell@stardust ~]$ servicectl start tiddlywiki
+ [isabell@stardust ~]$ supervisorctl start tiddlywiki
  tiddlywiki: started
  [isabell@stardust ~]$
 
