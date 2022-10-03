@@ -210,12 +210,23 @@ Now the URLs in your Ghost installation always use your newly configured URL. Th
 Updates
 =======
 
+Update ghost-cli
+----------------
+
+Ghost-CLI is an npm module that can be updated via npm.
+
+.. code-block:: none
+ [isabell@stardust ~] cd ~/ghost
+ [isabell@stardust ghost] npm install -g ghost-cli@latest
+
+
+Update ghost
+----------------
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 You can use ``ghost-cli``'s built-in update mechanism. Make sure that the process manager is set to local, then stop ghost, run ``ghost update`` and restart ghost. Sometimes ``ghost update`` will overwrite the port and network interface, so make sure to set that them to 2368 and 0.0.0.0 again.
 
-.. code-block:: none
-
+.. code-block:: console
  [isabell@stardust ~] supervisorctl stop ghost
  [isabell@stardust ~] cd ~/ghost
  [isabell@stardust ghost] ghost config --process local
@@ -230,6 +241,38 @@ You can use ``ghost-cli``'s built-in update mechanism. Make sure that the proces
  [isabell@stardust ghost] supervisorctl start ghost
 
 .. note:: If you previously updated Ghost manually or through the update script provided in earlier versions of this guide, make sure that your currently installed Ghost version is set correctly in ``~/ghost/.ghost-cli``.
+
+Update from v4 to v5
+--------------------
+
+.. note:: Make sure you have the most recent version of ghost-cli installed.
+
+First, you need to update to the most recent version of v4.
+
+.. code-block:: console
+ [isabell@stardust ~] supervisorctl stop ghost
+ [isabell@stardust ~] cd ~/ghost
+ [isabell@stardust ghost] ghost config --process local
+ [isabell@stardust ghost] ghost update v4
+
+After that you can update to v5
+
+.. code-block:: console
+ [isabell@stardust ghost] ghost update
+
+If the update fails with this message:
+
+.. code-block:: console
+  Knex: run
+  $ npm install mysql --save
+  Cannot find module 'mysql'
+
+You should try to update the ghost-cli (see above). If it is the most recent version try installing the module manually (source)[https://forum.ghost.org/t/ghost-error-showing-mysql-not-installed/30408]:
+
+.. code-block:: console
+  npm install mysql
+
+After installing it manually the update should run smoothly.
 
 .. _Ghost: https://ghost.org
 .. _settings: https://docs.ghost.org/api/ghost-cli/
