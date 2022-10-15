@@ -38,12 +38,12 @@ License
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 If you want to use *LittleLink Custom* with your own domain you need to setup your :manual:`domains <web-domains>` first:
