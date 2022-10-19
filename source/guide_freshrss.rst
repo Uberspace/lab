@@ -59,33 +59,33 @@ Installation
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/master.zip
- --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
+ [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/edge.zip
+ --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/edge.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’
+ Saving to: ‘edge.zip’
 
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
- 2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
- [isabell@stardust isabell]$ unzip master.zip
+ 2018-09-24 14:30:38 (4.37 MB/s) - ‘edge.zip’ saved [2694638]
+ [isabell@stardust isabell]$ unzip edge.zip
  […]
-  inflating: FreshRSS-master/tests/app/Models/UserQueryTest.php
-  inflating: FreshRSS-master/tests/bootstrap.php
-  inflating: FreshRSS-master/tests/phpunit.xml
+  inflating: FreshRSS-edge/tests/app/Models/UserQueryTest.php
+  inflating: FreshRSS-edge/tests/bootstrap.php
+  inflating: FreshRSS-edge/tests/phpunit.xml
 
 
-Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS-master/p/``:
+Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS-edge/p/``:
 
 ::
 
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s FreshRSS-master/p/ html
+ [isabell@stardust isabell]$ ln -s FreshRSS-edge/p/ html
  [isabell@stardust isabell]$ ls -l
  total 2636
- drwxrwxr-x. 11 isabell isabell    4096 Sep  9 11:03 FreshRSS-master
- lrwxrwxrwx.  1 isabell isabell      18 Sep 24 14:43 html -> FreshRSS-master/p/
- -rw-rw-r--.  1 isabell isabell 2694638 Sep 24 14:30 master.zip
+ drwxrwxr-x. 11 isabell isabell    4096 Sep  9 11:03 FreshRSS-edge
+ lrwxrwxrwx.  1 isabell isabell      18 Sep 24 14:43 html -> FreshRSS-edge/p/
+ -rw-rw-r--.  1 isabell isabell 2694638 Sep 24 14:30 edge.zip
 
 Configuration
 =============
@@ -99,7 +99,7 @@ To automatically update your feeds every ten minutes, set up a cron job like thi
 
 ::
 
- */10 * * * * php /var/www/virtual/$USER/FreshRSS-master/app/actualize_script.php > $HOME/logs/FreshRSS.log 2>&1
+ */10 * * * * php /var/www/virtual/$USER/FreshRSS-edge/app/actualize_script.php >> $HOME/logs/FreshRSS.log 2>&1
 
 Updates
 =======
@@ -109,21 +109,21 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm master.zip
- [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/master.zip
- --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/master.zip
+ [isabell@stardust isabell]$ rm edge.zip
+ [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/edge.zip
+ --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/edge.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘master.zip’
+ Saving to: ‘edge.zip’
 
      [   <=>                                                                                                                   ] 2,694,638   4.37MB/s   in 0.6s
 
- 2018-09-24 14:30:38 (4.37 MB/s) - ‘master.zip’ saved [2694638]
- [isabell@stardust isabell]$ unzip -o master.zip -x FreshRSS-master/data/do-install.txt
+ 2018-09-24 14:30:38 (4.37 MB/s) - ‘edge.zip’ saved [2694638]
+ [isabell@stardust isabell]$ unzip -o edge.zip
  […]
-  inflating: FreshRSS-master/tests/app/Models/UserQueryTest.php
-  inflating: FreshRSS-master/tests/bootstrap.php
-  inflating: FreshRSS-master/tests/phpunit.xml
+  inflating: FreshRSS-edge/tests/app/Models/UserQueryTest.php
+  inflating: FreshRSS-edge/tests/bootstrap.php
+  inflating: FreshRSS-edge/tests/phpunit.xml
  [isabell@stardust isabell]$
 
 This will overwrite any changed files while keeping your current configuration.
@@ -133,6 +133,6 @@ This will overwrite any changed files while keeping your current configuration.
 
 ----
 
-Tested with FreshRSS 1.11.2, Uberspace 7.1.12.0
+Tested with FreshRSS 1.20.1-dev, Uberspace 7.13.0
 
 .. author_list::
