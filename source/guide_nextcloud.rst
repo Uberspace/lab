@@ -167,10 +167,10 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
 .. code-block:: console
   :emphasize-lines: 1-3
 
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER=MyUserName
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS=MySuperSecretAdminPassword
-  [isabell@stardust html]$ MYSQL_PASSWORD=MySuperSecretMySQLPassword
-  [isabell@stardust html]$ php occ maintenance:install --admin-user "${NEXTCLOUD_ADMIN_USER}" --admin-pass "${NEXTCLOUD_ADMIN_PASS}" --database 'mysql' --database-name "${USER}_nextcloud"  --database-user "${USER}" --database-pass "${MYSQL_PASSWORD}" --data-dir "${HOME}/nextcloud_data"
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER='MyUserName'
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS='MySuperSecretAdminPassword'
+  [isabell@stardust html]$ MYSQL_PASSWORD='MySuperSecretMySQLPassword'
+  [isabell@stardust html]$ php occ maintenance:install --admin-user="${NEXTCLOUD_ADMIN_USER}" --admin-pass="${NEXTCLOUD_ADMIN_PASS}" --database='mysql' --database-name="${USER}_nextcloud"  --database-user="${USER}" --database-pass="${MYSQL_PASSWORD}" --data-dir="${HOME}/nextcloud_data"
   Nextcloud was successfully installed
   [isabell@stardust html]$
 
