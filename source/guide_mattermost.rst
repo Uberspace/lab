@@ -92,10 +92,10 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
 
 .. code-block:: javascript
- :emphasize-lines: 3
+ :emphasize-lines: 2,3
 
     "SqlSettings": {
       "DriverName": "mysql",
