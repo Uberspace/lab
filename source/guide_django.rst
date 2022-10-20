@@ -72,7 +72,7 @@ After creating the configuration, tell supervisord to refresh its configuration 
   [isabell@stardust ~]$ supervisorctl status
   SERVICE                            RUNNING   pid 26020, uptime 0:03:14
 
-If it’s not in state RUNNING, check the logs (eg. logs/supervisord.log).
+If it’s not in state RUNNING, check the logs (eg. ~/logs/supervisord.log).
 
 Installation
 ============
