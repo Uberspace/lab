@@ -159,6 +159,6 @@ Proceed with the installation steps and restore the ``client/plugins``, ``config
 
 ----
 
-Tested with Mattermost 5.18.0 and Uberspace 7.3.10.0
+Tested with Mattermost 7.4.0 and Uberspace 7.13.0
 
 .. author_list::
