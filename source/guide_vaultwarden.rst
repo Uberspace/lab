@@ -104,7 +104,7 @@ Replace the mail placeholder variables with your valid SMTP credentials, otherwi
 
 .. note :: You can configure any type of service here, you're not limited to an uberspace SMTP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_PORT`` etc. accordingly.
 
-You can edit other options, look into `.env.template <https://github.com/dani-garcia/vaultwarden/blob/main/.env.template> to see a list of available options.
+You can edit other options, look into `.env.template <https://github.com/dani-garcia/vaultwarden/blob/main/.env.template>`_ to see a list of available options.
 
 
 Configuration
