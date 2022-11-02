@@ -161,6 +161,8 @@ To update BookStack you can run the following command in the root directory of t
  * branch            release    -> FETCH_HEAD
  [...]
  [isabell@stardust ~]$
+ 
+You are being asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
 
 After updating your installation you should clean the cache to prevent errors.
 
