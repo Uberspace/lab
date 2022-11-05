@@ -216,7 +216,7 @@ Open the file and insert the following content:
       ,extra_params=""
   command=bash -c '
       %(ENV_HOME)s/bin/udocker run \
-      --user="$(jq -r .container_config.User \
+      --user="$(jq -r .config.User \
                    < %(ENV_HOME)s/.udocker/containers/"$container"/container.json)" \
       --env=DONT_GEN_SSL_CERT=1 \
       --workdir=/ \
