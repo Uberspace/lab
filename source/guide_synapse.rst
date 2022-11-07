@@ -5,6 +5,7 @@
 
 .. tag:: lang-python
 .. tag:: chat
+.. tag:: matrix
 
 .. sidebar:: Logo
 
