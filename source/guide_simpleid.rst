@@ -28,7 +28,7 @@ SimpleID is a simple, personal OpenID provider written in PHP.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 ::
 
@@ -226,6 +226,6 @@ Follow the steps described in the UPGRADE.txt shipped with the newest version. T
 
 ----
 
-Tested with SimpleID 1.0.2, Uberspace 7.1.13.0
+Tested with SimpleID 1.0.3, Uberspace 7.13.0, and PHP 8.0
 
 .. author_list::
