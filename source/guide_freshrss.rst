@@ -37,12 +37,12 @@ FreshRSS is free and open source software licensed under the `GNU AGPLv3`_.
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.1:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -50,6 +50,17 @@ We're using PHP in the stable version 7.1:
 If you want to use FreshRSS with your own domain, it needs to be set up.
 
 .. include:: includes/web-domain-list.rst
+
+Create a new MySQL database:
+
+::
+
+ [isabell@fairydust ~]$ mysql --verbose --execute="CREATE DATABASE ${USER}_freshrss"
+ --------------
+ CREATE DATABASE isabell_freshrss
+ --------------
+ 
+ [isabell@fairydust ~]$
 
 Installation
 ============
@@ -90,7 +101,7 @@ Now remove your ``html`` directory and create a symbolic link ``html -> FreshRSS
 Configuration
 =============
 
-Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, we recommend to use a separate database such as ``<username>_freshrss``. Replace ``<username>`` with your actual user name.
+Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions to set up FreshRSS. In step 3, use ``MySQL`` as the database type and the database named ``<username>_freshrss`` you creataed earlier. Replace ``<username>`` with your actual user name.
 
 Cron job
 --------
@@ -133,6 +144,6 @@ This will overwrite any changed files while keeping your current configuration.
 
 ----
 
-Tested with FreshRSS 1.11.2, Uberspace 7.1.12.0
+Tested with FreshRSS 1.20.0, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
