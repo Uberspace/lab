@@ -35,12 +35,12 @@ LimeSurvey software is licenced under the GPLv2_.
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.1:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
@@ -67,15 +67,15 @@ Installation
 Download archive
 ----------------
 
-Visit LimeSurvey's `community downloads`_ page and copy the ``.tar.gz`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
+Visit LimeSurvey's `community downloads`_ page and copy the ``.zip`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget -O limesurvey.tar.gz https://download.limesurvey.org/latest-stable-release/limesurvey5.4.10+221107.zip
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust html]$ wget -O limesurvey.zip https://download.limesurvey.org/latest-stable-release/limesurvey5.4.10+221107.zip
  [...]
- 2022-11-09 12:39:03 (16,1 MB/s) - »limesurvey.tar.gz« saved [84075454/84075454]
+ 2022-11-09 12:39:03 (16,1 MB/s) - »limesurvey.zip« saved [84075454/84075454]
  [isabell@stardust html]$
 
 
@@ -84,8 +84,20 @@ Extract archive
 
 ::
 
- [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1
- [isabell@stardust html]$
+ [isabell@stardust isabell]$ unzip limesurvey.zip
+ […]
+  inflating: limesurvey/upload/twig/extensions/HelloWorld_Twig_Extension/README.md
+  inflating: limesurvey/upload/twig/extensions/README.md
+ [isabell@stardust isabell]$ 
+
+Remove old html directory and rename the extracted directory
+------------------------------------------------------------
+
+::
+
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ mv limesurvey html
+ [isabell@stardust isabell]$
 
 Configuration
 =============
@@ -156,6 +168,6 @@ When a new version is released, copy the download link and download it as above,
 
 ----
 
-Tested with LimeSurvey 3.14.11+180926, Uberspace 7.1.13.0
+Tested with LimeSurvey 5.4.10, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
