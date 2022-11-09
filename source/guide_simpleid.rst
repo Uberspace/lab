@@ -33,7 +33,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 Your URL needs to be setup for web:
