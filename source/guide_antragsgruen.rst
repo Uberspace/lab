@@ -32,8 +32,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 7.4
- Selected PHP version 7.4
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -98,6 +98,6 @@ Use the built-in `web updater`_.
 ----
 
 
-Tested with Antragsgrün 4.8.1, Uberspace 7.11.5
+Tested with Antragsgrün 4.10.1, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
