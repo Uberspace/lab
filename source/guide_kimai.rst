@@ -54,7 +54,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.8 --depth 1 https://github.com/kevinpapst/kimai2.git
+ [isabell@stardust isabell]$ git clone -b 1.28.1 --depth 1 https://github.com/kevinpapst/kimai2.git
  Cloning into 'kimai2'...
  […]
  [isabell@stardust ~]$
