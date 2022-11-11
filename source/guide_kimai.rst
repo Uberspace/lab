@@ -213,6 +213,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.8 and Uberspace 7.5.0
+Tested with Kimai 1.28.1, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
