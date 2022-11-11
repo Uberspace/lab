@@ -39,6 +39,24 @@ Kimai is released under the `MIT License`_. All relevant information can be foun
 Prerequisites
 =============
 
+We're using PHP in the stable version 8.1:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.1'
+ [isabell@stardust ~]$
+
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
+
+::
+
+ [isabell@stardust ~]$ my_print_defaults client
+ --default-character-set=utf8mb4
+ --user=isabell
+ --password=MySuperSecretPassword
+ [isabell@stardust ~]$
+
 Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
