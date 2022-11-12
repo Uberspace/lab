@@ -96,7 +96,7 @@ Then, create a wrapper script ``$HOME/bin/udocker`` with the following content:
 
   #!/bin/sh
 
-  exec $HOME/udocker/udocker "$@"
+  exec $HOME/bin/udocker "$@"
 
 Make the wrapper executable and finish the `udocker`_ installation by running
 
