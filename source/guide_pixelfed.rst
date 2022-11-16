@@ -353,7 +353,7 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
 
 ----
 
-Tested with Pixelfed 0.10.9, Uberspace 7.7.2.0, PHP 8.1
+Tested with Pixelfed 0.11.4, Uberspace 7.13, PHP 8.1
 
 .. _Pixelfed: https://pixelfed.org
 .. _Redis: https://redios.io
