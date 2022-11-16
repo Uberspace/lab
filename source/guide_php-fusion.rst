@@ -34,7 +34,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 MySQL
@@ -88,7 +88,7 @@ To remove the file install.php enter
 
 ----
 
-Tested with PHP-Fusion v9.10.10 and Uberspace 7.11.5
+Tested with PHP-Fusion v9.10.30, PHP 8.1 and Uberspace 7.13.0
 
 .. _PHP-Fusion: https://php-fusion.co.uk
 .. _Sourceforge: https://sourceforge.net/projects/php-fusion/files/latest/download
