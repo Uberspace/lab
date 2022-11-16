@@ -29,7 +29,7 @@ PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licenc
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
