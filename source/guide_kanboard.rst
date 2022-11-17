@@ -36,12 +36,12 @@ The software is licensed under `MIT License`_. All relevant information can be f
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -126,6 +126,16 @@ Now edit ``config.php`` file, change the Database driver to ``mysql`` and provid
  // Mysql/Postgres database name
  define('DB_NAME', 'isabell_kanboard');
 
+
+Remove ``nocontent.html``:
+
+.. code-block:: console
+ :emphasize-lines: 2
+
+ [isabell@stardust isabell]$ cd ~/html
+ [isabell@stardust html]$ rm nocontent.html
+ [isabell@stardust html]$
+ 
 Go to ``https://isabell.uber.space/`` and log in to your installation with the default login ``admin`` and password ``admin``.
 
 .. warning:: Do not forget to change the default user/password!
@@ -135,7 +145,7 @@ Check out the official `Kanboard documentation`_ for explanation of further conf
 Cron job
 ========
 
-To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am. Make sure to replace ``isabell`` with your own user name.
+To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am.
 
 ::
 
@@ -220,6 +230,6 @@ Check the `Kanboard documentation`_ if the configuration changed between ``confi
 
 ----
 
-Tested with Kanboard 1.2.20, Uberspace 7.11.5
+Tested with Kanboard 1.2.25, Uberspace 7.13, PHP 8.1
 
 .. author_list::
