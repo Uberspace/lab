@@ -166,6 +166,6 @@ Additionally, backup the MySQL database:
 
 ----
 
-Tested with Matomo 3.5.0, Uberspace 7.1.3
+Tested with Matomo 4.12.3, Uberspace 7.13, PHP 8.1
 
 .. author_list::
