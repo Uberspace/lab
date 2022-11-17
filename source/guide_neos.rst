@@ -39,12 +39,12 @@ Neos is free and open source software licensed under `GPL v3`_.
 Prerequisites
 =============
 
-Neos (version 5.0 and newer) requires at least PHP_ 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
+Neos (version 5.0 and newer) requires at least PHP_ 8.1. Since new Uberspaces are currently setup with PHP 8.1 by default you need to set this version manually:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -144,6 +144,6 @@ By using composer, you can update an existing installation to a specific version
 
 ----
 
-Tested with Neos 5.0.0 and Uberspace 7.3.6
+Tested with Neos 8.1.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::
