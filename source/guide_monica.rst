@@ -237,6 +237,7 @@ Your output might differ and show a (later) version number.
  [isabell@stardust monica]$
 
 
+.. _Monica: https://www.monicahq.com/
 .. _Composer: https://getcomposer.org/
 .. _yarn: https://yarnpkg.com
 .. _LICENSE: https://github.com/monicahq/monica/blob/master/LICENSE.md
