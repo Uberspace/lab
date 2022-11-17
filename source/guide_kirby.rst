@@ -43,12 +43,12 @@ Kirby is licensed under the `Kirby End User License Agreement`_ which you can fi
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.4:
+We're using PHP_ in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -150,6 +150,6 @@ If you've enabled the cache, you might need to empty the page cache directory to
 
 ----
 
-Tested with Kirby 3.5.5 and Uberspace 7.11.1.1
+Tested with Kirby 3.8.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::
