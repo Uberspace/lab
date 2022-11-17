@@ -58,11 +58,12 @@ Installation
 Download
 --------
 
-First download the files from the Framadate repository with Git into the folder ``~/html`` and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.19`` with the current version.
+First, cd into the folder ``~/html`` and remove the ``nocontent.html`` file. Then, download the files from the Framadate repository with Git and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.19`` with the current version.
 
 ::
 
   [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ rm nocontent.html
   [isabell@stardust ~]$ git clone https://framagit.org/framasoft/framadate/framadate.git .
   ...
   [isabell@stardust ~]$ git checkout 1.1.19
