@@ -145,11 +145,11 @@ Check out the official `Kanboard documentation`_ for explanation of further conf
 Cron job
 ========
 
-To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am.
+To work properly, Kanboard requires that a `background job`_ runs on a daily basis. Edit your cron tab using the ``crontab -e`` command and insert this cron job to execute the daily cronjob at 8am. Make sure to replace ``isabell`` with your own user name.
 
 ::
 
-  0 8 * * * cd /var/www/virtual/$USER/html && ./cli cronjob >/dev/null 2>&1
+  0 8 * * * cd /var/www/virtual/isabell/html && ./cli cronjob >/dev/null 2>&1
 
 Best practices
 ==============
