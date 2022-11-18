@@ -38,15 +38,15 @@ Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer
 Prerequisites
 =============
 
-We are using PHP_ in the stable version ``8.0``:
+We are using PHP_ in the stable version ``8.1``:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
