@@ -135,7 +135,7 @@ Remove ``nocontent.html``:
  [isabell@stardust isabell]$ cd ~/html
  [isabell@stardust html]$ rm nocontent.html
  [isabell@stardust html]$
- 
+
 Go to ``https://isabell.uber.space/`` and log in to your installation with the default login ``admin`` and password ``admin``.
 
 .. warning:: Do not forget to change the default user/password!

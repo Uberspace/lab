@@ -59,7 +59,7 @@ Create a new MySQL database:
  --------------
  CREATE DATABASE isabell_freshrss
  --------------
- 
+
  [isabell@fairydust ~]$
 
 Installation

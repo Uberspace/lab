@@ -86,7 +86,7 @@ Download
 --------
 First, download Moodle and extract it. For this, change into the html directory of your Uberspace.
 
-Then download the latest version (Moodle-Download_ page) of the tgz archive and extract it. It is best to select the stable version. 
+Then download the latest version (Moodle-Download_ page) of the tgz archive and extract it. It is best to select the stable version.
 
 Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
 
@@ -111,8 +111,8 @@ Moodle requires `max_input_vars` to be set to 5000 or higher. To configure this,
 .. code-block:: ini
 
  max_input_vars=5000
- 
- 
+
+
 .. note:: After setting this PHP parameter, restart PHP to activate the changes
 
 .. code-block:: console
@@ -120,7 +120,7 @@ Moodle requires `max_input_vars` to be set to 5000 or higher. To configure this,
  [isabell@stardust ~]$ uberspace tools restart php
  Your php configuration has been loaded.
  [isabell@stardust ~]$
- 
+
 
 Initialize
 ----------

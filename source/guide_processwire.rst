@@ -45,7 +45,7 @@ We're using :manual:`PHP <lang-php>` in the stable version 8.1:
  [isabell@stardust ~]$ uberspace tools version show php
  Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
- 
+
 
 You will need your database credentials later on:
 
@@ -130,7 +130,7 @@ Make your ``/config.php`` file non-writable.
 
 ::
 
- [isabell@stardust html]$ chmod 600 site/config.php 
+ [isabell@stardust html]$ chmod 600 site/config.php
 
 
 

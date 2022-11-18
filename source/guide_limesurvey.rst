@@ -88,7 +88,7 @@ Extract archive
  […]
   inflating: limesurvey/upload/twig/extensions/HelloWorld_Twig_Extension/README.md
   inflating: limesurvey/upload/twig/extensions/README.md
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Remove old html directory and rename the extracted directory
 ------------------------------------------------------------

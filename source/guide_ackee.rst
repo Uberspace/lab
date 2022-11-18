@@ -117,7 +117,7 @@ Set a link to the log file destination so you can more easily access the logs:
 .. code-block:: console
 
   [isabell@stardust html]$ ln --symbolic ~/.npm/_logs/ ~/logs/npm/
-  [isabell@stardust html]$ 
+  [isabell@stardust html]$
 
 Finishing installation
 ======================

@@ -13,7 +13,7 @@
 
   .. image:: _static/images/openwebanalytics.png
       :align: center
-      
+
 .. error::
 
   This guide seems to be **broken** for the current versions of open web analytics, we would be

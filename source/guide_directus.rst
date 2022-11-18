@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: j3n57h0m45 <https://github.com/j3n57h0m45> 
+.. author:: j3n57h0m45 <https://github.com/j3n57h0m45>
 .. author:: André Lehner <https://github.com/Adashi12>
 
 .. tag:: self-hosting
