@@ -154,6 +154,6 @@ The Cloudlog documentation suggests a daily Cronjob to perform the ``git pull`` 
 
 ----
 
-Tested with Cloudlog 2.1, Uberspace 7.13.0, and PHP 8.1
+Tested with Cloudlog 2.1, Uberspace 7.13.0, and PHP 8.0
 
 .. author_list::
