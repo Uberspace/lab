@@ -63,8 +63,6 @@ You can also choose not to replace your ``html`` directory (and e.g. install Ba√
 Configuration
 =============
 
-Only if you didn't replace your ``html`` directory (and e.g. installed Ba√Økal in a subdirectory or under a subdomain), edit the file ``baikal/config/baikal.yaml`` and set the value of ``base_uri`` to ``'/'``.
-
 After the installation you need to open isabell.uber.space in your browser to finish your setup.
 
 Fill out your system settings, admin user and database settings, you can use the included SQLite database or :manual_anchor:`MySQL <database-mysql.html#login-credentials>`.
