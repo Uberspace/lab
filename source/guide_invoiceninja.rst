@@ -19,6 +19,12 @@ Invoice Ninja
 
 .. tag_list::
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Invoice Ninja, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/850
+
 `Invoice Ninja`_ is a free, open-source, self-hosted invoicing software with built-in support for recurring invoices, time-tracking and online payments.
 
 ----
