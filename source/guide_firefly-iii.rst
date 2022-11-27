@@ -101,6 +101,8 @@ Go to https://isabell.uber.space to access your Firefly III installation.
 
 .. warning:: Please make sure to directly create an account, as the first account will be an admin account.
 
+.. note:: If https://isabell.uber.space/login does result into an "Internal Server Error", open the 
+
 Tuning
 ======
 
