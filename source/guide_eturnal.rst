@@ -123,71 +123,19 @@ Find other configuration options in the `reference documentation`_. You can now 
 
 If it's not running, check your configuration_.
 
-Custom service
---------------
+Afterwards you can set up the service by creating a file ``~/etc/services.d/eturnal.ini`` with the following content:
 
-As eturnal's startup procedure doesn't seem to work as supervisord program, it will be controlled using a bash script. Create ``~/bin/eturnal`` with the following content:
+.. code-block:: ini
 
-.. code-block:: bash
+  [program:eturnal]
+  command=%(ENV_HOME)s/eturnal/bin/eturnalctl foreground
+  autostart=yes
+  autorestart=yes
+  startsecs=30
 
-  #!/bin/bash
+.. include:: includes/supervisord.rst
 
-  BIN=~/eturnal/bin/eturnalctl
-
-  case "$1" in
-    reload)
-      CMD="$BIN reload"
-    ;;
-    restart)
-      CMD="$BIN restart"
-    ;;
-    status)
-      CMD="$BIN info"
-    ;;
-    start)
-      CMD="$BIN daemon"
-    ;;
-    stop)
-      $BIN stop
-    ;;
-    help)
-      echo "reload          Reload the configuration file.
-  restart         Restart the applications but not the VM.
-  status          Print some details regarding the running eturnal instance.
-  start           Start eturnal in the background (daemon).
-  stop            Stop the running eturnal instance."
-    ;;
-    *)
-      CMD="$BIN daemon"
-    ;;
-  esac
-
-  # if eturnal is running exit
-  if [ $($CMD | grep "daemon" && $BIN info) ]
-  then
-    exit 0
-  else
-    # execute eturnal command or exit with error
-    $CMD || exit 1
-  fi
-
-  exit 0
-
-Don't forget to make the bash script executable.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ chmod a+x ~/bin/eturnal
-  [isabell@stardust ~]$
-
-Now you can start, stop, restart eturnal by executing ``eturnal``, ``eturnal stop``, ``eturnal restart`` or e.g. use ``eturnal status`` get information about a running instance.
-The same script can be run as cron job on a weekly basis to automatically start eturnal, if it eventually stopped.
-
-.. code-block:: bash
-
-  @weekly	$HOME/bin/eturnal > /dev/null
-  
-More information on the syntax can be found in the `cron jobs`_ Uberspace manual.
+If it's not in state ``RUNNING``, check the logs.
 
 Finishing installation
 ======================
