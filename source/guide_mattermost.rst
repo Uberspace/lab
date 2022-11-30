@@ -92,10 +92,10 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
 
 .. code-block:: javascript
- :emphasize-lines: 3
+ :emphasize-lines: 2,3
 
     "SqlSettings": {
       "DriverName": "mysql",
@@ -159,6 +159,6 @@ Proceed with the installation steps and restore the ``client/plugins``, ``config
 
 ----
 
-Tested with Mattermost 5.18.0 and Uberspace 7.3.10.0
+Tested with Mattermost 7.4.0 and Uberspace 7.13.0
 
 .. author_list::

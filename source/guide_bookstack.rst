@@ -37,12 +37,12 @@ BookStack is released under the `MIT License`_. All relevant information can be 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -182,6 +182,6 @@ After updating your installation you should clean the cache to prevent errors.
 
 ----
 
-Tested with BookStack 0.24.1 Beta, Uberspace 7.1.15
+Tested with BookStack v22.10.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

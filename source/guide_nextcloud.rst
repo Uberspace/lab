@@ -44,8 +44,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -249,7 +249,9 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+
+.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
 
 Configure Nextcloud to rely on the configured cronjob:
 
@@ -490,6 +492,6 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 ----
 
-Tested with Nextcloud 24.0.1, Uberspace 7.12.2
+Tested with Nextcloud 25.0.1, Uberspace 7.14, PHP 8.1
 
 .. author_list::

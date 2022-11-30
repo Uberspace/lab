@@ -129,6 +129,6 @@ You can update the installation in the update wizard which you can find in the A
 
 ----
 
-Tested with Akaunting 1.2.16, Uberspace 7.1.13
+Tested with Akaunting 3.0.9, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

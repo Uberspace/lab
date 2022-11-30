@@ -105,7 +105,7 @@ You have now downloaded the master development branch which is sufficient. Every
   > node extra/download-dist.js
   Downloading dist
   […]
-  Done  
+  Done
   [isabell@stardust uptime-kuma]$
 
 

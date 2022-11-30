@@ -39,6 +39,24 @@ Kimai is released under the `MIT License`_. All relevant information can be foun
 Prerequisites
 =============
 
+We're using PHP in the stable version 8.1:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.1'
+ [isabell@stardust ~]$
+
+You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
+
+::
+
+ [isabell@stardust ~]$ my_print_defaults client
+ --default-character-set=utf8mb4
+ --user=isabell
+ --password=MySuperSecretPassword
+ [isabell@stardust ~]$
+
 Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
@@ -54,7 +72,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.8 --depth 1 https://github.com/kevinpapst/kimai2.git
+ [isabell@stardust isabell]$ git clone -b 1.28.1 --depth 1 https://github.com/kevinpapst/kimai2.git
  Cloning into 'kimai2'...
  […]
  [isabell@stardust ~]$
@@ -195,6 +213,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.8 and Uberspace 7.5.0
+Tested with Kimai 1.28.1, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

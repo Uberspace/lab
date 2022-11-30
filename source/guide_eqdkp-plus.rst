@@ -119,6 +119,6 @@ Additionally, backup the MySQL database:
 
 ----
 
-Tested with EQdkp Plus 2.3.0.26, Uberspace 7.1.3
+Tested with EQdkp Plus 2.3.39.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::
