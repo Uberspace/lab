@@ -33,12 +33,12 @@ Shaarli_ is `Free Software <https://en.wikipedia.org/wiki/Free_software>`_. See 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
   [isabell@stardust ~]$ uberspace tools version show php
-  Using 'PHP' version: '7.4'
+  Using 'PHP' version: '8.1'
   [isabell@stardust ~]$
 
 Set up your domain:
@@ -95,6 +95,6 @@ version is available, enter your document root, download the archive, unpack it 
 
 ----
 
-Tested with Shaarli 0.12.1, Uberspace 7.7.10.0
+Tested with Shaarli 0.12.1, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

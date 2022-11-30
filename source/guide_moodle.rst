@@ -44,12 +44,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using :manual:`php <lang-php>` in the stable version 7.2:
+We're using :manual:`php <lang-php>` in the stable version 8.0:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 MySQL
@@ -72,7 +72,7 @@ You can also setup your own :manual_anchor:`domain <web-domains.html>`. Note tha
 
 Moodledata
 ----------
-Moodle saves files and data into a folder for persistency. We have to create this folder and give its path to Moodle later on.
+Moodle saves files and data into a folder for persistency. Create the moodledata folder:
 
 ::
 
@@ -84,9 +84,11 @@ Installation
 
 Download
 --------
-First, we're going to download Moodle and extract it. For this, we should first change into the html directory of your account.
+First, download Moodle and extract it. For this, change into the html directory of your Uberspace.
 
-Then we're going to download the latest version (Moodle-Download_ page) of the tgz archive and extract it. I would advise you to select the stable version. Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
+Then download the latest version (Moodle-Download_ page) of the tgz archive and extract it. It is best to select the stable version.
+
+Note that the download link on the page is actually a redirect. So instead of the link behind the button, use the direct link e.g.: ``https://download.moodle.org/download.php/direct/...``.
 
 ::
 
@@ -103,18 +105,33 @@ The ``--strip-components=1`` option will unpack the contents of the moodle folde
  [isabell@stardust html]$ tar --gzip --extract --file=moodle.tgz
  [isabell@stardust html]$
 
+
+Moodle requires `max_input_vars` to be set to 5000 or higher. To configure this, create the file ``~/etc/php.d/max_input_vars.ini`` with the following content:
+
+.. code-block:: ini
+
+ max_input_vars=5000
+
+
+.. note:: After setting this PHP parameter, restart PHP to activate the changes
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools restart php
+ Your php configuration has been loaded.
+ [isabell@stardust ~]$
+
+
 Initialize
 ----------
-Now we should be able to access the initialization process of the Moodle instance. Here, we used the uberspace domain, so our address is the one mentioned here:
+Now you should be able to access the initialization process of the Moodle instance.
 
-.. include:: includes/web-domain-list.rst
-
-We visit the page in the browser of our choice.
+Visit your Uberspace domain in the browser of our choice - in this case, ``isabell.uber.space``.
 
 1. Choose any language and click ``Next``
-2. For the ``Data directory``, we choose the moodledata folder we created. ``/home/isabell/moodledata``
-3. For the Database driver, we choose ``MariaDB (native/mariadb)``
-4. For the Database Settings, we enter our information:
+2. For the ``Data directory``, choose the moodledata folder you created. ``/home/isabell/moodledata``
+3. For the Database driver, choose ``MariaDB (native/mariadb)``
+4. For the Database Settings, enter your information:
 
   1. ``Database name``: ``isabell_moodle``
   2. ``Database user``: ``isabell``
@@ -122,23 +139,15 @@ We visit the page in the browser of our choice.
   4. ``Database port``: ``3306``
 
 5. Read the Copyright notice and only accept if you truly do :)
-6. The checks should now show all OK. At the end of the page, we click on ``Continue``.
-7. This could take a while to finish. We should shortly after be redirected to the process page. We can watch the process while installing missing plugins. After all installations have finished, at the end of the page we click on ``Continue``
-8. After that, we should be shown the admin user creation page. We enter our information here which we later will also use to login.
+6. The checks should now show all OK. At the end of the page, click on ``Continue``.
+7. This could take a while to finish. You should be redirected to the process page. Here you can watch the process while installing missing plugins. After all installations have finished, at the end of the page, click on ``Continue``
+8. After that, you will be shown the admin user creation page. Enter your information here which you later will also use to login.
 9. Enter a full and short name for your Moodle instance.
-10. Et voilà, our Moodle is now installed.
+10. Et voilà, your Moodle is now installed.
 
 Cronjob
 -------
-We definitely should configure a cron task for Moodle. This script is critical for several features of Moodle e.g. sending notification emails. Enter
-
-::
-
- [isabell@stardust ~]$ crontab -e
- no crontab for isabell - using an empty one
- [isabell@stardust ~]$
-
-And put the following content inside crontab:
+You should configure a cron task for Moodle. This script is critical for several features of Moodle e.g. sending notification emails. Edit your cron tab using the ``crontab -e`` and put the following content inside crontab:
 
 .. code-block:: text
 
@@ -148,15 +157,7 @@ And put the following content inside crontab:
 
 This configures cron to execute the script every 5 minutes. If you want details on what exactly is executed, you can change the ``MAILTO`` variable to your email address.
 
-Check if your crontab has been saved:
 
-::
-
- [isabell@stardust ~]$ crontab -l
- PATH=/home/isabell/bin:/usr/bin:/bin
- MAILTO=""
- */5 * * * * php /home/isabell/html/admin/cli/cron.php
- [isabell@stardust ~]$
 
 Best practices
 ==============
@@ -214,6 +215,6 @@ Updates
 
 ----
 
-Tested with Moodle version 3.8.2, Uberspace 7.5.1
+Tested with Moodle version 4.0.5, Uberspace 7.13, PHP 8.0
 
 .. author_list::

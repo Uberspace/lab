@@ -205,6 +205,6 @@ This guide is based on the official `Firefly III setup guide`_.
 
 ----
 
-Tested with Firefly III 5.4.6, Uberspace 7.8.0.0.
+Tested with Firefly III 5.7.15, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

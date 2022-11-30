@@ -44,22 +44,17 @@ Download the latest release_ to your home directory and extract the application.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ wget https://github.com/mattermost/focalboard/releases/download/v0.6.1/focalboard-linux.tar.gz
- [isabell@stardust ~]$ tar --extract --gzip --file focalboard-linux.tar.gz
- [isabell@stardust ~]$ rm focalboard-linux.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/mattermost/focalboard/releases/download/v7.1.0/focalboard-server-linux-amd64.tar.gz
+ [isabell@stardust ~]$ tar --extract --gzip --file focalboard-server-linux-amd64.tar.gz
+ [isabell@stardust ~]$ rm focalboard-server-linux-amd64.tar.gz
  [isabell@stardust ~]$
 
 
 Configuration
 =============
 
-You need to modify ``~/focalboard-app/config.json``:
+You need to modify ``~/focalboard/config.json``.
 
- * Change ``"localOnly": true,`` to ``"localOnly": false,``
- * Add ``"session_expire_time": 2592000,``
- * Add ``"session_refresh_time": 18000,``
-
-If PostgreSQL is used, the database configuration also needs to be adjusted. Edit the database config in the file ``~/focalboard-app/config.json``. These two values must be changed:
 .. warning:: Replace ``<db_user>``, ``<db_password>`` and ``<db_name>`` with your values.
 
 .. code-block:: cfg
@@ -83,8 +78,8 @@ Create ``~/etc/services.d/focalboard.ini`` with the following content:
 .. code-block:: ini
 
  [program:focalboard]
- directory=%(ENV_HOME)s/focalboard-app
- command=%(ENV_HOME)s/focalboard-app/focalboard-server
+ directory=%(ENV_HOME)s/focalboard
+ command=%(ENV_HOME)s/focalboard/bin/focalboard-server
  autostart=yes
  autorestart=yes
 
@@ -95,7 +90,7 @@ Configure web server
 
 .. note::
 
-    Focalboard is running on port 8088.
+    Focalboard is running on port 8000.
 
 .. include:: includes/web-backend.rst
 
@@ -122,6 +117,6 @@ To update the application, stop the daemon and repeat the installation step.
 
 ----
 
-Tested with Focalboard 0.6.1 and Uberspace 7.10.0
+Tested with Focalboard 7.1.0  and Uberspace 7.12.3
 
 .. author_list::

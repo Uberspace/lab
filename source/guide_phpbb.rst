@@ -36,12 +36,12 @@ phpBB_ is released under the `GPLv2 License`_.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -69,14 +69,14 @@ Installation
 Download
 --------
 
-Go to the phpBB download_ website and copy the URL of the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2``.
+Go to the phpBB download_ website and copy the URL of the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.8/phpBB-3.3.8.tar.bz2``.
 
 Then, ``cd`` to your :manual:`document root <web-documentroot>` and download the latest release of phpBB and extract it:
 
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2 -o phpbb.tar.bz2
+ [isabell@stardust html]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.8/phpBB-3.3.8.tar.bz2 -o phpbb.tar.bz2
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
@@ -111,7 +111,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Go to the phpBB.com download_ page and copy the link to the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2``.
+Go to the phpBB.com download_ page and copy the link to the latest ``bz2`` release package, e.g. ``https://download.phpbb.com/pub/release/3.3/3.3.8/phpBB-3.3.8.tar.bz2``.
 
 Then, create a new folder for the update in your home folder and download the release package and extract it:
 
@@ -119,7 +119,7 @@ Then, create a new folder for the update in your home folder and download the re
 
  [isabell@stardust ~]$ mkdir phpbb_update
  [isabell@stardust ~]$ cd phpbb_update
- [isabell@stardust phpbb_update]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.3/phpBB-3.3.3.tar.bz2 -o phpbb.tar.bz2
+ [isabell@stardust phpbb_update]$ curl -L https://download.phpbb.com/pub/release/3.3/3.3.8/phpBB-3.3.8.tar.bz2 -o phpbb.tar.bz2
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   100 25565    0 25565    0     0  22942      0 --:--:--  0:00:01 --:--:-- 22948
@@ -199,6 +199,6 @@ After that, purge the cache at the phpBB ACP. Under the "General" tab, there wil
 
 ----
 
-Tested with phpBB 3.3.3, Uberspace 7.9.0.0
+Tested with phpBB 3.3.8, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

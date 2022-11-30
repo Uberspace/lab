@@ -42,12 +42,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your blog domain needs to be setup:
@@ -87,7 +87,14 @@ You will need to enter the following information:
   * Allow users to register themselves: your decision
   * Choose under which license your content will be published
 
-At least you have to delete the ``install.php``.
+Finally you have to delete the ``install.php``:
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ rm install.php
+ [isabell@stardust html]$ 
+ 
 
 Tuning
 ======
@@ -112,6 +119,6 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 ----
 
-Tested with DokuWiki 2020-07-29 "Hogfather", Uberspace 7.11.1.1, PHP 7.4
+Tested with DokuWiki 2022-07-31a "Igor", Uberspace 7.13, PHP 8.1
 
 .. author_list::

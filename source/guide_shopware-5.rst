@@ -40,12 +40,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.4:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -67,7 +67,7 @@ URL with the one you just copied.
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget -O shopware.zip https://www.shopware.com/en/Download/redirect/version/sw5/file/install_5.7.6_32510831fc10df11821cf6de6aa03de47fd40255.zip
+ [isabell@stardust isabell]$ wget -O shopware.zip https://www.shopware.com/de/Download/redirect/version/sw5/file/install_5.7.16_f371e60500e0442c85460f707edd6e443918cc26.zip
  [isabell@stardust isabell]$ unzip -d html shopware.zip
  [isabell@stardust isabell]$ rm shopware.zip
  [isabell@stardust isabell]$
@@ -111,6 +111,6 @@ backend. From there you can start the update.
 
 ----
 
-Tested with Shopware 5.7.6 , Uberspace 7.11.5
+Tested with Shopware 5.7.16, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

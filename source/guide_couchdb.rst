@@ -139,7 +139,7 @@ Web backend
 
 .. note::
 
-    couchdb is running on port 5984. Also make sure to set ``bind_address = 0.0.0.0`` in ``~/etc/couchdb/local.ini``. Additionally, the ``--remove-prefix`` parameter is needed if you want to run CouchDB under a sub URI like ``/couchdb`` instead of the root URI ``/``.
+    couchdb is running on port 5984. Also make sure to set ``bind_address = 0.0.0.0`` in ``~/etc/couchdb/local.ini``.
 
 .. include:: includes/web-backend.rst
 

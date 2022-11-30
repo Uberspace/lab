@@ -23,6 +23,12 @@ It is written in :manual:`Python <lang-python>` and based on the popular :lab:`D
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** as it requires a newer version of Python. We would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1184
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>` and its package manager :manual_anchor:`pip <lang-python.html#pip>`
@@ -50,7 +56,7 @@ You need `pipenv`_, a package manager/virtual environment tool for Python, so in
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install pipenv --user
+ [isabell@stardust ~]$ pip3 install pipenv --user
  Collecting pipenv
    Downloading https://files.pythonhosted.org/packages/13/b4/3ffa55f77161cff9a5220f162670f7c5eb00df52e00939e203f601b0f579/pipenv-2018.11.26-py3-none-any.whl (5.2MB)
      100% |████████████████████████████████| 5.2MB 242kB/s
@@ -59,7 +65,12 @@ You need `pipenv`_, a package manager/virtual environment tool for Python, so in
    Downloading https://files.pythonhosted.org/packages/33/5d/314c760d4204f64e4a968275182b7751bd5c3249094757b39ba987dcfb5a/virtualenv-16.4.3-py2.py3-none-any.whl (2.0MB)
      100% |████████████████████████████████| 2.0MB 614kB/s
   […]
- [isabell@stardust ~]$
+
+.. note::
+
+    You have to install ``uwsgi`` with the same python version as the app.
+    Babybuddy now requires at least python 3.7.
+    E.g. if you use 3.9, install ``uwsgi`` with ``pip3.9 install uwsgi --user``
 
 .. include:: includes/install-uwsgi.rst
 
@@ -68,18 +79,18 @@ Installation
 
 Python
 ------
-During the installation process, you want to use Python in version 3.6. Set an alias for that:
+During the installation process, you want to use Python in version 3.7+. Set an alias for that:
 
 ::
 
- [isabell@stardust ~]$ alias python=python3.6
+ [isabell@stardust ~]$ alias python=python3.9
  [isabell@stardust ~]$ python --version
- Python 3.6.7
+ Python 3.9.13
  [isabell@stardust ~]$
 
 Database
 --------
-Baby Buddy will store its data in a :manual:`MySQL <database-mysql>` database. Create one with the name ``<username>_babybuddy``.
+Baby Buddy can store its data in a :manual:`MySQL <database-mysql>` database. Create one with the name ``<username>_babybuddy``.
 
 ::
 
@@ -113,24 +124,12 @@ Install all the requirements.
 ::
 
  [isabell@stardust ~]$ cd ~/babybuddy/public/
- [isabell@stardust public]$ pipenv install --python python3.6
+ [isabell@stardust public]$ pipenv install --python python3.9
  [...]
    🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 39/39 — 00:00:54
  To activate this project's virtualenv, run pipenv shell.
  Alternatively, run a command inside the virtualenv with pipenv run.
  [isabell@stardust ~/babybuddy/public]$
-
-Also, install the package ``mysqlclient``:
-
-::
-
- [isabell@stardust public]$ pipenv install mysqlclient
- [...]
-   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 40/40 — 00:00:02
- To activate this project's virtualenv, run pipenv shell.
- Alternatively, run a command inside the virtualenv with pipenv run.
- [isabell@stardust public]$ cd
- [isabell@stardust ~]$
 
 Configuration
 -------------
