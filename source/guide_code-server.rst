@@ -65,14 +65,14 @@ Then extract the files in the current folder with ``tar``. Don't forget ``--stri
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-x86_64.tar.gz --strip-components=1
+  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-amd64.tar.gz --strip-components=1
   [isabell@stardust code-server]$
 
 You can now delete the archive:
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-amd64.tar.gz
   [isabell@stardust code-server]$
 
 Configuration
@@ -133,28 +133,28 @@ Switch into code-server's folder we created when installing code-server.
   [isabell@stardust code-server]$
 
 
-Then download the latest release_ for x86_64. Make sure to the ``x.x.x`` with the current version in all following snippets.
+Then download the latest release_ for amd64. Make sure to replace the ``x.x.x`` with the current version in all following snippets.
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ wget https://github.com/cdr/code-server/releases/download/x.x.x/code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ wget https://github.com/cdr/code-server/releases/download/x.x.x/code-server-x.x.x-linux-amd64.tar.gz
   [...]
-  ‘code-server-x.x.x-linux-x86_64.tar.gz’ saved
+  ‘code-server-x.x.x-linux-amd64.tar.gz’ saved
   [isabell@stardust code-server]$
 
 
-Then extract the files in the current folder with ``tar``. Don't forget ``--strip-components=1`` to remove the ``code-server-x.x.x-linux-x86_64`` prefix from the path.
+Then extract the files in the current folder with ``tar``. Don't forget ``--strip-components=1`` to remove the ``code-server-x.x.x-linux-amd64`` prefix from the path.
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-x86_64.tar.gz --strip-components=1
+  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-amd64.tar.gz --strip-components=1
   [isabell@stardust code-server]$
 
 You can now delete the archive and start code-server again:
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-amd64.tar.gz
   [isabell@stardust code-server]$ supervisorctl start code-server
   code-server: started
   [isabell@stardust code-server]$
