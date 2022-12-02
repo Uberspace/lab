@@ -161,6 +161,6 @@ You can now delete the archive and start code-server again:
 
 ----
 
-Tested with code-server 3.2.0 on Uberspace 7.6.1.0.
+Tested with code-server 4.8.3 on Uberspace 7.14.0.
 
 .. author_list::
