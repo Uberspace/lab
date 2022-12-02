@@ -109,6 +109,19 @@ Configure web backend
 
 .. include:: includes/web-backend.rst
 
+Start vscode server
+-------------------
+
+Browse to your uberspace domain ``isabell.uber.space`` or any domain you have set up and configured the web backend with. The password for logging into vscode server is in ``~/.config/code-server/config.yaml``.
+
+.. code-block:: console
+
+  [isabell@stardust code-server]$ cat ~/.config/code-server/config.yaml
+  bind-addr: 127.0.0.1:8080
+  auth: password
+  password: d48s222d625f0g527e410sfd
+  cert: false
+
 .. _`VS Code`: https://code.visualstudio.com/
 .. _code-server: https://github.com/cdr/code-server
 .. _release: https://github.com/cdr/code-server/releases/latest
