@@ -91,7 +91,7 @@ Make sure to `<password>` with your password.
   :emphasize-lines: 2,3
 
   [program:code-server]
-  command=%(ENV_HOME)s/code-server/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server-data
+  command=%(ENV_HOME)s/code-server/bin/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server-data
   environment=PASSWORD=<password>
   autorestart=true
   autostart=true
