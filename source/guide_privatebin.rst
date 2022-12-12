@@ -66,13 +66,13 @@ Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it. Replace t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.4.0.tar.gz
+ [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.5.0.tar.gz
  […]
- Saving to: ‘1.4.0.tar.gz’
+ Saving to: ‘1.5.0.tar.gz’
 
  100%[=================================================>] 3,172,029   3.45MB/s   in 0.9s
 
- 2022-11-17 16:27:44 (8.32 MB/s) - ‘1.4.0.tar.gz’ saved [523648]
+ 2022-11-17 16:27:44 (8.32 MB/s) - ‘1.5.0.tar.gz’ saved [523648]
  [isabell@stardust html]$
 
 Untar the archive and then delete it. Replace the version in the file name with the one you downloaded.
@@ -80,8 +80,8 @@ Untar the archive and then delete it. Replace the version in the file name with 
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust html]$ tar -xzf 1.4.0.tar.gz --strip-components=1
- [isabell@stardust html]$ rm 1.4.0.tar.gz
+ [isabell@stardust html]$ tar -xzf 1.5.0.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm 1.5.0.tar.gz
  [isabell@stardust html]$
 
 
@@ -178,6 +178,6 @@ Also check ``.htaccess.disabled`` if further adjustments needed to be made.
 
 ----
 
-Tested with PrivateBin 1.4.0, Uberspace 7.13, PHP 8.1
+Tested with PrivateBin 1.5.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::
