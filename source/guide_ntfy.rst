@@ -83,11 +83,6 @@ Configure web server
 
     ntfy will be running on port 8008.
 
-.. code-block:: bash
-
-  [isabell@stardust ~]$ uberspace web domain add ntfy.example.org
-  [isabell@stardust ~]$ uberspace web backend set ntfy.example.org --http --port 8008
-
 .. include:: includes/web-backend.rst
 
 Setup daemon
