@@ -158,7 +158,17 @@ Updates
 
 .. note:: `Subscribe to the releases <https://github.com/franok/mumble-build-container/releases>`_ to stay informed about the latest versions (e.g. by using :lab:`uu-notify <guide_uu-notify>`).
 
-If there is a new version repeat the Installation_ and execute:
+If there is a new version, backup your mumble folder:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cp -rp mumble/ mumble-backup/
+  [isabell@stardust ~]$ ls -la | grep -i mumble-backup
+  drwxrwxr-x.   4 isabell  isabell    167 Dec  6 20:16 mumble-backup
+  [isabell@stardust ~]$ 
+
+
+Repeat the Installation_ steps, and finally execute:
 
 .. code-block:: console
 
@@ -166,6 +176,14 @@ If there is a new version repeat the Installation_ and execute:
   mumble: stopped
   mumble: started
   [isabell@stardust ~]$
+
+Connect to your server and if everything works fine, delete the backup:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ rm -rf mumble-backup/
+  [isabell@stardust ~]$
+
 
 .. _Teamspeak: https://www.teamspeak.com/
 .. _Mumble: https://mumble.info/
