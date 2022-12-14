@@ -62,9 +62,7 @@ Start with cloning the Statping-ng binaries from Github_ and be sure to replace 
  [isabell@stardust ~]$ cd statping
  [isabell@stardust statping]$ curl -sL https://github.com/statping-ng/statping-ng/releases/download/v0.90.80/statping-linux-amd64.tar.gz | tar xz
  [isabell@stardust statping]$ ls
- statping  statping.asc
-
-You can now verify the GPG signature in statping.asc
+ statping
 
 Setup daemon
 ------------
