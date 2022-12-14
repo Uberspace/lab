@@ -93,7 +93,7 @@ To start ntfy automatically and run it in the background, create ``~/etc/service
 .. code-block:: ini
 
   [program:ntfy]
-  command=/home/isabell/ntfy/ntfy serve --config /home/isabell/ntfy/server.yml
+  command=%(ENV_HOME)s/ntfy/ntfy serve --config %(ENV_HOME)s/ntfy/server.yml
   startsecs=5
 
 .. include:: includes/supervisord.rst
