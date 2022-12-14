@@ -53,17 +53,19 @@ Configuration
 Create a configuration file
 ---------------------------
 
-.. code-block:: bash
+Use your favourite editor to create ``~/ntfy/server.yml`` with the following content. Make sure to replace the ``base-url`` and <username> with your own.
 
-  [isabell@stardust ~]$ cat ~/ntfy/server.yml
-  base-url: https://ntfy.example.org
+.. code-block:: 
+ :emphasize-lines: 1,3,5,8
+
+  base-url: https://isabell.uber.space
   listen-http: ":8008"
-  cache-file: /home/isabell/ntfy/cache.db
+  cache-file: /home/<username>/ntfy/cache.db
   cache-duration: "12h"
-  auth-file: "/home/isabell/ntfy/auth.db"
+  auth-file: "/home/<username>/ntfy/auth.db"
   auth-default-access: "deny-all"
   behind-proxy: true
-  attachment-cache-dir: "/home/isabell/ntfy/attachments"
+  attachment-cache-dir: "/home/<username>/ntfy/attachments"
   attachment-total-size-limit: "1G"
   attachment-file-size-limit: "1M"
   attachment-expiry-duration: "3h"
