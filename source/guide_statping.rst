@@ -21,11 +21,8 @@ Statping
 .. tag_list::
 
 
-Statping_ is a lightweight and easy to install monitoring tool written in Go.
+Statping-ng_ is an updated drop-in for statping. It is a lightweight and easy to install monitoring tool written in Go.
 It is published under the GNU General Public License v3.0.
-
-.. note:: The Statping project is discontiniued. Statping-ng is an updated drop-in for statping and is available on Github_.
-
 
 ----
 
