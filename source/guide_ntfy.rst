@@ -75,7 +75,6 @@ Use your favourite editor to create ``~/ntfy/server.yml`` with the following con
   upstream-base-url: "https://ntfy.sh"
   visitor-subscription-limit: 30
   log-level: INFO
-  [isabell@stardust ~]$
 
 Configure web server
 --------------------
