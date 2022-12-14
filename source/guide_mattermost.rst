@@ -156,7 +156,9 @@ Proceed with the installation steps and restore the ``client/plugins``, ``config
 When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
 
 .. code-block:: console
-  [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = 'utf8mb4_general_ci'"
+
+  [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
+  [isabell@stardust ~]$
 
 .. _`Mattermost website`: https://mattermost.com/download/
 .. _`Mattermost`: https://mattermost.com/
