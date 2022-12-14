@@ -101,7 +101,7 @@ To start ntfy automatically and run it in the background, create ``~/etc/service
 Finishing installation
 ======================
 
-You should now be able to visit ``https://ntfy.example.org``
+Point your browser to the URL you set up, e. g. ``https://isabell.uber.space``.
 
 Add password
 ------------
