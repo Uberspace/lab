@@ -172,10 +172,11 @@ Create the file ``~/etc/services.d/artifactory.ini`` with the following content:
 .. code-block:: ini
 
   [program:artifactory]
-  command=/home/isabell/jfrog/artifactory/app/bin/artifactoryctl
-  environment=JFROG_HOME="/home/mwdev/jfrog"
+  command=%(ENV_HOME)s/jfrog/artifactory/app/bin/artifactoryctl
+  environment=JFROG_HOME=%(ENV_HOME)s/jfrog
   autostart=yes
   autorestart=yes
+  startsecs=30
 
 
 Finishing installation
