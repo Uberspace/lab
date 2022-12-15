@@ -65,7 +65,6 @@ After downloading, we check the integrity of the tar-archive. If hashsums are ma
   LICENSE
   README.md
   navidrome
-  […]
   [isabell@stardust ~]$
 
 The downloaded files can then be deleted:
@@ -82,11 +81,11 @@ Configuration
 
 Create config file
 ------------------
-We create the configuration-file ``~/var/lib/navidrome/navidrome.toml`` in the working directory of Navidrome and add the following line:
+Create the configuration-file ``~/var/lib/navidrome/navidrome.toml`` and add the following line:
 
 .. code-block:: ini
 
- MusicFolder = '/home/isabell/music/'
+ MusicFolder = '/home/<username>/music/'
 
 For a more detailed configuration we can check the configuration-options-page_.
 
@@ -95,9 +94,10 @@ Setup daemon
 We setup the service for Navidrome and therefore create ``~/etc/services.d/navidrome.ini`` with the following content:
 
 .. code-block:: ini
+
  [program:navidrome]
- directory=/home/isabell/var/lib/navidrome
- command=/home/isabell/opt/navidrome/navidrome --configfile "/home/isabell/var/lib/navidrome/navidrome.toml"
+ directory=%(ENV_HOME)s/var/lib/navidrome
+ command=%(ENV_HOME)s/opt/navidrome/navidrome --configfile %(ENV_HOME)s/var/lib/navidrome/navidrome.toml
  startsecs=60
  autorestart=yes
 
