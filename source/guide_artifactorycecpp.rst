@@ -56,15 +56,6 @@ Create the target directory:
  [isabell@stardust ~]$ mkdir ~/jfrog
  [isabell@stardust ~]$
 
-To ease navigation save the jfrog folder path into an environment variable:
-
-::
-
- [isabell@stardust ~]$ cd ~/jfrog
- [isabell@stardust ~]$ export JFROG_HOME=$PWD
- [isabell@stardust ~]$
-
-
 Installation
 ============
 
@@ -82,7 +73,7 @@ Untar the tarball:
  […]
  artifactory-cpp-ce-7.47.12/app/artifactory/tomcat/webapps/artifactory.war
  artifactory-cpp-ce-7.47.12/app/misc/tomcat/mc.war
- [isabell@stardust ~]$ mv artifactory-cpp-ce-<version> $JFROG_HOME/artifactory
+ [isabell@stardust ~]$ mv artifactory-cpp-ce-<version> ~/jfrog/artifactory
  [isabell@stardust ~]$
 
 Replace ``<version>`` with the version you downloaded.
@@ -105,7 +96,7 @@ To download the mariadb driver run:
 
 ::
 
- [isabell@stardust ~]$ pushd $JFROG_HOME/artifactory/var/bootstrap/artifactory/tomcat/lib
+ [isabell@stardust ~]$ pushd ~/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib
  [isabell@stardust ~]$ wget https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.7.6/mariadb-java-client-2.7.6.jar
  [isabell@stardust ~]$ popd
  [isabell@stardust ~]$
@@ -138,10 +129,10 @@ Create a config file from the basic template:
 
 ::
 
- [isabell@stardust ~]$ cp $JFROG_HOME/artifactory/var/etc/system.basic-template.yaml $JFROG_HOME/artifactory/var/etc/system.yaml
+ [isabell@stardust ~]$ cp ~/jfrog/artifactory/var/etc/system.basic-template.yaml ~/jfrog/artifactory/var/etc/system.yaml
  [isabell@stardust ~]$
 
-Edit ``$JFROG_HOME/artifactory/var/etc/system.yaml``.
+Edit ``~/jfrog/artifactory/var/etc/system.yaml``.
 
 Under the ``shared -> node`` key insert your virtual uberspace ip (e.g. 100.64.154.65)
 
@@ -202,7 +193,7 @@ The default user is ``admin`` and the corresponding password ``password``. At fi
 Debugging
 =========
 
-Logs are saved at ``$JFROG_HOME/artifactory/var/log/console.log``.
+Logs are saved at ``~/jfrog_HOME/artifactory/var/log/console.log``.
 
 ----
 
