@@ -53,7 +53,7 @@ Create the target directory:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p ~/jfrog/artifactory
+ [isabell@stardust ~]$ mkdir ~/jfrog
  [isabell@stardust ~]$
 
 To ease navigation save the jfrog folder path into an environment variable:
@@ -96,7 +96,7 @@ To create a new database for Artifactory execute:
 
 ::
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE isabell_artifactory CHARACTER SET utf8 COLLATE utf8_bin;"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_artifactory CHARACTER SET utf8 COLLATE utf8_bin;"
  [isabell@stardust ~]$
 
 The name ``isabell_artifactory`` is later needed for the configuration.
