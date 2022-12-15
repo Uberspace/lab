@@ -59,8 +59,13 @@ After downloading, we check the integrity of the tar-archive. If hashsums are ma
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ sha256sum --check navidrome_checksums.txt
+  [isabell@stardust ~]$ sha256sum --check navidrome_checksums.txt 2>&1 | grep Linux_x86_64
+  [isabell@stardust ~]$ navidrome_0.47.5_Linux_x86_64.tar.gz: OK
   [isabell@stardust ~]$ tar -xvzf navidrome_0.47.5_Linux_x86_64.tar.gz -C ~/opt/navidrome
+  LICENSE
+  README.md
+  navidrome
+  […]
   [isabell@stardust ~]$
 
 The downloaded files can then be deleted:
