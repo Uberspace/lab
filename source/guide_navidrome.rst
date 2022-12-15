@@ -35,7 +35,7 @@ Our Navidrome URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
 
-We need a directory to store the Navidrome executable and a directory as Navidrome working directory. And we also create a directory for the music-files:
+You need a directory to store the Navidrome executable, a directory as Navidrome working directory, and a directory for the music-files:
 
 .. code-block:: console
 
@@ -47,7 +47,7 @@ We need a directory to store the Navidrome executable and a directory as Navidro
 Installation
 ============
 
-Now we download the latest release and it's checksum from the github-page_:
+Now  download the latest release and it's checksum from the github-page_:
 
 .. code-block:: console
 
@@ -55,7 +55,7 @@ Now we download the latest release and it's checksum from the github-page_:
   [isabell@stardust ~]$ wget https://github.com/navidrome/navidrome/releases/download/v0.47.5/navidrome_checksums.txt
   [isabell@stardust ~]$
 
-After downloading, we check the integrity of the tar-archive. If hashsums are matching, we extract the archive to our directory for the executable of Navidrome:
+After downloading, check the integrity of the tar-archive. If hashsums are matching, extract the archive to our directory for the executable of Navidrome:
 
 .. code-block:: console
 
@@ -87,11 +87,11 @@ Create the configuration-file ``~/var/lib/navidrome/navidrome.toml`` and add the
 
  MusicFolder = '/home/<username>/music/'
 
-For a more detailed configuration we can check the configuration-options-page_.
+For a more detailed configuration check the configuration-options-page_.
 
 Setup daemon
 ------------
-We setup the service for Navidrome and therefore create ``~/etc/services.d/navidrome.ini`` with the following content:
+Setup the service for Navidrome and therefore create ``~/etc/services.d/navidrome.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -112,12 +112,12 @@ By default Navidrome is running on port 4533.
 Finishing installation
 ======================
 
-Now we can create an admin account by visiting https://isabell.uber.space with our favorite browser. And of course, we use a good password for the administrator-account.
+Now, create an admin account by visiting https://isabell.uber.space with your favorite browser. And of course, use a good password for the administrator-account!
 
 Best practices
 ==============
 
-To get our music to Navidrome, we tag the music-files on our personal computer and afterwards upload it via rsync over ssh:
+To get music into Navidrome, tag the music-files on your personal computer and afterwards upload them via rsync over ssh:
 
 .. code-block:: console
 
@@ -129,7 +129,7 @@ Updates
 
 .. note:: Check the `release-page`_ regularly to stay informed about updates.
 
-To upgrade, we unzip the new code-archive into ``~/opt/navidrome/`` and restart our navidrome-service:
+To upgrade, unzip the new code-archive into ``~/opt/navidrome/`` and restart our navidrome-service:
 
 .. code-block:: console
 
@@ -139,7 +139,7 @@ To upgrade, we unzip the new code-archive into ``~/opt/navidrome/`` and restart 
 
 Debugging
 =========
-We can check the service’s log file using:
+You can check the service’s log file using:
 
 .. code-block:: console
 
