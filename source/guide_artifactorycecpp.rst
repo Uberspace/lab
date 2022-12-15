@@ -154,14 +154,17 @@ Under the ``shared -> node`` key insert your virtual uberspace ip (e.g. 100.64.1
 Under the ``shared -> database`` key insert the following database configuration:
 
 .. code-block:: yaml
+:emphasize-lines: 5-7
 
   shared:
       database:
           type: mariadb
           driver: org.mariadb.jdbc.Driver
-          url: "jdbc:mariadb://localhost/isabell_artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false&useMysqlMetadata=true"
-          username: isabell
+          url: "jdbc:mariadb://localhost/<username>_artifactory?characterEncoding=UTF-8&elideSetAutoCommits=true&useSSL=false&useMysqlMetadata=true"
+          username: <username>
           password: <your db password>
+
+Replace ``<username>`` and ``<password>`` with your user name and MySQL password.
 
 Domain Setup
 ------------
