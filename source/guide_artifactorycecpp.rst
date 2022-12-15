@@ -61,7 +61,7 @@ To ease navigation save the jfrog folder path into an environment variable:
 ::
 
  [isabell@stardust ~]$ cd ~/jfrog
- [isabell@stardust ~]$ export JFROG_HOME=$(pwd)
+ [isabell@stardust ~]$ export JFROG_HOME=$PWD
  [isabell@stardust ~]$
 
 
