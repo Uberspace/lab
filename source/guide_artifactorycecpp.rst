@@ -74,10 +74,14 @@ The following guide is based on the `Linux Archive Installation <https://www.jfr
 Untar the tarball:
 
 ::
- :emphasize-lines: 2,3
+:emphasize-lines: 3
 
  [isabell@stardust ~]$ cd ~
- [isabell@stardust ~]$ tar -xvf jfrog-artifactory-cpp-ce-<version>-linux.tar.gz
+ [isabell@stardust ~]$ tar xvf jfrog-artifactory-cpp-ce-\[RELEASE\]-linux.tar.gz
+ artifactory-cpp-ce-7.47.12
+ […]
+ artifactory-cpp-ce-7.47.12/app/artifactory/tomcat/webapps/artifactory.war
+ artifactory-cpp-ce-7.47.12/app/misc/tomcat/mc.war
  [isabell@stardust ~]$ mv artifactory-cpp-ce-<version> $JFROG_HOME/artifactory
  [isabell@stardust ~]$
 
