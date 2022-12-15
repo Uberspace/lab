@@ -132,7 +132,7 @@ Find out your uberspace virtual ip:
 
 Find the ``veth_isabell`` section and note down the ``inet`` address.
 
-Find your database password by looking into ``~/.my.cnf``.
+.. include:: includes/my-print-defaults.rst
 
 Create a config file from the basic template:
 
