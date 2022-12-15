@@ -38,8 +38,17 @@ The EULA for Artifactory CE can be found `here <https://jfrog.com/de/artifactory
 Prerequisites
 =============
 
-First download the tarball from `conan.io <https://conan.io/downloads.html>`_ to your local computer and transfer it to your uberspace (e.g. by scp or :manual:`sftp <basics-sftp>`).
+Download the tarball from `conan.io <https://conan.io/downloads.html>`_.
 
+::
+
+ [isabell@stardust ~]$ wget https://releases.jfrog.io/artifactory/bintray-artifactory/org/artifactory/cpp/ce/jfrog-artifactory-cpp-ce/[RELEASE]/jfrog-artifactory-cpp-ce-[RELEASE]-linux.tar.gz
+ […]
+ Saving to: ‘jfrog-artifactory-cpp-ce-[RELEASE]-linux.tar.gz’
+ 100%[===============================>] 677,895,184 46.8KB/s   in 16m 49s
+ 
+ 2022-12-15 17:50:07 (656 KB/s) - ‘jfrog-artifactory-cpp-ce-[RELEASE]-linux.tar.gz’ saved [677895184/677895184]
+ 
 Create the target directory:
 
 ::
