@@ -74,8 +74,9 @@ The following guide is based on the `Linux Archive Installation <https://www.jfr
 Untar the tarball:
 
 ::
+ :emphasize-lines: 2,3
 
- [isabell@stardust ~]$ cd to/where/you/saved/the/artifactory/tarball
+ [isabell@stardust ~]$ cd ~
  [isabell@stardust ~]$ tar -xvf jfrog-artifactory-cpp-ce-<version>-linux.tar.gz
  [isabell@stardust ~]$ mv artifactory-cpp-ce-<version> $JFROG_HOME/artifactory
  [isabell@stardust ~]$
