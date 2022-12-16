@@ -48,13 +48,13 @@ Clone the source into your home directory and enter the directory:
 .. code-block:: console
 
  [isabell@stardust ~]$ git clone https://git.sr.ht/~emersion/soju
- [isabell@stardust ~]$ cd ~/soju
- [isabell@stardust soju]$
 
 Compile and install soju to your home directory:
 
 .. code-block:: console
 
+ [isabell@stardust ~]$ cd ~/soju
+ [isabell@stardust soju]$
  [isabell@stardust soju]$ make -W doc/soju.1
  [...]
  [isabell@stardust soju]$ PREFIX="/.local" DESTDIR="$HOME" make install
