@@ -99,10 +99,11 @@ Create a user
 
 .. code-block:: console
 
- [isabell@stardust ~]$ ./.local/bin/sojuctl -config $HOME/etc/soju/config create-user isabell -admin
+ [isabell@stardust ~]$ ./.local/bin/sojuctl -config $HOME/etc/soju/config create-user <username> -admin
  Password:
  [isabell@stardust ~]$
 
+Replace `<username>` with the username you want to use in the bouncer.
 It will prompt you for a password now.
 
 You can add additional users with the same command or later via the BouncerServ_ builtin service.
@@ -110,7 +111,7 @@ You can add additional users with the same command or later via the BouncerServ_
 Connect your client
 -------------------
 
-Add a new server in your local IRC client:
+Add a new server in your local IRC client. The username and password are the ones you provided in the `create-user` command before.
 
 * Hostname: `<username>.uber.space`
 * Port: your port
