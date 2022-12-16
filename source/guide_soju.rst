@@ -96,7 +96,7 @@ If it's not in state RUNNING, check your configuration.
 
 Create a user
 -------------
-.. note:: Replace ``isabell`` with your username!
+.. note:: Replace `<username>` with the username you want to use in the bouncer.
 
 .. code-block:: console
 
@@ -104,7 +104,6 @@ Create a user
  Password:
  [isabell@stardust ~]$
 
-Replace `<username>` with the username you want to use in the bouncer.
 It will prompt you for a password now.
 
 You can add additional users with the same command or later via the BouncerServ_ builtin service.
@@ -112,7 +111,7 @@ You can add additional users with the same command or later via the BouncerServ_
 Connect your client
 -------------------
 
-Add a new server in your local IRC client. The username and password are the ones you provided in the `create-user` command before.
+Add a new server in your local IRC client. The username and password are the ones you provided in the ``create-user`` command before.
 
 * Hostname: `<username>.uber.space`
 * Port: your port
@@ -129,7 +128,7 @@ Updates
 
 .. note:: Check the gitrefs_ regularly to stay informed about the newest version.
 
-To update an existing installation, first stop the service (``supervisorctl stop soju``). After that remove the ``~/soju`` directory (``rm -rf ~/soju``) and repeat the **Installation** steps. Execute ``supervisorctl restart soju`` to start the new version.
+To update an existing installation, first stop the service (``supervisorctl stop soju``). After that remove the `~/soju` directory (``rm -rf ~/soju``) and repeat the **Installation** steps. Execute ``supervisorctl restart soju`` to start the new version.
 
 .. _soju: https://soju.im/
 .. _gitrefs: https://git.sr.ht/~emersion/soju/refs
