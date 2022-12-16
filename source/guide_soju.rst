@@ -128,7 +128,7 @@ Updates
 
 .. note:: Check the gitrefs_ regularly to stay informed about the newest version.
 
-To update an existing installation remove the ``~/soju`` directory (``rm -rf ~/soju``) and repeat the **Installation** steps. Execute ``supervisorctl restart soju`` to start the new version.
+To update an existing installation, first stop the service (``supervisorctl stop soju``). After that remove the ``~/soju`` directory (``rm -rf ~/soju``) and repeat the **Installation** steps. Execute ``supervisorctl restart soju`` to start the new version.
 
 .. _soju: https://soju.im/
 .. _gitrefs: https://git.sr.ht/~emersion/soju/refs
