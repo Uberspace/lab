@@ -76,7 +76,7 @@ Save the following as your soju configuration in ``~/etc/soju/config``.
  hostname isabell.uber.space
  db sqlite3 /home/isabell/var/lib/soju/soju.db
 
-.. warning:: Replace `ìsabell` with your username and the port with the one you opened in the firewall in the first step.
+.. warning:: Replace `isabell` with your username and the port with the one you opened in the firewall in the first step.
 
 Setup daemon
 ------------
