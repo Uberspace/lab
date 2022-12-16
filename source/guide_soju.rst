@@ -38,6 +38,8 @@ Prerequisites
 
 .. include:: includes/open-port.rst
 
+You should note down this port. You will need it later in the configuration file.
+
 Installation
 ============
 
@@ -74,7 +76,7 @@ Save the following as your soju configuration in ``~/etc/soju/config``.
  hostname isabell.uber.space
  db sqlite3 /home/isabell/var/lib/soju/soju.db
 
-.. warning:: Replace `ìsabell` with your username and the port the one
+.. warning:: Replace `ìsabell` with your username and the port with the one you opened in the firewall in the first step.
 
 Setup daemon
 ------------
