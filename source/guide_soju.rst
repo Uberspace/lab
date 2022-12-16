@@ -86,6 +86,7 @@ Create ``~/etc/services.d/soju.ini`` with the following content:
 
  [program:soju]
  command=%(ENV_HOME)s/.local/bin/soju -config %(ENV_HOME)s/etc/soju/config
+ startsecs=60
  autostart=yes
  autorestart=yes
 
