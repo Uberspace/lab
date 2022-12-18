@@ -35,12 +35,12 @@ YOURLS is released under the `MIT License`_. All relevant information can be fou
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -48,6 +48,14 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 Your website domain needs to be set up:
 
 .. include:: includes/web-domain-list.rst
+
+Remove the default page from your :manual:`DocumentRoot <web-documentroot>`:
+
+::
+
+ [isabell@stardust ~]$ rm -f /var/www/virtual/$USER/html/nocontent.html
+ [isabell@stardust ~]$
+
 
 Installation
 ============
@@ -78,7 +86,7 @@ To configure YOURLS you need to setup your configuration file. Copy the sample c
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cp ~/html/user/config-sample.php ~/html/user/config.php
+ [isabell@stardust ~]$ cp /var/www/virtual/$USER/html/user/config-sample.php /var/www/virtual/$USER/html/user/config.php
  [isabell@stardust ~]$
 
 Edit the following parts of your configuration file:
@@ -143,6 +151,6 @@ To update YOURLS you can use Git to pull the newest release.
 
 ----
 
-Tested with YOURLS 1.8.3 and Uberspace 7.11.5
+Tested with YOURLS 1.9.2 and Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

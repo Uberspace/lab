@@ -29,12 +29,12 @@ Joomla_ is a free and open-source content management system (CMS) for publishing
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -53,8 +53,8 @@ Installation
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://downloads.joomla.org/cms/joomla3/3-9-22/Joomla_3-9-22-Stable-Full_Package.zip
- [isabell@stardust html]$ unzip Joomla_3-9-22-Stable-Full_Package.zip
+ [isabell@stardust html]$ wget https://downloads.joomla.org/cms/joomla4/4-2-5/Joomla_4-2-5-Stable-Full_Package.zip
+ [isabell@stardust html]$ unzip Joomla_4-2-5-Stable-Full_Package.zip
 
 Now point your browser to your uberspace URL or domain and follow the instructions.
 
@@ -73,7 +73,6 @@ Page 2 - Database Configuration:
   * Password: ``yourMySQLPassword`` (you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now; if you don't, start reading again at the top.)
   * Database Name: your Joomla! database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_joomla``
   * Table Prefix: just stick to the randomly generated one
-  * Old Database Process: ``Backup`` to be sure
 
 Page 3 - Finalization
   * Install Sample Data: up to you...
@@ -85,7 +84,7 @@ Hit ``Install``!
 You should see a message ``Congratulations! Joomla! is now installed``
 You can also install optionally extra languages by clicking on ``Extra steps: Install languages``
 
-*Important*: Click ``Remove installation folder``. You will not be able to proceed beyond this point until the installation folder has been removed. This is a security feature of Joomla!
+
 
 Updates
 =======
@@ -96,6 +95,6 @@ The easiest way to update Joomla! is to use the web updater provided in the admi
 
 ----
 
-Tested with Joomla! 3.9.22, Uberspace 7.1.12
+Tested with Joomla! 4.2.5, Uberspace 7.13, PHP 8.1
 
 .. author_list::

@@ -37,15 +37,6 @@ Your website domain or subdomain needs to be setup up:
 
 .. include:: includes/web-domain-list.rst
 
-
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version use node 12
- Selected Node.js version 12
- [isabell@stardust ~]$
-
 We also need `Bower`:
 
 ::
@@ -58,11 +49,11 @@ Please ignore Bower's warning. As of this writing, CryptPad still uses Bower (no
 Installation
 ============
 
-Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``3.16.0`` with the current release number from the feed_:
+Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``4.14.0`` with the current release number from the feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 3.16.0 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 4.14.0 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
   remote: Enumerating objects: 15111, done.
   remote: Counting objects: 100% (15111/15111), done.
@@ -177,14 +168,14 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the version number ``3.16.0`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the version number ``4.14.0`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
-  [isabell@stardust cryptpad]$ git pull origin 3.16.0
+  [isabell@stardust cryptpad]$ git pull origin 4.14.0
   From https://github.com/xwiki-labs/cryptpad
-   * tag                 3.16.0     -> FETCH_HEAD
+   * tag                 4.14.0     -> FETCH_HEAD
   Already up to date.
 
   [isabell@stardust cryptpad]$
@@ -217,6 +208,6 @@ Then you need to restart the service, so the new code is used by the webserver:
 
 ----
 
-Tested with Cryptpad 3.16.0 and Uberspace 7.6.0.0
+Tested with Cryptpad 4.14.0 and Uberspace 7.12.1
 
 .. author_list::

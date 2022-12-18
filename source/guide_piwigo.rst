@@ -36,15 +36,15 @@ Piwigo is released under the GNU General Public License_ version 2 or any later 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.3
- Selected PHP version 7.3
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 If you want to use your Piwigo with your own domain you need to setup your domain first:
@@ -151,6 +151,6 @@ Additionally, backup the MySQL database:
 
 ----
 
-Tested with Piwigo 2.10.2, Uberspace 7.6.1.2
+Tested with Piwigo 13.1.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::

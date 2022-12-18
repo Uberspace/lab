@@ -60,7 +60,7 @@ Check current version of Gitea at releases_ page:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.16.3
+  [isabell@stardust ~]$ VERSION=1.17.2
   [isabell@stardust ~]$ mkdir ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
   [...]
@@ -168,9 +168,6 @@ Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the fol
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
 
-  [repository]
-  DEFAULT_BRANCH = main
-
 .. note::
 
   This config block contains a secure and convenient basic configuration. You may change it depending on your needs and knowledge.
@@ -218,9 +215,8 @@ To keep Gitea up and running in the background, you need to create a service tha
 
   [program:gitea]
   directory=%(ENV_HOME)s/gitea
-  command=gitea web
+  command=%(ENV_HOME)s/gitea/gitea web
   startsecs=30
-  stopsignal=HUP
   autorestart=yes
 
 .. include:: includes/supervisord.rst
@@ -310,11 +306,19 @@ You can also automate the update by using a custom script that automatically exe
   function do_update_procedure
   {
     $GITEA_LOCATION manager flush-queues
+    gitea_pid=$(supervisorctl pid gitea)
+    echo "Process-ID is $gitea_pid"
     supervisorctl stop gitea
-    wget --quiet --progress=bar:force --output-document $TMP_LOCATION/gitea "$DOWNLOAD_URL"
+    if [[ $gitea_pid -gt 0 ]] && (ps --pid "$gitea_pid" > /dev/null)
+    then echo "still running! - killing it..."; kill "$gitea_pid"
+    fi
+    if (lsof -nP -iTCP:3000 -sTCP:LISTEN)
+    then echo "port 3000 is still in use, abbort"; exit 1
+    fi
+    wget --quiet --progress=bar:force --output-document "$TMP_LOCATION"/gitea "$DOWNLOAD_URL"
     verify_file
-    chmod u+x --verbose "$TMP_LOCATION/gitea"
-    mv --verbose $TMP_LOCATION/gitea "$GITEA_LOCATION"
+    mv --verbose "$TMP_LOCATION"/gitea "$GITEA_LOCATION"
+    chmod u+x --verbose "$GITEA_LOCATION"
     supervisorctl start gitea
     supervisorctl status gitea
   }
@@ -327,19 +331,19 @@ You can also automate the update by using a custom script that automatically exe
 
   function get_latest_version
   {
-    curl --silent $GITHUB_API_URL > $TMP_LOCATION/github_api_response.json
-    TAG_NAME=$(jq --raw-output '.tag_name' $TMP_LOCATION/github_api_response.json)
+    curl --silent $GITHUB_API_URL > "$TMP_LOCATION"/github_api_response.json
+    TAG_NAME=$(jq --raw-output '.tag_name' "$TMP_LOCATION"/github_api_response.json)
     LATEST_VERSION=${TAG_NAME:1}
-    DOWNLOAD_URL=$(jq --raw-output '.assets[].browser_download_url' $TMP_LOCATION/github_api_response.json |
+    DOWNLOAD_URL=$(jq --raw-output '.assets[].browser_download_url' "$TMP_LOCATION"/github_api_response.json |
       grep --max-count=1 "linux-amd64")
   }
 
   function get_signature_file
   {
-    SIGNATURE_FILE_URL=$(jq --raw-output '.assets[].browser_download_url' $TMP_LOCATION/github_api_response.json |
+    SIGNATURE_FILE_URL=$(jq --raw-output '.assets[].browser_download_url' "$TMP_LOCATION"/github_api_response.json |
       grep "linux-amd64.asc")
-    rm $TMP_LOCATION/github_api_response.json
-    wget --quiet --progress=bar:force --output-document $TMP_LOCATION/gitea.asc "$SIGNATURE_FILE_URL"
+    rm "$TMP_LOCATION"/github_api_response.json
+    wget --quiet --progress=bar:force --output-document "$TMP_LOCATION"/gitea.asc "$SIGNATURE_FILE_URL"
   }
 
   function verify_file
@@ -352,17 +356,20 @@ You can also automate the update by using a custom script that automatically exe
       ## currently the key download via gpg does not work on Uberspace
       #gpg --keyserver keys.openpgp.org --recv $GPG_KEY_FINGERPRINT
       curl --silent https://keys.openpgp.org/vks/v1/by-fingerprint/$GPG_KEY_FINGERPRINT | gpg --import
-      echo "$GPG_KEY_FINGERPRINT:6:" | gpg --import-ownertrust
     fi
 
-    if gpg --verify $TMP_LOCATION/gitea.asc $TMP_LOCATION/gitea
-    then rm $TMP_LOCATION/gitea.asc; return 0
+    if ! gpg --export-ownertrust | grep --quiet $GPG_KEY_FINGERPRINT:6:
+    then echo "$GPG_KEY_FINGERPRINT:6:" | gpg --import-ownertrust
+    fi
+
+    if gpg --verify "$TMP_LOCATION"/gitea.asc "$TMP_LOCATION"/gitea
+    then rm "$TMP_LOCATION"/gitea.asc; return 0
     else echo "gpg verification results in a BAD signature"; exit 1
     fi
   }
 
-  ## this is a helper function to compare two versions as a "lower than" operator
-  function version_lt
+  ## version_lower_than A B returns whether A < B
+  function version_lower_than
   {
     test "$(echo "$@" |
       tr " " "n" |
@@ -370,8 +377,19 @@ You can also automate the update by using a custom script that automatically exe
       head --lines=1)" != "$1"
   }
 
+  function fix_stop_signal
+  {
+    if (grep --quiet HUP "$HOME"/etc/services.d/gitea.ini)
+    then
+      sed --in-place '/HUP/d' "$HOME"/etc/services.d/gitea.ini
+      supervisorctl reread
+      supervisorctl update
+    fi
+  }
+
   function main
   {
+    fix_stop_signal
     get_local_version
     get_latest_version
 
@@ -380,7 +398,7 @@ You can also automate the update by using a custom script that automatically exe
       echo "Your $APP_NAME is already up to date."
       echo "You are running $APP_NAME $LOCAL_VERSION"
     else
-      if version_lt "$LOCAL_VERSION" "$LATEST_VERSION"
+      if version_lower_than "$LOCAL_VERSION" "$LATEST_VERSION"
       then
         echo "There is a new version available."
         echo "Doing update from $LOCAL_VERSION to $LATEST_VERSION"
@@ -389,7 +407,7 @@ You can also automate the update by using a custom script that automatically exe
     fi
   }
 
-  main "${@}"
+  main "$@"
   exit $?
 
 Now make the script executable.
@@ -405,21 +423,22 @@ Run the updater
 
   [isabell@stardust ~]$ gitea-update
   There is a new version available.
-  Doing update from 1.16.3 to 1.16.4
+  Doing update from 1.16.8 to 1.17.2
   Flushed
+  Process-ID is 25538
   gitea: stopped
-  pub   4096R/EC1592E2 2018-06-24 [expires: 2022-06-24]
+  pub   4096R/EC1592E2 2018-06-24 [expires: 2024-06-21]
         Key fingerprint = 7C9E 6815 2594 6888 62D6  2AF6 2D9A E806 EC15 92E2
   uid                  Teabot <teabot@gitea.io>
-  sub   4096R/CBADB9A0 2018-06-24 [expires: 2022-06-24]
-  sub   4096R/9753F4B0 2018-06-24 [expires: 2022-06-24]
+  sub   4096R/CBADB9A0 2018-06-24 [expires: 2024-06-21]
+  sub   4096R/9753F4B0 2018-06-24 [expires: 2024-06-21]
 
-  gpg: Signature made Mon Mar 14 23:02:56 2022 CET using RSA key ID 9753F4B0
+  gpg: Signature made Wed 07 Sep 2022 00:26:25 CEST using RSA key ID 9753F4B0
   gpg: Good signature from "Teabot <teabot@gitea.io>"
-  '/home/isabell/tmp/gitea' -> '/home/isabell/gitea/gitea'
-  mode of '/home/isabell/gitea/gitea' changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
+  ‘/home/isabell/tmp/gitea’ -> ‘/home/isabell/gitea/gitea’
+  mode of ‘/home/isabell/gitea/gitea’ changed from 0664 (rw-rw-r--) to 0764 (rwxrw-r--)
   gitea: started
-  gitea                            RUNNING   pid 6789, uptime 0:00:31
+  gitea                            RUNNING   pid 26730, uptime 0:00:30
   [isabell@stardust ~]$
 
 Additional configuration
@@ -505,6 +524,6 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Gitea 1.16.3, Uberspace 7.12.1
+Tested with Gitea 1.17.2, Uberspace 7.13.0
 
 .. author_list::

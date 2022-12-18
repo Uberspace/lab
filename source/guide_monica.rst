@@ -35,12 +35,12 @@ Monica is released under the ``GNU Affero General Public License v3.0``. All rel
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -68,14 +68,14 @@ To install Monica clone the official repository one level above your :manual:`Do
  [isabell@stardust isabell]$
 
 Afterwards, checkout the branch corresponding to the latest release (see the `Monica releases page`_ for version numbers).
-The example below uses version 3.5.0, which is the latest version at the time of writing.
+The example below uses version 3.7.0, which is the latest version at the time of writing.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/monica
  [isabell@stardust monica]$ git fetch
- [isabell@stardust monica]$ git checkout tags/v3.5.0
+ [isabell@stardust monica]$ git checkout tags/v3.7.0
  [isabell@stardust monica]$
 
 Provide a database
@@ -105,9 +105,10 @@ To configure Monica and provide it with the necessary information to access the 
  [isabell@stardust monica]$
 
 Then edit the ``.env`` file as follows:
-* Change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`,
-* Set ``APP_ENV`` to ``production``, and
-* If you want send reminders via mail, set the variables starting with ``MAIL_`` to reflect an email account and SMTP server. To use your Uberspace mail account, use the :manual_anchor:`following settings <mail-access.html#smtp>`.
+
+    * Change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`,
+    * Set ``APP_ENV`` to ``production``, and
+    * If you want send reminders or invitiations to your instance via mail, set the variables starting with ``MAIL_`` to reflect an email account and SMTP server. To use your Uberspace mail account, use the :manual_anchor:`following settings <mail-access.html#smtp>`.
 
 Once the configuration file has been changed, continue with the installation.
 To do so, you can use Composer_ and yarn_:
@@ -186,7 +187,7 @@ Finishing installation
 After the installation, there is no default account.
 Instead, Monica offers to create an initial account upon the first visit.
 
-Once the account has been created, it can be used to invite others to the Monica instance.
+Once the account has been created, it can be used to invite others to the Monica instance. Remember to configure the ``MAIL_`` settings in order for this to work!
 
 Best practices
 ==============
@@ -236,6 +237,7 @@ Your output might differ and show a (later) version number.
  [isabell@stardust monica]$
 
 
+.. _Monica: https://www.monicahq.com/
 .. _Composer: https://getcomposer.org/
 .. _yarn: https://yarnpkg.com
 .. _LICENSE: https://github.com/monicahq/monica/blob/master/LICENSE.md
@@ -243,6 +245,6 @@ Your output might differ and show a (later) version number.
 
 ----
 
-Tested with Monica 3.5.0, Uberspace 7.12.0
+Tested with Monica 3.7.0, Uberspace 7.13.0, PHP 8.1
 
 .. author_list::

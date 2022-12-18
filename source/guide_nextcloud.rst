@@ -44,8 +44,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -249,7 +249,9 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+
+.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
 
 Configure Nextcloud to rely on the configured cronjob:
 
@@ -381,8 +383,10 @@ Create ``~/bin/nextcloud-update`` with the following content:
  php ~/html/occ app:update --all
  /usr/sbin/restorecon -R ~/html
 
- ## If you have set up the notify_push service uncomment the following line by removing the #
- #supervisorctl restart notify_push
+ ## FYI: If that file exist...
+ if test -f ~/etc/services.d/notify_push.ini
+ then supervisorctl restart notify_push
+ fi
 
 Make the script executable:
 
@@ -401,8 +405,8 @@ Then you can run the script whenever you need it to perform the update.
 
 .. tip:: You can automate this script as a :manual:`cronjob <daemons-cron>`.
 
- ``@daily $HOME/bin/nextcloud-update`` output as email
- ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
+ | ``@daily $HOME/bin/nextcloud-update`` output as email
+ | ``@daily $HOME/bin/nextcloud-update > $HOME/logs/nextcloud-update.log 2>&1`` latest output as logfile
 
 Troubleshooting
 ===============
@@ -478,6 +482,20 @@ The update to Nextcloud 21.0.1 may fail with the following error message:
 
 To solve the issue, apply the ``apc.enable_cli=1`` step above to your installation.
 
+Contacts app hangs
+------------------
+
+When your instance is hanging when you open the contacts app you might be affected by `Nextcloud issue #33048 <https://github.com/nextcloud/server/issues/33048>`_
+
+As a workaround you can remove or override ``ErrorDocument`` entries in the ``.htaccess`` file:
+
+.. code-block:: bash
+
+ ErrorDocument 403 "Forbidden"
+ ErrorDocument 404 "Not found"
+
+You need to reapply these changes after you installed Nextcloud updates or after you executed the ``maintenance:update:htaccess`` command.
+
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
 .. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
@@ -488,6 +506,6 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 ----
 
-Tested with Nextcloud 21.0.0, Uberspace 7.9.0.0
+Tested with Nextcloud 25.0.1, Uberspace 7.14, PHP 8.1
 
 .. author_list::

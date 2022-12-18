@@ -107,7 +107,7 @@ Create ``~/etc/services.d/foundry.ini`` with the following content:
 .. code-block:: ini
 
  [program:foundry]
- command=node %(ENV_HOME)s/foundryvtt/resources/app/main.js –dataPath=%(ENV_HOME)s/foundrydata
+ command=node %(ENV_HOME)s/foundryvtt/resources/app/main.js --dataPath=%(ENV_HOME)s/foundrydata
  autostart=yes
  autorestart=yes
 

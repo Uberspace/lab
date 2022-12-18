@@ -63,33 +63,50 @@ Licensing information about containers on Dockerhub in general is available in S
 Prerequisites
 =============
 
-`LibreOffice Online`_ is only an editor. To store the files and provide access
-to them you must have WOPI host or a WebDAV server running.
+`LibreOffice Online`_ is only an editor, and it is meant to be integrated into
+other web applications. To store the files and provide web access
+to them you must have a WOPI host running.
 For example, :lab:`Nextcloud <guide_nextcloud>` with the Collabora app and
 :lab:`Seafile <guide_seafile>` Professional Edition integrate LibreOffice
 Online via WOPI. A list of integrations can be found at the `CODE`_ website.
 
-For this guide, WebDAV was not tested.
 It is assumed that you use a WOPI host accessible at ``cloud.example.org``.
 
 Setup the domain where your office installation will be accessible.
 
 .. include:: includes/web-domain-list.rst
 
-Then, install the latest stable version of `udocker`_:
+Then, look for the latest version number of `udocker`_ on the
+`github page <https://github.com/indigo-dc/udocker/releases>`_.
+Here, we assume that the version is 1.3.1.
 
 ::
 
-  [isabell@stardust ~]$ curl https://raw.githubusercontent.com/indigo-dc/udocker/master/udocker.py > $HOME/bin/udocker
+  [isabell@stardust ~]$ curl -L https://github.com/indigo-dc/udocker/releases/download/v1.3.1/udocker-1.3.1.tar.gz > udocker.tar.gz
     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                    Dload  Upload   Total   Spent    Left  Speed
-  100  338k  100  338k    0     0   522k      0 --:--:-- --:--:-- --:--:--  521k
+  100   657  100   657    0     0   1294      0 --:--:-- --:--:-- --:--:--  1293
+  100 75791  100 75791    0     0  64650      0  0:00:01  0:00:01 --:--:-- 64650
+  [isabell@stardust ~]$ tar zxvf udocker.tar.gz
+  [isabell@stardust ~]$
+
+Then, create a wrapper script ``$HOME/bin/udocker`` with the following content:
+
+.. code-block:: sh
+
+  #!/bin/sh
+
+  exec $HOME/udocker/udocker "$@"
+
+Make the wrapper executable and finish the `udocker`_ installation by running
+
+::
+
   [isabell@stardust ~]$ chmod 0740 $HOME/bin/udocker
   [isabell@stardust ~]$ udocker install
-  Info: setup repo: /home/isabell/.udocker
-  Info: udocker command line interface 1.1.4
-  Info: searching for udockertools 1.1.4
-  Info: installing udockertools 1.1.4
+  Info: udocker command line interface 1.3.1
+  Info: searching for udockertools 1.2.8
+  Info: installing udockertools 1.2.8
   Info: installation of udockertools successful
   [isabell@stardust ~]$
 
@@ -98,35 +115,13 @@ This installs the binaries and libraries needed by udocker into ``$HOME/.udocker
 Installation
 ============
 
-There are three officially endorsed docker distributions of LibreOffice:
+The only maintained docker distribution with reliable licensing information
+is currently `Collabora Office Development Edition <CODE_>`_ (CODE)
+by Collabora_ (2022-02-04; see the project `status page
+<https://wiki.documentfoundation.org/Development/LibreOffice_Online#Current_Status>`_).
 
-  * `LibreOffice Online`_, by `The Document Foundation
-    <https://www.documentfoundation.org/>`_ is the basis for all three. There
-    is no official stable build, but an unstable docker image
-    `libreoffice/online <https://hub.docker.com/r/libreoffice/online>`_.
-  * `Collabora Office Development Edition <CODE_>`_ (CODE) is a more
-    active development version of LibreOffice Online by Collabora_
-    provided as docker image `collabora/code
-    <https://hub.docker.com/r/collabora/code>`_.
-  * `LibreOffice Powered by CIB`_ is a commercially supported distribution with
-    the stable docker image `cibsoftware/libreoffice-online
-    <https://hub.docker.com/r/cibsoftware/libreoffice-online>`_. It is not
-    covered in this guide, as there is no reliable licensing information
-    available for it.
-
-On first sight, the main differences are the sizes of the docker images
-and slightly different default configurations and look-and-feels. However, the new
-*notebookbar* (ribbon-styled) design `introduced in CODE 6.4
-<https://www.collaboraoffice.com/press-releases/code-6-4-0-release/>`_ does not
-yet work correctly in the `libreoffice/online`_ docker image at the time of
-writing (2021-02-16).
-
-In the following, LibreOffice refers to both `LibreOffice Online`_ and `CODE`_.
-A listing of the ways to get LibreOffice Online is available on the
-`official download page <LOOL_>`_ by The Document Foundation.
-
-Assume you chose `collabora/code`_. Pull the image from dockerhub and create
-a container:
+To install, pull the `CODE docker image <https://hub.docker.com/r/collabora/code>`_
+from dockerhub and create a container:
 
 ::
 
@@ -160,7 +155,7 @@ First, configure `udocker`_ to use `fakechroot`_ instead of `proot`_:
   By default, `udocker`_ uses `proot`_ to fake `chroot`_. However, `proot`_ does
   not support real multithreading and leads to a noticeable lag when editing
   documents. An overview of the execution modes of udocker can be found in the
-  `udocker manual <https://github.com/indigo-dc/udocker/blob/master/doc/user_manual.md#327-setup>`_.
+  `udocker manual <https://indigo-dc.github.io/udocker/user_manual.html#327-setup>`_.
 
 Configure webserver
 -------------------
@@ -185,14 +180,15 @@ embedding only in websites served from the same domain and port.
 Configuration file
 ------------------
 
-There is a configuration file ``$HOME/.udocker/containers/collabora-code/ROOT/etc/loolwsd/loolwsd.xml``,
+There is a configuration file ``$HOME/.udocker/containers/collabora-code/ROOT/etc/coolwsd/coolwsd.xml``,
 which contains also explanations of the configuration options.
 But since some options cannot be set there, in this guide configuration
 is done via the commandline.
 
 Documentation about the commandline and environment options is
 available in the `docker setup instructions
-<https://www.collaboraoffice.com/code/docker/>`_ by Collabora.
+<https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html>`_
+by Collabora.
 
 Setup daemon
 ------------
@@ -218,19 +214,24 @@ Open the file and insert the following content:
       ,username="admin"
       ,password="<my super secret password>"
       ,extra_params=""
-  command=bash -c '\
+  command=bash -c '
       %(ENV_HOME)s/bin/udocker run \
-      --user="$(jq -r .container_config.User \
+      --user="$(jq -r .config.User \
                    < %(ENV_HOME)s/.udocker/containers/"$container"/container.json)" \
       --env=DONT_GEN_SSL_CERT=1 \
       --workdir=/ \
-      --env=domain="$(echo "$fileserver" | sed "s/\./\\\\./g")" \
       --env=username="$username" --env=password="$password" \
       --env=dictionaries="$dictionaries" \
-      --env="extra_params=--o:ssl.enable=false --o:ssl.termination=true --o:security.capabilities=false $extra_params" \
-      "$container" \
+      --env="extra_params=
+          --o:ssl.enable=false
+          --o:ssl.termination=true
+          --o:security.capabilities=false
+          --o:storage.wopi.host[0]=$(echo "$fileserver" | sed "s/\./\\\\\\./g")
+          $extra_params
+          " \
+      "$container"
       '
-  startsecs=45
+  startsecs=30
   autorestart=yes
   stopasgroup=yes
   killasgroup=yes
@@ -270,7 +271,7 @@ Run on the command line:
 
 If you get an ``OK`` the service is running and can be accessed.
 
-Now you can navigate to https://isabell.uber.space/loleaflet/dist/admin/admin.html
+Now you can navigate to https://isabell.uber.space/browser/dist/admin/admin.html
 to try out the admin console. You can also configure your file host at
 ``cloud.example.org`` to use your libreoffice installation.
 
@@ -328,6 +329,9 @@ Watch the :manual_anchor:`logs <daemons-supervisord#logging>`:
   port.* Sometimes the old instance doesn't shut down correctly, especially if
   aborted while starting. Kill it in ``htop``.
 
+* If you have problems installing udocker, have a look at the official
+  `installation manual <https://indigo-dc.github.io/udocker/installation_manual.html>`_.
+
 Other trouble? `Mail the author <johannes@jorsn.eu>`_, post under an existing
 issue or create an `issue on GitHub <https://github.com/Uberspace/lab/issues>`_.
 
@@ -371,13 +375,12 @@ If everything is fine, you can delete the old container:
 .. _Collabora Online: https://www.collaboraoffice.com/collabora-online/
 .. _Docker Terms of Service: https://www.docker.com/legal/docker-terms-service
 .. _fakechroot: https://github.com/dex4er/fakechroot/wiki
-.. _Libreoffice powered by CIB: https://libreoffice.cib.de/
 .. _LOOL: https://www.libreoffice.org/download/libreoffice-online/
 .. _proot: https://proot-me.github.io/
 .. _udocker: https://github.com/indigo-dc/udocker/
 
 ----
 
-Tested with LibreOffice Online 2020-09-08, CODE 6.4.6.2, udocker 1.1.4, on Uberspace 7.9.0, connected to a Nextcloud 19.0.7 with the app Collabora Online 3.7.14.
+Tested with CODE 21.11.1.4.1, udocker 1.3.1, on Uberspace 7.12.0, connected to a Nextcloud 23.0.0 with the app Collabora Online 5.0.1.
 
 .. author_list::

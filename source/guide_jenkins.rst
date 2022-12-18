@@ -18,12 +18,6 @@
 Jenkins
 ########
 
-.. error::
-
-  This guide is broken since Jenkins does not support `Java 16 <https://jenkins.io/doc/administration/requirements/java/>`_. 
-  Feel free to look for a solution and create a Pull Request, see the `related issue <https://github.com/Uberspace/lab/issues/1098>`_.
-
-
 .. tag_list::
 
 Jenkins_ is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat. It supports version control tools, including AccuRev, CVS, Subversion, Git, Mercurial, Perforce, TD/OMS, ClearCase and RTC, and can execute Apache Ant, Apache Maven and sbt based projects as well as arbitrary shell scripts and Windows batch commands. The creator of Jenkins is Kohsuke Kawaguchi. Released under the MIT License, Jenkins is free software.
@@ -37,11 +31,6 @@ Builds can be triggered by various means, for example by commit in a version con
   * :manual_anchor:`supervisord <daemons-supervisord>`
   * :manual_anchor:`web backends <web-backends>`
 
-.. note:: Recommended reading to follow along and go beyond this guide:
-
-  * `Official Jenkins Manual <https://jenkins.io/doc/>`_
-  * `Official Jenkins WAR guide <https://jenkins.io/doc/book/installing/#war-file>`_
-
 License
 =======
 
@@ -50,14 +39,14 @@ Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins
 Prerequisites
 =============
 
-We're using Java version 14 `(9, 10 and 12 are currently not supported by Jenkins, 8 and 11 are no longer provided by uberspace) <https://jenkins.io/doc/administration/requirements/java/>`_.
+We're using Java version 17, check the version to confirm:
 
 ::
 
- [isabell@stardust ~]$ java -version
- openjdk version "14.0.1" 2020-04-14
- OpenJDK Runtime Environment 20.3 (build 14.0.1+7)
- OpenJDK 64-Bit Server VM 20.3 (build 14.0.1+7, mixed mode, sharing)
+ [isabell@stardust ~]$ $ java -version
+ openjdk version "17.0.2" 2022-01-18
+ OpenJDK Runtime Environment 21.9 (build 17.0.2+8)
+ OpenJDK 64-Bit Server VM 21.9 (build 17.0.2+8, mixed mode, sharing)
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -116,7 +105,7 @@ Install service
 
 We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
-::
+.. code-block:: ini
 
  [program:jenkins]
  directory=%(ENV_HOME)s/Jenkins/Jenkins_home
@@ -144,20 +133,25 @@ Finishing Installation
 First connect and initial password
 ----------------------------------
 
-Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It is stored in ``~/.jenkins/secrets/initialAdminPassword``.
+Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It will tell you the path where it is stored, most probably it should be in a file in ``~/Jenkins/Jenkins_home/secrets/initialAdminPassword``:
 
 ::
 
- [isabell@stardust ~]$ cat ~/.jenkins/secrets/initialAdminPassword
+ [isabell@stardust ~]$ cat ~/Jenkins/Jenkins_home/secrets/initialAdminPassword
  SOMEHEXTHATIWONTTELLYOU
  [isabell@stardust ~]$
 
-Just copy and paste that and you'll be good to go. Just follow the setup and everything should work out.
+Copy and paste that and you'll be good to go. Just follow the setup and everything should work out.
 
 Updates
 =======
 
 To jump to a new version just replace the old war with the new version.
+
+.. note:: Recommended reading to follow along and go beyond this guide:
+
+  * `Official Jenkins Manual <https://jenkins.io/doc/>`_
+  * `Official Jenkins WAR guide <https://jenkins.io/doc/book/installing/#war-file>`_
 
 .. _Jenkins: https://jenkins.io
 .. author_list::

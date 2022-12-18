@@ -47,12 +47,13 @@ repository of the project.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -250,6 +251,6 @@ This is a list of files you need to restore your friendica node:
 
 ----
 
-Tested with Friendica 2021.09, Uberspace 7.12.0
+Tested with Friendica 2022.03, Uberspace 7.12.1
 
 .. author_list::

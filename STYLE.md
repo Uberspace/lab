@@ -25,6 +25,7 @@ isabell.uber.space
 
 -   Document all steps for setup. E.g. [create a database](https://github.com/Uberspace/lab/issues/39) when that's necessary. [Create directories](https://github.com/Uberspace/lab/issues/36) when needed.
 -   When there is a license needed for the software mention it.
+-   Include output of shell commands if there is any.
 -   If there are interactive shell sessions, emphasize the lines that expect input from the user. For example:
 
 ```
@@ -97,6 +98,7 @@ In our example this would be:
  command=env NODE_ENV=production /bin/node current/index.js
 ```
 
+-   If you're setting up a supervisord-service, make sure to include `startsecs=60` in the service definition.
 -   If you want to include links to https://manual.uberspace.de, please use the corresponding directives `manual` and `manual_anchor`. Use the `lab` and `lab_anchor` directives for linking other UberLab guides. Examples:
 
 ```

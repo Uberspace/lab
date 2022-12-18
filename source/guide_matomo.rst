@@ -34,12 +34,12 @@ Matomo_ is released under the `GPLv3 License`_.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.2:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -166,6 +166,6 @@ Additionally, backup the MySQL database:
 
 ----
 
-Tested with Matomo 3.5.0, Uberspace 7.1.3
+Tested with Matomo 4.12.3, Uberspace 7.13, PHP 8.1
 
 .. author_list::

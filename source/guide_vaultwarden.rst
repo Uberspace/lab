@@ -92,17 +92,19 @@ Use your favourite editor to create ``~/vaultwarden/output/.env`` with the follo
  SMTP_HOST=stardust.uberspace.de
  SMTP_FROM=isabell@uber.space
  SMTP_PORT=587
- SMTP_SSL=true
+ SMTP_SECURITY=starttls
  SMTP_USERNAME=isabell@uber.space
  SMTP_PASSWORD=MySuperSecretPassword
  DOMAIN=https://isabell.uber.space
+ ROCKET_ADDRESS=0.0.0.0
+ ROCKET_PORT=8000
 
 Replace the mail placeholder variables with your valid SMTP credentials, otherwise the vaultwarden server will not be able to send you mail notifications or tokens to verify newly created user accounts.
 ``SMTP_USERNAME`` and ``SMTP_PASSWORD`` must be the login data from a valid mail account. Replace the server domain with your final URL.
 
 .. note :: You can configure any type of service here, you're not limited to an uberspace SMTP user. If you prefer e.g. gmail refer to their documentations for ``SMTP_PORT`` etc. accordingly.
 
-You can edit other options, look into .env.template to see a list of available options.
+You can edit other options, look into `.env.template <https://github.com/dani-garcia/vaultwarden/blob/main/.env.template>`_ to see a list of available options.
 
 
 Configuration
@@ -112,21 +114,11 @@ Setup web backend
 -----------------
 
 .. note::
-    vaultwarden will run on port 8000.
-
-If you want to set a different port, set the environment variable ``ROCKET_PORT`` in the previously configured ``~/vaultwarden/output/.env`` like so:
-
-.. code-block:: ini
- :emphasize-lines: 3
-
- ...
- DOMAIN=https://isabell.uber.space
- ROCKET_PORT=<your port number>
-
-
-If you want to use a subdomain refer to the :manual:`web-backend manual <web-backends>`.
+    vaultwarden will run on port 8000 (you can change this in the ``.env`` config file).
 
 .. include:: includes/web-backend.rst
+
+If you want to use a subdomain refer to the :manual:`web-backend manual <web-backends>`.
 
 Setup web vault
 ---------------

@@ -88,10 +88,10 @@ todo_include_todos = False
 # By setting an empty string as the second tuple element, the display text
 # is the same as the target by default.
 extlinks = {
-    "manual": ("https://manual.uberspace.de/%s.html", ""),
+    "manual": ("https://manual.uberspace.de/%s", ""),
     "manual_anchor": ("https://manual.uberspace.de/%s", ""),
-    "lab": ("%s.html", ""),
-    "lab_anchor": ("%s", ""),
+    "lab": ("/%s", ""),
+    "lab_anchor": ("/%s", ""),
 }
 
 

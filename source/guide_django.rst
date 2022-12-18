@@ -43,10 +43,36 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-uWSGI
+gunicorn
 -----
 
-.. include:: includes/install-uwsgi.rst
+Install the required gunicorn package with pip.
+
+::
+
+  [isabell@stardust ~]$ pip3.6 install gunicorn --user
+
+After that, continue with setting it up as a service.
+
+Create ~/etc/services.d/gunicorn.ini with the following content:
+
+::
+
+  [program:gunicorn]
+  command=gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000 MyDjangoProject.wsgi:application
+
+After creating the configuration, tell supervisord to refresh its configuration and start the service:
+
+::
+
+  [isabell@stardust ~]$ supervisorctl reread
+  gunicorn: available
+  [isabell@stardust ~]$ supervisorctl update
+  gunicorn: updated process group
+  [isabell@stardust ~]$ supervisorctl status
+  SERVICE                            RUNNING   pid 26020, uptime 0:03:14
+
+If it’s not in state RUNNING, check the logs (eg. ~/logs/supervisord.log).
 
 Installation
 ============

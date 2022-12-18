@@ -237,6 +237,6 @@ click *Clear all caches*.
 
 ----
 
-Tested with Drupal 8.8.4 and Uberspace 7.5.0.0
+Tested with Drupal 9.4.8, Uberspace 7.13, PHP 8.1
 
 .. author_list::

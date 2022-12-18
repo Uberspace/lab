@@ -53,12 +53,12 @@ Setup a new MySQL database for Pixelfed:
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_pixelfed"
  [isabell@stardust ~]$
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Redis
@@ -251,12 +251,10 @@ To install Horizon, run the following commands and recache the routes:
 
 Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content:
 
-.. note:: Make sure to replace ``Isabell`` with your user name.
-
 .. code-block:: ini
 
  [program:horizon]
- command=php /var/www/virtual/isabell/pixelfed/artisan horizon
+ command=php /var/www/virtual/%(ENV_USER)s/pixelfed/artisan horizon
  autostart=yes
  autorestart=yes
 
@@ -355,7 +353,7 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
 
 ----
 
-Tested with Pixelfed 0.10.9, Uberspace 7.7.2.0
+Tested with Pixelfed 0.11.4, Uberspace 7.13, PHP 8.1
 
 .. _Pixelfed: https://pixelfed.org
 .. _Redis: https://redios.io

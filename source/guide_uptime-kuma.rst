@@ -105,7 +105,7 @@ You have now downloaded the master development branch which is sufficient. Every
   > node extra/download-dist.js
   Downloading dist
   […]
-  Done  
+  Done
   [isabell@stardust uptime-kuma]$
 
 
@@ -199,6 +199,7 @@ Restart service after update
 
 ----
 
-Tested with Up1 1.11.1 and Uberspace 7.12.0
+Tested with Uptime-Kuma 1.15.1 and Uberspace 7.12.2
+Update tested from 1.15.1 to 1.17.1
 
 .. author_list::

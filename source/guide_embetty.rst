@@ -37,7 +37,7 @@ Change to your :manual:`DocumentRoot <web-documentroot>` and download the curren
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
-  [isabell@stardust html]$ wget https://github.com/heiseonline/embetty/releases/download/v0.0.1/embetty.js
+  [isabell@stardust html]$ wget https://github.com/heiseonline/embetty/releases/download/v3.0.8/embetty.js
   [...]
   [isabell@stardust ~]$
 
