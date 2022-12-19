@@ -46,9 +46,9 @@ Download the tarball from `conan.io <https://conan.io/downloads.html>`_.
  […]
  Saving to: ‘jfrog-artifactory-cpp-ce-[RELEASE]-linux.tar.gz’
  100%[===============================>] 677,895,184 46.8KB/s   in 16m 49s
- 
+
  2022-12-15 17:50:07 (656 KB/s) - ‘jfrog-artifactory-cpp-ce-[RELEASE]-linux.tar.gz’ saved [677895184/677895184]
- 
+
 Create the target directory:
 
 ::
@@ -194,7 +194,7 @@ The default user is ``admin`` and the corresponding password ``password``. At fi
 Debugging
 =========
 
-Logs are saved at ``~/jfrog_HOME/artifactory/var/log/console.log``.
+Logs are saved at ``~/jfrog/artifactory/var/log/console.log``.
 
 ----
 
