@@ -1,4 +1,5 @@
-.. author:: stunkymonkey <http://stunkymonkey.de>, updated by franok <https://franok.de>
+.. author:: stunkymonkey <http://stunkymonkey.de>
+.. author:: franok <https://franok.de>
 .. highlight:: console
 
 .. tag:: lang-cpp
