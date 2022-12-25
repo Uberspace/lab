@@ -41,13 +41,13 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We need to prepare a couple of directories and create a database which is used by grafana.
+We need to prepare a couple of directories used by loki.
 
-Directory for building loki from source:
+Directory for storing the loki database:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p ~/software
+ [isabell@stardust ~]$ mkdir -p ~/loki
  [isabell@stardust ~]$
 
 Directory for storing the custom configuration files:
@@ -67,29 +67,14 @@ Directory for storing the log files:
 Loki Installation
 =================
 
-Clone loki from the official git repository:
+Find the [latest version of Loki at GitHub](https://github.com/grafana/loki/releases) (`loki-linux-amd64.zip`) and download the latest Linux binary:
 
 ::
 
- [isabell@stardust ~]$ git clone https://github.com/grafana/loki ~/software/
- [isabell@stardust ~]$ cd ~/software/loki
- [isabell@stardust loki]$
+  [isabell@stardust ~]$ wget https://github.com/grafana/loki/releases/download/v2.7.1/loki-linux-amd64.zip
+  [isabell@stardust ~]$ unzip loki-linux-amd64.zip
+  [isabell@stardust ~]$ mv loki-linux-amd64 ~/bin/loki
 
-Build loki
-----------
-
-::
-
- [isabell@stardust loki]$ make loki
-
-::
-
-Move the binary to ``~/bin`` and the default configuration file to ``~/etc/loki``.
-
-::
-
- [isabell@stardust loki-2.6.1]$ mv cmd/loki/loki ~/bin/
- [isabell@stardust loki-2.6.1]$ mv cmd/loki/loki-local-config.yaml ~/etc/loki/loki.yaml
 
 Loki Configuration
 ------------------
