@@ -41,6 +41,10 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
+In theory, you could expose the Loki UI on the internet.
+In my experience, Loki works best as a backend for Grafana, which also provides the better UI.
+If you want to run Grafana on your uberspace, please have a look at this great uberlab article: :lab:`Grafana <guide_grafana>`
+
 We need to prepare a couple of directories used by loki.
 
 Directory for storing the loki database:
