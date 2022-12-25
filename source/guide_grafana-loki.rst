@@ -79,7 +79,6 @@ Find the [latest version of Loki at GitHub](https://github.com/grafana/loki/rele
 Loki Configuration
 ------------------
 
-
 Create the file ``~/etc/loki/loki.yaml`` with the following content:
 
 .. code-block:: yaml
@@ -154,7 +153,7 @@ Promtail
 Promtail is the logshipper in the Grafana ecosystem. It periodically scrapes log files and sends them to Loki.
 
 Promtail installation
-----------------
+---------------------
 
 Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/releases) (`promtail-linux-amd64.zip`):
 
@@ -169,8 +168,6 @@ Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/
 
 Promtail configuration
 ----------------------
-
-::
 
 Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
 
