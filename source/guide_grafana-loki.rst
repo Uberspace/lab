@@ -54,7 +54,7 @@ Directory for storing the custom configuration files:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p ~/etc/loki
+ [isabell@stardust ~]$ mkdir -p ~/etc/loki ~/etc/promtail
  [isabell@stardust ~]$
 
 
@@ -137,7 +137,7 @@ Connecting Grafana to loki
 
 Go to the main page of your Grafana installation and navigate to Configuration / Data sources.
 
-Click "Add data source" and select "Loki". Choose a name you like and add ``http://localhost:3100`` as HTTP URL.
+Click "Add data source" and select "Loki". Choose a name you like and add ``http://isabell.local.uberspace.de:3100`` as HTTP URL.
 
 Promtail
 ========
@@ -147,10 +147,11 @@ Promtail is the logshipper in the Grafana ecosystem. It scrapes logs periodicall
 Install Promtail
 ----------------
 
+Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/releases) (`promtail-linux-amd64.zip`):
+
 ::
 
-  [isabell@stardust ~]$ mkdir -p ~/etc/promtail
-  [isabell@stardust ~]$ wget https://github.com/grafana/loki/releases/download/v2.4.2/promtail-linux-amd64.zip
+  [isabell@stardust ~]$ wget https://github.com/grafana/loki/releases/download/v2.7.2/promtail-linux-amd64.zip
   [isabell@stardust ~]$ unzip promtail-linux-amd64.zip
   [isabell@stardust ~]$ mv promtail-linux-amd64 ~/bin/promtail
 
