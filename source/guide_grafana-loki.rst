@@ -76,24 +76,24 @@ Loki Configuration
 ------------------
 
 
-Create the file ``~/etc/loki/loki.yaml`` with the following content:
+Create the file ``~/etc/loki/loki.yaml`` with the following content (replace `<username>` with your own uberspace user):
 
 .. code-block:: yaml
-  :emphasize-lines: 4,5,7,13,14
+  :emphasize-lines: 4,9,12,13
 
   auth_enabled: false
 
   server:
-    http_listen_address: isabell.local.uberspace.de
+    http_listen_address: <username>.local.uberspace.de
     http_listen_port: 3100
     grpc_listen_port: 9096
 
   common:
-    path_prefix: /home/isabell/loki
+    path_prefix: /home/<username>/loki
     storage:
       filesystem:
-        chunks_directory: /home/isabell/loki/chunks
-        rules_directory: /home/isabell/loki/rules
+        chunks_directory: /home/<username>/loki/chunks
+        rules_directory: /home/<username>/loki/rules
     replication_factor: 1
     ring:
       instance_addr: 127.0.0.1
@@ -165,16 +165,17 @@ Promtail configuration
 
 ::
 
-Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
+Create the file ``~/etc/promtail/promtail.yaml`` with the following content (replace `<username>` with your own uberspace user):
 
-::
+.. code-block:: yaml
+  :emphasize-lines: 6,9,15,18,30,33
 
   server:
     http_listen_port: 0
     grpc_listen_port: 0
 
   positions:
-    filename: /home/isabell/tmp/positions.yaml
+    filename: /home/<username>/tmp/positions.yaml
 
   clients:
     - url: "http://<ip_address>:3100/loki/api/v1/push"
@@ -183,10 +184,10 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
     - job_name: "apache access logs"
       static_configs:
         - labels:
-            host: orous
+            host: <username>
             app: apache
             type: access_log
-            __path__: /home/isabell/logs/webserver/access_log
+            __path__: /home/<username>/logs/webserver/access_log
       pipeline_stages:
         - regex:
             expression: >-
@@ -195,14 +196,13 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
             source: timestamp
             format: "02/Jan/2006:15:04:05 -0700"
 
-
     - job_name: "apache error logs"
       static_configs:
         - labels:
-            host: orous
+            host: <username>
             app: apache
             type: error_log
-            __path__: /home/isabell/logs/webserver/error_log_apache
+            __path__: /home/<username>/logs/webserver/error_log_apache
 
       pipeline_stages:
         - regex:
