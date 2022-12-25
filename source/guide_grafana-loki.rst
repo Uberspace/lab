@@ -57,12 +57,6 @@ Directory for storing the custom configuration files:
  [isabell@stardust ~]$ mkdir -p ~/etc/loki
  [isabell@stardust ~]$
 
-Directory for storing the log files:
-
-::
-
- [isabell@stardust ~]$ mkdir -p ~/var/log/grafana
- [isabell@stardust ~]$
 
 Loki Installation
 =================
