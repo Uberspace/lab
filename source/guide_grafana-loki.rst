@@ -68,6 +68,8 @@ Find the [latest version of Loki at GitHub](https://github.com/grafana/loki/rele
   [isabell@stardust ~]$ wget https://github.com/grafana/loki/releases/download/v2.7.1/loki-linux-amd64.zip
   [isabell@stardust ~]$ unzip loki-linux-amd64.zip
   [isabell@stardust ~]$ mv loki-linux-amd64 ~/bin/loki
+  [isabell@stardust ~]$ rm loki-linux-amd64.zip # Cleanup
+  [isabell@stardust ~]$
 
 
 Loki Configuration
@@ -154,6 +156,8 @@ Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/
   [isabell@stardust ~]$ wget https://github.com/grafana/loki/releases/download/v2.7.2/promtail-linux-amd64.zip
   [isabell@stardust ~]$ unzip promtail-linux-amd64.zip
   [isabell@stardust ~]$ mv promtail-linux-amd64 ~/bin/promtail
+  [isabell@stardust ~]$ rm promtail-linux-amd64.zip # Cleanup
+  [isabell@stardust ~]$
 
 
 Promtail configuration
