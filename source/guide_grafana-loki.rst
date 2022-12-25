@@ -76,7 +76,7 @@ Loki Configuration
 ------------------
 
 
-Create the file ``~/etc/loki/loki.yaml`` with the following content (replace `<username>` with your own uberspace user):
+Create the file ``~/etc/loki/loki.yaml`` with the following content:
 
 .. code-block:: yaml
   :emphasize-lines: 4,9,12,13
@@ -113,7 +113,10 @@ Create the file ``~/etc/loki/loki.yaml`` with the following content (replace `<u
   ruler:
     alertmanager_url: http://localhost:9093
 
-.. note:: The ``http_listen_address`` must be configured to listen on the local network interface of your uberspace account, so that other applications like Pronmtail (see below) can access Loki via HTTP.
+.. note::
+
+  Replace `<username>` with your own uberspace user.
+  The ``http_listen_address`` must be configured to listen on the local network interface of your uberspace account, so that other applications like Promtail (see below) can access Loki via HTTP.
 
 Setup daemon
 ------------
@@ -165,7 +168,7 @@ Promtail configuration
 
 ::
 
-Create the file ``~/etc/promtail/promtail.yaml`` with the following content (replace `<username>` with your own uberspace user):
+Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
 
 .. code-block:: yaml
   :emphasize-lines: 6,9,15,18,30,33
@@ -178,7 +181,7 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content (rep
     filename: /home/<username>/tmp/positions.yaml
 
   clients:
-    - url: "http://<ip_address>:3100/loki/api/v1/push"
+    - url: "http://<username>.local.uberspace.de:3100/loki/api/v1/push"
 
   scrape_configs:
     - job_name: "apache access logs"
@@ -212,7 +215,9 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content (rep
             source: timestamp
             format: "Mon Jan 06 15:04:05 2006"
 
-.. note:: Replace ``<ip_address>`` with the IP address of your local network adapter.
+.. note::
+
+  Replace `<username>` with your own uberspace user.
 
 Setup daemon
 ------------
