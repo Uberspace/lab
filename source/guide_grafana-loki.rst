@@ -20,7 +20,7 @@ Grafana Loki
 
 .. tag_list::
 
-Loki is a log aggregation system designed to store and query logs from all your applications and infrastructure.
+Loki is a log aggregation system from the Grafana stack designed to store and query logs from all your applications and infrastructure.
 
 ----
 
@@ -34,7 +34,7 @@ License
 
 Loki is licensed under the GNU Affero General Public License (AGPL).
 
-All relevant legal information can be found here
+All relevant legal information can be found here:
 
   * https://github.com/grafana/loki/blob/main/LICENSE
 
@@ -62,7 +62,7 @@ Directory for storing the custom configuration files:
  [isabell@stardust ~]$
 
 
-Loki Installation
+Loki installation
 =================
 
 Find the [latest version of Loki at GitHub](https://github.com/grafana/loki/releases) (`loki-linux-amd64.zip`) and download the latest Linux binary:
@@ -151,9 +151,9 @@ Click "Add data source" and select "Loki". Choose a name you like and add ``http
 Promtail
 ========
 
-Promtail is the logshipper in the Grafana ecosystem. It scrapes logs periodically and sends them to loki.
+Promtail is the logshipper in the Grafana ecosystem. It periodically scrapes log files and sends them to Loki.
 
-Install Promtail
+Promtail installation
 ----------------
 
 Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/releases) (`promtail-linux-amd64.zip`):
