@@ -87,11 +87,11 @@ Create the file ``~/etc/loki/loki.yaml`` with the following content:
     grpc_listen_port: 9096
 
   common:
-    path_prefix: /home/isabell/tmp/loki
+    path_prefix: /home/isabell/loki
     storage:
       filesystem:
-        chunks_directory: /home/isabell/tmp/loki/chunks
-        rules_directory: /home/isabell/tmp/loki/rules
+        chunks_directory: /home/isabell/loki/chunks
+        rules_directory: /home/isabell/loki/rules
     replication_factor: 1
     ring:
       instance_addr: 127.0.0.1
