@@ -65,7 +65,7 @@ Directory for storing the custom configuration files:
 Loki installation
 =================
 
-Find the [latest version of Loki at GitHub](https://github.com/grafana/loki/releases) (`loki-linux-amd64.zip`) and download the latest Linux binary:
+Find the latest version of `Loki <loki_download_>`_ at GitHub and download the latest Linux binary (`loki-linux-amd64.zip`):
 
 ::
 
@@ -145,7 +145,7 @@ Connecting Grafana to loki
 
 Go to the main page of your Grafana installation and navigate to Configuration / Data sources.
 
-Click "Add data source" and select "Loki". Choose a name you like and add ``http://isabell.local.uberspace.de:3100`` as HTTP URL.
+Click "Add data source" and select "Loki". Choose a name you like and add ``http://<username>.local.uberspace.de:3100`` as HTTP URL (use your own uberspace user).
 
 Promtail
 ========
@@ -155,7 +155,7 @@ Promtail is the logshipper in the Grafana ecosystem. It periodically scrapes log
 Promtail installation
 ---------------------
 
-Find the [latest version of Promtail at GitHub](https://github.com/grafana/loki/releases) (`promtail-linux-amd64.zip`):
+Find the latest version of `Promtail <promtail_download_>`_ at GitHub. It's usually located in the latest Loki release (`promtail-linux-amd64.zip`):
 
 ::
 
@@ -245,23 +245,24 @@ Start loki and promtail
 
 .. include:: includes/supervisord.rst
 
-Now point your browser at your uberspace and you should see the grafana web interface.
-
-.. _grafana: https://grafana.com
-.. _loki: https://grafana.com/oss/loki/
-.. _promtail: https://grafana.com/docs/loki/latest/clients/promtail/
-
 Best practices
 ==============
 
 Security
 --------
 
-If you want to expose loki in order do pass logs from other systems, see :manual:`web backends <web-backends>`.
+If you want to expose Loki on the internet in order do pass logs from other systems, see :manual:`web backends <web-backends>`.
 When exposing Loki to other systems, you should add basic auth to the system.
 
 ----
 
-Tested with grafana_ 8.3.4, loki_ main-07e5eb3, promtail_ 2.4.2, Uberspace 7.13.0
+Tested with `Grafana <grafana_>`_ 9.3.0, `Loki <loki_>`_ 2.7.2, `Promtail <promtail_>`_ 2.7.2, Uberspace 7.13.0
 
 .. author_list::
+
+
+.. _grafana: https://grafana.com
+.. _loki: https://grafana.com/oss/loki/
+.. _loki_download: https://github.com/grafana/loki/releases
+.. _promtail: https://grafana.com/docs/loki/latest/clients/promtail/
+.. _promtail_download: https://github.com/grafana/loki/releases
