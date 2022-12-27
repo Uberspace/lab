@@ -66,16 +66,12 @@ We will install synapse using pip, which makes it quite easy:
       Using cached https://files.pythonhosted.org/packages/e6/60/247f23a7121ae632d62811ba7f273d0e58972d75e58a94d329d51550a47d/urllib3-1.25.3-py2.py3-none-any.whl
     Installing collected packages: pyasn1, pyasn1-modules, attrs, constantly, idna, hyperlink, zope.interface, six, Automat, PyHamcrest, incremental, Twisted, msgpack, simplejson, frozendict, canonicaljson, sortedcontainers, pyyaml, pycparser, cffi, pynacl, asn1crypto, cryptography, service-identity, unpaddedbase64, signedjson, pillow, daemonize, chardet, certifi, urllib3, requests, treq, bcrypt, pymacaroons, pyopenssl, psutil, pyrsistent, jsonschema, netaddr, phonenumbers, prometheus-client, matrix-synapse
     Successfully installed Automat-0.7.0 PyHamcrest-1.9.0 Twisted-19.2.1 asn1crypto-0.24.0 attrs-19.1.0 bcrypt-3.1.6 canonicaljson-1.1.4 certifi-2019.6.16 cffi-1.12.3 chardet-3.0.4 constantly-15.1.0 cryptography-2.7 daemonize-2.5.0 frozendict-1.2 hyperlink-19.0.0 idna-2.8 incremental-17.5.0 jsonschema-3.0.1 matrix-synapse-1.0.0 msgpack-0.6.1 netaddr-0.7.19 phonenumbers-8.10.13 pillow-6.0.0 prometheus-client-0.3.1 psutil-5.6.3 pyasn1-0.4.5 pyasn1-modules-0.2.5 pycparser-2.19 pymacaroons-0.13.0 pynacl-1.3.0 pyopenssl-19.0.0 pyrsistent-0.15.2 pyyaml-5.1.1 requests-2.22.0 service-identity-18.1.0 signedjson-1.0.0 simplejson-3.16.0 six-1.12.0 sortedcontainers-2.1.0 treq-18.6.0 unpaddedbase64-1.1.0 urllib3-1.25.3 zope.interface-4.6.0
-  [isabell@stardust ~]$ pip3.9 install --user psycopg2
-    Collecting psycopg2
-      Downloading https://files.pythonhosted.org/packages/5c/1c/6997288da181277a0c29bc39a5f9143ff20b8c99f2a7d059cfb55163e165/psycopg2-2.8.3.tar.gz (377kB)
-         |████████████████████████████████| 378kB 21.4MB/s
-    Building wheels for collected packages: psycopg2
-      Building wheel for psycopg2 (setup.py) ... done
-      Stored in directory: /home/matrites/.cache/pip/wheels/48/06/67/475967017d99b988421b87bf7ee5fad0dad789dc349561786b
-    Successfully built psycopg2
-    Installing collected packages: psycopg2
-    Successfully installed psycopg2-2.8.3
+  [isabell@stardust ~]$ pip3.9 install --user psycopg2-binary
+    Collecting psycopg2-binary
+      Downloading psycopg2_binary-2.9.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+         |████████████████████████████████| 3.0 MB 30.0 MB/s
+    Installing collected packages: psycopg2-binary
+    Successfully installed psycopg2-binary-2.9.5
 
   [isabell@stardust ~]$
 
