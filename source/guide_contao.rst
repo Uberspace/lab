@@ -54,13 +54,7 @@ We are using PHP_ in version ``8.1``:
 
 Your :manual_anchor:`website domain <web-domains.html#setup>` needs to be set up:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.example
- isabell.uber.space
- [isabell@stardust ~]$
-
+.. include:: includes/web-domain-list.rst
 
 Create Database
 ===============
