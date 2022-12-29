@@ -54,7 +54,9 @@ Note the `--remove-prefix` option here. Without it, gotify will not work behind 
 Installation
 ============
 
-Like a lot of Go software, gotify is distributed as a single binary. Download gotify's latest `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
+Like a lot of Go software, gotify is distributed as a single binary. Since version 2.1.7 gotify requires GLIBC 2.28, which is not available in U7. Thus we need to build gotify from source. The building is done as is described on gotify's documentation: https://gotify.net/docs/dev-setup but building without docker and only for one architecture:
+
+First download the latest version, so everything is prepared:
 
 ::
 
@@ -78,6 +80,59 @@ Like a lot of Go software, gotify is distributed as a single binary. Download go
   [...]
     inflating: licenses/golang.org_x_crypto
   [isabell@stardust gotify]$
+
+Now we clone the soruces and build them:
+
+::
+
+  [isabell@stardust ~]$ git clone https://github.com/gotify/server.git
+  [isabell@stardust ~]$ cd server
+  [isabell@stardust ~]$ git checkout v2.2.2
+  Note: switching to 'v2.2.2'.
+  [isabell@stardust ~]$ make download-tools
+  go install github.com/go-swagger/go-swagger/cmd/swagger@v0.26.1
+  [isabell@stardust ~]$ go get -d
+  [isabell@stardust ~]$ cd ui
+  [isabell@stardust ~]$ yarn
+  yarn install v1.22.19
+  [1/4] Resolving packages...
+  success Already up-to-date.
+  Done in 2.53s.
+  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ yarn build
+  yarn run v1.22.19
+  $ react-scripts build
+  Creating an optimized production build...
+  Browserslist: caniuse-lite is outdated. Please run:
+    npx browserslist@latest --update-db
+    Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+  Compiled successfully.
+  
+  File sizes after gzip:
+  
+    252.57 KB  build/static/js/2.62492a59.chunk.js
+    15.19 KB   build/static/js/main.d0066ad9.chunk.js
+    2.4 KB     build/static/css/2.0f3898ba.chunk.css
+    778 B      build/static/js/runtime-main.2e858444.js
+  
+  The project was built assuming it is hosted at ./.
+  You can control this with the homepage field in your package.json.
+  
+  The build folder is ready to be deployed.
+  
+  Find out more about deployment here:
+  
+    https://cra.link/deployment
+  
+  Done in 59.93s.
+  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ cd ..
+  [isabell@stardust ~]$ go run hack/packr/packr.go
+  [isabell@stardust ~]$ export LD_FLAGS="-w -s -X main.Version=$(git describe --tags | cut -c 2-) -X main.BuildDate=$(date "+%F-%T") -X main.Commit=$(git rev-parse --verify HEAD) -X main.Mode=prod";
+  [isabell@stardust ~]$ go build -ldflags="$LD_FLAGS" -o gotify-server
+  [isabell@stardust ~]$ mv gotify-server ../gotify-linux-amd64
 
 
 Configuration
