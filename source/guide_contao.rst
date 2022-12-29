@@ -103,7 +103,7 @@ To complete the installation, you need to run the Contao Manager, which will gui
 Contao Manager
 --------------
 
-Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.example/contao-manager.phar.php``) to start the Contao configuration.
+Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.uber.space/contao-manager.phar.php``) to start the Contao configuration.
 
 1. **Manager Account** When you run the Contao install tool the first time, the web based installer will prompt you for a new username & password combination for access to the manager tool. For all future accesses, the Contao Manager will ask for this again.
 
@@ -126,7 +126,7 @@ You have successfully installed the Contao CMS on Uberspace 7!
 Contao Backend
 ==============
 
-Point your web browser to your website URL and append ``/contao`` (or ``/contao/login``) to open the Contao Backend login mask (e.g. ``https://isabell.example/contao/login``)
+Point your web browser to your website URL and append ``/contao`` (or ``/contao/login``) to open the Contao Backend login mask (e.g. ``https://isabell.uber.space/contao/login``)
 
 Log into the Contao Backend by entering the credentials of the Backend account.
 
@@ -136,7 +136,7 @@ Updates
 
 .. note:: Check the GitHub repository releases_ and the update feed_ regularly to stay informed about new updates and releases. Also read the news_ and announcements posted on `contao.org <https://contao.org/>`_.
 
-To update an existing Contao installation (or switch to another PHP version), start the **Contao Manager** again (e.g. visit ``https://isabell.example/contao-manager.phar.php``).
+To update an existing Contao installation (or switch to another PHP version), start the **Contao Manager** again (e.g. visit ``https://isabell.uber.space/contao-manager.phar.php``).
 
 .. warning:: The Contao Managed Edition and especially **additional bundles and modules** are **not** updated automatically, so make sure to regularly check for security and maintenance updates.
 
