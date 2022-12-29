@@ -59,7 +59,7 @@ Like a lot of Go software, gotify is distributed as a single binary. Download go
 ::
 
   [isabell@stardust ~]$ mkdir ~/gotify && cd ~/gotify
-  [isabell@stardust gotify]$ wget https://github.com/gotify/server/releases/download/v2.0.10/gotify-linux-amd64.zip
+  [isabell@stardust gotify]$ wget https://github.com/gotify/server/releases/latest/download/gotify-linux-amd64.zip
   Resolving github.com (github.com)... 140.82.118.4
   Connecting to github.com (github.com)|140.82.118.4|:443... connected.
   HTTP request sent, awaiting response... 302 Found

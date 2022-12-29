@@ -153,6 +153,13 @@ Updates
 Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/home/isabell/mattermost/config``, ``/home/isabell/mattermost/data``, ``/home/isabell/mattermost/logs`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
 Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
 
+When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
+  [isabell@stardust ~]$
+
 .. _`Mattermost website`: https://mattermost.com/download/
 .. _`Mattermost`: https://mattermost.com/
 

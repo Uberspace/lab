@@ -65,14 +65,14 @@ Then extract the files in the current folder with ``tar``. Don't forget ``--stri
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-x86_64.tar.gz --strip-components=1
+  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-amd64.tar.gz --strip-components=1
   [isabell@stardust code-server]$
 
 You can now delete the archive:
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-amd64.tar.gz
   [isabell@stardust code-server]$
 
 Configuration
@@ -91,7 +91,7 @@ Make sure to `<password>` with your password.
   :emphasize-lines: 2,3
 
   [program:code-server]
-  command=%(ENV_HOME)s/code-server/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server-data
+  command=%(ENV_HOME)s/code-server/bin/code-server --host 0.0.0.0 --port 8080 --user-data-dir %(ENV_HOME)s/code-server-data
   environment=PASSWORD=<password>
   autorestart=true
   autostart=true
@@ -108,6 +108,19 @@ Configure web backend
     code-server_ is running on port 8080 in the default configuration. If you want or need to use another port, you can change that in the :manual:`supervisord <daemons-supervisord>` daemon file we created above.
 
 .. include:: includes/web-backend.rst
+
+Start vscode server
+-------------------
+
+Browse to your uberspace domain ``isabell.uber.space`` or any domain you have set up and configured the web backend with. The password for logging into vscode server is in ``~/.config/code-server/config.yaml``.
+
+.. code-block:: console
+
+  [isabell@stardust code-server]$ cat ~/.config/code-server/config.yaml
+  bind-addr: 127.0.0.1:8080
+  auth: password
+  password: d48s222d625f0g527e410sfd
+  cert: false
 
 .. _`VS Code`: https://code.visualstudio.com/
 .. _code-server: https://github.com/cdr/code-server
@@ -133,34 +146,34 @@ Switch into code-server's folder we created when installing code-server.
   [isabell@stardust code-server]$
 
 
-Then download the latest release_ for x86_64. Make sure to the ``x.x.x`` with the current version in all following snippets.
+Then download the latest release_ for amd64. Make sure to replace the ``x.x.x`` with the current version in all following snippets.
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ wget https://github.com/cdr/code-server/releases/download/x.x.x/code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ wget https://github.com/cdr/code-server/releases/download/x.x.x/code-server-x.x.x-linux-amd64.tar.gz
   [...]
-  ‘code-server-x.x.x-linux-x86_64.tar.gz’ saved
+  ‘code-server-x.x.x-linux-amd64.tar.gz’ saved
   [isabell@stardust code-server]$
 
 
-Then extract the files in the current folder with ``tar``. Don't forget ``--strip-components=1`` to remove the ``code-server-x.x.x-linux-x86_64`` prefix from the path.
+Then extract the files in the current folder with ``tar``. Don't forget ``--strip-components=1`` to remove the ``code-server-x.x.x-linux-amd64`` prefix from the path.
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-x86_64.tar.gz --strip-components=1
+  [isabell@stardust code-server]$ tar -xzf code-server-x.x.x-linux-amd64.tar.gz --strip-components=1
   [isabell@stardust code-server]$
 
 You can now delete the archive and start code-server again:
 
 .. code-block:: console
 
-  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-x86_64.tar.gz
+  [isabell@stardust code-server]$ rm code-server-x.x.x-linux-amd64.tar.gz
   [isabell@stardust code-server]$ supervisorctl start code-server
   code-server: started
   [isabell@stardust code-server]$
 
 ----
 
-Tested with code-server 3.2.0 on Uberspace 7.6.1.0.
+Tested with code-server 4.8.3 on Uberspace 7.14.0.
 
 .. author_list::

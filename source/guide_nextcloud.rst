@@ -482,6 +482,20 @@ The update to Nextcloud 21.0.1 may fail with the following error message:
 
 To solve the issue, apply the ``apc.enable_cli=1`` step above to your installation.
 
+Contacts app hangs
+------------------
+
+When your instance is hanging when you open the contacts app you might be affected by `Nextcloud issue #33048 <https://github.com/nextcloud/server/issues/33048>`_
+
+As a workaround you can remove or override ``ErrorDocument`` entries in the ``.htaccess`` file:
+
+.. code-block:: bash
+
+ ErrorDocument 403 "Forbidden"
+ ErrorDocument 404 "Not found"
+
+You need to reapply these changes after you installed Nextcloud updates or after you executed the ``maintenance:update:htaccess`` command.
+
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
 .. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
