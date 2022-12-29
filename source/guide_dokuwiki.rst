@@ -101,38 +101,62 @@ Tuning
 
 For plugins, themes and other stuff go to DokuWiki_.
 
-Nice URLs
-=========
 
-To use nice urls like ``https://isabell.uber.space/dokuwiki-on-uberspace`` instead of ``https://isabell.uber.space/doku.php?id=dokuwiki-on-uberspace`` you need to create a ``.htaccess`` file in the root directory of your dokuwiki installation. You can either copy the existing ``.htaccess.dist`` file and start editing it or paste the following configuration text into a new ``.htaccess`` file.
+Nice URLs aka URL-Rewriting
+---------------------------
 
-.. code-block:: ini
+To change default behaviour and rewrite ``https://isabell.uber.space/doku.php?id=dokuwiki-on-uberspace``  to ``https://isabell.uber.space/dokuwiki-on-uberspace`` you need to enable URL rewriting in /var/www/virtual/$USER/html/conf/local.php/ file by appending:
 
-  ## You should disable Indexes and MultiViews either here or in the
-  ## global config. Symlinks maybe needed for URL rewriting.
-  ## +SymLinksIfOwnerMatch is an uberspace requirement as +FollowSymLinks does not work.
-  Options -Indexes -MultiViews +SymLinksIfOwnerMatch
+::
   
-  ## make sure nobody gets the htaccess, README, COPYING or VERSION files
-  <Files ~ "^([\._]ht|README$|VERSION$|COPYING$)">
-      <IfModule mod_authz_core.c>
-          Require all denied
-      </IfModule>
-      <IfModule !mod_authz_core.c>
-          Order allow,deny
-          Deny from all
-      </IfModule>
-  </Files>
+  $conf['userewrite'] = 1;
+  $conf['useslash'] = 1;
 
-  ## Don't allow access to git directories
-  <IfModule alias_module>
-      RedirectMatch 404 /\.git
-  </IfModule>
+This can also be done in Configuration Settings via Admin page.
+
+Next step is to rename ``/var/www/virtual/$USER/html/.htaccess.dist`` to ``/var/www/virtual/$USER/html/.htaccess`` and edit that file. First uncomment:
+
+::
+  
+  #RewriteEngine On
+
+by deleting the # character at the beginning of the line and insert:
+
+::
+  
+  RewriteBase /
+
+between ``RewriteEngine On`` and first ``RewriteRule`` directive. Finally uncomment all of the following rewrite rules and save changes.
+
+Before:
+
+:: 
 
   ## Uncomment these rules if you want to have nice URLs using
   ## $conf['userewrite'] = 1 - not needed for rewrite mode 2
-  RewriteEngine on
+  #RewriteEngine on
+  #
+  #RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
+  #RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1  [QSA,L]
+  #RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2  [QSA,L]
+  #RewriteRule ^$                        doku.php  [L]
+  #RewriteCond %{REQUEST_FILENAME}       !-f
+  #RewriteCond %{REQUEST_FILENAME}       !-d
+  #RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
+  #RewriteRule ^index.php$               doku.php
+  #
+
+After:
+
+::
   
+  ## Uncomment these rules if you want to have nice URLs using
+  ## $conf['userewrite'] = 1 - not needed for rewrite mode 2
+  RewriteEngine on
+  #
+  ## Change RewriteBase to the directory your dokuwiki installation points to
+  RewriteBase /
+  #
   RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
   RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1  [QSA,L]
   RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2  [QSA,L]
@@ -141,16 +165,21 @@ To use nice urls like ``https://isabell.uber.space/dokuwiki-on-uberspace`` inste
   RewriteCond %{REQUEST_FILENAME}       !-d
   RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
   RewriteRule ^index.php$               doku.php
-  
-  ## Not all installations will require the following line.  If you do,
-  ## change "/dokuwiki" to the path to your dokuwiki directory relative
-  ## to your document root.
-  RewriteBase /
-  
-After doing this, login to your dokuwiki and go into the **Configuration Manager** of the **Admin** interface. Scroll all the way down to the **Advanced**-section and change the ``userewrite`` option to ``.htaccess``. The scroll all the way to the bottom and save. If everything is correct, you now have nice urls enabled.
+  #
 
-If something went wrong, you can uncomment the ``RewriteEngine on`` line to access you dokuwiki again.
-  
+If something goes wrong, you can set the two values to 0 and delete the ``.htaccess`` file. 
+
+
+Handling Special Characters
+---------------------------
+
+Special characters should be handled safe to avoid long or corrupt filenames. Edit ``/var/www/virtual/$USER/html/conf/local.php/`` by appending:
+
+::
+
+  $conf['fnencode'] = 'safe';
+
+
 Updates
 =======
 
