@@ -46,17 +46,17 @@ Installation
 
 ``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then install Firefly III via composer. You can find the latest version on the `release tracker`_, replace the version below with the version number.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii 5.4.6
+ [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii 5.7.15
  [...]
  [isabell@stardust isabell]$
 
 After the installation has finished, remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``firefly_iii/public`` directory.
 
-.. code-block:: console
+.. code-block:: bash
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
@@ -68,7 +68,7 @@ Configuration
 
 We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` for Firefly III to save your data. You have to create this database first.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_fireflyiii"
@@ -76,7 +76,7 @@ We suggest you use an :manual_anchor:`additional database <database-mysql.html#a
 
 ``cd`` into your Firefly III directory.
 
-.. code-block:: console
+.. code-block:: bash
 
  [isabell@stardust isabell]$ cd firefly_iii
  [isabell@stardust firefly_iii]$
@@ -89,7 +89,7 @@ Finishing installation
 ======================
 To finish the installation and setup your database run the following commands:
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1,2,3
 
  [isabell@stardust firefly_iii]$ php artisan migrate:refresh --seed
@@ -109,7 +109,7 @@ Mail
 
 To setup Firefly III to be able to send mails, you first have to create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-mailboxes>`:
 
-.. code-block:: console
+.. code-block:: bash
 
   [isabell@stardust ~]$ uberspace mail user add firefly_iii
   Enter a password for the mailbox:
@@ -149,7 +149,7 @@ Updates
 
 To update your Firefly III installation, ``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then download the new version via composer. Replace <next_version> with the latest version.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
@@ -160,7 +160,7 @@ To update your Firefly III installation, ``cd`` to the directory one level above
 
 After the installation has finished, we need to copy over our settings located in the ``.env`` file and other data.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1,2,3
 
  [isabell@stardust isabell]$ cp firefly_iii/.env firefly-iii-updated/.env
@@ -170,7 +170,7 @@ After the installation has finished, we need to copy over our settings located i
 
 Navigate into the newly created folder and run the following commands to finish the upgrade:
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1
 
  [isabell@stardust isabell]$ cd firefly-iii-updated
@@ -184,7 +184,7 @@ Navigate into the newly created folder and run the following commands to finish 
 
 Move one folder up again and rename the updated folder, so our :manual:`document root <web-documentroot>` points to the updated version.
 
-.. code-block:: console
+.. code-block:: bash
  :emphasize-lines: 1,2,3
 
  [isabell@stardust firefly-iii-updated]$ cd ..
