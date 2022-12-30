@@ -33,12 +33,6 @@ Pleroma_ is a free, federated social networking server built on open protocols. 
   * :manual:`Erlang <lang-erlang>`
 
 
-.. error::
-
-  This guide seems to be **broken**, we would be happy if you want to work on a solution and create a Pull Request.
-  See also the related issue: https://github.com/Uberspace/lab/issues/1345
-
-
 Prerequisites
 =============
 
@@ -72,12 +66,12 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
 Set Erlang version
 ------------------
 
-We're using :manual:`Erlang <lang-erlang>` in the version 24:
+We're using :manual:`Erlang <lang-erlang>` in the version 25:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show erlang
- Using 'erlang' version: '24'
+ Using 'erlang' version: '25'
  [isabell@stardust ~]$
 
 Installation
@@ -363,7 +357,7 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.4, Uberspace 7.12.1
+Tested with Pleroma 2.5, Uberspace 7.14.1
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
