@@ -114,7 +114,7 @@ To protect access to your ntfy instance, the default configuration above permits
 
   [isabell@stardust ~]$ cd ~/ntfy
   [isabell@stardust ntfy]$ ./ntfy user --config server.yml add --role=admin isabell
-  [isabell@stardust ntfy]$ ./ user --config server.yml list
+  [isabell@stardust ntfy]$ ./ntfy user --config server.yml list
   user isabell (admin)
   - read-write access to all topics (admin role)
   user * (anonymous)
