@@ -113,8 +113,6 @@ Create the file ``~/etc/loki/loki.yaml`` with the following content:
           prefix: index_
           period: 24h
 
-  ruler:
-    alertmanager_url: http://localhost:9093
 
 .. note::
 
