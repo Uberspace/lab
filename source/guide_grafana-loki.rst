@@ -138,7 +138,7 @@ What the arguments for loki mean:
 
   * ``-config.file``: The location of the custom configuration file we created.
 
-Connecting Grafana to loki
+Connecting Grafana to Loki
 --------------------------
 
 .. note:: At that point, you already should have installed :lab:`Grafana <guide_grafana>`.
