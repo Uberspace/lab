@@ -49,7 +49,7 @@ Remove the placeholder html file from the html folder:
 ::
 
  [isabell@stardust ~]$ rm ~/html/nocontent.html
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Installation & Configuration
 ==============================

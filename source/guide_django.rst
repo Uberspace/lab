@@ -16,7 +16,7 @@ Django
 ##########
 
 .. tag_list::
-  
+
 Django_ is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.
 
 ----
@@ -72,7 +72,7 @@ After creating the configuration, tell supervisord to refresh its configuration 
   [isabell@stardust ~]$ supervisorctl status
   SERVICE                            RUNNING   pid 26020, uptime 0:03:14
 
-If it’s not in state RUNNING, check the logs (eg. logs/supervisord.log).
+If it’s not in state RUNNING, check the logs (eg. ~/logs/supervisord.log).
 
 Installation
 ============

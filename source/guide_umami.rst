@@ -72,13 +72,13 @@ After the installation you need to create the database.
 
  [isabell@stardust umami]$ mysql -e "CREATE DATABASE ${USER}_umami"
  [isabell@stardust umami]$
- 
+
 Use your favorite editor to create ``~/umami/.env`` with the following content:
 
 .. code-block:: ini
 
   DATABASE_URL=mysql://isabell:mypassword@localhost:3306/isabell_umami
-  
+
 Additionally you can define a HASH_SALT environment variable. That's no longer required, but optional if you still want to use it.
 
 .. code-block:: ini

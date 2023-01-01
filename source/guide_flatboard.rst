@@ -192,6 +192,6 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 ----
 
-Tested with Flatboard 2.1 "PIÉMONT", Uberspace 7.2.2.2
+Tested with Flatboard 2.5, Uberspace 7.13, PHP 8.0
 
 .. author_list::

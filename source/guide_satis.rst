@@ -120,7 +120,7 @@ To update the satis tool you just have to pull the latest changes and run compos
 
 ----
 
-Tested with Satis 1.0.0, Uberspace 7.1.14.0
+Tested with Satis 1.0.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::
 

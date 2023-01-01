@@ -32,6 +32,13 @@ Pleroma_ is a free, federated social networking server built on open protocols. 
   * :manual:`web backends <web-backends>`
   * :manual:`Erlang <lang-erlang>`
 
+
+.. error::
+
+  This guide seems to be **broken**, we would be happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1345
+
+
 Prerequisites
 =============
 
