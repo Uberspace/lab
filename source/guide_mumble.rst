@@ -84,6 +84,14 @@ Extract the zip file:
     inflating: murmur.ini
     inflating: murmur.x86_64
 
+
+
+Make the binary executable:
+
+
+.. code-block:: console
+
+  [isabell@stardust mumble]$ chmod +x murmur.x86_64
   [isabell@stardust mumble]$
 
 
