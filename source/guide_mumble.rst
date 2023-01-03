@@ -79,14 +79,10 @@ Extract the zip file:
 
 .. code-block:: console
 
-  [isabell@stardust mumble]$ unzip -l murmur-static.zip
+  [isabell@stardust mumble]$ unzip murmur-static.zip
   Archive:  murmur-static.zip
-    Length      Date    Time    Name
-  ---------  ---------- -----   ----
-      18545  2022-12-06 21:27   murmur.ini
-   18621464  2022-12-06 21:28   murmur.x86_64
-  ---------                     -------
-  18640009                     2 files
+    inflating: murmur.ini
+    inflating: murmur.x86_64
 
   [isabell@stardust mumble]$
 
