@@ -77,6 +77,7 @@ Create directory ``directus`` and sub directory ``logs``.
   [isabell@stardust ~]$ cd ~/directus
   [isabell@stardust directus]$ npm install @mapbox/node-pre-gyp argon2
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
   [isabell@stardust directus]$
 
 Installation and initialize a new instance of Directus_
@@ -161,6 +162,7 @@ Check GitHub_ repository of the project regularly to stay informed about the new
   [isabell@stardust directus]$ npx --yes npm-check-updates --upgrade
   [isabell@stardust directus]$ npm install
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
   [isabell@stardust directus]$ npx directus database migrate:latest
   [isabell@stardust directus]$ supervisorctl start directus
   [isabell@stardust directus]$
