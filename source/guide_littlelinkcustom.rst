@@ -27,6 +27,7 @@ LittleLinkCustom_ is a highly customizable link sharing and landing page platfor
 
     * :manual:`PHP <lang-php>`
     * :manual:`domains <web-domains>`
+    * :manual:`MySQL <database-mysql>`
 
 License
 =======
@@ -50,6 +51,15 @@ If you want to use *LittleLink Custom* with your own domain you need to setup yo
 
 .. include:: includes/web-domain-list.rst
 
+.. include:: includes/my-print-defaults.rst
+
+Setup a new MySQL database for *LittleLink Custom*:
+
+::
+
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_llcustom"
+ [isabell@stardust ~]$
+
 Installation
 ============
 
@@ -57,36 +67,48 @@ Installation
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/JulianPrieber/littlelink-custom/releases/latest/download/littlelink-custom.zip
- ...
- [isabell@stardust html]$ unzip littlelink-custom.zip
- ...
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ wget https://github.com/JulianPrieber/littlelink-custom/releases/latest/download/littlelink-custom.zip
+ [...]
+ 2023-01-06 18:48:51 (23.3 MB/s) - ‘littlelink-custom.zip’ saved [24926989/24926989]
+ [isabell@stardust isabell]$ unzip littlelink-custom.zip
+ [...]
+ extracting: littlelink-custom/version.json
+  inflating: littlelink-custom/web.config
+  inflating: littlelink-custom/webpack.mix.js
+  inflating: README.md
+ [isabell@stardust isabell]$
 
-Move the extracted files and directories to the document root, then delete the empty source directory, the downloaded zip file and the ``nocontent.html`` file:
+Delete the ``nocontent.html`` file, the empty ``/html`` directory and the downloaded zip file, then rename the ``littlelink-custom`` directory to ``html`` :
 
 ::
 
- [isabell@stardust ~]$ mv littlelink-custom/* littlelink-custom/.[!.]* .
- [isabell@stardust ~]$
- [isabell@stardust ~]$ rm littlelink-custom.zip
- [isabell@stardust ~]$
- [isabell@stardust ~]$ rm -r littlelink-custom
- [isabell@stardust ~]$
- [isabell@stardust ~]$ rm nocontent.html
- [isabell@stardust ~]$
+ [isabell@stardust isabell]$ rm html/nocontent.html; rmdir html/
+ [isabell@stardust isabell]$ rm littlelink-custom.zip
+ [isabell@stardust isabell]$ mv littlelink-custom html
+ [isabell@stardust isabell]$
+
 
 Configuration
 =============
 
-Open your webbrowser and go to ``https://isabell.uber.space/``, then log in to your installation with the default login ``admin@admin.com`` and password ``12345678``.
+Open your webbrowser and go to ``https://isabell.uber.space/``, then click trough the setup process. It's recommend using MySQL as the database backend. Fill in the database credentials:
+
+::
+
+ Database host:     localhost
+ Database port:     3306
+ Database name:     isabell_llcustom
+ Database username: isabell
+ Database password: MySuperSecretPassword
+
+During the setup process you have to create the default login ``admin@admin.com`` with password ``12345678``. Don't forget to fill in the ``Handle`` and ``Name`` fields also.
 
 .. warning:: Change the default password of the default administrator account now!
 
-On the Admin Panel, click on the ``Profile`` section located on the sidebar on the left-hand side of your screen. There you can enter a new and secure password.
+On the Admin Panel, click on the ``Account Settings`` section located on the sidebar on the left-hand side of your screen. There you can enter a new and secure password.
 
-Maybe you want to edit the ``Terms``, ``Privacy`` and ``Contact`` pages. You'll find them on the Admin Panel in the ``Pages`` section. On the bottom of the page you can also allow or reject registrations for other users.
+Maybe you want to edit the ``Terms``, ``Privacy`` and ``Contact`` pages. You'll find them on the Admin Panel in the ``Footer Pages`` section.
 
 If you're going to allow registrations, you may want to edit the SMTP settings for outgoing mails. Click on ``Config`` on the Admin Panel and edit the SMTP server settings according to your requirements.
 
