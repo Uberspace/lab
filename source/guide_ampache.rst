@@ -43,11 +43,19 @@ Clone ampache code from github and install necessary dependencies with composer.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust ~/html]$ git clone https://github.com/ampache/ampache.git
-  [isabell@stardust ~/html]$ cd ampache/
-  [isabell@stardust ~/html/ampache]$ composer install --prefer-source --no-interaction
-  [isabell@stardust ~]$
+  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+  [isabell@stardust isabell]$ git clone https://github.com/ampache/ampache.git
+  [isabell@stardust isabell]$ cd ampache/
+  [isabell@stardust ampache]$ composer install --prefer-source --no-interaction
+
+Remove your empty DocumentRoot and link Ampache's public folder instead:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+  [isabell@stardust isabell]$ ln -s ampache/public html
+  [isabell@stardust isabell]$
 
 
 Configuration
@@ -58,7 +66,7 @@ You will need to enter the following information:
 
 * Various
 
-  * Web Path: /ampache
+  * Web Path: /
 
 * Database Connection
 
@@ -90,6 +98,6 @@ If you want to upgrade from an older version of Ampache it is recommended moving
 
 ----
 
-Tested with Ampache v4.4.2 and Uberspace v7.11
+Tested with Ampache v5.5.5 and Uberspace v7.13, and PHP 8.1
 
 .. author_list::

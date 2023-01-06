@@ -31,12 +31,12 @@ PHP Server Monitor
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -48,16 +48,16 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install PHP Server Monitor we download the current version from the github release. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``.
+To install PHP Server Monitor we download the current version from the `github release`_. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/phpservermon/phpservermon/releases/download/v3.4.5/phpservermon-3.4.5.zip
- [isabell@stardust html]$ unzip phpservermon-3.4.5.zip
- [isabell@stardust html]$ rm phpservermon-3.4.5.zip
- [isabell@stardust html]$ mv phpservermon-3.4.5/* phpservermon-3.4.5/.* ./
- [isabell@stardust html]$ rmdir phpservermon-3.4.5
+ [isabell@stardust html]$ wget https://github.com/phpservermon/phpservermon/releases/download/v3.5.2/phpservermon-3.5.2.zip
+ [isabell@stardust html]$ unzip phpservermon-3.5.2.zip
+ [isabell@stardust html]$ rm phpservermon-3.5.2.zip
+ [isabell@stardust html]$ mv phpservermon-3.5.2/* phpservermon-3.5.2/.* ./
+ [isabell@stardust html]$ rmdir phpservermon-3.5.2
  [isabell@stardust html]$
 
 Configuration
@@ -108,9 +108,10 @@ Finish the update by open isabell.uber.space in your browser.
 
 .. _PHP Server Monitor: http://www.phpservermonitor.org/
 .. _stable releases: https://github.com/phpservermon/phpservermon/releases
+.. _github release: https://github.com/phpservermon/phpservermon/releases
 
 ----
 
-Tested with PHP Server Monitor v3.4.5 and Uberspace 7.4
+Tested with PHP Server Monitor v3.5.2, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

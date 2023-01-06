@@ -37,11 +37,11 @@ Adminer_ is released under `Apache License 2.0`_ or `GPL 2`_.
 Installation (with Plugin Support)
 ==================================
 
-Check the current version of Adminer at `GitHub <https://github.com/vrana/adminer/releases>`_ and go the the folder where you want Adminer to be installed.
+Check the current version of Adminer at `GitHub <https://github.com/vrana/adminer/releases>`_ and ``cd`` the your DocumentRoot:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=4.7.8
+  [isabell@stardust ~]$ VERSION=4.8.1
   [isabell@stardust ~]$ cd ~/html
   [isabell@stardust html]$ wget -O adminer.php https://github.com/vrana/adminer/releases/download/v$VERSION/adminer-$VERSION.php
   [isabell@stardust html]$ mkdir -p plugins
@@ -118,6 +118,6 @@ Just repeat the installation steps with the new ``VERSION``.
 
 ----
 
-Tested with Adminer 4.7.8, Uberspace 7.8.0.0
+Tested with Adminer 4.8.1, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

@@ -40,12 +40,12 @@ HumHub is released under a dual license, on one hand the AGPL V3 license and on 
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.4:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -63,12 +63,12 @@ Installation
  :emphasize-lines: 2,5
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget --output-document=humhub.zip "https://www.humhub.com/download/package/humhub-1.8.2.zip"
+ [isabell@stardust isabell]$ wget --output-document=humhub.zip "https://www.humhub.com/download/package/humhub-1.12.2.zip"
  […]
  [isabell@stardust isabell]$ unzip humhub.zip
- [isabell@stardust isabell]$ cd humhub-1.8.2
- [isabell@stardust humhub-1.8.2]$ mv * /var/www/virtual/$USER/html/
- [isabell@stardust humhub-1.8.2]$
+ [isabell@stardust isabell]$ cd humhub-1.12.2
+ [isabell@stardust humhub-1.12.2]$ mv * /var/www/virtual/$USER/html/
+ [isabell@stardust humhub-1.12.2]$
 
 Database Setup
 ----------------------
@@ -104,6 +104,6 @@ Check the news_ regularly to stay informed about the newest version. You will be
 
 ----
 
-Tested with HumHub 1.8.2, Uberspace 7.11.1.1
+Tested with HumHub 1.12.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

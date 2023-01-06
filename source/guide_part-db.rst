@@ -31,12 +31,12 @@ Part-DB_ is a web-based database for managing electronic components and distribu
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -162,6 +162,6 @@ To update Part-DB you create a backup as described above, reinstall the new vers
 
 ----
 
-Tested with Part-DB 0.5.9, Uberspace 7.7.10.0
+Tested with Part-DB 0.6.0, Uberspace 7.13, and PHP 8.1
 
 .. author_list::

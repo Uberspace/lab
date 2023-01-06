@@ -31,12 +31,12 @@ Baïkal_ is a lightweight CalDAV+CardDAV server.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.4:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -62,8 +62,6 @@ You can also choose not to replace your ``html`` directory (and e.g. install Ba�
 
 Configuration
 =============
-
-Only if you didn't replace your ``html`` directory (and e.g. installed Baïkal in a subdirectory or under a subdomain), edit the file ``baikal/config/baikal.yaml`` and set the value of ``base_uri`` to ``'/'``.
 
 After the installation you need to open isabell.uber.space in your browser to finish your setup.
 
@@ -97,6 +95,6 @@ Finish the update by open isabell.uber.space in your browser.
 
 ----
 
-Tested with Baïkal_ 0.9.2 and Uberspace 7.13.0
+Tested with Baïkal_ 0.9.2, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

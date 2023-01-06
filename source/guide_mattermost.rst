@@ -92,10 +92,10 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
 
 .. code-block:: javascript
- :emphasize-lines: 3
+ :emphasize-lines: 2,3
 
     "SqlSettings": {
       "DriverName": "mysql",
@@ -153,12 +153,19 @@ Updates
 Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/home/isabell/mattermost/config``, ``/home/isabell/mattermost/data``, ``/home/isabell/mattermost/logs`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
 Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
 
+When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
+  [isabell@stardust ~]$
+
 .. _`Mattermost website`: https://mattermost.com/download/
 .. _`Mattermost`: https://mattermost.com/
 
 
 ----
 
-Tested with Mattermost 5.18.0 and Uberspace 7.3.10.0
+Tested with Mattermost 7.4.0 and Uberspace 7.13.0
 
 .. author_list::

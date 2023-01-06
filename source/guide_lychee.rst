@@ -100,8 +100,8 @@ Set up the environment file:
  [isabell@stardust Lychee]$
 
 
-Now edit following lines of your ``/var/www/virtual/$USER/Lychee/.env`` with 
-the editor of your choice. Replace ``isabell`` with your username and fill 
+Now edit following lines of your ``/var/www/virtual/$USER/Lychee/.env`` with
+the editor of your choice. Replace ``isabell`` with your username and fill
 the ``DB_PASSWORD`` password with yours.
 
 ::
@@ -116,7 +116,7 @@ the ``DB_PASSWORD`` password with yours.
 
 .. hint ::
 
-  The file contains a lot more lines with configuration options, but for a working basic setup they can 
+  The file contains a lot more lines with configuration options, but for a working basic setup they can
   all just stay there untouched. You may change it depending on your needs and knowledge.
   See https://lycheeorg.github.io/docs/configuration.html
   for more configuration possibilities.
@@ -126,7 +126,7 @@ Generate a application key:
 
 ::
 
-  [isabell@stardust Lychee]$ php artisan key:generate 
+  [isabell@stardust Lychee]$ php artisan key:generate
   [isabell@stardust Lychee]$
 
 
@@ -140,14 +140,14 @@ And prepare the database:
 
 Finally, replace your ``html`` directory with a symbolic link for the ``public`` folder:
 
-.. warning :: 
+.. warning ::
   Please be aware that this tutorial is designed for a new fresh without any other projects or own content in the ``html`` directory.
 
 ::
 
  [isabell@stardust isabell]$ rm -r /var/www/virtual/$USER/html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/Lychee/public /var/www/virtual/$USER/html
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Now point your browser to your Lychee URL and create your admin user.
 
