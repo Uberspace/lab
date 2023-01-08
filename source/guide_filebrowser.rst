@@ -6,6 +6,7 @@
 .. tag:: web
 .. tag:: file-storage
 .. tag:: self-hosting
+.. tag:: lang-go
 
 .. sidebar:: Logo
 
@@ -37,20 +38,17 @@ Installation
 ============
 
 Download and extract the `latest release`_
-------------------------------------------
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust bin]$ curl --location <url_of_linux_amd64_filebrowser> | tar -xzf - filebrowser
+ [isabell@stardust bin]$ curl --location https://github.com/filebrowser/filebrowser/releases/latest/download/darwin-amd64-filebrowser.tar.gz | tar -xzf - filebrowser
 
 Initialize a new database
--------------------------
 
 .. code-block:: console
 
- [isabell@stardust bin]$ cd ~
- [isabell@stardust ~]$ mkdir filebrowser && cd filebrowser
+ [isabell@stardust bin]$ mkdir ~/filebrowser && cd ~/filebrowser
  [isabell@stardust filebrowser]$ filebrowser config init
 
 
@@ -59,12 +57,20 @@ Configuration
 
 .. note:: You have to be in the same directory as the *filebrowser.db* file which you created before, in order to configurate it or else it will create a new one.
 
+Create a folder where your files will be stored.
+
+.. code-block:: console
+
+ [isabell@stardust filebrowser]$ mkdir ~/my_files
+
+Configure the address to listen on to and the root file directory, which you specified in the step before.
+
 .. code-block:: console
 
  [isabell@stardust filebrowser]$ filebrowser config set --address 0.0.0.0
  [isabell@stardust filebrowser]$ filebrowser config set --root $HOME/my_files
 
-Create your admin account.
+Create your admin account. Remember to replace ``<username>`` and ``<password>`` with your own values.
 
 .. code-block:: console
 
@@ -74,11 +80,8 @@ File Browser runs on port ``8080`` by default.
 
 .. include:: includes/web-backend.rst
 
-Create your file folder (the one you specified via the ``--root`` option).
-
-.. code-block:: console
-
- [isabell@stardust filebrowser]$ mkdir ~/my_files
+Testing
+-------
 
 At this point you should check if everything is working as expected by starting manually.
 
@@ -87,7 +90,8 @@ At this point you should check if everything is working as expected by starting 
  [isabell@stardust filebrowser]$ filebrowser --database $HOME/filebrowser/filebrowser.db
  2022/10/03 19:31:02 Listening on [::]:8080
 
-File Browser should now be accessible via `https://isabell.uber.space`.
+File Browser should now be accessible via ``https://isabell.uber.space``.
+If everything is working fine, stop the command by pressing ``Ctrl-C``.
 
 .. note:: Changes to the configuration via the CLI can not be done while the server is running as the database access is blocked by the instance.
 
