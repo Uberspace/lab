@@ -105,6 +105,8 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/pixelfed/public html
  [isabell@stardust isabell]$
 
+.. note:: If you want to use a different domain than the default ``$USER.uber.space`` domain, you need to add ``RewriteBase /`` to ``/var/www/virtual/$USER/pixelfed/public/.htaccess`` (see :manual:`DocumentRoot <web-documentroot>` for more).
+
 Configuration
 =============
 
