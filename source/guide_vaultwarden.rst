@@ -126,9 +126,11 @@ Setup web vault
 
 Now it's time to test if everything works.
 
+.. note :: Setting both ``ENV_FILE`` and ``DATA_FOLDER`` as temporary environment variables is necessary for vaultwarden to find the correct config and data directory.
+
 .. code-block:: console
 
- [isabell@stardust ~]$ export ENV_FILE=$HOME/vaultwarden.env
+ [isabell@stardust ~]$ export ENV_FILE=$HOME/vaultwarden/.env
  [isabell@stardust ~]$ export DATA_FOLDER=$HOME/vaultwarden/data
  [isabell@stardust ~]$ cd ~/vaultwarden/output
  [isabell@stardust output]$ ./vaultwarden
