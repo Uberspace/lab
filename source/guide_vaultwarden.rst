@@ -62,7 +62,7 @@ Create a directory in ``/home/isabell`` for vaultwarden. In the vaultwarden dire
  [isabell@stardust ~]$ mkdir ~/vaultwarden/data
  [isabell@stardust ~]$
 
-Download the Docker Image Extractor
+Download the Docker Image Extractor.
 
 .. code-block:: console
 
@@ -84,7 +84,9 @@ Change into the ``~/vaultwarden`` directory. Fetch and extract the binary from t
   Image contents extracted into ./output.
   [isabell@stardust vaultwarden]$
 
-Setup E-Mail for notifications.
+Update default configuration
+----------------------------
+
 Use your favourite editor to create ``~/vaultwarden/.env`` with the following content:
 
 .. code-block:: ini
@@ -222,7 +224,7 @@ Disable registration and invitations
 
 By default, vaultwarden allows any anonymous user to register new accounts on the server without first being invited. **This is necessary to create your first user on the server**, but it's recommended to disable it in the admin panel (if the admin panel is enabled) or with the environment variable to prevent attackers from creating accounts on your vaultwarden server.
 
-Use your favourite editor to edit ``~/vaultwarden/output/.env`` and add the following content:
+Use your favourite editor to edit ``~/vaultwarden/.env`` and add the following content:
 
 .. code-block:: ini
 
@@ -248,7 +250,7 @@ Disable password hint display
 
 vaultwarden displays password hints on the login page to accommodate small/local deployments that do not have SMTP configured, which could be abused by an attacker to facilitate password-guessing attacks against users on the server. This can be disabled in the admin panel by unchecking the ``Show password hints option`` or with the environment variable:
 
-Use your favourite editor to edit ``~/vaultwarden/output/.env`` and add the the following content:
+Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the following content:
 
 .. code-block:: ini
 
