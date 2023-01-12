@@ -265,9 +265,6 @@ Updating vaultwarden is really easy.
   - Pull latest image and extract binary
   - Start the server again
 
-To get the download link for the newest version of the web-vault look here web-vault-feed_.
-
-
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/vaultwarden
