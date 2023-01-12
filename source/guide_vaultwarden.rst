@@ -54,11 +54,12 @@ Install vaultwarden
 
 We will be installing vaultwarden by extracting a standalone, statically-linked binary from the official Docker image.
 
-Create a directory in ``/home/isabell`` for vaultwarden and its files.
+Create a directory in ``/home/isabell`` for vaultwarden. In the vaultwarden directory, also create a directory to store the actual data.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ mkdir ~/vaultwarden
+ [isabell@stardust ~]$ mkdir ~/vaultwarden/data
  [isabell@stardust ~]$
 
 Download the Docker Image Extractor
@@ -84,7 +85,7 @@ Change into the ``~/vaultwarden`` directory. Fetch and extract the binary from t
   [isabell@stardust vaultwarden]$
 
 Setup E-Mail for notifications.
-Use your favourite editor to create ``~/vaultwarden/output/.env`` with the following content:
+Use your favourite editor to create ``~/vaultwarden/.env`` with the following content:
 
 .. code-block:: ini
  :emphasize-lines: 1,2,5,6,7
@@ -127,6 +128,8 @@ Now it's time to test if everything works.
 
 .. code-block:: console
 
+ [isabell@stardust ~]$ export ENV_FILE=$HOME/vaultwarden.env
+ [isabell@stardust ~]$ export DATA_FOLDER=$HOME/vaultwarden/data
  [isabell@stardust ~]$ cd ~/vaultwarden/output
  [isabell@stardust output]$ ./vaultwarden
  /--------------------------------------------------------------------\
@@ -160,6 +163,7 @@ Use your favourite editor to create ``~/etc/services.d/vaultwarden.ini`` with th
   autostart=yes
   autorestart=yes
   startsecs=60
+  environment=ENV_FILE="%(ENV_HOME)s/vaultwarden/.env",DATA_FOLDER="%(ENV_HOME)s/vaultwarden/data"
 
 .. include:: includes/supervisord.rst
 
@@ -259,7 +263,6 @@ Updating vaultwarden is really easy.
   - Stop the server
   - Backup ``data`` and ``.env``
   - Pull latest image and extract binary
-  - Replace ``data`` and ``.env``
   - Start the server again
 
 To get the download link for the newest version of the web-vault look here web-vault-feed_.
@@ -270,18 +273,12 @@ To get the download link for the newest version of the web-vault look here web-v
  [isabell@stardust ~]$ cd ~/vaultwarden
  [isabell@stardust vaultwarden]$ supervisorctl stop vaultwarden
  vaultwarden: stopped
- [isabell@stardust vaultwarden]$ mkdir upgrade
- [isabell@stardust vaultwarden]$ cp output/data/ upgrade/. -r
- [isabell@stardust vaultwarden]$ cp output/.env upgrade/.
  [isabell@stardust vaultwarden]$ ./docker-image-extract vaultwarden/server:alpine
  Getting API token...
  Getting image manifest for vaultwarden/server:alpine...
  Fetching and extracting layer 97518928ae5f3d52d4164b314a7e73654eb686ecd8aafa0b79acd980773a740d...
  ...
  Image contents extracted into ./output.
- [isabell@stardust vaultwarden]$ cp upgrade/data/ output/. -r
- [isabell@stardust vaultwarden]$ cp upgrade/.env output/.
- [isabell@stardust vaultwarden]$ rm -rf upgrade
  [isabell@stardust vaultwarden]$ supervisorctl start vaultwarden
  vaultwarden: started
  [isabell@stardust vaultwarden]$
