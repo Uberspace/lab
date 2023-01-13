@@ -42,7 +42,7 @@ Download and extract the `latest release`_
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust bin]$ curl --location https://github.com/filebrowser/filebrowser/releases/latest/download/darwin-amd64-filebrowser.tar.gz | tar -xzf - filebrowser
+ [isabell@stardust bin]$ curl --location https://github.com/filebrowser/filebrowser/releases/latest/download/linux-amd64-filebrowser.tar.gz | tar -xzf - filebrowser
 
 Initialize a new database
 
