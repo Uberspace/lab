@@ -127,6 +127,6 @@ When a new version is released, you will also get an update notification on your
 
 ----
 
-Tested with LittleLink Custom v2.8.2, Uberspace 7.13.0
+Tested with LittleLink Custom v3.2.3, Uberspace 7.14.0
 
 .. author_list::
