@@ -66,7 +66,13 @@ Create directory ``directus`` and sub directory ``logs``.
 ::
 
  [isabell@stardust ~]$ mkdir -p ~/directus/logs
- [isabell@stardust ~]$
+ 
+ 
+ Open directory ``directus`` and install Directus_.
+
+::
+ [isabell@stardust ~]$ cd ~/directus
+ [isabell@stardust directus]$ npm install directus
 
 .. note::
 
@@ -75,16 +81,16 @@ Create directory ``directus`` and sub directory ``logs``.
 ::
 
   [isabell@stardust ~]$ cd ~/directus
-  [isabell@stardust directus]$ npm install @mapbox/node-pre-gyp argon2
-  [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
-  [isabell@stardust directus]$
+  [isabell@stardust ~]$ cd node_modules/directus
+  [isabell@stardust directus/node_modules/directus]$ npm install argon2@0.29
+  [isabell@stardust directus/node_modules/directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
+  [isabell@stardust directus/node_modules/directus]$ cd ../../
+ 
 
-Installation and initialize a new instance of Directus_
+Initialize a new instance of Directus_
 
 ::
 
- [isabell@stardust ~]$ cd ~/directus
- [isabell@stardust directus]$ npm install directus
  [isabell@stardust directus]$ npx directus init
  ? Choose your database client
    PostgreSQL / Redshift
