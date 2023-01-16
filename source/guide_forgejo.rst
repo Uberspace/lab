@@ -248,47 +248,14 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/01/15 22:52:27 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.0-1 built with GNU Make 4.1, go1.19.4 : bindata, sqlite, sqlite_unlock_notify
-  2023/01/15 22:52:27 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
-  2023/01/15 22:52:27 ...dules/setting/log.go:249:generateNamedLogger() [I] Router Log: Console(console:info)
-  2023/01/15 22:52:27 ...les/setting/cache.go:76:newCacheService() [I] Cache Service Enabled
-  2023/01/15 22:52:27 ...les/setting/cache.go:91:newCacheService() [I] Last Commit Cache Service Enabled
-  2023/01/15 22:52:27 ...s/setting/session.go:73:newSessionService() [I] Session Service Enabled
-  2023/01/15 22:52:27 ...s/setting/setting.go:613:deprecatedSetting() [E] Deprecated fallback `[mailer]` `MAILER_TYPE` present. Use `[mailer]` `PROTOCOL` instead. This fallback will be removed in v1.19.0
-  2023/01/15 22:52:27 ...es/setting/mailer.go:263:tryResolveAddr() [W] could not look up mailer.SMTP_ADDR: lookup : no such host
-  2023/01/15 22:52:27 ...es/setting/mailer.go:226:newMailService() [I] Mail Service Enabled
-  2023/01/15 22:52:27 ...es/setting/mailer.go:237:newRegisterMailService() [I] Register Mail Service Enabled
-  2023/01/15 22:52:27 ...s/storage/storage.go:176:initAttachments() [I] Initialising Attachment storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/attachments
-  2023/01/15 22:52:27 ...s/storage/storage.go:170:initAvatars() [I] Initialising Avatar storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/avatars
-  2023/01/15 22:52:27 ...s/storage/storage.go:188:initRepoAvatars() [I] Initialising Repository Avatar storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/repo-avatars
-  2023/01/15 22:52:27 ...s/storage/storage.go:182:initLFS() [I] Initialising LFS storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/lfs
-  2023/01/15 22:52:27 ...s/storage/storage.go:194:initRepoArchives() [I] Initialising Repository Archive storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/repo-archive
-  2023/01/15 22:52:27 ...s/storage/storage.go:200:initPackages() [I] Initialising Packages storage with type:
-  2023/01/15 22:52:27 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/packages
-  Failed to include repositories: open /home/isabell/forgejo/data/forgejo-repositories: no such file or directory
-  2023/01/15 22:52:27 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
-  2023/01/15 22:52:27 cmd/dump.go:163:fatal() [F] Failed to include repositories: open /home/isabell/forgejo/data/forgejo-repositories: no such file or directory
+  2023/01/16 20:51:33 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.0-1 built with GNU Make 4.1, go1.19.4 : bindata, sqlite, sqlite_unlock_notify
+  2023/01/16 20:51:33 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
   [...]
-  2022/03/08 17:26:01 ...s/storage/storage.go:171:initAttachments() [I] Initialising Attachment storage with type:
-  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/attachments
-  2022/03/08 17:26:01 ...s/storage/storage.go:165:initAvatars() [I] Initialising Avatar storage with type:
-  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/avatars
-  2022/03/08 17:26:01 ...s/storage/storage.go:183:initRepoAvatars() [I] Initialising Repository Avatar storage with type:
-  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/repo-avatars
-  2022/03/08 17:26:01 ...s/storage/storage.go:177:initLFS() [I] Initialising LFS storage with type:
-  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/lfs
-  2022/03/08 17:26:01 ...s/storage/storage.go:189:initRepoArchives() [I] Initialising Repository Archive storage with type:
-  2022/03/08 17:26:01 ...les/storage/local.go:46:NewLocalStorage() [I] Creating new Local Storage at /home/isabell/forgejo/data/repo-archive
-  2022/03/08 17:26:01 cmd/dump.go:270:runDump() [I] Dumping database...
+  2023/01/16 20:51:34 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
+  2023/01/16 20:51:34 cmd/dump.go:283:runDump() [I] Dumping database...
   [...]
-  2022/03/08 17:26:01 cmd/dump.go:282:runDump() [I] Adding custom configuration file from /home/isabell/forgejo/custom/conf/app.ini
-  2022/03/08 17:26:01 cmd/dump.go:310:runDump() [I] Packing data directory.../home/isabell/forgejo/data
-  2022/03/08 17:26:01 cmd/dump.go:379:runDump() [I] Finish dumping in file forgejo-dump-1646756761.zip
+  2023/01/16 20:51:34 cmd/dump.go:295:runDump() [I] Adding custom configuration file from /home/isabell/forgejo/custom/conf/app.ini
+  2023/01/16 20:51:34 cmd/dump.go:323:runDump() [I] Packing data directory.../home/isabell/forgejo/data
   [isabell@stardust ~]$
 
 Updates
