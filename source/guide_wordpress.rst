@@ -29,14 +29,14 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
+  * :manual:`PHP <lang-php>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 8.1:
+We're using PHP in the stable version 8.1:
 
 ::
 
@@ -96,7 +96,6 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
  [isabell@stardust ~]$
 
 .. _Wordpress: https://wordpress.org
-.. _PHP: http://www.php.net/
 .. _automatically updates: https://wordpress.org/support/article/configuring-automatic-background-updates/
 
 ----
