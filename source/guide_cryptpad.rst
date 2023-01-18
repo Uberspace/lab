@@ -53,7 +53,7 @@ Start with cloning the Cryptpad source code from Github_ and be sure to replace 
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 4.14.0 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 5.2.1 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
   remote: Enumerating objects: 15111, done.
   remote: Counting objects: 100% (15111/15111), done.
@@ -108,16 +108,24 @@ Update configuration
 
 Open ``config/config.js`` in an editor and edit following lines:
 
-1. Uncomment the line beginning with ``//httpSafeOrigin:`` by removing the two slashes, and replace your instance URL like so:
+1. Replace your instance URL for ``httpUnsafeOrigin:`` like so:
 
 .. code-block:: js
 
-  httpSafeOrigin: "https://isabell.uber.space/",
+  httpUnsafeOrigin: 'https://isabell.uber.space/',
 
+This is the URL that will be used from the outside to access the Cryptpad installation.
 
 2. Find the line ``//httpAddress: '::',`` and uncomment it by removing the two slashes. The value ``::`` remains as it is.
+This will make sure that the server listens on all network interfaces.
 
-3. Find the line ``adminEmail: 'i.did.not.read.my.config@cryptpad.fr',`` and replace it with your e-mail address.
+3. Find the line ``//httpSafePort: 3000,``, uncomment it and replace the port with 80:
+
+.. code-block:: js
+
+  httpSafePort: 80,
+
+Unfortunatley, it seems impossible to run Cryptpad with an unsafe and a safe domain as suggested. This would make it possible to mitigate cross site scripting attacks. That is why only the `httpUnsafeOrigin` is set while the `httpSafeOrigin`is not set. So it is surprsing that the `httpSafePort` needs to be set. This is hack to make Cryptpad generate the correct URL in the HTML.
 
 .. note::
   If you forget to make change 2, the command ``uberspace web backend list`` will later complain as follows:
@@ -155,12 +163,23 @@ Configure web server
 
     Cryptpad is running on port 3000. You need to use ``/`` or a sub-domain since subfolders are not allowed in cryptpad.
 
-.. include:: includes/web-backend.rst
+To make the application accessible from the outside, configure a `web backend <webbackend_>`_:
+
+::
+
+  [isabell@stardust ~]$ uberspace web backend set https://isabell.uber.space/ --http --port 3000
+  Set backend for / to port <port>; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$
+
+.. _webbackend: https://manual.uberspace.de/web-backends.html
 
 Customization
 =============
 
 For any further configuration or customization you should have a look at the `Cryptpad Wiki`_.
+
+Also you should configure a password salt as explained in the `Cryptpad Admin Guide`. You probably want to set up an admin account in ``config/config.js``.
 
 Updates
 =======
@@ -173,7 +192,7 @@ If there is a new version available, you can get the code using git. Replace the
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
-  [isabell@stardust cryptpad]$ git pull origin 4.14.0
+  [isabell@stardust cryptpad]$ git pull origin 5.2.1
   From https://github.com/xwiki-labs/cryptpad
    * tag                 4.14.0     -> FETCH_HEAD
   Already up to date.
@@ -205,9 +224,11 @@ Then you need to restart the service, so the new code is used by the webserver:
 .. _Github: https://github.com/xwiki-labs/cryptpad
 .. _feed: https://github.com/xwiki-labs/cryptpad/releases
 .. _`Cryptpad Wiki`: https://github.com/xwiki-labs/cryptpad/wiki/
+.. _`Cryptpad Admin Guide`: https://docs.cryptpad.org/en/admin_guide/customization.html
+
 
 ----
 
-Tested with Cryptpad 4.14.0 and Uberspace 7.12.1
+Tested with Cryptpad 5.2.1 and Uberspace 7.14.0
 
 .. author_list::
