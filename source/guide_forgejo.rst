@@ -72,29 +72,6 @@ Check current version of Forgejo at releases_ page:
   [isabell@stardust ~]$
 
 
-Verifying (optional)
---------------------
-
-Optionally you can verify the downloaded file using ``gpg``. To do so, download the pgp signature file and trust key
-and verify the binary:
-
-.. code-block:: console
-  :emphasize-lines: 7
-
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo.asc https://codeberg.org/attachments/e42286dd-d158-48c7-b400-a0d1d301be58
-  […]
-  [isabell@stardust ~]$ curl --silent https://openpgpkey.forgejo.org/.well-known/openpgpkey/forgejo.org/hu/dj3498u4hyyarh35rkjfnghbjxug6b19 | gpg --import
-  gpg: key C5923710: no valid user IDs
-  gpg: this may be caused by a missing self-signature
-  gpg: Total number processed: 1
-  gpg:           w/o user IDs: 1
-  [isabell@stardust ~]$ gpg --verify ~/forgejo/forgejo.asc ~/forgejo/forgejo
-  gpg: Signature made Fri 30 Dec 2022 00:54:23 CET using ? key ID 50D53707
-  gpg: Can't check signature: Invalid public key algorithm
-
-If the verification is fine, we get a ``gpg: Good signature from "Teabot <teabot@gitea.io>"`` line. You need to ignore the ``WARNING`` here.
-
-
 Set permissions
 ---------------
 
