@@ -249,9 +249,11 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
-.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
+.. note::
+  | The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
+  | The ``\%`` is required as crontab replaces ``%`` with new-line characters.
 
 Configure Nextcloud to rely on the configured cronjob:
 
