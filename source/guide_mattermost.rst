@@ -178,22 +178,38 @@ Use the script attached to update Mattermost to the current version. Run the scr
 
 .. code-block:: shell
 #!/bin/sh
+printf "\n===\nWelcome to updating Mattermost... let us begin!\n===\n"
 
-version=$1
-if [ -z "$version" ] 
-then
-	printf "Error: Version number is required. e.g. ./update.sh 7.7.1\nExit 1.\n"
-	exit 1
+printf "\n== Preflight Checks ==\n"
+if [ ! -d "./mattermost" ]; then
+  printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
+  exit 1
+else 
+	printf "Directory ./mattermost found.\n"
 fi
 
 database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
 if [ -z "$database" ] 
 then
-	printf "Error: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
-	exit 1
+	printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
+	exit 2
+else 
+	printf "Using database: $database\n"
 fi
 
-printf "\nUpdating Mattermost to Version $version"
+version=$1
+if [ -z "$version" ] 
+then
+	printf "No manual version given. Check from official website ...\n"
+
+	downloadLink=$(curl -s https://mattermost.com/deploy/ | grep -o '<code class="wrap break-all">.*</code>' | sed 's/\(<code class="wrap break-all">\|<\/code>\)//g')
+
+	version=$(grep -o 'com/.*/matter' <<< $downloadLink | tail -c +5 | head -c -8)
+	printf "Newest Version detected: v$version\n"
+fi
+
+printf "\n== Prepare for takeoff ==\n"
+printf "Downloading Version v$version...\n"
 mattermostfile="mattermost-$version-linux-amd64.tar.gz"
 wget https://releases.mattermost.com/$1/$mattermostfile
 
@@ -207,7 +223,8 @@ cp -ra mattermost/ $backupdir
 printf "\nCreate Backup of database: '$database' ..."
 mysqldump --databases $database > $backupdir/$database.dump.sql
 
-printf "\nStop Service - critical now! - ..."
+printf "\n== Take off ==\n"
+printf "\nStop Service - ..."
 supervisorctl stop mattermost
 
 printf "\nDelete all old files ..."
@@ -219,11 +236,13 @@ cp -an mattermost-upgrade/. mattermost/
 printf "\nStart Service again ..."
 supervisorctl start mattermost
 
+printf "\n== Take off complete ==\n"
+
 printf "\nClean up files ..."
 rm -r mattermost-upgrade/
 rm -i mattermost*.gz
 
-printf "\n\nDone!\n"
+printf "\n===\nUpdate completed successfully.\n==="
 
 
 .. _`Mattermost website`: https://mattermost.com/download/
