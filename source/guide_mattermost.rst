@@ -147,11 +147,22 @@ Further customisation
 
 To further customise your configuration, you can open the ``system console`` in your browser and adapt any settings to your wishes. Setting the SMTP server is a good idea.
 
-Updates
--------
+Update
+======
 
-Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/home/isabell/mattermost/config``, ``/home/isabell/mattermost/data``, ``/home/isabell/mattermost/logs`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
-Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
+Manual 
+------
+
+1. Stop your service, 
+2. Backup your directories
+	- ``/home/isabell/mattermost/client/plugins``, 
+	- ``/home/isabell/mattermost/config``, 
+	- ``/home/isabell/mattermost/data``, 
+	- ``/home/isabell/mattermost/logs``
+	- ``/home/isabell/mattermost/plugins`` 
+3. Rename/delete your ``/home/isabell/mattermost`` directory.
+4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. 
+5. Then you can start your service again.
 
 When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
 
@@ -160,12 +171,67 @@ When upgrading to Mattermost 6.4 or newer you need to change the collation of th
   [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
   [isabell@stardust ~]$
 
+Automatic Update
+-----------------
+
+Use the script attached to update Mattermost to the current version. Run the script above the mattermost-root directory.
+
+.. code-block:: shell
+#!/bin/sh
+
+version=$1
+if [ -z "$version" ] 
+then
+	printf "Error: Version number is required. e.g. ./update.sh 7.7.1\nExit 1.\n"
+	exit 1
+fi
+
+database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
+if [ -z "$database" ] 
+then
+	printf "Error: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
+	exit 1
+fi
+
+printf "\nUpdating Mattermost to Version $version"
+mattermostfile="mattermost-$version-linux-amd64.tar.gz"
+wget https://releases.mattermost.com/$1/$mattermostfile
+
+printf "\nExtracting Version ..."
+tar -xf $mattermostfile --transform='s,^[^/]\+,\0-upgrade,'
+
+printf "\nCreate Backup of filesystem..."
+backupdir="mattermost-back-$(date +'%F-%H-%M')/"
+cp -ra mattermost/ $backupdir
+
+printf "\nCreate Backup of database: '$database' ..."
+mysqldump --databases $database > $backupdir/$database.dump.sql
+
+printf "\nStop Service - critical now! - ..."
+supervisorctl stop mattermost
+
+printf "\nDelete all old files ..."
+find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | xargs rm -r
+
+printf "\nApply new files ..."
+cp -an mattermost-upgrade/. mattermost/
+
+printf "\nStart Service again ..."
+supervisorctl start mattermost
+
+printf "\nClean up files ..."
+rm -r mattermost-upgrade/
+rm -i mattermost*.gz
+
+printf "\n\nDone!\n"
+
+
 .. _`Mattermost website`: https://mattermost.com/download/
 .. _`Mattermost`: https://mattermost.com/
 
 
 ----
 
-Tested with Mattermost 7.4.0 and Uberspace 7.13.0
+Tested with Mattermost 7.7.1 and Uberspace 7.13.0
 
 .. author_list::
