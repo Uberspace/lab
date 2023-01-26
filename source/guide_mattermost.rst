@@ -177,72 +177,74 @@ Automatic Update
 Use the script attached to update Mattermost to the current version. Run the script above the mattermost-root directory.
 
 .. code-block:: shell
-#!/bin/sh
-printf "\n===\nWelcome to updating Mattermost... let us begin!\n===\n"
+	#!/bin/sh
+	printf "\n===\nWelcome to updating Mattermost... let us begin!\n===\n"
 
-printf "\n== Preflight Checks ==\n"
-if [ ! -d "./mattermost" ]; then
-  printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
-  exit 1
-else 
-	printf "Directory ./mattermost found.\n"
-fi
+	printf "\n== Preflight Checks ==\n"
+	if [ ! -d "./mattermost" ]; then
+	printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
+	exit 1
+	else 
+		printf "Directory ./mattermost found.\n"
+	fi
 
-database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
-if [ -z "$database" ] 
-then
-	printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
-	exit 2
-else 
-	printf "Using database: $database\n"
-fi
+	database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
+	if [ -z "$database" ] 
+	then
+		printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
+		exit 2
+	else 
+		printf "Using database: $database\n"
+	fi
 
-version=$1
-if [ -z "$version" ] 
-then
-	printf "No manual version given. Check from official website ...\n"
+	version=$1
+	if [ -z "$version" ] 
+	then
+		printf "No manual version given. Check from official website ...\n"
 
-	downloadLink=$(curl -s https://mattermost.com/deploy/ | grep -o '<code class="wrap break-all">.*</code>' | sed 's/\(<code class="wrap break-all">\|<\/code>\)//g')
+		version=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq '.tag_name' | tail -c +3 | head -c -2)
 
-	version=$(grep -o 'com/.*/matter' <<< $downloadLink | tail -c +5 | head -c -8)
-	printf "Newest Version detected: v$version\n"
-fi
+		printf "Newest Version detected: v$version\n"
+	fi
 
-printf "\n== Prepare for takeoff ==\n"
-printf "Downloading Version v$version...\n"
-mattermostfile="mattermost-$version-linux-amd64.tar.gz"
-wget https://releases.mattermost.com/$1/$mattermostfile
+	printf "\n== Prepare for takeoff ==\n"
 
-printf "\nExtracting Version ..."
-tar -xf $mattermostfile --transform='s,^[^/]\+,\0-upgrade,'
+	# TODO check if update is needed
 
-printf "\nCreate Backup of filesystem..."
-backupdir="mattermost-back-$(date +'%F-%H-%M')/"
-cp -ra mattermost/ $backupdir
+	printf "Downloading Version v$version...\n"
+	mattermostfile="mattermost-$version-linux-amd64.tar.gz"
+	wget https://releases.mattermost.com/$1/$mattermostfile
 
-printf "\nCreate Backup of database: '$database' ..."
-mysqldump --databases $database > $backupdir/$database.dump.sql
+	printf "\nExtracting Version ..."
+	tar -xf $mattermostfile --transform='s,^[^/]\+,\0-upgrade,'
 
-printf "\n== Take off ==\n"
-printf "\nStop Service - ..."
-supervisorctl stop mattermost
+	printf "\nCreate Backup of filesystem..."
+	backupdir="mattermost-back-$(date +'%F-%H-%M')/"
+	cp -ra mattermost/ $backupdir
 
-printf "\nDelete all old files ..."
-find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | xargs rm -r
+	printf "\nCreate Backup of database: '$database' ..."
+	mysqldump --databases $database > $backupdir/$database.dump.sql
 
-printf "\nApply new files ..."
-cp -an mattermost-upgrade/. mattermost/
+	printf "\n== Take off ==\n"
+	printf "\nStop Service - ..."
+	supervisorctl stop mattermost
 
-printf "\nStart Service again ..."
-supervisorctl start mattermost
+	printf "\nDelete all old files ..."
+	find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | xargs rm -r
 
-printf "\n== Take off complete ==\n"
+	printf "\nApply new files ..."
+	cp -an mattermost-upgrade/. mattermost/
 
-printf "\nClean up files ..."
-rm -r mattermost-upgrade/
-rm -i mattermost*.gz
+	printf "\nStart Service again ..."
+	supervisorctl start mattermost
 
-printf "\n===\nUpdate completed successfully.\n==="
+	printf "\n== Take off complete ==\n"
+
+	printf "\nClean up files ..."
+	rm -r mattermost-upgrade/
+	rm -i mattermost*.gz
+
+	printf "\n===\nUpdate completed successfully.\n==="
 
 
 .. _`Mattermost website`: https://mattermost.com/download/
