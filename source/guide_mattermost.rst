@@ -177,6 +177,7 @@ Automatic Update
 Use the script attached to update Mattermost to the current version. Run the script above the mattermost-root directory.
 
 .. code-block:: shell
+
 	#!/bin/sh
 	printf "\n===\nWelcome to updating Mattermost... let us begin!\n===\n"
 
