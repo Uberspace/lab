@@ -207,9 +207,14 @@ Use the script attached to update Mattermost to the current version. Run the scr
 		printf "Newest Version detected: v$version\n"
 	fi
 
-	printf "\n== Prepare for takeoff ==\n"
+	usedVersion=$(./mattermost/bin/mattermost version | grep -Po "(?<=Version: )([0-9]|\.)*(?=\s|$)")
+	if [ "$usedVersion" = "$version" ]
+	then
+		printf "\n=== You are up-to-date. No update needed. ===\n"
+		exit 0
+	fi
 
-	# TODO check if update is needed
+	printf "\n== Prepare for takeoff ==\n"
 
 	printf "Downloading Version v$version...\n"
 	mattermostfile="mattermost-$version-linux-amd64.tar.gz"
