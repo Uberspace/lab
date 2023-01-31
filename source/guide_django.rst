@@ -54,7 +54,7 @@ Install django.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user django
+ [isabell@stardust ~]$ pip3.11 install --user django
  [isabell@stardust ~]$
 
 .. hint::
@@ -76,7 +76,7 @@ Migrate Database
 
 ::
 
- [isabell@stardust ~]$ python3.6 ~/mysite/manage.py migrate
+ [isabell@stardust ~]$ python3.11 ~/mysite/manage.py migrate
  [isabell@stardust ~]$
 
 Create Superuser
@@ -84,7 +84,7 @@ Create Superuser
 
 ::
 
- [isabell@stardust ~]$ python3.6 ~/mysite/manage.py createsuperuser
+ [isabell@stardust ~]$ python3.11 ~/mysite/manage.py createsuperuser
  [isabell@stardust ~]$
 
 Configuration
@@ -151,7 +151,7 @@ install the required package with pip.
 
 ::
 
-  [isabell@stardust ~]$ pip3.6 install --user gunicorn
+  [isabell@stardust ~]$ pip3.11 install --user gunicorn
 
 Create Service
 --------------
@@ -228,6 +228,6 @@ Change all default passwords. Look at folder permissions. Don't get hacked!
 
 ----
 
-Tested with Django 2.0.5, Uberspace 7.1.6
+Tested with Django 4.1.6, Python 3.11, Uberspace 7.15
 
 .. author_list::
