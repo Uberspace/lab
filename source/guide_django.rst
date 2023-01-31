@@ -1,8 +1,10 @@
 .. highlight:: console
 
 .. author:: Finn <mail@f1nn.eu>
+.. author:: brutus <brutus.dmc@googlemail.com>
 
 .. tag:: lang-python
+.. tag:: django
 .. tag:: web
 .. tag:: audience-developers
 
@@ -11,9 +13,9 @@
   .. image:: _static/images/django.svg
       :align: center
 
-##########
+######
 Django
-##########
+######
 
 .. tag_list::
 
@@ -43,65 +45,47 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-gunicorn
------
-
-Install the required gunicorn package with pip.
-
-::
-
-  [isabell@stardust ~]$ pip3.6 install gunicorn --user
-
-After that, continue with setting it up as a service.
-
-Create ~/etc/services.d/gunicorn.ini with the following content:
-
-::
-
-  [program:gunicorn]
-  command=gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000 MyDjangoProject.wsgi:application
-
-After creating the configuration, tell supervisord to refresh its configuration and start the service:
-
-::
-
-  [isabell@stardust ~]$ supervisorctl reread
-  gunicorn: available
-  [isabell@stardust ~]$ supervisorctl update
-  gunicorn: updated process group
-  [isabell@stardust ~]$ supervisorctl status
-  SERVICE                            RUNNING   pid 26020, uptime 0:03:14
-
-If it’s not in state RUNNING, check the logs (eg. ~/logs/supervisord.log).
+.. note:: We will use *"mysite"* as the project's name and will install it to `~/mysite`.
 
 Installation
 ============
 
-Install django
+Install django.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install django --user
+ [isabell@stardust ~]$ pip3.6 install --user django
  [isabell@stardust ~]$
 
 .. hint::
 
   Depending on your database configuration, additional modules like ``mysqlclient`` might be required.
 
-Create a django project. We will use "MyDjangoProject" during this guide.
+Create Project
+--------------
+
+Create a django project. As stated, we will use "mysite" as the project's name.
 
 ::
 
- [isabell@stardust ~]$ django-admin startproject MyDjangoProject
+ [isabell@stardust ~]$ django-admin startproject mysite
  [isabell@stardust ~]$
 
-Migrate database
+Migrate Database
+----------------
 
 ::
 
- [isabell@stardust ~]$ python3.6 ~/MyDjangoProject/manage.py migrate
+ [isabell@stardust ~]$ python3.6 ~/mysite/manage.py migrate
  [isabell@stardust ~]$
 
+Create Superuser
+----------------
+
+::
+
+ [isabell@stardust ~]$ python3.6 ~/mysite/manage.py createsuperuser
+ [isabell@stardust ~]$
 
 Configuration
 =============
@@ -109,7 +93,7 @@ Configuration
 Configure Hostname
 ------------------
 
-Edit ``~/MyDjangoProject/MyDjangoProject/settings.py`` and edit the line ``ALLOWED_HOSTS = []`` to add your host name.
+Edit ``~/mysite/mysite/settings.py`` and edit the line ``ALLOWED_HOSTS = []`` to add your host name.
 
 ::
 
@@ -121,19 +105,14 @@ If you need to add multiple host names, separate them with commas like this:
 
  ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
 
-Configure web server
---------------------
-
-.. note::
-
-    Django is running on port 8000.
-
-.. include:: includes/web-backend.rst
-
-Setup daemon
+Static Files
 ------------
 
-To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/myDjangoProject.ini`` with the following content:
+.. warning:: FIXME: This section is outdated and needs a rewrite!
+
+.. warning:: Replace ``<username>`` with your username! (4 times)
+
+To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/mysite.ini`` with the following content:
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
 
@@ -143,8 +122,8 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
   :emphasize-lines: 2,3,9,17,18
 
   [uwsgi]
-  base = /home/<username>/MyDjangoProject/MyDjangoProject
-  chdir = /home/<username>/MyDjangoProject
+  base = /home/<username>/mysite/mysite
+  chdir = /home/<username>/mysite
 
   http = :8000
   master = true
@@ -161,28 +140,80 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
   uid = <username>
   gid = <username>
 
-Test installation
------------------
+Setup Service
+=============
+
+Install Gunicorn
+----------------
+
+We will run Django as a WSGI app with `gunicorn <https://gunicorn.org/>`_ and
+install the required package with pip.
+
+::
+
+  [isabell@stardust ~]$ pip3.6 install --user gunicorn
+
+Create Service
+--------------
+
+After that, continue with setting it up as a service.
+
+Create ``~/etc/services.d/mysite.ini`` with the following content:
+
+.. code-block:: ini
+
+  [program:mysite]
+  directory=%(ENV_HOME)s/mysite
+  command=gunicorn --error-logfile - --reload --bind 0.0.0.0:8000 mysite.wsgi:application
+  startsecs=15
+
+After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
+
+::
+
+  [isabell@stardust ~]$ supervisorctl reread
+  mysite: available
+  [isabell@stardust ~]$ supervisorctl update
+  mysite: updated process group
+  [isabell@stardust ~]$ supervisorctl status
+  mysite                            RUNNING   pid 26020, uptime 0:03:14
+  [isabell@stardust ~]$
+
+Your service should be in the state ``RUNNING``. If it still is in ``STARTING`` instead, no worries, you might just have to wait some time and try the command again (up to 15 seconds). It might already run fine anyway though. Oherwise check the logs in ``~/logs/supervisord.log``.
+
+Configure Web Backend
+---------------------
+
+.. note::
+
+    Django is running on port 8000.
+
+.. include:: includes/web-backend.rst
+
+Finishing Installation
+======================
 
 Perform a CURL request to Django's port to see if your installation succeeded:
 
 ::
 
  [isabell@stardust ~]$ curl -I https://isabell.uber.space
- HTTP/1.1 200 OK
- Content-Type: text/html
- X-Frame-Options: SAMEORIGIN
- Content-Length: 16348
+ HTTP/2 200
+ date: Tue, 31 Jan 2023 16:10:23 GMT
+ content-type: text/html; charset=utf-8
+ content-length: 10681
+ vary: Accept-Encoding
+ server: gunicorn
+ x-frame-options: SAMEORIGIN
+ x-content-type-options: nosniff
+ referrer-policy: strict-origin-when-cross-origin
+ cross-origin-opener-policy: same-origin
+ x-xss-protection: 1; mode=block
+ strict-transport-security: max-age=31536000
+
  [isabell@stardust ~]$
 
-If you don't see ``HTTP/1.1 200 OK`` check your installation.
-
-
-
-Finishing installation
-======================
-
-Point your browser to URL and create a user account.
+If you don't see ``HTTP/2 200`` check your installation.
 
 Best practices
 ==============
