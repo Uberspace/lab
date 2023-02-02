@@ -67,9 +67,9 @@ We will install October using composer. First, make sure that your DocumentRoot 
 .. code-block:: console
 
  [isabell@stardust ~]$ rm html/nocontent.html
- [isabell@stardust ~]$ 
- 
-Initialize the composer project in your DocumentRoot: 
+ [isabell@stardust ~]$
+
+Initialize the composer project in your DocumentRoot:
 
 .. code-block:: console
 
@@ -77,7 +77,7 @@ Initialize the composer project in your DocumentRoot:
  [...]
  [isabell@stardust ~]$
 
-Change to your DocumentRoot and then start the installer: 
+Change to your DocumentRoot and then start the installer:
 
 .. code-block:: console
 

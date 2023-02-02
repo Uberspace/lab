@@ -170,7 +170,7 @@ If there is a new version, backup your mumble folder:
   [isabell@stardust ~]$ cp -rp mumble/ mumble-backup/
   [isabell@stardust ~]$ ls -la | grep -i mumble-backup
   drwxrwxr-x.   4 isabell  isabell    167 Dec  6 20:16 mumble-backup
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
 Repeat the Installation_ steps, and finally execute:

@@ -110,7 +110,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Follow the Update instructions in the Bludit documentation__. 
+Follow the Update instructions in the Bludit documentation__.
 
 .. note:: The files in the directory ``/bl-content`` should not be deleted. There the user accounts and other important stuff is stored.
 
