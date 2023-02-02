@@ -309,6 +309,16 @@ Security
 Change all default passwords. Look at folder permissions. Don't get hacked!
 
 
+Updates
+=======
+
+You can find a `list of supported versions`_ on the official `Django`_ site. If you want to keep track of new releases, you can check the `release-monitor`_.
+
+Upgrading is documented in detail in the `official docs`_.
+
+.. _official docs: https://docs.djangoproject.com/en/stable/howto/upgrade-version/
+.. _list of supported versions: https://www.djangoproject.com/download/#supported-versions
+.. _release-monitor: https://release-monitoring.org/project/3828/
 .. _Django: https://www.djangoproject.com/
 
 ----
