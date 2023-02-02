@@ -23,10 +23,10 @@ Django_ is a high-level Python Web framework that encourages rapid development a
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of
+.. note:: For this guide, you should be familiar with the basic concepts of
 
   * :manual:`Python <lang-python>` and its package manager pip
-  * :manual:`Supervisord <daemons-supervisord>` to setup your own service
+  * :manual:`Supervisord <daemons-supervisord>` to set up your service
 
 License
 =======
@@ -61,23 +61,23 @@ Install the latest Django version.
 Create Project
 --------------
 
-Create a top level directory for your project somewhere. We use `~/mysiteproject` for this guide.
+Create a top-level directory for your project somewhere. We use `~/mysiteproject` for this guide.
 
 ::
 
  [isabell@stardust ~]$ mkdir ~/mysiteproject
  [isabell@stardust ~]$
 
-.. warning:: While it does not matter how you name it and where you put it, we suggest that you do **not** put this directory under any path served to the web (e.g. ``~/html``), to avoid exposing you files.
+.. warning:: While it does not matter how you name it and where you put it, we suggest that you do **not** put this directory under any path served to the web (e.g. ``~/html``), to avoid exposing your files.
 
-Create a new django project under the created directory. For this guide, we call the project ``mysite``.
+Create a new Django project under the created directory. For this guide, we call the project ``mysite``.
 
 ::
 
  [isabell@stardust ~]$ django-admin startproject mysite ~/mysiteproject
  [isabell@stardust ~]$
 
-.. warning:: Avoid naming you project after built-in Python or Django components (e.g. ``django`` or ``test``).
+.. warning:: Avoid naming your project after built-in Python or Django components (e.g. ``django`` or ``test``).
 
 You are now ready, to start your Django project.
 
@@ -87,7 +87,7 @@ Configuration
 Setup Database
 --------------
 
-By default Django uses an SQLite database. That's fine for this guide.
+By default, Django uses an SQLite database. That's fine for this guide.
 
 .. hint:: You might want to use *Postgres* or *MariaDB* though…
 
@@ -132,7 +132,7 @@ Create Superuser
 
 To access Django's admin interface, you need to create a superuser account. You can do this later, or even skip this step if you do not need it; but we do it now, just in case.
 
-You have to interactivly supply a **username**, **email** and **password**. Usually you can just accept the suggested (i.e. your) *username* and skip the *email*, if you do not plan to use it inside Django. You should pick a decent password though!
+You have to interactively supply a **username**, **email**, and **password**. Usually, you can just accept the suggested (i.e. your) *username* and skip the *email*, if you do not plan to use it inside Django. You should pick a decent password though!
 
 .. code-block:: console
     :emphasize-lines: 1,4,5
@@ -150,20 +150,66 @@ Configure Hostname
 
 Edit ``~/mysiteproject/mysite/settings.py`` and edit the line ``ALLOWED_HOSTS = []`` to add your host name.
 
-::
+.. code-block:: python
 
- ALLOWED_HOSTS = ['isabell.uber.space']
+    ALLOWED_HOSTS = ['isabell.uber.space']
 
-If you need to add multiple host names, separate them with commas like this:
+If you need to add multiple hostnames, separate them with commas like this:
 
-::
+.. code-block:: python
 
- ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
+    ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
 
 Static Files
 ------------
 
-.. warning:: FIXME: This section is outdated and needs a rewrite!
+.. note:: Instead of using *Apache* to serve your static assets - as we do below - you can instead use `WhiteNoise <https://whitenoise.evans.io/>`_. It's pretty quick to set up for Django, needs no Uberspace-specific configuration, and serves static files pretty well.
+
+Serving static files is explained thoroughly in `Django's documentation <https://docs.djangoproject.com/en/stable/howto/static-files/>`_. We just need a few steps to set it up:
+
+1. set `STATIC_ROOT <https://docs.djangoproject.com/en/stable/ref/settings/#static-root>`_ in ``settings.py`` to point to a directory that is served for your site - we use ``~/html/static`` here - and create the directory:
+
+    .. code-block:: python
+
+        STATIC_ROOT = '/home/isabell/html/static'
+
+    .. code-block:: console
+        :emphasize-lines: 1
+
+        [isabell@stardust ~]$ mkdir ~/html/static
+        [isabell@stardust ~]$
+
+2. Run the ``collectstatic`` Django management command. This collects all the static files for your project and copies them to the directory you set in ``STATIC_ROOT``.
+
+    .. code-block:: console
+        :emphasize-lines: 1,10
+
+        [isabell@stardust ~]$ python3.11 ~/mysiteproject/manage.py collectstatic
+        You have requested to collect static files at the destination
+        location as specified in your settings:
+
+            /home/isabell/html/static
+
+        This will overwrite existing files!
+        Are you sure you want to do this?
+
+        Type 'yes' to continue, or 'no' to cancel: yes
+
+        130 static files copied to '/home/isabell/html/static'.
+        [isabell@stardust ~]$
+
+    .. important:: You need to run the ``collectstatic`` command every time you change your static files.
+
+3. Add a **web backend**, to tell *Apache* to serve the path set in ``STATIC_URL`` (if you kept the default this should be ``/static/``).
+
+    .. code-block:: console
+        :emphasize-lines: 1
+
+        [isabell@stardust ~]$ uberspace web backend set --apache /static
+        Set backend for /static to apache.
+        [isabell@stardust ~]$
+
+.. note:: For this to work, you need to keep ``STATIC_ROOT`` and ``STATIC_URL`` "aligned" (i.e. your web root plus the path from  ``STATIC_URL`` matches ``STATIC_ROOT``). As in this example.
 
 Setup Service
 =============
@@ -177,13 +223,14 @@ install the required package with pip.
 ::
 
   [isabell@stardust ~]$ pip3.11 install --user gunicorn
+  [isabell@stardust ~]$
 
 Create Service
 --------------
 
 After that, continue with setting it up as a service.
 
-Create ``~/etc/services.d/mysite.ini`` with the following content (take care to adapt the given directory and project name according to your choosen values):
+Create ``~/etc/services.d/mysite.ini`` with the following content (take care to adapt the given directory and project name according to your chosen values):
 
 .. code-block:: ini
     :emphasize-lines: 2,3
@@ -205,7 +252,7 @@ After creating the configuration, tell :manual:`supervisord <daemons-supervisord
   mysite                            RUNNING   pid 26020, uptime 0:03:14
   [isabell@stardust ~]$
 
-Your service should be in the state ``RUNNING``. If it still is in ``STARTING`` instead, no worries! You might just have to wait some time and try the command again (up to 15 seconds). It might already run fine anyway though. Oherwise check the logs in ``~/logs/supervisord.log``.
+Your service should be in the state ``RUNNING``. If it still is in ``STARTING`` instead, no worries! You might just have to wait sometime and try the command again (up to 15 seconds). It might already run fine anyway though. Otherwise check the logs in ``~/logs/supervisord.log``.
 
 Configure Web Backend
 ---------------------
@@ -217,7 +264,7 @@ Configure Web Backend
 
 .. include:: includes/web-backend.rst
 
-You backend should now point to the service; let's check it:
+Your backend should now point to the service; let's check it:
 
 .. code-block:: console
     :emphasize-lines: 1
