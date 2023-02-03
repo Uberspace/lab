@@ -81,7 +81,7 @@ First download the latest version, so everything is prepared:
     inflating: licenses/golang.org_x_crypto
   [isabell@stardust gotify]$
 
-Now we clone the soruces and build them:
+Now we clone the sources and build them:
 
 ::
 
