@@ -3,6 +3,7 @@
 .. author:: stratmaster <https://github.com/stratmaster>
 .. tag:: lang-php
 .. tag:: project-management
+.. tag:: audience-business
 .. tag:: web
 
 .. sidebar:: Logo
@@ -35,12 +36,12 @@ The software is licensed under `MIT License`_. All relevant information can be f
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -124,6 +125,16 @@ Now edit ``config.php`` file, change the Database driver to ``mysql`` and provid
 
  // Mysql/Postgres database name
  define('DB_NAME', 'isabell_kanboard');
+
+
+Remove ``nocontent.html``:
+
+.. code-block:: console
+ :emphasize-lines: 2
+
+ [isabell@stardust isabell]$ cd ~/html
+ [isabell@stardust html]$ rm nocontent.html
+ [isabell@stardust html]$
 
 Go to ``https://isabell.uber.space/`` and log in to your installation with the default login ``admin`` and password ``admin``.
 
@@ -219,6 +230,6 @@ Check the `Kanboard documentation`_ if the configuration changed between ``confi
 
 ----
 
-Tested with Kanboard 1.2.6, Uberspace 7.1.14.0
+Tested with Kanboard 1.2.25, Uberspace 7.13, PHP 8.1
 
 .. author_list::

@@ -31,35 +31,36 @@ Etherpad Lite
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ [isabell@stardust ~]$ uberspace tools version use node 12
+ Using 'Node.js' version: '12'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
-Your URL needs to be setup:
+Your URL needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-First get the Etherpad Lite source code from Github_, be sure to replace the pseudo version number ``66.6.6`` here with the latest version number from the release feed_:
+First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.3`` here with the latest version number from the release feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 66.6.6 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 1.8.3 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
-  remote: Counting objects: 29789, done.
-  remote: Compressing objects: 100% (14/14), done.
-  remote: Total 29789 (delta 9), reused 16 (delta 7), pack-reused 29768
-  Receiving objects: 100% (29789/29789), 19.25 MiB | 6.07 MiB/s, done.
-  Resolving deltas: 100% (21251/21251), done.
-  Note: checking out '96ac381afb9ea731dad48968f15d77dc6488bd0d'.
+  remote: Enumerating objects: 504, done.
+  remote: Counting objects: 100% (504/504), done.
+  remote: Compressing objects: 100% (486/486), done.
+  remote: Total 504 (delta 22), reused 143 (delta 1), pack-reused 0
+  Receiving objects: 100% (504/504), 3.50 MiB | 7.56 MiB/s, done.
+  Resolving deltas: 100% (22/22), done.
+  Note: checking out '62101147a0c3495dc80daa87ab53a3366321a205'.
 
   You are in 'detached HEAD' state. You can look around, make experimental
   changes and commit them, and you can discard any commits you make in this
@@ -73,7 +74,7 @@ First get the Etherpad Lite source code from Github_, be sure to replace the pse
   [isabell@stardust ~]$
 
 
-Then run the etherpad script, to install the dependencies:
+Then run the etherpad script to install the dependencies:
 
 .. code-block:: console
 
@@ -89,7 +90,7 @@ Then run the etherpad script, to install the dependencies:
 Configuration
 =============
 
-Set up a Database
+Set up a database
 -----------------
 
 Run the following code to create the database ``<username>_etherpad`` in MySQL:
@@ -102,64 +103,54 @@ Run the following code to create the database ``<username>_etherpad`` in MySQL:
 Change the configuration
 ------------------------
 
-You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Replace the whole codeblocks:
+You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Comment this code block by adding ``/*`` before and ``*/`` after like shown below:
 
 .. code-block:: none
 
-  //The Type of the database. You can choose between dirty, postgres, sqlite and mysql
-  //You shouldn't use "dirty" for for anything else than testing or development
-  "dbType" : "dirty",
-  //the database specific settings
-  "dbSettings" : {
-                   "filename" : "var/dirty.db"
-                 },
-
-  /* An Example of MySQL Configuration
-   "dbType" : "mysql",
-   "dbSettings" : {
-                    "user"    : "root",
-                    "host"    : "localhost",
-                    "password": "",
-                    "database": "store",
-                    "charset" : "utf8mb4"
-                  },
+  /*
+    "dbType" : "dirty",
+    "dbSettings" : {
+     "filename" : "var/dirty.db"
+   },
   */
 
-with the following. Be sure to replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites:
+Uncomment the block for MySQL below by removing ``/*`` and ``*/``. Update the configuration data as shown below. Replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites. Update the database name to ``<username>_etherpad`` with your username replaced.
 
 .. code-block:: none
- :emphasize-lines: 4,6,7
+ :emphasize-lines: 3,6,7
 
- //MySQL Configuration
- "dbType" : "mysql",
- "dbSettings" : {
-                   "user"    : "<username>",
-                   "host"    : "localhost",
-                   "password": "<mysql_password>",
-                   "database": "<username>_etherpad",
-                   "charset" : "utf8mb4"
-                 },
+  "dbType" : "mysql",
+  "dbSettings" : {
+    "user":     "<username>",
+    "host":     "localhost",
+    "port":     3306,
+    "password": "<mysql_password>",
+    "database": "<username>_etherpad",
+    "charset":  "utf8mb4"
+  },
 
-Configure web server
---------------------
+Configure the web server
+------------------------
 
 .. note::
 
-    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed.
+    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/pad`` instead of the root URI ``/``.
 
 .. include:: includes/web-backend.rst
 
-Setup daemon
-------------
+Set up the daemon
+-----------------
 
 Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
 .. code-block:: ini
 
  [program:etherpad]
- command=%(ENV_HOME)s/etherpad/bin/run.sh
+ directory=%(ENV_HOME)s/etherpad
+ command=node %(ENV_HOME)s/etherpad/node_modules/ep_etherpad-lite/node/server.js
  environment=NODE_ENV="production"
  autorestart=true
+ startsecs=60
 
 
 .. include:: includes/supervisord.rst
@@ -172,11 +163,9 @@ Best practices
 Personalization
 ---------------
 
-Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there.
+Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up an admin account there. If you've updated the settings, you need to restart etherpad using ``supervisorctl restart etherpad``.
 
-You can also personalize the look of your installation by including custom css- oder js-files. See `Custom static files`_ in the documentation for further information.
-
-**Important**: You need to place your custom-files in ``~/etherpad/node_modules/ep_etherpad-lite/static/custom`` **not** ``~/etherpad/static/custom`` for being recognized by your installation.
+You can also personalize the look of your installation by using your own skin or change an existing one. See `Skins`_ in the documentation for further information.
 
 Updates
 =======
@@ -184,21 +173,30 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the pseudo version number ``66.6.6`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the pseudo version number ``1.8.3`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
   [isabell@stardust etherpad]$ git checkout  -- src/package.json
-  [isabell@stardust etherpad]$ git pull origin 66.6.6
+  [isabell@stardust etherpad]$ git pull origin 1.8.3
   From https://github.com/ether/etherpad-lite
-   * tag                 66.6.6      -> FETCH_HEAD
+   * tag                 1.8.3      -> FETCH_HEAD
   Updating b8b2e4bc..96ac381a
   Fast-forward
   […]
   [isabell@stardust ~]$
 
-Then you need to restart the service daemon, so the new code is used by the webserver:
+Update the dependencies.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ ~/etherpad/bin/installDeps.sh
+  […]
+  [isabell@stardust ~]$
+
+
+Then you need to restart the service daemon, so the new code is used by the web server:
 
 .. code-block:: console
 
@@ -207,15 +205,14 @@ Then you need to restart the service daemon, so the new code is used by the webs
   etherpad: started
   [isabell@stardust ~]$
 
-It might take a few minutes before your Etherpad comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f etherpad``.
 
 .. _`Etherpad Lite`: http://etherpad.org/
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
-.. _`Custom static files`: http://etherpad.org/doc/v1.6.2/#index_custom_static_files
+.. _`Skins`: http://etherpad.org/doc/v1.8.3/#skins
 
 ----
 
-Tested with Etherpad Lite 1.7.0 and Uberspace 7.1.15.0
+Tested with Etherpad Lite 1.8.3 and Uberspace 7.6.0.0
 
 .. author_list::

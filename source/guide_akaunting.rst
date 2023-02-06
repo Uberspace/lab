@@ -1,12 +1,12 @@
 .. highlight:: console
 
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
 
 .. tag:: lang-php
 .. tag:: web
 .. tag:: accounting
 .. tag:: customer-management
-.. tag:: business
+.. tag:: audience-business
 
 .. sidebar:: Logo
 
@@ -43,14 +43,6 @@ Akaunting is released under the GPLv3_ license. The licence can be found in the 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
- [isabell@stardust ~]$
-
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
@@ -81,13 +73,13 @@ Configuration
 
 Point your browser to your domain (e.g. isabell.uber.space) to set up and configure your Akaunting installation.
 
-Step 1: Language Selection
---------------------------
+Language Selection
+------------------
 
 Choose your desired language.
 
-Step 2: Database Setup
-----------------------
+Database Setup
+--------------
 
 Akaunting saves your data in a MySQL database. We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>`. You need to create this database before you enter the database credentials in the installer.
 
@@ -97,15 +89,15 @@ Akaunting saves your data in a MySQL database. We suggest you use an :manual_anc
  [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_akaunting"
  [isabell@stardust ~]$
 
-Enter the following informations into the installer:
+Enter the following information into the installer:
 
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * the name of your newly created Akaunting database (e.g. ``isabell_akaunting``)
 
-Step 3: Company and Admin Details
----------------------------------
+Company and Admin Details
+-------------------------
 
-Fill in the name of your company, the company email adress (email sender if you send e.g. invoices), an admin email adress and your admin password.
+Fill in the name of your company, the company email address (email sender if you send e.g. invoices), an admin email address and your admin password.
 
 **That's it.** After the installation you can login with your chosen admin credentials.
 
@@ -123,9 +115,9 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 You will be additionally notified about available updates in the built in notification center.
-You can update the installation in the update wizzard which you can find in the Akaunting web interface.
+You can update the installation in the update wizard which you can find in the Akaunting web interface.
 
-.. warning:: Please note that third-party apps (plugins) need to be updated seperately. Available app updates are listed directly under the core updates. Make sure to check these regularly.
+.. warning:: Please note that third-party apps (plugins) need to be updated separately. Available app updates are listed directly under the core updates. Make sure to check these regularly.
 
 
 .. _Akaunting: https://akaunting.com
@@ -137,6 +129,6 @@ You can update the installation in the update wizzard which you can find in the 
 
 ----
 
-Tested with Akaunting 1.2.16, Uberspace 7.1.13
+Tested with Akaunting 3.0.9, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

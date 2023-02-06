@@ -15,6 +15,8 @@
 xBrowserSync API
 ################
 
+.. tag_list::
+
 xBrowserSync is a free and open-source browser bookmark syncing tool with support for Chrome, Firefox and Android (via app).
 
 The xBrowserSync API provides an individual sync server where your bookmarks stored encrypted.
@@ -96,7 +98,7 @@ Afterwards leave the shell with the ``exit`` command.
 Installation
 ------------
 
-Now you can install all the depenencies needed for xBrowserSync by using npm.
+Now you can install all the dependencies needed for xBrowserSync by using npm.
 Additionally you can let npm run a so called `security audit`_, which detects and updates insecure dependencies.
 
 ::
@@ -188,6 +190,7 @@ Create a service file under ``~/etc/services.d/xbrowsersync.ini`` and replace ``
 
   [program:xbrowsersync]
   command=node /home/<username>/xbrowsersync/api/dist/api.js
+  startsecs=60
   autostart=yes
   autorestart=yes
 

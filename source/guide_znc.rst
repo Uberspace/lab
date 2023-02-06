@@ -2,6 +2,7 @@
 
 .. author:: no-one <https://github.com/no-one>
 
+.. tag:: lang-cpp
 .. tag:: irc
 .. tag:: bouncer
 
@@ -36,9 +37,7 @@ Prerequisites
 Installation
 ============
 
-Step 1
-------
-Create a new directory, download the lastest version and enter the directory you just created:
+Create a new directory, download the latest version and enter the directory you just created:
 
 ::
 
@@ -46,9 +45,6 @@ Create a new directory, download the lastest version and enter the directory you
  [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC ~/znc --strip-components=1
  [isabell@stardust ~]$ cd ~/znc
  [isabell@stardust znc]$
-
-Step 2
-------
 
 Compile and install ZNC to your home directory:
 
@@ -149,7 +145,7 @@ If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
-.. note:: Replace ``isabell`` with your username and ``40132`` with your port!
+.. warning:: Replace ``isabell`` with your username and ``40132`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 

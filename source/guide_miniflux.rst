@@ -93,7 +93,7 @@ Check the Miniflux_ website or GitHub_ for the `latest release`_ and copy the do
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd bin/
+ [isabell@stardust ~]$ cd ~/bin/
  [isabell@stardust bin]$ wget https://github.com/miniflux/miniflux/releases/download/42.23.1/miniflux-linux-amd64
  […]
  Saving to: ‘miniflux-linux-amd64’
@@ -225,7 +225,7 @@ Check the `Miniflux`_ website for news and/or breaking changes.
 .. _Github: https://github.com/miniflux/miniflux
 .. _Apache License 2.0: https://github.com/miniflux/miniflux/blob/master/LICENSE
 .. _latest release: https://github.com/miniflux/miniflux/releases/latest
-.. _Miniflux documentation: https://docs.miniflux.app/en/latest/configuration.html
+.. _Miniflux documentation: https://miniflux.app/docs/configuration.html
 .. _Feed: https://github.com/miniflux/miniflux/releases.atom
 
 ----

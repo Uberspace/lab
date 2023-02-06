@@ -7,6 +7,7 @@
 .. categorize your guide! refer to the manual for the current list of tags: https://manual.uberspace.de/tags
 .. tag:: lang-php
 .. tag:: web
+.. tag:: audience-business
 
 .. sidebar:: About
 
@@ -33,12 +34,12 @@ Framadate is licensed under the `CeCILL-B License <http://www.cecill.info/>`_. T
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
   [isabell@stardust ~]$ uberspace tools version show php
-  Using 'PHP' version: '7.1'
+  Using 'PHP' version: '8.1'
   [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -54,22 +55,23 @@ Your Framadate URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
-First download the files from the Framadate repository with Git into the folder ``~/html`` and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.10`` with the current version.
+First, cd into the folder ``~/html`` and remove the ``nocontent.html`` file. Then, download the files from the Framadate repository with Git and switch to the `latest stable version <https://framagit.org/framasoft/framadate/framadate/tags>`_. Be sure to replace the version ``1.1.19`` with the current version.
 
 ::
 
   [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ rm nocontent.html
   [isabell@stardust ~]$ git clone https://framagit.org/framasoft/framadate/framadate.git .
   ...
-  [isabell@stardust ~]$ git checkout 1.1.10
+  [isabell@stardust ~]$ git checkout 1.1.19
   ...
   [isabell@stardust ~]$
 
-Step 2
-------
+Install dependencies
+--------------------
 
 Install the necessary libraries with composer:
 
@@ -79,8 +81,8 @@ Install the necessary libraries with composer:
   ...
   [isabell@stardust ~]$
 
-Step 3
-------
+Create database
+---------------
 
 Create a database for Framadate:
 
@@ -97,7 +99,7 @@ Configure Framadate
 
 Now that the database is ready, you have to configure Framadate to use it.
 
-Go to the page ``https://isabell.uber.space/admin/install.php`` and fill the form with the following string: ``mysql:host=localhost;dbname=<username>_framadate;port=3306``, your database user and your MariaDB-password.
+Go to the page ``https://isabell.uber.space/admin/install.php`` and fill the form with the following string: ``mysql:host=localhost;dbname=<username>_framadate;port=3306``, your database user and password.
 
 .. warning:: Be sure to replace ``<username>`` with your username!
 
@@ -149,6 +151,10 @@ To enable URL rewriting, to have links in the form ``https://isabell.uber.space/
 
   If you choose not to do this, set ``const URL_PROPRE = false;`` in ``~/html/app/inc/config.php`` or you won't be able to access your polls.
 
+.. note::
+
+  If you're using an :manual_anchor:`additional DocumentRoot <web-documentroot.html#additional-documentroots>` , you need to modify the ``.htaccess`` file within the DocumentRoot by adding ``RewriteBase /`` to it.
+
 Mail
 ----
 
@@ -161,10 +167,10 @@ First create a :manual_anchor:`new mailbox user <mail-mailboxes.html#additional-
   New mailbox created for user: 'framadate', it will be live in a few minutes...
   [isabell@stardust ~]$
 
-Then configure Framadate to use that just created mailbox. Edit the SMTP configuration in  ``~/html/app/inc/config.php``:
+Then configure Framadate to use that newly created mailbox. Edit the SMTP configuration in  ``~/html/app/inc/config.php``:
 
 .. code-block:: php
-  
+
   'use_smtp' => true,
   'smtp_options' => [
           'host' => 'stardust.uberspace.de',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
@@ -177,10 +183,10 @@ Then configure Framadate to use that just created mailbox. Edit the SMTP configu
 
 .. note ::
 
-  You have to enter the password you assigned while creating the new mail user
+  You have to enter the password you assigned while creating the new mail user.
 
 If you do not want to use the mail features, set ``'use_smtp' => false,``.
 
-Tested with Framadate 1.1.10, Uberspace 7.3.0.0
+Tested with Framadate 1.1.19, Uberspace 7.13, PHP 8.1
 
 .. author_list::

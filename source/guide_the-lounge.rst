@@ -17,7 +17,7 @@ The Lounge
 
 .. tag_list::
 
-`The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License, this self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
+`The Lounge`_ is an open source IRC web client written in JavaScript and distributed under the MIT License. This self hosted client stays always connected so you never miss out on the most important chats. Another goal of The Lounge is to bring modern chat features such as push notifications, link previews and many more to your IRC chats.
 
 The Lounge is based on the project Shout_ from which it is a community driven fork.
 
@@ -32,12 +32,12 @@ The Lounge is based on the project Shout_ from which it is a community driven fo
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in version 16:
 
 ::
 
- [isabell@stardusts ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ [isabell@stardusts ~]$ uberspace tools version use node 16
+ Selected Node.js version 16
  [isabell@stardusts ~]$
 
 Your The Lounge URL needs to be setup:
@@ -56,7 +56,7 @@ Use ``npm`` to install ``thelounge`` globally:
 
  [isabell@stardusts ~]$ npm install --global thelounge
  [...]
- + thelounge@2.7.0
+ + thelounge@4.2.0
  added 242 packages in 31.627s
  [isabell@stardusts ~]$
 
@@ -66,7 +66,7 @@ Verify installation
 ::
 
  [isabell@stardusts ~]$ thelounge --version
- v2.7.0
+ v4.2.0
 
 Configuration
 =============
@@ -125,6 +125,7 @@ Create ``~/etc/services.d/thelounge.ini`` with the following content:
 
  [program:thelounge]
  command=thelounge start
+ startsecs=60
  autostart=yes
  autorestart=yes
 
@@ -143,29 +144,29 @@ Since we do not run a public server we have to add users before we can use The L
 .. code-block:: console
  :emphasize-lines: 2, 3
 
- [isabell@stardusts ~]$ thelounge add isabell
- 2018-10-09 20:20:20 [PROMPT] Enter password:
- 2018-10-09 20:20:22 [PROMPT] Save logs to disk? (yes)
- 2018-10-09 20:21:12 [INFO] User isabel created.
- 2018-10-09 20:21:12 [INFO] User file located at /home/isabell/.lounge/users/isabel.json.
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$ thelounge add isabell
+ 2021-10-21 11:46:33 [PROMPT] Enter password:
+ 2021-10-21 11:46:39 [PROMPT] Save logs to disk? (yes)
+ 2021-10-21 11:46:41 [INFO] User isabell created.
+ 2021-10-21 11:46:41 [INFO] User file located at  /home/isabell/.lounge/users/isabel.json.
+ [isabell@stardust ~]$
 
 If you need to change the password for a user this can be done with:
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardusts ~]$ thelounge reset isabell
- 2018-10-09 20:22:02 [PROMPT] Enter new password:
- 2018-10-09 20:22:06 [INFO] Successfully reset password for isabel.
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$ thelounge reset isabell
+ 2021-10-21 11:47:02 [PROMPT] Enter new password:
+ 2021-10-21 11:47:06 [INFO] Successfully reset password for isabel.
+ [isabell@stardust ~]$
 
 If you need to change the settings for a user this can be done with:
 
 ::
 
- [isabell@stardusts ~]$ thelounge edit isabell
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$ thelounge edit isabell
+ [isabell@stardust ~]$
 
 Launch The Lounge
 -----------------
@@ -184,21 +185,21 @@ To get the latest version of The Lounge you can use the ``npm`` package manager:
 
 ::
 
- [isabell@stardusts ~]$ npm update --global thelounge
+ [isabell@stardust ~]$ npm update --global thelounge
  + thelounge@2.7.1
     added 4 packages, removed 22 packages and updated 12 packages in 3.176s
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$
 
 Afterwards you have to restart you supervisord for The Lounge:
 
 .. code-block:: console
 
- [isabell@stardusts ~]$ supervisorctl restart thelounge
+ [isabell@stardust ~]$ supervisorctl restart thelounge
  thelounge: stopped
  thelounge: started
- [isabell@stardusts ~]$ supervisorctl status
+ [isabell@stardust ~]$ supervisorctl status
  thelounge                        RUNNING   pid 11044, uptime 0:00:08
- [isabell@stardusts ~]$
+ [isabell@stardust ~]$
 
 If it's not in state RUNNING, check your configuration.
 
@@ -210,6 +211,6 @@ If it's not in state RUNNING, check your configuration.
 
 ----
 
-Tested with The Lounge 2.7.1, Uberspace 7.1.13.0
+Tested with The Lounge 4.2.0, Uberspace 7.11.5
 
 .. author_list::

@@ -2,6 +2,7 @@
 
 .. tag:: lang-go
 .. tag:: sync
+.. tag:: file-storage
 
 .. highlight:: console
 
@@ -16,7 +17,7 @@ Syncthing
 
 .. tag_list::
 
-Syncthing_ replaces proprietary sync and cloud services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
+Syncthing_ replaces proprietary file sync services with something open, trustworthy and decentralized. Your data is your data alone and you deserve to choose where it is stored, if it is shared with some third party and how it's transmitted over the Internet.
 
 ----
 
@@ -35,7 +36,7 @@ Your syncthing URL needs to be setup:
 Installation
 ============
 
-Like a lot of Go software, Syncthing is distributed as a single binary. Download Syncthing's latests release_,
+Like a lot of Go software, Syncthing is distributed as a single binary. Download Syncthing's latest release_,
 verify the checksum specified in the respective ``.sha256`` file and finally extract the files.
 
 ::
@@ -133,7 +134,7 @@ To protect the access to your syncthing instance, visit your domain and set a us
 Best practice
 =============
 
-right now the server will sync with your devices only via a relay-server, wich is not super fast. To improve performance, you can connect directly by opening a port in the firewall
+Right now the server will sync with your devices only via a relay-server, which is not super fast. To improve performance, you can connect directly by opening a port in the firewall
 
 ::
 

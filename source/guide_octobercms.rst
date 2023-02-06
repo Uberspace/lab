@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
 
 .. tag:: lang-php
 .. tag:: web
@@ -35,13 +35,15 @@ The OctoberCMS platform is released under the `MIT License`_. All relevant infor
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
+
+You need to know your MySQL database user and password:
 
 .. include:: includes/my-print-defaults.rst
 
@@ -52,22 +54,6 @@ Your domain needs to be set up:
 Installation
 ============
 
-We will install October using the official command-line interface (CLI). To do this simply ``cd`` into your :manual:`DocumentRoot <web-documentroot>` and use the the following command to download the install script using cURL and execute it with PHP.
-
-.. code-block:: console
-
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust isabell]$ curl -s https://octobercms.com/api/installer | php
- All settings correct for installing OctoberCMS
- Downloading OctoberCMS...
- OctoberCMS successfully installed to: /var/www/virtual/$USER/html
- [isabell@stardust ~]$
-
-The installer script will download all necessary files including the CLI so you can directly continue with the configuation of your October installation afterwards.
-
-Configuration
-=============
-
 During the setup process you will be asked for database credentials. We use MySQL and suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` for October to save your data. You have to create this database first using the following command.
 
 .. code-block:: console
@@ -76,38 +62,55 @@ During the setup process you will be asked for database credentials. We use MySQ
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_october"
  [isabell@stardust ~]$
 
-To start the CLI that will guide you trough the setup use the ``october:install`` command.
+We will install October using composer. First, make sure that your DocumentRoot is empty:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ php artisan october:install
+ [isabell@stardust ~]$ rm html/nocontent.html
+ [isabell@stardust ~]$
+
+Initialize the composer project in your DocumentRoot:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ composer create-project october/october /var/www/virtual/$USER/html
  [...]
  [isabell@stardust ~]$
 
-The following list contains information on what you need to enter in the CLI setup:
+Change to your DocumentRoot and then start the installer:
 
-    #. Database type: ``MySQL``
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ php artisan october:install
+
+
+The CLI installer/setup will now ask you for various settings:
+
+    #. Application URL: the domain of your uberspace e.g. ``https://isabell.uber.space``
+    #. Backend URI: how you will access your backend, e.g. ``/backend``
+    #. Database type: ``MySQL`` (default)
     #. MySQL host: ``localhost`` (default)
     #. MySQL port: ``3306`` (default)
-    #. Database name: ``isabell_october`` (the name of the database you just created)
+    #. Database name: ``isabell_october`` (the name of the database you created earlier)
     #. MySQL login: ``isabell`` (your username)
     #. MySQL password: your MySQL password that you've got from ``my_print_defaults client``
-    #. First name, Last name, Email adress: your account information
-    #. Admin login: your admin username (to follow security best practices please don't use ``admin`` here)
-    #. Admin password: your admin password (please choose a strong, secure password to prevent hacking of your installation)
-    #. Confirm that the entered information is correct
-    #. Application URL: the domain of your uberspace e.g. ``https://isabell.uber.space``
-    #. Configure advanced options?: select no
+    #. Include demo content, yes or no?
+    #. License Key
 
-With the confirmation of the last step October will setup your database and install a demo package.
 
-You can now visit your domain and you will see the frontend of the installed demo package. To log in to the admin panel append ``/backend`` to your URL (e.g. ``https://isabell.uber.space/backend``).
+Next, you will be asked to run artisan to migrate the database:
+
+.. code-block:: console
+
+ [isabell@stardust html]$ php artisan october:migrate
+
+To finish installation, append the backend URI you set up earlier (e.g. ``https://isabell.uber.space/backend``). Here, you will be asked to set up the admin user.
 
 Best practices
 ==============
 
-You can use the October CLI which we used to setup your instace also to e.g. install plugins. See the `Console command list`_ to explore all possibilities.
+You can use the October CLI which we used to setup your instance also to e.g. install plugins. See the `Console command list`_ to explore all possibilities.
 
 Updates
 =======
@@ -137,6 +140,6 @@ To update October and your installed plugins you can use the ``october:update`` 
 
 ----
 
-Tested with OctoberCMS 1.0.443, Uberspace 7.1.14
+Tested with OctoberCMS 3.1.25, Uberspace 7.13, PHP 8.1
 
 .. author_list::

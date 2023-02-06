@@ -43,18 +43,40 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-.. include:: includes/my-print-defaults.rst
+gunicorn
+-----
+
+Install the required gunicorn package with pip.
+
+::
+
+  [isabell@stardust ~]$ pip3.6 install gunicorn --user
+
+After that, continue with setting it up as a service.
+
+Create ~/etc/services.d/gunicorn.ini with the following content:
+
+::
+
+  [program:gunicorn]
+  command=gunicorn --error-logfile - --reload --chdir ~/MyDjangoProject --bind 0.0.0.0:8000 MyDjangoProject.wsgi:application
+
+After creating the configuration, tell supervisord to refresh its configuration and start the service:
+
+::
+
+  [isabell@stardust ~]$ supervisorctl reread
+  gunicorn: available
+  [isabell@stardust ~]$ supervisorctl update
+  gunicorn: updated process group
+  [isabell@stardust ~]$ supervisorctl status
+  SERVICE                            RUNNING   pid 26020, uptime 0:03:14
+
+If it’s not in state RUNNING, check the logs (eg. ~/logs/supervisord.log).
 
 Installation
 ============
 
-Step 1
-------
-
-.. include:: includes/install-uwsgi.rst
-
-Step 2
-------
 Install django
 
 ::
@@ -62,6 +84,9 @@ Install django
  [isabell@stardust ~]$ pip3.6 install django --user
  [isabell@stardust ~]$
 
+.. hint::
+
+  Depending on your database configuration, additional modules like ``mysqlclient`` might be required.
 
 Create a django project. We will use "MyDjangoProject" during this guide.
 
@@ -96,29 +121,6 @@ If you need to add multiple host names, separate them with commas like this:
 
  ALLOWED_HOSTS = ['isabell.uber.space', 'www.isabell.example']
 
-MySQL
------
-
-It is recommended to run Django with a database other than the default
-SQLite once you go into production. Additionally, the SQLite version
-provided by the underlying CentOS 7 is too old for Django >=2.2. The
-following step changes the database engine to the better performing MySQL.
-
-Open ``~/MyDjangoProject/MyDjangoProject/settings.py`` and
-edit the database block to look like this
-
-::
-
-  DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-	    'NAME': 'DB_NAME',
-       	'USER': 'DB_USER',
-        'PASSWORD': 'DB_PASSWORD',
-       	'HOST': 'localhost',
-    }
-  }
-
 Configure web server
 --------------------
 
@@ -135,8 +137,10 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 
 .. warning:: Replace ``<username>`` with your username! (4 times)
 
+.. warning:: Ensure that ``static-map`` matches the path configured in django's ``STATIC_ROOT``. Otherwise all images, stylesheets and javascript will be missing from your site.
+
 .. code-block:: ini
-  :emphasize-lines: 2,3,17,18
+  :emphasize-lines: 2,3,9,17,18
 
   [uwsgi]
   base = /home/<username>/MyDjangoProject/MyDjangoProject
@@ -160,11 +164,11 @@ To deploy your application with uwsgi, create a file at ``~/uwsgi/apps-enabled/m
 Test installation
 -----------------
 
-Perform a CURL request to djangos port to see if your installation succeeded:
+Perform a CURL request to Django's port to see if your installation succeeded:
 
 ::
 
- [isabell@stardust ~]$ curl -I localhost:8000
+ [isabell@stardust ~]$ curl -I https://isabell.uber.space
  HTTP/1.1 200 OK
  Content-Type: text/html
  X-Frame-Options: SAMEORIGIN

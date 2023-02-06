@@ -5,7 +5,7 @@
 .. tag:: lang-php
 .. tag:: accounting
 .. tag:: customer-management
-.. tag:: business 
+.. tag:: audience-business
 .. tag:: web
 
 .. sidebar:: Logo
@@ -18,6 +18,12 @@ Invoice Ninja
 #############
 
 .. tag_list::
+
+.. error::
+
+  This guide seems to be **broken** for the current versions of Invoice Ninja, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/850
 
 `Invoice Ninja`_ is a free, open-source, self-hosted invoicing software with built-in support for recurring invoices, time-tracking and online payments.
 
@@ -56,7 +62,7 @@ Your domain needs to be set up:
 Installation
 ============
 
-We will be installing Invoice Ninja using composer. 
+We will be installing Invoice Ninja using composer.
 ``cd`` to your :manual:`DocumentRoot <web-documentroot>`, download the latest release, and install the dependencies using ``composer``:
 
 .. code-block:: console
@@ -78,7 +84,7 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/invoiceninja/public html
  [isabell@stardust ~]$
 
@@ -146,14 +152,14 @@ Sending emails in the background
 --------------------------------
 
 Invoice Ninja sends emails in the current request by default, which can lead to slow response times. You can add a background service that takes care of sending the emails:
- 
+
 Add this to the ``.env`` file in the application directory:
 
 ::
 
  QUEUE_DRIVER=database
 
-After that you can :manual_anchor:`add a new supervisord service <daemons-supervisord.html#create-a-service>` with 
+After that you can :manual_anchor:`add a new supervisord service <daemons-supervisord.html#create-a-service>` with
 
 ::
 
@@ -196,7 +202,7 @@ You can generate the secret key with this command:
 
 ::
 
- [isabell@stardust ~] < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~] pwgen 32 1
  <randomSecret>
  [isabell@stardust ~]$
 
@@ -220,7 +226,7 @@ The ``--force`` arguments are needed to prevent warnings about the application r
  [isabell@stardust invoiceninja]$ git pull
  [isabell@stardust invoiceninja]$ composer install
  Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file 
+ Installing dependencies (including require-dev) from lock file
  […]
  [isabell@stardust invoiceninja]$ php artisan optimize --force
  Generating optimized class loader

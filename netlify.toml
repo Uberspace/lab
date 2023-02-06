@@ -1,3 +1,7 @@
+[build]
+  publish = "build/dirhtml"
+  command = "make dirhtml"
+
 [[redirects]]
   from = "/en/*"
   to = "/:splat"

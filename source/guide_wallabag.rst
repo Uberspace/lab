@@ -30,12 +30,12 @@ Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize a
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -43,6 +43,13 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 Also, the domain you want to use for Wallabag must be set up as well:
 
 .. include:: includes/web-domain-list.rst
+
+Remove the placeholder html file from the html folder:
+
+::
+
+ [isabell@stardust ~]$ rm ~/html/nocontent.html
+ [isabell@stardust ~]$
 
 Installation & Configuration
 ==============================
@@ -52,7 +59,7 @@ First get the Wallabag source code from GitHub_:
 ::
 
   [isabell@stardust ~]$ git clone https://github.com/wallabag/wallabag.git ~/html
-  Cloning into '/home/isabell/wallabag'...
+  Cloning into '/home/isabell/html'...
   remote: Counting objects: 46655, done.
   remote: Compressing objects: 100% (23/23), done.
   remote: Total 46655 (delta 10), reused 20 (delta 9), pack-reused 46620
@@ -69,7 +76,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
 * ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
 * ``domain_name:`` put in here your domain or subdomain like https://isabell.uber.space
-* ``secret:`` type in any random string here, do not keep the defaul string!
+* ``secret:`` type in any random string here, do not keep the default string!
 * ``twofactor_sender:`` choose an email address to be used as sender
 * ``fosuser_registration:`` set this to false, otherwise anyone can register at your wallabag instance
 * ``from_email:`` choose an email address to be used as sender (can be the same as above)
@@ -77,7 +84,7 @@ Change to that folder and run ``make install``. During the installation process,
 * ``Would you like to create a new admin user (recommended)?:`` yes
 * ``Username:`` admin *- or you can also choose any other name, that could increase security*
 * ``Password:`` *choose a good password here*
-* ``Email:`` set in a mailadress to use with this admin account
+* ``Email:`` set in a mail address to use with this admin account
 
 .. code-block:: console
  :emphasize-lines: 1,2,10,11,12,17,23,25,26,28,30,31,32,33

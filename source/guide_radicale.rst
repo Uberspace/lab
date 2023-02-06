@@ -62,35 +62,35 @@ download the latest version and install bcrypt for storing hashed passwords.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ python3 -m pip install --user --upgrade radicale radicale bcrypt passlib
+  [isabell@stardust ~]$ python3.9 -m pip install --user --upgrade radicale bcrypt passlib
   Collecting radicale
-  Using cached https://files.pythonhosted.org/packages/be/50/b5094950d53f11e56eb17932469e0e313275da0c5e633590c939863f3c37/Radicale-2.1.11.tar.gz
-  Requirement already up-to-date: bcrypt in ./.local/lib/python3.4/site-packages
-  Requirement already up-to-date: vobject>=0.9.6 in ./.local/lib/python3.4/site-packages (from radicale)
-  Collecting python-dateutil>=2.7.3 (from radicale)
-    Using cached https://files.pythonhosted.org/packages/74/68/d87d9b36af36f44254a8d512cbfc48369103a3b9e474be9bdfe536abfc45/python_dateutil-2.7.5-py2.py3-none-any.whl
-  Requirement already up-to-date: six>=1.4.1 in ./.local/lib/python3.4/site-packages (from bcrypt)
-  Requirement already up-to-date: cffi>=1.1 in ./.local/lib/python3.4/site-packages (from bcrypt)
-  Collecting pycparser (from cffi>=1.1->bcrypt)
-    Using cached https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz
-  Installing collected packages: python-dateutil, radicale, pycparser
-    Found existing installation: python-dateutil 2.7.3
-      Uninstalling python-dateutil-2.7.3:
-        Successfully uninstalled python-dateutil-2.7.3
-    Found existing installation: Radicale 2.1.10
-      Uninstalling Radicale-2.1.10:
-        Successfully uninstalled Radicale-2.1.10
-    Running setup.py install for radicale ... done
-    Found existing installation: pycparser 2.18
-      Uninstalling pycparser-2.18:
-        Successfully uninstalled pycparser-2.18
-    Running setup.py install for pycparser ... done
-  Successfully installed pycparser-2.19 python-dateutil-2.7.5 radicale-2.1.11
-  You are using pip version 9.0.1, however version 18.1 is available.
-  You should consider upgrading via the 'pip install --upgrade pip' command.
+    Downloading Radicale-3.1.8-py3-none-any.whl (138 kB)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.1/138.1 KB 12.8 MB/s eta 0:00:00
+  Collecting bcrypt
+    Downloading bcrypt-4.0.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (594 kB)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 594.1/594.1 KB 26.9 MB/s eta 0:00:00
+  Collecting passlib
+    Downloading passlib-1.7.4-py2.py3-none-any.whl (525 kB)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 525.6/525.6 KB 52.0 MB/s eta 0:00:00
+  Collecting defusedxml
+    Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+  Collecting python-dateutil>=2.7.3
+    Downloading python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 247.7/247.7 KB 38.0 MB/s eta 0:00:00
+  Collecting vobject>=0.9.6
+    Downloading vobject-0.9.6.1.tar.gz (58 kB)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.6/58.6 KB 12.0 MB/s eta 0:00:00
+    Preparing metadata (setup.py) ... done
+  Collecting six>=1.5
+    Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+  Using legacy 'setup.py install' for vobject, since package 'wheel' is not installed.
+  Installing collected packages: passlib, six, defusedxml, bcrypt, python-dateutil, vobject, radicale
+    Running setup.py install for vobject ... done
+  Successfully installed bcrypt-4.0.0 defusedxml-0.7.1 passlib-1.7.4 python-dateutil-2.8.2 radicale-3.1.8 six-1.16.0 vobject-0.9.6.1
+  WARNING: You are using pip version 22.0.4; however, version 22.2.2 is available.
+  You should consider upgrading via the '/bin/python3.9 -m pip install --upgrade pip' command.
   ...
   [isabell@stardust ~]$
-
 
 Configuration
 =============
@@ -126,7 +126,7 @@ Create a file ``~/etc/services.d/radicale.ini`` and put the following in it:
 .. code-block:: ini
 
   [program:radicale]
-  command=radicale -f
+  command=radicale
 
 
 Finishing installation
@@ -161,22 +161,15 @@ For every following user use it without ``-c``:
 Configure web server
 --------------------
 
-In order for your Radicale instance to be reachable from the web, you need to put a file called ``.htaccess`` into your ``~/html`` folder (or any other DocumentRoot, see the :manual:`document root <web-documentroot>` for details), with the following content:
+In order for your Radicale instance to be reachable from the web, you need to connect it to the uberspace frontend using a web backend (:manual:`web backends <web-backends>`):
 
-.. code-block:: ini
-  :emphasize-lines: 3,9
+.. code-block:: console
 
-  AuthType      Basic
-  AuthName      "Radicale - Password Required"
-  AuthUserFile  "/var/www/virtual/<username>/htpasswd"
-  Require       valid-user
-
-  DirectoryIndex disabled
-
-  RewriteEngine On
-  RewriteRule ^(.*) http://<username>.local.uberspace.de:8000/$1 [P]
-
-Again, don't forget to fill in your username!
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8000
+  Set backend for / to port 8000; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$ uberspace web backend list
+  / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
 
 Start Service
@@ -193,18 +186,18 @@ Updates
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ python3 -m pip install --upgrade radicale
+  [isabell@stardust ~]$ python3.9 -m pip install --user --upgrade radicale
   [isabell@stardust ~]$ supervisorctl restart radicale
   radicale: stopped
   radicale: started
   [isabell@stardust ~]$
 
 .. _Radicale: https://radicale.org/
-.. _Changelog: https://radicale.org/news/
-.. _Config: https://radicale.org/configuration/
+.. _Changelog: https://github.com/Kozea/Radicale/releases/
+.. _Config: https://radicale.org/3.0.html#documentation
 
 ----
 
-Tested with Radicale 2.1.11, Uberspace 7.1.17
+Tested with Radicale 3.1.8, Uberspace 7.13.0
 
 .. author_list::

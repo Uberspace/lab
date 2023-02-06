@@ -5,6 +5,8 @@
 .. author:: Gökhan Sirin <g.sirin@gedankengut.de>
 
 .. tag:: lang-php
+.. tag:: lang-c
+.. tag:: proprietary
 
 .. sidebar:: Logo
 
@@ -65,59 +67,19 @@ As you know, your Uberspace supports multiple PHP versions. The ionCube Loader d
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 
 
-.. warning:: Make sure to replace "isabell" in the next step with your own username!
-
-
-
-ionCube Loader for PHP 5.6
+ionCube Loader for PHP 8.1
 ==========================
 
-Create the following configuration directive if you are using PHP 5.6.
+Create the following configuration directive if you are using PHP 8.1.
 
 ::
 
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_5.6.so' > etc/php.early.d/ioncube.ini
-  [isabell@stardust ~]$
-
-
-
-ionCube Loader for PHP 7.0
-==========================
-
-Create the following configuration directive if you are using PHP 7.0.
-
-::
-
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.0.so' > etc/php.early.d/ioncube.ini
-  [isabell@stardust ~]$
-
-
-
-ionCube Loader for PHP 7.1
-==========================
-
-Create the following configuration directive if you are using PHP 7.1.
-
-::
-
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.1.so' > etc/php.early.d/ioncube.ini
-  [isabell@stardust ~]$
-
-
-
-ionCube Loader for PHP 7.2
-==========================
-
-Create the following configuration directive if you are using PHP 7.2.
-
-::
-
-  [isabell@stardust ~]$ echo 'zend_extension=/home/isabell/ioncube/ioncube_loader_lin_7.2.so' > etc/php.early.d/ioncube.ini
+  [isabell@stardust ~]$ echo "zend_extension=$HOME/ioncube/ioncube_loader_lin_8.1.so" > etc/php.early.d/ioncube.ini
   [isabell@stardust ~]$
 
 
@@ -133,6 +95,6 @@ Changes to the PHP configuration will take effect after reloading PHP:
 
 ----
 
-Tested with IonCube 10.2.7, Uberspace 7.1.16
+Tested with IonCube 12.0.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

@@ -17,7 +17,7 @@ Flatboard
 
 .. tag_list::
 
-Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown [1]_ or BBcode.
+Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON and Markdown [1]_ or BBcode.
 
 ----
 
@@ -93,11 +93,11 @@ You will need to enter the following information:
 
 Then push the Unzip-Button.
 
-  * titel: titel of your forum
+  * title: title of your forum
   * description: what is your forum about
-  * E-Mail: your admin e-mail adress
+  * E-Mail: your admin e-mail address
   * administrator: set up your admin password
-  * language: the language you prefer (English, French, German, Russian, Italiano) « Yes, the question is double.
+  * language: the language you prefer (English, French, German, Russian, Italian) « Yes, the question is double.
 
 At least you have to delete the ``install.php``.
 
@@ -118,7 +118,7 @@ Updates
  data/
  […]
  data/key.php
- [isabell@stardust html]$ mv flatforum-data_backup.tar.gz /home/isabell/
+ [isabell@stardust html]$ mv flatforum-data_backup.tar.gz $HOME
  [isabell@stardust html]$
 
 2. Download the latest version from Flatboard_.
@@ -127,7 +127,7 @@ Updates
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget http://flatboard.free.fr/uploads/plugins/flatboard_latest.zip
+ [isabell@stardust html]$ wget https://flatboard.org/download.php?file=flatboard_latest.zip
  […]
  Saving to: ‘flatboard_latest.zip’
 
@@ -186,12 +186,12 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 .. _feed: https://github.com/Fred89/flatboard/commits/master.atom
 .. _twitter: https://twitter.com/flatboardoffic1
-.. _Flatboard: http://flatboard.free.fr
+.. _Flatboard: https://flatboard.org/
 
 .. [1] For the moment Markdown is not available, but should be fixed with one of the next updates.
 
 ----
 
-Tested with Flatboard 2.1 "PIÉMONT", Uberspace 7.2.2.2
+Tested with Flatboard 2.5, Uberspace 7.13, PHP 8.0
 
 .. author_list::
