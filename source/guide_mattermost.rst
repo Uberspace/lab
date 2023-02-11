@@ -219,7 +219,7 @@ Use the script attached to update Mattermost to the current version. Run the scr
 
 	printf "Downloading Version v$version...\n"
 	mattermostfile="mattermost-$version-linux-amd64.tar.gz"
-	wget https://releases.mattermost.com/$1/$mattermostfile
+	wget https://releases.mattermost.com/${version}/$mattermostfile
 
 	printf "\nExtracting Version ..."
 	tar -xf $mattermostfile --transform='s,^[^/]\+,\0-upgrade,'
