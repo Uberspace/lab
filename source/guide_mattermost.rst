@@ -203,7 +203,8 @@ Use the script attached to update Mattermost to the current version. Run the scr
 	then
 		printf "No manual version given. Check from official website ...\n"
 
-		version=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq '.tag_name' | tail -c +3 | head -c -2)
+		tag_name=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq --raw-output '.tag_name')
+		version=${TAG_NAME:1} # This will remove the first character `v` from the version tag `v1.2.3`
 
 		printf "Newest Version detected: v$version\n"
 	fi
