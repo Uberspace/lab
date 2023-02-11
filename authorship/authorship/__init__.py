@@ -207,7 +207,7 @@ def process_authorlists(app, doctree, fromdocname):
                 guides_list += link_entry
 
                 # I can't figure out a way to get the link and title from a page name..
-                link = '/' + guide + '.html'
+                link = "/" + guide + ".html"
                 title = guide.partition("_")[2].title()
 
                 link_wrapper = addnodes.compact_paragraph()

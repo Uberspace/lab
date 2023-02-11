@@ -28,10 +28,10 @@ function circleRatio() {
 
 function autoLinks(match, link, offset, string) {
   const reMail = new RegExp(
-    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
   );
   const reURL = new RegExp(
-    /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+    /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
   );
   if (link.match(reMail)) {
     link = `<a href="mailto:${link}">${link}</a>`;
@@ -44,7 +44,7 @@ function autoLinks(match, link, offset, string) {
 function formatAuthor(ele) {
   const text = ele.html().trim();
   const idx = text.search(
-    /[^A-Za-z\sÂÀÅÃÄâàáåãäÇçćčđÉÊÈËéêèëÓÔÒÕØÖóôòõöŠšßÚÛÙÜúûùüÝŸýÿŽž]/
+    /[^A-Za-z\sÂÀÅÃÄâàáåãäÇçćčđÉÊÈËéêèëÓÔÒÕØÖóôòõöŠšßÚÛÙÜúûùüÝŸýÿŽž]/,
   );
   const author = $('<span class="author"></span>');
   const extra = $("<small></small>");
@@ -63,7 +63,7 @@ function formatAuthor(ele) {
 
 function addTagListToToc() {
   let toc_tags = $(
-    '<li class="toctree-l1"><a class="reference internal" href="/tags/">Tags</a></li>'
+    '<li class="toctree-l1"><a class="reference internal" href="/tags/">Tags</a></li>',
   );
   let toc_01 = $('[aria-label="main navigation"] > ul:nth-child(6) > li:eq(0)');
   toc_01.after(toc_tags);
