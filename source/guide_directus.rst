@@ -72,7 +72,7 @@ Create directory ``directus`` and sub directory ``logs``.
 
   As CentOS 7 (uberspace) only provides ``glibc 2.17``, the ``argon2`` module on needs to be manually recompiled. This will avoid ``Error: /lib64/libc.so.6: version GLIBC_2.25``
 
-    After installing directus you may have to delete ``./node_modules/directus/node_modules/argon2`` to force directus to use the locally compiled version.
+  After installing directus need to delete ``./node_modules/directus/node_modules/argon2`` to force directus to use the locally compiled version.
 
 
 ::
