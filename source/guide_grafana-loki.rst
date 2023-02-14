@@ -87,7 +87,7 @@ Create the file ``~/etc/loki/loki.yaml`` with the following content:
   auth_enabled: false
 
   server:
-    http_listen_address: <username>.local.uberspace.de
+    http_listen_address: 127.0.0.1
     http_listen_port: 3100
     grpc_listen_port: 9096
 
@@ -143,7 +143,7 @@ Connecting Grafana to Loki
 
 Go to the main page of your Grafana installation and navigate to Configuration / Data sources.
 
-Click "Add data source" and select "Loki". Choose a name you like and add ``http://<username>.local.uberspace.de:3100`` as HTTP URL (use your own uberspace user).
+Click "Add data source" and select "Loki". Choose a name you like and add ``http://127.0.0.1:3100`` as HTTP URL (use your own uberspace user).
 
 Promtail
 ========
@@ -180,7 +180,7 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
     filename: /home/<username>/tmp/positions.yaml
 
   clients:
-    - url: "http://<username>.local.uberspace.de:3100/loki/api/v1/push"
+    - url: "http://127.0.0.1:3100/loki/api/v1/push"
 
   scrape_configs:
     - job_name: "apache access logs"
