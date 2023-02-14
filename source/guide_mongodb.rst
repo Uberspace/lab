@@ -100,7 +100,7 @@ Create ``~/mongodb/setup.js``. Replace ``<username>`` with your Uberspace user n
     }
  )
 
-Use ``mongo`` to run ``setup.js``.
+Use ``mongo`` (starting with version 6 it's ``mongosh``) to run ``setup.js``.
 
 .. code-block::
  :emphasize-lines: 1
