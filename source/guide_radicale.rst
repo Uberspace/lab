@@ -177,21 +177,6 @@ In order for your Radicale instance to be reachable from the web, you need to co
   [isabell@stardust ~]$ uberspace web backend list
   / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
-Please note that if you attempt to install Radicale in a sub-directory, it does not like the prefix passed to it by nginx but also cannot deal without knowing the prefix, so ``uberspace web backend set /radicale --http --port 8000 --remove-prefix`` won't work. Instead, use a subdomain, e.g.:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace web domain add radicale.isabell.uber.space
-  The webserver's configuration has been adapted.
-  Now you can use the following records for your DNS:
-      A -> 185.26.156.138
-      AAAA -> 2a00:d0c0:200:0:7c2e:74ff:fea9:756f
-  [isabell@stardust ~]$ uberspace web backend set radicale.isabell.uber.space --http --port 8000
-  Set backend for / to port 8000; please make sure something is listening!
-  You can always check the status of your backend using "uberspace web backend list".
-  [isabell@stardust ~]$ uberspace web backend list
-  radicale.isabell.uber.space/ http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
-
 
 And you're done!
 
