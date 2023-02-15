@@ -37,12 +37,12 @@ It is maintained by roots.io and released and distributed under MIT Licence.
 Prerequisites
 =============
 
-Wordpress recommends PHP_ in version 7.4:
+Wordpress recommends PHP_ in version 8.0:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.4
- Selected PHP version 7.4
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -104,7 +104,7 @@ Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/
 In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``).
 
 .. code-block:: ini
- :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
+ :emphasize-lines: 1,2,3,14,15,18,19,20,21,22,23,24,25
 
  DB_NAME='isabell_wp'
  DB_USER='isabell'
@@ -115,7 +115,7 @@ In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql
  # DATABASE_URL='mysql://database_user:database_password@database_host:database_$
 
  # Optional variables
- DB_HOST='localhost'
+ # DB_HOST='localhost'
  # DB_PREFIX='wp_'
 
  WP_ENV='development'
@@ -141,6 +141,7 @@ You now need to set your :manual:`document root <web-documentroot>` to the ``bed
 
 .. code-block:: console
 
+ [isabell@stardust ~]$ rm -f /var/www/virtual/$USER/html/nocontent.html
  [isabell@stardust ~]$ rmdir /var/www/virtual/$USER/html
 
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
@@ -262,6 +263,6 @@ To update Wordpress itself you have several options:
 
 ----
 
-Tested with Bedrock 1.17.1, Uberspace 7.11.5
+Tested with Bedrock 1.21.1, Wordpress 6.1.1, Uberspace 7.13.0, and PHP 8.0
 
 .. author_list::

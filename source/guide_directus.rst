@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: j3n57h0m45 <https://github.com/j3n57h0m45> 
+.. author:: j3n57h0m45 <https://github.com/j3n57h0m45>
 .. author:: André Lehner <https://github.com/Adashi12>
 
 .. tag:: self-hosting
@@ -72,11 +72,15 @@ Create directory ``directus`` and sub directory ``logs``.
 
   As CentOS 7 (uberspace) only provides ``glibc 2.17``, the ``argon2`` module on needs to be manually recompiled. This will avoid ``Error: /lib64/libc.so.6: version GLIBC_2.25``
 
+  After installing directus need to delete ``./node_modules/directus/node_modules/argon2`` to force directus to use the locally compiled version.
+
+
 ::
 
   [isabell@stardust ~]$ cd ~/directus
   [isabell@stardust directus]$ npm install @mapbox/node-pre-gyp argon2
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
   [isabell@stardust directus]$
 
 Installation and initialize a new instance of Directus_
@@ -161,6 +165,7 @@ Check GitHub_ repository of the project regularly to stay informed about the new
   [isabell@stardust directus]$ npx --yes npm-check-updates --upgrade
   [isabell@stardust directus]$ npm install
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
   [isabell@stardust directus]$ npx directus database migrate:latest
   [isabell@stardust directus]$ supervisorctl start directus
   [isabell@stardust directus]$

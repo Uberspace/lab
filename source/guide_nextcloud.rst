@@ -44,8 +44,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -167,10 +167,10 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
 .. code-block:: console
   :emphasize-lines: 1-3
 
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER=MyUserName
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS=MySuperSecretAdminPassword
-  [isabell@stardust html]$ MYSQL_PASSWORD=MySuperSecretMySQLPassword
-  [isabell@stardust html]$ php occ maintenance:install --admin-user "${NEXTCLOUD_ADMIN_USER}" --admin-pass "${NEXTCLOUD_ADMIN_PASS}" --database 'mysql' --database-name "${USER}_nextcloud"  --database-user "${USER}" --database-pass "${MYSQL_PASSWORD}" --data-dir "${HOME}/nextcloud_data"
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER='MyUserName'
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS='MySuperSecretAdminPassword'
+  [isabell@stardust html]$ MYSQL_PASSWORD='MySuperSecretMySQLPassword'
+  [isabell@stardust html]$ php occ maintenance:install --admin-user="${NEXTCLOUD_ADMIN_USER}" --admin-pass="${NEXTCLOUD_ADMIN_PASS}" --database='mysql' --database-name="${USER}_nextcloud"  --database-user="${USER}" --database-pass="${MYSQL_PASSWORD}" --data-dir="${HOME}/nextcloud_data"
   Nextcloud was successfully installed
   [isabell@stardust html]$
 
@@ -249,9 +249,9 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
-.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs. 
+.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
 
 Configure Nextcloud to rely on the configured cronjob:
 
@@ -482,6 +482,20 @@ The update to Nextcloud 21.0.1 may fail with the following error message:
 
 To solve the issue, apply the ``apc.enable_cli=1`` step above to your installation.
 
+Contacts app hangs
+------------------
+
+When your instance is hanging when you open the contacts app you might be affected by `Nextcloud issue #33048 <https://github.com/nextcloud/server/issues/33048>`_
+
+As a workaround you can remove or override ``ErrorDocument`` entries in the ``.htaccess`` file:
+
+.. code-block:: bash
+
+ ErrorDocument 403 "Forbidden"
+ ErrorDocument 404 "Not found"
+
+You need to reapply these changes after you installed Nextcloud updates or after you executed the ``maintenance:update:htaccess`` command.
+
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
 .. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
@@ -492,6 +506,6 @@ To solve the issue, apply the ``apc.enable_cli=1`` step above to your installati
 
 ----
 
-Tested with Nextcloud 24.0.1, Uberspace 7.12.2
+Tested with Nextcloud 25.0.1, Uberspace 7.14, PHP 8.1
 
 .. author_list::

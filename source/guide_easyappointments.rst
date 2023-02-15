@@ -41,8 +41,6 @@ Easy Appointments was first released 2016 and is maintained by Alex Tselegidis. 
 Prerequisites
 =============
 
-Easy Appointments works fine with any current (> 7.0) version of PHP.
-
 .. include:: includes/my-print-defaults.rst
 
 We suggest using an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. Create one with:
@@ -150,7 +148,7 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 * Backup all your files and the database before updating!
-* Download the new version, unzip it and overwrite all the files in your :manual:`document root <web-documentroot>` except `config.php`.
+* Download the new version, unzip it and overwrite all the files in your :manual:`document root <web-documentroot>` except ``config.php``.
 * Navigate your browser to ``https://isabell.uber.space/index.php/backend/update`` to run the database update.
 
 
@@ -164,6 +162,6 @@ Updates
 
 ----
 
-Tested with Easy Appointments 1.3.2, Uberspace 7.7.7
+Tested with Easy Appointments 1.4.3, Uberspace 7.13, PHP 8.1
 
 .. author_list::

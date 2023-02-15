@@ -128,6 +128,6 @@ Finish the update by open isabell.uber.space in your browser.
 
 ----
 
-Tested with osTicket 1.14.1 and Uberspace 7.4
+Tested with osTicket 1.17, Uberspace 7.13, PHP 8.1
 
 .. author_list::

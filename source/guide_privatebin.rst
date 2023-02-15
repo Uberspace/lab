@@ -39,12 +39,12 @@ All relevant legal information can be found in the Github_ repository of the pro
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 
@@ -66,13 +66,13 @@ Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it. Replace t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.3.4.tar.gz
+ [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.5.0.tar.gz
  […]
- Saving to: ‘1.3.4.tar.gz’
+ Saving to: ‘1.5.0.tar.gz’
 
  100%[=================================================>] 3,172,029   3.45MB/s   in 0.9s
 
- 2020-11-22 16:27:44 (8.32 MB/s) - ‘1.3.4.tar.gz’ saved [523648]
+ 2022-11-17 16:27:44 (8.32 MB/s) - ‘1.5.0.tar.gz’ saved [523648]
  [isabell@stardust html]$
 
 Untar the archive and then delete it. Replace the version in the file name with the one you downloaded.
@@ -80,8 +80,8 @@ Untar the archive and then delete it. Replace the version in the file name with 
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust html]$ tar -xzf 1.3.4.tar.gz --strip-components=1
- [isabell@stardust html]$ rm 1.3.4.tar.gz
+ [isabell@stardust html]$ tar -xzf 1.5.0.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm 1.5.0.tar.gz
  [isabell@stardust html]$
 
 
@@ -98,13 +98,14 @@ PrivateBin provides a .htaccess file, which blocks some known robots and link-sc
 Moving files outside of DocumentRoot
 ------------------------------------
 It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root.
-To do that, create a Folder  ``privatebin-data`` in ``/var/www/virtual/isabell/`` and move the folders to the new location.
+To do that, create a folder  ``privatebin-data`` in ``/var/www/virtual/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
 If not already there, go to the ``html`` directory before running ``mv``.
 
 .. code-block:: console
 
- [isabell@stardust html]$ mkdir ../privatebin-data
- [isabell@stardust html]$ mv -t ../privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ mkdir /var/www/virtual/isabell/privatebin-data
+ [isabell@stardust html]$ mv -t /var/www/virtual/isabell/privatebin-data cfg/ lib/ tpl/ vendor/
  [isabell@stardust html]$
 
 Changing index.php
@@ -116,7 +117,7 @@ Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of
 
  [...]
  // change this, if your php files and data is outside of your webservers document root
- define('PATH', '../privatebin-data/');
+ define('PATH', '/var/www/virtual/isabell/privatebin-data/');
  [...]
 
 Configuration
@@ -127,12 +128,12 @@ Configure your PrivateBin Instance
 
 .. note:: You don't need to change any of the default settings as they are mostly secure.
 
-You can find an example configuration file at ``cfg/conf.sample.php`` with the default settings. To change these, copy the sample file
-to ``cfg/conf.php`` and adapt the values as needed.
+You can find an example configuration file at ``cfg/conf.sample.php`` with the default settings. To change these, copy the sample file to ``cfg/conf.php`` and adapt the values as needed.
 
 .. code-block:: console
 
- [isabell@stardust html]$ cp ../privatebin-data/cfg/conf.sample.php ../privatebin-data/cfg/conf.php
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/privatebin-data
+ [isabell@stardust html]$ cp cfg/conf.sample.php cfg/conf.php
  [isabell@stardust html]$
 
 The file is in ini format, meaning that lines beginning with semicolons ``;`` are comments,
@@ -177,6 +178,6 @@ Also check ``.htaccess.disabled`` if further adjustments needed to be made.
 
 ----
 
-Tested with PrivateBin 1.3.4, Uberspace 7.7.10
+Tested with PrivateBin 1.5.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::

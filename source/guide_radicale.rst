@@ -158,6 +158,12 @@ For every following user use it without ``-c``:
   [isabell@stardust ~]$
 
 
+Start Service
+-------------
+
+.. include:: includes/supervisord.rst
+
+
 Configure web server
 --------------------
 
@@ -171,11 +177,6 @@ In order for your Radicale instance to be reachable from the web, you need to co
   [isabell@stardust ~]$ uberspace web backend list
   / http:8000 => OK, listening: PID 9947, /usr/bin/python3 /home/isabell/.local/bin/radicale
 
-
-Start Service
--------------
-
-.. include:: includes/supervisord.rst
 
 And you're done!
 

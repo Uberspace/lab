@@ -29,19 +29,19 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * PHP_
+  * :manual:`PHP <lang-php>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.4:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -70,8 +70,8 @@ You will need to enter the following information:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wp core download --locale=en_US
- Downloading WordPress 5.9.1 (en_US)...
- md5 hash verified: 5bbe205b48cf9255fd7c954040aeb125
+ Downloading WordPress 6.1.1 (en_US)...
+ md5 hash verified: aac77b8e3674c1e6aa7704b5d35fb2c4
  Success: WordPress downloaded.
  [isabell@stardust html]$ wp config create --dbname=${USER}_wordpress --dbuser=${USER} --dbpass=<password>
  Success: Generated 'wp-config.php' file.
@@ -96,11 +96,10 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
  [isabell@stardust ~]$
 
 .. _Wordpress: https://wordpress.org
-.. _PHP: http://www.php.net/
 .. _automatically updates: https://wordpress.org/support/article/configuring-automatic-background-updates/
 
 ----
 
-Tested with WordPress 5.9.1, Uberspace 7.12.1
+Tested with WordPress 6.1.1, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

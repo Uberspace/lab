@@ -105,7 +105,7 @@ You have now downloaded the master development branch which is sufficient. Every
   > node extra/download-dist.js
   Downloading dist
   […]
-  Done  
+  Done
   [isabell@stardust uptime-kuma]$
 
 
@@ -177,7 +177,7 @@ Install dependencies and prebuilt
   :emphasize-lines: 1,2,3
 
   [isabell@stardust ~]$ cd ~/uptime-kuma
-  [isabell@stardust uptime-kuma]$ npm ci --production
+  [isabell@stardust uptime-kuma]$ npm install --omit=dev
   [isabell@stardust uptime-kuma]$ npm run download-dist
 
 
