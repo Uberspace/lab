@@ -85,6 +85,7 @@ Backup the standard config:
 Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in brackets ``<value>`` with your values:
 
 .. code-block:: yaml
+
   eturnal:
 
     secret: "<super-long-secret>"
