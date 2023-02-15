@@ -125,10 +125,19 @@ Find other configuration options in the `reference documentation`_. You can now 
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/eturnal/bin/eturnalctl daemon
+  No cookie is set or found. This limits the scripts functionality, installing, upgrading, rpc and getting a list of versions will not work.
+  ^C (press CTRL+C)
   [isabell@stardust ~]$ ~/eturnal/bin/eturnalctl info
+  eturnal 1.10.1 on Erlang/OTP 25 (ERTS 13.0.3)
+  Uptime: 0 days, 0 hours, 0 minutes, 27 seconds
+  Active TURN sessions: 0
+  Processes: 77
+  Total length of run queues: 1
+  Total CPU usage (reductions): 1313446
+  Allocated memory (MiB): 33
   [isabell@stardust ~]$
 
-If it's not running, check your configuration_.
+If it's shows an error message, check your configuration_.
 
 Afterwards you can set up the service by creating a file ``~/etc/services.d/eturnal.ini`` with the following content:
 
