@@ -157,12 +157,20 @@ To update BookStack you can run the following command in the root directory of t
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ git pull origin release
+ From https://github.com/BookStackApp/BookStack
+ * branch            release    -> FETCH_HEAD
+ […]
  [isabell@stardust BookStack]$ composer install --no-dev
- [isabell@stardust ~]$ php artisan migrate
- [isabell@stardust ~]$
+ […]
+ [isabell@stardust BookStack]$
  
-You are being asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
-If you anwered "no" just repeat the update process once again.
+Next, start the actual migration. You will be asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
+
+.. code-block:: console
+
+ [isabell@stardust BookStack]$ php artisan migrate
+ […]
+ [isabell@stardust BookStack]$
 
 After updating your installation you should clean the cache to prevent errors.
 
