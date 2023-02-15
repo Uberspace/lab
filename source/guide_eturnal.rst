@@ -73,10 +73,16 @@ Generate a DH-file and a random super long secret (64 characters).
   ....................+.....................................+........+...............
   [...]
   [isabell@stardust ~]$ openssl rand -hex 32
-  [isabell@stardust ~]$ <super-long-secret>
+  <super-long-secret>
 
-Backup the standard config: ``mv ~/eturnal/etc/eturnal.yml ~/eturnal/etc/eturnal.yml.bkp``.
-Create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in brackets ``<value>`` with your values.
+Backup the standard config:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mv ~/eturnal/etc/eturnal.yml ~/eturnal/etc/eturnal.yml.bkp
+  [isabell@stardust ~]$
+
+Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in brackets ``<value>`` with your values:
 
 .. code-block:: yaml
   eturnal:
