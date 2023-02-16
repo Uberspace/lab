@@ -65,7 +65,7 @@ The following guide is based on the `Linux Archive Installation <https://www.jfr
 Untar the tarball:
 
 ::
-:emphasize-lines: 3
+ :emphasize-lines: 3
 
  [isabell@stardust ~]$ cd ~
  [isabell@stardust ~]$ tar xvf jfrog-artifactory-cpp-ce-\[RELEASE\]-linux.tar.gz
@@ -145,7 +145,7 @@ Under the ``shared -> node`` key insert your virtual uberspace ip (e.g. 100.64.1
 Under the ``shared -> database`` key insert the following database configuration:
 
 .. code-block:: yaml
-:emphasize-lines: 5-7
+  :emphasize-lines: 5-7
 
   shared:
       database:
