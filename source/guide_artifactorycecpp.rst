@@ -96,9 +96,9 @@ To download the mariadb driver run:
 
 ::
 
- [isabell@stardust ~]$ pushd ~/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib
- [isabell@stardust ~]$ wget https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.7.6/mariadb-java-client-2.7.6.jar
- [isabell@stardust ~]$ popd
+ [isabell@stardust ~]$ cd ~/jfrog/artifactory/var/bootstrap/artifactory/tomcat/lib
+ [isabell@stardust lib]$ wget https://repo1.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.7.6/mariadb-java-client-2.7.6.jar
+ [isabell@stardust lib]$ cd ~
  [isabell@stardust ~]$
 
 Other versions of the maria db driver can be found at `mvnrepository.com <https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client>`_.
@@ -114,15 +114,6 @@ Configuration
 Configure Artifactory
 ---------------------
 
-Find out your uberspace virtual ip:
-
-::
-
- [isabell@stardust ~]$ ifconfig -a
- [isabell@stardust ~]$
-
-Find the ``veth_isabell`` section and note down the ``inet`` address.
-
 .. include:: includes/my-print-defaults.rst
 
 Create a config file from the basic template:
@@ -134,13 +125,13 @@ Create a config file from the basic template:
 
 Edit ``~/jfrog/artifactory/var/etc/system.yaml``.
 
-Under the ``shared -> node`` key insert your virtual uberspace ip (e.g. 100.64.154.65)
+Under the ``shared -> node`` key replace the listening address:
 
 .. code-block:: yaml
 
   shared:
       node:
-          ip: 100.64.154.65
+          ip: 0.0.0.0
 
 Under the ``shared -> database`` key insert the following database configuration:
 
