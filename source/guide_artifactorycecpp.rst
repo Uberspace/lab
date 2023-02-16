@@ -64,7 +64,7 @@ The following guide is based on the `Linux Archive Installation <https://www.jfr
 
 Untar the tarball:
 
-::
+.. code-block:: console
  :emphasize-lines: 3
 
  [isabell@stardust ~]$ cd ~
