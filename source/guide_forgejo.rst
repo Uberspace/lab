@@ -45,7 +45,7 @@ We need a database:
   [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo"
   [isabell@stardust ~]$
 
-We can use the uberspace or your own domain:
+We can use the uberspace or [your own domain](https://manual.uberspace.de/web-domains/#setup):
 
 .. include:: includes/web-domain-list.rst
 
@@ -62,13 +62,13 @@ Check current version of Forgejo at releases_ page:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo https://codeberg.org/attachments/a26d3acd-5c2e-4132-a283-8110da2872d4
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo https://codeberg.org/attachments/be5952ea-6cfb-4be5-a593-3564c4bd8cc9
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo’
+  Saving to: ‘/home/redwerkz/forgejo/forgejo’
 
-  100%[=======================================================>] 117,891,760 81.0MB/s   in 1.4s
+  100%[=======================================================>] 117,987,088 79.8MB/s   in 1.4s
 
-  2023-01-15 20:04:54 (81.0 MB/s) - ‘/home/isabell/forgejo/forgejo’ saved [117891760/117891760]
+  2023-02-17 19:38:27 (79.8 MB/s) - ‘/home/redwerkz/forgejo/forgejo’ saved [117987088/117987088]
   [isabell@stardust ~]$
 
 
@@ -159,8 +159,8 @@ Migrate the database configurations:
 
   [isabell@stardust ~]$ ~/forgejo/forgejo migrate
   [...]
-  2023/01/15 20:12:16 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_package_id` ON `package_version` (`package_id`) [] - 31.649452ms
-  2023/01/15 20:12:16 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_lower_version` ON `package_version` (`lower_version`) [] - 30.93972ms
+  2023/02/17 19:43:28 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_created_unix` ON `package_version` (`created_unix`) [] - 25.0114ms
+  2023/02/17 19:43:28 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_is_internal` ON `package_version` (`is_internal`) [] - 29.933338ms
   [isabell@stardust ~]$
 
 Forgejo admin user
@@ -173,6 +173,9 @@ Set your admin login credentials:
   [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
   [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
   [isabell@stardust ~]$ ~/forgejo/forgejo admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
+  [...]
+  2023/02/17 19:50:04 ...@v1.22.10/command.go:173:Run() [I] [SQL] COMMIT [] - 46.568973ms
+  New user 'AdminUsername' has been successfully created!
   [isabell@stardust ~]$
 
 .. note::
@@ -210,7 +213,7 @@ Done. We can point our browser to https://isabell.uber.space/.
 
 Installed files and folders are:
 
-* ``~/forgejo``
+* ``~/forgejo/``
 * ``~/etc/services.d/forgejo.ini``
 
 Backup
@@ -225,14 +228,14 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/01/16 20:51:33 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.0-1 built with GNU Make 4.1, go1.19.4 : bindata, sqlite, sqlite_unlock_notify
-  2023/01/16 20:51:33 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
+  2023/02/17 20:33:59 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.3-1 built with GNU Make 4.1, go1.19.5 : bindata, sqlite, sqlite_unlock_notify
+  2023/02/17 20:33:59 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
   [...]
-  2023/01/16 20:51:34 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
-  2023/01/16 20:51:34 cmd/dump.go:283:runDump() [I] Dumping database...
+  2023/02/17 20:33:59 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
+  2023/02/17 20:34:04 cmd/dump.go:283:runDump() [I] Dumping database...
   [...]
-  2023/01/16 20:51:34 cmd/dump.go:295:runDump() [I] Adding custom configuration file from /home/isabell/forgejo/custom/conf/app.ini
-  2023/01/16 20:51:34 cmd/dump.go:323:runDump() [I] Packing data directory.../home/isabell/forgejo/data
+  2023/02/17 20:34:04 cmd/dump.go:295:runDump() [I] Adding custom configuration file from /home/isabell/forgejo/custom/conf/app.ini
+  2023/02/17 20:34:04 cmd/dump.go:323:runDump() [I] Packing data directory.../home/isabell/forgejo/data
   [isabell@stardust ~]$
 
 Updates
