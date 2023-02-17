@@ -64,11 +64,11 @@ Check current version of Forgejo at releases_ page:
   [isabell@stardust ~]$ mkdir ~/forgejo
   [isabell@stardust ~]$ wget -O ~/forgejo/forgejo https://codeberg.org/attachments/be5952ea-6cfb-4be5-a593-3564c4bd8cc9
   [...]
-  Saving to: ‘/home/redwerkz/forgejo/forgejo’
+  Saving to: ‘/home/isabell/forgejo/forgejo’
 
   100%[=======================================================>] 117,987,088 79.8MB/s   in 1.4s
 
-  2023-02-17 19:38:27 (79.8 MB/s) - ‘/home/redwerkz/forgejo/forgejo’ saved [117987088/117987088]
+  2023-02-17 19:38:27 (79.8 MB/s) - ‘/home/isabell/forgejo/forgejo’ saved [117987088/117987088]
   [isabell@stardust ~]$
 
 
