@@ -338,6 +338,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 1.18.0-1, Uberspace 7.14.0
+Tested with Forgejo 1.18.3-1, Uberspace 7.15.0
 
 .. author_list::
