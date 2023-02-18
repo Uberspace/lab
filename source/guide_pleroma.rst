@@ -8,6 +8,7 @@
 .. tag:: microblogging
 .. tag:: fediverse
 .. tag:: ActivityPub
+.. tag:: Ansible
 
 .. sidebar:: Logo
 
@@ -23,6 +24,8 @@ Pleroma
 Pleroma_ is a free, federated social networking server built on open protocols. It is compatible with `GNU Social`_, Mastodon_, and many other ActivityPub implementations.
 
 ----
+
+.. note:: The contents of this guide are also modeled as an Ansible role <guide_ansible>, contained in a collection: https://github.com/friesenkiwi/ansible-collection-uberspace
 
 .. note:: For this guide you should be familiar with the basic concepts of
 

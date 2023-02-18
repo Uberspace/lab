@@ -6,6 +6,7 @@
 .. tag:: web
 .. tag:: activity-tracking
 .. tag:: audience-family
+.. tag:: Ansible
 
 .. sidebar:: Logo
 
@@ -28,6 +29,8 @@ It is written in :manual:`Python <lang-python>` and based on the popular :lab:`D
   This guide seems to be **broken** as it requires a newer version of Python. We would be
   happy if you want to work on a solution and create a Pull Request.
   See also the related issue: https://github.com/Uberspace/lab/issues/1184
+
+.. note:: The contents of this guide are also modeled as an Ansible role <guide_ansible>, contained in a collection: https://github.com/friesenkiwi/ansible-collection-uberspace
 
 .. note:: For this guide you should be familiar with the basic concepts of
 

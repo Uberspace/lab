@@ -7,6 +7,7 @@
 .. tag:: Instant Messaging
 .. tag:: Jabber
 .. tag:: XMPP
+.. tag:: Ansible
 
 .. sidebar:: Logo
 
@@ -24,6 +25,8 @@ Prosody_ is a modern XMPP communication server. It aims to be easy to set up and
 XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organization, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
 
 ----
+
+.. note:: The contents of this guide are also modeled as an Ansible role <guide_ansible>, contained in a collection: https://github.com/friesenkiwi/ansible-collection-uberspace
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
