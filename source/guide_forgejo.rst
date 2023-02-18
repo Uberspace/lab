@@ -62,13 +62,14 @@ Check current version of Forgejo at releases_ page:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo https://codeberg.org/attachments/be5952ea-6cfb-4be5-a593-3564c4bd8cc9
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.18.3-2 https://codeberg.org/attachments/fd085cac-e462-413c-ab01-a1f36f6c1d24
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo’
+  Saving to: ‘/home/isabell/forgejo/forgejo-1.18.3-2’
 
-  100%[=======================================================>] 117,987,088 79.8MB/s   in 1.4s
+  100%[=======================================================>] 118,374,216 74.2MB/s   in 1.5s
 
-  2023-02-17 19:38:27 (79.8 MB/s) - ‘/home/isabell/forgejo/forgejo’ saved [117987088/117987088]
+  2023-02-17 19:38:27 (74.2 MB/s) - ‘/home/isabell/forgejo/forgejo-1.18.3-2’ saved [118374216/118374216]
+
   [isabell@stardust ~]$
 
 
@@ -79,7 +80,8 @@ Make the downloaded binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.18.3-2
+  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.18.3-2 ~/forgejo/forgejo
   [isabell@stardust ~]$
 
 
@@ -228,7 +230,7 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/02/17 20:33:59 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.3-1 built with GNU Make 4.1, go1.19.5 : bindata, sqlite, sqlite_unlock_notify
+  2023/02/17 20:33:59 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.3-2 built with GNU Make 4.1, go1.19.6 : bindata, sqlite, sqlite_unlock_notify
   2023/02/17 20:33:59 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
   [...]
   2023/02/17 20:33:59 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
@@ -338,6 +340,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 1.18.3-1, Uberspace 7.15.0
+Tested with Forgejo 1.18.3-2, Uberspace 7.15.0
 
 .. author_list::
