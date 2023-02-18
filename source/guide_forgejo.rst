@@ -249,11 +249,10 @@ Updates
 Manual updating
 ---------------
 
-* Stop the application ``supervisorctl stop forgejo``
-* Do the *Download* (and optionally *Verifying*) part from above.
+* Do the *Download* and *Set permissions* steps from above.
 * Check if you have to modify the config file. (See documentation_ and the `file sample <https://codeberg.org/forgejo/forgejo/raw/branch/main/custom/conf/app.example.ini>`_.)
 * Do the database migration: ``~/forgejo/forgejo migrate``
-* Start the application ``supervisorctl start forgejo``
+* Start the application ``supervisorctl restart forgejo``
 * Check if the application is running ``supervisorctl status forgejo``
 
 
@@ -333,7 +332,7 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 .. _Forgejo: https://forgejo.org/
 .. _Gitea: https://gitea.io/
 .. _documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
-.. _feed: view-source:https://forgejo.org/releases/rss.xml
+.. _feed: https://forgejo.org/releases/rss.xml
 .. _releases: https://codeberg.org/forgejo/forgejo/releases
 .. _licence: https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/LICENSE
 .. _dashboard: https://uberspace.de/dashboard/authentication
