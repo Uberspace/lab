@@ -104,8 +104,8 @@ You can setup your FreshRSS installation using FreshRSS's command line interface
  ℹ️ Remember to refresh the feeds of the user: isabell       ./cli/actualize-user.php --user isabell
  ℹ️ Remember to re-apply the appropriate access rights, such as:  sudo chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
  [isabell@stardust FreshRSS-latest]$
- 
- Make sure to replace the usernames, password, and base URL, so instead of ``<yourfreshrssusername>`` use the user name of your choice, etc.
+
+Make sure to replace the usernames, password, and base URL, so instead of ``<yourfreshrssusername>`` use the user name of your choice, etc.
 
 Cron job
 --------
