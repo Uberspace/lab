@@ -105,7 +105,7 @@ You can setup your FreshRSS installation using FreshRSS's command line interface
  ℹ️ Remember to re-apply the appropriate access rights, such as:  sudo chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
  [isabell@stardust FreshRSS-latest]$
 
-Make sure to replace the usernames, password, and base URL, so instead of ``<yourfreshrssusername>`` use the user name of your choice, etc.
+Make sure to replace the usernames, passwords, and base URL, so instead of ``<yourfreshrssusername>`` use the user name of your choice, etc.
 
 Cron job
 --------
@@ -114,7 +114,7 @@ To automatically update your feeds every ten minutes, set up a cron job like thi
 
 ::
 
- */10 * * * * php /var/www/virtual/$USER/FreshRSS-edge/app/actualize_script.php > $HOME/logs/FreshRSS.log 2>&1
+ */10 * * * * php /var/www/virtual/$USER/FreshRSS-latest/app/actualize_script.php > $HOME/logs/FreshRSS.log 2>&1
 
 Web Access
 ==========
@@ -141,21 +141,21 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm edge.zip
- [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/edge.zip
- --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/edge.zip
+ [isabell@stardust isabell]$ rm latest.zip
+ [isabell@stardust isabell]$ wget https://github.com/FreshRSS/FreshRSS/archive/latest.zip
+ --2018-09-24 14:30:37--  https://github.com/FreshRSS/FreshRSS/archive/latest.zip
  Resolving github.com (github.com)... 192.30.253.112, 192.30.253.113
  […]
- Saving to: ‘edge.zip’
+ Saving to: ‘latest.zip’
 
      [   <=>                                  ] 2,694,638   4.37MB/s   in 0.6s
 
- 2018-09-24 14:30:38 (4.37 MB/s) - ‘edge.zip’ saved [2694638]
- [isabell@stardust isabell]$ unzip -o edge.zip -x FreshRSS-edge/data/do-install.txt
+ 2018-09-24 14:30:38 (4.37 MB/s) - ‘latest.zip’ saved [2694638]
+ [isabell@stardust isabell]$ unzip -o latest.zip -x FreshRSS-latest/data/do-install.txt
  […]
-  inflating: FreshRSS-edge/tests/app/Models/UserQueryTest.php
-  inflating: FreshRSS-edge/tests/bootstrap.php
-  inflating: FreshRSS-edge/tests/phpunit.xml
+  inflating: FreshRSS-latest/tests/app/Models/UserQueryTest.php
+  inflating: FreshRSS-latest/tests/bootstrap.php
+  inflating: FreshRSS-latest/tests/phpunit.xml
  [isabell@stardust isabell]$
 
 This will overwrite any changed files while keeping your current configuration.
