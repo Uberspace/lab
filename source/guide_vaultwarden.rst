@@ -21,7 +21,7 @@ vaultwarden
 
 Bitwarden_ is an open source password manager. Your vault is encrypted with your master key, so even if your server is compromised the hacker will only get some unreadable gibberish. Hosting your own Bitwarden server can be useful if you are paranoid about the server security and want to be in full control, or want the premium features for free because you have a webspace anyway.
 
-.. note :: The installation of the official `bitwarden server repository`_ via docker is heavy, difficult and relies on docker, which `isn't supported`_ at uberspace due to the fact of shared hosting. In this guide we'll use the Rust implementation `vaultwarden`_ (formerly Bitwarden_rs) of the Bitwarden API, so you can still use the official clients.
+.. note :: The installation of the official `bitwarden server repository`_ via docker is heavy, difficult and relies on docker, which isn't supported at Uberspace due to the fact of shared hosting. In this guide we'll use the Rust implementation `vaultwarden`_ (formerly Bitwarden_rs) of the Bitwarden API, so you can still use the official clients.
 
 ----
 
@@ -295,7 +295,6 @@ This guide is based on the official `vaultwarden documentation`_. Previously, it
 .. _feed: https://github.com/dani-garcia/vaultwarden/releases
 .. _Github: https://github.com/dani-garcia/vaultwarden
 .. _GNU General Public License: https://github.com/dani-garcia/vaultwarden/blob/master/LICENSE.txt
-.. _isn't supported: https://wiki.uberspace.de/faq#docker
 .. _rust toolchain: https://rustup.rs/
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries#extracting-binaries-without-docker-installed
