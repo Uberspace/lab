@@ -49,6 +49,8 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
+.. note:: pretix uses :lab:`Redis <guide_redis>` to manage background tasks, so it install it using the default configuration.
+
 Installation
 ============
 
@@ -97,6 +99,10 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     user=isabell
     password=MySuperSecretPassword
     host=localhost
+
+    [celery]
+    broker=redis+socket:///home/isabell/.redis/sock
+    backend=redis+socket:///home/isabell/.redis/sock
 
     [mail]
     from=isabell@uber.space
