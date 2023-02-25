@@ -174,14 +174,14 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
 .. code-block:: ini
 
  [program:pretix]
- command=gunicorn --reload --bind 0.0.0.0:9000 --workers 4 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
+ command=gunicorn --reload --preload --bind 0.0.0.0:9000 --workers 2 pretix.wsgi --name pretix --max-requests 1200 --max-requests-jitter 50
  directory=%(ENV_HOME)s/pretix_data
  autostart=true
  autorestart=true
  stopsignal=INT
  
  [program:pretix_worker]
- command=celery -A pretix.celery_app worker -l info
+ command=celery -A pretix.celery_app worker -l info --concurrency 1
  directory=%(ENV_HOME)s/pretix_data
  autostart=true
  autorestart=true
