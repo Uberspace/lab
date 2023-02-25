@@ -198,7 +198,7 @@ Create a new cronjob using ``crontab -e``:
 
 ::
 
-  18,48 * * * * export cd ~/pretix_data && python -m pretix runperiodic
+  18,48 * * * * cd ~/pretix_data && python -m pretix runperiodic
 
 Accessing pretix
 ----------------
