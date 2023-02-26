@@ -240,12 +240,14 @@ Manual updating
 * Check if the application is running ``supervisorctl status vikunja``
 
 
-Installing the web frontend
-===========================
+Installing the web frontend (optional)
+======================================
 
 Vikunja can be accessed through several ways: desktop or mobile apps, as well as a web frontend written in Javascript.
 
 The web frontend is a static website. To install it, first download the frontend files from the downloads_ page and follow the Uberlab guide_ to create a static website.
+
+.. warning:: The frontend files on the download page are not ordered chronologically. Make sure you download the correct version!
 
 Once you have installed the frontend, we need to reconfigure the `web backends <webbackend_>`_:
 
@@ -259,7 +261,19 @@ Once you have installed the frontend, we need to reconfigure the `web backends <
   [isabell@stardust ~]$
 
 
-Now we are done and can access Vikunja through isabell.uber.space.
+Then create an ``.htaccess`` file with the following content:
+
+::
+
+  RewriteEngine on
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ /index.html [NC,L,QSA]
+
+
+This forwards all requests to the frontend to ``index.html`` and will prevent you from getting stuck on a 404 page by accident.
+
+Now we are done and can access Vikunja through ``isabell.uber.space``.
 
 
 Optional steps
@@ -377,6 +391,6 @@ In order to receive emails from Vikunja, e.g. notifications or password reset em
 
 ----
 
-Tested with Vikunja 0.20.1, Uberspace 7.14.1
+Tested with Vikunja backend 0.20.2, frontend 0.20.3, Uberspace 7.14.1
 
 .. author_list::
