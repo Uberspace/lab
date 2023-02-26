@@ -301,6 +301,32 @@ You can create an account through the CLI even when registration via the API is 
   [isabell@stardust ~]$
 
 
+Change log levels
+-----------------
+
+By default the log configuration is very verbose. You can change it to only log warnings, errors, or critical events by editing the config file and restarting the API-server:
+
+.. code-block:: yaml
+  :emphasize-lines: 4,6,8
+
+  [...]
+  log:
+    # Change the log level. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
+    level: "WARNING"
+    # The log level for database log messages. Possible values (case-insensitive) are CRITICAL, ERROR, WARNING, NOTICE, INFO, DEBUG.
+    databaselevel: "WARNING"
+    # The log level for event log messages. Possible values (case-insensitive) are ERROR, INFO, DEBUG.
+    eventslevel: "ERROR"
+  [...]
+
+::
+
+  [isabell@stardust ~]$ supervisorctl restart vikunja
+  vikunja: stopped
+  vikunja: started
+  [isabell@stardust ~]$
+
+
 ..
   ##### Link section #####
 
