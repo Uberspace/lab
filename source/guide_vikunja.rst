@@ -271,7 +271,7 @@ Disabling registration
 By default, registration via the API is open to anyone. If you have registered an account for yourself and want to disable registration, change the config file and restart the API-server:
 
 .. code-block:: yaml
-  :emphasize-lines: 2
+  :emphasize-lines: 3
 
   [...]
   # Whether to let new users registering themselves or not
