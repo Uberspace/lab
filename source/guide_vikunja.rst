@@ -262,13 +262,13 @@ Once you have installed the frontend, we need to reconfigure the `web backends <
 Now we are done and can access Vikunja through isabell.uber.space.
 
 
-Additional configuration
-========================
+Optional steps
+==============
 
 Disabling registration
 ----------------------
 
-By default, registration is open to anyone. If you have registered an account for yourself and want to disable registration, change the config file and restart the API-server:
+By default, registration via the API is open to anyone. If you have registered an account for yourself and want to disable registration, change the config file and restart the API-server:
 
 .. code-block:: yaml
   :emphasize-lines: 2
@@ -285,6 +285,21 @@ By default, registration is open to anyone. If you have registered an account fo
   vikunja: stopped
   vikunja: started
   [isabell@stardust ~]$
+
+
+Create an account through the CLI
+---------------------------------
+
+You can create an account through the CLI even when registration via the API is disabled (see above):
+
+.. code-block:: bash
+  :emphasize-lines: 1
+
+  [isabell@stardust ~]$ ~/vikunja/vikunja user create --username isabell --password 'SuperSecretPassword' --email isabell@uber.space
+  ...
+  User was created successfully.
+  [isabell@stardust ~]$
+
 
 ..
   ##### Link section #####
