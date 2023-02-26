@@ -318,7 +318,7 @@ Create an account through the CLI
 
 You can create an account through the CLI even when registration via the API is disabled (see above):
 
-.. code-block:: bash
+.. code-block:: console
   :emphasize-lines: 1
 
   [isabell@stardust ~]$ ~/vikunja/vikunja user create --username isabell --password 'SuperSecretPassword' --email isabell@uber.space
