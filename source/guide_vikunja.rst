@@ -327,6 +327,42 @@ By default the log configuration is very verbose. You can change it to only log 
   [isabell@stardust ~]$
 
 
+Activate mailer
+---------------
+
+In order to receive emails from Vikunja, e.g. notifications or password reset emails, you have to enable the mailer by adding your email config to Vikunja's config file and restarting the API-server:
+
+.. code-block:: yaml
+  :emphasize-lines: 4,8,10,12,14,16,18
+
+  [...]
+  service:
+    # The URL of the frontend, used to send password reset emails.
+    frontendurl: "https://isabell.uber.space"
+
+  mailer:
+    # Whether to enable the mailer or not. If it is disabled, all users are enabled right away and password reset is not possible.
+    enabled: true
+    # SMTP Host
+    host: "stardust.uberspace.de"
+    # SMTP Host port.
+    port: 587
+    # SMTP username
+    username: "isabell@uber.space"
+    # SMTP password
+    password: "SuperSecretMailPassword"
+    # The default from address when sending emails
+    fromemail: "isabell@uber.space"
+    [...]
+
+::
+
+  [isabell@stardust ~]$ supervisorctl restart vikunja
+  vikunja: stopped
+  vikunja: started
+  [isabell@stardust ~]$
+
+
 ..
   ##### Link section #####
 
