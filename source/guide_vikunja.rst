@@ -245,9 +245,21 @@ Installing the web frontend (optional)
 
 Vikunja can be accessed through several ways: desktop or mobile apps, as well as a web frontend written in Javascript.
 
-The web frontend is a static website. To install it, first download the frontend files from the downloads_ page and follow the Uberlab guide_ to create a static website.
+The web frontend is a static website. To install it, find the latest frontend version on the downloads_ page, download the files and unzip them into ``~/html``:
 
-.. warning:: The frontend files on the download page are not ordered chronologically. Make sure you download the correct version!
+.. warning:: The frontend files on the download page are not ordered chronologically. Make sure you select the desired version!
+
+.. code-block:: console
+  :emphasize-lines: 1
+
+  [isabell@stardust ~]$ FRONTEND_VERSION=0.20.3
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust html]$ wget "https://dl.vikunja.io/frontend/vikunja-frontend-$FRONTEND_VERSION.zip"
+  ...
+  [isabell@stardust html]$ unzip "vikunja-frontend-$FRONTEND_VERSION.zip"
+  ...
+  [isabell@stardust html]$ rm "vikunja-frontend-$FRONTEND_VERSION.zip"
+  [isabell@stardust html]$
 
 Once you have installed the frontend, we need to reconfigure the `web backends <webbackend_>`_:
 
