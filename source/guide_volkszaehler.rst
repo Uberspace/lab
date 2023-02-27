@@ -26,9 +26,9 @@ The software is written in PHP.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-    * :manual:PHP <lang-php>
-    * :manual:MySQL <database-mysql>
-    * :manual:domains <web-domains>
+    * :manual:`PHP <lang-php>`
+    * :manual:`MySQL <database-mysql>`
+    * :manual:`domains <web-domains>`
 
 License
 =======
