@@ -120,7 +120,7 @@ After setting up the database we have to change the config file in ``/var/www/vi
     user: isabell (your username)
     password: your MySQL password from my_print_defaults client
 
-After these changes save the file as config.yaml
+After these changes save the file as ``config.yaml``.
 
 Check the Documentation_ for further questions.
 
