@@ -100,9 +100,9 @@ Volkszaehler.org saves your data in a MySQL database. Please use an :manual_anch
 Configuration
 =============
 
-After setting up the database we have to change the config file in /var/www/virtual/$USER/volkszaehler/etc/config.dist.yaml.
+After setting up the database we have to change the config file in ``/var/www/virtual/$USER/volkszaehler/etc/config.dist.yaml``:
 
-.. code-block:: ini
+.. code-block:: yaml
 
     db:
     driver: pdo_mysql (default)
