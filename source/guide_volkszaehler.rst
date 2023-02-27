@@ -105,20 +105,16 @@ After setting up the database we have to change the config file in ``/var/www/vi
 .. code-block:: yaml
 
     db:
-    driver: pdo_mysql (default)
-    host: localhost (default)
-    # port: 3306
+      driver: pdo_mysql (default)
+      host: localhost (default)
 
-    user: isabell (your username)
-    password: your MySQL password from my_print_defaults client
-    charset: utf8 (default)
-    dbname: isabell_volkszaehler (the name of the database you created)
-    path: volkszaehler # only used for sqlite
-    db admin credentials (used by doctrine cli and setup script)
+      user: isabell (your username)
+      password: your MySQL password from my_print_defaults client
+      dbname: isabell_volkszaehler (the name of the database you created)
 
     admin:
-    user: isabell (your username)
-    password: your MySQL password from my_print_defaults client
+      user: isabell (your username)
+      password: (a password of your choice)
 
 After these changes save the file as ``config.yaml``.
 
