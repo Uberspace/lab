@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-    .. image:: _static/images/volkszaehler-logo.png
+    .. image:: _static/images/volkszaehler_logo.png
         :align: center
 
 ################
