@@ -218,7 +218,7 @@ For deeper insights on database access errors use the following script
         $sql = ("SELECT * FROM entities");
         foreach ($conn->query($sql) as $row) {
         echo $row['uuid']."<br />";
-                                            }
+    }
     ?>
     
 Backup
