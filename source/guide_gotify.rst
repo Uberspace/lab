@@ -56,6 +56,11 @@ Installation
 
 Like a lot of Go software, gotify is distributed as a single binary. Since version 2.1.7 gotify requires GLIBC 2.28, which is not available in U7. Thus we need to build gotify from source. The building is done as is described in `gotify's documentation <https://gotify.net/docs/dev-setup>`_ but building without docker and only for one architecture:
 
+.. warning::
+
+  The ``yarn build`` command may fail at first with an ``code: 'EPIPE', syscall: 'write'`` error message.
+  Just run it again until you get ``Done in 60.48s.``. 
+
 ::
 
   [isabell@stardust ~]$ git clone https://github.com/gotify/server.git
@@ -71,7 +76,7 @@ Like a lot of Go software, gotify is distributed as a single binary. Since versi
   [1/4] Resolving packages...
   success Already up-to-date.
   Done in 2.53s.
-  [isabell@stardust ~/server/ui]$ yarn build
+  [isabell@stardust ~/server/ui]$ NODE_OPTIONS=--openssl-legacy-provider yarn build
   yarn run v1.22.19
   $ react-scripts build
   Creating an optimized production build...
