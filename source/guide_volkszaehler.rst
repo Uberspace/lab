@@ -62,7 +62,7 @@ Installation
 ============
 
 We will be installing volkszaehler.org using composer.
-cd to your :manual:DocumentRoot <web-documentroot> and download the latest Release_, and install the dependencies using composer:
+cd to your :manual:`DocumentRoot <web-documentroot>` and download the latest Release_, and install the dependencies using composer:
 
 .. code-block:: console
 
@@ -78,7 +78,7 @@ cd to your :manual:DocumentRoot <web-documentroot> and download the latest Relea
     […]
     [isabell@stardust ~]$
 
-Remove your empty :manual:DocumentRoot <web-documentroot> and create a new symbolic link to the /var/www/virtual/vzgs/volkszaehler/htdocs directory.
+Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``/var/www/virtual/vzgs/volkszaehler/htdocs`` directory.
 
 .. code-block:: console
 
@@ -90,7 +90,7 @@ Remove your empty :manual:DocumentRoot <web-documentroot> and create a new symbo
 Database Setup
 ==============
 
-Volkszaehler.org saves your data in a MySQL database. Please use an :manual_anchor:additional database <database-mysql.html#additional-databases>. You need to create this database before you enter the database credentials in the config file.
+Volkszaehler.org saves your data in a MySQL database. Please use an :manual_anchor:`additional database <database-mysql.html#additional-databases>`. You need to create this database before you enter the database credentials in the config file.
 
 .. code-block:: console
 
@@ -145,7 +145,7 @@ To automatically aggregate we need to setup some cronjobs.
     1 * * * * php /var/www/volkszaehler.org/bin/aggregate run -m delta -l hour >/dev/null
     0 1 * * * php /var/www/volkszaehler.org/bin/aggregate run -m delta -l day >/dev/null
 
-    You can learn more about cronjobs in the :manual:uberspace manual cron article <daemons-cron>.
+You can learn more about cronjobs in the :manual:`uberspace manual cron article <daemons-cron>`.
 
 Updates
 =======
