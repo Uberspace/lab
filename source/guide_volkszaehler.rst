@@ -76,7 +76,7 @@ cd to your :manual:`DocumentRoot <web-documentroot>` and download the latest Rel
     Loading composer repositories with package information
     Installing dependencies (including require-dev) from lock file
     […]
-    [isabell@stardust ~]$
+    [isabell@stardust isabell]$
 
 Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``/var/www/virtual/vzgs/volkszaehler/htdocs`` directory.
 
@@ -85,7 +85,7 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
     [isabell@stardust ~]$ cd /var/www/virtual/$USER/
     [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
     [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/volkszaehler/htdocs html
-    [isabell@stardust ~]$
+    [isabell@stardust isabell]$
 
 Database Setup
 ==============
@@ -129,7 +129,7 @@ If you don't use a backup of a former volkszaehler.org database, you need to cre
 
     [isabell@stardust ~]$ cd /var/www/virtual/$USER/volkszaehler
     [isabell@stardust volkszaehler]$ php bin/doctrine orm:schema-tool:create
-    [isabell@stardust ~]$
+    [isabell@stardust volkszaehler]$
 
 Tuning
 ======
