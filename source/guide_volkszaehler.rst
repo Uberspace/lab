@@ -224,7 +224,7 @@ For deeper insights on database access errors use the following script
 Backup
 ======
 
-All generated data is saved to the database and should be backuped along with your config file in /var/www/virtual/$USER/volkszaehler/etc/config.yaml on regular base.
+All generated data is saved to the database and should be backuped along with your config file in ``/var/www/virtual/$USER/volkszaehler/etc/config.yaml`` on regular base.
 
 .. _Volkszaehler.org: https://volkszaehler.org
 .. _Source: https://github.com/volkszaehler/volkszaehler.org/
