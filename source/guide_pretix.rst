@@ -224,16 +224,16 @@ If there is a new version available, install the new version like so:
 
 ::
 
- [isabell@stardust ~]$ python3.9 -m pretix migrate
- [isabell@stardust ~]$ python3.9 -m pretix rebuild
- [isabell@stardust ~]$ supervisorctl restart pretix
+ [isabell@stardust ~]$ pip3.9 install pretix==4.16.0
  [isabell@stardust ~]$
 
 Then re-run the Initialize database steps and restart the service like so:
 
 ::
 
- [isabell@stardust ~]$ pip3.9 install pretix==4.16.0
+ [isabell@stardust ~]$ python3.9 -m pretix migrate
+ [isabell@stardust ~]$ python3.9 -m pretix rebuild
+ [isabell@stardust ~]$ supervisorctl restart pretix
  [isabell@stardust ~]$
 
 .. _pretix: https://pretix.eu/
