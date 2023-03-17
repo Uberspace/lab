@@ -157,6 +157,50 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
 
 You can exit the shell by entering ``exit``.
 
+
+Access without SSH tunnel
+---------------------------------------------
+
+You can access your MongoDB instance externally by opening a port and modifying the service config file.
+
+.. code-block:: none
+ uberspace port add
+
+Modify your ``~/etc/services.d/mongodb.ini`` file like so. Replace the port number with the port that was opened by the previous command. 
+
+.. code-block:: ini
+ :emphasize-lines: 4,5
+
+ [program:mongodb]
+ command=mongod
+   --dbpath %(ENV_HOME)s/mongodb
+   --port 43120
+   --bind_ip 0.0.0.0
+   --auth
+   --unixSocketPrefix %(ENV_HOME)s/mongodb
+ autostart=yes
+ autorestart=yes
+ startsecs=30
+
+
+Update and restart the service.
+
+.. code-block:: none
+
+ [isabell@stardust ~]$ supervisorctl stop mongodb
+ supervisorctl reread 
+ supervisorctl update mongodb 
+ supervisorctl start mongodb 
+ [isabell@stardust ~]$
+
+
+You should be able to access your instance via the following URI.
+
+.. code-block:: none
+
+ mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin"
+
+
 Updates
 =======
 
