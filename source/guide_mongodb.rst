@@ -164,12 +164,15 @@ Access without SSH tunnel
 You can access your MongoDB instance externally by opening a port and modifying the service config file.
 
 .. code-block:: none
- uberspace port add
 
-Modify your ``~/etc/services.d/mongodb.ini`` file like so. Replace the port number with the port that was opened by the previous command. 
+ [isabell@stardust ~]$ uberspace port add
+ Port 43120 will be open for TCP and UDP traffic in a few minutes.
+ [isabell@stardust ~]$ 
+
+Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with the port that was opened by the previous command. 
 
 .. code-block:: ini
- :emphasize-lines: 4,5
+ :emphasize-lines: 4,5,8,9
 
  [program:mongodb]
  command=mongod
@@ -178,9 +181,18 @@ Modify your ``~/etc/services.d/mongodb.ini`` file like so. Replace the port numb
    --bind_ip 0.0.0.0
    --auth
    --unixSocketPrefix %(ENV_HOME)s/mongodb
+   --tlsMode requireTLS 
+   --sslPEMKeyFile %(ENV_HOME)s/mongodb/%(ENV_USER)s.uber.space.pem
  autostart=yes
  autorestart=yes
  startsecs=30
+
+
+Create the `.pem` file.
+
+.. code-block:: none
+
+ cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
 
 
 Update and restart the service.
@@ -198,7 +210,7 @@ You should be able to access your instance via the following URI.
 
 .. code-block:: none
 
- mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin"
+ mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true
 
 
 Updates
