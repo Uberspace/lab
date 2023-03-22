@@ -508,6 +508,6 @@ You need to reapply these changes after you installed Nextcloud updates or after
 
 ----
 
-Tested with Nextcloud 25.0.1, Uberspace 7.14, PHP 8.1
+Tested with Nextcloud 26.0.0, Uberspace 7.15, PHP 8.1
 
 .. author_list::
