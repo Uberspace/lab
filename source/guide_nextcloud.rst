@@ -342,13 +342,14 @@ Nextcloud Talk
 ^^^^^^^^^^^^^^
 
 To enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
-If the web installation fails, install the app manually in your shell:
+If the web installation fails, install the app manually in your shell. Note that the Talk app's technical name is actually spreed.
 
 .. code-block:: console
 
-  [isabell@stardust html]$ cd apps
-  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
-  [isabell@stardust apps]$
+  [isabell@stardust html]$ php ~/html/occ app:install spreed
+  spreed 16.0.0 installed
+  spreed enabled
+  [isabell@stardust html]$
 
 Reload the page and press the talk icon in the top menu bar.
 
