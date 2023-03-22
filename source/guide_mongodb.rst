@@ -161,7 +161,7 @@ You can exit the shell by entering ``exit``.
 External access (optional)
 --------------------------
 
-If you want to use your Mongodb instance only from your Uberspace account you can skip this part. However, there are cases where you need to connect to your instance from external addresses - e.g. your home computer. You can access your MongoDB instance externally by opening a port and modifying the service config file.
+If you want to use your Mongodb instance only from your Uberspace account you can skip this part. However, there are cases where you need to connect to your instance from external addresses - e.g. your home computer. You can access your MongoDB instance externally by opening a port and modifying the service config file. Whennever you open a service to the public internet it should be encrypted, we'll take care of that in this example.
 
 .. code-block:: none
 
@@ -206,7 +206,7 @@ Update and restart the service.
  [isabell@stardust ~]$
 
 
-Access your instance via the following URI: `mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true`
+Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true``
 
 
 Updates
