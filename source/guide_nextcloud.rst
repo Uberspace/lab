@@ -99,7 +99,7 @@ APCu is an in-memory key-value store for PHP. Installations after 21.0.1 may fai
 PHP Memory
 ^^^^^^^^^^
 
-Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
+Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -140,7 +140,7 @@ Downloading
 
 Setup
 -----
-.. warning:: We strongly recommend to use the MySQL backend, consistent with the Nextcloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
+.. warning:: We strongly recommend to use the MySQL backend, consistent with the Nextcloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/stable/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
 
 Create the database
 ^^^^^^^^^^^^^^^^^^^
@@ -300,7 +300,7 @@ To reduce load on the mysql server and also improve transactional file locking y
   System config value memcache.distributed set to string \OC\Memcache\Redis
   [isabell@stardust html]$
 
-In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
+In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/files_locking_transactional.html>`_.
 
 default phone region
 ^^^^^^^^^^^^^^^^^^^^
@@ -500,8 +500,8 @@ You need to reapply these changes after you installed Nextcloud updates or after
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
-.. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
-.. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#email
+.. _`system requirements`: https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html
+.. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/email_configuration.html#email
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
