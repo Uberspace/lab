@@ -72,7 +72,7 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.28.1 --depth 1 https://github.com/kimai/kimai.git
+ [isabell@stardust isabell]$ git clone -b 1.30.11 --depth 1 https://github.com/kimai/kimai.git
  Cloning into 'kimai'...
  […]
  [isabell@stardust ~]$
@@ -151,7 +151,7 @@ To update your installation fetch the new release tags from GitHub and checkout 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai/
  [isabell@stardust kimai]$ git fetch --tags
- [isabell@stardust kimai]$ git checkout 1.30.9
+ [isabell@stardust kimai]$ git checkout 1.30.11
  [isabell@stardust kimai]$ composer install --no-dev --optimize-autoloader
  [isabell@stardust ~]$
 
@@ -177,9 +177,10 @@ And last but not least: upgrade your database (you need to confirm the migration
 .. _feed: https://github.com/kimai/kimai/releases.atom
 .. _stable release: https://github.com/kimai/kimai/releases
 .. _LICENSE: https://github.com/kimai/kimai/blob/master/LICENSE
+.. _MIT License: https://opensource.org/licenses/MIT
 
 ----
 
-Tested with Kimai 1.28.1, Uberspace 7.13.0, and PHP 8.1
+Tested with Kimai 1.30.11, Uberspace 7.15.0, and PHP 8.1
 
 .. author_list::
