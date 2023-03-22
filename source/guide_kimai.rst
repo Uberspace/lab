@@ -72,8 +72,8 @@ Check the current `stable release`_ and copy the version number which you have t
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ git clone -b 1.28.1 --depth 1 https://github.com/kevinpapst/kimai2.git
- Cloning into 'kimai2'...
+ [isabell@stardust isabell]$ git clone -b 1.28.1 --depth 1 https://github.com/kimai/kimai.git
+ Cloning into 'kimai'...
  […]
  [isabell@stardust ~]$
 
@@ -81,30 +81,29 @@ Install all necessary dependencies using Composer. This can take some time.
 
 ::
 
- [isabell@stardust isabell]$ cd kimai2/
- [isabell@stardust kimai2]$ composer install --no-dev --optimize-autoloader
+ [isabell@stardust isabell]$ cd kimai/
+ [isabell@stardust kimai]$ composer install --no-dev --optimize-autoloader
  Loading composer repositories with package information
  […]
  [isabell@stardust ~]$
 
 
-Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``kimai2/public`` directory:
+Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``kimai/public`` directory:
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/kimai2/public html
+ [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/kimai/public html
  [isabell@stardust ~]$
 
 Configuration
 =============
 
-To configure Kimai you need to edit the main configuration file ``/var/www/virtual/$USER/kimai2/.env``. Open this file with a text editor of your choice.
+To configure Kimai you need to edit the main configuration file ``/var/www/virtual/$USER/kimai/.env``. Open this file with a text editor of your choice.
 
 Edit the following parts of your configuration file:
  * replace the secret in the line starting with ``APP_SECRET`` by a random string
- * comment out the line starting with ``DATABASE_URL=sqlite`` (prefix the line with a ``#``)
  * comment in the line starting with ``DATABASE_URL=mysql`` (remove the ``#``)
  * in the same line replace the placeholders ``db_user``, ``db_password`` and ``db_name`` with your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
  * The finished configuration should look like this ``DATABASE_URL=mysql://isabell:SAFEPASSWORD@127.0.0.1:3306/isabell_kimai``
@@ -113,8 +112,8 @@ Save the changed file and start the installation using the Kimai console.
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
- [isabell@stardust kimai2]$ bin/console kimai:install -n
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai/
+ [isabell@stardust kimai]$ bin/console kimai:install -n
  Kimai installation running ...
  […]
  [isabell@stardust ~]$
@@ -129,47 +128,20 @@ Please don't use ``admin`` as your username and set yourself a strong password.
 .. code-block:: console
  :emphasize-lines: 2,3
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
- [isabell@stardust kimai2]$ bin/console kimai:create-user <username> <admin@example.com> ROLE_SUPER_ADMIN
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai/
+ [isabell@stardust kimai]$ bin/console kimai:create-user <username> <admin@example.com> ROLE_SUPER_ADMIN
  Please enter the password: ****
  […]
  [isabell@stardust ~]$
 
 That's it! You can now visit your website domain and login using your new account.
 
-Best practices
-==============
-
-Security
---------
-
-By default Kimai allows any visitor of your domain to register a new user account. You might want to disable that to prevent strangers in your Kimai instance. After disabling the anonymous registration you can still create new user accounts using the console.
-
-Create a new configuration file called ``local.yml`` in ``config/packages/`` and insert the following configuration:
-
-.. code-block:: yaml
-
- kimai:
-    user:
-        registration: false
-
-Save the new file and clear the cache so the changes become active.
-
-::
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
- [isabell@stardust kimai2]$ bin/console cache:clear --env=prod
- [isabell@stardust kimai2]$ bin/console cache:warmup --env=prod
- [isabell@stardust ~]$
-
-To be sure if everything works check if the registration link is gone from your login page.
-
 Updates
 =======
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check Kimai's `releases <https://github.com/kevinpapst/kimai2/releases>`_ for the latest versions. If a newer
+Check Kimai's `releases <https://github.com/kimai/kimai/releases>`_ for the latest versions. If a newer
 version is available, you should manually update your installation.
 
 To update your installation fetch the new release tags from GitHub and checkout the version you want to update to by using their version number in the ``git checkout`` command. Afterwards update your dependencies with composer.
@@ -177,18 +149,17 @@ To update your installation fetch the new release tags from GitHub and checkout 
 .. code-block:: console
  :emphasize-lines: 3
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai2/
- [isabell@stardust kimai2]$ git fetch --tags
- [isabell@stardust kimai2]$ git checkout 1.8
- [isabell@stardust kimai2]$ composer install --no-dev --optimize-autoloader
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai/
+ [isabell@stardust kimai]$ git fetch --tags
+ [isabell@stardust kimai]$ git checkout 1.30.9
+ [isabell@stardust kimai]$ composer install --no-dev --optimize-autoloader
  [isabell@stardust ~]$
 
 Now clear and warmup your cache.
 
 ::
 
- [isabell@stardust kimai2]$ bin/console cache:clear --env=prod
- [isabell@stardust kimai2]$ bin/console cache:warmup --env=prod
+ [isabell@stardust kimai]$ bin/console kimai:reload -n
  [isabell@stardust ~]$
 
 And last but not least: upgrade your database (you need to confirm the migration).
@@ -196,20 +167,16 @@ And last but not least: upgrade your database (you need to confirm the migration
 .. code-block:: console
  :emphasize-lines: 4
 
- [isabell@stardust kimai2]$ bin/console doctrine:migrations:migrate
- Application Migrations
- WARNING! You are about to execute a database migration that could result in schema changes and data loss.
- Are you sure you wish to continue? (y/n)
+ [isabell@stardust kimai]$ bin/console kimai:update -n
  [isabell@stardust ~]$
 
-.. warning:: It is possible that some version jumps require specific actions. Always check the `UPGRADE guide <https://github.com/kevinpapst/kimai2/blob/master/UPGRADING.md>`_ and the release notes before updating your instance.
+.. warning:: It is possible that some version jumps require specific actions. Always check the `UPGRADE guide <https://github.com/kimai/kimai/blob/master/UPGRADING.md>`_ and the release notes before updating your instance.
 
 
 .. _Kimai: https://www.kimai.org/
-.. _feed: https://github.com/kevinpapst/kimai2/releases.atom
-.. _MIT License: https://opensource.org/licenses/MIT
-.. _stable release: https://github.com/kevinpapst/kimai2/releases
-.. _LICENSE: https://github.com/kevinpapst/kimai2/blob/master/LICENSE
+.. _feed: https://github.com/kimai/kimai/releases.atom
+.. _stable release: https://github.com/kimai/kimai/releases
+.. _LICENSE: https://github.com/kimai/kimai/blob/master/LICENSE
 
 ----
 
