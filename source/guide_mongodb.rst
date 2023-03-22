@@ -11,9 +11,9 @@
   .. image:: _static/images/mongodb.svg
       :align: center
 
-##########
+#######
 MongoDB
-##########
+#######
 
 .. tag_list::
 
@@ -158,10 +158,10 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
 You can exit the shell by entering ``exit``.
 
 
-Access without SSH tunnel
----------------------------------------------
+External access (optional)
+--------------------------
 
-You can access your MongoDB instance externally by opening a port and modifying the service config file.
+If you want to use your Mongodb instance only from your Uberspace account you can skip this part. However, there are cases where you need to connect to your instance from external addresses - e.g. your home computer. You can access your MongoDB instance externally by opening a port and modifying the service config file.
 
 .. code-block:: none
 
@@ -188,12 +188,12 @@ Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with 
  startsecs=30
 
 
-Create the `.pem` file.
+Create the `.pem` file with the certificate chain:
 
-.. code-block:: none
+.. code-block::
 
- cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
-
+ [isabell@stardust ~]$ cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
+ [isabell@stardust ~]$ 
 
 Update and restart the service.
 
@@ -206,11 +206,7 @@ Update and restart the service.
  [isabell@stardust ~]$
 
 
-You should be able to access your instance via the following URI.
-
-.. code-block:: none
-
- mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true
+Access your instance via the following URI: `mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true`
 
 
 Updates
