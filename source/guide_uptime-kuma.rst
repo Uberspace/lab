@@ -160,6 +160,8 @@ Updates
 Update git
 ----------
 
+.. note:: This guide is based on `uptime kuma's wiki page <https://github.com/louislam/uptime-kuma/wiki/%F0%9F%86%99-How-to-Update>`_
+
 Check Uptime-Kuma's `releases <https://github.com/louislam/uptime-kuma/releases>`_ for the latest version and exchange the pseudo version number ``1337.1.3`` here with the latest version number.
 
 .. code-block:: console
@@ -177,7 +179,7 @@ Install dependencies and prebuilt
   :emphasize-lines: 1,2,3
 
   [isabell@stardust ~]$ cd ~/uptime-kuma
-  [isabell@stardust uptime-kuma]$ npm install --omit=dev
+  [isabell@stardust uptime-kuma]$ npm install --production
   [isabell@stardust uptime-kuma]$ npm run download-dist
 
 
