@@ -260,6 +260,28 @@ To fix the second problem, follow these steps:
 
 3. Mautic should now be accessible.
 
+Configuration
+=============
+
+If your Mautic installation is separated from your main site or blog (which is how it should be done from a security and data privacy point of view), then you'd need to configure the :manual:`web header <web-headers>`.
+
+.. note::
+	This is necessary, because your uberspace comes with a number of :manual:`security headers <web-security-headers>` set by default.
+	In this particular case `X-Frame-Options: SAMEORIGIN` is set.
+	It causes problems, because it prevents Mautic's forms that are embedded on your main site to receive form result data.
+	This leads to an error that the `form keeps hanging on "please wait" <https://forum.mautic.org/t/multisite-wordpress-trouble-mautic-form-iframe-error-refused-to-connect-please-wait-hanging-mautic-form-submission/11092>`_ after it was submitted.
+
+Suppressing `X-Frame-Options: SAMEORIGIN`
+-----------------------------------------
+
+.. code-block:: console
+
+	[isabell@stardust ~]$ uberspace web header suppress mautic.$USER.uber.space X-Frame-Options
+	[isabell@stardust ~]$
+
+.. code-block:: console
+
+	Suppressing header "X-Frame-Options" for mautic.isabell.uber.space
 
 Finishing installation
 ======================
@@ -289,7 +311,6 @@ If you keep the logs create the directory where the logs will be saved to:
 
 	[isabell@stardust ~]$ mkdir -p /home/$USER/logs/mautic
 	[isabell@stardust /var/www/virtual/isabell]$
-
 
 
 To create your cron instructions. You can use the following command:
