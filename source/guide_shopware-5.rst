@@ -40,12 +40,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.2:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -67,7 +67,7 @@ URL with the one you just copied.
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ curl -o shopware.zip https://releases.shopware.com/install_5.6.2_6cadc5c14bad4ea8839395461ea42dbc359e9666.zip
+ [isabell@stardust isabell]$ wget -O shopware.zip https://www.shopware.com/de/Download/redirect/version/sw5/file/install_5.7.16_f371e60500e0442c85460f707edd6e443918cc26.zip
  [isabell@stardust isabell]$ unzip -d html shopware.zip
  [isabell@stardust isabell]$ rm shopware.zip
  [isabell@stardust isabell]$
@@ -78,7 +78,7 @@ Setup
 Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions
 to set up Shopware. For more information see the `installation guide`_. We suggest you use an
 :manual_anchor:`additional database <database-mysql.html#additional-databases>`. For example:
-isabell_shopware.
+``isabell_shopware``.
 
 Configuration
 =============
@@ -111,6 +111,6 @@ backend. From there you can start the update.
 
 ----
 
-Tested with Shopware 5.6.2 , Uberspace 7.3.6.1
+Tested with Shopware 5.7.16, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

@@ -128,7 +128,7 @@ The installation is now done, what's missing is the connection to the webserver.
 Connecting the webserver
 ------------------------
 
-A Ruby speciality is that it requires a so called »appserver« as connector
+A Ruby specialty is that it requires a so called »appserver« as connector
 between your application and the webserver. The webserver, like Nginx or Apache,
 will handle all incoming web request and pass only request for the Ruby app along
 to the appserver. The appserver will then actually run your Rails app.
@@ -173,7 +173,7 @@ structure. Adapt the highlighted lines to your setup.
 You could now start Puma manually and everything would work. But to start it
 automatically Uberspace offers the service supervisord_.
 
-Create and edit the file ``~/etc/services.d/redmine-deamon.ini`` and add the following content to it.
+Create and edit the file ``~/etc/services.d/redmine-daemon.ini`` and add the following content to it.
 
 .. code-block:: ini
 

@@ -31,7 +31,18 @@ Prerequisites
 embetty.js
 ----------
 
-Download a copy of embetty.js and place it in your :manual:`DocumentRoot <web-documentroot>`. Please refer to Embetty's `quick start guide`_ for details.
+
+Change to your :manual:`DocumentRoot <web-documentroot>` and download the current version of embetty.js from their github feed_ (use the current link, not the one from the snippet below!):
+
+::
+
+  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+  [isabell@stardust html]$ wget https://github.com/heiseonline/embetty/releases/download/v3.0.8/embetty.js
+  [...]
+  [isabell@stardust ~]$
+
+Please refer to Embetty's `quick start guide`_ for details.
+
 
 Twitter credentials (optional)
 ------------------------------
@@ -59,9 +70,11 @@ Use ``npm`` to install the latest version of Embetty server:
   [isabell@stardust ~]$ npm install -g @heise/embetty-server
   /home/isabell/bin/embetty-start -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty-start
   /home/isabell/bin/embetty -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty
-  + @heise/embetty-server@1.0.0-beta.6
-  added 182 packages in 10.878s
+  [...]
+  added 182 packages
   [isabell@stardust ~]$
+
+
 
 Configuration
 =============
@@ -92,6 +105,7 @@ In our example this would be:
 
  [program:embetty]
  command=embetty start
+ startsecs=60
  environment=TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
 
 
@@ -134,6 +148,6 @@ Use ``npm`` to update Embetty:
 
 ----
 
-Tested with Embetty 1.0.0-beta.6, Uberspace 7.1.7.0
+Tested with Embetty 3.0.8, Uberspace 7.11.5
 
 .. author_list::

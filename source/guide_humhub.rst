@@ -40,12 +40,12 @@ HumHub is released under a dual license, on one hand the AGPL V3 license and on 
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.1:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -63,12 +63,12 @@ Installation
  :emphasize-lines: 2,5
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget --output-document=humhub.zip "https://humhub.org/en/download/start?version=1.3.15&type=zip&ee=0"
+ [isabell@stardust isabell]$ wget --output-document=humhub.zip "https://www.humhub.com/download/package/humhub-1.12.2.zip"
  […]
  [isabell@stardust isabell]$ unzip humhub.zip
- [isabell@stardust isabell]$ cd humhub-1.3.15
- [isabell@stardust humhub-1.3.15]$ mv * /var/www/virtual/$USER/html/
- [isabell@stardust humhub-1.3.15]$
+ [isabell@stardust isabell]$ cd humhub-1.12.2
+ [isabell@stardust humhub-1.12.2]$ mv * /var/www/virtual/$USER/html/
+ [isabell@stardust humhub-1.12.2]$
 
 Database Setup
 ----------------------
@@ -89,7 +89,7 @@ Point your browser to your domain (e.g. isabell.uber.space) to set up and config
 Updates
 =======
 
-Check the news_ regularly to stay informed about the newest version. You will be additionally notified about available updates in the built in humhub update module. You can update the installation via the update module which can be found in the humhub administration menue.
+Check the news_ regularly to stay informed about the newest version. You will be additionally notified about available updates in the built in humhub update module. You can update the installation via the update module which can be found in the humhub administration menu.
 
 
 .. _HumHub: https://humhub.org
@@ -104,6 +104,6 @@ Check the news_ regularly to stay informed about the newest version. You will be
 
 ----
 
-Tested with HumHub 1.3.15, Uberspace 7.1.13
+Tested with HumHub 1.12.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

@@ -108,8 +108,16 @@ Create ``~/etc/services.d/ackee.ini`` with the following content:
   command=yarn start
   autostart=yes
   autorestart=yes
+  startsecs=30
 
 .. include:: includes/supervisord.rst
+
+Set a link to the log file destination so you can more easily access the logs:
+
+.. code-block:: console
+
+  [isabell@stardust html]$ ln --symbolic ~/.npm/_logs/ ~/logs/npm/
+  [isabell@stardust html]$
 
 Finishing installation
 ======================
@@ -128,6 +136,6 @@ Update by running ``git pull`` in Ackee's directory, updating its dependencies w
 
 ----
 
-Tested on Uberspace v7.7.3.0 with NodeJS v14, Ackee v2.0.1 and MongoDB v4.2.8.
+Tested on Uberspace v7.11.1.1 with NodeJS v14, Ackee v3.0.6 and MongoDB v4.4.
 
 .. author_list::

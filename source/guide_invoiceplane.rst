@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: accounting
@@ -11,6 +11,12 @@
 
   .. image:: _static/images/invoiceplane.png
       :align: center
+
+.. error::
+
+  This guide seems to be **broken** for php version > 7.4, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1432
 
 ############
 InvoicePlane
@@ -31,12 +37,12 @@ InvoicePlane_ is a self-hosted open source application for managing your quotes,
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -54,9 +60,9 @@ To install InvoicePlane we download the current version from the official websit
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://www.invoiceplane.org/download/v1.5.10
- [isabell@stardust html]$ unzip v1.5.10
- [isabell@stardust html]$ rm v1.5.10
+ [isabell@stardust html]$ wget https://www.invoiceplane.org/download/v1.5.11
+ [isabell@stardust html]$ unzip v1.5.11
+ [isabell@stardust html]$ rm v1.5.11
  [isabell@stardust html]$
 
 Configuration
@@ -114,6 +120,6 @@ Finish the update by open https://isabell.uber.space/index.php/setup in your bro
 
 ----
 
-Tested with InvoicePlane 1.5.10 and Uberspace 7.4
+Tested with InvoicePlane 1.5.11 and Uberspace 7.11.1.1
 
 .. author_list::

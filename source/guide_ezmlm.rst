@@ -37,9 +37,6 @@ ezmlm_ was written by Fred Lindberg, Fred B. Ringel, and Bruce Guenter and relea
 Installation
 ============
 
-Step 1
-------
-
 Download the latest version of ezmlm_ from the website https://untroubled.org/ezmlm/, extract it and enter the directory:
 
 ::
@@ -48,9 +45,6 @@ Download the latest version of ezmlm_ from the website https://untroubled.org/ez
  [isabell@stardust ~] tar -xzf ezmlm-idx-7.2.2.tar.gz
  [isabell@stardust ~] cd ezmlm-idx-7.2.2/
  [isabell@stardust ezmlm-idx-7.2.2]
-
-Step 2
-------
 
 Change the configuration by editing the ``conf-*`` files using a text editor. It is usually sufficient to change the following files: ``conf-bin`` to
 

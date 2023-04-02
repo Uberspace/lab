@@ -16,7 +16,7 @@ Gotify
 .. tag_list::
 
 Gotify_ is a self-hosted push notification service written in Go and distributed under the MIT License.
-It consists of a server for sending and receiving messages in real-time per WebSocket which is distributed as a single binary. It can be accessed via the built-in web-ui, the `cli <https://github.com/gotify/cli>`_ or `the Android app <https://github.com/gotify/android>`_ (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_ and `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ ).
+It consists of a server for sending and receiving messages in real-time per WebSocket which is distributed as a single binary. It can be accessed via the built-in web-UI, the `cli <https://github.com/gotify/cli>`_ or `the Android app <https://github.com/gotify/android>`_ (available via `F-Droid <https://f-droid.org/de/packages/com.github.gotify/>`_ and `GooglePlay <https://play.google.com/store/apps/details?id=com.github.gotify>`_ ).
 
 ----
 
@@ -54,30 +54,59 @@ Note the `--remove-prefix` option here. Without it, gotify will not work behind 
 Installation
 ============
 
-Like a lot of Go software, gotify is distributed as a single binary. Download gotify's latest `release <https://github.com/gotify/server/releases/latest>`_, unzip it and make sure that the file can be executed.
+Like a lot of Go software, gotify is distributed as a single binary. Since version 2.1.7 gotify requires GLIBC 2.28, which is not available in U7. Thus we need to build gotify from source. The building is done as is described in `gotify's documentation <https://gotify.net/docs/dev-setup>`_ but building without docker and only for one architecture:
+
+.. warning::
+
+  The ``yarn build`` command may fail at first with an ``code: 'EPIPE', syscall: 'write'`` error message.
+  Just run it again until you get ``Done in 60.48s.``. 
 
 ::
 
-  [isabell@stardust ~]$ mkdir ~/gotify && cd ~/gotify
-  [isabell@stardust gotify]$ wget https://github.com/gotify/server/releases/download/v2.0.10/gotify-linux-amd64.zip
-  Resolving github.com (github.com)... 140.82.118.4
-  Connecting to github.com (github.com)|140.82.118.4|:443... connected.
-  HTTP request sent, awaiting response... 302 Found
-  Length: 52960072 (51M) [application/octet-stream]
-  Saving to: gotify-linux-amd64.zip
-
- 100%[==========================================>] 10,200,261  12.0MB/s
-
-  2019-10-26 01:15:11 (12.0 MB/s) - 'gotify-linux-amd64.zip' saved [10200261/10200261]
-  [isabell@stardust gotify]$ unzip gotify-linux-amd64.zip
-  Archive:  gotify-linux-amd64.zip
-    inflating: gotify-linux-amd64
-    inflating: LICENSE
-     creating: licenses/
-    inflating: licenses/github.com_gotify_plugin-api
-  [...]
-    inflating: licenses/golang.org_x_crypto
-  [isabell@stardust gotify]$
+  [isabell@stardust ~]$ git clone https://github.com/gotify/server.git
+  [isabell@stardust ~]$ cd server
+  [isabell@stardust ~/server]$ git checkout v2.2.2
+  Note: switching to 'v2.2.2'.
+  [isabell@stardust server]$ make download-tools
+  go install github.com/go-swagger/go-swagger/cmd/swagger@v0.26.1
+  [isabell@stardust server]$ go get -d
+  [isabell@stardust server]$ cd ui
+  [isabell@stardust ui]$ yarn
+  yarn install v1.22.19
+  [1/4] Resolving packages...
+  success Already up-to-date.
+  Done in 2.53s.
+  [isabell@stardust ~/server/ui]$ NODE_OPTIONS=--openssl-legacy-provider yarn build
+  yarn run v1.22.19
+  $ react-scripts build
+  Creating an optimized production build...
+  Browserslist: caniuse-lite is outdated. Please run:
+    npx browserslist@latest --update-db
+    Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+  Compiled successfully.
+  
+  File sizes after gzip:
+  
+    252.57 KB  build/static/js/2.62492a59.chunk.js
+    15.19 KB   build/static/js/main.d0066ad9.chunk.js
+    2.4 KB     build/static/css/2.0f3898ba.chunk.css
+    778 B      build/static/js/runtime-main.2e858444.js
+  
+  The project was built assuming it is hosted at ./.
+  You can control this with the homepage field in your package.json.
+  
+  The build folder is ready to be deployed.
+  
+  Find out more about deployment here:
+  
+    https://cra.link/deployment
+  
+  Done in 59.93s.
+  [isabell@stardust ui]$ cd ..
+  [isabell@stardust server]$ go run hack/packr/packr.go
+  [isabell@stardust server]$ export LD_FLAGS="-w -s -X main.Version=$(git describe --tags | cut -c 2-) -X main.BuildDate=$(date "+%F-%T") -X main.Commit=$(git rev-parse --verify HEAD) -X main.Mode=prod";
+  [isabell@stardust server]$ go build -ldflags="$LD_FLAGS" -o gotify-server
+  [isabell@stardust server]$ mv gotify-server ../gotify-linux-amd64
 
 
 Configuration

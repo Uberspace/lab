@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    Offen
+    offen
+
 .. author:: Frederik Ring <hioffen@posteo.de>
 
 .. tag:: web
@@ -65,7 +69,7 @@ the word "offen", it can also be "analytics" or whatever you feel like):
 Installation
 ============
 
-.. _Download
+.. _Download:
 
 Download the binary distribution
 --------------------------------

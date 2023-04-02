@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -108,7 +108,9 @@ Install the dependencies:
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ composer install --no-dev
+ [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/composer-1.phar
+ [isabell@stardust html]$ php composer.phar install --no-dev
+ [isabell@stardust html]$ rm composer.phar
  [isabell@stardust html]$ cp config/passbolt.default.php config/passbolt.php
  [isabell@stardust html]$
 

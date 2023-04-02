@@ -29,12 +29,6 @@ License
 
 Redis is distributed under the `BSD license`_.
 
-
-Installation
-============
-
-Redis is now preinstalled, please use the binaries.
-
 Configuration
 =============
 
@@ -53,6 +47,7 @@ Now create the config file ``~/.redis/conf`` with an editor of your choice and e
  unixsocket /home/<user>/.redis/sock
  daemonize no
  port 0
+ save ""
 
 Setup daemon
 ------------
@@ -63,6 +58,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
 
  [program:redis]
  command=redis-server %(ENV_HOME)s/.redis/conf
+ directory=%(ENV_HOME)s/.redis
  autostart=yes
  autorestart=yes
 
@@ -88,4 +84,3 @@ Use the Unix socket ``~/.redis/sock`` to access redis with other applications. Y
 Tested with Redis 5.0.3, Uberspace 7.2.1.0
 
 .. author_list::
-

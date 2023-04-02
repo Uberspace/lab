@@ -21,11 +21,11 @@ Icecast2
 .. tag_list::
 
 
-'Icecast'_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
+`Icecast`_ is a streaming media server which currently supports Ogg Vorbis and MP3 audio streams. It can be used to create an Internet radio station or a privately running jukebox and many things in between. It is very versatile in that new formats can be added relatively easily and supports open standards for communication and interaction.
 
 Icecast is distributed under the GNU GPL, version 2. A copy of this license is included with this software in the COPYING file.
 
-Find the Icecast2 docu here_
+Find the Icecast2 documentation here_
 
 ----
 
@@ -35,13 +35,6 @@ Prerequisites
 Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
-
-Configure port
---------------
-
-.. include:: includes/open-port.rst
-
-Write down your port.
 
 Installation
 ============
@@ -93,7 +86,7 @@ Use this snippet to generate random passwords:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo
+ [isabell@stardust ~]$ pwgen 32 1
  topsecretrandompassword
 
 
@@ -126,10 +119,8 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
 ::
 
   <listen-socket>
-     <port>$yourlisteningport</port>
-     <!-- <bind-address>127.0.0.1</bind-address> -->
+     <port>8000</port>
      <shoutcast-mount>/stream</shoutcast-mount>
-     <ssl>1</ssl>
   </listen-socket>
 
 ::
@@ -160,7 +151,7 @@ Change permissions and execute this script initially.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod +x ~/var/log/icecast/
+  [isabell@stardust ~]$ chmod +x ~/share/icecast/update-cert.sh
   [isabell@stardust ~]$ ~/share/icecast/update-cert.sh
   [isabell@stardust ~]$
 
@@ -196,26 +187,16 @@ Now you can set up the service by creating a file ``~/etc/services.d/icecast.ini
   autostart=yes
   autorestart=yes
 
-.. code-block:: console
+.. include:: includes/supervisord.rst
 
-  [isabell@stardust ~]$ supervisorctl reread
-  [isabell@stardust ~]$ supervisorctl update
-
-Check the status of your icecast2 service.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ supervisorctl status
-  [isabell@stardust ~]$
-
-If your service is not running, check your config.
+If it's not in state ``RUNNING``, check the logs.
 
 Configure web server
 --------------------
 
 .. note::
 
-    Use the port you were assigned by ``uberspace port add`` above.
+    Icecast is running on port 8000.
 
 .. include:: includes/web-backend.rst
 
@@ -245,6 +226,17 @@ You may want to change the log level from Info ``3`` to Debug ``4`` for debuggin
 
 After having changed the ``icecast.xml`` you need to restart the service.
 
+Best practices
+==============
+
+Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to encode to `Ogg Vorbis`_ format.
+
+.. code-block:: console
+
+  [isabell@localhost ~]$ ffmpeg -i $yourinputfile -vn -acodec libvorbis -b:a 128k -f ogg -y /dev/stdout |
+  oggfwd isabell.uber.space $yourlisteningport y0uRS3cR3t_1! /stream.ogg
+
+A more detailed setup for live streaming concerts with JACK audio server can be found at: https://lar.ven.uber.space/streaming_setup
 
 Updates
 =======
@@ -253,11 +245,14 @@ Updates
 
 
 .. _here: https://icecast.org/docs/icecast-2.4.1/
-.. _`Icecast2`: https://icecast.org
+.. _`Icecast`: https://icecast.org
 .. _news: https://icecast.org
 .. _configdocu: https://icecast.org/docs/icecast-2.4.1/config-file.html
 .. _clients: https://icecast.org/apps/
 .. _mixxx: https://mixxx.org/
+.. _oggfwd: https://r-w-x.org/r/oggfwd
+.. _ffmpeg: https://ffmpeg.org
+.. _`Ogg Vorbis`: https://en.wikipedia.org/wiki/Vorbis
 
 ----
 

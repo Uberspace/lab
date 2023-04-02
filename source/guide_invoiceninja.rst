@@ -19,6 +19,12 @@ Invoice Ninja
 
 .. tag_list::
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Invoice Ninja, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/850
+
 `Invoice Ninja`_ is a free, open-source, self-hosted invoicing software with built-in support for recurring invoices, time-tracking and online payments.
 
 ----
@@ -78,7 +84,7 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/invoiceninja/public html
  [isabell@stardust ~]$
 
@@ -196,7 +202,7 @@ You can generate the secret key with this command:
 
 ::
 
- [isabell@stardust ~] < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-15};echo;
+ [isabell@stardust ~] pwgen 32 1
  <randomSecret>
  [isabell@stardust ~]$
 

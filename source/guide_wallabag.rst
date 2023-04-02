@@ -30,21 +30,26 @@ Wallabag_ is a read later solution like `Firefox Pocket`_ to save and organize a
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
-
-.. warning:: Wallabag 2.3.x does not work with PHP 7.4
 
 .. include:: includes/my-print-defaults.rst
 
 Also, the domain you want to use for Wallabag must be set up as well:
 
 .. include:: includes/web-domain-list.rst
+
+Remove the placeholder html file from the html folder:
+
+::
+
+ [isabell@stardust ~]$ rm ~/html/nocontent.html
+ [isabell@stardust ~]$
 
 Installation & Configuration
 ==============================
@@ -54,7 +59,7 @@ First get the Wallabag source code from GitHub_:
 ::
 
   [isabell@stardust ~]$ git clone https://github.com/wallabag/wallabag.git ~/html
-  Cloning into '/home/isabell/wallabag'...
+  Cloning into '/home/isabell/html'...
   remote: Counting objects: 46655, done.
   remote: Compressing objects: 100% (23/23), done.
   remote: Total 46655 (delta 10), reused 20 (delta 9), pack-reused 46620

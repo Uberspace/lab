@@ -41,7 +41,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
 
 .. include:: includes/my-print-defaults.rst
 
-Your URL needs to be setup:
+Your URL needs to be set up:
 
 .. include:: includes/web-domain-list.rst
 
@@ -74,7 +74,7 @@ First get the Etherpad Lite source code from Github_, be sure to replace the ver
   [isabell@stardust ~]$
 
 
-Then run the etherpad script, to install the dependencies:
+Then run the etherpad script to install the dependencies:
 
 .. code-block:: console
 
@@ -90,7 +90,7 @@ Then run the etherpad script, to install the dependencies:
 Configuration
 =============
 
-Set up a Database
+Set up a database
 -----------------
 
 Run the following code to create the database ``<username>_etherpad`` in MySQL:
@@ -103,7 +103,7 @@ Run the following code to create the database ``<username>_etherpad`` in MySQL:
 Change the configuration
 ------------------------
 
-You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Comment this codeblock by adding ``/*`` before and ``*/`` after like shown below.:
+You need to set up the MySQL database settings in ``~/etherpad/settings.json``. Comment this code block by adding ``/*`` before and ``*/`` after like shown below:
 
 .. code-block:: none
 
@@ -114,7 +114,7 @@ You need to set up the MySQL database settings in ``~/etherpad/settings.json``. 
    },
   */
 
-Uncomment the block for mysql below by removing ``/*`` and ``*/``. Update the configuration data as shown below. Replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites. Update the database name to ``<username>_etherpad`` with your username replaced.
+Uncomment the block for MySQL below by removing ``/*`` and ``*/``. Update the configuration data as shown below. Replace ``<username>`` with your username (2 times) and ``<mysql_password>`` with your password that you looked up in the prerequisites. Update the database name to ``<username>_etherpad`` with your username replaced.
 
 .. code-block:: none
  :emphasize-lines: 3,6,7
@@ -129,8 +129,8 @@ Uncomment the block for mysql below by removing ``/*`` and ``*/``. Update the co
     "charset":  "utf8mb4"
   },
 
-Configure web server
---------------------
+Configure the web server
+------------------------
 
 .. note::
 
@@ -138,8 +138,8 @@ Configure web server
 
 .. include:: includes/web-backend.rst
 
-Setup daemon
-------------
+Set up the daemon
+-----------------
 
 Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
@@ -163,7 +163,7 @@ Best practices
 Personalization
 ---------------
 
-Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up a admin account there. If you've updated the settings you need to restart etherpad using ``supervisorctl restart etherpad``.
+Take a deeper look into the ``~/etherpad/settings.json``, you still might want to adjust the title or the welcoming text of new created pads. If you want to use plugins, you will also need to set up an admin account there. If you've updated the settings, you need to restart etherpad using ``supervisorctl restart etherpad``.
 
 You can also personalize the look of your installation by using your own skin or change an existing one. See `Skins`_ in the documentation for further information.
 
@@ -196,7 +196,7 @@ Update the dependencies.
   [isabell@stardust ~]$
 
 
-Then you need to restart the service daemon, so the new code is used by the webserver:
+Then you need to restart the service daemon, so the new code is used by the web server:
 
 .. code-block:: console
 

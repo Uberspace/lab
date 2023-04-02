@@ -1,6 +1,9 @@
-.. author:: cblte <https://cbrueggenolte.de>
-
 .. highlight:: console
+
+.. spelling::
+    IPofYourServer
+
+.. author:: cblte <https://cbrueggenolte.de>
 
 .. tag:: voip
 .. tag:: ports
@@ -51,8 +54,8 @@ Run the command four times to retrieve four ports. One open port for the ``defau
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
 Download the Teamspeak Server for Linux. Get the latest download-URL from the Teamspeak-Downloads_ website.
 
@@ -74,8 +77,8 @@ Download the Teamspeak Server for Linux. Get the latest download-URL from the Te
 
   [isabell@stardust ts3server]$
 
-Step 2
-------
+Extract
+-------
 
 Unpack the downloaded archive into the current directory
 
@@ -91,15 +94,15 @@ Unpack the downloaded archive into the current directory
 Configuration
 =============
 
-Step 1: Setup license agreement
--------------------------------
+Setup license agreement
+-----------------------
 
 Before starting the server for the first time you should either read the ``LICENSE`` file that is part of the teamspeak server archive you just unpacked or go to the Teamspeak-License_ website.
 
 If you agree to the license you need to create a file named ``.ts3server_license_accepted`` in the teamspeak server directory. It is enough to create the file. No need to add content.
 
-Step 2: Create a default config file, admin password and admin token
---------------------------------------------------------------------
+Create a default config file, admin password and admin token
+------------------------------------------------------------
 
 To create a configuration file execute the minimal runscript with the ``createinifile=1`` parameter
 
@@ -138,8 +141,8 @@ You can now press **CTRL+C** to kill the server and to continue with the configu
 
 .. note:: Make a copy of **Server Query Admin Account** ``loginname``, ``password`` and **ServerAdmin** ``token``. You will need this when you connect to your teamspeak server for the first time to gain administrator rights.
 
-Step 3: Edit configuration file
--------------------------------
+Edit configuration file
+-----------------------
 
 Now edit the ``ts3server.ini`` and change the following entries. Use the four ports you were assigned by ``uberspace port add`` above.
 
@@ -168,8 +171,8 @@ Now edit the ``ts3server.ini`` and change the following entries. Use the four po
   query_ssh_port=40135
 
 
-Step 4: Test server start
--------------------------
+Start test server
+-----------------
 
 You can test your configuration by executing the minimal runscript. Use the parameter ``inifile`` with the argument ´´ts3server.ini`` to start the server with your configuration.
 

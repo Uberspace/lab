@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -31,12 +31,12 @@ Baïkal_ is a lightweight CalDAV+CardDAV server.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -51,12 +51,14 @@ Remove your ``html`` directory and download the current version of Baïkal from 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.6.1/baikal-0.6.1.zip
- [isabell@stardust isabell]$ unzip baikal-0.6.1.zip
- [isabell@stardust isabell]$ rm baikal-0.6.1.zip
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.9.2/baikal-0.9.2.zip
+ [isabell@stardust isabell]$ unzip baikal-0.9.2.zip
+ [isabell@stardust isabell]$ rm baikal-0.9.2.zip
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
+
+You can also choose not to replace your ``html`` directory (and e.g. install Baïkal in a subdirectory or under a subdomain). In that case, you need to perform additional configuration steps.
 
 Configuration
 =============
@@ -86,13 +88,13 @@ Proceed with the installation steps from here and move back your config file.
  [isabell@stardust html]$ mv ~/Specific ./
  [isabell@stardust html]$
 
-Finish the update by open isabell.uber.space/html in your browser.
+Finish the update by open isabell.uber.space in your browser.
 
-.. _Baïkal: http://www.baikal-server.com/
+.. _Baïkal: https://sabre.io/baikal/
 .. _stable releases: https://github.com/sabre-io/Baikal/releases
 
 ----
 
-Tested with Baïkal_ 0.6.1 and Uberspace 7.4.3
+Tested with Baïkal_ 0.9.2, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

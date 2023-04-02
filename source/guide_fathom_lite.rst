@@ -13,6 +13,8 @@
 Fathom Lite
 ###########
 
+.. tag_list::
+
 `Fathom Lite`_ is a :manual:`Go <lang-go>`-based website analytics service that respects the privacy of the users and does not collect any personally identifiable information. It is released under the MIT license.
 
 ----
@@ -24,7 +26,7 @@ Fathom Lite
 
 Prerequisites
 =============
-Your webseite domain or subdomain needs to be setup up:
+Your website domain or subdomain needs to be setup up:
 
 .. include:: includes/web-domain-list.rst
 

@@ -37,12 +37,12 @@ It is maintained by roots.io and released and distributed under MIT Licence.
 Prerequisites
 =============
 
-Wordpress recommends PHP_ in version 7.3:
+Wordpress recommends PHP_ in version 8.0:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.3
- Selected PHP version 7.3
+ [isabell@stardust ~]$ uberspace tools version use php 8.0
+ Selected PHP version 8.0
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -68,24 +68,30 @@ Installation
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project roots/bedrock
- Installing roots/bedrock (1.13.1)
-  - Installing roots/bedrock (1.13.1): Loading from cache
- Created project in /var/www/virtual/$USER/bedrock
+ Installing roots/bedrock (1.17.1)
+   - Downloading roots/bedrock (1.17.1)
+   - Installing roots/bedrock (1.17.1): Extracting archive
+ Created project in /var/www/virtual/sbtest1/bedrock
  > php -r "copy('.env.example', '.env');"
- Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file
- Package operations: 11 installs, 0 updates, 0 removals
-  - Installing roots/wordpress-core-installer (1.1.0): Downloading (100%)
-  - Installing composer/installers (v1.8.0): Downloading (100%)
-  - Installing oscarotero/env (v1.2.0): Downloading (100%)
-  - Installing roots/wordpress (5.3.2): Downloading (100%)
-  - Installing roots/wp-config (1.0.0): Downloading (100%)
-  - Installing roots/wp-password-bcrypt (1.0.0): Downloading (100%)
-  - Installing symfony/polyfill-ctype (v1.14.0): Downloading (100%)
-  - Installing phpoption/phpoption (1.7.2): Downloading (100%)
-  - Installing vlucas/phpdotenv (v4.1.0): Downloading (100%)
-  - Installing roave/security-advisories (dev-master 0365bf2)
-  - Installing squizlabs/php_codesniffer (3.5.4): Downloading (100%)
+ Installing dependencies from lock file (including require-dev)
+ Verifying lock file contents can be installed on current platform.
+ Package operations: 16 installs, 0 updates, 0 removals
+   - Installing composer/installers (v1.12.0): Extracting archive
+   - Installing roots/wordpress-core-installer (1.100.0): Extracting archive
+   - Installing oscarotero/env (v2.1.0): Extracting archive
+   - Installing roave/security-advisories (dev-latest bac54e1)
+   - Installing roots/bedrock-autoloader (1.0.4): Extracting archive
+   - Installing roots/bedrock-disallow-indexing (2.0.0): Extracting archive
+   - Installing roots/wordpress (5.8.2): Extracting archive
+   - Installing roots/wp-config (1.0.0): Extracting archive
+   - Installing roots/wp-password-bcrypt (1.1.0): Extracting archive
+   - Installing squizlabs/php_codesniffer (3.6.1): Extracting archive
+   - Installing symfony/polyfill-php80 (v1.23.1): Extracting archive
+   - Installing symfony/polyfill-mbstring (v1.23.1): Extracting archive
+   - Installing symfony/polyfill-ctype (v1.23.0): Extracting archive
+   - Installing phpoption/phpoption (1.8.0): Extracting archive
+   - Installing graham-campbell/result-type (v1.0.3): Extracting archive
+   - Installing vlucas/phpdotenv (v5.3.1): Extracting archive
  Generating optimized autoload files
  [isabell@stardust isabell]$
 
@@ -98,7 +104,7 @@ Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/
 In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``).
 
 .. code-block:: ini
- :emphasize-lines: 1,2,3,10,14,15,18,19,20,21,22,23,24,25
+ :emphasize-lines: 1,2,3,14,15,18,19,20,21,22,23,24,25
 
  DB_NAME='isabell_wp'
  DB_USER='isabell'
@@ -109,11 +115,11 @@ In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql
  # DATABASE_URL='mysql://database_user:database_password@database_host:database_$
 
  # Optional variables
- DB_HOST='localhost'
+ # DB_HOST='localhost'
  # DB_PREFIX='wp_'
 
  WP_ENV='development'
- WP_HOME='isabell.uber.space'
+ WP_HOME='https://isabell.uber.space'
  WP_SITEURL="${WP_HOME}/wp"
 
  # Generate your keys here: https://roots.io/salts.html
@@ -135,6 +141,7 @@ You now need to set your :manual:`document root <web-documentroot>` to the ``bed
 
 .. code-block:: console
 
+ [isabell@stardust ~]$ rm -f /var/www/virtual/$USER/html/nocontent.html
  [isabell@stardust ~]$ rmdir /var/www/virtual/$USER/html
 
  [isabell@stardust ~]$ ln -s /var/www/virtual/$USER/bedrock/web /var/www/virtual/$USER/html
@@ -167,11 +174,16 @@ To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) 
  [isabell@stardust bedrock]$ composer require wpackagist-plugin/simple-page-ordering
  Using version ^2.3 for wpackagist-plugin/simple-page-ordering
  ./composer.json has been updated
+ Running composer update wpackagist-plugin/simple-page-ordering
  Loading composer repositories with package information
- Updating dependencies (including require-dev)
- Package operations: 1 install, 0 updates, 0 removals
-  - Installing wpackagist-plugin/simple-page-ordering (2.3.3): Downloading (100%)
+ Updating dependencies
+ Lock file operations: 1 install, 0 updates, 0 removals
+   - Locking wpackagist-plugin/simple-page-ordering (2.3.4)
  Writing lock file
+ Installing dependencies from lock file (including require-dev)
+ Package operations: 1 install, 0 updates, 0 removals
+   - Downloading wpackagist-plugin/simple-page-ordering (2.3.4)
+   - Installing wpackagist-plugin/simple-page-ordering (2.3.4): Extracting archive
  Generating optimized autoload files
  [isabell@stardust bedrock]$
 
@@ -182,13 +194,18 @@ You can do the same thing with themes, using ``wpackagist-theme``:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
  [isabell@stardust bedrock]$ composer require wpackagist-theme/twentytwenty
- Using version ^1.1 for wpackagist-theme/twentytwenty
+ Using version ^1.8 for wpackagist-theme/twentytwenty
  ./composer.json has been updated
+ Running composer update wpackagist-theme/twentytwenty
  Loading composer repositories with package information
- Updating dependencies (including require-dev)
- Package operations: 1 install, 0 updates, 0 removals
-  - Installing wpackagist-theme/twentytwenty (1.1): Downloading (100%)
+ Updating dependencies
+ Lock file operations: 1 install, 0 updates, 0 removals
+   - Locking wpackagist-theme/twentytwenty (1.8)
  Writing lock file
+ Installing dependencies from lock file (including require-dev)
+ Package operations: 1 install, 0 updates, 0 removals
+   - Downloading wpackagist-theme/twentytwenty (1.8)
+   - Installing wpackagist-theme/twentytwenty (1.8): Extracting archive
  Generating optimized autoload files
  [isabell@stardust bedrock]$
 
@@ -246,6 +263,6 @@ To update Wordpress itself you have several options:
 
 ----
 
-Tested with Bedrock 1.13.1, Uberspace 7.4.4
+Tested with Bedrock 1.21.1, Wordpress 6.1.1, Uberspace 7.13.0, and PHP 8.0
 
 .. author_list::

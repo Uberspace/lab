@@ -1,6 +1,9 @@
 .. highlight:: console
 .. author:: Arian Malek <https://fetziverse.de>
 
+.. spelling::
+    pleroma
+
 .. tag:: lang-elixir
 .. tag:: microblogging
 .. tag:: fediverse
@@ -29,6 +32,7 @@ Pleroma_ is a free, federated social networking server built on open protocols. 
   * :manual:`web backends <web-backends>`
   * :manual:`Erlang <lang-erlang>`
 
+
 Prerequisites
 =============
 
@@ -42,11 +46,12 @@ Your URL needs to be setup:
 Setup PostgreSQL
 ----------------
 
-You should've running a :lab:`PostgreSQL <guide_postgresql>` in the version ``9.6`` or above configured with ``--with-uuid=e2fs``
+We're using :manual:`PostgreSQL <database-postgresql>` in the version 13. Please refer to the :lab:`PostgreSQL <guide_postgresql>` guide to setup your instance.
 
 ::
 
- [isabell@stardust ~]$ ./configure --prefix=$HOME/opt/postgresql/ --with-python PYTHON=/usr/bin/python2 --without-readline --with-uuid=e2fs
+ [isabell@stardust ~]$ uberspace tools version show postgresql
+ Using 'postgresql' version: 13
  [isabell@stardust ~]$
 
 In PostgreSQL you need a database with your username as name. Otherwise there is an error when you create the database for pleroma with the later generated script.
@@ -58,12 +63,15 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> <username>
  [isabell@stardust ~]$
 
-We’re using :manual:`Erlang <lang-erlang>` in the version 22:
+Set Erlang version
+------------------
+
+We're using :manual:`Erlang <lang-erlang>` in the version 25:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show erlang
- Using 'erlang' version: '22'
+ Using 'erlang' version: '25'
  [isabell@stardust ~]$
 
 Installation
@@ -106,12 +114,12 @@ Generate configuration file
 
 .. note:: The next step can take up to 10 minutes.
 
-Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``.
+Run ``mix pleroma.instance gen`` in the pleroma directory. This will compile the files and asks you questions about your instance and generate a configuration file in ``config/generated_config.exs``. Decide on your own for each point. We are using the default values.
 
 .. warning:: Make sure to set the listen port to ``0.0.0.0`` instead of ``127.0.0.1`` !
 
 .. code-block:: console
- :emphasize-lines: 6,9-23
+ :emphasize-lines: 6,9-26
 
  [isabell@stardust ~]$ cd ~/pleroma
  [isabell@stardust pleroma]$ mix pleroma.instance gen
@@ -122,7 +130,7 @@ Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling t
  [...]
  Generated pleroma app
  What domain will your instance use? (e.g pleroma.soykaf.com) []  isabell.uber.space
- What is the name of your instance? (e.g. The Corndog Emporium) [isabell.uber.space]  Isabell
+ What is the name of your instance? (e.g. The Corndog Emporium) [isabell.uber.space]  A Uberspace Pleroma Instance
  What is your admin email address? []  isabell@uber.space
  What email address do you want to use for sending email notifications? [isabell@uber.space]  isabell@uber.space
  Do you want search engines to index your site? (y/n) [y]  y
@@ -136,6 +144,9 @@ Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling t
  What ip will the app listen to (leave it if you are using the default setup with nginx)? [127.0.0.1]  0.0.0.0
  What directory should media uploads go in (when using the local uploader)? [uploads]  uploads
  What directory should custom public files be read from (custom emojis, frontend bundle overrides, robots.txt, etc.)? [instance/static/]  instance/static/
+ Do you want to strip location (GPS) data from uploaded images? (y/n) [y]  y
+ Do you want to anonymize the filenames of uploads? (y/n) [n]  n
+ Do you want to deduplicate uploaded files? (y/n) [n]  n
  Writing config to config/generated_config.exs.
  Writing the postgres script to config/setup_db.psql.
  Writing instance/static/robots.txt.
@@ -146,7 +157,7 @@ Run ``mix pleroma.instance gen`` in the pleroma directory. This will compiling t
 Create new PostgreSQL user and database from file
 -------------------------------------------------
 
-You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additional it install the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database.
+You have a PostgreSQL file in ``config/setup_db.psql``. This script creates the user ``pleroma`` with your password ``MySecretPassword`` you gave above and the database ``pleroma``  with the user ``pleroma`` as owner. Additionally it installs the extensions ``citext``, ``pg_trgm`` and ``uuid-ossp`` to the database.
 Run the script with ``psql``:
 
 ::
@@ -170,10 +181,10 @@ Make a copy of the file ``~/pleroma/config/generated_config.exs`` and rename it 
  [isabell@stardust ~]$ cp ~/pleroma/config/generated_config.exs ~/pleroma/config/prod.secret.exs
  [isabell@stardust ~]$
 
-For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additional we clear the database with all posts older than 30 days to reduce space usage. Find the following block and change / add the highlighted lines:
+For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to disable the open registrations and set your instance private. Additionally we clear the database with remote posts older than 28 days to reduce space usage. Also add a database task queue timeout to avoid timeouts on the front end. Find the following block and change / add the highlighted lines:
 
 .. code-block:: none
- :emphasize-lines: 6, 7, 8
+ :emphasize-lines: 6, 7, 8, 17
 
  config :pleroma, :instance,
    name: "Isabell",
@@ -182,20 +193,54 @@ For minimum privacy settings adjust your ``~/pleroma/config/prod.secret.exs`` to
    limit: 5000,
    registrations_open: false,
    public: false,
-   remote_post_retention: 30
+   remote_post_retention_days: 28
+
+ config :pleroma, Pleroma.Repo,
+   adapter: Ecto.Adapters.Postgres,
+   username: "pleroma",
+   password: "MySuperSecretPassword",
+   database: "pleroma",
+   hostname: "localhost",
+   pool_size: 10,
+   queue_target: 5000
+
+.. warning:: Pleroma uses ExifTool_ to read and write media file metadata in the default configuration but the ExifTool_ binaries don't exist on a default uberspace. There are two options to avoid media file upload issues.
+
+Option A: Disable ExifTool feature
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: Comment out the following line with a ``#`` in your ``prod.secret.exs`` to disable the ExifTool_ feature:
+
+.. code-block:: none
+ :emphasize-lines: 1
+
+ # config :pleroma, Pleroma.Upload, filters: [Pleroma.Upload.Filter.Exiftool]
+
+Option B: Install ExifTool Binaries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: Checkout the ExifTool_ homepage for the latest release. Download, extract and copy the binaries to ``~/bin``:
+
+.. code-block:: none
+
+ [isabell@stardust ~]$ cd ~/tmp
+ [isabell@stardust tmp]$ wget https://exiftool.org/Image-ExifTool-12.14.tar.gz
+ [isabell@stardust tmp]$ tar -xzf Image-ExifTool-12.14.tar.gz
+ [isabell@stardust tmp]$ cd Image-ExifTool-12.14/
+ [isabell@stardust Image-ExifTool-12.14]$ cp -r exiftool lib ~/bin
 
 Check out the `Configuration Cheat Sheet`_ for more settings.
 
 cronjob
 -------
 
-Add the following cronjob to your :manual:`crontab <daemons-cron>` to check daily at 04:42 for posts older than 30 days to remove.
+Add the following cronjob to your :manual:`crontab <daemons-cron>` to check daily at midnight for remote posts older than 28 days to remove.
 
 .. note:: If you use the environment ``dev`` make sure to set ``MIX_ENV=`` to ``dev`` instead of ``prod``!
 
 .. code-block:: none
 
- 42 4 * * * cd ~/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
+ @daily cd ~/pleroma && MIX_ENV=prod mix pleroma.database prune_objects --vacuum >> /dev/null
 
 
 
@@ -231,7 +276,7 @@ As example for this guide:
  You can always check the status of your backend using "uberspace web backend list".
  [isabell@stardust ~]$
 
-Setup deamon
+Setup daemon
 ============
 
 Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure to replace ``<username>`` with your Uberspace username and setup your environment:
@@ -243,6 +288,7 @@ Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure
  directory=%(ENV_HOME)s/pleroma
  autostart=true
  autorestart=true
+ startsecs=60
  environment =
    MIX_ENV=prod
 
@@ -311,12 +357,13 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.1.0, Uberspace 7.7.4.0
+Tested with Pleroma 2.5, Uberspace 7.14.1
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
 .. _Mastodon: https://joinmastodon.org/
 .. _Configuration Cheat Sheet: https://docs-develop.pleroma.social/backend/configuration/cheatsheet/
+.. _ExifTool: https://exiftool.org
 .. _notes: https://git.pleroma.social/pleroma/pleroma/-/releases
 
 .. author_list::

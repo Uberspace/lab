@@ -38,15 +38,15 @@ Roundcube is released under the GNU General Public License_ version 3 or any lat
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.3
- Selected PHP version 7.3
+ [isabell@stardust ~]$ uberspace tools version use php 7.4
+ Selected PHP version 7.4
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 If you want to use your Roundcube with your own domain you need to setup your domain first:
@@ -70,7 +70,7 @@ Installation
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.4.3/roundcubemail-1.4.3-complete.tar.gz
+ [isabell@stardust html]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.5.0/roundcubemail-1.5.0-complete.tar.gz
  [isabell@stardust html]$ tar xf roundcubemail-*.tar.gz --strip-components=1
  [isabell@stardust html]$ rm -r roundcubemail-*.tar.gz
  [isabell@stardust html]$
@@ -194,7 +194,7 @@ Add the following to your ``~/html/config/config.inc.php``:
 .. code-block:: ini
 
  $rcmail_config['username_domain'] = 'domain.tld';
- $rcmail_config['force_username_domain'] = true;
+ $rcmail_config['username_domain_forced'] = true;
 
 All domains in the logins will be replaced by the specified domain above.
 If you want to specify *multiple domains* you'll have to create an array like the following:
@@ -291,6 +291,6 @@ Via FTP + Installer
 
 ----
 
-Tested with Roundcube 1.4.3, Uberspace 7.5.0.0
+Tested with Roundcube 1.5.0, Uberspace 7.11.5
 
 .. author_list::

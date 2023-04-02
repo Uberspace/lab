@@ -19,7 +19,7 @@ Pixelfed
 
 .. tag_list::
 
-Pixelfed_ is a free, decentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similiar to instagram.
+Pixelfed_ is a free, decentralized and ethical photo sharing platform, powered by ActivityPub federation. It comes with an modern user interface similar to Instagram.
 
 ----
 
@@ -53,12 +53,12 @@ Setup a new MySQL database for Pixelfed:
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_pixelfed"
  [isabell@stardust ~]$
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Redis
@@ -101,14 +101,14 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/pixelfed/public html
  [isabell@stardust isabell]$
 
 Configuration
 =============
 
-.. warning:: Whenever you edit the ``.env`` file, you must ``run php artisan config:cache`` in the root directory for the changes to take effect.
+.. warning:: Whenever you edit the ``.env`` file, you must run ``php artisan config:cache`` in the root directory for the changes to take effect.
 
 Copy the example configuration file ``.env.example`` to ``.env`` and generate a key into the config:
 
@@ -116,9 +116,6 @@ Copy the example configuration file ``.env.example`` to ``.env`` and generate a 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ cp .env.example .env
- [isabell@stardust pixelfed]$ php artisan key:generate
- Application key set successfully.
- [isabell@stardust pixelfed]$
 
 Open the file ``.env`` in your favourite editor and adjust the following blocks accordingly. For minimum privacy we recommend to disable the open registrations:
 
@@ -146,12 +143,20 @@ Open the file ``.env`` in your favourite editor and adjust the following blocks 
  MAIL_HOST=stardust.uberspace.de
  MAIL_PORT=587
  MAIL_USERNAME=isabell@uber.space
- MAIL_PASSWORD=MySuperSecretPassword
+ MAIL_PASSWORD="MySuperSecretPassword"
  MAIL_ENCRYPTION=tls
  MAIL_FROM_ADDRESS="isabell@uber.space"
  MAIL_FROM_NAME="Pixelfed"
 
  OPEN_REGISTRATION=false
+
+Generate the application key
+
+::
+
+ [isabell@stardust pixelfed]$ php artisan key:generate
+ Application key set successfully.
+ [isabell@stardust pixelfed]$
 
 Run database migrations:
 
@@ -227,7 +232,7 @@ Run the following command to import the Places data:
 Installing Horizon
 ------------------
 
-.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures.
+.. note:: Horizon provides a beautiful dashboard and code-driven configuration for our Redis queues. Horizon allows you to easily monitor key metrics of your queue system such as job throughput, runtime, and job failures. It is also needed to execute the queue jobs, for example for thumbnail generation - so this step is not optional.
 
 To install Horizon, run the following commands and recache the routes:
 
@@ -246,12 +251,10 @@ To install Horizon, run the following commands and recache the routes:
 
 Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content:
 
-.. note:: Make sure to replace ``Isabell`` with your user name.
-
 .. code-block:: ini
 
  [program:horizon]
- command=php /var/www/virtual/isabell/pixelfed/artisan horizon
+ command=php /var/www/virtual/%(ENV_USER)s/pixelfed/artisan horizon
  autostart=yes
  autorestart=yes
 
@@ -266,7 +269,7 @@ Configuring Scheduler
 
 .. note:: The scheduler is used to run periodic commands in the background. The following commands are used in the scheduler:
 
- * ``media:optimize`` - Finds any un-optimized media and performs optimization
+ * ``media:optimize`` - Finds any not optimized media and performs optimization
  * ``media:gc`` - Finds any media not used in statuses older than 1 hour and deletes them
  * ``horizon:snapshot`` - Generates Horizon analytics snapshot
  * ``story:gc`` - Finds expired Stories and deletes them
@@ -350,7 +353,7 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
 
 ----
 
-Tested with Pixelfed 0.10.9, Uberspace 7.7.2.0
+Tested with Pixelfed 0.11.4, Uberspace 7.13, PHP 8.1
 
 .. _Pixelfed: https://pixelfed.org
 .. _Redis: https://redios.io

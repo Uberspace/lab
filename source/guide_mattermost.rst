@@ -92,10 +92,10 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``mattermost_test`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
 
 .. code-block:: javascript
- :emphasize-lines: 3
+ :emphasize-lines: 2,3
 
     "SqlSettings": {
       "DriverName": "mysql",
@@ -110,13 +110,6 @@ Then find the ``SqlSettings`` block and replace ``mmuser`` with your username, `
       "QueryTimeout": 30
     },
 
-To configure plugins you have to change the plugin path under ``PluginSettings``:
-
-.. code-block:: javascript
- :emphasize-lines: 1,2
-
-      "Directory": "/home/isabell/mattermost/plugins",
-      "ClientDirectory": "/home/isabell/mattermost/client/plugins",
 
 Configure web server
 --------------------
@@ -137,6 +130,7 @@ Create ``~/etc/services.d/mattermost.ini`` with the following content:
  [program:mattermost]
  command=%(ENV_HOME)s/mattermost/bin/mattermost
  autorestart=true
+ directory=%(ENV_HOME)s/mattermost
 
 
 .. include:: includes/supervisord.rst
@@ -153,16 +147,119 @@ Further customisation
 
 To further customise your configuration, you can open the ``system console`` in your browser and adapt any settings to your wishes. Setting the SMTP server is a good idea.
 
-Updates
--------
+Update
+======
 
-Stop your service, backup your ``/home/isabell/mattermost/client/plugins``, ``/home/isabell/mattermost/config``, ``/home/isabell/mattermost/data``, ``/home/isabell/mattermost/logs`` and ``/home/isabell/mattermost/plugins`` directory and rename/delete your ``/home/isabell/mattermost`` directory.
-Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. Then you can start your service again.
+Manual 
+------
+
+1. Stop your service, 
+2. Backup your directories
+	- ``/home/isabell/mattermost/client/plugins``, 
+	- ``/home/isabell/mattermost/config``, 
+	- ``/home/isabell/mattermost/data``, 
+	- ``/home/isabell/mattermost/logs``
+	- ``/home/isabell/mattermost/plugins`` 
+3. Rename/delete your ``/home/isabell/mattermost`` directory.
+4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. 
+5. Then you can start your service again.
+
+When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
+  [isabell@stardust ~]$
+
+Automatic Update
+-----------------
+
+Use the script attached to update Mattermost to the current version. Run the script above the mattermost-root directory.
+
+.. code-block:: shell
+
+	#!/bin/sh
+	printf "\n===\nWelcome to updating Mattermost... let us begin!\n===\n"
+
+	printf "\n== Preflight Checks ==\n"
+	if [ ! -d "./mattermost" ]; then
+	printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
+	exit 1
+	else 
+		printf "Directory ./mattermost found.\n"
+	fi
+
+	database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
+	if [ -z "$database" ] 
+	then
+		printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
+		exit 2
+	else 
+		printf "Using database: $database\n"
+	fi
+
+	version=$1
+	if [ -z "$version" ] 
+	then
+		printf "No manual version given. Check from official website ...\n"
+
+		tag_name=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq --raw-output '.tag_name')
+		version=${tag_name:1} # This will remove the first character `v` from the version tag `v1.2.3`
+
+		printf "Newest Version detected: v$version\n"
+	fi
+
+	usedVersion=$(./mattermost/bin/mattermost version | grep -Po "(?<=Version: )([0-9]|\.)*(?=\s|$)")
+	if [ "$usedVersion" = "$version" ]
+	then
+		printf "\n=== You are up-to-date. No update needed. ===\n"
+		exit 0
+	fi
+
+	printf "\n== Prepare for takeoff ==\n"
+
+	printf "Downloading Version v$version...\n"
+	mattermostfile="mattermost-$version-linux-amd64.tar.gz"
+	wget https://releases.mattermost.com/${version}/$mattermostfile
+
+	printf "\nExtracting Version ..."
+	tar -xf $mattermostfile --transform='s,^[^/]\+,\0-upgrade,'
+
+	printf "\nCreate Backup of filesystem..."
+	backupdir="mattermost-back-$(date +'%F-%H-%M')/"
+	cp -ra mattermost/ $backupdir
+
+	printf "\nCreate Backup of database: '$database' ..."
+	mysqldump --databases $database > $backupdir/$database.dump.sql
+
+	printf "\n== Take off ==\n"
+	printf "\nStop Service - ..."
+	supervisorctl stop mattermost
+
+	printf "\nDelete all old files ..."
+	find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | xargs rm -r
+
+	printf "\nApply new files ..."
+	cp -an mattermost-upgrade/. mattermost/
+
+	printf "\nStart Service again ..."
+	supervisorctl start mattermost
+
+	printf "\n== Take off complete ==\n"
+
+	printf "\nClean up files ..."
+	rm -r mattermost-upgrade/
+	rm -i mattermost*.gz
+
+	printf "\n===\nUpdate completed successfully.\n==="
+
 
 .. _`Mattermost website`: https://mattermost.com/download/
+.. _`Mattermost`: https://mattermost.com/
+
 
 ----
 
-Tested with Mattermost 5.18.0 and Uberspace 7.3.10.0
+Tested with Mattermost 7.7.1 and Uberspace 7.13.0
 
 .. author_list::

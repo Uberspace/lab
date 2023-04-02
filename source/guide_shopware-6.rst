@@ -39,12 +39,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.2:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -66,7 +66,7 @@ URL with the one you just copied.
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ curl -o shopware.zip https://releases.shopware.com/sw6/install_6.0.0_ea2_1571125323.zip
+ [isabell@stardust isabell]$ curl -o shopware.zip https://www.shopware.com/de/Download/redirect/version/sw6/file/install_v6.4.17.2_4d2c85fb448571fa4f30edce635f33a67dda1d76.zip
  [isabell@stardust isabell]$ unzip -d shopware shopware.zip
  [isabell@stardust isabell]$ rm shopware.zip
  [isabell@stardust isabell]$
@@ -74,12 +74,9 @@ URL with the one you just copied.
 Since Shopware uses the sub directory public/ as the :manual:`DocumentRoot <web-documentroot>`,
 you need to remove your DocumentRoot and create a symlink to the shopware/public/ directory:
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/shopware/public html
  [isabell@stardust isabell]$
 
@@ -118,6 +115,6 @@ Updates
 
 ----
 
-Tested with Shopware 6.0.0-ea2 , Uberspace 7.3.8.1
+Tested with Shopware 6.4.17.2, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

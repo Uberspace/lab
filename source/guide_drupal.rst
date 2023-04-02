@@ -118,12 +118,9 @@ document root of your website, you should **not** install Drupal in your default
 :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a
 symbolic link to make it accessible to the web.
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/drupal/web/ html
  [isabell@stardust isabell]$
 
@@ -156,7 +153,7 @@ Add the following configuration to the ``settings.php`` file.
 Cronjob
 -------
 
-For executing periodical tasks like updatong the search index, purging old logs or checking for
+For executing periodical tasks like updating the search index, purging old logs or checking for
 updates, etc. you will need to set up a cronjob.
 
 Get your cron URL for your site under Administration → Configuration → System → Cron. We create a
@@ -181,20 +178,20 @@ Core Updates
 .. note:: Also see section 13.5. `Updating the Core Software`_ of the Drupal User Guide and the
     article `Update core via Composer`_ for up-to-date instructions.
 
-Step 1: Allow access to ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Allow access to ``update.php``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``/var/www/virtual/$USER/drupal/sites/default/settings.php``, find the line with the
 ``$settings['update_free_access']`` variable and set it to ``TRUE``.
 
-Step 2: Enable maintenance mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Enable maintenance mode
+^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Maintenance mode*,
 enable the *Put site into maintenance mode* option and click on *Save configuration*.
 
-Step 3: Update via Composer
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Update via Composer
+^^^^^^^^^^^^^^^^^^^
 
 Update the Drupal Core packages with Composer:
 
@@ -204,25 +201,25 @@ Update the Drupal Core packages with Composer:
  [isabell@stardust drupal]$ composer update drupal/core --with-dependencies
  [isabell@stardust drupal]$
 
-Step 4: Run ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Run ``update.php``
+^^^^^^^^^^^^^^^^^^
 
 Visit ``https://isabel.uber.space/update.php`` and click *Continue* to run the update.
 
-Step 5: Deny access to ``update.php``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Deny access to ``update.php``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``/var/www/virtual/$USER/drupal/sites/default/settings.php``, find the line with the
 ``$settings['update_free_access']`` variable and set it to ``FALSE``.
 
-Step 6: Disable maintenance mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Disable maintenance mode
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Maintenance mode*,
 disable the *Put site into maintenance mode* option and click on *Save configuration*.
 
-Step 7: Clear caches
-^^^^^^^^^^^^^^^^^^^^
+Clear caches
+^^^^^^^^^^^^
 
 In the Manage administrative menu, navigate to *Configuration* → *Development* → *Performance* and
 click *Clear all caches*.
@@ -240,6 +237,6 @@ click *Clear all caches*.
 
 ----
 
-Tested with Drupal 8.8.4 and Uberspace 7.5.0.0
+Tested with Drupal 9.4.8, Uberspace 7.13, PHP 8.1
 
 .. author_list::

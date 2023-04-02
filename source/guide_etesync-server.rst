@@ -24,6 +24,9 @@ It is written in :manual:`Python <lang-python>` and based on the popular :lab:`D
 
 ----
 
+.. warning:: EteSync Server v2 has been released_ in October 2020. This guide is about installing EteSync Server v1
+    and seems to be not applicable to v2.
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
     * :manual:`Python <lang-python>` and its package manager pip
@@ -58,12 +61,10 @@ Install uWSGI
 Installation
 ============
 
-Step 1
-------
+Download
+--------
 
 Clone the source code from Github to ``~/etesync_server``.
-Make sure to replace the release number ``v0.3.0`` in the command with the latest release
-which can be found at the release_ page on GitHub:
 
 .. code-block:: console
     :emphasize-lines: 1
@@ -71,8 +72,8 @@ which can be found at the release_ page on GitHub:
     [isabell@stardust ~]$ git clone https://github.com/etesync/server.git --branch v0.3.0 ~/etesync_server
     [isabell@stardust ~]$
 
-Step 2
-------
+Install dependencies
+--------------------
 
 Install the requirements for `EteSync Server`_:
 
@@ -83,8 +84,8 @@ Install the requirements for `EteSync Server`_:
     [isabell@stardust etesync_server]$ pip3.6 install mysqlclient --user
     [isabell@stardust etesync_server]$
 
-Step 3
-------
+Static files
+------------
 
 Install the static files:
 
@@ -97,8 +98,8 @@ Install the static files:
     152 static files copied to '/home/isabell/etesync_server/static'.
     [isabell@stardust etesync_server]$
 
-Step 4: Basic configuration
----------------------------
+Basic configuration
+-------------------
 
 Create the file ``~/etesync_server/etesync_site_settings.py`` and add the following line
 (replace ``isabell`` with your own username and ``MySuperSecretPassword`` with your actual MySQL password):
@@ -119,8 +120,8 @@ Create the file ``~/etesync_server/etesync_site_settings.py`` and add the follow
       }
     }
 
-Step 5: Database setup
-----------------------
+Database setup
+--------------
 
 Create a database:
 
@@ -136,8 +137,8 @@ Apply database migrations:
     [isabell@stardust etesync_server]$ python3.6 manage.py migrate
     [isabell@stardust etesync_server]$
 
-Step 6: Security configuration
-------------------------------
+Security configuration
+----------------------
 
 Perform a Django deployment check, which will give some configuration recommendations:
 
@@ -174,8 +175,8 @@ Perform the check again to make sure all warnings have been resolved:
     [isabell@stardust etesync_server]$
 
 
-Step 7: Web backend configuration
----------------------------------
+Web backend configuration
+-------------------------
 
 .. note::
 
@@ -191,8 +192,8 @@ And for the static files:
     Set backend for /static to apache.
     [isabell@stardust ~]$
 
-Step 8: Daemon setup
---------------------
+Daemon setup
+------------
 
 To deploy your application with ``uwsgi``, create a file at ``~/uwsgi/apps-enabled/etesync_server.ini`` with the following content:
 
@@ -221,8 +222,8 @@ Restart ``uwsgi``:
     uwsgi: started
     [isabell@stardust ~]$
 
-Step 9: Test your installation
-------------------------------
+Test your installation
+----------------------
 
 Perform a CURL request to your URL (e.g. ``https://isabell.uber.space``) to see if your installation succeeded:
 
@@ -301,43 +302,20 @@ Set up a cron job by using the ``crontab -e`` command and adding the line:
 
     @daily  $HOME/bin/backup-etesync-server
 
-.. warning:: Your backups should be stored at another location outside your Ubersapce!
+.. warning:: Your backups should be stored at another location outside your Uberspace!
 
 .. warning:: Keep in mind that the data stored by EteSync server is end-to-end encrypted.
              Therefore, the data from your server backups can not be restored without the encryption password
              which is not included in the backups, because it only exists on your synchronized devices.
              Make sure you keep your encryption password in a safe place, too!
 
-
-Updates
-=======
-
-.. note:: Check the release_ page on GitHub regularly or follow the feed_ to stay informed about the newest version.
-
-If there is a new version available, update your EteSync server installation to the latest release
-with ``git`` (make sure to replace ``v0.3.x`` with the latest version number):
-
-.. code-block:: console
- :emphasize-lines: 2
-
-    [isabell@stardust ~]$ cd ~/etesync_server
-    [isabell@stardust etesync_server]$ git pull origin v0.3.x
-    [isabell@stardust etesync_server]$ pip3.6 install -U -r requirements.txt
-    [isabell@stardust etesync_server]$ python3.6 manage.py migrate
-    [isabell@stardust etesync_server]$ python3.6 manage.py collectstatic
-    [isabell@stardust etesync_server]$
-
-
 .. _EteSync: https://www.etesync.com/
 .. _EteSync Server: https://github.com/etesync/server
 .. _Django:  https://www.djangoproject.com/
-.. _release: https://github.com/etesync/server/releases
-.. _feed: https://github.com/etesync/server/releases.atom
+.. _released: https://github.com/etesync/server/releases/tag/v0.5.0
 
 ----
 
 Tested with EteSync server 0.3.0 and Uberspace 7.7.1.2
 
 .. author_list::
-
-

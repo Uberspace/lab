@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########
@@ -124,25 +124,13 @@ Create needed folders and files for uwsgi:
 ::
 
  [isabell@stardust ~]$ mkdir -p ~/uwsgi/apps-enabled
- [isabell@stardust ~]$ touch ~/uwsgi/err.log 
+ [isabell@stardust ~]$ touch ~/uwsgi/err.log
  [isabell@stardust ~]$ touch ~/uwsgi/out.log
  [isabell@stardust ~]$
 
-Tell ``supervisord`` to refresh its configuration and start the service:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- uwsgi: available
- [isabell@stardust ~]$ supervisorctl update
- uwsgi: added process group
- [isabell@stardust ~]$ supervisorctl status
- uwsgi                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
-
-If it's not in state RUNNING, check your configuration.
-
+If it's not in state ``RUNNING``, check the logs.
 
 Get .qmail helper scripts
 -------------------------
@@ -172,8 +160,10 @@ At first, we need to configure the REST interface of the core component. Create 
  smtp_host: stardust.uberspace.de
  lmtp_port: 8024
  smtp_port: 587
+ smtp_secure_mode: starttls
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
+ max_recipients: 100
 
  [webservice]
  hostname: 0.0.0.0
@@ -226,7 +216,7 @@ HyperKitty is the part of mailman that takes care of archiving mail. It is confi
 Daemonizing Mailman Core
 ------------------------
 
-As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
+As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
 
 .. code :: ini
 
@@ -239,6 +229,7 @@ As we want to make sure that Mailman is started automatically, we need to set it
  stderr_logfile = ~/var/logs/daemon_err.log
  stdout_logfile = ~/var/logs/daemon_out.log
  stopsignal=TERM
+ startsecs=30
 
 Afterwards, create necessary folders and files:
 
@@ -315,6 +306,16 @@ After the REST backend has been configured, we need to configure the Django fron
     ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
 
+ [...]
+
+ Q_CLUSTER = {
+     'timeout': 100,
+     'retry': 200,
+     'save_limit': 100,
+     'orm': 'default',
+     'workers': 4,
+ }
+
  # Comment the following lines out to test sending mail
  #if DEBUG == True:
  #   EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -384,6 +385,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  process = 2
  threads = 2
  wsgi-file = wsgi.py
+ startsecs=30
 
  # your user name
  uid = isabell
@@ -454,7 +456,7 @@ Using Mailman
 
 Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues.
 
-Now you can create a new list using the Postorious web UI.
+Now you can create a new list using the Postorius web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
@@ -491,3 +493,8 @@ Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and u
 
 
 .. author_list::
+
+Automated deployment (experimental)
+===================================
+
+As of November 2021 there is an attempt to automate this guide, see `this repo <https://codeberg.org/cknoll/uberspace-autodeploy-mailman3>`_. The goal is to get a mailman3 instance deployed in less than 10min on a fresh uberspace account. All issues and questions regarding this automation approach should be directed to that repo or its maintainer.

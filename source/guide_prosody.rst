@@ -1,6 +1,8 @@
 .. highlight:: console
+
 .. author:: Arian Malek <https://fetziverse.de>
 .. author:: fapsi
+.. author:: magicfelix
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -19,7 +21,7 @@ Prosody
 
 Prosody_ is a modern XMPP communication server. It aims to be easy to set up and configure, and efficient with system resources. Additionally, for developers it aims to be easy to extend and give a flexible system on which to rapidly develop added functionality, or prototype new protocols.
 
-XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organisation, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
+XMPP is an open and free alternative to commercial messaging and chat providers. Set it up for your company, organization, or just your family and friends. You are in control, and your communication is private to you. Supporting a wide range of client software for desktop and mobile platforms, you can chat using Prosody from any device.
 
 ----
 
@@ -28,7 +30,6 @@ XMPP is an open and free alternative to commercial messaging and chat providers.
   * :manual:`Domains <web-domains>`
   * :manual:`Firewall Ports <basics-ports>`
   * :manual:`HTTPS <web-https>`
-  * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
 
 This guide is based on the initial `pull request`_ from fapsi_.
@@ -44,38 +45,38 @@ Prerequisites
 Web domain
 ----------
 
-.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``isabell.org``. To understand and setup the domains easier I use the following (recommended) subdomains:
+.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``example.org``. To understand and setup the domains easier I use the following (recommended) subdomains:
 
- * ``xmpp.isabell.org``
- * ``conference.isabell.org``
- * ``upload.isabell.org``
+ * ``xmpp.example.org``
+ * ``conference.example.org``
+ * ``upload.example.org``
 
-Your domain ``isabell.org`` and subdomains ``conference.isabell.org``, ``upload.isabell.org`` and ``xmpp.isabell.org`` needs to be setup:
+Your domain ``example.org`` and subdomains ``conference.example.org``, ``upload.example.org`` and ``xmpp.example.org`` needs to be setup:
 
 ::
 
  [isabell@stardust ~]$ uberspace web domain list
- isabell.org
- conference.isabell.org
- upload.isabell.org
- xmpp.isabell.org
+ example.org
+ conference.example.org
+ upload.example.org
+ xmpp.example.org
  [isabell@stardust ~]$
 
-Uberspace creates certificates automagically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
+Uberspace creates certificates automatically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
 
 ::
 
- [isabell@stardust ~]$ curl --silent --head https://isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://conference.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://conference.example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://upload.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://upload.example.org | head -n 1
  [...]
- [isabell@stardust ~]$ curl --silent --head https://xmpp.isabell.org | head -n 1
+ [isabell@stardust ~]$ curl --silent --head https://xmpp.example.org | head -n 1
  [...]
  [isabell@stardust ~]$
 
-This will return ``HTTP/1.1 200 OK`` or something similiar accordingly your webserver configuration.
+This will return ``HTTP/1.1 200 OK`` or something similar accordingly your webserver configuration.
 
 Ports
 -----
@@ -96,21 +97,25 @@ Your DNS needs to be setup with the following values:
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
 |                    name                  |   ttl  | class |   type | priority | weight |    port  |       target     |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|                 isabell.org              |   3600 |    IN |    A   |          |        |          |    35.195.215.42 |
+|                 example.org              |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|                 isabell.org              |   3600 |    IN |   AAAA |          |        |          |         0:       |
+|                 example.org              |   3600 |    IN |   AAAA |          |        |          | 2001:db8::42:42  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|          conference.isabell.org          |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
+|          conference.example.org          |   3600 |    IN | CNAME  |          |        |          |     example.org  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|             upload.isabell.org           |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
+|             upload.example.org           |   3600 |    IN | CNAME  |          |        |          |     example.org  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|              xmpp.isabell.org            |   3600 |    IN | CNAME  |          |        |          |     isabell.org  |
+|              xmpp.example.org            |   3600 |    IN |    A   |          |        |          | 192.0.2.42       |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|        _xmpp-client._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | C2S-PORT | xmpp.isabell.org |
+|              xmpp.example.org            |   3600 |    IN |  AAAA  |          |        |          | 2001:db8::42:42  |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-|        _xmpp-server._tcp.isabell.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
+|        _xmpp-client._tcp.example.org     | 18000  |    IN |   SRV  |      0   |     5  | C2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
-| _xmpp-server._tcp.conference.isabell.org | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.isabell.org |
+|        _xmpp-server._tcp.example.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+| _xmpp-server._tcp.conference.example.org | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
++------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
+| _xmpp-server._tcp.upload.example.org     | 18000  |    IN |   SRV  |      0   |     5  | S2S-PORT | xmpp.example.org |
 +------------------------------------------+--------+-------+--------+----------+--------+----------+------------------+
 
 Configure luarocks
@@ -151,13 +156,10 @@ The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and 
  luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
-Further optional ones (``luadbi-mysql``, ``luabitop`` and ``luaevent``) can be installed with these commands:
+Further optional ones (``luabitop`` and ``luaevent``) can be installed with these commands:
 
 ::
 
- [isabell@stardust ~]$ luarocks install luadbi-mysql --local MYSQL_BINDIR="/usr/bin" MYSQL_INCDIR="/usr/include/mysql" MYSQL_LIBDIR="/usr/lib64"
- luadbi [...] is now built and installed in [...]
- luadbi-mysql [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luabitop --local
  luabitop [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luaevent --local
@@ -167,18 +169,6 @@ Further optional ones (``luadbi-mysql``, ``luabitop`` and ``luaevent``) can be i
 .. note:: The variables ``*_BINDIR`` ``*__INCDIR`` and ``*_LIBDIR`` are necessary for correct linking the associated library because CentOS uses a different layout for those files than luarocks expects!
 
 To list the installed packages with their versions use the command ``luarocks list``.
-
-MySQL
------
-
-.. include:: includes/my-print-defaults.rst
-
-Create a database for prosody:
-
-::
-
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_prosody"
- [isabell@stardust ~]$
 
 Installation
 ============
@@ -250,9 +240,7 @@ Create the directory ``~/var/lib/prosody/http_upload``  for the module ``http_up
 Configure prosody
 -----------------
 
-Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explaination of the config file under the `example configuration file`_ from Prosody.
-
-Additionally I recommend the ssl ciphers and options to reach a high security score. You can check it over the `IM Observatory`_.
+Then there are many settings which should be edited accordingly in ``~/etc/prosody/prosody.cfg.lua``. You'll find a explanation of the config file under the `example configuration file`_ from Prosody.
 
 .. note:: Make sure to adapt ``VirtualHost "localhost"`` with your domain.
 
@@ -261,8 +249,9 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
 .. code-block:: lua
 
  ---------- Server-wide settings ----------
- admins = { "isabell@isabell.org" }
+ admins = { "isabell@example.org" }
  plugin_paths = { "/home/isabell/var/lib/prosody/prosody-modules" }
+ data_path = "/home/isabell/var/lib/prosody"
  modules_enabled = {
    "mam"; -- Store messages in an archive and allow users to access it
    "csi_simple"; -- Simple Mobile optimizations
@@ -273,36 +262,26 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  ssl = {
    dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";
    cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
-   ciphers = "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4:!SEED:!AES128:!CAMELLIA128";
-   options = { "no_sslv2", "no_sslv3", "no_tlsv1"; "no_ticket", "no_compression", "cipher_server_preference", "single_dh_use", "single_ecdh_use" };
  }
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize = false;
- storage = "sql"
- sql = {
-   driver = "MySQL",
-   database = "isabell_prosody",
-   username = "isabell",
-   password = "MySuperSecretPassword",
-   host = "localhost"
- }
  log = { info = "*console" }
  certificates = "/home/isabell/etc/certificates/"
- https_certificate = "/home/isabell/etc/certificates/upload.isabell.org.crt"
+ https_certificate = "/home/isabell/etc/certificates/upload.example.org.crt"
  http_ports = { }
  https_ports = { FILEUPLOAD-PORT }
 
  ----------- Virtual hosts -----------
- VirtualHost "isabell.org"
- Component "conference.isabell.org" "muc"
+ VirtualHost "example.org"
+ Component "conference.example.org" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "upload.isabell.org" "http_upload"
+ Component "upload.example.org" "http_upload"
    http_upload_file_size_limit = 10485760
    http_upload_expire_after = 2419200
 
-.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, sql settings (inclusive username and password) and paths! Don't delete, obmit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
+.. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, and paths! Don't delete, omit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
 
-Setup deamon
+Setup daemon
 ============
 
 Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adapt it accordingly:
@@ -328,10 +307,43 @@ Create your first user:
 .. code-block:: console
  :emphasize-lines: 1-3
 
- [isabell@stardust ~]$ prosodyctl adduser isabell@isabell.org
+ [isabell@stardust ~]$ prosodyctl adduser isabell@example.org
  Enter new password:
  Retype new password:
  [isabell@stardust ~]$
+
+Voice/Video calls
+=================
+
+In order to enable voice/video calls a TURN and STUN server for NAT traversal is required. coturn_ is supported by prosody.
+
+First install coturn according to `coturn lab guide`_ and note listening port ``<port-1>`` as well as ``static-auth-secret``.
+
+To enable coturn, it must be configured as `external service`_ in ``prosody.cfg.lua``:
+
+.. code-block:: lua
+ :emphasize-lines: 11,16,17
+
+ modules_enabled = {
+     -- other modules ...
+     "external_services"
+ }
+
+ external_services = {
+     {
+         type = "stun",
+         transport = "udp",
+         host = "isabell.uber.space",
+         port = <port-1>
+     }, {
+         type = "turn",
+         transport = "udp",
+         host = "isabell.uber.space",
+         port = <port-1>,
+         secret = "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
+     }
+ }
+
 
 Updates
 =======
@@ -385,7 +397,7 @@ As a personal note I want to recommend following XMPP clients:
 
 * Gajim_ for Linux / Windows.
 * Conversations_ for Android.
-* ChatSecure_ for iOS.
+* Siskin_ for iOS.
 
 ----
 
@@ -397,11 +409,13 @@ Tested with Prosody 0.11.5, Uberspace 7.7.1.2
 .. _dns: https://prosody.im/doc/dns
 .. _known issue: https://issues.prosody.im/1375
 .. _dependencies: https://prosody.im/doc/depends
-.. _IM Observatory: https://xmpp.net
 .. _example configuration file: https://prosody.im/doc/example_config
 .. _update feed: https://blog.prosody.im/index.xml
+.. _coturn: https://prosody.im/doc/coturn
+.. _`coturn lab guide`: https://lab.uberspace.de/guide_coturn.html
+.. _`external service`: https://prosody.im/doc/modules/mod_external_services
 .. _Gajim: https://gajim.org
 .. _Conversations: https://conversations.im
-.. _ChatSecure: https://chatsecure.org
+.. _Siskin: https://siskin.im
 
 .. author_list::

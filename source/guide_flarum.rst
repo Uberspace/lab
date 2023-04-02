@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Kammerer <https://kammerer.tk/>
+.. author:: Thomas Johnson <https://johnson.tj/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -30,12 +30,12 @@ Flarum_ is the next-generation forum software that makes online discussion fun. 
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -55,14 +55,14 @@ We create the database and install Flarum using composer.
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project flarum/flarum flarum --stability=beta
  […]
- [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ ln -s flarum html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ ln -s flarum/public html
  [isabell@stardust isabell]$
 
 Configuration
 =============
 
-After the installation you need to open isabell.uber.space/public in your browser to finish your setup.
+After the installation you need to open `https://isabell.uber.space` in your browser to finish your setup.
 
 Fill out your forum title, admin user and edit the following database settings:
  * MySQL Database: ``isabell_flarum``
@@ -73,6 +73,6 @@ Fill out your forum title, admin user and edit the following database settings:
 
 ----
 
-Tested with Flarum v0.1.0-beta.11 and Uberspace 7.4
+Tested with Flarum v0.1.0-beta.13 and Uberspace 7.10.0
 
 .. author_list::

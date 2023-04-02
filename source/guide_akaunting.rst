@@ -43,14 +43,6 @@ Akaunting is released under the GPLv3_ license. The licence can be found in the 
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
- [isabell@stardust ~]$
-
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
@@ -81,13 +73,13 @@ Configuration
 
 Point your browser to your domain (e.g. isabell.uber.space) to set up and configure your Akaunting installation.
 
-Step 1: Language Selection
---------------------------
+Language Selection
+------------------
 
 Choose your desired language.
 
-Step 2: Database Setup
-----------------------
+Database Setup
+--------------
 
 Akaunting saves your data in a MySQL database. We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>`. You need to create this database before you enter the database credentials in the installer.
 
@@ -102,8 +94,8 @@ Enter the following information into the installer:
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * the name of your newly created Akaunting database (e.g. ``isabell_akaunting``)
 
-Step 3: Company and Admin Details
----------------------------------
+Company and Admin Details
+-------------------------
 
 Fill in the name of your company, the company email address (email sender if you send e.g. invoices), an admin email address and your admin password.
 
@@ -137,6 +129,6 @@ You can update the installation in the update wizard which you can find in the A
 
 ----
 
-Tested with Akaunting 1.2.16, Uberspace 7.1.13
+Tested with Akaunting 3.0.9, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

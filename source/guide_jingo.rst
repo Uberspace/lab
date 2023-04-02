@@ -27,12 +27,12 @@ At this time, Jingo is no longer actively developed but still supported for secu
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 16:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ Using 'Node.js' version: '16'
  [isabell@stardust ~]$
 
 Your blog URL needs to be setup:
@@ -62,7 +62,7 @@ Then you need to install the dependencies using the node packet manager:
   [isabell@stardust ~]$ cd ~/jingo
   [isabell@stardust jingo]$ npm install
   [...]
-  added 626 packages in 17.17s
+  added 436 packages in 17.17s
   [isabell@stardust jingo]$
 
 
@@ -229,6 +229,6 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 ----
 
-Tested with Jingo 1.8.5, Uberspace 7.1.1
+Tested with Jingo 1.9.7, Uberspace 7.11.5
 
 .. author_list::

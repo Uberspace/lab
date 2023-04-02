@@ -9,9 +9,9 @@
   .. image:: _static/images/grocy.svg
       :align: center
 
-####
+#####
 Grocy
-####
+#####
 
 .. tag_list::
 
@@ -38,10 +38,10 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
------
+Download
+--------
 
-Download grocy.
+Download grocy:
 
 ::
 
@@ -55,10 +55,10 @@ Download grocy.
  2020-08-26 12:09:31 (12,5 MB/s) - ‘grocy_latest.zip’ saved [57489683/57489683]
  [isabell@stardust isabell]$
 
-Step 2
-------
+Extract
+-------
 
-Unpack the downloaded grocy release
+Unpack the downloaded grocy release:
 
 ::
 
@@ -67,46 +67,34 @@ Unpack the downloaded grocy release
  [isabell@stardust isabell]$
 
 
-Step 3
+Expose
 ------
 
-If you want to only host grocy on your Uberspace (best practice since Uberspace 7) you should link your
-DocumentRoot to grocy's public folder:
+Remove the default page from your DocumentRoot and link it to grocy's public folder:
 
 ::
 
- [isabell@stardust isabell]$ rmdir html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s grocy/public html
  [isabell@stardust isabell]$
 
-If you instead want to host grocy alongside other applications, just leave the html folder and create the link inside of it, like this:
 
-::
+Configure
+---------
 
- [isabell@stardust isabell]$ ln -s public html/grocy
- [isabell@stardust isabell]$
-
-Please note that this will require further tweaking in the config file.
-
-Step 4
-------
-
-Copy the default config file to ``data/config.php`` and edit it to your liking
+Copy the default config file to ``data/config.php``:
 
 ::
 
  [isabell@stardust isabell]$ cd grocy
  [isabell@stardust grocy]$ cp config-dist.php data/config.php
- [isabell@stardust grocy]$ nano data/config.php
  [isabell@stardust grocy]$
 
+Now use your preferred text editor and edit ``data/config.php`` to your liking.
 
-You will probably want to change the ``CURRENCY`` to ``EUR`` and ``CULTURE`` to ``de``.
+You will probably want to change the ``CURRENCY`` and ``CULTURE`` to your language code (e.g. ``EUR`` for Euro and ``de`` for Germany).
 
-If you decided to host your grocy installation in a sub folder, also change the ``BASE_URL`` to your full url, e.g. ``http://isabell.uber.space/``.
 The config file provide's more help about this in it's comments, so make sure to read them.
-
-
 
 Finishing installation
 ======================
@@ -116,7 +104,7 @@ This will take a moment, as grocy will need to create the default database at fi
 
 When prompted for a login, use ``admin`` for both username and password.
 
-.. warning:: Change the default password as soon as possible, as it poses a security risk. If you don't, anyone can access your data.
+.. warning:: Change the default password as soon as possible, as it poses a security risk. If you don't, anyone can access your data and change your password for you.
 
 Updates
 =======
@@ -140,6 +128,6 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
 ----
 
-Tested with Grocy 2.7.1, Uberspace 7.7.4.0
+Tested with Grocy 3.3.2, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::

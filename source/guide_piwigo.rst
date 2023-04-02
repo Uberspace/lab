@@ -36,15 +36,15 @@ Piwigo is released under the GNU General Public License_ version 2 or any later 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.3
- Selected PHP version 7.3
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 If you want to use your Piwigo with your own domain you need to setup your domain first:
@@ -129,15 +129,28 @@ Updates
 
 The easiest way to update Piwigo is to use the web updater provided in the admin section of the Web Interface: ``Tools > Updates``.
 
+Backup
+======
+
+Backup the following directories:
+
+  * ``~/html/``
+
+Additionally, backup the MySQL database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysqldump isabell_piwigo | xz - > ~/isabell_piwigo.sql.xz
+
 .. _Upgrade Manual: https://piwigo.org/doc/doku.php?id=user_documentation:learn:upgrade:upgrade_automatic
 .. _release: https://piwigo.org/download/dlcounter.php?code=latest
-.. _Piwigo: https://piwigo.org/get-piwigos
+.. _Piwigo: https://piwigo.org/get-piwigo
 .. _feed: https://github.com/Piwigo/Piwigo/releases.atom
 .. _GNU General Public License: https://github.com/Piwigo/Piwigo/blob/master/COPYING.txt
 .. _Github Repository: https://github.com/Piwigo/Piwigo/releases
 
 ----
 
-Tested with Piwigo 2.10.2, Uberspace 7.6.1.2
+Tested with Piwigo 13.1.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::

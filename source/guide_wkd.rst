@@ -1,5 +1,10 @@
 .. highlight:: console
 
+.. spelling::
+    WKD
+    mmuhurigesr
+    cmfsnmiiyyr
+
 .. author:: Starkstromkonsument <it@starkstromkonsument.de>
 
 .. tag:: audience-admins
@@ -28,7 +33,7 @@ Prerequisites
 
 You need to own a domain (e.g. for example.org) and to have the ready to use public keys for the e-mail identities you want to provide via WKD (e.g. isabell@example.org). This guide does not explain how to generate GnuPG_ / OpenPGP_ keys.
 
-The domain for the advanced method has to be set up at your DNS-Hoster and within your uberspace:
+The domain for the advanced method has to be set up at your DNS-hoster and within your uberspace:
 
 ::
 
@@ -65,7 +70,7 @@ Add the following lines to the empty ``.htaccess`` file to set the correct heade
     Header always set Access-Control-Allow-Origin "*"
  </IfModule>
 
-.. warning:: Make sure that there is no automatic directory listing! It is not necessary and it reveals the number of emailadresses (and their hashes) in the WKD (this can be a privacy issue)!
+.. warning:: Make sure that there is no automatic directory listing! It is not necessary and it reveals the number of email addresses (and their hashes) in the WKD (this can be a privacy issue)!
 
 
 Direct method

@@ -37,12 +37,12 @@ The software is licensed under GPLv3_. All relevant information can be found in 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -63,25 +63,27 @@ Check the selfoss_ website or `GitHub repo`_ for the `latest release`_ and copy 
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/SSilence/selfoss/releases/download/47.11/selfoss-47.11.zip
+ [isabell@stardust isabell]$ wget https://github.com/fossar/selfoss/releases/download/2.19/selfoss-2.19.zip
  […]
- Saving to: ‘selfoss-47.11.zip’
+ Saving to: ‘selfoss-2.19.zip’
 
  100%[========================================================================================================================>] 2,881,068    819KB/s   in 3.7s
 
- 2018-09-24 10:49:50 (766 KB/s) - ‘selfoss-47.11.zip’ saved [2881068/2881068]
+ 2018-09-24 10:49:50 (766 KB/s) - ‘selfoss-2.19.zip’ saved [2881068/2881068]
 
 Unzip the archive to the ``html`` folder and then delete it. Replace the version in the file name with the one you downloaded.
 
 .. code-block:: console
  :emphasize-lines: 1,6
 
- [isabell@stardust isabell]$ unzip -d html/ selfoss-47.11.zip
+ [isabell@stardust isabell]$ unzip selfoss-2.19.zip
  […]
    inflating: html/common.php
    inflating: html/run.php
    inflating: html/cliupdate.php
- [isabell@stardust isabell]$ rm selfoss-47.11.zip
+ [isabell@stardust isabell]$ mv selfoss/* html/
+ [isabell@stardust isabell]$ rm selfoss-2.19.zip
+ [isabell@stardust isabell]$ rmdir selfoss
  [isabell@stardust isabell]$
 
 Configuration
@@ -125,7 +127,7 @@ We also recommend password protection for your installation. First, generate a r
 
 ::
 
- [isabell@stardust html]$ head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20 ; echo ''
+ [isabell@stardust html]$ pwgen 32 1
 
 Copy the output and set it as salt in your ``config.ini``.
 
@@ -167,6 +169,6 @@ It is recommended to set up a cron job to automatically update your feeds. Edit 
 
 ----
 
-Tested with selfoss 2.18, Uberspace 7.1.12.0
+Tested with selfoss 2.19, PHP 8.1 and Uberspace 7.13.0
 
 .. author_list::

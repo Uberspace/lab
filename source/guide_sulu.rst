@@ -1,5 +1,9 @@
 .. highlight:: console
 
+.. spelling::
+    serverVersion
+    sulu
+
 .. author:: Clemens Krack <info@clemenskrack.com>
 
 .. tag:: lang-php
@@ -17,7 +21,7 @@ Sulu CMS
 
 .. tag_list::
 
-`Sulu CMS`_ is a content management platform based on Symfony made for businesses. It's a flexible CMS to create and manage enterprise multi-sites and a reliable development environment for high-performance apps. With powerful features for developers and a simple UI for editors it's the ideal engine for state-of-the-art business websites and web-based software.
+`Sulu CMS`_ is a content management platform based on Symfony made for businesses. It's a flexible CMS to create and manage enterprise multiple sites and a reliable development environment for high-performance apps. With powerful features for developers and a simple UI for editors it's the ideal engine for state-of-the-art business websites and web-based software.
 
 ----
 
@@ -36,12 +40,12 @@ License
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.4:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -57,30 +61,37 @@ Since Sulu CMS uses the subdirectory ``public/`` as document root of your websit
 
 ``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the PHP Dependency Manager Composer_ to create a new project based on the **Sulu Skeleton**.
 
-.. note:: Replace ``sulucms`` in the examples with your desired name for the directory/database.
-
 .. code-block:: console
+ :emphasize-lines: 17
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project sulu/skeleton sulucms
  Creating a "sulu/skeleton" project at "./sulucms"
  Installing sulu/skeleton (2.0.7)
    - Installing sulu/skeleton (2.0.7): Loading from cache
- Created project in /var/www/virtual/ckrack/sulucms
+ Created project in /var/www/virtual/isabell/sulucms
+ […]
+     The recipe for this package contains some Docker configuration.
+
+    This may create/update docker-compose.yml or update Dockerfile (if it exists).
+
+    Do you want to include Docker configuration from recipes?
+    [y] Yes
+    [n] No
+    [p] Yes permanently, never ask again for this project
+    [x] No permanently, never ask again for this project
+    (defaults to y): x
  […]
  [isabell@stardust isabell]$
 
 Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``sulucms/public`` directory.
 
-.. warning:: Make sure ``html`` is empty before deleting it. If there are any files you want to keep
-   in ``html``, you can also rename the folder instead of deleting it.
-
 .. code-block:: console
 
- [isabell@stardust isabell]$ rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/sulucms/public html
- [isabell@stardust isabell]$ cd ~
- [isabell@stardust ~]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ ln -s sulucms/public html
+ [isabell@stardust isabell]$
 
 
 Configuration
@@ -229,6 +240,6 @@ To update `Sulu CMS`_ you can run the following command in the root directory of
 
 ----
 
-Tested with Sulu CMS v2.0.7, Uberspace 7.6.1.2
+Tested with Sulu CMS v2.5.3, Uberspace 7.13, and PHP 8.1
 
 .. author_list::

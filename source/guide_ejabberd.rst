@@ -4,7 +4,7 @@
 
 .. tag:: XMPP
 .. tag:: Jabber
-.. tag:: Instant Messanging
+.. tag:: Instant Messaging
 
 .. highlight:: console
 
@@ -54,7 +54,8 @@ Run ``./configure --help`` to see all options.
   [isabell@stardust ~]$ tar xf 20.04.tar.gz
   [isabell@stardust ~]$ cd ejabberd-20.04/
   [isabell@stardust ejabberd-20.04]$ ./autogen.sh
-  [isabell@stardust ejabberd-20.04]$ ./configure --enable-user=$USER --prefix=$HOME/opt/ejabberd --enable-mysql --enable-new-sql-schema
+  [isabell@stardust ejabberd-20.04]$ ./configure --enable-user=$USER --prefix=$HOME --enable-mysql --enable-new-sql-schema
+  [isabell@stardust ejabberd-20.04]$ make
   [isabell@stardust ejabberd-20.04]$ make install
 
 The files will be installed to the following locations:
@@ -79,9 +80,9 @@ Domains
 -------
 
 Your ejabberd domain ``isabell.example`` needs to be setup. We will additionally
-use the following subomains:
+use the following subdomains:
 
-  * ``conference.isabell.example``: Multi-user chat rooms
+  * ``conference.isabell.example``: Multiuser chat rooms
   * ``proxy.isabell.example``: File transfer proxy
   * ``pubsub.isabell.example``: PubSub
   * ``xmpp.isabell.example``: Web-based features like file uploads and web sockets
@@ -379,7 +380,7 @@ Compliance Configuration
 ========================
 
 The following configuration settings are not needed for basic operation but
-are reuqired to pass the `Compliance Test <https://compliance.conversations.im/>`_.
+are required to pass the `Compliance Test <https://compliance.conversations.im/>`_.
 It is based on ProcessOne’s blog post
 `How to configure ejabberd to get 100% in XMPP compliance test <https://www.process-one.net/blog/how-to-configure-ejabberd-to-get-100-in-xmpp-compliance-test/>`_.
 
@@ -549,7 +550,7 @@ To do this, comment out the ``/admin`` route on the HTTP listener:
         /ws: ejabberd_http_ws
     …
 
-Add a separate listener on a differet port (e. g. 5280):
+Add a separate listener on a different port (e.g. 5280):
 
 .. code-block:: ini
   :emphasize-lines: 3-8
@@ -716,7 +717,7 @@ to the database schema are included there as well.
 Logfiles
 --------
 
-Regularely check the logfiles at ``~/var/log/ejabberd/``, especially
+Regularly check the logfiles at ``~/var/log/ejabberd/``, especially
 ``error.log``.
 
 ----

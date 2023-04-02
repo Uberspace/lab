@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########
@@ -63,8 +63,8 @@ Mailman requires `dnspython`. Install it using `pip`:
 Installation
 ============
 
-Step 1
-------
+Prepare folders
+---------------
 Prepare the installation folders:
 
 ::
@@ -74,8 +74,8 @@ Prepare the installation folders:
  [isabell@stardust isabell]$ chmod g+s mailman
  [isabell@stardust isabell]$
 
-Step 2
-------
+Download
+--------
 
 Download the latest Mailman 2.1 version from https://ftp.gnu.org/gnu/mailman/ and extract the archive in your webroot (replace the version numbers accordingly):
 
@@ -123,8 +123,8 @@ If compilation and installation finished without errors, we will no longer need 
  [isabell@stardust isabell]$
 
 
-Step 3
-------
+Check permissions
+-----------------
 
 We can continue by checking folder permissions in the installation folder:
 
@@ -137,8 +137,8 @@ We can continue by checking folder permissions in the installation folder:
 
 In case errors are found, you should definitely fix them before continuing.
 
-Step 4
-------
+Enable web interface
+--------------------
 
 If you want the webinterface to be public available, we need to create a couple of SymLinks and an htaccess-file:
 
@@ -164,8 +164,8 @@ Finally, we need to adjust file permissions for the Mailman_ cgi-scripts to run:
  [isabell@stardust ~]$ chmod -R 0755 /var/www/virtual/$USER/mailman/cgi-bin
  [isabell@stardust ~]$
 
-Step 5
-------
+Configure qmail
+---------------
 
 Because Mailman_ doesn't handle our .qmail-configuration automatically, we need to help it create the necessary aliases. This needs to be done for each new mailinglist, so we will create an extra script to process this task. Create the file ``~/bin/mailman-add-list.sh`` with the following content (this code is based on the script provided in the official installation instructions):
 
@@ -201,13 +201,13 @@ Configuration
 
 By now we have installed all the necessary files - let's tell them what they should actually do.
 
-Step 1
-------
+Mailbox
+-------
 
 Create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for Mailman to use to send e-mails. In this example, we are going to use ``mailmanbox@isabell.uber.space``.
 
-Step 2
-------
+Configuration
+-------------
 
 Add the following options to the end of the file ``/var/www/virtual/$USER/mailman/Mailman/mm_cfg.py`` (change values accordingly!):
 
@@ -222,6 +222,7 @@ Add the following options to the end of the file ``/var/www/virtual/$USER/mailma
  SMTP_USE_TLS = True
  SMTPHOST = 'stardust.uberspace.de'
  SMTPPORT = '587'
+ SMTP_MAX_RCPTS = 100
 
  SMTP_USER = 'mailmanbox@isabell.uber.space'
  SMTP_PASSWD = 'MySuperSecretPassword'

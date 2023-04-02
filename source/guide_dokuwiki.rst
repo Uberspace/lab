@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    superduper
+
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 
 .. tag:: lang-php
@@ -39,12 +42,12 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your blog domain needs to be setup:
@@ -84,12 +87,97 @@ You will need to enter the following information:
   * Allow users to register themselves: your decision
   * Choose under which license your content will be published
 
-At least you have to delete the ``install.php``.
+Finally you have to delete the ``install.php``:
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ rm install.php
+ [isabell@stardust html]$
+
 
 Tuning
 ======
 
 For plugins, themes and other stuff go to DokuWiki_.
+
+
+Nice URLs aka URL-Rewriting
+---------------------------
+
+To change default behaviour and rewrite ``https://isabell.uber.space/doku.php?id=dokuwiki-on-uberspace``  to ``https://isabell.uber.space/dokuwiki-on-uberspace`` you need to enable URL rewriting in /var/www/virtual/$USER/html/conf/local.php/ file by appending:
+
+::
+
+  $conf['userewrite'] = 1;
+  $conf['useslash'] = 1;
+
+This can also be done in Configuration Settings via Admin page.
+
+Next step is to rename ``/var/www/virtual/$USER/html/.htaccess.dist`` to ``/var/www/virtual/$USER/html/.htaccess`` and edit that file. First uncomment:
+
+::
+
+  #RewriteEngine On
+
+by deleting the # character at the beginning of the line and insert:
+
+::
+
+  RewriteBase /
+
+between ``RewriteEngine On`` and first ``RewriteRule`` directive. Finally uncomment all of the following rewrite rules and save changes.
+
+Before:
+
+::
+
+  ## Uncomment these rules if you want to have nice URLs using
+  ## $conf['userewrite'] = 1 - not needed for rewrite mode 2
+  #RewriteEngine on
+  #
+  #RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
+  #RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1  [QSA,L]
+  #RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2  [QSA,L]
+  #RewriteRule ^$                        doku.php  [L]
+  #RewriteCond %{REQUEST_FILENAME}       !-f
+  #RewriteCond %{REQUEST_FILENAME}       !-d
+  #RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
+  #RewriteRule ^index.php$               doku.php
+  #
+
+After:
+
+::
+
+  ## Uncomment these rules if you want to have nice URLs using
+  ## $conf['userewrite'] = 1 - not needed for rewrite mode 2
+  RewriteEngine on
+  #
+  ## Change RewriteBase to the directory your dokuwiki installation points to
+  RewriteBase /
+  #
+  RewriteRule ^_media/(.*)              lib/exe/fetch.php?media=$1  [QSA,L]
+  RewriteRule ^_detail/(.*)             lib/exe/detail.php?media=$1  [QSA,L]
+  RewriteRule ^_export/([^/]+)/(.*)     doku.php?do=export_$1&id=$2  [QSA,L]
+  RewriteRule ^$                        doku.php  [L]
+  RewriteCond %{REQUEST_FILENAME}       !-f
+  RewriteCond %{REQUEST_FILENAME}       !-d
+  RewriteRule (.*)                      doku.php?id=$1  [QSA,L]
+  RewriteRule ^index.php$               doku.php
+  #
+
+If something goes wrong, you can set the two values to 0 and delete the ``.htaccess`` file.
+
+
+Handling Special Characters
+---------------------------
+
+Special characters should be handled safe to avoid long or corrupt filenames. Edit ``/var/www/virtual/$USER/html/conf/local.php/`` by appending:
+
+::
+
+  $conf['fnencode'] = 'safe';
 
 
 Updates
@@ -109,6 +197,6 @@ Your first plugin you have to install, is the upgrade_ plugin. With this plugin 
 
 ----
 
-Tested with DokuWiki 2018-04-22b "Greebo", Uberspace 7.2.1.0
+Tested with DokuWiki 2022-07-31a "Igor", Uberspace 7.13, PHP 8.1
 
 .. author_list::

@@ -87,7 +87,7 @@ Configure web backend
 
 Setup daemon
 ------------
-To run *shellinabox* as a deamon, create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
+To run *shellinabox* as a daemon, create a new file ``~/etc/services.d/shellinabox.ini`` with the following content:
 
 .. code-block:: ini
 

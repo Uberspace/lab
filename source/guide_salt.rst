@@ -17,7 +17,7 @@ SaltStack
 
 `SaltStack`_ (or simply `Salt`) is Python-based, open-source software for event-driven IT automation, remote task execution, and configuration management. Supporting the "Infrastructure as Code" approach to data center system and network deployment and management, configuration automation, SecOps orchestration, vulnerability remediation, and hybrid cloud control.
 
-The ``salt-master`` controls so called ``salt-minions`` through formulae, pillars and grains. The scope of this guide is to install a ``salt-master``(without a co-located minion) on an Uberspace.
+The ``salt-master`` controls so called ``salt-minions`` through formulae, pillars and grains. The scope of this guide is to install a ``salt-master`` (without a co-located minion) on an Uberspace.
 
 ----
 
@@ -89,18 +89,9 @@ Create ``~/etc/services.d/salt-master.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Tell ``supervisord`` to refresh its configuration and start the service:
+.. include:: includes/supervisord.rst
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- salt-master: available
- [isabell@stardust ~]$ supervisorctl update
- salt-master: added process group
- [isabell@stardust ~]$ supervisorctl status
- salt-master                      RUNNING   pid 24968, uptime 0:00:05
-
-If it's not in state RUNNING, check your configuration.
+If it's not in state ``RUNNING``, check the logs.
 
 Finishing installation
 ======================

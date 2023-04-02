@@ -21,9 +21,8 @@ Statping
 .. tag_list::
 
 
-`Statping`_ is a lightweight and easy to install monitoring tool written in Go.
+Statping-ng_ is an updated drop-in for statping. It is a lightweight and easy to install monitoring tool written in Go.
 It is published under the GNU General Public License v3.0.
-
 
 ----
 
@@ -54,18 +53,16 @@ Create a database
 Installation
 ============
 
-Now let's get started with installing Statping .
+Now let's get started with installing Statping-ng.
 
-Start with cloning the Statping binaries from Github_ and be sure to replace the version ``v0.80.70`` with the current release number!:
+Start with cloning the Statping-ng binaries from Github_ and be sure to replace the version ``v0.90.80`` with the current release number!:
 
 ::
 
  [isabell@stardust ~]$ cd statping
- [isabell@stardust statping]$ curl -sL https://github.com/statping/statping/releases/download/v0.80.70/statping-linux-x64.tar.gz | tar xz
+ [isabell@stardust statping]$ curl -sL https://github.com/statping-ng/statping-ng/releases/download/v0.90.80/statping-linux-amd64.tar.gz | tar xz
  [isabell@stardust statping]$ ls
- statping  statping.asc
-
-You can now verify the GPG signature in statping.asc
+ statping
 
 Setup daemon
 ------------
@@ -87,14 +84,14 @@ Configure web server
 
 .. note::
 
-    Statping is running on port 8080.
+    Statping-ng is running on port 8080.
 
 .. include:: includes/web-backend.rst
 
 Configuration
 =============
 
-You can now access Statping via your browser by visiting <username>.uber.space or any domain
+You can now access Statping-ng via your browser by visiting <username>.uber.space or any domain
 you set up.
 
 .. _fig_statping_config:
@@ -131,16 +128,16 @@ If there is a new version available, you can get the binary with the same comman
 
    [isabell@stardust ~]$ cd ~/statping/
    [isabell@stardust statping]$ supervisorctl stop statping
-   [isabell@stardust statping]$ curl -sL https://github.com/statping/statping/releases/download/v0.80.70/statping-linux-x64.tar.gz | tar xz
+   [isabell@stardust statping]$ curl -sL https://github.com/statping-ng/statping-ng/releases/download/v0.80.70/statping-linux-x64.tar.gz | tar xz
    [isabell@stardust statping]$ supervisorctl start statping
 
-
-.. _Github: https://github.com/statping/statping/
-.. _feed: https://github.com/statping/statping/releases
-.. _`Statping Wiki`: https://github.com/statping/statping/wiki
+.. _Statping-ng: https://statping-ng.github.io/
+.. _Github: https://github.com/statping-ng/statping-ng
+.. _feed: https://github.com/statping-ng/statping-ng/releases
+.. _`Statping Wiki`: https://github.com/statping-ng/statping-ng/wiki
 
 ----
 
-Tested with Statping v0.80.70 and Uberspace 7.2.4.0
+Tested with Statping-ng v0.80.70 and Uberspace 7.2.4.0
 
 .. author_list::

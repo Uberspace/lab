@@ -40,47 +40,23 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-Step 1
-------
-Firstly we need to add a domain(in this case a subdomain).
+Your URL needs to be set up:
 
-::
-
-  [isabell@stardust ~] uberspace web domain add cdn.uberspace.de
-  The webserver's configuration has been adpated.
-  Now you can use the following records for your dns:
-     A -> 185.26.156.55
-     AAAA -> 2a00:d0c0:200:0:b9:1a:9c:37
-
-Step 2
-------
-
-Now we need to create the corresponding directory for our subdomain.
-
-::
-
-  [isabell@stardust ~] mkdir /var/www/virtual/$user/cdn.uberspace.de && cd "$_"
-  [isabell@stardust cdn.uberspace.de]
-
-
-
+.. include:: includes/web-domain-list.rst
 
 Installing and configuring the Windows client
 =============================================
-Go to your Windows PC and download the ShareX software from the `ShareX Website <https://getsharex.com/downloads/>`_.
 
-Step 1
-------
-Start the installer and follow the instructions.
+Install
+-------
+Go to your Windows PC and download the ShareX software from the `ShareX Website <https://getsharex.com/downloads/>`_. Start the installer and follow the instructions.
 
-Step 2
-------
+Configure
+---------
 Open ShareX and navigate to ":menuselection:`Destinations settings --> FTP / FTPS / SFTP`"
-Now click "**Add**" to create a new destination for our pictures.
+Now click "**Add**" to create a new destination for our pictures. Now write the following in the corresponding fields.
 
-Step 3
-------
-Now write the following in the corresponding fields.
+.. warning:: Make sure to replace "isabell" in the next step with your own username!
 
 ::
 
@@ -89,15 +65,15 @@ Now write the following in the corresponding fields.
   Host: stardust.uberspace.de
   Username: $ssh_user
   Password: $ssh_password
-  Remote directory: /var/www/virtual/$user/cdn.uberspace.de/img/%y/%mo/%d
-  URL path: https://   cdn.uberspace.de
+  Remote directory: /var/www/virtual/isabell/html/img/%y/%mo/%d
+  URL path: https://isabell.uber.space
 
 
 **The two checkboxes should be unchecked!**
 You can now close the "**Destination settings**" window.
 
-Step 4
-------
+Create workflow
+---------------
 To setup your Workflow do the following:
 
 
@@ -106,8 +82,8 @@ To setup your Workflow do the following:
  3. Navigate to "**After upload tasks**" and be sure to activate "**Copy URL to clipboard**".
 
 
-Step 5
-------
+Test
+----
 Now it’s time to setup your Hotkeys:
 
 
@@ -118,37 +94,19 @@ Now it’s time to setup your Hotkeys:
   3. Select "**Task: None**" and navigate to: ":menuselection:`Screen capture --> capture region`"
   4. Close the Task settings window and click on **None** and press your Hotkey (for example "**PRINT SCREEN**")
 
-
-Step 6 (Optional)
------------------
-Optional you can change the filename to something fancier.
-To do so, navigate to ":menuselection:`Task settings --> File nameing`" and change the two text fields to:
-::
-
-  %y-%mo-%d_%h-%mi-%s
-
 Usage
 =====
 
-Step 1
-------
-Press your Hotkey.
+1. Press the configured hotkey
+2. Make a screenshot
+3. If needed, edit your screenshot in the popup window. Then press "**enter**" to upload your screenshot and copy the corresponding URL to your clipboard.
 
-Step 2
-------
-Make a screenshot.
-
-Step 3
-------
-If needed edit your screenshot in the popup window.
-
-Then press "**enter**" to upload your screenshot and copy the corresponding URL to your clipboard.
-
+That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!
 
 .. _ShareX: https://getsharex.com/
 
 ----
 
-That's it, you have successfully configured an automatically uploading screenshot tool with your own domain!
+Tested with ShareX ?, Uberspace ?
 
 .. author_list::

@@ -60,11 +60,11 @@ We're installing a compiled restic binary for a 64-bit machine, and making it ex
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.10.0/restic_0.10.0_linux_amd64.bz2
- [isabell@stardust ~]$ bzip2 -d restic_0.10.0_linux_amd64.bz2
- [isabell@stardust restic]$ mv restic_0.10.0_linux_amd64.bz2 ~/bin/restic
- [isabell@stardust restic]$ chmod 700 ~/bin/restic
- [isabell@stardust restic]$
+ [isabell@stardust ~]$ wget https://github.com/restic/restic/releases/download/v0.12.1/restic_0.12.1_linux_amd64.bz2
+ [isabell@stardust ~]$ bzip2 -d restic_0.12.1_linux_amd64.bz2
+ [isabell@stardust ~]$ mv restic_0.12.1_linux_amd64 ~/bin/restic
+ [isabell@stardust ~]$ chmod 700 ~/bin/restic
+ [isabell@stardust ~]$
 
 
 Configuration
@@ -96,9 +96,10 @@ Here we're initializing a repository on a Backblaze B2 bucket
 
 Automation
 ----------
-It is recommended to create a bash script to automate the backups. Please edit this template to fit your needs.
+It is recommended to create a script to automate the backups. Please edit this template to fit your needs.
 
 .. note:: Remember to set the ``B2_ACCOUNT_ID``, ``B2_ACCOUNT_KEY`` and repository to your service, details on environment variables can be read `here <https://restic.readthedocs.io/en/latest/040_backup.html#environment-variables>`__.
+.. tip:: If you need to backup a folder but want to exclude some files from backup withing that folder, you can use the flag ``--exclude-if-present='superSecretFile.txt'`` while calling restic. Be aware that this flag will create an error if the list of excluded files is empty.
 
 ::
 
@@ -114,17 +115,16 @@ It is recommended to create a bash script to automate the backups. Please edit t
 
   #Files to include/exclude
   FILES='/var/www/virtual/isabell/html/ /home/isabell/myImportantDocument.md'
-  EXCLUDED_FILES='superSecretFile.txt'
 
   # Run restic backup
-  restic -r b2:bucketname:path/to/repo backup $FILES --exclude-if-present=$EXCLUDED_FILES
+  ~/bin/restic -r b2:bucketname:path/to/repo backup $FILES
 
   #set +x # Stop printing
 
   # Remove restic details from current shell
   export -n B2_ACCOUNT_ID B2_ACCOUNT_KEY RESTIC_PASSWORD
 
-Save the content into the file ``~/resticBackup.sh``
+Save the content into the file ``~/resticBackup.sh`` and make executable ``chmod +x ~/resticBackup.sh``.
 
 Cronjob
 -------
@@ -197,6 +197,6 @@ The binaries can be updated by using the ``restic self-update`` command or by bu
 
 ----
 
-Tested with Restic 0.10.0, Uberspace 7.7.7.0
+Tested with Restic 0.12.1, Uberspace 7.11.4
 
 .. author_list::
