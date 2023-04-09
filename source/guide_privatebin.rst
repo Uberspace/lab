@@ -161,7 +161,7 @@ Of course also adjust the file if you already use a robots.txt.
 Making your PrivateBin instance read-only
 -----------------------------------------
 
-If you want to limit write access to your PrivateBin instance, i.e. specify who can create content, you can configure the ``.htaccess`` file accordingly.
+If you want to limit write access to your PrivateBin instance, i.e. specify who can paste data, you can configure the ``.htaccess`` file accordingly.
 Choose a username that should have write access and provide it to the ``htpasswd`` command:
 
 .. code-block:: console
