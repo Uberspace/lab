@@ -174,6 +174,7 @@ Choose a username that should have write access and provide it to the ``htpasswd
  [isabell@stardust html]$
  
 Further users can be added by omitting the ``-c`` flag:
+
 .. code-block:: console
  
  [isabell@stardust html]$ htpasswd .htpasswd another-user
