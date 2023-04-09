@@ -313,6 +313,6 @@ If you don't find any useful information there, you can `report a bug <https://g
 
 ----
 
-Tested with uuNotify 1.1.2, Uberspace 7.11.3.0
+Tested with uuNotify 1.4.0, Uberspace 7.15.1
 
 .. author_list::
