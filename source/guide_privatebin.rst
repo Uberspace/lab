@@ -1,7 +1,7 @@
 .. highlight:: console
 
 .. author:: Nepomacs <https://github.com/Nepomacs/>
-.. author:: <https://franok.de>
+.. author:: franok <https://franok.de>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: privacy
@@ -113,7 +113,7 @@ If not already there, go to the ``html`` directory before running ``mv``.
 Changing index.php
 ------------------
 
-Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of the folders.
+Now edit ``~/html/index.php``  to inform PrivateBin about the new location of the folders.
 
 .. code-block:: php
 
@@ -158,11 +158,11 @@ If you followed this guide, it is already at the right place in your :manual:`Do
 However, if you installed PrivateBin into a subdirectory, you have to move ``robots.txt`` back into the DocumentRoot.
 Of course also adjust the file if you already use a robots.txt.
 
-Making your pastebin read-only
-------------------------------
+Making your PrivateBin instance read-only
+-----------------------------------------
 
-If you want to limit who has write access to your PrivateBin instance, i.e. who can create content, you can configure the .htaccess file accordingly.
-Choose a username that should have write access and provide it to the htpasswd command:
+If you want to limit write access to your PrivateBin instance, i.e. specify who can create content, you can configure the ``.htaccess`` file accordingly.
+Choose a username that should have write access and provide it to the ``htpasswd`` command:
 
 .. code-block:: console
 
@@ -173,7 +173,16 @@ Choose a username that should have write access and provide it to the htpasswd c
  Adding password for user sample_user
  [isabell@stardust html]$
  
-Edit the .htaccess file and add the following lines:
+Further users can be added by omitting the ``-c`` flag:
+.. code-block:: console
+ 
+ [isabell@stardust html]$ htpasswd .htpasswd another-user
+ New password:
+ Re-type new password:
+ Adding password for user another-user
+ [isabell@stardust html]$
+ 
+Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by your username):
 
 .. code-block:: text
 
@@ -194,6 +203,7 @@ Edit the .htaccess file and add the following lines:
  [isabell@stardust html]$
 
 The .htaccess file should look like this:
+
 .. code-block::
 
  [isabell@stardust html]$ cat .htaccess
@@ -217,14 +227,15 @@ The .htaccess file should look like this:
  php_value max_file_uploads 100
  </IfModule>
 
-The PrivateBin site is still visible to the public, but when a user tries to publish content, a Basic Auth popup will ask for username and password.
-The generated links are still accessible to everyone.
+The PrivateBin site is still visible to the public
+When a user tries to publish content, a Basic-Auth popup will ask for username and password.
+The generated links are accessible to everyone.
 
 
 Updates
 =======
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
+.. note:: Check the update feed_ regularly to stay informed about the latest version.
 
 Updating is quite easy. Just repeat all steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
 Your configuration file won't get overwritten.
@@ -242,6 +253,6 @@ Also check ``.htaccess.disabled`` if further adjustments needed to be made.
 
 ----
 
-Tested with PrivateBin 1.5.0, Uberspace 7.13, PHP 8.1
+Tested with PrivateBin 1.5.1, Uberspace 7.15.1, PHP 8.1
 
 .. author_list::
