@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Nepomacs <https://github.com/Nepomacs/>
+.. author:: <https://franok.de>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: privacy
@@ -59,29 +60,30 @@ Installation
 Download the source
 -------------------
 
-Check Github_ for the `latest release`_ and copy the download link to the .tar.gz file.
-Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it. Replace the URL with the one you just copied.
+Check the Github_ release section and copy the release tag version of the `latest release`_. Set the variable PBIN_VERSION to the version you just copied.
+Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it.
 
 .. code-block:: console
- :emphasize-lines: 2
+ :emphasize-lines: 3
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.5.0.tar.gz
+ [isabell@stardust ~]$ PBIN_VERSION=0.0.0
+ [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/$PBIN_VERSION.tar.gz -O "PrivateBin-$PBIN_VERSION.tar.gz"
  […]
- Saving to: ‘1.5.0.tar.gz’
+ Saving to: ‘PrivateBin-1.5.1.tar.gz’
 
  100%[=================================================>] 3,172,029   3.45MB/s   in 0.9s
 
- 2022-11-17 16:27:44 (8.32 MB/s) - ‘1.5.0.tar.gz’ saved [523648]
+ 2022-11-17 16:27:44 (8.32 MB/s) - ‘PrivateBin-1.5.1.tar.gz’ saved [523648]
  [isabell@stardust html]$
 
-Untar the archive and then delete it. Replace the version in the file name with the one you downloaded.
+Untar the archive and then delete it.
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust html]$ tar -xzf 1.5.0.tar.gz --strip-components=1
- [isabell@stardust html]$ rm 1.5.0.tar.gz
+ [isabell@stardust html]$ tar -xzf PrivateBin-1.5.1.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm PrivateBin-1.5.1.tar.gz
  [isabell@stardust html]$
 
 
@@ -97,15 +99,15 @@ PrivateBin provides a .htaccess file, which blocks some known robots and link-sc
 
 Moving files outside of DocumentRoot
 ------------------------------------
-It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root.
-To do that, create a folder  ``privatebin-data`` in ``/var/www/virtual/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
+It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root. This is useful to secure your installation.
+To do that, create a folder  ``privatebin-data`` in ``/home/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
 If not already there, go to the ``html`` directory before running ``mv``.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ mkdir /var/www/virtual/isabell/privatebin-data
- [isabell@stardust html]$ mv -t /var/www/virtual/isabell/privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust html]$ mkdir /home/$USER/privatebin-data
+ [isabell@stardust html]$ mv -t /home/$USER/privatebin-data cfg/ lib/ tpl/ vendor/
  [isabell@stardust html]$
 
 Changing index.php
@@ -117,7 +119,7 @@ Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of
 
  [...]
  // change this, if your php files and data is outside of your webservers document root
- define('PATH', '/var/www/virtual/isabell/privatebin-data/');
+ define('PATH', '/home/isabell/privatebin-data/');
  [...]
 
 Configuration
@@ -132,7 +134,7 @@ You can find an example configuration file at ``cfg/conf.sample.php`` with the d
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/privatebin-data
+ [isabell@stardust ~]$ cd /home/$USER/privatebin-data
  [isabell@stardust html]$ cp cfg/conf.sample.php cfg/conf.php
  [isabell@stardust html]$
 
@@ -155,6 +157,68 @@ It disallows all robots from accessing your pastes.
 If you followed this guide, it is already at the right place in your :manual:`DocumentRoot <web-documentroot>`.
 However, if you installed PrivateBin into a subdirectory, you have to move ``robots.txt`` back into the DocumentRoot.
 Of course also adjust the file if you already use a robots.txt.
+
+Making your pastebin read-only
+------------------------------
+
+If you want to limit who has write access to your PrivateBin instance, i.e. who can create content, you can configure the .htaccess file accordingly.
+Choose a username that should have write access and provide it to the htpasswd command:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ htpasswd -c .htpasswd sample_user
+ New password:
+ Re-type new password:
+ Adding password for user sample_user
+ [isabell@stardust html]$
+ 
+Edit the .htaccess file and add the following lines:
+
+.. code-block:: text
+
+ AuthType Basic
+ AuthName "Login to PrivateBin"
+ AuthUserFile /var/www/virtual/isabell/html/.htpasswd
+ <LimitExcept GET>
+    Require valid-user
+ </LimitExcept>
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ htpasswd -c .htpasswd sample_user
+ New password:
+ Re-type new password:
+ Adding password for user sample_user
+ [isabell@stardust html]$
+
+The .htaccess file should look like this:
+.. code-block::
+
+ [isabell@stardust html]$ cat .htaccess
+ RewriteEngine on
+ RewriteCond !%{HTTP_USER_AGENT} "Let's Encrypt validation server" [NC]
+ RewriteCond %{HTTP_USER_AGENT} ^.*(bot|spider|crawl|https?://|WhatsApp|SkypeUriPreview|facebookexternalhit) [NC]
+ RewriteRule .* - [R=403,L]
+ 
+ AuthType Basic
+ AuthName "Login to PrivateBin"
+ AuthUserFile /var/www/virtual/isabell/html/.htpasswd
+ <LimitExcept GET>
+    Require valid-user
+ </LimitExcept>
+ 
+ <IfModule mod_php7.c>
+ php_value max_execution_time 30
+ php_value post_max_size 10M
+ php_value upload_max_size 10M
+ php_value upload_max_filesize 10M
+ php_value max_file_uploads 100
+ </IfModule>
+
+The PrivateBin site is still visible to the public, but when a user tries to publish content, a Basic Auth popup will ask for username and password.
+The generated links are still accessible to everyone.
 
 
 Updates
