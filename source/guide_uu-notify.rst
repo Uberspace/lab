@@ -44,12 +44,12 @@ Prerequisites
 Node.js version
 ---------------
 
-We're using :manual:`Node.js <lang-nodejs>` version 14.
+Supported :manual:`Node.js <lang-nodejs>` versions are 16 or higher.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace tools version use node 14
-  Selected Node.js version 14
+  [isabell@stardust ~]$ uberspace tools version use node 16
+  Selected Node.js version 16
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
