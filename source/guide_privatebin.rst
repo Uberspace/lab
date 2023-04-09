@@ -158,7 +158,7 @@ If you followed this guide, it is already at the right place in your :manual:`Do
 However, if you installed PrivateBin into a subdirectory, you have to move ``robots.txt`` back into the DocumentRoot.
 Of course also adjust the file if you already use a robots.txt.
 
-Making your PrivateBin instance read-only
+Making your PrivateBin Instance read-only
 -----------------------------------------
 
 If you want to limit write access to your PrivateBin instance, i.e. specify who can paste data, you can configure the ``.htaccess`` file accordingly.
@@ -228,7 +228,7 @@ The .htaccess file should look like this:
  php_value max_file_uploads 100
  </IfModule>
 
-The PrivateBin site is still visible to the public
+The PrivateBin site is still visible to the public. 
 When a user tries to publish content, a Basic-Auth popup will ask for username and password.
 The generated links are accessible to everyone.
 
@@ -238,7 +238,17 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the latest version.
 
-Updating is quite easy. Just repeat all steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
+Backup your config.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ cp -p .htaccess .htaccess.backup
+ [isabell@stardust html]$ cp -p .htpasswd .htpasswd.backup
+ [isabell@stardust html]$ cp -rp ~/privatebin-data/ ~/privatebin-data-backup
+ [isabell@stardust html]$ 
+
+Then repeat the steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
 Your configuration file won't get overwritten.
 
 Check the Release-Notes if the configuration changed between ``cfg/conf.sample.php`` and your ``conf.php``.
