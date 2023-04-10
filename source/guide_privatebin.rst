@@ -161,7 +161,10 @@ Of course also adjust the file if you already use a robots.txt.
 Making your PrivateBin Instance read-only
 -----------------------------------------
 
-If you want to limit write access to your PrivateBin instance, i.e. specify who can paste data, you can configure the ``.htaccess`` file accordingly.
+This section will teach you how you can limit write access to your PrivateBin instance, i.e. specify who can paste data.
+
+While PrivateBin does not have a concept of access control in itself, `the documentation suggests different ways <https://github.com/PrivateBin/PrivateBin/wiki/FAQ#how-can-i-link-to-a-read-only-mode-where-users-cant-submit-pastes>`_ in which a read-only mode can be achieved using some custom configuration. In this guide we will implement the second method that will require basic authentication for POST requests.
+
 Choose a username that should have write access and provide it to the ``htpasswd`` command:
 
 .. code-block:: console
@@ -183,7 +186,7 @@ Further users can be added by omitting the ``-c`` flag:
  Adding password for user another-user
  [isabell@stardust html]$
  
-Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by your username):
+Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by your uberspace username):
 
 .. code-block:: text
 
@@ -194,18 +197,10 @@ Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by
     Require valid-user
  </LimitExcept>
 
+The ``.htaccess`` file should look like this:
+
 .. code-block:: console
-
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ htpasswd -c .htpasswd sample_user
- New password:
- Re-type new password:
- Adding password for user sample_user
- [isabell@stardust html]$
-
-The .htaccess file should look like this:
-
-.. code-block::
+ :emphasize-lines: 7-12
 
  [isabell@stardust html]$ cat .htaccess
  RewriteEngine on
@@ -229,7 +224,7 @@ The .htaccess file should look like this:
  </IfModule>
 
 The PrivateBin site is still visible to the public. 
-When a user tries to publish content, a Basic-Auth popup will ask for username and password.
+When a user tries to publish content in your pastebin, a Basic-Auth popup will ask for username and password.
 The generated links are accessible to everyone.
 
 
@@ -238,7 +233,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the latest version.
 
-Backup your config.
+Backup your config:
 
 .. code-block:: console
 
