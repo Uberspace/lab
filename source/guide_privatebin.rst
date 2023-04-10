@@ -197,7 +197,7 @@ Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by
     Require valid-user
  </LimitExcept>
 
-The ``.htaccess`` file should look like this:
+The ``.htaccess`` file should look similar to this example:
 
 .. code-block:: console
  :emphasize-lines: 7-12
