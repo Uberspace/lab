@@ -206,7 +206,7 @@ Use the script attached to update Mattermost to the current version. Run the scr
 		tag_name=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq --raw-output '.tag_name')
 		version=${tag_name:1} # This will remove the first character `v` from the version tag `v1.2.3`
 
-		printf "Newest Version detected: v$version\n"
+		printf "Newest Version detected: v$version. For the changes introduced with this update see: https://docs.mattermost.com/install/self-managed-changelog.html\n"
 	fi
 
 	usedVersion=$(./mattermost/bin/mattermost version | grep -Po "(?<=Version: )([0-9]|\.)*(?=\s|$)")
