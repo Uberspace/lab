@@ -6,11 +6,12 @@ Dealing with applications when upgrading the node.js version
 
 .. warning:: First, please check the source of the application to see if there is a separate guide for this case and follow it if so.
 
+.. note::
 
-The following steps assume that the application is installed account-wide, not in a separate directory,
-so npm is called with the flag '--global'. If your application is installed to a specific
-directory, omit the '--global' from the following steps and enter your application's directory
-before running the npm commands.
+  The following steps assume that the application is installed account-wide, not in a separate directory,
+  so npm is called with the flag ``--global``. If your application is installed to a specific
+  directory, omit the ``--global`` from the following steps and enter your application's directory
+  before running the npm commands.
 
 Upgrade Node.js App
 ================
