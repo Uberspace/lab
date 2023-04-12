@@ -44,12 +44,12 @@ Prerequisites
 Node.js version
 ---------------
 
-We're using :manual:`Node.js <lang-nodejs>` version 14.
+Supported :manual:`Node.js <lang-nodejs>` versions are 16 or higher.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace tools version use node 14
-  Selected Node.js version 14
+  [isabell@stardust ~]$ uberspace tools version use node 16
+  Selected Node.js version 16
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
@@ -313,6 +313,6 @@ If you don't find any useful information there, you can `report a bug <https://g
 
 ----
 
-Tested with uuNotify 1.1.2, Uberspace 7.11.3.0
+Tested with uuNotify 1.4.0, Uberspace 7.15.1
 
 .. author_list::
