@@ -82,8 +82,8 @@ Untar the archive and then delete it.
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust html]$ tar -xzf PrivateBin-1.5.1.tar.gz --strip-components=1
- [isabell@stardust html]$ rm PrivateBin-1.5.1.tar.gz
+ [isabell@stardust html]$ tar -xzf PrivateBin-$PBIN_VERSION.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm PrivateBin-$PBIN_VERSION.tar.gz
  [isabell@stardust html]$
 
 
@@ -214,14 +214,6 @@ The ``.htaccess`` file should look similar to this example:
  <LimitExcept GET>
     Require valid-user
  </LimitExcept>
- 
- <IfModule mod_php7.c>
- php_value max_execution_time 30
- php_value post_max_size 10M
- php_value upload_max_size 10M
- php_value upload_max_filesize 10M
- php_value max_file_uploads 100
- </IfModule>
 
 The PrivateBin site is still visible to the public. 
 When a user tries to publish content in your pastebin, a Basic-Auth popup will ask for username and password.
