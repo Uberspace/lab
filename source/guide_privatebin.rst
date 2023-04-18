@@ -106,8 +106,8 @@ If not already there, go to the ``html`` directory before running ``mv``.
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ mkdir /home/$USER/privatebin-data
- [isabell@stardust html]$ mv -t /home/$USER/privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust html]$ mkdir ~/privatebin-data
+ [isabell@stardust html]$ mv -t ~/privatebin-data cfg/ lib/ tpl/ vendor/
  [isabell@stardust html]$
 
 Changing index.php
@@ -134,7 +134,7 @@ You can find an example configuration file at ``cfg/conf.sample.php`` with the d
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /home/$USER/privatebin-data
+ [isabell@stardust ~]$ cd ~/privatebin-data
  [isabell@stardust html]$ cp cfg/conf.sample.php cfg/conf.php
  [isabell@stardust html]$
 
