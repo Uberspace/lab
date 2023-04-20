@@ -100,14 +100,14 @@ PrivateBin provides a .htaccess file, which blocks some known robots and link-sc
 Moving files outside of DocumentRoot
 ------------------------------------
 It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root. This is useful to secure your installation.
-To do that, create a folder  ``privatebin-data`` in ``/home/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
+To do that, create a folder  ``privatebin`` in ``/home/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
 If not already there, go to the ``html`` directory before running ``mv``.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ mkdir ~/privatebin-data
- [isabell@stardust html]$ mv -t ~/privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust html]$ mkdir ~/privatebin
+ [isabell@stardust html]$ mv -t ~/privatebin cfg/ lib/ tpl/ vendor/
  [isabell@stardust html]$
 
 Changing index.php
@@ -119,7 +119,7 @@ Now edit ``~/html/index.php``  to inform PrivateBin about the new location of th
 
  [...]
  // change this, if your php files and data is outside of your webservers document root
- define('PATH', '/home/isabell/privatebin-data/');
+ define('PATH', '/home/isabell/privatebin/');
  [...]
 
 Configuration
@@ -134,9 +134,9 @@ You can find an example configuration file at ``cfg/conf.sample.php`` with the d
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd ~/privatebin-data
- [isabell@stardust html]$ cp cfg/conf.sample.php cfg/conf.php
- [isabell@stardust html]$
+ [isabell@stardust ~]$ cd ~/privatebin
+ [isabell@stardust privatebin]$ cp cfg/conf.sample.php cfg/conf.php
+ [isabell@stardust privatebin]$
 
 The file is in ini format, meaning that lines beginning with semicolons ``;`` are comments,
 configuration options are grouped in sections, marked by square brackets ``[`` and ``]``
@@ -232,7 +232,7 @@ Backup your config:
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ cp -p .htaccess .htaccess.backup
  [isabell@stardust html]$ cp -p .htpasswd .htpasswd.backup
- [isabell@stardust html]$ cp -rp ~/privatebin-data/ ~/privatebin-data-backup
+ [isabell@stardust html]$ cp -rp ~/privatebin/ ~/privatebin-backup
  [isabell@stardust html]$ 
 
 Then repeat the steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
