@@ -45,7 +45,7 @@ We need a database:
   [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo"
   [isabell@stardust ~]$
 
-We can use the uberspace or [your own domain](https://manual.uberspace.de/web-domains/#setup):
+We can use the uberspace or `your own domain <https://manual.uberspace.de/web-domains/#setup>`_:
 
 .. include:: includes/web-domain-list.rst
 
