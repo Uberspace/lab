@@ -9,6 +9,7 @@
 .. highlight:: console
 
 .. sidebar:: Logo
+
   .. image:: _static/images/mautic.svg
       :align: center
 
@@ -109,56 +110,14 @@ Download your Mautic instance into it's own subdirectory:
   Creating a "mautic/recommended-project:^4" project at "./mautic"
   Installing mautic/recommended-project (4.4.7)
     - Installing mautic/recommended-project (4.4.7): Extracting archive
-  Created project in /var/www/virtual/isabell/mautic
-  Loading composer repositories with package information
-  Updating dependencies
-  Lock file operations: 231 installs, 0 updates, 0 removalss
-  - Locking aws/aws-crt-php (v1.2.1)
-  [...]
-  - Locking willdurand/negotiation (3.1.0)
-  Writing lock file
-  Installing dependencies from lock file (including require-dev)
-  Package operations: 231 installs, 0 updates, 0 removals
-    - Syncing friendsofsymfony/oauth-server-bundle (dev-doctrine-fix 33bc2f4) into cache
-    - Installing composer/installers (v1.12.0): Extracting archive
-  [...]
-  Generating autoload files
-  110 packages you are using are looking for funding.
-  Use the `composer fund` command to find out more!
-  Symfony recipes are disabled: "symfony/flex" not found in the root composer.json
-
-  Package {VENDOR/PACKAGE} is abandoned, you should avoid using it. Use {VENDOR/PACKAGE} instead. # Might come up multiple times. You can safely ignore it.
-
-  Loading composer repositories with package information
-  Updating dependencies
-  Nothing to modify in lock file
-  Installing dependencies from lock file (including require-dev)
-  Nothing to install, update or remove
-  Generating autoload files
-  Symfony recipes are disabled: "symfony/flex" not found in the root composer.json
-
-  Scaffolding files for mautic/core-lib:
-     - Copy [project-root]/.env.dist from assets/scaffold/files/.env.dist
     [...]
-  No security vulnerability advisories found
-  Project configuration is disabled: "symfony/flex" not found in the root composer.json
-
   Congratulations, you’ve installed the Mautic codebase
   from the mautic/recommended-project template!
 
   Next steps:
     * Install Mautic
     * Read the user guide
-    * Get support: https://www.mautic.org/support
-    * Get involved with the Mautic community:
-        https://www.mautic.org/getting-involved
-    * Remove the plugin that prints this message:
-        composer remove mautic/core-project-message
-    * Homepage: https://www.mautic.org/mautic-releases
-    * Support:
-      * user-docs: https://docs.mautic.org/en
-      * developer-docs: https://developer.mautic.org
-      * chat: https://www.mautic.org/slack
+    * [...]
   [isabell@stardust isabell]$
 
 
@@ -273,13 +232,9 @@ Set up Mautic's cronjobs
 Mautic requires a few `cron jobs <https://docs.mautic.org/en/setup/cron-jobs>`_ to handle some maintenance tasks such as updating contacts or campaigns, executing campaign actions, sending emails, and more.
 You must manually add the required :manual:`cron jobs to your server<daemons-cron>`.
 
-.. important::
-  This guide assumes the following:
-
-  1. You're Mautic instance is installed in: ``/var/www/virtual/$USER/mautic``.
-  2. You use the `email queue <https://docs.mautic.org/en/contacts/message-queue>`_ (`Queue documentation <https://docs.mautic.org/en/queue>`_). If you don't you can omit the line containing ``mautic:emails:send``.
-  3. You get your `bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_ from somewhere. If you don't or handle them somehow by yourself you can omit the line containing ``mautic:emails:fetch``.
-  4. You are subject to the European GDPR regulation. If you sure you aren't (*which is highly unlikely given it's architecture*) you could omit the the line containing ``mautic:maintenance:cleanup --days-old=365``. This simply removes data older than one year, which is probably advisable regardless of the GDPR.
+.. hint::
+  The cron jobs are staggered as recommended in Mautic's documentation.
+  If you want to edit the schedules you could use `crontab.guru <https://crontab.guru/>`_, which is a quick and simple editor for cron schedule expressions.
 
 We save the logs of Mautic's console. If you don't want this remove the part after ``>>`` in your crontab.
 If you keep the logs create the directory where the logs will be saved to:
@@ -290,61 +245,107 @@ If you keep the logs create the directory where the logs will be saved to:
   [isabell@stardust isabell]$
 
 
-To create your cron instructions. You can use the following command:
+To create your cron instructions you can use the following commands.
+Just execute them and copy the output into your crontab (using `crontab -e` to edit it):
+
+**Update your segments:**
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cat << EOF
-
-  ## Copy the lines below "#↓↓↓↓↓ COPY ↓↓↓↓↓" and paste it into your crontab, after opening it via contab -e
-  ##↓↓↓↓↓ COPY ↓↓↓↓↓
-
-  ## Update segments every fifteen minutes
-  0,15,30,45 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:segments:update >> /home/$USER/logs/mautic/segments 2>&1
-  ## Update campaings every fifteen minutes
-  5,20,35,50 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:update >> /home/$USER/logs/mautic/campaigns 2>&1
-  ## Update trigger campaign events every fifteen minutes
-  10,25,40,55 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:trigger >> /home/$USER/logs/mautic/campaigns 2>&1
-  ## Send broadcasts every fifteen minutes
-  12,27,42,57 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:broadcasts:send >> /home/$USER/logs/mautic/broadcasts 2>&1
-  ## Send emails ever 2nd minute
-  */2 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:emails:send  >> /home/$USER/logs/mautic/emails 2>&1
-  ## Fetch bounces at minutes 3 and 33
-  3,33 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:email:fetch >> /home/$USER/logs/mautic/emails 2>&1
-  ## Purge old data every friday
-  0 0 * * FRI php /var/www/virtual/$USER/mautic/bin/console mautic:maintenance:cleanup -g -n --days-old=365
-
-  EOF
-  # Copy the lines below "#↓↓↓↓↓ COPY ↓↓↓↓↓" and paste it into your crontab, after opening it via contab -e
-  #↓↓↓↓↓ COPY ↓↓↓↓↓
-
+  [isabell@stardust ~]$ echo -e "# Update segments every fifteen minutes\n0,15,30,45 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:segments:update >> /home/$USER/logs/mautic/segments 2>&1"
   # Update segments every fifteen minutes
   0,15,30,45 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:segments:update >> /home/isabell/logs/mautic/segments 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at minute 0, 15, 30, and 45` your contacts in smart segments get updated based on new contact data.
+
+**Update your campaigns:**
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Update campaings every fifteen minutes\n5,20,35,50 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:update >> /home/$USER/logs/mautic/campaigns 2>&1"
   # Update campaings every fifteen minutes
   5,20,35,50 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:campaigns:update >> /home/isabell/logs/mautic/campaigns 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at minute 5, 20, 35, and 50` your campaigns get rebuilt based on your contact segments.
+
+**Trigger campaing events:**
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Update trigger campaign events every fifteen minutes\n10,25,40,55 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:trigger >> /home/$USER/logs/mautic/campaigns 2>&1"
   # Update trigger campaign events every fifteen minutes
   10,25,40,55 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:campaigns:trigger >> /home/isabell/logs/mautic/campaigns 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at minute 10, 25, 40, and 55` your timed events for published campaigns get triggered.
+
+**Send broadcasts:**
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Send broadcasts every fifteen minutes\n12,27,42,57 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:broadcasts:send >> /home/$USER/logs/mautic/broadcasts 2>&1"
   # Send broadcasts every fifteen minutes
   12,27,42,57 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:broadcasts:send >> /home/isabell/logs/mautic/broadcasts 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at minute 12, 27, 42, and 57` your broadcasts get sent.
+
+**Send queued emails:**
+
+You need this if you use the `email queue <https://docs.mautic.org/en/contacts/message-queue>`_ (`Queue documentation <https://docs.mautic.org/en/queue>`_).
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Send emails ever 2nd minute\n*/2 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:emails:send  >> /home/$USER/logs/mautic/emails 2>&1"
   # Send emails ever 2nd minute
   */2 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:emails:send  >> /home/isabell/logs/mautic/emails 2>&1
-  # Fetch bounces at minutes 3 and 33
-  3,33 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:email:fetch >> /home/isabell/logs/mautic/emails 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at every 2nd minute` your queue emails get sent.
+
+**Fetch bounces:**
+
+You need this if you get your `bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_ from somewhere.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Fetch bounces at minutes 3 and 33\n3,33 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:email:fetch >> /home/$USER/logs/mautic/emails 2>&1"
+  # Send emails ever 2nd minute
+  */2 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:emails:send  >> /home/isabell/logs/mautic/emails 2>&1
+  [isabell@stardust ~]$
+
+Explanation:
+
+- `Every hour at minute 3 and 33` monitored emails get fetched and processed to `handle bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_.
+
+**Purge old data:**
+
+You need this if you are subject to the European GDPR regulation.
+If you sure you aren't (*which is highly unlikely given it's architecture*) you could omit this command.
+This command simply removes data older than one year, which is probably advisable regardless of the GDPR.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ echo -e "# Purge old data every friday\n0 0 * * FRI php /var/www/virtual/$USER/mautic/bin/console mautic:maintenance:cleanup -g -n --days-old=365"
   # Purge old data every friday
   0 0 * * FRI php /var/www/virtual/isabell/mautic/bin/console mautic:maintenance:cleanup -g -n --days-old=365
   [isabell@stardust ~]$
 
+Explanation:
 
-
-Copy the output and paste it into your crontab. To edit your crontab execute:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ crontab -e
-  [isabell@stardust ~]$
-
-
-The cron jobs are staggered as recommended in Mautic's documentation.
+- `Every Friday at 00:00 AM (midnight)` data older than 365 days get purged.
 
 .. warning::
   This guide made sure that everything important is reflected in the cron jobs.
@@ -354,18 +355,6 @@ The cron jobs are staggered as recommended in Mautic's documentation.
 
   Most of the commands do have a ``--[message|time-]limit=[LIMIT]`` option you can leverage.
   Use it to prevent errors and mistakes.
-
-If you want to edit the schedules you could use `crontab.guru <https://crontab.guru/>`_, which is a quick and simple editor for cron schedule expressions.
-
-Explanation of the cron jobs:
-
-- `Every hour at minute 0, 15, 30, and 45` your contacts in smart segments get updated based on new contact data.
-- `Every hour at minute 5, 20, 35, and 50` your campaigns get rebuilt based on your contact segments.
-- `Every hour at minute 10, 25, 40, and 55` your timed events for published campaigns get triggered.
-- `Every hour at minute 12, 27, 42, and 57` your broadcasts get sent.
-- `Every hour at every 2nd minute` your queue emails get sent.
-- `Every hour at minute 3 and 33` monitored emails get fetched and processed to `handle bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_.
-- `Every Friday at 00:00 AM (midnight)` data older than 365 days get purged.
 
 Additional Steps
 ================
