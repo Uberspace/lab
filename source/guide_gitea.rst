@@ -168,6 +168,9 @@ Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the fol
   MAILER_TYPE = sendmail
   FROM        = isabell@uber.space
 
+  [other]
+  SHOW_FOOTER_VERSION = false ; hide version number from strangers - you can still see it in the admin panel at /admin
+
 .. note::
 
   This config block contains a secure and convenient basic configuration. You may change it depending on your needs and knowledge.
