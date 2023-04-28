@@ -31,12 +31,12 @@ Etherpad Lite
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 18:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 12
- Using 'Node.js' version: '12'
+ [isabell@stardust ~]$ uberspace tools version use node 18
+ Using 'Node.js' version: '18'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -48,11 +48,11 @@ Your URL needs to be set up:
 Installation
 ============
 
-First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.3`` here with the latest version number from the release feed_:
+First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.18`` here with the latest version number from the release feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 1.8.3 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 1.8.18 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
   remote: Enumerating objects: 504, done.
   remote: Counting objects: 100% (504/504), done.
