@@ -13,7 +13,7 @@
   .. image:: _static/images/mautic.svg
       :align: center
 
-.. _mautic-installation:
+
 ######
 Mautic
 ######
@@ -100,7 +100,7 @@ Change to Apache's :manual:`DocumentRoot <web-documentroot>` directory:
   [isabell@stardust isabell]$
 
 Step 1: Download Mautic
-------------------------
+-----------------------
 
 Download your Mautic instance into it's own subdirectory:
 
@@ -122,7 +122,7 @@ Download your Mautic instance into it's own subdirectory:
 
 
 Step 2: Create a symbolic link
--------------------------------
+------------------------------
 
 Create a symbolic link pointing to Mautic's ``docroot`` folder to let Apache serve Mautic's pages.
 You need to delete Apache's root directory (``/var/www/virtual/isabel/html``) for that.
@@ -156,7 +156,7 @@ This will result in the following structure:
 
 
 Step 3: Check your Mautic installation
-----------------------------------
+--------------------------------------
 
 Visit ``https://mautic.mysite.com`` (or ``https://isabell.uber.space``) in your browser.
 There might be a ``403 forbidden error``.
@@ -227,7 +227,7 @@ You retrieved your MySQL username and password in the `Prerequisites` section an
 Use these values for the wizard.
 
 Set up Mautic's cronjobs
------------------------
+------------------------
 
 Mautic requires a few `cron jobs <https://docs.mautic.org/en/setup/cron-jobs>`_ to handle some maintenance tasks such as updating contacts or campaigns, executing campaign actions, sending emails, and more.
 You must manually add the required :manual:`cron jobs to your server<daemons-cron>`.
