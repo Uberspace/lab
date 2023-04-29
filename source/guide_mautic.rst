@@ -126,21 +126,6 @@ Step 3: Check your Mautic installation
 
 Visit ``https://isabell.uber.space`` in your browser.
 
-Configuration
-=============
-
-Suppressing security header for external origins
-------------------------------------------------
-
-If you embed mautic forms on another website (domain) you will need to `suppress <https://manual.uberspace.de/web-headers/#removing-security-headers>`_
-the default Uberspace security header that only accepts data from the same origin:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace web header suppress mautic.mysite.com X-Frame-Options
-  Suppressing header "X-Frame-Options" for mautic.mysite.com
-  [isabell@stardust ~]$
-
 
 Finishing installation
 ======================
@@ -278,6 +263,23 @@ Explanation:
 
   Most of the commands do have a ``--[message|time-]limit=[LIMIT]`` option you can leverage.
   Use it to prevent errors and mistakes.
+
+
+Configuration
+=============
+
+Suppressing security header for external origins
+------------------------------------------------
+
+If you embed mautic forms on another website (domain) you will need to `suppress <https://manual.uberspace.de/web-headers/#removing-security-headers>`_
+the default Uberspace security header that only accepts data from the same origin:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace web header suppress mautic.mysite.com X-Frame-Options
+  Suppressing header "X-Frame-Options" for mautic.mysite.com
+  [isabell@stardust ~]$
+
 
 Additional Steps
 ================
