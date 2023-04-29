@@ -36,11 +36,11 @@ Prerequisites
   * :manual:`domains <web-domains>`
   * :manual:`cronjobs <daemons-cron>`
 
-You can use the domains that are currently configured :
+You can use the domains that are currently configured:
 
 .. include:: includes/web-domain-list.rst
 
-You can setup an :manual:`additional` (sub) domains for use with your Uberspace account.
+You can also setup :manual:`additional` (sub) domains for use with your Uberspace account.
 
 .. include:: includes/my-print-defaults.rst
 
