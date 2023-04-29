@@ -132,132 +132,86 @@ Use these values for the wizard.
 Set up Mautic's cronjobs
 ------------------------
 
-Mautic requires a few `cron jobs <https://docs.mautic.org/en/setup/cron-jobs>`_ to handle some maintenance tasks such as updating contacts or campaigns, executing campaign actions, sending emails, and more.
-You must manually add the required :manual:`cron jobs to your server<daemons-cron>`.
+Mautic requires a few `cron jobs <https://docs.mautic.org/en/setup/cron-jobs>`_ to handle some maintenance tasks such as updating contacts
+or campaigns, executing campaign actions, sending emails, and more.
 
 .. hint::
-  The cron jobs are staggered as recommended in Mautic's documentation.
+  The cron jobs here are staggered as recommended in Mautic's documentation.
   If you want to edit the schedules you could use `crontab.guru <https://crontab.guru/>`_, which is a quick and simple editor for cron schedule expressions.
 
-We save the logs of Mautic's console. If you don't want this remove the part after ``>>`` in your crontab.
-If you keep the logs create the directory where the logs will be saved to:
+Logging
+~~~~~~~
+
+Create a folder to save the outputs of the cronjob commands to distinct log files:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir -p /home/$USER/logs/mautic
-  [isabell@stardust isabell]$
-
-
-To create your cron instructions you can use the following commands.
-Just execute them and copy the output into your crontab (using `crontab -e` to edit it):
-
-**Update your segments:**
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ echo -e "# Update segments every fifteen minutes\n0,15,30,45 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:segments:update >> /home/$USER/logs/mautic/segments 2>&1"
-  # Update segments every fifteen minutes
-  0,15,30,45 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:segments:update >> /home/isabell/logs/mautic/segments 2>&1
+  [isabell@stardust ~]$ mkdir ~/logs/mautic
   [isabell@stardust ~]$
 
-Explanation:
+If you don't want to keep logs, remove the part after ``>>`` in the following cronjobs.
 
-- `Every hour at minute 0, 15, 30, and 45` your contacts in smart segments get updated based on new contact data.
 
-**Update your campaigns:**
+Basic maintenance cronjobs
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: console
-
-  [isabell@stardust ~]$ echo -e "# Update campaings every fifteen minutes\n5,20,35,50 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:update >> /home/$USER/logs/mautic/campaigns 2>&1"
-  # Update campaings every fifteen minutes
-  5,20,35,50 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:campaigns:update >> /home/isabell/logs/mautic/campaigns 2>&1
-  [isabell@stardust ~]$
-
-Explanation:
-
-- `Every hour at minute 5, 20, 35, and 50` your campaigns get rebuilt based on your contact segments.
-
-**Trigger campaing events:**
+Add these cronjobs to your crontab like described in the :manual:`cron jobs to your server<daemons-cron>`.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ echo -e "# Update trigger campaign events every fifteen minutes\n10,25,40,55 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:trigger >> /home/$USER/logs/mautic/campaigns 2>&1"
-  # Update trigger campaign events every fifteen minutes
-  10,25,40,55 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:campaigns:trigger >> /home/isabell/logs/mautic/campaigns 2>&1
-  [isabell@stardust ~]$
+  # Update segments
+  0,15,30,45 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:segments:update >> /home/$USER/logs/mautic/segments 2>&1
 
-Explanation:
+  # Update campaings
+  5,20,35,50 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:update >> /home/$USER/logs/mautic/campaigns 2>&1
 
-- `Every hour at minute 10, 25, 40, and 55` your timed events for published campaigns get triggered.
+  # Update trigger campaign events
+  10,25,40,55 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:campaigns:trigger >> /home/$USER/logs/mautic/campaigns 2>&1
 
-**Send broadcasts:**
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ echo -e "# Send broadcasts every fifteen minutes\n12,27,42,57 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:broadcasts:send >> /home/$USER/logs/mautic/broadcasts 2>&1"
   # Send broadcasts every fifteen minutes
-  12,27,42,57 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:broadcasts:send >> /home/isabell/logs/mautic/broadcasts 2>&1
-  [isabell@stardust ~]$
+  12,27,42,57 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:broadcasts:send >> /home/$USER/logs/mautic/broadcasts 2>&1
 
-Explanation:
 
-- `Every hour at minute 12, 27, 42, and 57` your broadcasts get sent.
+Purge old data
+~~~~~~~~~~~~~~
 
-**Send queued emails:**
-
-You need this if you use the `email queue <https://docs.mautic.org/en/contacts/message-queue>`_ (`Queue documentation <https://docs.mautic.org/en/queue>`_).
+Use this cronjob to remove old data due to privacy reasons and following GDRP regulations.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ echo -e "# Send emails ever 2nd minute\n*/2 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:emails:send  >> /home/$USER/logs/mautic/emails 2>&1"
-  # Send emails ever 2nd minute
-  */2 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:emails:send  >> /home/isabell/logs/mautic/emails 2>&1
-  [isabell@stardust ~]$
-
-Explanation:
-
-- `Every hour at every 2nd minute` your queue emails get sent.
-
-**Fetch bounces:**
-
-You need this if you get your `bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_ from somewhere.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ echo -e "# Fetch bounces at minutes 3 and 33\n3,33 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:email:fetch >> /home/$USER/logs/mautic/emails 2>&1"
-  # Send emails ever 2nd minute
-  */2 * * * * php /var/www/virtual/isabell/mautic/bin/console mautic:emails:send  >> /home/isabell/logs/mautic/emails 2>&1
-  [isabell@stardust ~]$
-
-Explanation:
-
-- `Every hour at minute 3 and 33` monitored emails get fetched and processed to `handle bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_.
-
-**Purge old data:**
-
-You need this if you are subject to the European GDPR regulation.
-If you sure you aren't (*which is highly unlikely given it's architecture*) you could omit this command.
-This command simply removes data older than one year, which is probably advisable regardless of the GDPR.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ echo -e "# Purge old data every friday\n0 0 * * FRI php /var/www/virtual/$USER/mautic/bin/console mautic:maintenance:cleanup -g -n --days-old=365"
   # Purge old data every friday
   0 0 * * FRI php /var/www/virtual/isabell/mautic/bin/console mautic:maintenance:cleanup -g -n --days-old=365
-  [isabell@stardust ~]$
 
-Explanation:
 
-- `Every Friday at 00:00 AM (midnight)` data older than 365 days get purged.
+Send queued emails
+~~~~~~~~~~~~~~~~~~
 
-.. warning::
+You need this if you use the `email queue <https://docs.mautic.org/en/contacts/message-queue>`_.
+
+.. code-block:: console
+
+  # Send out queued emails every 2nd minute
+  */2 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:emails:send  >> /home/$USER/logs/mautic/emails 2>&1
+
+
+Fetch bounces
+~~~~~~~~~~~~~
+
+You need this to get your `bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_ from somewhere.
+
+.. code-block:: console
+
+  # Fetch bounces
+  3,33 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:email:fetch >> /home/$USER/logs/mautic/emails 2>&1
+
+.. hint::
   This guide made sure that everything important is reflected in the cron jobs.
+
   Mautic might get busy if you have many contacts and do some heavy sending/lifting.
-  This might lead to commands that overlap / run simultaneously.
-  This might have bad side effects. Therefore, you might want to adjust your crontab (later).
+  This might lead to commands that overlap / run simultaneously. You can adjust your
+  cronjobs in timing and limits to adapt any of those problems afterwards.
 
   Most of the commands do have a ``--[message|time-]limit=[LIMIT]`` option you can leverage.
-  Use it to prevent errors and mistakes.
 
 
 Configuration
