@@ -55,8 +55,8 @@ Create a new MySQL database for Mautic.
   [isabell@stardust ~]$
 
 
-Installation (using Composer)
-=============================
+Installation
+============
 
 Change to Apache's :manual:`DocumentRoot <web-documentroot>` directory:
 
@@ -124,45 +124,7 @@ This will result in the following structure:
 Step 3: Check your Mautic installation
 --------------------------------------
 
-Visit ``https://mautic.mysite.com`` (or ``https://isabell.uber.space``) in your browser.
-There might be a ``403 forbidden error``.
-
-Fix 403 forbidden error (if applicable)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you encounter a 403 forbidden error, there are two possible causes:
-
-1. You didn't follow this guide and installed Mautic in your ``$HOME`` directory and linked to it. Apache can't access these files. Move it into ``/var/www/virtual/$USER/`` as indicated in this manual.
-2. There's an error with Mautic's ``.htaccess`` file.
-
-To fix the second problem, follow these steps:
-
-.. note:: This problem is documented `at the Mautic fourum <https://forum.mautic.org/t/mautic-upgrade-to-4-3-1-produces-403-http-error-unless-htaccess-security-lines-are-removed/24255>`_ and `at GitHub <https://github.com/mautic/mautic/issues/10913>`_.
-
-1. Open the .htaccess file in the ``docroot`` directory of your Mautic installation (``/var/www/virtual/$USER/mautic/docroot/.htaccess``).
-2. Comment out the following lines by adding a ``#`` at the beginning of each line:
-
-.. code-block:: apache
-
-     # Apache 2.4+
-     <IfModule authz_core_module>
-         # Deny access via HTTP requests to all PHP files.
-         <FilesMatch "\.php$">
-             Require all denied
-         </FilesMatch>
-
-         # Deny access via HTTP requests to composer files.
-         <FilesMatch "^(composer\.json|composer\.lock)$">
-             Require all denied
-         </FilesMatch>
-
-         # Except those allowed below.
-         <If "%{REQUEST_URI} =~ m#^/(index|index_dev|upgrade/upgrade)\.php#">
-             Require all granted
-         </If>
-     </IfModule>
-
-3. Mautic should now be accessible.
+Visit ``https://isabell.uber.space`` in your browser.
 
 Configuration
 =============
