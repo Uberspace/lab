@@ -22,54 +22,28 @@ Mautic
 
 Mautic is an open-source marketing automation platform that enables businesses to create, manage, and track personalized digital marketing campaigns across multiple channels and is very suitable to build an email newsletter.
 
-----
-
 This guide will show you how to install Mautic 4 on your Uberspace using the Composer installation method.
-
-.. note:: For this guide, you should be familiar with the basic concepts of
-
-  * :manual:`domains <web-domains>`
-  * :manual:`DocumentRoot <web-documentroot>`
-  * :manual:`MySQL <database-mysql>`
-  * :manual:`PHP <lang-php>`
-
-.. note:: This guide is based on the `Mautic Composer installation method <https://docs.mautic.org/en/setup/how-to-install-mautic/install-and-manage-mautic-with-composer>`_.
 
 ----
 
 Prerequisites
 =============
 
-* You have to :manual:`setup a domain <web-domains>`.
-* You have to :manual:`create a MySQL database <database-mysql>`.
+.. note:: For this guide you should be familiar with the basic concepts of
 
-Step 1: Set up the subdomain
-----------------------------
+  * :manual:`PHP <lang-php>`
+  * :manual:`MySQL <database-mysql>`
+  * :manual:`domains <web-domains>`
+  * :manual:`cronjobs <daemons-cron>`
 
-1. You need to register the subdomain with Uberspace:
+You can use the domains that are currently configured :
 
-.. code-block:: console
+.. include:: includes/web-domain-list.rst
 
-  [isabell@stardust ~]$ uberspace web domain add mautic.mysite.com
-  The webserver's configuration has been adapted.
-  Now you can use the following records for your DNS:
-    A -> xxx.26.156.13
-    AAAA -> xxxx:d0c0:200:0:6ca2:b2ff:fee6:2c13
-  [isabell@stardust ~]$
+You can setup an :manual:`additional` (sub) domains for use with your Uberspace account.
 
-Once you've set up your domain using the uberspace tool, the tool provides you with the ``A`` and ``AAAA`` records that need to be configured in your registrar's nameserver.
-
-2. Let Apache handle the backend for your added domain.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace web backend set mautic.mysite.com --apache
-  Set backend for mautic.mysite.com/ to apache.
-  [isabell@stardust ~]$
-
-
-Step 2: Create the database
----------------------------
+Create the database
+-------------------
 
 .. include:: includes/my-print-defaults.rst
 
