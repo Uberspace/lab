@@ -42,10 +42,10 @@ You can use the domains that are currently configured :
 
 You can setup an :manual:`additional` (sub) domains for use with your Uberspace account.
 
+.. include:: includes/my-print-defaults.rst
+
 Create the database
 -------------------
-
-.. include:: includes/my-print-defaults.rst
 
 Create a new MySQL database for Mautic.
 
@@ -121,17 +121,12 @@ This will result in the following structure:
       └── vendor
 
 
-Step 3: Check your Mautic installation
---------------------------------------
-
-Visit ``https://isabell.uber.space`` in your browser.
-
-
 Finishing installation
 ======================
 
-Now you can access the Mautic's web interface and the installation wizard to complete your setup.
-You retrieved your MySQL username and password in the `Prerequisites` section and set the database name there (e.g. ``isabell_mautic``).
+Now you can access the Mautic's web interface on ``https://isabell.uber.space`` and use the installation wizard to complete your setup.
+
+You retrieved your MySQL username and password in the *Prerequisites* section and set the database name there (e.g. ``isabell_mautic``).
 Use these values for the wizard.
 
 Set up Mautic's cronjobs
