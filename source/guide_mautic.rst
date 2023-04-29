@@ -26,14 +26,6 @@ Mautic is an open-source marketing automation platform that enables businesses t
 
 This guide will show you how to install Mautic 4 on your Uberspace using the Composer installation method.
 
-.. important:: It is bad practice to run your Mautic along your blog on the same server.
-  Doing so would expose your users' data along with their email addresses if your blog was victim to a successful hacker attack.
-  This would pose a massive GDPR infringement.
-  A separate Mautic installation means that Mautic will have its own distinct subdomain, such as ``mautic.mysite.com``.
-  Hence, we use ``mautic.mysite.com`` as your domain in this guide, since there is little practical use for Mautic without an accompanying website.
-  (Mautic is still reachable via ``isabell.uber.space`` if you follow this guide.)
-  If you still prefer to use a subdirectory, you will need to make slight adjustments to this guide.
-
 .. note:: For this guide, you should be familiar with the basic concepts of
 
   * :manual:`domains <web-domains>`
@@ -201,16 +193,11 @@ To fix the second problem, follow these steps:
 Configuration
 =============
 
-If your Mautic installation is separated from your main site or blog (which is how it should be done from a security and data privacy point of view), then you need to configure the :manual:`web header <web-headers>`.
+Suppressing security header for external origins
+------------------------------------------------
 
-.. note::
-  This is necessary, because your uberspace comes with a number of :manual:`security headers <web-security-headers>` set by default.
-  In this particular case ``X-Frame-Options: SAMEORIGIN`` is set.
-  It causes problems, because it prevents Mautic's forms that are embedded on your main site to receive form result data.
-  This leads to an error that the `form keeps hanging on "please wait" <https://forum.mautic.org/t/multisite-wordpress-trouble-mautic-form-iframe-error-refused-to-connect-please-wait-hanging-mautic-form-submission/11092>`_ after it was submitted.
-
-Suppressing `X-Frame-Options: SAMEORIGIN`
------------------------------------------
+If you embed mautic forms on another website (domain) you will need to `suppress <https://manual.uberspace.de/web-headers/#removing-security-headers>`_
+the default Uberspace security header that only accepts data from the same origin:
 
 .. code-block:: console
 
