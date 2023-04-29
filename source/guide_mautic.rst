@@ -36,11 +36,17 @@ Prerequisites
   * :manual:`domains <web-domains>`
   * :manual:`cronjobs <daemons-cron>`
 
+Domain
+------
+
 You can use the domains that are currently configured:
 
 .. include:: includes/web-domain-list.rst
 
 You can also setup :manual:`additional` (sub) domains for use with your Uberspace account.
+
+MySQL credentials
+-----------------
 
 .. include:: includes/my-print-defaults.rst
 
@@ -194,8 +200,8 @@ You need this if you use the `email queue <https://docs.mautic.org/en/contacts/m
   */2 * * * * php /var/www/virtual/$USER/mautic/bin/console mautic:emails:send  >> /home/$USER/logs/mautic/emails 2>&1
 
 
-Fetch bounces
-~~~~~~~~~~~~~
+Fetch mail bounces
+~~~~~~~~~~~~~~~~~~
 
 You need this to get your `bounces <https://docs.mautic.org/en/channels/emails/bounce-management>`_ from somewhere.
 
