@@ -285,6 +285,7 @@ mariadb
 Matomo
 matomo
 Mattermost
+Mautic
 mbox
 Mediawiki
 Memcached
