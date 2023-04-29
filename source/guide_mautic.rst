@@ -229,14 +229,6 @@ the default Uberspace security header that only accepts data from the same origi
   Suppressing header "X-Frame-Options" for mautic.mysite.com
   [isabell@stardust ~]$
 
-
-Additional Steps
-================
-
-There might be some steps that are outside of this manual's scope:
-
-- Configure an email provider
-
 ----
 
 Tested with Mautic 4.4.7, Uberspace 7.15
