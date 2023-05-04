@@ -99,7 +99,7 @@ APCu is an in-memory key-value store for PHP. Installations after 21.0.1 may fai
 PHP Memory
 ^^^^^^^^^^
 
-Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
+Nextcloud `recommends 512 MB <https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html>`_ of memory for an installation. To set the PHP memory limit to 512 MB, create the file ``~/etc/php.d/memory_limit.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -140,7 +140,7 @@ Downloading
 
 Setup
 -----
-.. warning:: We strongly recommend to use the MySQL backend, consistent with the Nextcloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/latest/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
+.. warning:: We strongly recommend to use the MySQL backend, consistent with the Nextcloud recommendation: `Using MariaDB/MySQL instead of SQLite <https://docs.nextcloud.com/server/stable/admin_manual/installation/server_tuning.html#using-mariadb-mysql-instead-of-sqlite>`_. This yields better performance and reduces disk load on the host you share. Do not use the SQLite backend for production.
 
 Create the database
 ^^^^^^^^^^^^^^^^^^^
@@ -167,10 +167,10 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
 .. code-block:: console
   :emphasize-lines: 1-3
 
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER=MyUserName
-  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS=MySuperSecretAdminPassword
-  [isabell@stardust html]$ MYSQL_PASSWORD=MySuperSecretMySQLPassword
-  [isabell@stardust html]$ php occ maintenance:install --admin-user "${NEXTCLOUD_ADMIN_USER}" --admin-pass "${NEXTCLOUD_ADMIN_PASS}" --database 'mysql' --database-name "${USER}_nextcloud"  --database-user "${USER}" --database-pass "${MYSQL_PASSWORD}" --data-dir "${HOME}/nextcloud_data"
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_USER='MyUserName'
+  [isabell@stardust html]$ NEXTCLOUD_ADMIN_PASS='MySuperSecretAdminPassword'
+  [isabell@stardust html]$ MYSQL_PASSWORD='MySuperSecretMySQLPassword'
+  [isabell@stardust html]$ php occ maintenance:install --admin-user="${NEXTCLOUD_ADMIN_USER}" --admin-pass="${NEXTCLOUD_ADMIN_PASS}" --database='mysql' --database-name="${USER}_nextcloud"  --database-user="${USER}" --database-pass="${MYSQL_PASSWORD}" --data-dir="${HOME}/nextcloud_data"
   Nextcloud was successfully installed
   [isabell@stardust html]$
 
@@ -249,9 +249,11 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 
 ::
 
- */5  *  *  *  * sleep $(( 1 + $RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
+ */5  *  *  *  * sleep $(( 1 + RANDOM \% 60 )) ; php -f $HOME/html/cron.php > $HOME/logs/nextcloud-cron.log 2>&1
 
-.. note:: The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
+.. note::
+  | The actual cronjob is preceded by a random sleep of maximum one minute to prevent load peaks every 5 minutes due to simultaneous execution of all cronjobs.
+  | The ``\%`` is required as crontab replaces ``%`` with new-line characters.
 
 Configure Nextcloud to rely on the configured cronjob:
 
@@ -298,7 +300,7 @@ To reduce load on the mysql server and also improve transactional file locking y
   System config value memcache.distributed set to string \OC\Memcache\Redis
   [isabell@stardust html]$
 
-In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/files_locking_transactional.html>`_.
+In the Nextcloud admin manual you can find more Information about `memory caching <https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/caching_configuration.html#memory-caching>`_ and `transactional file locking <https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/files_locking_transactional.html>`_.
 
 default phone region
 ^^^^^^^^^^^^^^^^^^^^
@@ -340,13 +342,14 @@ Nextcloud Talk
 ^^^^^^^^^^^^^^
 
 To enable video/audio calls in your instance, install and enable the "Talk" app in the admin interface.
-If the web installation fails, install the app manually in your shell:
+If the web installation fails, install the app manually in your shell. Note that the Talk app's technical name is actually spreed.
 
 .. code-block:: console
 
-  [isabell@stardust html]$ cd apps
-  [isabell@stardust apps]$ curl -L https://github.com/nextcloud/spreed/releases/download/v8.0.7/spreed-8.0.7.tar.gz | tar -xvzf -
-  [isabell@stardust apps]$
+  [isabell@stardust html]$ php ~/html/occ app:install spreed
+  spreed 16.0.0 installed
+  spreed enabled
+  [isabell@stardust html]$
 
 Reload the page and press the talk icon in the top menu bar.
 
@@ -498,14 +501,14 @@ You need to reapply these changes after you installed Nextcloud updates or after
 
 .. _ownCloud: https://owncloud.org
 .. _Nextcloud: https://nextcloud.com
-.. _`system requirements`: https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html
-.. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/email_configuration.html#email
+.. _`system requirements`: https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html
+.. _`Nextcloud admin manual for email`: https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/email_configuration.html#email
 .. _`Nextcloud App Store`: https://apps.nextcloud.com
 .. _SELinux labels: https://wiki.gentoo.org/wiki/SELinux/Labels#Introduction
 
 
 ----
 
-Tested with Nextcloud 25.0.1, Uberspace 7.14, PHP 8.1
+Tested with Nextcloud 26.0.0, Uberspace 7.15, PHP 8.1
 
 .. author_list::

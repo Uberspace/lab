@@ -16,7 +16,7 @@ ntfy
 
 .. tag_list::
 
-ntfy_ (pronounce: notify) is a simple HTTP-based pub-sub notification service. It allows you to send notifications to your phone or desktop via scripts from any computer, entirely without signup, cost or setup. 
+ntfy_ (pronounce: notify) is a simple HTTP-based pub-sub notification service. It allows you to send notifications to your phone or desktop via scripts from any computer, entirely without signup, cost or setup.
 
 ----
 
@@ -55,7 +55,7 @@ Create a configuration file
 
 Use your favourite editor to create ``~/ntfy/server.yml`` with the following content. Make sure to replace the ``base-url`` and <username> with your own.
 
-.. code-block:: 
+.. code-block::
  :emphasize-lines: 1,3,5,8
 
   base-url: https://isabell.uber.space
@@ -114,7 +114,7 @@ To protect access to your ntfy instance, the default configuration above permits
 
   [isabell@stardust ~]$ cd ~/ntfy
   [isabell@stardust ntfy]$ ./ntfy user --config server.yml add --role=admin isabell
-  [isabell@stardust ntfy]$ ./ user --config server.yml list
+  [isabell@stardust ntfy]$ ./ntfy user --config server.yml list
   user isabell (admin)
   - read-write access to all topics (admin role)
   user * (anonymous)

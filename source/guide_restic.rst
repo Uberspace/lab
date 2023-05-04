@@ -117,7 +117,7 @@ It is recommended to create a script to automate the backups. Please edit this t
   FILES='/var/www/virtual/isabell/html/ /home/isabell/myImportantDocument.md'
 
   # Run restic backup
-  restic -r b2:bucketname:path/to/repo backup $FILES
+  ~/bin/restic -r b2:bucketname:path/to/repo backup $FILES
 
   #set +x # Stop printing
 

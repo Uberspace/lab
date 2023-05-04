@@ -72,9 +72,9 @@ Since Sulu CMS uses the subdirectory ``public/`` as document root of your websit
  Created project in /var/www/virtual/isabell/sulucms
  […]
      The recipe for this package contains some Docker configuration.
- 
+
     This may create/update docker-compose.yml or update Dockerfile (if it exists).
- 
+
     Do you want to include Docker configuration from recipes?
     [y] Yes
     [n] No
@@ -91,7 +91,7 @@ Remove your empty :manual:`DocumentRoot <web-documentroot>` and create a new sym
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s sulucms/public html
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 
 Configuration

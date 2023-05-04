@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Nepomacs <https://github.com/Nepomacs/>
+.. author:: franok <https://franok.de>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: privacy
@@ -59,29 +60,30 @@ Installation
 Download the source
 -------------------
 
-Check Github_ for the `latest release`_ and copy the download link to the .tar.gz file.
-Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it. Replace the URL with the one you just copied.
+Check the Github_ release section and copy the release tag version of the `latest release`_. Set the variable PBIN_VERSION to the version you just copied.
+Then ``cd`` to your ``~/html`` folder and use ``wget`` to download it.
 
 .. code-block:: console
- :emphasize-lines: 2
+ :emphasize-lines: 3
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/1.5.0.tar.gz
+ [isabell@stardust ~]$ PBIN_VERSION=0.0.0
+ [isabell@stardust html]$ wget https://github.com/PrivateBin/PrivateBin/archive/$PBIN_VERSION.tar.gz -O "PrivateBin-$PBIN_VERSION.tar.gz"
  […]
- Saving to: ‘1.5.0.tar.gz’
+ Saving to: ‘PrivateBin-1.5.1.tar.gz’
 
  100%[=================================================>] 3,172,029   3.45MB/s   in 0.9s
 
- 2022-11-17 16:27:44 (8.32 MB/s) - ‘1.5.0.tar.gz’ saved [523648]
+ 2022-11-17 16:27:44 (8.32 MB/s) - ‘PrivateBin-1.5.1.tar.gz’ saved [523648]
  [isabell@stardust html]$
 
-Untar the archive and then delete it. Replace the version in the file name with the one you downloaded.
+Untar the archive and then delete it.
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
- [isabell@stardust html]$ tar -xzf 1.5.0.tar.gz --strip-components=1
- [isabell@stardust html]$ rm 1.5.0.tar.gz
+ [isabell@stardust html]$ tar -xzf PrivateBin-$PBIN_VERSION.tar.gz --strip-components=1
+ [isabell@stardust html]$ rm PrivateBin-$PBIN_VERSION.tar.gz
  [isabell@stardust html]$
 
 
@@ -97,27 +99,27 @@ PrivateBin provides a .htaccess file, which blocks some known robots and link-sc
 
 Moving files outside of DocumentRoot
 ------------------------------------
-It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root.
-To do that, create a folder  ``privatebin-data`` in ``/var/www/virtual/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
+It is recommended_ to move the configuration, data files, templates and PHP libraries outside of your document root. This is useful to secure your installation.
+To do that, create a folder  ``privatebin`` in ``/home/isabell/`` and move the folders to the new location (remember to replace ``isabell`` with your own username!).
 If not already there, go to the ``html`` directory before running ``mv``.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ mkdir /var/www/virtual/isabell/privatebin-data
- [isabell@stardust html]$ mv -t /var/www/virtual/isabell/privatebin-data cfg/ lib/ tpl/ vendor/
+ [isabell@stardust html]$ mkdir ~/privatebin
+ [isabell@stardust html]$ mv -t ~/privatebin cfg/ lib/ tpl/ vendor/
  [isabell@stardust html]$
 
 Changing index.php
 ------------------
 
-Now edit ``~/html/index.php``  to inform PrivateBin about to the new location of the folders.
+Now edit ``~/html/index.php``  to inform PrivateBin about the new location of the folders.
 
 .. code-block:: php
 
  [...]
  // change this, if your php files and data is outside of your webservers document root
- define('PATH', '/var/www/virtual/isabell/privatebin-data/');
+ define('PATH', '/home/isabell/privatebin/');
  [...]
 
 Configuration
@@ -132,9 +134,9 @@ You can find an example configuration file at ``cfg/conf.sample.php`` with the d
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd /var/www/virtual/isabell/privatebin-data
- [isabell@stardust html]$ cp cfg/conf.sample.php cfg/conf.php
- [isabell@stardust html]$
+ [isabell@stardust ~]$ cd ~/privatebin
+ [isabell@stardust privatebin]$ cp cfg/conf.sample.php cfg/conf.php
+ [isabell@stardust privatebin]$
 
 The file is in ini format, meaning that lines beginning with semicolons ``;`` are comments,
 configuration options are grouped in sections, marked by square brackets ``[`` and ``]``
@@ -156,13 +158,84 @@ If you followed this guide, it is already at the right place in your :manual:`Do
 However, if you installed PrivateBin into a subdirectory, you have to move ``robots.txt`` back into the DocumentRoot.
 Of course also adjust the file if you already use a robots.txt.
 
+Making your PrivateBin Instance read-only
+-----------------------------------------
+
+This section will teach you how you can limit write access to your PrivateBin instance, i.e. specify who can paste data.
+
+While PrivateBin does not have a concept of access control in itself, `the documentation suggests different ways <https://github.com/PrivateBin/PrivateBin/wiki/FAQ#how-can-i-link-to-a-read-only-mode-where-users-cant-submit-pastes>`_ in which a read-only mode can be achieved using some custom configuration. In this guide we will implement the second method that will require basic authentication for POST requests.
+
+Choose a username that should have write access and provide it to the ``htpasswd`` command:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ htpasswd -c .htpasswd sample_user
+ New password:
+ Re-type new password:
+ Adding password for user sample_user
+ [isabell@stardust html]$
+ 
+Further users can be added by omitting the ``-c`` flag:
+
+.. code-block:: console
+ 
+ [isabell@stardust html]$ htpasswd .htpasswd another-user
+ New password:
+ Re-type new password:
+ Adding password for user another-user
+ [isabell@stardust html]$
+ 
+Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by your uberspace username):
+
+.. code-block:: text
+
+ AuthType Basic
+ AuthName "Login to PrivateBin"
+ AuthUserFile /var/www/virtual/isabell/html/.htpasswd
+ <LimitExcept GET>
+    Require valid-user
+ </LimitExcept>
+
+The ``.htaccess`` file should look similar to this example:
+
+.. code-block:: console
+ :emphasize-lines: 7-12
+
+ [isabell@stardust html]$ cat .htaccess
+ RewriteEngine on
+ RewriteCond !%{HTTP_USER_AGENT} "Let's Encrypt validation server" [NC]
+ RewriteCond %{HTTP_USER_AGENT} ^.*(bot|spider|crawl|https?://|WhatsApp|SkypeUriPreview|facebookexternalhit) [NC]
+ RewriteRule .* - [R=403,L]
+ 
+ AuthType Basic
+ AuthName "Login to PrivateBin"
+ AuthUserFile /var/www/virtual/isabell/html/.htpasswd
+ <LimitExcept GET>
+    Require valid-user
+ </LimitExcept>
+
+The PrivateBin site is still visible to the public. 
+When a user tries to publish content in your pastebin, a Basic-Auth popup will ask for username and password.
+The generated links are accessible to everyone.
+
 
 Updates
 =======
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
+.. note:: Check the update feed_ regularly to stay informed about the latest version.
 
-Updating is quite easy. Just repeat all steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
+Backup your config:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust html]$ cp -p .htaccess .htaccess.backup
+ [isabell@stardust html]$ cp -p .htpasswd .htpasswd.backup
+ [isabell@stardust html]$ cp -rp ~/privatebin/ ~/privatebin-backup
+ [isabell@stardust html]$ 
+
+Then repeat the steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
 Your configuration file won't get overwritten.
 
 Check the Release-Notes if the configuration changed between ``cfg/conf.sample.php`` and your ``conf.php``.
@@ -178,6 +251,6 @@ Also check ``.htaccess.disabled`` if further adjustments needed to be made.
 
 ----
 
-Tested with PrivateBin 1.5.0, Uberspace 7.13, PHP 8.1
+Tested with PrivateBin 1.5.1, Uberspace 7.15.1, PHP 8.1
 
 .. author_list::

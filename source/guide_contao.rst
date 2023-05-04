@@ -1,5 +1,6 @@
 .. author:: xchs <https://github.com/xchs>
 .. author:: luto <http://luto.at>
+.. author:: brutus <brutus.dmc@googlemail.com>
 
 .. tag:: lang-php
 .. tag:: web
@@ -38,7 +39,7 @@ Contao (formerly TYPOlight) was released for the first time in 2006 by Leo Feyer
 Prerequisites
 =============
 
-We are using PHP_ in the stable version ``8.1``:
+We are using PHP_ in version ``8.1``:
 
 ::
 
@@ -53,13 +54,7 @@ We are using PHP_ in the stable version ``8.1``:
 
 Your :manual_anchor:`website domain <web-domains.html#setup>` needs to be set up:
 
-::
-
- [isabell@stardust ~]$ uberspace web domain list
- isabell.example
- isabell.uber.space
- [isabell@stardust ~]$
-
+.. include:: includes/web-domain-list.rst
 
 Create Database
 ===============
@@ -69,76 +64,71 @@ Contao saves your data in a :manual:`MySQL <database-mysql>` database. It is rec
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_contao"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_contao"
  [isabell@stardust ~]$
+
+
+Document Root Preparation
+=========================
+
+Since Contao uses the subdirectory ``public/`` as web root of your website you should **not** install Contao in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ mkdir -p contao/public
+ [isabell@stardust isabell]$ ln -s contao/public html
+ [isabell@stardust isabell]$
 
 
 Installation
 ============
 
-Since Contao uses the subdirectory ``web/`` as web root of your website you should **not** install Contao in your default Uberspace :manual:`DocumentRoot <web-documentroot>`. Instead, we install it next to that and then use a symlink to make it accessible to the web.
-
-.. note:: The given Composer_ command always installs the latest stable release. If you want to install a particular version, you must specify the version in the command as well, e.g.: ``composer create-project contao/managed-edition contao '42.23.*'``
-
-  Composer_ will install all necessary dependencies Contao needs to run. This can take some time though.
+Download the `Contao Manager`_ to your web root:
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project contao/managed-edition contao
- Installing contao/managed-edition (42.23.1)
-   - Installing contao/managed-edition (42.23.1): Downloading (100%)
- Created project in contao
- Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file
- [...]
-
- [isabell@stardust isabell]$
-
-Next, remove the unused :manual:`DocumentRoot <web-documentroot>` and create a new **symbolic link** to the Contao ``web/`` subdirectory. Again, replace ``contao`` by the folder name where the Contao project files sit in.
-
-.. code-block:: console
-
- [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/contao/web/ html
+ [isabell@stardust isabell]$ wget https://download.contao.org/contao-manager/stable/contao-manager.phar
+ [isabell@stardust isabell]$ mv contao-manager.phar html/contao-manager.phar.php
  [isabell@stardust isabell]$
 
 
 Configuration
 =============
 
-Contao Install Tool
--------------------
+To complete the installation, you need to run the Contao Manager, which will guide you through the installation process.
 
-To complete the installation, you need to run the Contao install tool, which will guide you through the installation process.
+Contao Manager
+--------------
 
-Point your web browser to your website URL and append ``/contao/install`` (e.g. ``https://isabell.example/contao/install``) to run the Contao install tool.
+Point your web browser to your website URL and append ``contao-manager.phar.php`` (e.g. ``https://isabell.uber.space/contao-manager.phar.php``) to start the Contao configuration.
 
-.. note:: The URL fragment ``/contao/install`` is only a Contao *route* and not a physical path within your installation.
+1. **Manager Account** When you run the Contao install tool the first time, the web based installer will prompt you for a new username & password combination for access to the manager tool. For all future accesses, the Contao Manager will ask for this again.
 
-**Step 1:** When you run the Contao install tool the first time, the web based installer will prompt to set a new password. For all future accesses, the Contao install tool will ask for this password again.
+2. **Contao Version** Choose the version you want to install.
 
-**Step 2:** To configure your database connection, you need to enter the MySQL database :manual_anchor:`credentials <database-mysql.html#login-credentials>`:
+3. **Database Configuration** To configure your database connection, you need to enter the MySQL database :manual_anchor:`credentials <database-mysql.html#login-credentials>`:
 
-  * MySQL hostname (use ``localhost``)
-  * MySQL username (equals your Uberspace username, e.g. ``isabell``)
-  * MySQL password
-  * Contao database name (e.g. ``isabell_contao``)
+  - MySQL hostname (use ``localhost``)
+  - MySQL username (equals your Uberspace username, e.g. ``isabell``)
+  - MySQL password
+  - Contao database name (e.g. ``isabell_contao``)
 
-**Step 3:** Update the database (this will create the database table structure).
+4. **Database Migration** Update the database (this will create the database table structure).
 
-**Step 4:** Create a Contao back end administrator account.
+5. **Backend Account** Create a Contao backend administrator account.
 
 You have successfully installed the Contao CMS on Uberspace 7!
 
 
-Contao Back End
-===============
+Contao Backend
+==============
 
-Point your web browser to your website URL and append ``/contao`` (or ``/contao/login``) to open the Contao back end login mask (e.g. ``https://isabell.example/contao/login``)
+Point your web browser to your website URL and append ``/contao`` (or ``/contao/login``) to open the Contao Backend login mask (e.g. ``https://isabell.uber.space/contao/login``)
 
-Log into the Contao back end by entering the credentials of the administrator account.
+Log into the Contao Backend by entering the credentials of the Backend account.
 
 
 Updates
@@ -146,18 +136,7 @@ Updates
 
 .. note:: Check the GitHub repository releases_ and the update feed_ regularly to stay informed about new updates and releases. Also read the news_ and announcements posted on `contao.org <https://contao.org/>`_.
 
-To update an existing Contao installation just perform a Composer Update in the root directory of your application (e.g. ``/var/www/virtual/$USER/contao/``). This will update the Contao Managed Edition core application and all its dependencies as well as all your installed third-party packages:
-
-.. code-block:: console
- :emphasize-lines: 1
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/contao/
- [isabell@stardust contao]$ composer update
- Loading composer repositories with package information
- Updating dependencies (including require-dev)
- [...]
-
- [isabell@stardust contao]$
+To update an existing Contao installation (or switch to another PHP version), start the **Contao Manager** again (e.g. visit ``https://isabell.uber.space/contao-manager.phar.php``).
 
 .. warning:: The Contao Managed Edition and especially **additional bundles and modules** are **not** updated automatically, so make sure to regularly check for security and maintenance updates.
 
@@ -174,6 +153,6 @@ To update an existing Contao installation just perform a Composer Update in the 
 
 ----
 
-Tested with Contao 4.11.0 / Uberspace 7.9.0.0
+Tested with Contao 5.0.6 (API-Version 2) / Uberspace 7.13.0
 
 .. author_list::
