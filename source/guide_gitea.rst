@@ -60,7 +60,7 @@ Check current version of Gitea at releases_ page:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.19.2
+  [isabell@stardust ~]$ VERSION=1.19.3
   [isabell@stardust ~]$ mkdir ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
   [...]
@@ -529,6 +529,6 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Gitea 1.19.2, Uberspace 7.15.1
+Tested with Gitea 1.19.3, Uberspace 7.15.1
 
 .. author_list::
