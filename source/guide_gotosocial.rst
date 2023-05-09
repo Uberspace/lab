@@ -96,7 +96,7 @@ If the splash screen loads successfully, hit ``Ctrl+C`` to abort GoToSocial and 
 Setup daemon
 ------------
 
-Create ~/etc/services.d/gotosocial.ini with the following content:
+Create ``~/etc/services.d/gotosocial.ini`` with the following content:
 
 .. code-block:: ini
 
