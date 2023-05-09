@@ -71,10 +71,10 @@ Configure GoToSocial
 Copy the example configuration file via ``cp ./example/config.yaml .`` and edit it using your favorite text editor. Change the following values.
 
 .. code-block:: yaml
- :emphasize-lines: 1,6
+ :emphasize-lines: 1-6
  
  host: "isabell.uber.space"
- protocol: "http"
+ protocol: "https"
  port: 8080
  db-type: "sqlite"
  db-address: "sqlite.db"
