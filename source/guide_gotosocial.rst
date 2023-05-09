@@ -80,7 +80,7 @@ Copy the example configuration file via ``cp ./example/config.yaml .`` and edit 
  db-address: "sqlite.db"
  storage-local-base-path: "/home/isabell/gotosocial/storage"
 
-We'll be using SQlite_, but you can also use PostgreSQL by following the configuration_ guide for database_.
+We'll be using SQlite_, but you can also use :lab:`PostgreSQL <guide_postgresql>` by following the configuration_ guide for database_.
 
 .. warning:: If you consider using a subdomain, you need to configure this as described in advanced_ installation before running ``./gotosocial`` for the first time!
 
@@ -166,7 +166,7 @@ Repeat the installation_ step and copy your ``config.yaml`` and ``storage`` dire
   [isabell@stardust ~]$ cp ~/gotosocial-backup/config.yaml ~/gotosocial/config.yaml
   [isabell@stardust ~]$ cp -r ~/gotosocial-backup/storage ~/gotosocial/storage
 
-Sart GoToSocial using the ``supervisorctl start gotosocial`` command. If it's not starting, investigate errors in the supervisord logfile located in``~/tmp``. Otherwise have fun using the latest version and consider removing your backup after some days.
+Sart GoToSocial using the ``supervisorctl start gotosocial`` command. If it's not starting, investigate errors in the supervisord logfile located in ``~/tmp``. Otherwise have fun using the latest version and consider removing your backup after some days.
 
 ----
 
