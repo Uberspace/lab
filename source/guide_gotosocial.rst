@@ -29,8 +29,6 @@ GoToSocial_ is an ActivityPub social network server, written in Golang and curre
   * :manual:`Domains <web-domains>`
   * :manual:`web backends <web-backends>`
 
-...warning:: Always replace ``isabell`` with your username!
-
 Prerequisites
 =============
 
