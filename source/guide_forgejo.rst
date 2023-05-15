@@ -1,4 +1,4 @@
-.. author:: Rychart Redwerkz <https://zkrew.red>
+.. author:: Marc Redwerkz <https://zkrew.red>
 
 .. tag:: lang-go
 .. tag:: audience-developers
@@ -62,13 +62,13 @@ Check current version of Forgejo at releases_ page:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.18.3-2 https://codeberg.org/attachments/fd085cac-e462-413c-ab01-a1f36f6c1d24
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.19.3-0 https://codeberg.org/forgejo/forgejo/releases/download/v1.19.3-0/forgejo-1.19.3-0-linux-amd64
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo-1.18.3-2’
+  Saving to: ‘/home/isabell/forgejo/forgejo-1.19.3-0’
 
-  100%[=======================================================>] 118,374,216 74.2MB/s   in 1.5s
+  100%[=======================================================>] 127,741,704 77.5MB/s   in 1.6s
 
-  2023-02-17 19:38:27 (74.2 MB/s) - ‘/home/isabell/forgejo/forgejo-1.18.3-2’ saved [118374216/118374216]
+  2023-05-15 08:29:40 (77.5 MB/s) - ‘forgejo-1.19.3-0-linux-amd64’ saved [127741704/127741704]
 
   [isabell@stardust ~]$
 
@@ -80,8 +80,8 @@ Make the downloaded binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.18.3-2
-  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.18.3-2 ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.19.3-0
+  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.19.3-0 ~/forgejo/forgejo
   [isabell@stardust ~]$
 
 
@@ -230,14 +230,12 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/02/17 20:33:59 ...dules/setting/log.go:288:newLogService() [I] Gitea v1.18.3-2 built with GNU Make 4.1, go1.19.6 : bindata, sqlite, sqlite_unlock_notify
-  2023/02/17 20:33:59 ...dules/setting/log.go:335:newLogService() [I] Gitea Log Mode: Console(Console:info)
+  2023/05/15 08:42:18 ...dules/setting/log.go:331:initLogFrom() [I] Forgejo Log Mode: Console(Console:info)
   [...]
-  2023/02/17 20:33:59 cmd/dump.go:245:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
-  2023/02/17 20:34:04 cmd/dump.go:283:runDump() [I] Dumping database...
+  2023/05/15 08:42:18 cmd/dump.go:246:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
+  2023/05/15 08:42:46 cmd/dump.go:287:runDump() [I] Dumping database...
   [...]
-  2023/02/17 20:34:04 cmd/dump.go:295:runDump() [I] Adding custom configuration file from /home/isabell/forgejo/custom/conf/app.ini
-  2023/02/17 20:34:04 cmd/dump.go:323:runDump() [I] Packing data directory.../home/isabell/forgejo/data
+  2023/05/15 08:42:51 cmd/dump.go:411:runDump() [I] Finish dumping in file forgejo-dump-0123456789.zip
   [isabell@stardust ~]$
 
 Updates
@@ -339,6 +337,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 1.18.3-2, Uberspace 7.15.0
+Tested with Forgejo 1.19.3-0, Uberspace 7.15.1
 
 .. author_list::
