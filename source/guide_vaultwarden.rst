@@ -287,7 +287,15 @@ Updating vaultwarden is really easy.
 Hint: If the update fails
 -------------------------
 
-When you get the error message ``No layers returned. Verify that the image and tag are valid.`` you'll have to update the Docker Image Extractor first.
+When you get the error message ``No layers returned. Verify that the image and tag are valid.`` you'll have to update the Docker Image Extractor first as described below:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/vaultwarden
+ [isabell@stardust ~]$ rm docker-image-extract
+ [isabell@stardust ~]$ wget -O ~/vaultwarden/docker-image-extract https://raw.githubusercontent.com/jjlin/docker-image-extract/main/docker-image-extract
+ [isabell@stardust ~]$ chmod +x docker-image-extract
+ [isabell@stardust ~]$
 
 Acknowledgements
 ================
