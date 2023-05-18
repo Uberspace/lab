@@ -17,7 +17,9 @@ OctoberCMS
 
 .. tag_list::
 
-October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ PHP Framework. It is especially known for its simplicity, flexibility and modern design.
+October_ is an open-source, self-hosted CMS platform based on the Laravel_ PHP Framework. It is especially known for its simplicity, flexibility and modern design.
+However, the CMS is no longer free software. The previous MIT License
+has been changed to a proprietary EULA on `16 April 2021`_.
 
 ----
 
@@ -30,7 +32,10 @@ October_ is a free, open-source, self-hosted CMS platform based on the Laravel_ 
 License
 =======
 
-The OctoberCMS platform is released under the `MIT License`_. All relevant information can be found in the LICENSE_ file in the repository of the project. Please also review the `Marketplace terms`_ if you plan to use plugins or themes from the official Marketplace.
+The OctoberCMS platform is released under a proprietary EULA. All relevant information can be found in the LICENSE_ file in the repository of the project. Please also review the `Marketplace terms`_ if you plan to use plugins or themes from the official Marketplace.
+Although the code is open source, it is not free software.
+You're not allowed to modify it and are required to pay a
+yearly license fee to continuously receive updates.
 
 Prerequisites
 =============
@@ -133,10 +138,10 @@ To update October and your installed plugins you can use the ``october:update`` 
 .. _October: https://octobercms.com/
 .. _Laravel: https://laravel.com/
 .. _feed: https://github.com/octobercms/october/releases.atom
-.. _MIT License: https://opensource.org/licenses/MIT
-.. _LICENSE: https://github.com/octobercms/october/blob/master/LICENSE
+.. _LICENSE: https://github.com/octobercms/october/blob/3.x/LICENSE.md
 .. _Marketplace terms: https://octobercms.com/help/terms/marketplace
 .. _Console command list: https://octobercms.com/docs/console/commands
+.. _16 April 2021: https://github.com/octobercms/october/commit/1f1c0a3b8e2af6db9b8d7ff8f271dda4efec1a32
 
 ----
 
