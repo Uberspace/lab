@@ -52,8 +52,7 @@ Installation
 
 To install InvoicePlane we download the current version from the official website. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``. After unzipping, we need to move all files one level up, out of the directory ``ip``.
 
-.. code-block:: console
- :emphasize-lines: 2
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget https://www.invoiceplane.com/download/v1.6.0
@@ -68,6 +67,7 @@ Create a database for the application:
 ::
 
  [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_invoiceplane"
+ [isabell@stardust html]$
 
 
 Configuration
@@ -78,13 +78,14 @@ Enable the URL rewriting rules with the provided htaccess file.
 ::
 
  [isabell@stardust html]$ mv htaccess .htaccess
+ [isabell@stardust html]$
 
 Now copy the configuration template and open it in an editor.
 
 ::
 
  [isabell@stardust html]$ cp ipconfig.php.example ipconfig.php
- [isabell@stardust html]$ nano ipconfig.php
+ [isabell@stardust html]$
 
 **Important: You must prepend the first line in the file with a
 hash sign ("#"), otherwise the application fails to load.**
@@ -128,6 +129,7 @@ Backup your ``ipconfig.php`` file, delete everything else in your ``html`` direc
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp ipconfig.php ~
  [isabell@stardust html]$ rm -rf * .*
+ [isabell@stardust html]$
 
 Proceed with the installation steps from here and move back your config file.
 
