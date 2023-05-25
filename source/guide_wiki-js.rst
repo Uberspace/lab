@@ -35,6 +35,15 @@ Wiki.js has a WYSIWYG editor as well as support for markdown, html. Migration fr
 Prerequisites
 =============
 
+We're using :manual:`Node.js <lang-nodejs>` in the latest version listed in `Wiki.js Requierements <https://docs.requarks.io/install/requirements#nodejs>`_  :
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools version show node
+ Using 'Node.js' version: '16'
+ [isabell@stardust ~]$
+
+
 .. note:: If you already use PostgreSQL, you can skip the next two steps and take a look at :ref:`tuning`.
 
 You need a database for Wiki.js:
