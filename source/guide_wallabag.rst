@@ -1,4 +1,4 @@
-.. author:: ezra <ezra@posteo.de>
+.. author:: ezra <ezra@posteo.de> FM <git.fm@mmw9.de>
 
 .. tag:: lang-php
 .. tag:: web
@@ -54,87 +54,95 @@ Remove the placeholder html file from the html folder:
 Installation & Configuration
 ==============================
 
-First get the Wallabag source code from GitHub_:
+1. First get the Wallabag package and let extract this into the target folder ``~/html``:
 
 ::
 
-  [isabell@stardust ~]$ git clone https://github.com/wallabag/wallabag.git ~/html
-  Cloning into '/home/isabell/html'...
-  remote: Counting objects: 46655, done.
-  remote: Compressing objects: 100% (23/23), done.
-  remote: Total 46655 (delta 10), reused 20 (delta 9), pack-reused 46620
-  Receiving objects: 100% (46655/46655), 58.15 MiB | 20.81 MiB/s, done.
-  Resolving deltas: 100% (26623/26623), done.
+  [isabell@stardust ~]$ wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package -C ~/html --strip-components=1
   [isabell@stardust ~]$
 
-Change to that folder and run ``make install``. During the installation process, you will be asked for a lot of configuration settings. But you only need to set up the following information:
+2. Edit the config file ``~/html/app/config/parameters.yml`` and replace the following information:
 
-* ``database_name:`` <username>_wallabag - *replace <username> with the MySQL username*
-* ``database_user:`` put in the MySQL username that you looked up in the prerequisites
-* ``database_password:`` that is the MySQL password that you looked up in the prerequisites
-* ``mailer_host``: 127.0.0.1:587 - *we need to serve the special* :manual_anchor:`smtp port <mail-access.html#smtp>` *here*
-* ``mailer_user``: <username>@uber.space - *replace <username> with your uberspace username*
-* ``mailer_password``: <mail-password> - *you need to set a mail password for your uberspace first*
-* ``domain_name:`` put in here your domain or subdomain like https://isabell.uber.space
-* ``secret:`` type in any random string here, do not keep the default string!
-* ``twofactor_sender:`` choose an email address to be used as sender
-* ``fosuser_registration:`` set this to false, otherwise anyone can register at your wallabag instance
-* ``from_email:`` choose an email address to be used as sender (can be the same as above)
-
-* ``Would you like to create a new admin user (recommended)?:`` yes
-* ``Username:`` admin *- or you can also choose any other name, that could increase security*
-* ``Password:`` *choose a good password here*
-* ``Email:`` set in a mail address to use with this admin account
+* ``database_name:`` <username>_wallabag - *replace <username> with your MySQL username from your credentials above.*
+* ``database_user:`` Again your MySQL username.
+* ``database_password:`` The MySQL password from your credentials above.
+* ``domain_name:`` Put in here your domain or subdomain like https://isabell.uber.space .
+* ``server_name:`` Your wallabag instance name.
+* ``mailer_user:`` <username>@uber.space - *replace <username> with your uberspace username*.
+* ``mailer_password:`` <mail-password> - *you need to set a mail password for your uberspace first*.
+* ``mailer_port:`` 587 - *we need to serve the special* :manual_anchor:`smtp port <mail-access.html#smtp>` *here*.
+* ``mailer_encryption:`` ssl - The parameter for the encryption.
+* ``mailer_auth_mode:`` login - The authenication mode.
+* ``secret:`` Type in any random string here, minimum 32 characters and do not keep the default string!
+* ``twofactor_sender:`` Choose an email address to be used as sender.
+* ``fosuser_registration:`` false - Set this to false, otherwise anyone can register at your wallabag instance
+* ``from_email:`` Choose an email address to be used as sender (can be the same as above).
 
 .. code-block:: console
- :emphasize-lines: 1,2,10,11,12,17,23,25,26,28,30,31,32,33
+  :emphasize-lines: 6,7,8,13,14,16,17,19,20,21,23,25,26,30
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: isabell_wallabag
+    database_user: isabell
+    database_password: 'MySuperSecretPassword'
+    database_path: null
+    database_table_prefix: wallabag_
+    database_socket: null
+    database_charset: utf8mb4
+    domain_name: 'https://isabell.uber.space'
+    server_name: 'Your wallabag instance'
+    mailer_transport: smtp
+    mailer_user: isabell@uber.space
+    mailer_password: 'MySuperSecretPassword'
+    mailer_host: 127.0.0.1
+    mailer_port: 587
+    mailer_encryption: ssl
+    mailer_auth_mode: login
+    locale: en
+    secret: CHANGE_ME_TO_SOMETHING_SECRET_AND_RANDOM
+    twofactor_auth: true
+    twofactor_sender: isabell@uber.space
+    fosuser_registration: false
+    fosuser_confirmation: true
+    fos_oauth_server_access_token_lifetime: 3600
+    fos_oauth_server_refresh_token_lifetime: 1209600
+    from_email: isabell@uber.space
+    rss_limit: 50 rabbitmq_host: localhost
+    rabbitmq_port: 5672
+    rabbitmq_user: guest
+    rabbitmq_password: guest
+    rabbitmq_prefetch_count: 10
+    redis_scheme: tcp
+    redis_host: localhost
+    redis_port: 6379
+    redis_path: null
+    redis_password: null
+    sentry_dsn: null
 
-  [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust html]$ make install
-  [...]
-  Creating the "app/config/parameters.yml" file
-  Some parameters are missing. Please provide them.
-  database_driver (pdo_mysql):
-  database_driver_class (null):
-  database_host (127.0.0.1):
-  database_port (null):
-  database_name (wallabag): isabell_wallabag
-  database_user (root): isabell
-  database_password (null): MySuperSecretPassword
-  database_path (null):
-  database_table_prefix (wallabag_):
-  database_socket (null):
-  database_charset (utf8mb4):
-  domain_name ('https://your-wallabag-url-instance.com'): https://isabell.uber.space
-  mailer_transport (smtp):
-  mailer_host (127.0.0.1): 127.0.0.1:587
-  mailer_user (null): isabell@uber.space
-  mailer_password (null): MySuperSecretPassword
-  locale (en):
-  secret (ovmpmAWXRCabNlMgzlzFXDYmCFfzGv): *!!set.random.string!!*
-  twofactor_auth (true):
-  twofactor_sender (no-reply@wallabag.org): isabell@uber.space
-  fosuser_registration (true): false
-  fosuser_confirmation (true):
-  from_email (no-reply@wallabag.org): isabell@uber.space
-  [...]
-  * Would you like to create a new admin user (recommended)? (yes/no) [yes]: yes
-  * Username [wallabag]: admin
-  * Password [wallabag]: [hidden] *!!choose.your.own!!*
-  * Email []: isabell@uber.space
-  [...]
-  Config successfully setup.
-  [OK] Wallabag has been successfully installed.
-  [OK] You can now configure your web server, see https://doc.wallabag.org
-  [isabell@stardust html]$
+.. note:: You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file. In case of changes please clear the cache afterwards with:
+::
 
-.. note:: You just need to set the highlighted values (as explained above), for the others just accept the default values with *enter*. You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file.
+ [isabell@stardust ~]$ php bin/console cache:clear --env=prod
+ [isabell@stardust ~]$
 
-To apply changes to parameters.yml, you have to clear your cache by deleting everything in ``~/var/cache`` with this command:
+3. Jump into the ``~/html`` folder and let start the installation.
 
-``[isabell@stardust html]$ bin/console cache:clear -e=prod``.
+::
 
-You still need to forward your document root to the ``/web`` folder where the public content is located. Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the following content:
+ [isabell@stardust ~]$ cd ~/html
+ [isabell@stardust ~]$ php bin/console wallabag:install --env=prod
+ [isabell@stardust ~]$
+
+.. note:: In case of problems, please check your config file and clear the cache afterwards.
+
+.. note:: During the installation process you will asking for a new admin username.
+
+4. You still need to forward your document root to the ``/web`` folder where the public content is located.
+
+Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the following content:
 
 ::
 
@@ -143,27 +151,19 @@ You still need to forward your document root to the ``/web`` folder where the pu
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ /web/$1 [QSA,L]
 
+
 Updates
 =======
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
-
-If there is a new version available, you can update with the following command:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ cd ~/html
-  [isabell@stardust html]$ make update
-  [isabell@stardust html]$
-
+I had not the pleasure to update Wallabag till today. I will update this manual if a new version is available.
 
 .. _Wallabag: https://wallabag.org
-.. _GitHub: https://github.com/wallabag/wallabag
+.. _Project: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
 
 ----
 
-Tested with Wallabag 2.3.2 and Uberspace 7.1.2
+Tested with Wallabag 2.5.4 and Uberspace 7.15.1
 
 .. author_list::
