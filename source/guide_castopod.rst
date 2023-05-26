@@ -1,8 +1,10 @@
 .. author:: André Jaenisch <https://jaenis.ch>
+.. author:: Tobias Quathamer <t.quathamer@mailbox.org>
 
 .. tag:: lang-php
 .. tag:: web
 .. tag:: fediverse
+.. tag:: podcast
 .. tag:: ActivityPub
 
 .. highlight:: console
@@ -29,8 +31,9 @@ decentralized network of independently operated servers.
 
   * :manual:`PHP <lang-php>` and its package manager :manual_anchor:`composer <lang-php#package-manager>`
   * :manual:`MySQL <database-mysql>`
+  * :manual:`Mail <mail-mailboxes>`
   * :manual:`Cron <daemons-cron>`
-  * :manual:`domains <web-domains>`
+  * :manual:`Domains <web-domains>`
 
 License
 =======
@@ -42,21 +45,19 @@ repository of the project.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the version 8.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.1
- Selected PHP version 8.1
- The new configuration is adapted immediately. Patch updates will be applied automatically.
-
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ uberspace tools version show php
+  Using 'PHP' version: '8.1'
+  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
 Setup a new MySQL database for Castopod:
 
-.. code-block:: console
+::
 
   [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_castopod"
   [isabell@stardust ~]$
@@ -72,20 +73,17 @@ Your castopod URL needs to be setup:
 Installation
 ============
 
-First, go one level above your :manual:`DocumentRoot <web-documentroot>`
-and download the latest version. Make sure, it is a Castopod Package and not
-the source code. At time of this writing this is v1.0.0-beta.14.
-
-TODO: the permalink to latest version requires login:
-https://docs.gitlab.com/ee/user/project/releases/#permanent-link-to-latest-release
-
-Download the source
--------------------
+Change to the parent directory of your DocumentRoot and
+download the latest version of castopod. At the time of writing, this
+is v1.3.5. You'll find all releases_ on their gitlab instance.
+Please note that you need to download the "Castopod Package",
+not just the source code. The latter is missing some needed
+files.
 
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER
-  [isabell@stardust isabell]$ wget https://code.castopod.org/adaures/castopod/uploads/48710de086e7b4dfa23f894e81e15365/castopod-1.0.0-beta.14.tar.gz
+  [isabell@stardust isabell]$ wget https://code.castopod.org/adaures/castopod/uploads/0071d5055a69176c706591649b1d725d/castopod-1.3.5.tar.gz
   [isabell@stardust isabell]$
 
 Unpack and symlink
@@ -96,98 +94,169 @@ Unpack the tarball and remove the downloaded file.
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER
-  [isabell@stardust isabell]$ tar --extract --verbose --ungzip --file castopod-1.0.0-beta.14.tar.gz
-  [isabell@stardust isabell]$ rm castopod-1.0.0-beta.14.tar.gz
+  [isabell@stardust isabell]$ tar --extract --auto-compress --file castopod-1.3.5.tar.gz
+  [isabell@stardust isabell]$ rm castopod-1.3.5.tar.gz
   [isabell@stardust isabell]$
 
-Remove your empty DocumentRoot and create a new symbolic link
-to the castopod directory:
+Remove your empty DocumentRoot and create a symlink to the public
+directory of castopod.
 
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER
-  [isabell@stardust isabell]$ rm --force html/nocontent.html; rmdir html
-  [isabell@stardust isabell]$ ln --symbolic /var/www/virtual/$USER/castopod/public html
+  [isabell@stardust isabell]$ rm html/nocontent.html; rmdir html
+  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/castopod/public html
   [isabell@stardust isabell]$
+
+Configuration
+=============
+
+Create a copy of the file :file:`.env.example` and use :file:`.env` as the new name.
+
+::
+
+  [isabell@stardust ~]$ cd /var/www/virtual/$USER/castopod
+  [isabell@stardust castopod]$ cp .env.example .env
+  [isabell@stardust castopod]$
+
+Open the file :file:`.env` in an editor and change the default settings
+in the following lines to use your settings.
+
+.. code-block::
+  :emphasize-lines: 4,5,13-15,21-24
+
+  #--------------------------------------------------------------------
+  # Instance configuration
+  #--------------------------------------------------------------------
+  app.baseURL="https://isabell.uber.space/"
+  media.baseURL="https://isabell.uber.space/"
+  admin.gateway="cp-admin"
+  auth.gateway="cp-auth"
+
+  #--------------------------------------------------------------------
+  # Database configuration
+  #--------------------------------------------------------------------
+  database.default.hostname="localhost"
+  database.default.database="isabell_castopod"
+  database.default.username="isabell"
+  database.default.password="MySuperSecretPassword"
+  database.default.DBPrefix="cp_"
+
+  #--------------------------------------------------------------------
+  # Email configuration
+  #--------------------------------------------------------------------
+  email.fromEmail="isabell@uber.space"
+  email.SMTPHost="stardust.uberspace.de"
+  email.SMTPUser="isabell@uber.space"
+  email.SMTPPass="SuperSecretMailPassword"
 
 Update .htaccess
 ----------------
 
-Open the .htaccess file in html and remove unsupported lines: All and FollowSymLinks.
+Open the file :file:`.htaccess` in the directory html. The instructions
+"All" and "FollowSymlinks" are not supported on Uberspace, so prepend
+them with a hash ("#") to disable them.
 
-TODO: Codeblock needed here?
+.. code-block:: none
+  :emphasize-lines: 2,11
+
+  # Disable directory browsing
+  # Options All -Indexes
+
+  # ----------------------------------------------------------------------
+  # Rewrite engine
+  # ----------------------------------------------------------------------
+
+  # Turning on the rewrite engine is necessary for the following rules and features.
+  # FollowSymLinks must be enabled for this to work.
+  <IfModule mod_rewrite.c>
+          # Options +FollowSymlinks
+          RewriteEngine On
 
 Finishing installation
 ======================
 
-Before finishing the installation via wizard, set up some cronjobs for
-various background processes:
+Point your browser to your uberspace URL to finish the setup:
+https://isabell.uber.space/cp-install
+
+Most settings should not need changing, as they are taken from
+the :file:`.env` file. However, you have to create an admin user.
+
+Cron jobs
+---------
+
+Now set up some cron jobs for various background processes.
+Depending on your needs, the frequency of these cron jobs can be
+adjusted. For a small personal site, it's probably enough to
+run them once per hour – or even daily or weekly.
+
+Use :command:`crontab -e` to edit your cronjobs.
 
 For social features to work properly, this task is used to broadcast social activities
-to your followers on the fediverse:
+to your followers on the fediverse. The example runs hourly.
 
-.. code-block:: none
+::
 
-   */10 * * * * cd /var/www/virtual/$USER/html && php index.php scheduled-activities
+  0 * * * * cd /var/www/virtual/$USER/html && php index.php scheduled-activities
 
-For having your episodes be broadcasted on open hubs upon publication using WebSub:
+This task broadcasts your episodes on open hubs upon publication using WebSub.
+The example runs daily.
 
-.. code-block:: none
+::
 
-   */10 * * * * cd /var/www/virtual/$USER/html && php index.php scheduled-websub-publish
+  0 0 * * * cd /var/www/virtual/$USER/html && php index.php scheduled-websub-publish
 
-Point your browser to your uberspace URL or domain.
-You will see an error page. Add ``cp-install`` to the URL and finish the
-instructions there. Make sure to pick a different value for Admin-Gateway and
-Admin-Gateway.
+This task creates video clips (you need FFmpeg for this).
+The example runs daily.
 
-Fixing file permissions
------------------------
+::
 
-The permissions of the files are not correct. Follow
-:manual_anchor:`DocumentRoot <web-documentroot#permissions>` to update them.
+  0 0 * * * cd /var/www/virtual/$USER/html && php index.php scheduled-video-clips
 
-Security
-========
+Redis
+-----
 
-After installation and updates, ensure that the file permissions are correct.
-All files must be readonly except the following, who also need writing permissions:
-
-/var/www/virtual/$USER/castopod/writable
-/var/www/virtual/$USER/castopod/public/media
+Optionally, you can enable :lab:`Redis <guide_redis>` for better
+cache performance. If you do, edit the file :file:`.env` in
+:file:`/var/www/virtual/$USER/castopod` to use the Redis cache system.
 
 Updates
 =======
 
-If there is a new release available, move your /var/www/virtual/$USER/castopod/.env and
-/var/www/virtual/$USER/castopod/public/media outside of those directories.
-Then delete all other files there. Follow the installation instructions from above.
-Move the files back to their original place.
+If there is a new release available, move the file :file:`/var/www/virtual/$USER/castopod/.env`
+and the directory :file:`/var/www/virtual/$USER/castopod/public/media` outside
+the directory :file:`/var/www/virtual/$USER/castopod`.
+Then delete all other files there. Follow the installation
+instructions from above. Move the files back to their
+original place.
 
-Sometimes there are additional update instructions you have to follow. For example, .sql
-files containing migrations.
+Sometimes there are additional update instructions you
+have to follow. For example, .sql files containing migrations.
 
-TODO: Document how to run these without phpMyAdmin!
-
-If you picked Redis as Caching mechanism, clear the cache.
+If you picked Redis as caching mechanism, clear the cache.
 
 Enjoy your new version!
 
 .. note:: Check the releases_ regularly to stay informed about the newest version.
 
 
-.. _releases: https://code.castopod.org/adaures/castopod/-/releases
+.. _Castopod: https://castopod.org/
 .. _GNU Affero General Public License v3.0: https://www.gnu.org/licenses/agpl-3.0.en.html
+.. _LICENSE.md: https://code.castopod.org/adaures/castopod/-/blob/develop/LICENSE.md
+.. _releases: https://code.castopod.org/adaures/castopod/-/releases
 
 Backup
 ======
 
-Make sure to back up /var/www/virtual/$USER/castopod/.env and
-/var/www/virtual/$USER/castopod/public/media as well as regular database dumps.
+This is a list of files you need to restore your
+castopod installation:
+
+- A dump of the database
+- Configuration file: :file:`/var/www/virtual/$USER/castopod/.env`
+- Contents of the directory :file:`/var/www/virtual/$USER/castopod/public/media`
 
 ----
 
-Tested with Castopod v1.0.0-beta.14, Uberspace 7.12.1
+Tested with Castopod v1.3.5, Uberspace 7.15.1
 
 .. author_list::
-
