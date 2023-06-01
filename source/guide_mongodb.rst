@@ -188,22 +188,13 @@ Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with 
  startsecs=30
 
 
-Create the `.pem` file with the certificate chain:
+Create the `.pem` file with the certificate chain and restart the service:
 
 .. code-block::
 
  [isabell@stardust ~]$ cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
+ [isabell@stardust ~]$ supervisorctl restart mongodb
  [isabell@stardust ~]$ 
-
-Update and restart the service.
-
-.. code-block:: none
-
- [isabell@stardust ~]$ supervisorctl stop mongodb
- supervisorctl reread 
- supervisorctl update mongodb 
- supervisorctl start mongodb 
- [isabell@stardust ~]$
 
 To ensure MongoDB uses the latest certificates, restart the service monthly, e.g. by creating a cron job via ``crontab -e``.
 
