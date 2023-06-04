@@ -66,7 +66,7 @@ URL with the one you just copied.
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ curl -o shopware.zip https://www.shopware.com/de/Download/redirect/version/sw6/file/install_v6.4.17.2_4d2c85fb448571fa4f30edce635f33a67dda1d76.zip
+ [isabell@stardust isabell]$ curl -o shopware.zip https://releases.shopware.com/sw6/install_v6.4.17.2_4d2c85fb448571fa4f30edce635f33a67dda1d76.zip
  [isabell@stardust isabell]$ unzip -d shopware shopware.zip
  [isabell@stardust isabell]$ rm shopware.zip
  [isabell@stardust isabell]$
@@ -91,15 +91,22 @@ isabell_shopware.
 Configuration
 =============
 
-PHP Memory
-----------
-
-In order to increase the memory limit of php to the recommended value of 512 MB, go to
-``$HOME/etc/php.d/``, create ``memory_limit.ini`` and add the following line:
+To configure PHP according to the `Shopware system requirements`_, go to
+``$HOME/etc/php.d/``, create ``shopware.ini`` and add the following lines:
 
 ::
 
  memory_limit = 512M
+ apc.enable_cli = 1
+ opcache.memory_consumption = 256
+
+.. note:: After setting these PHP parameters, restart PHP to activate the changes
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools restart php
+ Your php configuration has been loaded.
+ [isabell@stardust ~]$
 
 Updates
 =======
@@ -109,6 +116,7 @@ Updates
 
 .. _Shopware: https://www.shopware.com
 .. _Shopware website: https://www.shopware.com/en/download/
+.. _Shopware system requirements: https://www.shopware.com/en/download/
 .. _Symfony: https://symfony.com
 .. _Vue.js: https://vuejs.org
 .. _feed: https://github.com/shopware/platform/releases.atom
