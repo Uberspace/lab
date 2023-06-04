@@ -116,7 +116,7 @@ Updates
 
 .. _Shopware: https://www.shopware.com
 .. _Shopware website: https://www.shopware.com/en/download/
-.. _Shopware system requirements: https://www.shopware.com/en/download/
+.. _Shopware system requirements: https://docs.shopware.com/en/shopware-6-en/first-steps/system-requirements
 .. _Symfony: https://symfony.com
 .. _Vue.js: https://vuejs.org
 .. _feed: https://github.com/shopware/platform/releases.atom
