@@ -31,14 +31,12 @@ InvoicePlane_ is a self-hosted open source application for managing your quotes,
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 8.2:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.2
- Selected PHP version 8.2
- The new configuration is adapted immediately. Patch updates will be applied automatically.
-
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
