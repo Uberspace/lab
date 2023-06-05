@@ -150,18 +150,18 @@ To further customise your configuration, you can open the ``system console`` in 
 Update
 ======
 
-Manual 
+Manual
 ------
 
-1. Stop your service, 
+1. Stop your service,
 2. Backup your directories
-	- ``/home/isabell/mattermost/client/plugins``, 
-	- ``/home/isabell/mattermost/config``, 
-	- ``/home/isabell/mattermost/data``, 
+	- ``/home/isabell/mattermost/client/plugins``,
+	- ``/home/isabell/mattermost/config``,
+	- ``/home/isabell/mattermost/data``,
 	- ``/home/isabell/mattermost/logs``
-	- ``/home/isabell/mattermost/plugins`` 
+	- ``/home/isabell/mattermost/plugins``
 3. Rename/delete your ``/home/isabell/mattermost`` directory.
-4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. 
+4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories.
 5. Then you can start your service again.
 
 When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
@@ -185,21 +185,21 @@ Use the script attached to update Mattermost to the current version. Run the scr
 	if [ ! -d "./mattermost" ]; then
 	printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
 	exit 1
-	else 
+	else
 		printf "Directory ./mattermost found.\n"
 	fi
 
 	database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
-	if [ -z "$database" ] 
+	if [ -z "$database" ]
 	then
 		printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
 		exit 2
-	else 
+	else
 		printf "Using database: $database\n"
 	fi
 
 	version=$1
-	if [ -z "$version" ] 
+	if [ -z "$version" ]
 	then
 		printf "No manual version given. Check from official website ...\n"
 
