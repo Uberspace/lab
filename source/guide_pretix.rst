@@ -61,7 +61,7 @@ Install pretix using the python package manager. Be sure to replace the pseudo b
 
 ::
 
- [isabell@stardust ~]$ pip3.11 install pretix gunicorn --user
+ [isabell@stardust ~]$ pip3.11 install pretix==4.20.0 gunicorn --user
  [...]
   Running setup.py install for static3 ... done
   Running setup.py install for slimit ... done
