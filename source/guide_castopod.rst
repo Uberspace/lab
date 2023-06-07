@@ -153,9 +153,11 @@ in the following lines to use your settings.
 Update .htaccess
 ----------------
 
-Open the file :file:`.htaccess` in the directory html. The instructions
-"All" and "FollowSymlinks" are not supported on Uberspace, so prepend
-them with a hash ("#") to disable them.
+Open the file :file:`.htaccess` in the directory :file:`/var/www/virtual/$USER/html`.
+The instruction "All" is not supported on Uberspace, so prepend
+the line with a hash ("#") to disable it.
+Also, the unsupported instruction "FollowSymlinks" has to be replaced
+with "SymLinksIfOwnerMatch".
 
 .. code-block:: none
   :emphasize-lines: 2,11
@@ -170,7 +172,7 @@ them with a hash ("#") to disable them.
   # Turning on the rewrite engine is necessary for the following rules and features.
   # FollowSymLinks must be enabled for this to work.
   <IfModule mod_rewrite.c>
-          # Options +FollowSymlinks
+          Options +SymLinksIfOwnerMatch
           RewriteEngine On
 
 Finishing installation
