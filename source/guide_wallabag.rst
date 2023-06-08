@@ -81,8 +81,9 @@ Installation & Configuration
 
 .. code-block:: console
   :emphasize-lines: 6,7,8,13,14,16,17,19,20,21,23,25,26,30
-# This file is auto-generated during the composer install
-parameters:
+
+  # This file is auto-generated during the composer install
+  parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
@@ -152,11 +153,6 @@ Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the foll
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ /web/$1 [QSA,L]
 
-
-Updates
-=======
-
-I had not the pleasure to update Wallabag till today. I will update this manual if a new version is available.
 
 .. _Wallabag: https://wallabag.org
 .. _Project: https://github.com/wallabag/wallabag
