@@ -1,4 +1,5 @@
-.. author:: ezra <ezra@posteo.de> FM <git.fm@mmw9.de>
+.. author:: ezra <ezra@posteo.de>
+.. author:: FM <git.fm@mmw9.de>
 
 .. tag:: lang-php
 .. tag:: web
