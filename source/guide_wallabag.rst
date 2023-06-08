@@ -1,5 +1,4 @@
-.. author:: ezra <ezra@posteo.de>
-.. author:: FM <git.fm@mmw9.de>
+.. author:: ezra <ezra@posteo.de> FM <git.fm@mmw9.de>
 
 .. tag:: lang-php
 .. tag:: web
@@ -153,6 +152,11 @@ Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the foll
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ /web/$1 [QSA,L]
 
+
+Updates
+=======
+
+I had not the pleasure to update Wallabag till today. I will update this manual if a new version is available.
 
 .. _Wallabag: https://wallabag.org
 .. _Project: https://github.com/wallabag/wallabag
