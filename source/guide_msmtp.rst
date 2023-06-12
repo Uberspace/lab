@@ -22,7 +22,6 @@ License
 msmtp is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
 More information can be found here:
-
   * https://marlam.de/msmtp/
   * https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -147,13 +146,13 @@ Test your configuarion
 
 .. code-block:: console
 
-[isabell@stardust ~]$ echo "Lorem ipsum dolor sit amet, consectetur adipisici elit" | msmtp post@isabell.uber.space
-[isabell@stardust ~]$
+  [isabell@stardust ~]$ echo "Lorem ipsum dolor sit amet, consectetur adipisici elit" | msmtp post@isabell.uber.space
+  [isabell@stardust ~]$
 
 
-:: _sendmail: https://www.sendmail.com/
-:: _msmtp: https://marlam.de/msmtp/
-:: _ssmtp: https://packages.qa.debian.org/s/ssmtp.html
+.. _sendmail: https://www.sendmail.com/
+.. _msmtp: https://marlam.de/msmtp/
+.. _ssmtp: https://packages.qa.debian.org/s/ssmtp.html
 
 
 ----
