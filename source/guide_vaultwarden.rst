@@ -255,6 +255,27 @@ Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the followi
 .. code-block:: ini
 
  SHOW_PASSWORD_HINT=false
+ 
+Secure the ``ADMIN_TOKEN`` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Since version ``1.28.0``, vaultwarden recommends_ hashing the ``ADMIN_TOKEN`` using Argon2 by generating a `PHC string`_ instead of using plain text. If you are using the admin panel, consider securing your token as follows:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/vaultwarden/output
+ [isabell@stardust ~]$ ./vaultwarden hash
+ Generate an Argon2id PHC string using the 'bitwarden' preset:
+
+ Password:
+ Confirm Password:
+
+ ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+ Generation of the Argon2id PHC string took: 401.754824ms
+ [isabell@stardust ~]$
+ 
+Finally, update the token in the admin panel.
 
 Updates
 =======
@@ -308,6 +329,8 @@ This guide is based on the official `vaultwarden documentation`_. Previously, it
 .. _feed: https://github.com/dani-garcia/vaultwarden/releases
 .. _Github: https://github.com/dani-garcia/vaultwarden
 .. _GNU General Public License: https://github.com/dani-garcia/vaultwarden/blob/master/LICENSE.txt
+.. _PHC string: https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
+.. _recommends: https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token
 .. _rust toolchain: https://rustup.rs/
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries#extracting-binaries-without-docker-installed
