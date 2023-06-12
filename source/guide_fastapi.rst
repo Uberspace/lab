@@ -50,7 +50,7 @@ Create a file ``~/fastapi/main.py`` with the following content:
 
   api = fastapi.FastAPI()
 
-  @api.get('/')
+  @api.get('/my-backend')
   def calculate():
     answer = 24 + 18
     return {'answer': answer}
@@ -142,7 +142,7 @@ Next, create a configuration for supervisord in ``~/etc/services.d/fastapi.ini``
 Web backend
 -----------
 
-.. note:: Gunicorn is set up to run on port 8000.
+.. note:: Gunicorn is set up to run on port 8000 and FastAPI is setup for route `/my-backend`.
 
 .. include:: includes/web-backend.rst
 
