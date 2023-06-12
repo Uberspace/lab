@@ -59,7 +59,7 @@ To install osTicket we clone the current version using Git. ``cd`` to your :manu
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ git clone https://github.com/osTicket/osTicket.git .
+ [isabell@stardust html]$ git clone https://github.com/osTicket/osTicket.git
  Cloning into '.'...
  (...)
  [isabell@stardust ~]$
