@@ -44,7 +44,7 @@ Create a file ``~/fastapi/main.py`` with the following content:
 
 .. code-block:: python
 
-  #!/usr/bin/env python3.9
+  #!/usr/bin/env python3.11
   import fastapi
   import uvicorn
 
@@ -63,12 +63,12 @@ Create a file ``~/fastapi/main.py`` with the following content:
 Python Virtual Environment
 --------------------------
 To install the packages your application depends on, you want to use a virtual environment that is isolated from the system's Python packages.
-FastAPI requires Python 3.6+ but we are going to use the latest version available, which is currently Python 3.9:
+FastAPI requires Python 3.6+ but we are going to use the latest version available, which is currently Python 3.11:
 
 ::
 
   [isabell@stardust ~]$ cd ~/fastapi
-  [isabell@stardust fastapi]$ python3.9 -m venv venv
+  [isabell@stardust fastapi]$ python3.11 -m venv venv
   [isabell@stardust fastapi]$ source venv/bin/activate
   (venv) [isabell@stardust fastapi]$
 
