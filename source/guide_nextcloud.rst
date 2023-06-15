@@ -44,8 +44,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.1
- Selected PHP version 8.1
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -511,6 +511,6 @@ You need to reapply these changes after you installed Nextcloud updates or after
 
 ----
 
-Tested with Nextcloud 26.0.0, Uberspace 7.15, PHP 8.1
+Tested with Nextcloud 27.0.0, Uberspace 7.15.2, PHP 8.2
 
 .. author_list::
