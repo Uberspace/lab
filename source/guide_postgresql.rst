@@ -120,6 +120,8 @@ We now use the temporary password file ``~/pgpass.temp`` (containing only your p
 .. code-block:: console
     :emphasize-lines: 1
 
+    [isabell@stardust ~]$ export LC_CTYPE="de_DE.UTF-8"
+    [isabell@stardust ~]$ export LC_ALL="de_DE.UTF-8"
     [isabell@stardust ~]$ initdb --pwfile ~/pgpass.temp --auth=scram-sha-256 -E UTF8 -D ~/opt/postgresql/data/
     The files belonging to this database system will be owned by user "isabell".
     This user must also own the server process.
