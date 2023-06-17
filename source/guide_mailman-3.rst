@@ -76,7 +76,7 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.8 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [isabell@stardust ~]$ pip3.11 install --user mailman mailman-web "urllib3<2" uwsgi
  [...]
  [isabell@stardust ~]$
 
@@ -86,10 +86,10 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
- [isabell@stardust ~]$ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
+ [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/6/dart-sass-1.63.4-linux-x64.tar.gz
+ [isabell@stardust ~]$ tar xzvf dart-sass-1.63.4-linux-x64.tar.gz dart-sass
  [isabell@stardust ~]$ mv dart-sass ./bin/
- [isabell@stardust ~]$ rm dart-sass-1.17.2-linux-x64.tar.gz
+ [isabell@stardust ~]$ rm dart-sass-1.63.4-linux-x64.tar.gz
  [isabell@stardust ~]$
 
 
@@ -106,16 +106,9 @@ To have a starting point for configuration, we use the mailman-suite_ example pr
  [isabell@stardust ~]$
 
 
-Get and enable uwsgi
----------------------
-Install the required uwsgi package with pip.
-
-::
-
- [isabell@stardust ~]$ pip3.8 install uwsgi --user
- [isabell@stardust ~]$
-
-After that, continue with setting it up as a service.
+Enable uwsgi
+------------
+We already installed the required uwsgi package with pip.
 
 Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
 
@@ -218,7 +211,6 @@ HyperKitty is the part of mailman that takes care of archiving mail. It is confi
 .. code :: cfg
 
  [general]
-
  base_url: http://localhost:8000/hyperkitty/
  api_key: SecretArchiverAPIKey
 
@@ -336,30 +328,14 @@ Setting up Django
 
 After we have adjusted our configuration file, we need to compile and configure the Django project and create a super user to be used as web admin:
 
-.. note:: In case you get an error message when like ``django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).``, when running those `manage.py` commands, then you need a newer version of the sqlite library. Install ``pysqlite3-binary`` and create a symlink in order to override ``sqlite3``:
-
- .. code :: bash
-
-  [isabell@stardust ~]$ pip3.8 install --user pysqlite3-binary
-  [...]
-  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.8/site-packages/sqlite3
-  [isabell@stardust ~]$
-
- Now add this ``~/mailman-suite/settings.py`` in order to have use that version of the ``sqlite3`` instead of the built-in one.
-
- .. code :: python
-
-  import sys
-  sys.path = ['/home/isabell/.local/lib/python3.8/site-packages'] + sys.path
-
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.8 manage.py migrate
+ [isabell@stardust mailman-suite]$ python3.11 manage.py migrate
  [...]
- [isabell@stardust mailman-suite]$ python3.8 manage.py collectstatic
+ [isabell@stardust mailman-suite]$ python3.11 manage.py collectstatic
  [...]
- [isabell@stardust mailman-suite]$ python3.8 manage.py createsuperuser
+ [isabell@stardust mailman-suite]$ python3.11 manage.py createsuperuser
  ? Username (leave blank to use 'isabell'): isabell
  ? Email address: isabell@uber.space
  ? Password:
@@ -372,7 +348,7 @@ When Django is configured, we need to rename the example site to match our needs
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.8 manage.py shell
+ [isabell@stardust mailman-suite]$ python3.11 manage.py shell
 
  >>> from django.contrib.sites.models import Site
  >>> site = Site.objects.get(name='example.com')
@@ -401,7 +377,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  uid = isabell
  gid = isabell
 
- attach-daemon = python3.8 ./manage.py qcluster
+ attach-daemon = python3.11 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
 
@@ -476,14 +452,14 @@ As Mailman 3 consists of multiple independent projects, there is no single RSS f
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.8 list --outdated --user
+ [isabell@stardust ~]$ pip3.11 list --outdated --user
  [isabell@stardust ~]$
 
 If there are outdated packages, update the mailman packages and their dependencies using:
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.8 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ pip3.11 install --user --upgrade mailman mailman-web "urllib3<2" uwsgi
  [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
@@ -492,7 +468,7 @@ Acknowledgements
 ================
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
-Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.8.2.
+Tested with Django 4.1.9, HyperKitty 1.3.7, Mailman 3.3.8, Postorius 1.3.8 and uWSGI 2.0.21 on Uberspace 7.15.2.
 
 .. _Mailman 3: http://www.mailman3.org/en/latest/
 .. _Mailman: http://www.list.org/
