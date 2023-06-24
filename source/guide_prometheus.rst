@@ -110,7 +110,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 
   [program:prometheus]
   command=prometheus
-    --web.listen-address=localhost:9090
+    --web.listen-address=0.0.0.0:9090
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
     --storage.tsdb.retention.time=15d
@@ -129,7 +129,7 @@ What the arguments for Prometheus_ mean:
   * ``--web.route-prefix``: The path under which Prometheus is reachable.
 
 .. note::
-   When using web backends, the address to listen to has to be ``0.0.0.0``. In the example above, the corresponding line has to be changed to ``--web.listen-address=0.0.0.0:9090``.
+   When using [web backends](https://manual.uberspace.de/web-backends/), the address to listen to has to be ``0.0.0.0``, not  127.0.0.1, localhost or ::1.
 
 Finishing installation
 ======================
