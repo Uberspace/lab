@@ -113,7 +113,7 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
     --web.listen-address=localhost:9090
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
-    --storage.tsdb.retention=15d
+    --storage.tsdb.retention.time=15d
     --web.external-url=https://isabell.uber.space/
     --web.route-prefix=/
   autostart=yes
@@ -124,7 +124,7 @@ What the arguments for Prometheus_ mean:
   * ``--web.listen-address``: The IP address and port Prometheus listens on.
   * ``--config.file``: The full path to the Prometheus_ configuration file.
   * ``--storage.tsdb.path``: The path where Prometheus stores the timeseries database.
-  * ``--storage.tsdb.retention``: The amount of time to keep the datapoints of the timeseries database (in this guide it's set to 15 days).
+  * ``--storage.tsdb.retention.time``: The amount of time to keep the datapoints of the timeseries database (in this guide it's set to 15 days).
   * ``--web.external-url``: The URL under which Prometheus is reachable.
   * ``--web.route-prefix``: The path under which Prometheus is reachable.
 
