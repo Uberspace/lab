@@ -57,7 +57,6 @@ Ruby requires a database, so you should create an empty database now.
   emojis in tickets.
 
 .. code-block:: console
-  :emphasize-lines: 2
 
   [isabell@stardust ~] mysql -e "CREATE DATABASE ${USER}_redmine CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
   [isabell@stardust ~]
