@@ -182,9 +182,9 @@ Set the :manual:`domain name <web-domains>` that your Nextcloud will be accessed
 .. code-block:: console
   :emphasize-lines: 1,3
 
-  [isabell@stardust html]$ php occ config:system:set trusted_domains 0 --value="isabell.uber.space"
+  [isabell@stardust html]$ php occ config:system:set trusted_domains 0 --value="${USER}.uber.space"
   System config value trusted_domains => 0 set to string isabell.uber.space
-  [isabell@stardust html]$ php occ config:system:set overwrite.cli.url --value="https://isabell.uber.space"
+  [isabell@stardust html]$ php occ config:system:set overwrite.cli.url --value="https://${USER}.uber.space"
   System config value overwrite.cli.url set to string https://isabell.uber.space
   [isabell@stardust html]$
 
