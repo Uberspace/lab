@@ -53,7 +53,7 @@ Gancio v1.6.14 is running with node 14=> and 18=<
   - 18
   - 19
   [isabell@stardust ~]$ uberspace tools version use node 18
-  Selected Node.js version 16
+  Selected Node.js version 18
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$ 
 
