@@ -41,7 +41,7 @@ If you want to run Gancio with postgresql instead of sqlite you need a running :
 
 ::
 
-Gancio v1.6.13 is running with node 14=> and 16=<
+Gancio v1.6.14 is running with node 14=> and 18=<
 
 .. code-block:: console
   :emphasize-lines:1, 7
@@ -52,7 +52,7 @@ Gancio v1.6.13 is running with node 14=> and 16=<
   - 16
   - 18
   - 19
-  [isabell@stardust ~]$ uberspace tools version use node 16
+  [isabell@stardust ~]$ uberspace tools version use node 18
   Selected Node.js version 16
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$ 
