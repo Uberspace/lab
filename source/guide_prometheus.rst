@@ -64,18 +64,18 @@ Find the latest version of Prometheus_ for the operating system ``linux`` and th
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.18.1/prometheus-2.18.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf ~/prometheus-2.18.1.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd ~/prometheus-2.18.1.linux-amd64
- [isabell@stardust prometheus-2.18.1.linux-amd64]$
+ [isabell@stardust ~]$ wget https://github.com/prometheus/prometheus/releases/download/v2.45.0/prometheus-2.45.0.linux-amd64.tar.gz
+ [isabell@stardust ~]$ tar xvzf ~/prometheus-2.45.0.linux-amd64.tar.gz
+ [isabell@stardust ~]$ cd ~/prometheus-2.45.0.linux-amd64
+ [isabell@stardust prometheus-2.45.0.linux-amd64]$
 
 Move the binary to ``~/bin`` and the configuration file to ``~/etc/prometheus``.
 
 ::
 
- [isabell@stardust prometheus-2.18.1.linux-amd64]$ mv prometheus ~/bin/
- [isabell@stardust prometheus-2.18.1.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
- [isabell@stardust prometheus-2.18.1.linux-amd64]$ cd ~
+ [isabell@stardust prometheus-2.45.0.linux-amd64]$ mv prometheus ~/bin/
+ [isabell@stardust prometheus-2.45.0.linux-amd64]$ mv prometheus.yml ~/etc/prometheus
+ [isabell@stardust prometheus-2.45.0.linux-amd64]$ cd ~
  [isabell@stardust ~]$
 
 Cleanup
@@ -85,8 +85,8 @@ Since we only need the binary and the configuration file we can safely remove th
 
 ::
 
- [isabell@stardust ~]$ rm -r ~/prometheus-2.18.1.linux-amd64
- [isabell@stardust ~]$ rm ~/prometheus-2.18.1.linux-amd64.tar.gz
+ [isabell@stardust ~]$ rm -r ~/prometheus-2.45.0.linux-amd64
+ [isabell@stardust ~]$ rm ~/prometheus-2.45.0.linux-amd64.tar.gz
 
 Configuration
 =============
@@ -110,10 +110,10 @@ Create the file ``~/etc/services.d/prometheus.ini`` with the following content:
 
   [program:prometheus]
   command=prometheus
-    --web.listen-address=localhost:9090
+    --web.listen-address=0.0.0.0:9090
     --config.file=%(ENV_HOME)s/etc/prometheus/prometheus.yml
     --storage.tsdb.path=%(ENV_HOME)s/var/lib/prometheus/
-    --storage.tsdb.retention=15d
+    --storage.tsdb.retention.time=15d
     --web.external-url=https://isabell.uber.space/
     --web.route-prefix=/
   autostart=yes
@@ -124,12 +124,12 @@ What the arguments for Prometheus_ mean:
   * ``--web.listen-address``: The IP address and port Prometheus listens on.
   * ``--config.file``: The full path to the Prometheus_ configuration file.
   * ``--storage.tsdb.path``: The path where Prometheus stores the timeseries database.
-  * ``--storage.tsdb.retention``: The amount of time to keep the datapoints of the timeseries database (in this guide it's set to 15 days).
+  * ``--storage.tsdb.retention.time``: The amount of time to keep the datapoints of the timeseries database (in this guide it's set to 15 days).
   * ``--web.external-url``: The URL under which Prometheus is reachable.
   * ``--web.route-prefix``: The path under which Prometheus is reachable.
 
 .. note::
-   When using web backends, the address to listen to has to be ``0.0.0.0``. In the example above, the corresponding line has to be changed to ``--web.listen-address=0.0.0.0:9090``.
+   When using [web backends](https://manual.uberspace.de/web-backends/), the address to listen to has to be ``0.0.0.0``, not  127.0.0.1, localhost or ::1.
 
 Finishing installation
 ======================
