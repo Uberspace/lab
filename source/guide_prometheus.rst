@@ -129,7 +129,7 @@ What the arguments for Prometheus_ mean:
   * ``--web.route-prefix``: The path under which Prometheus is reachable.
 
 .. note::
-   When using [web backends](https://manual.uberspace.de/web-backends/), the address to listen to has to be ``0.0.0.0``, not  127.0.0.1, localhost or ::1.
+   When using :manual:`web backends <web-backends>`, the address to listen to has to be ``0.0.0.0``, not  127.0.0.1, localhost or ::1.
 
 Finishing installation
 ======================
