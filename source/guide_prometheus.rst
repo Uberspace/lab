@@ -15,7 +15,7 @@
       :align: center
 
 ##########
-prometheus
+Prometheus
 ##########
 
 .. tag_list::
