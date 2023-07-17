@@ -1,4 +1,5 @@
-.. author:: ezra <ezra@posteo.de> FM <git.fm@mmw9.de>
+.. author:: ezra <ezra@posteo.de>
+.. author:: FM <git.fm@mmw9.de>
 
 .. tag:: lang-php
 .. tag:: web
@@ -34,9 +35,9 @@ We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ uberspace tools version show php
+  Using 'PHP' version: '8.0'
+  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
@@ -48,11 +49,11 @@ Remove the placeholder html file from the html folder:
 
 ::
 
- [isabell@stardust ~]$ rm ~/html/nocontent.html
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ rm ~/html/nocontent.html
+  [isabell@stardust ~]$
 
 Installation & Configuration
-==============================
+============================
 
 1. First get the Wallabag package and let extract this into the target folder ``~/html``:
 
@@ -68,18 +69,14 @@ Installation & Configuration
 * ``database_password:`` The MySQL password from your credentials above.
 * ``domain_name:`` Put in here your domain or subdomain like https://isabell.uber.space .
 * ``server_name:`` Your wallabag instance name.
-* ``mailer_user:`` <username>@uber.space - *replace <username> with your uberspace username*.
-* ``mailer_password:`` <mail-password> - *you need to set a mail password for your uberspace first*.
-* ``mailer_port:`` 587 - *we need to serve the special* :manual_anchor:`smtp port <mail-access.html#smtp>` *here*.
-* ``mailer_encryption:`` ssl - The parameter for the encryption.
-* ``mailer_auth_mode:`` login - The authenication mode.
+* ``mailer_dsn:`` Mail authorization to send out mails. Replace the placeholders (user, password, hostname and port) with your information. A good reference is the Uberspace :manual_anchor:`manual <mail-access.html#smtp>`.
 * ``secret:`` Type in any random string here, minimum 32 characters and do not keep the default string!
 * ``twofactor_sender:`` Choose an email address to be used as sender.
 * ``fosuser_registration:`` false - Set this to false, otherwise anyone can register at your wallabag instance
 * ``from_email:`` Choose an email address to be used as sender (can be the same as above).
 
 .. code-block:: console
-  :emphasize-lines: 6,7,8,13,14,16,17,19,20,21,23,25,26,30
+  :emphasize-lines: 6,7,8,13,14,15,17,19,20,24
 
   # This file is auto-generated during the composer install
   parameters:
@@ -95,13 +92,7 @@ Installation & Configuration
     database_charset: utf8mb4
     domain_name: 'https://isabell.uber.space'
     server_name: 'Your wallabag instance'
-    mailer_transport: smtp
-    mailer_user: isabell@uber.space
-    mailer_password: 'MySuperSecretPassword'
-    mailer_host: 127.0.0.1
-    mailer_port: 587
-    mailer_encryption: ssl
-    mailer_auth_mode: login
+    mailer_dns: smtp://user:password@hostname:port
     locale: en
     secret: CHANGE_ME_TO_SOMETHING_SECRET_AND_RANDOM
     twofactor_auth: true
@@ -123,19 +114,21 @@ Installation & Configuration
     redis_password: null
     sentry_dsn: null
 
-.. note:: You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file. In case of changes please clear the cache afterwards with:
-::
-
- [isabell@stardust ~]$ php bin/console cache:clear --env=prod
- [isabell@stardust ~]$
-
-3. Jump into the ``~/html`` folder and let start the installation.
+.. note:: You can change all the settings afterwards inside the ``~/html/app/config/parameters.yml`` file. In case of changes please clear the cache with:
 
 ::
 
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust ~]$ php bin/console wallabag:install --env=prod
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ php bin/console cache:clear --env=prod
+  [isabell@stardust ~]$
+
+3. Start the installation.
+
+::
+
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ php bin/console wallabag:install --env=prod
+  [isabell@stardust ~]$
 
 .. note:: In case of problems, please check your config file and clear the cache afterwards.
 
@@ -152,19 +145,104 @@ Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the foll
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteRule ^(.*)$ /web/$1 [QSA,L]
 
-
 Updates
 =======
 
-I had not the pleasure to update Wallabag till today. I will update this manual if a new version is available.
+The update process is quiet tricky due to the fact there is no update script for shared hosts available. Everthing is to maintain manually.
+
+Plus the update steps could be different from version to version. Sometimes some database changes "and" file updates are necessary, or only file and configuration updates.
+
+.. note:: It is highly recommended to read the Wallabag `upgrade information`_ to consider all necessary changes. And to backup all files before you change anything.
+
+The following is more a common approach to have a general guide line:
+
+1. Backup (move) your existing Wallabag installation.
+
+::
+
+  [isabell@stardust ~]$ mkdir -p ~/wb_backup/wallabag_old/
+  [isabell@stardust ~]$
+
+Move all files and directories as backup because only to overwrite an existing installation with a new package will serve problems.
+
+::
+
+  [isabell@stardust ~]$ mv ~/html/* ~/wb_backup/wallabag_old/
+  [isabell@stardust ~]$
+
+2. Download the actual package and ectract it to the target directory.
+
+::
+
+  [isabell@stardust ~]$ cd ~/wb_backup/
+  [isabell@stardust ~]$ wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package -C ~/html --strip-components=1
+  [isabell@stardust ~]$
+
+3. Backup the new reference config file.
+
+::
+
+  [isabell@stardust ~]$ cp ~/html/app/config/parameters.yml ~/wb_backup/parameters.yml.reference
+  [isabell@stardust ~]$
+
+4. Copy your existing config and .htaccess file to the new installation.
+
+::
+
+  [isabell@stardust ~]$ cp ~/wb_backup/wallabag_old/app/config/parameters.yml ~/html/app/config/
+  [isabell@stardust ~]$
+
+::
+
+  [isabell@stardust ~]$ cp ~/wb_backup/wallabag_old/.htaccess ~/html/
+  [isabell@stardust ~]$
+
+
+The Wallabag `upgrade information`_ is your first source to get information about possible changes. The reference config file usually shows possible changes as example.
+
+Please consider possible changes in your config file and clear the cache.
+
+::
+
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ php bin/console cache:clear --env=prod
+  [isabell@stardust ~]$
+
+6. Database upgrade.
+
+The Wallabag `upgrade information`_ shows also possible hints for a database update.
+
+A good help is the :manual_anchor:`webinterface <database-mysql.html#webinterface>` to consider:
+
+a) A database backup.
+b) A console to place SQL statements from the Wallabag upgrade information.
+
+7. Start the upgrade.
+
+.. note:: Please answer the questions on all database topics with no, otherwise you will lose your data. It is also not necessary to create an admin account.
+
+::
+
+  [isabell@stardust ~]$ cd ~/html
+  [isabell@stardust ~]$ php bin/console wallabag:install --env=prod
+  [isabell@stardust ~]$
+
+7. Cleanup.
+
+The wb_backup directory is used to place copies of important files. You can delete this directory but it is recommended to keep it as an information source.
+
+8. Start.
+
+Your Wallabag instance should be available again.
 
 .. _Wallabag: https://wallabag.org
 .. _Project: https://github.com/wallabag/wallabag
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
+.. _upgrade information: https://doc.wallabag.org/en/admin/upgrade.html
 
 ----
 
-Tested with Wallabag 2.5.4 and Uberspace 7.15.1
+Tested with Wallabag 2.6.1 and Uberspace 7.15.3
 
 .. author_list::
