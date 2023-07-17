@@ -124,3 +124,6 @@ Scripts/
 # from spelling_tools.py
 new_words.txt
 source/sorted_dict.txt
+
+#Netbeans Projectfolder
+/nbproject

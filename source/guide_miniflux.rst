@@ -194,13 +194,11 @@ Check the GitHub's Atom Feed_ for any new Miniflux releases and copy the link to
  [isabell@stardust ~]$ supervisorctl stop miniflux
  miniflux: stopped
  [isabell@stardust ~]$ cd bin/
- [isabell@stardust bin]$ wget https://github.com/miniflux/miniflux/releases/download/42.23.2/miniflux-linux-amd64
- […]
- Saving to: ‘miniflux-linux-amd64’
-
- 100%[======================================>] 11,133,568  7.63MB/s   in 1.4s
-
- 2018-10-11 16:54:43 (7.63 MB/s) - ‘miniflux-linux-amd64’ saved [11133568/11133568]
+ [isabell@stardust bin]$ $ curl -LO https://github.com/miniflux/v2/releases/download/2.0.45/miniflux-linux-amd64
+   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                  Dload  Upload   Total   Spent    Left  Speed
+   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+ 100 16.7M  100 16.7M    0     0  43.2M      0 --:--:-- --:--:-- --:--:-- 43.2M
  [isabell@stardust bin]$
 
 Make the binary ``miniflux-linux-amd64`` executable, migrate the database and start the service again.

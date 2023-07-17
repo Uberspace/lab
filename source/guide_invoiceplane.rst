@@ -12,12 +12,6 @@
   .. image:: _static/images/invoiceplane.png
       :align: center
 
-.. error::
-
-  This guide seems to be **broken** for php version > 7.4, we would be
-  happy if you want to work on a solution and create a Pull Request.
-  See also the related issue: https://github.com/Uberspace/lab/issues/1432
-
 ############
 InvoicePlane
 ############
@@ -37,12 +31,12 @@ InvoicePlane_ is a self-hosted open source application for managing your quotes,
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.4:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 
-.. code-block:: console
+::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.4'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -54,44 +48,72 @@ Your website domain needs to be set up:
 Installation
 ============
 
-To install InvoicePlane we download the current version from the official website. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``.
+To install InvoicePlane we download the current version from the official website. ``cd`` to your :manual:`DocumentRoot <web-documentroot>` so the zip file will be under your ``html``. After unzipping, we need to move all files one level up, out of the directory ``ip``.
 
-.. code-block:: console
- :emphasize-lines: 2
+::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://www.invoiceplane.org/download/v1.5.11
- [isabell@stardust html]$ unzip v1.5.11
- [isabell@stardust html]$ rm v1.5.11
+ [isabell@stardust html]$ wget https://www.invoiceplane.com/download/v1.6.0
+ [isabell@stardust html]$ unzip v1.6.0
+ [isabell@stardust html]$ rm v1.6.0
+ [isabell@stardust html]$ mv ip/{.,}* .
+ [isabell@stardust html]$ rm -rf ip
  [isabell@stardust html]$
+
+Create a database for the application:
+
+::
+
+ [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_invoiceplane"
+ [isabell@stardust html]$
+
 
 Configuration
 =============
 
-Create the database, copy the configuration template, rename the ``htaccess`` file and add your URL ``https://isabell.uber.space`` in the ``ipconfig.php`` file under ``IP_URL``.
+Enable the URL rewriting rules with the provided htaccess file.
 
-.. code-block:: console
+::
 
- [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_ip"
- [isabell@stardust html]$ cp ipconfig.php.example ipconfig.php
  [isabell@stardust html]$ mv htaccess .htaccess
  [isabell@stardust html]$
 
-After the installation you need to open https://isabell.uber.space/index.php/setup in your browser to finish your setup.
+Now copy the configuration template and open it in an editor.
 
-Fill out your system settings, admin user and edit the following database settings:
- * Username: ``isabell``
- * Password from your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`
- * Database: ``isabell_ip``
+::
 
-Best practices
-==============
+ [isabell@stardust html]$ cp ipconfig.php.example ipconfig.php
+ [isabell@stardust html]$
 
-Security
---------
+**Important: You must prepend the first line in the file with a
+hash sign ("#"), otherwise the application fails to load.**
 
-If you want to secure your installation, you may disable the setup for now. To do so, replace the line DISABLE_SETUP=false with DISABLE_SETUP=true in your ``ipconfig.php`` file.
+.. code-block:: php
 
+ # <?php exit('No direct script access allowed'); ?>
+
+Now change the following lines in the configuration file and fill
+in your settings:
+
+.. code-block:: php
+
+ IP_URL=https://isabell.uber.space
+ REMOVE_INDEXPHP=true
+ DB_HOSTNAME=localhost
+ DB_USERNAME=isabell
+ DB_PASSWORD=MySuperSecretPassword
+ DB_DATABASE=isabell_invoiceplane
+
+After the installation you need to open https://isabell.uber.space/setup in your browser to finish your setup.
+In that step, the database tables get created and you'll setup an admin user
+for your installation.
+
+.. note::
+
+ After completing the web-based setup above,
+ you need to disable the setup script.
+ To do so, replace the line DISABLE_SETUP=false with
+ DISABLE_SETUP=true in your ``ipconfig.php`` file.
 
 Updates
 =======
@@ -105,6 +127,7 @@ Backup your ``ipconfig.php`` file, delete everything else in your ``html`` direc
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp ipconfig.php ~
  [isabell@stardust html]$ rm -rf * .*
+ [isabell@stardust html]$
 
 Proceed with the installation steps from here and move back your config file.
 
@@ -113,13 +136,13 @@ Proceed with the installation steps from here and move back your config file.
  [isabell@stardust html]$ mv ~/ipconfig.php ./
  [isabell@stardust html]$
 
-Finish the update by open https://isabell.uber.space/index.php/setup in your browser.
+Finish the update by opening https://isabell.uber.space/setup in your browser.
 
 .. _InvoicePlane: https://www.invoiceplane.com/
 .. _stable releases: https://www.invoiceplane.com/downloads
 
 ----
 
-Tested with InvoicePlane 1.5.11 and Uberspace 7.11.1.1
+Tested with InvoicePlane 1.6.0 and Uberspace 7.15.1
 
 .. author_list::

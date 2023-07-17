@@ -44,8 +44,8 @@ Use the recommended :manual:`PHP <lang-php>` version as listed in the `system re
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.1
- Selected PHP version 8.1
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -182,9 +182,9 @@ Set the :manual:`domain name <web-domains>` that your Nextcloud will be accessed
 .. code-block:: console
   :emphasize-lines: 1,3
 
-  [isabell@stardust html]$ php occ config:system:set trusted_domains 0 --value="isabell.uber.space"
+  [isabell@stardust html]$ php occ config:system:set trusted_domains 0 --value="${USER}.uber.space"
   System config value trusted_domains => 0 set to string isabell.uber.space
-  [isabell@stardust html]$ php occ config:system:set overwrite.cli.url --value="https://isabell.uber.space"
+  [isabell@stardust html]$ php occ config:system:set overwrite.cli.url --value="https://${USER}.uber.space"
   System config value overwrite.cli.url set to string https://isabell.uber.space
   [isabell@stardust html]$
 
@@ -374,7 +374,7 @@ Create ``~/bin/nextcloud-update`` with the following content:
  ## Use the Uberspace backup system for files and database if you need to roll back.
  ## The Nextcloud updater creates backups only to safe base and app code data and config files
  ## so it takes ressources you might need for your productive data.
- ## Deactivate NC-updater Backups with --no-backup (works from 19.0.4, 18.0.10 and 17.0.10)
+ ## Deactivate NC-updater Backups with --no-backup
  php ~/html/updater/updater.phar -vv --no-backup --no-interaction
 
  ## database optimisations
@@ -384,6 +384,8 @@ Create ``~/bin/nextcloud-update`` with the following content:
  php ~/html/occ db:convert-filecache-bigint --no-interaction
 
  php ~/html/occ app:update --all
+ ## App updates may require additional steps to be done by the `upgrade` command
+ php ~/html/occ upgrade
  /usr/sbin/restorecon -R ~/html
 
  ## FYI: If that file exist...
@@ -509,6 +511,6 @@ You need to reapply these changes after you installed Nextcloud updates or after
 
 ----
 
-Tested with Nextcloud 26.0.0, Uberspace 7.15, PHP 8.1
+Tested with Nextcloud 27.0.0, Uberspace 7.15.2, PHP 8.2
 
 .. author_list::
