@@ -92,7 +92,7 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change ``DriverName`` driver to ``mysql``. Change ``DataSource`` like bellow but replace ``isabell`` on both occasions with your uberspace username and ``MySuperSecretPassword`` with your MySQL password:
 
 .. code-block:: javascript
  :emphasize-lines: 2,3
@@ -140,7 +140,7 @@ If it's not in state RUNNING, check your configuration.
 Setup a user
 ------------
 
-You can now point your browser to your URL and setup a user.
+You can now point your browser to your URL and setup a user. Do this immediately after starting the server, as the very first user will be an administrator user.
 
 Further customisation
 ---------------------
