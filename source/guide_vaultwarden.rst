@@ -201,6 +201,14 @@ Alternatively, you can do the backup with a timestamp and it can be useful if yo
 
  [isabell@stardust ~]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
 
+To do this, create a bash script with the last command and save it as ``~/backup-vaultwarden.sh`` and make it executable.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ chmod +x backup-vaultwarden.sh
+
+Now you can add this script into your crontab.
+
 Restore up your vault manually
 ------------------------------
 
