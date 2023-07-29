@@ -128,6 +128,7 @@ Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
   stderr_logfile = ~/uwsgi/err.log
   stdout_logfile = ~/uwsgi/out.log
   stopsignal=INT
+  startsecs=30
 
 Create needed folders and files for uwsgi:
 
@@ -231,7 +232,6 @@ As we want to make sure that Mailman is started automatically, we need to set it
 .. code :: ini
 
  [program:mailman3]
- enviroment=MAILMAN_VAR_DIR="%(ENV_HOME)s/var"
  directory=%(ENV_HOME)s
  command=%(ENV_HOME)s/.local/bin/master -C %(ENV_HOME)s/var/etc/mailman.cfg
  autostart=true
@@ -395,7 +395,6 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  process = 2
  threads = 2
  wsgi-file = wsgi.py
- startsecs=30
 
  # your user name
  uid = isabell
