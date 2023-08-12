@@ -71,7 +71,7 @@ Fill out your system settings, admin user and database settings, you can use the
 Updates
 =======
 
-Check Baïkal's `stable releases`_ for the latest versions. If a newer version is available, you should manually update your installation.
+Check Baïkal's `stable releases`_ for the latest versions. You might want to use the `baikal_updates`_ script for doing these checks. If a newer version is available, you should manually update your installation.
 
 Backup your ``Specific`` directory, delete everything else in your ``html`` directory.
 
@@ -92,6 +92,7 @@ Finish the update by open isabell.uber.space in your browser.
 
 .. _Baïkal: https://sabre.io/baikal/
 .. _stable releases: https://github.com/sabre-io/Baikal/releases
+.. _baikal_updates: https://github.com/fl3a/baikal_updates
 
 ----
 
