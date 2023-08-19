@@ -164,9 +164,9 @@ Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the fol
   NO_REPLY_ADDRESS           = noreply.isabell.uber.space
 
   [mailer]
-  ENABLED     = true
-  MAILER_TYPE = sendmail
-  FROM        = isabell@uber.space
+  ENABLED  = true
+  PROTOCOL = sendmail
+  FROM     = isabell@uber.space
 
   [other]
   SHOW_FOOTER_VERSION = false ; hide version number from strangers - you can still see it in the admin panel at /admin
@@ -529,6 +529,6 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Gitea 1.19.3, Uberspace 7.15.1
+Tested with Gitea 1.20.2, Uberspace 7.15.1
 
 .. author_list::
