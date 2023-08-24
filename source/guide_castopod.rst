@@ -1,5 +1,6 @@
 .. author:: André Jaenisch <https://jaenis.ch>
 .. author:: Tobias Quathamer <t.quathamer@mailbox.org>
+.. author:: Raphael Fetzer
 
 .. tag:: lang-php
 .. tag:: web
@@ -75,7 +76,7 @@ Installation
 
 Change to the parent directory of your DocumentRoot and
 download the latest version of castopod. At the time of writing, this
-is v1.3.5. You'll find all releases_ on their gitlab instance.
+is v1.5.2. You'll find all releases_ on their gitlab instance.
 Please note that you need to download the "Castopod Package",
 not just the source code. The latter is missing some needed
 files.
@@ -83,7 +84,7 @@ files.
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER
-  [isabell@stardust isabell]$ wget https://code.castopod.org/adaures/castopod/uploads/0071d5055a69176c706591649b1d725d/castopod-1.3.5.tar.gz
+  [isabell@stardust isabell]$ wget https://code.castopod.org/adaures/castopod/uploads/55eedf951df971df8e18438a80cb048e/castopod-1.5.2.tar.gz
   [isabell@stardust isabell]$
 
 Unpack and symlink
@@ -94,8 +95,8 @@ Unpack the tarball and remove the downloaded file.
 ::
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER
-  [isabell@stardust isabell]$ tar --extract --auto-compress --file castopod-1.3.5.tar.gz
-  [isabell@stardust isabell]$ rm castopod-1.3.5.tar.gz
+  [isabell@stardust isabell]$ tar --extract --auto-compress --file castopod-1.5.2.tar.gz
+  [isabell@stardust isabell]$ rm castopod-1.5.2.tar.gz
   [isabell@stardust isabell]$
 
 Remove your empty DocumentRoot and create a symlink to the public
@@ -158,6 +159,7 @@ The instruction "All" is not supported on Uberspace, so prepend
 the line with a hash ("#") to disable it.
 Also, the unsupported instruction "FollowSymlinks" has to be replaced
 with "SymLinksIfOwnerMatch".
+Note: If the installation is done in a subdomain, the ``RewriteBase /`` must be commented out, too.
 
 .. code-block:: none
   :emphasize-lines: 2,11
@@ -194,26 +196,9 @@ run them once per hour – or even daily or weekly.
 
 Use :command:`crontab -e` to edit your cronjobs.
 
-For social features to work properly, this task is used to broadcast social activities
-to your followers on the fediverse. The example runs hourly.
-
 ::
 
-  0 * * * * cd /var/www/virtual/$USER/html && php index.php scheduled-activities
-
-This task broadcasts your episodes on open hubs upon publication using WebSub.
-The example runs daily.
-
-::
-
-  0 0 * * * cd /var/www/virtual/$USER/html && php index.php scheduled-websub-publish
-
-This task creates video clips (you need FFmpeg for this).
-The example runs daily.
-
-::
-
-  0 0 * * * cd /var/www/virtual/$USER/html && php index.php scheduled-video-clips
+  0 * * * * php /var/www/virtual/$USER/castopod/spark tasks:run > /dev/null 2>&1
 
 Redis
 -----
@@ -259,6 +244,6 @@ castopod installation:
 
 ----
 
-Tested with Castopod v1.3.5, Uberspace 7.15.1
+Tested with Castopod v1.5.2, Uberspace 7.15.4
 
 .. author_list::
