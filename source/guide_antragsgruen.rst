@@ -89,8 +89,7 @@ You can now head over to your ``https://USER.uber.space`` web site and complete 
 Updates
 =======
 
-Use the built-in `web updater`_. When you're applying several updates at once (e.g. because of updating from v4.9.1 to v4.12.0, via v4.10.0,  v4.10.1
- etc.), don't forget to execute the database migration after every single update step, not only once after all the file updates are completed. Otherwise you might run into database errors.
+Use the built-in `web updater`_. When you're applying several updates at once (e.g. because of updating from v4.9.1 to v4.12.0, via v4.10.0,  v4.10.1 etc.), don't forget to execute the database migration after every single update step, not only once after all the file updates are completed. Otherwise you might run into database errors.
 
 
 .. _Antragsgrün: https://antragsgruen.de/
@@ -102,6 +101,6 @@ Use the built-in `web updater`_. When you're applying several updates at once (e
 ----
 
 
-Tested with Antragsgrün 4.10.1, Uberspace 7.13.0, and PHP 8.1
+Tested with Antragsgrün 4.12.0, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
