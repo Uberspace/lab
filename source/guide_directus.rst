@@ -21,7 +21,7 @@ Directus_ is a real-time API and App dashboard for managing SQL database content
 
 .. error::
 
-  This guide seems to be **broken** for the current versions of XYZ, we would be
+  This guide seems to be **broken** for the current versions of Directus, we would be
   happy if you want to work on a solution and create a Pull Request.
   See also the related issue: https://github.com/Uberspace/lab/issues/1581
 
