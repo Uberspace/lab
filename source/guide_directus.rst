@@ -80,7 +80,7 @@ Create directory ``directus`` and sub directory ``logs``.
   [isabell@stardust ~]$ cd ~/directus
   [isabell@stardust directus]$ npm install @mapbox/node-pre-gyp argon2
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
-  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ~/directus/node_modules/argon2/
   [isabell@stardust directus]$
 
 Installation and initialize a new instance of Directus_
