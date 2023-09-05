@@ -24,8 +24,8 @@ Gancio_ is a shared agenda for local communities connected to the Fediverse.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :lab:`Postgresql <guide_postgresql>`
   * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`MySQL <database-mysql>`
   * :manual:`Domains <web-domains>`
 
 License
@@ -37,11 +37,10 @@ All relevant legal information can be found here
 
 Prerequisites
 =============
-If you want to run Gancio with postgresql instead of sqlite you need a running :lab:`Postgresql <guide_postgresql>` database server.
 
-::
+.. include:: includes/my-print-defaults.rst
 
-Gancio v1.6.14 is running with node 14=> and 18=<
+Gancio v1.6.14 is running with node 14=> and 18=<.
 
 .. code-block:: console
   :emphasize-lines:1, 7
@@ -61,51 +60,24 @@ Gancio v1.6.14 is running with node 14=> and 18=<
 Installation
 ============
 
-We will install gancio using yarn, which makes it quite easy:
+We will install gancio using yarn:
 
 .. code-block:: console
   :emphasize-lines: 1
 
   [isabell@stardust ~]$ yarn global add --network-timeout 1000000000 --silent https://gancio.org/latest.tgz
 
-
 .. note:: you can ignore warnings for "unmet peer dependency" and outdated packages.
 
+Create a database for the application:
+
+::
+
+ [isabell@stardust html]$ mysql -e "CREATE DATABASE ${USER}_ganico"
+ [isabell@stardust html]$
 
 Configuration
 =============
-
-
-
-Configure Database Access
--------------------------
-
-
-Postgres
-^^^^^^^^
-
-Setup a dedicated postgres user and database for gancio:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ createuser gancio -P
-  Enter password for new role:
-  Enter it again:
-  [isabell@stardust ~]$ createdb \
-    --encoding=UTF8 \
-    --lc-collate=C \
-    --lc-ctype=C \
-    --owner="gancio" \
-    --template=template0 \
-    gancio
-  [isabell@stardust ~]$
-
-You can verify access with:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ psql gancio gancio
-
 
 
 You will be asked for your database credentials at the setup process when you visit your Gancio instance for the first time. 
@@ -119,8 +91,8 @@ Create ``~/etc/services.d/gancio.ini`` with the following content:
 .. code-block:: ini
 
  [program:gancio]
- command=/home/<username>/bin/gancio 
- directory=/home/<username>/
+ command=%(ENV_HOME)s/bin/gancio 
+ directory=%(ENV_HOME)s
  autostart=yes
  autorestart=yes
 
