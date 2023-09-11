@@ -78,7 +78,7 @@ Create ``~/etc/services.d/beehive.ini`` with the following content:
 Finishing installation
 ======================
 
-.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_.
+.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_ ssh -L 8181:localhost:8181 isabella@isabella.uber.space.
 
 To finish the installation, go to ``http://localhost:8181``.
 
