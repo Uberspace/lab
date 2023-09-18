@@ -37,12 +37,6 @@ Mailman 3
 
 ----
 
-.. error::
-
-  This guide seems to be **broken** as it requires a newer version of OpenSSL. We would be
-  happy if you want to work on a solution and create a Pull Request.
-  See also the related issue: https://github.com/Uberspace/lab/issues/1553
-
 
 License
 =======
@@ -77,6 +71,16 @@ Install Mailman 3 and its dependencies via pip.
 ::
 
  [isabell@stardust ~]$ pip3.8 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [...]
+ [isabell@stardust ~]$
+
+Because of some package dependency issues
+(see `this comment <https://github.com/Uberspace/lab/issues/1553#issuecomment-1691626761`_ for more information)
+we have to pin some package versions:
+
+::
+
+ [isabell@stardust ~]$ pip3.8 install --user "urllib3<2" "flufl.lock<8" "flufl.i18n<5" "importlib_resources<6.0"
  [...]
  [isabell@stardust ~]$
 
