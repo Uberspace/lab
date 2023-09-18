@@ -75,7 +75,7 @@ Install Mailman 3 and its dependencies via pip.
  [isabell@stardust ~]$
 
 Because of some package dependency issues
-(see `this comment <https://github.com/Uberspace/lab/issues/1553#issuecomment-1691626761`_ for more information)
+(see `this comment <https://github.com/Uberspace/lab/issues/1553#issuecomment-1691626761>`_ for more information)
 we have to pin some package versions:
 
 ::
