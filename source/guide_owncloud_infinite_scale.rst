@@ -28,25 +28,35 @@ Prerequisites
 =============
 
 Before installing oCIS, make sure you have a domain ready.
-Also, note that oCIS expects port 9200 to be available, which by default is blocked on uberspace.
-Hence, you have to configures nginX to forward all requests to port 9200 of the local machine.
 
-.. code-block:: console
-
- [isabell@stardust ~]$ uberspace web domain add myowncloud.isabell.uber.space
- [isabell@stardust ~]$ uberspace web backend set myowncloud.isabell.uber.space --http --port 9200
-
-.. include:: includes/web-domain-list.rst
-
-Since there is no local service running to answer port 9200, the "NOT OK" status you'll receive is to be expected here.
 
 Now, download the latest version of oCIS from `ownCloud's website <https://download.owncloud.com/ocis/ocis/stable/?sort=time&order=desc>`_.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ curl https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-amd64 --output ocis
- [isabell@stardust ~]$ chmod +x ocis
+ [isabell@stardust ~]$ curl https://download.owncloud.com/ocis/ocis/stable/4.0.1/ocis-4.0.1-linux-amd64 --output ~/bin/ocis
+ [isabell@stardust ~]$ chmod +x ~/bin/ocis
 
+
+Service Daemon
+==============
+
+Create `~/etc/services.d/ocis.ini`
+
+.. code-block:: ini
+
+  [program:ocis]
+  environment=
+    OCIS_URL="https://myowncloud.isabell.uber.space",
+    PROXY_TLS="false",
+    PROXY_HTTP_ADDR="0.0.0.0:9200",
+    PROXY_LOG_LEVEL="warn"
+  command=ocis server
+  startsecs=30
+  autostart=yes
+  autorestart=yes
+
+.. include:: includes/supervisord.rst
 
 Init
 ====
@@ -67,7 +77,7 @@ Now, you can initialise your oCIS.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ ./ocis init
+ [isabell@stardust ~]$ ocis init
  Do you want to configure Infinite Scale with certificate checking disabled?
   This is not recommended for public instances! [yes | no = default] no
  
@@ -91,7 +101,25 @@ You can do that by running
 
  [isabell@stardust ~]$ ./ocis server &
 
-Go to the URL you entered above (i.e. myowncloud.isabell.uber.space in this example).
+This will store all data in your ~/.ocis directory.
+
+
+Port Forwarding
+===============
+
+Note that oCIS expects port 9200 to be available, which by default is blocked on uberspace.
+Hence, you have to configures nginX to forward all requests to port 9200 of the local machine.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace web domain add myowncloud.isabell.uber.space
+ [isabell@stardust ~]$ uberspace web backend set myowncloud.isabell.uber.space --http --port 9200
+
+.. include:: includes/web-domain-list.rst
+
+Since there is no local service running to answer port 9200, the "NOT OK" status you'll receive is to be expected here.
+
+Now, go to the URL you entered above (i.e. myowncloud.isabell.uber.space in this example).
 
 You should be presented with the ownCloud login mask.
 Enter the user ("admin") and password you got from the init step.
