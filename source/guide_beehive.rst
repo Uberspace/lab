@@ -78,9 +78,18 @@ Create ``~/etc/services.d/beehive.ini`` with the following content:
 Finishing installation
 ======================
 
-.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_.
+Since Beehive does not support any kind of authentication we will not make it public using a web backend but use
+`SSH port forwarding`_ to create a secure tunnel from your local device. To do so, execute the following on your
+**local device**:
 
-To finish the installation, go to ``http://localhost:8181``.
+.. code-block:: console
+
+  [you@localhost ~]$ ssh -L 8181:localhost:8181 isabell@stardust.uberspace.de -N -v
+  [...]
+  debug1: Connection to port 8181 forwarding to localhost port 8181 requested.
+
+Now you can open ``http://localhost:8181`` in your browser and this will forward to the Uberspace and deliver the
+Beehive web frontend.
 
 Updates
 =======
