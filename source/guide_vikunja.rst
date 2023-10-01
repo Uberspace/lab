@@ -266,7 +266,13 @@ Once you have installed the frontend, we need to reconfigure the `web backends <
 ::
 
   [isabell@stardust ~]$ uberspace web backend set /api --http --port 3456
-  Set backend for / to port <port>; please make sure something is listening!
+  Set backend for /api to port <port>; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$ uberspace web backend set /.well-known --http --port 3456
+  Set backend for /.well-known to port <port>; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~]$ uberspace web backend set /dav --http --port 3456
+  Set backend for /dav to port <port>; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$ uberspace web backend set / --apache
   Set backend for / to apache.
