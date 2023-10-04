@@ -194,6 +194,17 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
         - regex:
             expression: >-
               ^(?P<endpoint>\S*) (?P<ip>\S*) (?P<identd>\S*) (?P<user>\S*) \[(?P<timestamp>.*)\] "(?P<request>.*)" (?P<status>\d*) (?P<size>\S*) "(?P<url>\S*)" "(?P<browser>.*)"$
+        - labels:
+            endpoint:
+            ip:
+            identd:
+            user:
+            timestamp:
+            request:
+            status:
+            size:
+            url:
+            browser:
         - timestamp:
             source: timestamp
             format: "02/Jan/2006:15:04:05 -0700"
@@ -210,6 +221,14 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
         - regex:
             expression: >-
               ^\[(?P<timestamp>.*)\] \[(?P<type>\w*)\] \[pid (?P<pid>\d*)\] (?P<module>.*): \[client (?P<client>.*)\] (?P<errorid>\w*): (?P<message>.*)$
+        - labels:
+            timestamp:
+            type:
+            pid:
+            module:
+            client:
+            errorid:
+            message:
         - timestamp:
             source: timestamp
             format: "Mon Jan 06 15:04:05 2006"
