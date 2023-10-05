@@ -131,8 +131,8 @@ IMAP & SMTP Settings
 This, however, doesn't restrict access if somebody enters the full email address. If you want to **restrict** the users access to Roundcube to a specific domain have a look at `Restrict Access`_ in the Secuity-Section.
 
   * Make sure the *auto_create_user* check box is checked. If it’s unchecked, Roundcube won’t create a user in its own database, which will prevent you from logging in.
-  * smtp_server (use *tls://„server“.uberspace.de*, e.g. ``tls://stardust.uberspace.de``)
-  * smtp_port (use ``587``)
+  * smtp_server (use *ssl://„server“.uberspace.de*, e.g. ``ssl://stardust.uberspace.de``)
+  * smtp_port (use ``465``)
   * junk_mbox (use ``Spam``)
 
 .. warning:: Make sure to add the prefixes (``ssl://`` / ``tls://``) as mentioned above, otherwise you won't be able to receive or sent mails. Uberspace does not support :manual_anchor:`insecure access <mail-access.html#client-settings>`.
