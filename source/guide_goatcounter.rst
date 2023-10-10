@@ -17,7 +17,7 @@ Goatcounter
 
 .. tag_list::
 
-Goatcounter_ s an open source web analytics platform available as a free donation-supported hosted service or self-hosted app. 
+Goatcounter_ is an open source web analytics platform available as a free, donation-supported hosted service or self-hosted app. 
 
 It aims to offer easy to use and meaningful privacy-friendly web analytics as an alternative to Google Analytics or Matomo.
 
@@ -73,7 +73,7 @@ Create database
 
  [isabell@stardust ~]$ ./goatcounter db create site -vhost goatcounter.isabell.uber.space -user.email <user>@uber.space
 
-You will be asked to enter a password for the specified user which will be used to access the webpage later.
+Make sure to use your own domain and email address. You will be asked to enter a password for the specified user which will be used to access the webpage later.
 
 Test
 ----
@@ -87,7 +87,7 @@ Create ``~/etc/services.d/goatcounter.ini`` with the following content:
 .. code-block:: ini
 
  [program:goatcounter]
- command = /home/<username>/goatcounter/goatcounter serve -listen :1235 -tls http -db sqlite+/home/<username>/goatcounter/db/goatcounter.sqlite3
+ command = %(ENV_HOME)s/goatcounter/goatcounter serve -listen :1235 -tls http -db sqlite+%(ENV_HOME)s/goatcounter/db/goatcounter.sqlite3
  autostart = true
  autorestart = true
 
