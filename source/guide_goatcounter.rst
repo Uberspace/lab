@@ -52,6 +52,10 @@ The host domain and a subdomain for goatcounter need to be setup:
 Installation
 ============
 
+Check the goatcounter releases page for the most recent Linux AMD64 download:
+
+https://github.com/arp242/goatcounter/releases
+
 Create a folder and download goatcounter:
 
 ::
@@ -60,8 +64,7 @@ Create a folder and download goatcounter:
  [isabell@stardust ~]$ cd ~/goatcounter
  [isabell@stardust ~]$ wget https://github.com/arp242/goatcounter/releases/download/v2.4.1/goatcounter-v2.4.1-linux-amd64.gz
  [isabell@stardust ~]$ gzip -d goatcounter-v2.4.1-linux-amd64.gz
- [isabell@stardust ~]$ rm goatcounter-v2.4.1-linux-amd64.gz
- [isabell@stardust ~]$ mv goatcounter-v2.4.1-linux-amd64.gz goatcounter
+ [isabell@stardust ~]$ mv goatcounter-v2.4.1-linux-amd64 goatcounter
  [isabell@stardust ~]$ chmod +x goatcounter
  [isabell@stardust ~]$
 
