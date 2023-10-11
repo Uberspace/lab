@@ -76,7 +76,7 @@ Create database
 
 ::
 
- [isabell@stardust ~]$ ./goatcounter db create site -vhost goatcounter.isabell.uber.space -user.email <user>@uber.space
+ [isabell@stardust ~]$ ./goatcounter db create site -createdb -vhost goatcounter.isabell.uber.space -user.email <user>@uber.space
 
 Make sure to use your own domain and email address. You will be asked to enter a password for the specified user which will be used to access the webpage later.
 
