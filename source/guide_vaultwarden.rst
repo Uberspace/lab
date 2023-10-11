@@ -190,8 +190,8 @@ You can create a backup of the database manually. ``cd`` to your project folder,
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir ~/vaultwarden/output/data/db-backup
- [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/backup.sqlite3'"
+ [isabell@stardust ~]$ mkdir ~/vaultwarden/data/db-backup
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/backup.sqlite3'"
 
 .. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time. If you want to save every version of the backup, please read further.
 
@@ -199,7 +199,15 @@ Alternatively, you can do the backup with a timestamp and it can be useful if yo
 
 .. code-block:: console
 
- [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
+
+To do this, create a bash script with the last command and save it as ``~/backup-vaultwarden.sh`` and make it executable.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ chmod +x backup-vaultwarden.sh
+
+Now you can add this script into your crontab.
 
 Restore up your vault manually
 ------------------------------
