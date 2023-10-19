@@ -16,9 +16,7 @@ e.g. for Nextcloud it would be: https://github.com/Uberspace/lab/commits/main/so
 
 ## Reward
 
-For every guide that makes it to the Uberlab you get an Uberspace mug that you can't buy anywhere:
-
-![Ubermug](/ubermug.png)
+For every guide that makes it to the Uberlab you get an Uberspace goodie that you can't buy anywhere and when they're gone they're gone. You can find the rewards we currently offer in [our secret voucher only goodie store](https://pretix.eu/uberspace/shirts/).
 
 Also you'll be mentioned in the [hall of fame](https://lab.uberspace.de/en/hall_of_fame.html).
 
