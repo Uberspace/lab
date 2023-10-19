@@ -1,10 +1,13 @@
 .. highlight:: console
 
 .. author:: Lomion <lomion@sarkasti.eu>
+.. author:: brutus <brutus.dmc@googlemail.com>
 
 .. tag:: lang-python
 .. tag:: starlette
 .. tag:: web
+.. tag:: api
+.. tag:: audience-developers
 
 .. sidebar:: About
 
@@ -62,6 +65,7 @@ Create Project
 We create an example app in ``~/mysiteproject/example.py``:
 
 .. code-block:: python
+
     from starlette.applications import Starlette
     from starlette.responses import JSONResponse
     from starlette.routing import Route
@@ -82,7 +86,7 @@ Setup Service
 Create Service
 --------------
 
-Noe we continue with setting it up as a service.
+Now we continue with setting it up as a service.
 
 Create ``~/etc/services.d/mysite.ini`` with the following content:
 
@@ -91,8 +95,8 @@ Create ``~/etc/services.d/mysite.ini`` with the following content:
 
     [program:mysite]
     directory=%(ENV_HOME)s/mysiteproject
-    command=python3.11 /home/sarkasti/.local/bin/uvicorn --host 0.0.0.0 example:app
-    startsecs=15
+    command=uvicorn --host 0.0.0.0 example:app
+    startsecs=60
 
 After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
@@ -123,7 +127,7 @@ Your backend should now point to the service; let's check it:
     :emphasize-lines: 1
 
     [isabell@stardust ~]$ uberspace web backend list
-    / http:8000 => OK, listening: PID 23161, python3.11 /home/sarkasti/.local/bin/uvicorn --host 0.0.0.0 example:app
+    / http:8000 => OK, listening: PID 23161, python3.11 /home/isabell/.local/bin/uvicorn --host 0.0.0.0 example:app
 
     [isabell@stardust ~]$
 
@@ -136,9 +140,15 @@ Security
 
 Change all default passwords. Look at folder permissions. Don't get hacked!
 
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+.. _feed: https://github.com/encode/starlette/releases
 
 ----
 
-Tested with Django 0.31.1, Python 3.11, Uberspace 7.15
+Tested with Starlette 0.31.1, Python 3.11, Uberspace 7.15
 
 .. author_list::
