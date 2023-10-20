@@ -74,7 +74,9 @@ Just run the following command in the created `homeassistant` directory with act
  [isabell@stardust ~]$ cd ~/homeassistant
  [isabell@stardust homeassistant]$ source ./bin/activate
  (homeassistant) [isabell@stardust homeassistant]$ hass
- (homeassistant) [isabell@stardust homeassistant]$
+ Unable to find configuration. Creating default one in /home/isabell/.homeassistant
+ ^C
+ [isabell@stardust homeassistant]$ 
 
 A directory containing config files is created at /home/isabell/.homeassistant.
 So you can terminate the homeassistant using Ctrl-C.
