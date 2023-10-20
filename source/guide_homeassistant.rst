@@ -50,18 +50,18 @@ Installation
 Create a virtual environment and install packages
 -------------------------------------------------
 Install Home Assistant in a virtual environment.
-Python 3.8 or later is recommended, so we'll stick to 3.8.
+We're using Python 3.11.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,4,5,6
 
  [isabell@stardust ~]$ mkdir ~/homeassistant
  [isabell@stardust ~]$ cd ~/homeassistant
- [isabell@stardust homeassistant]$ python3.8 -m venv .
+ [isabell@stardust homeassistant]$ python3.11 -m venv .
  [isabell@stardust homeassistant]$ source ./bin/activate
- [isabell@stardust homeassistant]$ python3.8 -m pip install wheel
- [isabell@stardust homeassistant]$ python3.8 -m pip install homeassistant
- [isabell@stardust homeassistant]$
+ (homeassistant) [isabell@stardust homeassistant]$ python3.11 -m pip install wheel
+ (homeassistant) [isabell@stardust homeassistant]$ python3.11 -m pip install homeassistant
+ (homeassistant) [isabell@stardust homeassistant]$
 
 
 First time startup
@@ -71,8 +71,10 @@ Just run the following command in the created `homeassistant` directory with act
 
 .. code-block:: console
 
- [isabell@stardust homeassistant]$ hass
- [isabell@stardust homeassistant]$
+ [isabell@stardust ~]$ cd ~/homeassistant
+ [isabell@stardust homeassistant]$ source ./bin/activate
+ (homeassistant) [isabell@stardust homeassistant]$ hass
+ (homeassistant) [isabell@stardust homeassistant]$
 
 A directory containing config files is created at /home/isabell/.homeassistant.
 So you can terminate the homeassistant using Ctrl-C.
