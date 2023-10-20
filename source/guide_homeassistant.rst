@@ -99,24 +99,23 @@ Use an editor such as ``nano`` to edit Home Assistant's configuration file:
 
  [isabell@stardust ~]$ nano ~/.homeassistant/configuration.yaml
 
-Modify ``external_url`` and ``internal_url``.
+Add the following lines at the bottom of the file. Modify ``external_url`` to reflect your domain.
 
 .. code-block:: yaml
-  :emphasize-lines: 3,4,5,8,9
-
+  
   homeassistant:
-    name: Home
-    latitude: 32.87336
-    longitude: 117.22743
-    elevation: 430
-    unit_system: metric
-    time_zone: Europe/Berlin
-    external_url: "isabell.uber.space"
-    internal_url: "0.0.0.0:8123"
-    allowlist_external_dirs:
-    allowlist_external_urls:
-    media_dirs:
-    legacy_templates: false
+  name: Home
+  unit_system: metric
+  time_zone: Europe/Berlin
+  external_url: "https://isabell.uber.space"
+  internal_url: "http://0.0.0.0:8123"
+  legacy_templates: false
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 100.64.0.0/10
+    - fd00::/8
 
 Setup a web backend
 -------------------
