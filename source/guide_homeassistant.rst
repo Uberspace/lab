@@ -59,8 +59,8 @@ We're using Python 3.11.
  [isabell@stardust ~]$ cd ~/homeassistant
  [isabell@stardust homeassistant]$ python3.11 -m venv .
  [isabell@stardust homeassistant]$ source ./bin/activate
- (homeassistant) [isabell@stardust homeassistant]$ python3.11 -m pip install wheel
- (homeassistant) [isabell@stardust homeassistant]$ python3.11 -m pip install homeassistant
+ (homeassistant) [isabell@stardust homeassistant]$ python -m pip install wheel
+ (homeassistant) [isabell@stardust homeassistant]$ python -m pip install homeassistant
  (homeassistant) [isabell@stardust homeassistant]$
 
 
