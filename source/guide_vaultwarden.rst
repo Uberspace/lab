@@ -235,7 +235,7 @@ To make sure your changes take effect, restart the service:
 
 When enabled, you can access it by pointing your browser to ``https://isabell.uber.space/admin``.
 
-.. note ::  Be careful when editing values in via the Admin-Page as they overrule your settings in the  ``~/vaultwarden/.env`` file.
+.. note ::  Be careful when editing values via the Admin-Page as they overrule your settings in the  ``~/vaultwarden/.env`` file.
 
 
 Best practices
