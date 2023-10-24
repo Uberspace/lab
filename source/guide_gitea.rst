@@ -463,16 +463,19 @@ Now our Gitea users can add their ssh keys via the menu in the up right corner: 
 
 .. code-block:: bash
 
-  command="/home/isabell/gitea/gitea --config='/home/isabell/gitea/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAAC... youruser@yourhost
+  command="/home/isabell/gitea/gitea --config='/home/isabell/gitea/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
 
 If we're using the same ssh key for auth to uberspace and Gitea, we need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
 
 .. code-block:: bash
 
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
+  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|/usr/libexec/openssh/sftp-server|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC...
 
 .. warning::
-  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+  * Be careful to remember the individual gitea key number ``key-X``
+  * Change ``/home/isabell`` to your uberspace username 
+  * Change ``ssh-...`` to your ssh key
+  * Make sure not to include ``no-user-rc,restrict``
   * Take care that there is no second line propagating the same ssh key.
 
 .. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
@@ -529,6 +532,6 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Gitea 1.20.2, Uberspace 7.15.1
+Tested with Gitea 1.20.4, Uberspace 7.15.6
 
 .. author_list::
