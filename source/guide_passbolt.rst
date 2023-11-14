@@ -37,12 +37,24 @@ Passbolt is released under the `AGPL-3.0 license`_.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
+Every Uberspace can choose their :manual:`PHP <lang-php>` version manually.
+We need PHP version 8.1 or above to use Passbolt.
 
+Check your current version with 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
+  [isabell@stardust ~]$ uberspace tools version show php
+  Using 'PHP' version: '7.1'
+
+If you use an older version, change your php version to the latest available version.
+::
+
+ [isabell@stardust ~]$ uberspace tools version list php
+ - 8.0
+ - 8.1
+ - 8.2
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -108,20 +120,114 @@ Install the dependencies:
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/composer-1.phar
+ [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/composer.phar
  [isabell@stardust html]$ php composer.phar install --no-dev
  [isabell@stardust html]$ rm composer.phar
- [isabell@stardust html]$ cp config/passbolt.default.php config/passbolt.php
+
+Create the settings file ``config/passbolt.php``:
+::
+ [isabell@stardust html]$ touch config/passbolt.php
  [isabell@stardust html]$
 
-Edit following settings in ``config/passbolt.php``:
- * ``fullBaseUrl`` in ``App``: ``https://isabell.uber.space``
- * ``username``, ``password`` and ``database`` in ``Datasources``: :manual_anchor:`credentials <database-mysql.html#login-credentials>`
- * ``port`` in ``EmailTransport``: ``587``
- * ``username`` and ``password`` in ``EmailTransport``: ``passbolt@isabell.uber.space`` and the password
- * ``fingerprint`` in ``passbolt - gpg - serverKey``: Insert your gpg fingerprint without spaces (!)
- * ``public`` and ``private`` under fingerprint: ``/home/isabell/passbolt/config/``
+Paste and edit following config in ``config/passbolt.php``:
 
+.. code-block:: php
+
+ <?php
+ 
+ # Insert your gpg fingerprint without spaces (!)
+ $GPG_FINGERPRINT = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+ # your uberspace name
+ $UBERSPACE_USERNAME = 'isabell';
+ # set the password from $ my_print_defaults client
+ $DB_PASSWORD = 'password';
+ # change if you use your own domain
+ $APP_URL = "https://$UBERSPACE_USERNAME.uber.space";
+ # set the password that you set for the email
+ $EMAIL_PASSWORD = 'password';
+ # set the username that you set for the email
+ $EMAIL_USERNAME = "passbolt@$UBERSPACE_USERNAME.uber.space";
+
+ $DB_NAME = "$UBERSPACE_USERNAME_passbolt";
+ $DB_USERNAME = $UBERSPACE_USERNAME;
+ 
+ return [
+     'App' => [
+         'fullBaseUrl' => $APP_URL,
+     ],
+     'Datasources' => [
+         'default' => [
+             'host' => 'localhost',
+             'username' => $DB_USERNAME,
+             'password' => $DB_PASSWORD,
+             'database' => $DB_NAME,
+         ],
+     ],
+     'EmailTransport' => [
+         'default' => [
+             'host' => 'localhost',
+             'port' => 587,
+             'username' => $EMAIL_USERNAME,
+             'password' => $EMAIL_PASSWORD,
+             'tls' => null,
+         ],
+     ],
+     'Email' => [
+         'default' => [
+             'from' => [
+                 $EMAIL_USERNAME => 'Passbolt'
+             ],
+         ],
+     ],
+     'passbolt' => [
+         'ssl' => [
+             'force' => true,
+         ],
+         'gpg' => [
+             'serverKey' => [
+                 'fingerprint' => $GPG_FINGERPRINT,
+                 'public' => "/home/$UBERSPACE_USERNAME/passbolt/config/serverkey.asc",
+                 'private' => "/home/$UBERSPACE_USERNAME/passbolt/config/serverkey_private.asc",
+             ],
+         ],
+     ],
+ ];
+ 
+Update .htaccess files
+
+There are two .htaccess files that needs to be modified to work.
+
+1. ``/var/www/virtual/isabell/html/.htaccess`` to ->
+
+.. code-block:: apache
+
+ <IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  RewriteBase /
+  RewriteRule ^(\.well-known/.*)$ $1 [L]
+  RewriteRule ^$    webroot/    [L]
+  RewriteRule (.*) webroot/$1    [L]
+  RewriteRule . /index.php [L]
+ </IfModule>
+
+2. ``/var/www/virtual/isabell/html/webroot/.htaccess`` to ->
+
+.. code-block:: apache
+
+ <IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+  RewriteBase /
+  RewriteRule ^index\.php$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
+ </IfModule>
+
+
+Installation
+=============
 Finish the installation and fill in your email and name when asked for:
 
 ::
@@ -155,6 +261,6 @@ Check Passbolt's `stable releases`_ for the latest versions. If a newer version 
 
 ----
 
-Tested with Passbolt 2.12.0 and Uberspace 7.4
+Tested with Passbolt 3.9.0 and Uberspace 7.15.6
 
 .. author_list::
