@@ -159,7 +159,6 @@ The instruction "All" is not supported on Uberspace, so prepend
 the line with a hash ("#") to disable it.
 Also, the unsupported instruction "FollowSymlinks" has to be replaced
 with "SymLinksIfOwnerMatch".
-Note: If the installation is done in a subdomain, the ``RewriteBase /`` must be commented out, too.
 
 .. code-block:: none
   :emphasize-lines: 2,11
