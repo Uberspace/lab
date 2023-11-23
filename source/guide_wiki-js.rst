@@ -41,8 +41,10 @@ We're using :manual:`Node.js <lang-nodejs>` in the latest version listed in `Wik
 
  [isabell@stardust ~]$ uberspace tools version show node
  Using 'Node.js' version: '16'
- [isabell@stardust ~]$
-
+ [isabell@stardust ~]$ uberspace tools version use node 20
+ Selected Node.js version 20
+ The new configuration is adapted immediately. Minor updates will be applied automatically.
+ [isabell@stardust ~]$ 
 
 .. note:: If you already use PostgreSQL, you can skip the next two steps and take a look at :ref:`tuning`.
 
@@ -75,7 +77,7 @@ which resolves to the latest archive file, which also comes in handy later for :
 
 ::
 
-  [isabell@stardust ~]$ wget https://github.com/Requarks/wiki/releases/download/2.1.113/wiki-js.tar.gz
+  [isabell@stardust ~]$ wget https://github.com/requarks/wiki/releases/download/v2.5.300/wiki-js.tar.gz
   [...]
   Saving to: ‘wiki-js.tar.gz’
   [isabell@stardust ~]$
@@ -245,6 +247,6 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
 
 ----
 
-Tested with Wiki.js 2.1.113, Uberspace 7.3.11.0
+Tested with Wiki.js 2.5.300, Node.js 20, Uberspace 7.15.6
 
 .. author_list::
