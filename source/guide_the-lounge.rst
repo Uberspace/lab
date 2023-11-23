@@ -32,12 +32,13 @@ The Lounge is based on the project Shout_ from which it is a community driven fo
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in version 16:
+We're using :manual:`Node.js <lang-nodejs>` in version 18:
 
 ::
 
- [isabell@stardusts ~]$ uberspace tools version use node 16
- Selected Node.js version 16
+ [isabell@stardusts ~]$ uberspace tools version use node 18
+ Selected Node.js version 18
+ The new configuration is adapted immediately. Minor updates will be applied automatically.
  [isabell@stardusts ~]$
 
 Your The Lounge URL needs to be setup:
@@ -56,7 +57,7 @@ Use ``npm`` to install ``thelounge`` globally:
 
  [isabell@stardusts ~]$ npm install --global thelounge
  [...]
- + thelounge@4.2.0
+ + thelounge@4.4.1
  added 242 packages in 31.627s
  [isabell@stardusts ~]$
 
@@ -66,7 +67,7 @@ Verify installation
 ::
 
  [isabell@stardusts ~]$ thelounge --version
- v4.2.0
+ v4.4.1
 
 Configuration
 =============
