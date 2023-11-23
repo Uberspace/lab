@@ -48,8 +48,8 @@ Supported :manual:`Node.js <lang-nodejs>` versions are 16 or higher.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace tools version use node 16
-  Selected Node.js version 16
+  [isabell@stardust ~]$ uberspace tools version use node 18
+  Selected Node.js version 18
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
