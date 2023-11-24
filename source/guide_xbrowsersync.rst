@@ -11,6 +11,11 @@
   .. image:: _static/images/xbrowsersync.svg
       :align: center
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of 1.1.13. xbrowsersync don't work withNode.js in version 18 or newer, we would be happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1640
+
 ################
 xBrowserSync API
 ################
