@@ -1,14 +1,14 @@
 .. highlight:: console
 
 .. author:: Benjamin Wießneth <bwiessneth@gmail.com>
-.. author:: Christian Macht <https://github.com/cmacht>
+.. author:: Christian Macht <https://github.com/cmacht/>
 
 .. tag:: lang-python
 .. tag:: web
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/flask-logo.png
+  .. image:: _static/images/flask.png
       :align: center
 
 #####
@@ -24,9 +24,7 @@ Flask
 License
 =======
 
-All relevant legal information can be found here
-
-* https://www.palletsprojects.com/governance/licenses-and-copyright/
+All relevant legal information can be found on `The Pallets Projects <https://www.palletsprojects.com/governance/licenses-and-copyright/>`_.
 
 
 
@@ -48,11 +46,11 @@ Create application directory and files
   [isabell@stardust ~]$ mkdir basic_flask/static
   [isabell@stardust ~]$
 
-Create ``~/basic_flask/app.py`` with the following content:
+Create ``~/basic_flask/start.py`` with the following content:
 
 .. code-block:: python
 
-  #!/usr/bin/env python3.6
+  #!/usr/bin/env python3.11
   import os
   from flask import Flask
   from flask import render_template
@@ -101,7 +99,7 @@ You definitely want to create an isolated Python environment. That way the requi
 .. code-block:: console
 
   [isabell@stardust ~]$ cd basic_flask
-  [isabell@stardust basic_flask]$ python3 -m venv ENV
+  [isabell@stardust basic_flask]$ python3.11 -m venv ENV
   [isabell@stardust basic_flask]$ source ENV/bin/activate
   (ENV) [isabell@stardust basic_flask]$ pip install flask uwsgi
   (ENV) [isabell@stardust basic_flask]$
@@ -124,27 +122,19 @@ Using Werkzeug for development
 
 You can use Werkzeug which gets shipped with Flask to spin up a small development server. But be aware: **Do not use it in a production deployment.** For more info head to https://www.palletsprojects.com/p/werkzeug/.
 
-Note that if you run your application under a path different from ``/``, this
-approach does not work because the requests don't match the configured routes
-and because the server does not set the ``SCRIPT_NAME`` variable.
-The proper fix is using a uWSGI deployment as we will do in the next step.
+Note that if you run your application under a path different from ``/``, this approach does not work because the requests don't match the configured routes and because the server does not set the ``SCRIPT_NAME`` variable. The proper fix is using a uWSGI deployment as we will do in the next step.
 
-To start Werkzeug execute the following commands. This enables the virtual Python environment and loads ``app.py``. Stop it by pressing ``Ctrl + C``.
+To start Werkzeug execute the following commands. This enables the virtual Python environment and loads ``start.py``. Stop it by pressing ``Ctrl + C``.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd basic_flask
   [isabell@stardust basic_flask]$ source ENV/bin/activate
-  (ENV) [isabell@stardust basic_flask]$ python app.py
-   ℹ * Serving Flask app "app" (lazy loading)
-   ℹ * Environment: production
-       WARNING: This is a development server. Do not use it in a production deployment.
-       Use a production WSGI server instead.
-   ℹ * Debug mode: on
-   ℹ * Running on http://0.0.0.0:1024/ (Press CTRL+C to quit)
-   ℹ * Restarting with stat
-   ℹ * Debugger is active!
-   ℹ * Debugger PIN: 000-000-000
+  (ENV) [isabell@stardust basic_flask]$ flask --app start run --port 1024
+  ℹ * Serving Flask app 'start'
+  ℹ WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+  ℹ Running on http://127.0.0.1:1024
+  ℹ Press CTRL+C to quit
   ^C
   [isabell@stardust basic_flask]$
 
@@ -160,21 +150,23 @@ Create the ini file ``~/basic_flask/uwsgi.ini`` with the following content:
 .. code-block:: ini
 
   [uwsgi]
-  module = app:app
-  pidfile = basic_flask.pid
-  master = true
-  processes = 1
+  module = start:app
   http-socket = :1024
   chmod-socket = 660
+  processes = 1
+
+  strict = true
+  master = true
+  enable-threads = true
   vacuum = true
 
 
-If your application does not run under ``/`` but under, say, ``/your/path/``,
-replace the ``module = ...`` line with:
+
+If you want to use an absolute instead of a relative url, replace the ``module = ...`` line with:
 
 .. code-block:: ini
 
-  mount = /your/path=app:app
+  mount = /home/isabell/basic_flask=start:app
   manage-script-name = true
 
 To serve your application via uWSGI execute the following commands. Stop it by pressing ``Ctrl + C``.
@@ -185,7 +177,7 @@ To serve your application via uWSGI execute the following commands. Stop it by p
   [isabell@stardust basic_flask]$ source ENV/bin/activate
   [isabell@stardust basic_flask]$ uwsgi uwsgi.ini
   ℹ [uWSGI] getting INI configuration from uwsgi.ini
-  ℹ *** Starting uWSGI 2.0.20 (64bit) on [Tue Jan 21 15:47:41 2020] ***
+  ℹ *** Starting uWSGI 2.0.22 (64bit) on [Sat Oct 14 10:36:48 2023] ***
   ℹ ...
   ℹ *** uWSGI is running in multiple interpreter mode ***
   ℹ spawned uWSGI master process (pid: 23422)
@@ -229,6 +221,6 @@ uWSGI can be configured extensively and has its own page on `best practices <htt
 
 ----
 
-Tested with Uberspace 7.11.5 and Flask 2.0.0 on Python 3.6.
+Tested with Uberspace 7.15.4 and Flask 3.0.0 on Python 3.11.
 
 .. author_list::

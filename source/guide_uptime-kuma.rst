@@ -44,7 +44,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 14:
 ::
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '14'
+ Using 'Node.js' version: '18'
  [isabell@stardust ~]$
 
 We will need to update the Node Packet Manager npm:
@@ -56,7 +56,7 @@ We will need to update the Node Packet Manager npm:
   added 169 packages from 86 contributors, removed 157 packages and updated 45 packages in 22.432s
   [isabell@stardust ~]$ hash -r
   [isabell@stardust ~]$ npm --version
-  8.3.0
+  10.2.4
   [isabell@stardust ~]$
 
 This should return a version from ``8.0.0`` upwards.
