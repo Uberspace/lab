@@ -1,5 +1,6 @@
 .. author:: Frank ℤisko <https://frank.zisko.io>
 .. author:: EV21 <uberlab@ev21.de>
+.. author:: Christian Macht <https://github.com/cmacht/>
 
 .. tag:: lang-go
 .. tag:: audience-developers
@@ -37,14 +38,14 @@ Prerequisites
 
 .. include:: includes/my-print-defaults.rst
 
-We need a database:
+Write down the password for later. Create a database (your username is inserted automatically):
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_gitea"
   [isabell@stardust ~]$
 
-We can use the uberspace or your own domain:
+We can use the uberspace domain or your own domain:
 
 .. include:: includes/web-domain-list.rst
 
@@ -56,11 +57,11 @@ Installation
 Download
 --------
 
-Check current version of Gitea at releases_ page:
+Check current version of Gitea at its releases_ page:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=1.19.3
+  [isabell@stardust ~]$ VERSION=1.21.0
   [isabell@stardust ~]$ mkdir ~/gitea
   [isabell@stardust ~]$ wget -O ~/gitea/gitea https://github.com/go-gitea/gitea/releases/download/v${VERSION}/gitea-${VERSION}-linux-amd64
   [...]
@@ -118,7 +119,7 @@ We will need to create some random characters as a security key for the configur
   <RANDOM_64_CHARACTERS_FROM_GENERATOR>
   [isabell@stardust ~]$
 
-Copy or save the output for later.
+Copy the output for later.
 
 Gitea configuration file
 -------------------------
@@ -132,7 +133,7 @@ Create a custom directory for your configurations:
 
 Create a config file ``~/gitea/custom/conf/app.ini`` with the content of the following code block:
 
-.. note:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
+.. note:: In the highlighted lines, replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
 .. code-block:: ini
   :emphasize-lines: 2,9-11,17,25,30
@@ -451,44 +452,31 @@ Additional configuration
 
 Gitea ssh setup (optional)
 --------------------------
-
-Gitea can manage the ssh keys. To use this feature we have to link the ssh folder into the gitea folder.
+Gitea can manage the ssh keys. In order to not interfere with the server's own ssh keys, we can use Gitea's inbuilt ssh server.
+This requires a dedicated extra port, that we need to open first as described in the :manual_anchor:`manual <basics-ports#opening-ports>`:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ln -s ~/.ssh ~/gitea/.ssh
-  [isabell@stardust ~]$
+  [isabell@stardust ~]$ uberspace port add
+  Port 12345 will be open for TCP and UDP traffic in a few minutes.
+  [isabell@stardust ~]$ 
 
-Now our Gitea users can add their ssh keys via the menu in the up right corner: ``->`` settings ``->`` tab: SSH/GPG Keys ``->`` Add Key. Gitea is automatically writing a ssh key command into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
+Add this port number along with the following lines to your ``~/gitea/custom/conf/app.ini`` in the ``[server]`` section at the beginning:
 
-.. code-block:: bash
+.. code-block:: ini
+  :emphasize-lines: 6
 
-  command="/home/isabell/gitea/gitea --config='/home/isabell/gitea/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
+  [server]
+  ...
+  START_SSH_SERVER     = true
+  SSH_DOMAIN           = %(DOMAIN)s
+  DISABLE_SSH          = false
+  SSH_PORT             = 12345 ; replace with your port number
+  SSH_LISTEN_HOST      = 0.0.0.0
+  SSH_LISTEN_PORT      = $(SSH_PORT)s
 
-If we're using the same ssh key for auth to uberspace and Gitea, we need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
-
-.. code-block:: bash
-
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|.*sftp-server|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/gitea/gitea serv key-1 --config='/home/isabell/gitea/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC...
-
-.. warning::
-  * Be careful to remember the individual gitea key number ``key-X``
-  * Change ``/home/isabell`` to your uberspace username 
-  * Change ``ssh-...`` to your ssh key
-  * Make sure not to include ``no-user-rc,restrict``
-  * Take care that there is no second line propagating the same ssh key.
-
-.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
-
-To interact with Gitea at our local machine like ``git clone isabell@isabell.uber.space:giteauser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
-
-.. code-block::
-
-  Host isabell.uber.space
-      HostName isabell.uber.space
-      User isabell
-      IdentityFile ~/.ssh/id_your_git_key
-      IdentitiesOnly yes
+Now your Gitea users can add their ssh keys via the menu in the upper right corner:
+``Settings -> tab: SSH/GPG Keys -> Add Key``
 
 Gitea using external renderer (optional)
 ----------------------------------------
@@ -532,6 +520,6 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Gitea 1.20.4, Uberspace 7.15.6
+Tested with Gitea 1.21.0, Uberspace 7.15.6
 
 .. author_list::
