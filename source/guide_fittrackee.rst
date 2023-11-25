@@ -7,8 +7,8 @@
 .. tag:: tacking
 .. tag:: tacker
 .. tag:: sport
-.. tag:: fitness 
-.. tag:: gpx   
+.. tag:: fitness
+.. tag:: gpx
 
 .. sidebar:: Logo
 
@@ -21,8 +21,8 @@ Fittrackee
 
 .. tag_list::
 
-Fittrackee_ allows you to track your outdoor activities (workouts) from gpx files and keep your data on your own server. 
-It is a open source and decentralized sport tracking app. 
+Fittrackee_ allows you to track your outdoor activities (workouts) from gpx files and keep your data on your own server.
+It is a open source and decentralized sport tracking app.
 
 ----
 
@@ -48,36 +48,25 @@ Prerequisites
 
 Mandatory `Prerequisites for Fittrackee <https://samr1.github.io/FitTrackee/en/installation.html#prerequisites>`_:
 
-  * :manual:`Python <lang-python>` in the version >3.8.1. 
-  * :manual:`PostgreSQL <guide_postgresql>` in the version 11+. 
+  * :manual:`Python <lang-python>` in the version >3.8.1.
+  * :manual:`PostgreSQL <guide_postgresql>` in the version 11+.
 
 Installation
 ============
 
-Create folder
--------------
-
-We do not install Fittrackee in the :manual:`DocumentRoot <web-documentroot>`. We install it in a separate folder. First we create this folder.
-
-::
-
- [isabell@stardust ~]$ cd /home/isabell
- [isabell@stardust ~]$ mkdir fittrackee
- [isabell@stardust ~]$ 
-
-
 Install Fittrackee
 ------------------
 
-``cd`` into your empty Fittrackee folder and set up virtual environment for Python 3.9:
+Set up virtual environment for Python 3.9:
 
 ::
 
- [isabell@stardust ~]$ cd /home/isabell/fittrackee
+ [isabell@stardust ~]$ mkdir -p ~/fittrackee
+ [isabell@stardust ~]$ cd ~/fittrackee
  [isabell@stardust fittrackee]$ python3.9 -m venv fittrackee_venv
  [isabell@stardust fittrackee]$ ls
   fittrackee_venv
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Activate the virtual environment and install Fittrackee:
@@ -86,8 +75,8 @@ Activate the virtual environment and install Fittrackee:
 
  [isabell@stardust fittrackee]$ source fittrackee_venv/bin/activate
   (fittrackee_venv) [isabell@stardust fittrackee]$ pip3.9 install fittrackee
-  (fittrackee_venv) [isabell@stardust fittrackee]$ 
-  ..
+  (fittrackee_venv) [isabell@stardust fittrackee]$
+  ...
   [notice] A new release of pip is available: 23.0.1 -> 23.2.1
   [notice] To update, run: pip install --upgrade pip
 
@@ -109,20 +98,21 @@ PostgreSQL
 
 Please follow the :manual:`PostgreSQL <guide_postgresql>` guide to configurate PostgreSQL.
 
+After that `create fittrackee database  <https://samr1.github.io/FitTrackee/en/installation.html#from-pypi>`_
 
 Web Backends
 ------------
 
-With web backends you can connect Fittrackee running on port 5000 by default to the frontend to make it accessible from outside. 
+With web backends you can connect Fittrackee running on port 5000 by default to the frontend to make it accessible from outside.
 Please follow the instructions :manual:`Web Backends <web-backends>`.
 
 
 Optional: Redis
 ---------------
 
-We need Redis for task queue (if email sending is enabled and for data export requests) and API rate limits. 
-Please follow the :lab:`Redis <guide_redis>` guide to setup redis. By default, Redis does not run on a port with us, but provides a Unix socket under ``/home/$USER/.redis/sock``. Either one has to adjust the configuration of the Fittrackee application or change the Redis configuration from `port 0' to 6379. 
+We need Redis for task queue (if email sending is enabled and for data export requests) and API rate limits.
 
+Please follow the :lab:`Redis <guide_redis>` guide to setup redis with one variation: By default, Redis does not run on a port with us, but provides a Unix socket under ``/home/$USER/.redis/sock``. Either one has to adjust the configuration of the Fittrackee application or change the Redis configuration from `port 0' to 6379.
 
 Optional: Emails
 ----------------
@@ -135,11 +125,11 @@ Please follow the :manual:`mail <mail-access>` guide to setup up Emails.
 Environment variables for Fittrackee
 ------------------------------------
 
-You need to create the necessary environment variables for Fittrackee. 
-You can use the `example file <https://github.com/SamR1/FitTrackee/blob/master/.env.example>`_ as a guide. 
+You need to create the necessary environment variables for Fittrackee.
+You can use the `example file <https://github.com/SamR1/FitTrackee/blob/master/.env.example>`_ as a guide.
 Further explanations can be found in the `Fittrackee documentation <https://samr1.github.io/FitTrackee/en/installation.html#environment-variables>`_.
 
-For an installation in our system it is important to customize the variables ``HOST`` and ``DATABASE_URL`` as follows:
+Special note: For an installation in our system it is important to customize the variables ``HOST`` and ``DATABASE_URL`` as follows:
 
 ::
 
@@ -154,22 +144,22 @@ For more information about the available ports, see :manual:`firewall ports <bas
 Set up and launch Fittrackee
 ----------------------------
 
-Start virtual environment.
+Start virtual environment:
 
 ::
 
- [isabell@stardust ~]$ cd /home/isabell/fittrackee/
+ [isabell@stardust ~]$ cd ~/fittrackee/
  [isabell@stardust fittrackee]$ source fittrackee_venv/bin/activate
- (fittrackee_venv) [isabell@stardust fittrackee]$ 
+ (fittrackee_venv) [isabell@stardust fittrackee]$
 
 
-Set environment variables from file ``.env``.
+Set environment variables from file ``.env``:
 
 ::
 
  (fittrackee_venv) [isabell@stardust fittrackee]$ source /PathToYourEnvFile/.env
 
-Initialize database schema
+Initialize database schema:
 
 ::
 
@@ -182,12 +172,14 @@ Start the application
  (fittrackee_venv) [isabell@stardust fittrackee]$ fittrackee
 
 
-Open your :manual:`domain <web-domains>` in web browser and register. Further information on Fittrackee can be found 
-in `Fittrackees documentation <https://samr1.github.io/FitTrackee/en/installation.html>`_.
+Note that you must link port 5000 via :manual:`Web Backends <web-backends>`. Open your :manual:`domain <web-domains>` in web browser and register.
+
+
+Further information on Fittrackee can be found in `Fittrackees documentation <https://samr1.github.io/FitTrackee/en/installation.html>`_.
 
 ----
 
-Tested with Fittrackee 0.7.23, Uberspace 7.15.5
+Tested with Fittrackee 0.7.25, Uberspace 7.15.6
 
 .. _Fittrackee: https://github.com/SamR1/FitTrackee/
 
