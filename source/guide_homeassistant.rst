@@ -50,18 +50,18 @@ Installation
 Create a virtual environment and install packages
 -------------------------------------------------
 Install Home Assistant in a virtual environment.
-Python 3.8 or later is recommended, so we'll stick to 3.8.
+We're using Python 3.11.
 
 .. code-block:: console
  :emphasize-lines: 1,2,3,4,5,6
 
  [isabell@stardust ~]$ mkdir ~/homeassistant
  [isabell@stardust ~]$ cd ~/homeassistant
- [isabell@stardust homeassistant]$ python3.8 -m venv .
+ [isabell@stardust homeassistant]$ python3.11 -m venv .
  [isabell@stardust homeassistant]$ source ./bin/activate
- [isabell@stardust homeassistant]$ python3.8 -m pip install wheel
- [isabell@stardust homeassistant]$ python3.8 -m pip install homeassistant
- [isabell@stardust homeassistant]$
+ (homeassistant) [isabell@stardust homeassistant]$ python -m pip install wheel
+ (homeassistant) [isabell@stardust homeassistant]$ python -m pip install homeassistant
+ (homeassistant) [isabell@stardust homeassistant]$
 
 
 First time startup
@@ -71,11 +71,15 @@ Just run the following command in the created `homeassistant` directory with act
 
 .. code-block:: console
 
- [isabell@stardust homeassistant]$ hass
- [isabell@stardust homeassistant]$
+ [isabell@stardust ~]$ cd ~/homeassistant
+ [isabell@stardust homeassistant]$ source ./bin/activate
+ (homeassistant) [isabell@stardust homeassistant]$ hass
+ Unable to find configuration. Creating default one in /home/isabell/.homeassistant
+ ^C
+ [isabell@stardust homeassistant]$ 
 
 A directory containing config files is created at /home/isabell/.homeassistant.
-So you can terminate the homeassistant using STRG-C.
+You can now terminate the homeassistant using Ctrl-C.
 
 
 Configuration
@@ -95,24 +99,23 @@ Use an editor such as ``nano`` to edit Home Assistant's configuration file:
 
  [isabell@stardust ~]$ nano ~/.homeassistant/configuration.yaml
 
-Modify ``external_url`` and ``internal_url``.
+Add the following lines at the bottom of the file. Modify ``external_url`` to reflect your domain.
 
 .. code-block:: yaml
-  :emphasize-lines: 3,4,5,8,9
-
+  
   homeassistant:
-    name: Home
-    latitude: 32.87336
-    longitude: 117.22743
-    elevation: 430
-    unit_system: metric
-    time_zone: Europe/Berlin
-    external_url: "isabell.uber.space"
-    internal_url: "0.0.0.0:8123"
-    allowlist_external_dirs:
-    allowlist_external_urls:
-    media_dirs:
-    legacy_templates: false
+  name: Home
+  unit_system: metric
+  time_zone: Europe/Berlin
+  external_url: "https://isabell.uber.space"
+  internal_url: "http://0.0.0.0:8123"
+  legacy_templates: false
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 100.64.0.0/10
+    - fd00::/8
 
 Setup a web backend
 -------------------

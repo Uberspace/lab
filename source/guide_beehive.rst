@@ -32,7 +32,7 @@ agents.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`Go <lang-go>`
+  * :manual:`Go <lang-golang`
   * :manual:`Supervisord <daemons-supervisord>`
   * :manual:`Domains <web-domains>`
 

@@ -62,6 +62,7 @@ The files will be installed to the following locations:
 
   * ``~/sbin/``: executables (``ejabberdctl``)
   * ``~/etc/ejabberd/``: configuration files (mainly ``ejabberd.yml``)
+  * ``~/lib/``: compiled ejabberd modules
   * ``~/var/lib/ejabberd/``: runtime files including internal mnesia database
   * ``~/var/log/ejabberd/``: logfiles
 

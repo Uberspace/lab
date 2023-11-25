@@ -180,6 +180,64 @@ Finishing installation
 
 You are done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user.
 
+Admin Page
+======================
+
+The admin page allows you to view all the registered users and to delete them.
+It also allows inviting new users, even when registration is disabled.
+
+
+Enabling Admin Page
+------------------------------
+The admin page is disabled by default.
+
+To enable it, you should create a secure, long password and save the hash of that password into your ``~/vaultwarden/.env``.
+
+You can create the hash with the built in ``hash`` command:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/vaultwarden/output
+ [isabell@stardust ~]$ ./vaultwarden hash
+ Generate an Argon2id PHC string using the 'bitwarden' preset:
+
+ Password:
+ Confirm Password:
+
+ ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+ Generation of the Argon2id PHC string took: 401.754824ms
+ [isabell@stardust ~]$
+
+Now you have to paste the result of the command into your ``~/vaultwarden/.env`` file:
+
+.. code-block:: ini
+ :emphasize-lines: 10
+
+ SMTP_HOST=stardust.uberspace.de
+ SMTP_FROM=isabell@uber.space
+ SMTP_PORT=587
+ SMTP_SECURITY=starttls
+ SMTP_USERNAME=isabell@uber.space
+ SMTP_PASSWORD=MySuperSecretPassword
+ DOMAIN=https://isabell.uber.space
+ ROCKET_ADDRESS=0.0.0.0
+ ROCKET_PORT=8000
+ ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+
+To make sure your changes take effect, restart the service:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart vaultwarden
+
+
+When enabled, you can access it by pointing your browser to ``https://isabell.uber.space/admin``.
+
+.. note ::  Be careful when editing values via the Admin-Page as they overrule your settings in the  ``~/vaultwarden/.env`` file.
+
+
 Best practices
 ==============
 
@@ -263,27 +321,7 @@ Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the followi
 .. code-block:: ini
 
  SHOW_PASSWORD_HINT=false
- 
-Secure the ``ADMIN_TOKEN`` 
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Since version ``1.28.0``, vaultwarden recommends_ hashing the ``ADMIN_TOKEN`` using Argon2 by generating a `PHC string`_ instead of using plain text. If you are using the admin panel, consider securing your token as follows:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ cd ~/vaultwarden/output
- [isabell@stardust ~]$ ./vaultwarden hash
- Generate an Argon2id PHC string using the 'bitwarden' preset:
-
- Password:
- Confirm Password:
-
- ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
-
- Generation of the Argon2id PHC string took: 401.754824ms
- [isabell@stardust ~]$
- 
-Finally, update the token in the admin panel.
 
 Updates
 =======
