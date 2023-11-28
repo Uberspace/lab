@@ -41,7 +41,7 @@ Ackee_ requires a MongoDB_ database. Set it up using the :lab:`MongoDB Uberlab g
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 14
+ [isabell@stardust ~]$ uberspace tools version use node 18
  Using 'Node.js' version: '18'
  Selected node version 18
  The new configuration is adapted immediately. Patch updates will be applied automatically.
