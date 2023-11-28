@@ -39,13 +39,11 @@ Prerequisites
 
 Ackee_ requires a MongoDB_ database. Set it up using the :lab:`MongoDB Uberlab guide <guide_mongodb>`. You will need your MongoDB_ admin name and password later.
 
-Starting with `Version 2.0.0`_, Ackee also requires the use of :manual:`Node.js <lang-nodejs>` 14.
-
 ::
 
  [isabell@stardust ~]$ uberspace tools version use node 14
- Using 'Node.js' version: '14'
- Selected node version 14
+ Using 'Node.js' version: '18'
+ Selected node version 18
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -81,7 +79,7 @@ Create a new, empty ``.env`` file in the root of the Ackee_ directory. Add the f
 
 .. code-block:: console
 
-  ACKEE_MONGODB=mongodb://<admin>_mongoroot:<password>@localhost:27017/admin
+  ACKEE_MONGODB=mongodb://<admin>_mongoroot:<password>@127.0.0.1:27017/admin
   ACKEE_USERNAME=<ackee_username>
   ACKEE_PASSWORD=<ackee_password>
   ACKEE_ALLOW_ORIGIN="https://isabell.uber.space"
@@ -131,11 +129,10 @@ Update by running ``git pull`` in Ackee's directory, updating its dependencies w
 
 .. _Ackee: https://ackee.electerious.com/
 .. _MongoDB: https://mongodb.com
-.. _Version 2.0.0: https://github.com/electerious/Ackee/releases/tag/v2.0.0
 .. _MIT License: https://github.com/electerious/Ackee/blob/master/LICENSE
 
 ----
 
-Tested on Uberspace v7.11.1.1 with NodeJS v14, Ackee v3.0.6 and MongoDB v4.4.
+Tested on Uberspace v7.15.4 with NodeJS v18, Ackee v3.4.2 and MongoDB v5.0.
 
 .. author_list::
