@@ -56,6 +56,7 @@ We create the application directory and install the latest version. The website 
  [isabell@stardust ~]$ cd docusaurus
  [isabell@stardust docusaurus]$ npm init docusaurus@latest my-website classic
  [...]
+ [isabell@stardust docusaurus]$
 
 Setup daemon
 ------------
