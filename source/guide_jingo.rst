@@ -32,7 +32,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 16:
 ::
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '16'
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 Your blog URL needs to be setup:
@@ -229,6 +229,6 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 ----
 
-Tested with Jingo 1.9.7, Uberspace 7.11.5
+Tested with Jingo 1.9.7, Uberspace 7.15.4
 
 .. author_list::
