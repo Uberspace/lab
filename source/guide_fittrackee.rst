@@ -138,8 +138,6 @@ Special note: For an installation in our system it is important to customize the
  export DATABASE_URL=postgresql://fittrackee:fittrackee@localhost:5432/fittrackee
  ...
 
-For more information about the available ports, see :manual:`firewall ports <basics-ports>`.
-
 
 Set up and launch Fittrackee
 ----------------------------
