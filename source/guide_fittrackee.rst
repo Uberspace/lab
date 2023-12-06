@@ -89,6 +89,13 @@ Then install version 1.26.6 of ``urllib3`` because otherwise you will get an err
  ...
  Successfully installed urllib3-1.26.6
 
+You can deactivate the virtual environment context like this:
+
+::
+
+  (fittrackee_venv) [isabell@stardust fittrackee]$ deactivate
+  [isabell@stardust fittrackee]$
+
 
 Configuration
 =============
