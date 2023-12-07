@@ -146,6 +146,9 @@ Special note: For an installation in our system it is important to customize the
  ...
 
 
+Fittrackee
+==========
+
 Set up and launch Fittrackee
 ----------------------------
 
@@ -177,10 +180,26 @@ Start the application
  (fittrackee_venv) [isabell@stardust fittrackee]$ fittrackee
 
 
-Note that you must link port 5000 via :manual:`Web Backends <web-backends>`. Open your :manual:`domain <web-domains>` in web browser and register.
+Note that you must link port 5000 via :manual:`Web Backends <web-backends>`.
 
+Open your :manual:`domain <web-domains>` in web browser and register.
 
 Further information on Fittrackee can be found in `Fittrackees documentation <https://samr1.github.io/FitTrackee/en/installation.html>`_.
+
+Supervisord Daemon Setup
+------------------------
+
+Create ``~/etc/services.d/fittrackee.ini`` with the following content so that the Fittrackee application is automatically activated in the case of a server restart:
+
+.. code-block:: ini
+
+  program:fittrackee]
+  command=bash -c 'cd %(ENV_HOME)s/fittrackee/fittrackee_venv/ && source bin/activate && source /PathToYourEnvFile/.env && fittrackee'
+  autostart=yes
+  autorestart=yes
+  startsecs=30
+
+After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration.
 
 ----
 
