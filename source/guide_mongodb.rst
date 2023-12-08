@@ -11,9 +11,9 @@
   .. image:: _static/images/mongodb.svg
       :align: center
 
-##########
+#######
 MongoDB
-##########
+#######
 
 .. tag_list::
 
@@ -156,6 +156,55 @@ Now you can just run ``mongo`` to connect to your MongoDB instance:
  >
 
 You can exit the shell by entering ``exit``.
+
+
+External access (optional)
+--------------------------
+
+If you want to use your Mongodb instance only from your Uberspace account you can skip this part. However, there are cases where you need to connect to your instance from external addresses - e.g. your home computer. You can access your MongoDB instance externally by opening a port and modifying the service config file. Whennever you open a service to the public internet it should be encrypted, we'll take care of that in this example.
+
+.. code-block:: none
+
+ [isabell@stardust ~]$ uberspace port add
+ Port 43120 will be open for TCP and UDP traffic in a few minutes.
+ [isabell@stardust ~]$ 
+
+Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with the port that was opened by the previous command. 
+
+.. code-block:: ini
+ :emphasize-lines: 4,5,8,9
+
+ [program:mongodb]
+ command=mongod
+   --dbpath %(ENV_HOME)s/mongodb
+   --port 43120
+   --bind_ip 0.0.0.0
+   --auth
+   --unixSocketPrefix %(ENV_HOME)s/mongodb
+   --tlsMode requireTLS 
+   --sslPEMKeyFile %(ENV_HOME)s/mongodb/%(ENV_USER)s.uber.space.pem
+ autostart=yes
+ autorestart=yes
+ startsecs=30
+
+
+Create the `.pem` file with the certificate chain and restart the service:
+
+.. code-block::
+
+ [isabell@stardust ~]$ cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
+ [isabell@stardust ~]$ supervisorctl restart mongodb
+ [isabell@stardust ~]$ 
+
+To ensure MongoDB uses the latest certificates, restart the service monthly, e.g. by creating a cron job via ``crontab -e``.
+
+.. code-block:: none
+
+ @monthly cat /readonly/$USER/certificates/$USER.uber.space.key /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem && supervisorctl restart mongodb > /dev/null
+
+
+Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true``
+
 
 Updates
 =======

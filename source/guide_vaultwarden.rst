@@ -180,6 +180,64 @@ Finishing installation
 
 You are done. Point your Browser to your installation URL ``https://isabell.uber.space`` and create your user.
 
+Admin Page
+======================
+
+The admin page allows you to view all the registered users and to delete them.
+It also allows inviting new users, even when registration is disabled.
+
+
+Enabling Admin Page
+------------------------------
+The admin page is disabled by default.
+
+To enable it, you should create a secure, long password and save the hash of that password into your ``~/vaultwarden/.env``.
+
+You can create the hash with the built in ``hash`` command:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/vaultwarden/output
+ [isabell@stardust ~]$ ./vaultwarden hash
+ Generate an Argon2id PHC string using the 'bitwarden' preset:
+
+ Password:
+ Confirm Password:
+
+ ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+ Generation of the Argon2id PHC string took: 401.754824ms
+ [isabell@stardust ~]$
+
+Now you have to paste the result of the command into your ``~/vaultwarden/.env`` file:
+
+.. code-block:: ini
+ :emphasize-lines: 10
+
+ SMTP_HOST=stardust.uberspace.de
+ SMTP_FROM=isabell@uber.space
+ SMTP_PORT=587
+ SMTP_SECURITY=starttls
+ SMTP_USERNAME=isabell@uber.space
+ SMTP_PASSWORD=MySuperSecretPassword
+ DOMAIN=https://isabell.uber.space
+ ROCKET_ADDRESS=0.0.0.0
+ ROCKET_PORT=8000
+ ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+
+To make sure your changes take effect, restart the service:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart vaultwarden
+
+
+When enabled, you can access it by pointing your browser to ``https://isabell.uber.space/admin``.
+
+.. note ::  Be careful when editing values via the Admin-Page as they overrule your settings in the  ``~/vaultwarden/.env`` file.
+
+
 Best practices
 ==============
 
@@ -190,8 +248,8 @@ You can create a backup of the database manually. ``cd`` to your project folder,
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir ~/vaultwarden/output/data/db-backup
- [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/backup.sqlite3'"
+ [isabell@stardust ~]$ mkdir ~/vaultwarden/data/db-backup
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/backup.sqlite3'"
 
 .. note ::  You could run this command through a CRON job everyday - note that it will overwrite the same backup.sqlite3 file each time. If you want to save every version of the backup, please read further.
 
@@ -199,7 +257,15 @@ Alternatively, you can do the backup with a timestamp and it can be useful if yo
 
 .. code-block:: console
 
- [isabell@stardust ~]$ sqlite3 ~/vaultwarden/output/data/db.sqlite3 ".backup '$HOME/vaultwarden/output/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
+ [isabell@stardust ~]$ sqlite3 ~/vaultwarden/data/db.sqlite3 ".backup '$HOME/vaultwarden/data/db-backup/$(date +%Y-%m-%d).sqlite3'"
+
+To do this, create a bash script with the last command and save it as ``~/backup-vaultwarden.sh`` and make it executable.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ chmod +x backup-vaultwarden.sh
+
+Now you can add this script into your crontab.
 
 Restore up your vault manually
 ------------------------------
@@ -256,6 +322,7 @@ Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the followi
 
  SHOW_PASSWORD_HINT=false
 
+
 Updates
 =======
 
@@ -283,6 +350,19 @@ Updating vaultwarden is really easy.
  [isabell@stardust vaultwarden]$ supervisorctl start vaultwarden
  vaultwarden: started
  [isabell@stardust vaultwarden]$
+ 
+Hint: If the update fails
+-------------------------
+
+When you get the error message ``No layers returned. Verify that the image and tag are valid.`` you'll have to update the Docker Image Extractor first as described below:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd ~/vaultwarden
+ [isabell@stardust ~]$ rm docker-image-extract
+ [isabell@stardust ~]$ wget -O ~/vaultwarden/docker-image-extract https://raw.githubusercontent.com/jjlin/docker-image-extract/main/docker-image-extract
+ [isabell@stardust ~]$ chmod +x docker-image-extract
+ [isabell@stardust ~]$
 
 Acknowledgements
 ================
@@ -295,6 +375,8 @@ This guide is based on the official `vaultwarden documentation`_. Previously, it
 .. _feed: https://github.com/dani-garcia/vaultwarden/releases
 .. _Github: https://github.com/dani-garcia/vaultwarden
 .. _GNU General Public License: https://github.com/dani-garcia/vaultwarden/blob/master/LICENSE.txt
+.. _PHC string: https://github.com/P-H-C/phc-string-format/blob/master/phc-sf-spec.md
+.. _recommends: https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token
 .. _rust toolchain: https://rustup.rs/
 .. _this page: https://github.com/dani-garcia/bw_web_builds/releases
 .. _vaultwarden documentation: https://github.com/dani-garcia/vaultwarden/wiki/Pre-built-binaries#extracting-binaries-without-docker-installed

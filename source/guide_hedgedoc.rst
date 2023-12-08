@@ -41,8 +41,8 @@ Use the recommended :manual:`Node.js <lang-nodejs>` version as mentioned in the 
 
 ::
 
-  [isabell@stardust ~]$ uberspace tools version use node 16
-  Selected Node.js version 16
+  [isabell@stardust ~]$ uberspace tools version use node 20
+  Selected Node.js version 20
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
@@ -62,7 +62,7 @@ Check whether the marked line is the latest_ release.
 .. code-block:: console
   :emphasize-lines: 1
 
-  [isabell@stardust ~]$ VERSION=1.9.2
+  [isabell@stardust ~]$ VERSION=1.9.8
   [isabell@stardust ~]$ wget https://github.com/hedgedoc/hedgedoc/releases/download/$VERSION/hedgedoc-$VERSION.tar.gz
   [...]
   100%[======================================================>] 50,784,713  16.8MB/s   in 2.9s
@@ -382,6 +382,6 @@ You can run this script with:
 
 ----
 
-Tested with HedgeDoc 1.9.2, Uberspace 7.11.5
+Tested with HedgeDoc 1.9.8, Node.js 20, Uberspace 7.15.2
 
 .. author_list::

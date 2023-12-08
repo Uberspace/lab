@@ -112,6 +112,7 @@ Create the file ``~/etc/services.d/mosquitto.ini`` with the following content:
   command=mosquitto -c %(ENV_HOME)s/etc/mosquitto/mosquitto.conf
   autostart=yes
   autorestart=yes
+  startsecs=30 # prevent broken service from looping
 
 .. include:: includes/supervisord.rst
 

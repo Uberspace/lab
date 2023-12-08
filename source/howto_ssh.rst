@@ -85,7 +85,7 @@ If the output in the second line is anything like this it is totally fine and we
 
 .. tip::
   When using Windows 8.1 or any other not up-to-date versions of Windows, you will most probably get an error message when trying to execute the ``ssh`` command.
-  You will either need to update to a more recent version of Windows or use our `howto for Putty <howto_ssh-putty.html>`_ instead of this one here.
+  You will either need to update to a more recent version of Windows or use our `howto for Putty </howto_ssh-putty.html>`_ instead of this one here.
 
 
 Prepare your login data

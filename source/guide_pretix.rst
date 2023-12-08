@@ -61,13 +61,20 @@ Install pretix using the python package manager. Be sure to replace the pseudo b
 
 ::
 
- [isabell@stardust ~]$ pip3.9 install pretix==4.16.0 gunicorn --user
+ [isabell@stardust ~]$ pip3.11 install pretix==4.20.0 gunicorn --user
  [...]
- Running setup.py install for mt-940 ... done
- Running setup.py install for vobject ... done
- Running setup.py install for vat-moss ... done
+  Running setup.py install for static3 ... done
+  Running setup.py install for slimit ... done
+  Running setup.py install for future ... done
+  Running setup.py install for dj-static ... done
+  Running setup.py install for vobject ... done
+  Running setup.py install for python-u2flib-server ... done
+  Running setup.py install for jwcrypto ... done
+  Running setup.py install for django-jquery-js ... done
+  Running setup.py install for paypalrestsdk ... done
+  Running setup.py install for paypal-checkout-serversdk ... done
  [...]
- Successfully installed BeautifulSoup4-4.11.2 Django-3.2.18 Pillow-9.4.0 PyJWT-2.6.0 PyPDF2-2.12.1 amqp-5.1.1 arabic-reshaper-3.0.0 asgiref-3.6.0 async-timeout-4.0.2 attrs-22.2.0 babel-2.11.0 billiard-3.6.4.0 bleach-5.0.1 cbor2-5.4.6 [...]
+ Successfully installed BeautifulSoup4-4.12.2 Django-3.2.19 Pillow-9.5.0 PyJWT-2.6.0 aiohttp-3.8.4 aiosignal-1.3.1 amqp-5.1.1 arabic-reshaper-3.0.0 asgiref-3.7.2 async-timeout-4.0.2 attrs-23.1.0 babel-2.12.1 billiard-3.6.4.0 bleach-5.0.1 cbor2-5.4.6 [...]
  [isabell@stardust ~]$
 
 Also, you need to create an extra data folder:
@@ -125,9 +132,9 @@ You will also need to install a mysqlclient package:
 
 ::
 
- [isabell@stardust ~]$ pip3.9 install mysqlclient --user
+ [isabell@stardust ~]$ pip3.11 install mysqlclient --user
  [...]
- Successfully installed mysqlclient-1.3.13
+ Successfully installed mysqlclient-2.1.1
  [isabell@stardust ~]$
 
 Initialize database
@@ -136,7 +143,7 @@ Initialize the pretix_ database tables and generate the static files:
 
 ::
 
- [isabell@stardust ~]$ python3.9 -m pretix migrate
+ [isabell@stardust ~]$ python3.11 -m pretix migrate
  Operations to perform:
   Apply all migrations: auth, badges, banktransfer, contenttypes, oauth2_provider, otp_static, otp_totp, paypal, pretixapi, pretixbase, pretixdroid, pretixhelpers, pretixmultidomain, sendmail, sessions, stripe, ticketoutputpdf
   Running migrations:
@@ -148,17 +155,20 @@ Initialize the pretix_ database tables and generate the static files:
     Applying auth.0004_alter_user_username_opts... OK
     Applying auth.0005_alter_user_last_login_null... OK
  [...]
- [isabell@stardust ~]$ python3.9 -m pretix rebuild
+ 
+:: 
+ 
+ [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [...]
- File “/home/jupretix/.local/lib/python3.9/site-packages/django/contrib/sites/locale/be/LC_MESSAGES/django.po” is already compiled and up to date.
- File “/home/jupretix/.local/lib/python3.9/site-packages/django/contrib/sites/locale/id/LC_MESSAGES/django.po” is already compiled and up to date.
- File “/home/jupretix/.local/lib/python3.9/site-packages/django/contrib/sites/locale/it/LC_MESSAGES/django.po” is already compiled and up to date.
- processing file django.po in /home/jupretix/.local/lib/python3.9/site-packages/django/contrib/sites/locale/sl/LC_MESSAGES
+ File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/be/LC_MESSAGES/django.po” is already compiled and up to date.
+ File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/id/LC_MESSAGES/django.po” is already compiled and up to date.
+ File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/it/LC_MESSAGES/django.po” is already compiled and up to date.
+ processing file django.po in /home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/sl/LC_MESSAGES
  processing language es
  processing language tr
  processing language uk
 
- 954 static files copied to '/home/jupretix/.local/lib/python3.9/site-packages/pretix/static.dist', 970 post-processed.
+ 954 static files copied to '/home/jupretix/.local/lib/python3.11/site-packages/pretix/static.dist', 970 post-processed.
  Compressing... done
  Compressed 28 block(s) from 547 template(s) for 1 context(s).
  [isabell@stardust ~]$
@@ -204,7 +214,7 @@ Create a new cronjob using ``crontab -e``:
 
 ::
 
-  18,48 * * * * cd ~/pretix_data && python -m pretix runperiodic
+  18,48 * * * * cd ~/pretix_data && python3.11 -m pretix runperiodic
 
 Accessing pretix
 ----------------
@@ -224,15 +234,15 @@ If there is a new version available, install the new version like so:
 
 ::
 
- [isabell@stardust ~]$ pip3.9 install pretix==4.16.0
+ [isabell@stardust ~]$ pip3.11 install pretix==4.16.0
  [isabell@stardust ~]$
 
 Then re-run the Initialize database steps and restart the service like so:
 
 ::
 
- [isabell@stardust ~]$ python3.9 -m pretix migrate
- [isabell@stardust ~]$ python3.9 -m pretix rebuild
+ [isabell@stardust ~]$ python3.11 -m pretix migrate
+ [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [isabell@stardust ~]$ supervisorctl restart pretix
  [isabell@stardust ~]$
 
@@ -245,7 +255,7 @@ Then re-run the Initialize database steps and restart the service like so:
 
 ----
 
-Tested with pretix 2.1.0 and Uberspace 7.1.15.0
+Tested with pretix 4.20.0 and Uberspace 7.15.1
 
 .. author_list::
 

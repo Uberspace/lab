@@ -32,7 +32,7 @@ agents.
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`Go <lang-go>`
+  * :manual:`Go <lang-golang`
   * :manual:`Supervisord <daemons-supervisord>`
   * :manual:`Domains <web-domains>`
 
@@ -45,21 +45,23 @@ Beehive is released under the `AGPL-3.0 License`_.
 Installation
 ============
 
-Install ``Beehive``:
+Check for the latest version on the Beehive `release page <https://github.com/muesli/beehive/releases>`_, then download
+and unpack that version and move the binary to ``~/bin``:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir beehive
-  [isabell@stardust ~]$ cd beehive
+  [isabell@stardust ~]$ cd ~/tmp
   [isabell@stardust beehive]$ wget https://github.com/muesli/beehive/releases/download/v0.4.0/beehive_0.4.0_Linux_x86_64.tar.gz
   [isabell@stardust beehive]$ tar -xzvf beehive_0.4.0_Linux_x86_64.tar.gz
-  [isabell@stardust beehive]$ rm beehive_0.4.0_Linux_x86_64.tar.gz
+  [isabell@stardust beehive]$ mv beehive ~/bin
+  [isabell@stardust beehive]$
 
 
 Configuration
 =============
 
-Beehive will generate default config on startup
+Beehive will generate default config in the working directory, we will use the ``--config`` flag to store the config
+file in ``~/etc/beehive.conf``.
 
 Supervisord Daemon Setup
 ------------------------
@@ -69,18 +71,28 @@ Create ``~/etc/services.d/beehive.ini`` with the following content:
 .. code-block:: ini
 
   [program:beehive]
-  command=%(ENV_HOME)s/beehive/beehive
+  command=beehive --config ~/etc/beehive.conf
   autostart=yes
   autorestart=yes
+  startsecs=30s
 
 .. include:: includes/supervisord.rst
 
 Finishing installation
 ======================
 
-.. warning:: Since beehive does not support any kind of authentication, you need to access it through an SSH tunnel using `SSH port forwarding`_.
+Since Beehive does not support any kind of authentication we will not make it public using a web backend but use
+`SSH port forwarding`_ to create a secure tunnel from your local device. To do so, execute the following on your
+**local device**:
 
-To finish the installation, go to ``http://localhost:8181``.
+.. code-block:: console
+
+  [you@localhost ~]$ ssh -L 8181:localhost:8181 isabell@stardust.uberspace.de -N -v
+  [...]
+  debug1: Connection to port 8181 forwarding to localhost port 8181 requested.
+
+Now you can open ``http://localhost:8181`` in your browser and this will forward to the Uberspace and deliver the
+Beehive web frontend.
 
 Updates
 =======

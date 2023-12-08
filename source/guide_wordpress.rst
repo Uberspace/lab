@@ -66,7 +66,7 @@ You will need to enter the following information:
 
 
 .. code-block:: console
- :emphasize-lines: 1,6,10
+ :emphasize-lines: 1,6,8,10
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wp core download --locale=en_US

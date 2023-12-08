@@ -92,7 +92,7 @@ First, set your site URL:
 
     "SiteURL": "https://isabell.uber.space"
 
-Then find the ``SqlSettings`` block and change the database driver to ``mysql``, replace ``mmuser`` with your username, ``mostest`` with your MySQL password and ``isabell_mattermost`` with the name of the database you created earlier:
+Then find the ``SqlSettings`` block and change ``DriverName`` driver to ``mysql``. Change ``DataSource`` like bellow but replace ``isabell`` on both occasions with your uberspace username and ``MySuperSecretPassword`` with your MySQL password:
 
 .. code-block:: javascript
  :emphasize-lines: 2,3
@@ -140,7 +140,7 @@ If it's not in state RUNNING, check your configuration.
 Setup a user
 ------------
 
-You can now point your browser to your URL and setup a user.
+You can now point your browser to your URL and setup a user. Do this immediately after starting the server, as the very first user will be an administrator user.
 
 Further customisation
 ---------------------
@@ -150,18 +150,18 @@ To further customise your configuration, you can open the ``system console`` in 
 Update
 ======
 
-Manual 
+Manual
 ------
 
-1. Stop your service, 
+1. Stop your service,
 2. Backup your directories
-	- ``/home/isabell/mattermost/client/plugins``, 
-	- ``/home/isabell/mattermost/config``, 
-	- ``/home/isabell/mattermost/data``, 
+	- ``/home/isabell/mattermost/client/plugins``,
+	- ``/home/isabell/mattermost/config``,
+	- ``/home/isabell/mattermost/data``,
 	- ``/home/isabell/mattermost/logs``
-	- ``/home/isabell/mattermost/plugins`` 
+	- ``/home/isabell/mattermost/plugins``
 3. Rename/delete your ``/home/isabell/mattermost`` directory.
-4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories. 
+4. Proceed with the installation steps and restore the ``client/plugins``, ``config``, ``data``, ``logs`` and ``plugins`` directories.
 5. Then you can start your service again.
 
 When upgrading to Mattermost 6.4 or newer you need to change the collation of the database:
@@ -185,28 +185,29 @@ Use the script attached to update Mattermost to the current version. Run the scr
 	if [ ! -d "./mattermost" ]; then
 	printf "Error: ./mattermost directory does not exist. Are you running in the correct place?. Exit\n"
 	exit 1
-	else 
+	else
 		printf "Directory ./mattermost found.\n"
 	fi
 
 	database=$(cat ./mattermost/config/config.json | jq '.SqlSettings.DataSource' | grep -o '/.*?' | tail -c +2 | head -c -2)
-	if [ -z "$database" ] 
+	if [ -z "$database" ]
 	then
 		printf "\nError: Could not extract the database name from ./mattermost/config/config.json. Maybe the script runs in the wrong directory? Exit 1.\n"
 		exit 2
-	else 
+	else
 		printf "Using database: $database\n"
 	fi
 
 	version=$1
-	if [ -z "$version" ] 
+	if [ -z "$version" ]
 	then
 		printf "No manual version given. Check from official website ...\n"
 
-		tag_name=$(curl -s https://api.github.com/repos/mattermost/mattermost-server/releases/latest | jq --raw-output '.tag_name')
+		tag_name=$(curl --silent --location https://api.github.com/repos/mattermost/mattermost/releases/latest |
+		  jq --raw-output '.tag_name')
 		version=${tag_name:1} # This will remove the first character `v` from the version tag `v1.2.3`
 
-		printf "Newest Version detected: v$version\n"
+		printf "Newest Version detected: v$version. For the changes introduced with this update see: https://docs.mattermost.com/install/self-managed-changelog.html\n"
 	fi
 
 	usedVersion=$(./mattermost/bin/mattermost version | grep -Po "(?<=Version: )([0-9]|\.)*(?=\s|$)")

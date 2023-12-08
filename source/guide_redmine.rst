@@ -56,8 +56,7 @@ Ruby requires a database, so you should create an empty database now.
   Use the collation ``utf8mb4``, otherwise Redmine will crash when users paste
   emojis in tickets.
 
-.. code-block:: console
-  :emphasize-lines: 2
+.. code-block:: none
 
   [isabell@stardust ~] mysql -e "CREATE DATABASE ${USER}_redmine CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
   [isabell@stardust ~]

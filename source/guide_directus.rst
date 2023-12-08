@@ -19,6 +19,12 @@ Directus
 
 Directus_ is a real-time API and App dashboard for managing SQL database content.
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Directus, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1581
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -80,7 +86,7 @@ Create directory ``directus`` and sub directory ``logs``.
   [isabell@stardust ~]$ cd ~/directus
   [isabell@stardust directus]$ npm install @mapbox/node-pre-gyp argon2
   [isabell@stardust directus]$ npx node-pre-gyp rebuild -C ./node_modules/argon2
-  [isabell@stardust directus]$ rm -rf ./node_modules/direcus/node_modules/argon2
+  [isabell@stardust directus]$ rm -rf ~/directus/node_modules/argon2/
   [isabell@stardust directus]$
 
 Installation and initialize a new instance of Directus_
