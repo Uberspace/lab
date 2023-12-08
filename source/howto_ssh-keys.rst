@@ -56,7 +56,7 @@ You should now have 2 files (within the path that you confirmed before) and it i
 
 
 Add the public ssh key to your Uberspace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 To add the public key to your Uberspace, first get the content of the ``id_ed25519.pub`` file. You can open the file with a simple text editor
 or you may again use the shell to show its content (the command may differ on your local system):
@@ -66,8 +66,25 @@ or you may again use the shell to show its content (the command may differ on yo
   localuser@localhost ~ $ cat ~/.ssh/id_ed25519.pub
   ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXeB9uga0aDoGLCMNkCJN4EoFlsI3MZi+8Xa6K5hMGF localuser@localhost
 
+Add the public ssh key via Uberspace Dashboard
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Then login to your Uberspace `Dashboard <https://dashboard.uberspace.de>`_ and copy the content (aka your public key) to the ``Add a SSH public key`` field on the
 `Logins page <https://dashboard.uberspace.de/dashboard/authentication>`_.
+
+
+Add the public ssh key on your Uberspace
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Instead of using the Uberspace Dashboard, you can also manually add your public key to the file ``~/.ssh/authorized_keys`` on your Uberspace. You can open the file on your Uberspace with a simple text editor and add a new line with the content (aka your public key) to it.
+To do this, you need access via ssh (using an :doc:`ssh password <howto_ssh>` or using an already configured ssh key).
+
+If you edit the file ``~/.ssh/authorized_keys`` manually, be careful not to delete or modify the first entry
+
+.. code-block:: txt
+
+  ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAzemLn04VCUIZuoGiQ89mU6y5Oq4FBO1oFIusBm0uy/jggZrezl50/ntDFbSdCvd8P4xKr++hFN/ug7SkikEULFwQ2efDw7RU45I4iT74St2v7Oa3L/cFV3RNB1sazkzfNyyogwKoykzrD69oRtJLwLsMY09JIMTS7erzIgWimMq5xo2/jzDcfRXaqsO8SDVuQE40SLe3xZz7cXdVRWmG2h+XCpsc8AbqlU0RtcomaT2Lz44lQHMJpZA7bBU6WkFNB52PvQEiQTIOxByTmKB9kVCZeSCyn/q5Y+E9pykYAsqTmZzT8DD/oa7O3QvVlI+8suA9QLcNFZszGdosi4YtTQ== Uberspace.de (nicht loeschen)
+  [..]
+
+It is used by the Uberspace Dashboard (and not shown in the Dashboard's list of ssh keys).
 
 
 Login using the SSH key
