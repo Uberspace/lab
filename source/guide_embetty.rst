@@ -25,24 +25,26 @@ Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to e
   * :manual:`Node.js <lang-nodejs>`
   * :manual:`supervisord <daemons-supervisord>`
 
+License
+=======
+
+Embetty_ is released under the `MIT License`_.
+
 Prerequisites
 =============
 
-embetty.js
-----------
-
-
-Change to your :manual:`DocumentRoot <web-documentroot>` and download the current version of embetty.js from their github feed_ (use the current link, not the one from the snippet below!):
+We're using :manual:`Node.js <lang-nodejs>` version 20, but others should work too:
 
 ::
 
-  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
-  [isabell@stardust html]$ wget https://github.com/heiseonline/embetty/releases/download/v3.0.8/embetty.js
-  [...]
+  [isabell@stardust ~]$ uberspace tools version use node 20
+  Selected Node.js version 20
+  The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
-Please refer to Embetty's `quick start guide`_ for details.
+Setup your URL:
 
+.. include:: includes/web-domain-list.rst
 
 Twitter credentials (optional)
 ------------------------------
@@ -71,16 +73,13 @@ Use ``npm`` to install the latest version of Embetty server:
   /home/isabell/bin/embetty-start -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty-start
   /home/isabell/bin/embetty -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty
   [...]
-  added 182 packages
+  added 192 packages in 20s
   [isabell@stardust ~]$
 
 
 
 Configuration
 =============
-
-Change the configuration
-------------------------
 
 Setup daemon
 ------------
@@ -125,7 +124,25 @@ Configure web server
 Usage
 =====
 
-Please refer to Embetty's `quick start guide`_.
+To make use of embetty, you'll have to add two html elements to your website. A `meta` tag pointing to your embetty-server and a `script` tag pointing to the embetty.js file which is distributed by your embetty-server.
+
+This allows you to make use of the embetty-html-elements to embed tweets, toots and videos.
+
+.. code-block:: html
+ :emphasize-lines: 4,5
+
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta data-embetty-server="/path/to/embetty-server" />
+     <script async src="/path/to/embetty-server/embetty.js"></script>
+   </head>
+   <body>
+     <embetty-tweet status="1166685910030790662"></embetty-tweet>
+   </body>
+ </html>
+
+Please refer to Embetty's `quick start guide`_ for further details.
 
 Updates
 =======
@@ -145,9 +162,10 @@ Use ``npm`` to update Embetty:
 .. _quick start guide: https://github.com/heiseonline/embetty#quick-start
 .. _Twitter application: https://apps.twitter.com/
 .. _feed: https://github.com/heiseonline/embetty-server/releases
+.. _MIT License: https://github.com/heiseonline/embetty-server/blob/develop/LICENSE
 
 ----
 
-Tested with Embetty 3.0.8, Uberspace 7.11.5
+Tested with Embetty-Server 2.0.3, Uberspace 7.15.6
 
 .. author_list::
