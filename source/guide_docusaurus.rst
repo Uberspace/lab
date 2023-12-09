@@ -38,7 +38,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the latest version:
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '12'
+ Using 'Node.js' version: '18'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -48,16 +48,14 @@ Your website domain needs to be set up:
 Installation
 ============
 
-We create the application directory and install the latest version. The website is created with ``docusaurus-init``.
+We create the application directory and install the latest version. The website is created with the classic template in the directory ``my-website``.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ mkdir docusaurus
  [isabell@stardust ~]$ cd docusaurus
- [isabell@stardust docusaurus]$ npm install --global docusaurus-init
- (...)
- [isabell@stardust docusaurus]$ docusaurus-init
- (...)
+ [isabell@stardust docusaurus]$ npm init docusaurus@latest my-website classic
+ [...]
  [isabell@stardust docusaurus]$
 
 Setup daemon
@@ -68,10 +66,11 @@ Create ``~/etc/services.d/docusaurus.ini`` with the following content:
 .. code-block:: ini
 
  [program:docusaurus]
- directory=%(ENV_HOME)s/docusaurus/website
- command=npm start
+ directory=%(ENV_HOME)s/docusaurus/my-website
+ command=npm start -- --host 0.0.0.0
  autostart=yes
  autorestart=yes
+ startsecs=30
 
 .. include:: includes/supervisord.rst
 
@@ -92,7 +91,7 @@ Updates
 .. code-block:: console
 
  [isabell@stardust ~]$ supervisorctl stop docusaurus
- [isabell@stardust ~]$ cd docusaurus
+ [isabell@stardust ~]$ cd ~/docusaurus/my-website
  [isabell@stardust docusaurus]$ npm update docusaurus
  [isabell@stardust docusaurus]$ supervisorctl start docusaurus
  [isabell@stardust docusaurus]$
@@ -102,6 +101,6 @@ Updates
 
 ----
 
-Tested with Docusaurus 1.14.4 and Uberspace 7.6.12
+Tested with Docusaurus 3.0.0 and Uberspace 7.15.4
 
 .. author_list::
