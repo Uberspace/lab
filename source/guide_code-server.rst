@@ -20,6 +20,12 @@ code-server
 
 code-server_  is `VS Code`_ running on a remote server, in this guide your Uberspace, accessible through the browser. `VS Code`_ is a modern code editor with integrated Git support, a code debugger, smart autocompletion, and customisable and extensible features. This means that you can use various devices running different operating systems, and always have a consistent development environment on hand.
 
+.. error::
+
+  This guide seems to be **broken** for any version above 4.16.1, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1680
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
