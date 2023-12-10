@@ -165,9 +165,9 @@ Configure web server
 Customization
 =============
 
-For any further configuration or customization you should have a look at the `Cryptpad Wiki`_.
+For any further configuration or customization you should have a look at the `Cryptpad Admin Guide`_.
 
-Also you should configure a password salt as explained in the `Cryptpad Admin Guide`. You probably want to set up an admin account in ``config/config.js``.
+Also you should configure a password salt as explained in the `Cryptpad Admin Guide`_. You probably want to set up an admin account in ``config/config.js``.
 
 Updates
 =======
