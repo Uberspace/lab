@@ -37,23 +37,27 @@ Your website domain or subdomain needs to be setup up:
 
 .. include:: includes/web-domain-list.rst
 
-We also need `Bower`:
+We're using :manual:`Node.js <lang-nodejs>` version 20, but others should work too:
 
 ::
 
- [isabell@stardust ~]$ npm install -g bower
- npm WARN deprecated bower@1.8.8: We don't recommend using Bower for new projects. Please consider Yarn and Webpack or Parcel. You can read how to migrate legacy project here: https://bower.io/blog/2017/how-to-migrate-away-from-bower/
+  [isabell@stardust ~]$ uberspace tools version use node 20
+  Selected Node.js version 20
+  The new configuration is adapted immediately. Minor updates will be applied automatically.
+  [isabell@stardust ~]$
 
-Please ignore Bower's warning. As of this writing, CryptPad still uses Bower (not Yarn, not Parcel), and so will you.
+Setup your URL:
+
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``4.14.0`` with the current release number from the feed_:
+Start with cloning the Cryptpad source code from Github_ and be sure to replace the branch ``5.5.0`` with the current release number from the feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 5.2.1 --depth 1 https://github.com/xwiki-labs/cryptpad.git ~/cryptpad
+  [isabell@stardust ~]$ git clone --branch 5.5.0 --depth 1 https://github.com/cryptpad/cryptpad.git ~/cryptpad
   Cloning into '~/cryptpad'...
   remote: Enumerating objects: 15111, done.
   remote: Counting objects: 100% (15111/15111), done.
@@ -82,10 +86,10 @@ Now we need to install the dependencies:
 
   [isabell@stardust ~]$ cd ~/cryptpad
   [isabell@stardust cryptpad]$ npm install
-  added 212 packages from 231 contributors and audited 375 packages in 4.828s
+  added 469 packages, and audited 470 packages in 57s
   (...)
   found 0 vulnerabilities
-  [isabell@stardust cryptpad]$ bower install
+  [isabell@stardust cryptpad]$ npm run install:components
   (...)
   [isabell@stardust cryptpad]$
 
@@ -125,7 +129,7 @@ This will make sure that the server listens on all network interfaces.
 
   httpSafePort: 80,
 
-Unfortunatley, it seems impossible to run Cryptpad with an unsafe and a safe domain as suggested. This would make it possible to mitigate cross site scripting attacks. That is why only the `httpUnsafeOrigin` is set while the `httpSafeOrigin`is not set. So it is surprsing that the `httpSafePort` needs to be set. This is hack to make Cryptpad generate the correct URL in the HTML.
+Unfortunatley, it seems impossible to run Cryptpad with an unsafe and a safe domain as suggested. This would make it possible to mitigate cross site scripting attacks. That is why only the `httpUnsafeOrigin` is set while the `httpSafeOrigin`is not set. So it is surprsing that the `httpSafePort` needs to be set. This is a hack to make Cryptpad generate the correct URL in the HTML.
 
 .. note::
   If you forget to make change 2, the command ``uberspace web backend list`` will later complain as follows:
@@ -134,9 +138,6 @@ Unfortunatley, it seems impossible to run Cryptpad with an unsafe and a safe dom
 
    [isabell@stardust ~]$ uberspace web backend list
    / http:3000 => NOT OK, wrong interface (127.0.0.1): PID 15682, /usr/bin/node server
-
-
-
 
 Setup daemon
 ------------
@@ -178,14 +179,14 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the version number ``4.14.0`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the version number ``5.5.0`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/cryptpad
-  [isabell@stardust cryptpad]$ git pull origin 5.2.1
-  From https://github.com/xwiki-labs/cryptpad
-   * tag                 4.14.0     -> FETCH_HEAD
+  [isabell@stardust cryptpad]$ git pull origin 5.5.0
+  From https://github.com/cryptpad/cryptpad
+   * tag                 5.5.0     -> FETCH_HEAD
   Already up to date.
 
   [isabell@stardust cryptpad]$
@@ -194,11 +195,11 @@ Now update the dependencies:
 
 .. code-block:: console
 
-  [isabell@stardust cryptpad]$ npm install
+  [isabell@stardust cryptpad]$ npm update
   removed 1 package and audited 313 packages in 14.535s
   found 0 vulnerabilities
 
-  [isabell@stardust cryptpad]$ bower update
+  [isabell@stardust cryptpad]$ npm run install:components
   (...)
   [isabell@stardust cryptpad]$
 
@@ -210,16 +211,14 @@ Then you need to restart the service, so the new code is used by the webserver:
   [isabell@stardust cryptpad]$
 
 .. _`Cryptpad`: https://cryptpad.fr/
-.. _`ChainPad`: https://github.com/xwiki-contrib/chainpad/
-.. _`Bower`: https://bower.io/
-.. _Github: https://github.com/xwiki-labs/cryptpad
-.. _feed: https://github.com/xwiki-labs/cryptpad/releases
-.. _`Cryptpad Wiki`: https://github.com/xwiki-labs/cryptpad/wiki/
+.. _`ChainPad`: https://github.com/cryptpad/chainpad
+.. _Github: https://github.com/cryptpad/cryptpad
+.. _feed: https://github.com/cryptpad/cryptpad/releases
 .. _`Cryptpad Admin Guide`: https://docs.cryptpad.org/en/admin_guide/customization.html
 
 
 ----
 
-Tested with Cryptpad 5.2.1 and Uberspace 7.14.0
+Tested with Cryptpad 5.5.0 and Uberspace 7.15.6
 
 .. author_list::
