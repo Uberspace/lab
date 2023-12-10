@@ -46,10 +46,6 @@ We're using :manual:`Node.js <lang-nodejs>` version 20, but others should work t
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
-Setup your URL:
-
-.. include:: includes/web-domain-list.rst
-
 Installation
 ============
 
