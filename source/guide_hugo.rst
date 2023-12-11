@@ -64,22 +64,22 @@ Check the Hugo_ website or `Github Repository`_ for the latest release and copy 
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.57.2/hugo_0.57.2_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.121.1/hugo_0.121.1_linux-amd64.tar.gz
  […]
- Saving to: ‘hugo_0.57.2_Linux-64bit.tar.gz’
+ Saving to: ‘hugo_0.121.1_linux-amd64.tar.gz ’
 
  100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
 
- 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.57.2_Linux-64bit.tar.gz’ saved [7750708/7750708]
+ 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.121.1_linux-amd64.tar.gz ’ saved [7750708/7750708]
  [isabell@stardust ~]$
 
 Get the hugo binary from the archive, delete the archive and enable hugo to be executed easily. Replace the version in the archive file name with the one you just downloaded.
 
 ::
 
- [isabell@stardust ~]$ tar -xvf hugo_0.57.2_Linux-64bit.tar.gz hugo
+ [isabell@stardust ~]$ tar -xvf hugo_0.121.1_linux-amd64.tar.gz  hugo
  hugo
- [isabell@stardust ~]$ rm hugo_0.57.2_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ rm hugo_0.121.1_linux-amd64.tar.gz
  [isabell@stardust ~]$ mv hugo ~/bin
  [isabell@stardust ~]$
 
@@ -88,7 +88,7 @@ After setting up, test if Hugo works. The output is the version number of Hugo.
 ::
 
  [isabell@stardust ~]$ hugo version
- Hugo Static Site Generator v0.57.2-A849CB2D linux/amd64 BuildDate: 2019-08-17T17:54:13Z
+ hugo v0.121.1-00b46fed8e47f7bb0a85d7cfc2d9f1356379b740 linux/amd64 BuildDate=2023-12-08T08:47:45Z VendorInfo=gohugoio
  [isabell@stardust ~]$
 
 
