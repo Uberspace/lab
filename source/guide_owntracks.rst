@@ -1,8 +1,5 @@
 .. highlight:: console
 
-.. spelling::
-    Nodemule
-
 .. author:: Gerald Schneider <gerald@schneidr.de>
 
 .. tag:: geolocation
