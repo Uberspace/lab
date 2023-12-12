@@ -4,6 +4,8 @@
 .. tag:: database
 .. tag:: metrics
 .. tag:: prometheus
+.. tag:: golang
+.. tag:: rust
 
 .. sidebar:: About
 
@@ -109,7 +111,7 @@ with the following content.
 
 .. include:: includes/supervisord.rst
 
-If it’s not in state RUNNING (after the time set in ``startsecs`` has passed),
+If it's not in state RUNNING (after the time set in ``startsecs`` has passed),
 check your configuration.
 
 Initial Setup

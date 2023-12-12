@@ -5,6 +5,7 @@
 .. tag:: XMPP
 .. tag:: Jabber
 .. tag:: Instant Messaging
+.. tag:: Erlang
 
 .. highlight:: console
 

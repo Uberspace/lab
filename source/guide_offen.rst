@@ -9,6 +9,7 @@
 .. tag:: web
 .. tag:: analytics
 .. tag:: privacy
+.. tag:: golang
 
 .. sidebar:: Logo
 
