@@ -79,6 +79,7 @@ Backup your ``Specific`` directory, delete everything else in your ``html`` dire
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp -r Specific ~
+ [isabell@stardust html]$ cp baikal.yaml ~
  [isabell@stardust html]$ rm -rf * .*
 
 Proceed with the installation steps from here and move back your config file.
@@ -86,6 +87,7 @@ Proceed with the installation steps from here and move back your config file.
 .. code-block:: console
 
  [isabell@stardust html]$ mv ~/Specific ./
+ [isabell@stardust html]$ mv ~/baikal.yaml ./config/
  [isabell@stardust html]$
 
 Finish the update by open isabell.uber.space in your browser.
