@@ -42,12 +42,12 @@ EtherCalc is distributed under different licenses, including `Common Public Attr
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 20:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '12'
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -159,6 +159,6 @@ It might take a few minutes before your EtherCalc comes back online because ``np
 
 ----
 
-Tested with EtherCalc 0.20200306.0, Uberspace 7.5.0.0
+Tested with EtherCalc 0.20201228.1, Uberspace 7.15.6
 
 .. author_list::

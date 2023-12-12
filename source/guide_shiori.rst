@@ -39,7 +39,7 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/go-shiori/shiori/releases/download/v1.5.0/shiori-linux-amd64-stretch -O ~/bin/shiori
+  [isabell@stardust ~]$ wget https://github.com/go-shiori/shiori/releases/latest/download/shiori_Linux_x86_64.tar.gz
   Resolving github.com (github.com)... 140.82.121.3
   Connecting to github.com (github.com)|140.82.121.3|:443... connected.
   HTTP request sent, awaiting response... 302 Found
@@ -48,7 +48,9 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
 
  100%[======================================>] 19,735,216  12.2MB/s
 
-  2020-11-11 22:04:39 (12.2 MB/s) - ‘/home/isabell/bin/shiori’ saved [19735216/19735216]
+  [...]
+  [isabell@stardust ~]$ tar xf shiori_Linux_x86_64.tar.gz 
+  [isabell@stardust ~]$ mv ~/shiori ~/bin/shiori
   [isabell@stardust ~]$ chmod u+x ~/bin/shiori
   [isabell@stardust ~]$
 
@@ -58,7 +60,7 @@ Configuration
 Setup daemon
 ------------
 
-.. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command in your ``shiori.ini`` file. Remember to adjust the port for the web backend as well.
+.. note:: To use a different port instead of 8080, you need to add ``-p <portnumber>`` to the command ``shiori server`` in your ``shiori.ini`` file. Remember to adjust the port for the web backend as well.
 
 Create ``~/etc/services.d/shiori.ini`` with the following content.
 
