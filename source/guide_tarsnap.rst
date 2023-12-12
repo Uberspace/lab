@@ -3,6 +3,7 @@
 .. author:: Torsten Meyer <https://knodderdachs.de>
 
 .. tag:: backup
+.. tag:: lang-c
 
 .. sidebar:: Logo
 

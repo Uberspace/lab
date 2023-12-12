@@ -4,6 +4,7 @@
 
 .. tag:: web
 .. tag:: sso
+.. tag:: lang-java
 
 .. spelling::
     Keycloak
