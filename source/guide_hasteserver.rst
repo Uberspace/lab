@@ -34,12 +34,12 @@ haste-server_ is released under the `MIT License`_.
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` version 12, but others should work too:
+We're using :manual:`Node.js <lang-nodejs>` version 20, but others should work too:
 
 ::
 
-  [isabell@stardust ~]$ uberspace tools version use node 12
-  Selected Node.js version 12
+  [isabell@stardust ~]$ uberspace tools version use node 20
+  Selected Node.js version 20
   The new configuration is adapted immediately. Minor updates will be applied automatically.
   [isabell@stardust ~]$
 
@@ -54,7 +54,7 @@ First clone the GitHub_ repository:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone https://github.com/seejohnrun/haste-server ~/haste
+  [isabell@stardust ~]$ git clone https://github.com/toptal/haste-server ~/haste
   Cloning into '/home/isabell/haste'...
   remote: Enumerating objects: 9, done.
   remote: Counting objects: 100% (9/9), done.
@@ -71,7 +71,7 @@ Then install the dependencies with ``npm install``:
 
   [isabell@stardust ~]$ cd haste/
   [isabell@stardust haste]$ npm install
-  added 77 packages from 355 contributors and audited 94 packages in 4.674s
+  added 203 packages, and audited 204 packages in 13s
   [isabell@stardust ~]$
 
 
@@ -111,21 +111,21 @@ To use redis storage you must setup redis as specified :lab:`here <guide_redis>`
   [isabell@stardust ~]$ npm install redis
   [...]
   + redis@3.0.2
-  added 5 packages from 7 contributors and audited 6 packages in 1.312s
+  added 5 packages from 7 contributors and audited 6 packages in 3.141s
   [isabell@stardust ~]$
 
 Make sure to also change the port in ``~/.redis/conf`` to something accessible, like ``6379`` and restart redis.
 
-Once you've done that, your config section should look like:
+Once you've done that, your config section for storage should look like:
 
 .. code-block:: json
 
-  {
+  storage: {
     "type": "redis",
     "host": "localhost",
     "port": 6379,
     "db": 0
-  }
+  },
 
 If your Redis server is configured for password authentication, use the ``password`` field.
 
@@ -139,7 +139,7 @@ To use postgres storage you must setup postgres as specified :lab:`here <guide_p
   [isabell@stardust ~]$ npm install pg
   [...]
   + pg@8.0.3
-  added 17 packages from 9 contributors and audited 28 packages in 1.56s
+  added 17 packages from 9 contributors and audited 28 packages in 3.14s
   [isabell@stardust ~]$
 
 Once you've done that, create a new user for haste-server_ and set a password.
@@ -172,14 +172,14 @@ You will have to manually add a table to your postgres database:
   haste=> \q
   [isabell@stardust ~]$
 
-Once you've done that, your config section should look like:
+Once you've done that, your config section for storage should look like:
 
 .. code-block:: json
 
-  {
+  storage: {
     "type": "postgres",
     "connectionUrl": "postgres://haste:password@localhost:5432/haste"
-  }
+  },
 
 Replace ``password`` with the password of user haste.
 
@@ -205,6 +205,8 @@ Create ``~/etc/services.d/haste-server.ini`` with the following content:
   directory=%(ENV_HOME)s/haste/
   command=npm start
   autorestart=true
+  startsecs=30
+  stopasgroup=true
 
 .. include:: includes/supervisord.rst
 
@@ -219,7 +221,7 @@ If there is a new version available, you can get the code using git:
 
   [isabell@stardust ~]$ cd ~/haste
   [isabell@stardust haste]$ git pull origin
-  From https://github.com/seejohnrun/haste-server
+  From https://github.com/toptal/haste-server
   Updating b8b2e4bc..96ac381a
   […]
   [isabell@stardust ~]$
@@ -235,19 +237,19 @@ Then you need to restart the service daemon, so the new code is used by the webs
 
 It might take a few minutes before Haste server comes back online because ``npm`` re-checks and installs dependencies. You can check the service's log file using ``supervisorctl tail -f haste-server``.
 
-.. _Haste: https://github.com/seejohnrun/haste-server
-.. _haste-server: https://github.com/seejohnrun/haste-server
+.. _Haste: https://github.com/toptal/haste-server
+.. _haste-server: https://github.com/toptal/haste-server
 .. _hastebin.com: https://hastebin.com
-.. _GitHub: https://github.com/seejohnrun/haste-server
-.. _README: https://github.com/seejohnrun/haste-server/blob/master/README.md
-.. _MIT License: https://github.com/seejohnrun/haste-server/blob/master/README.md#license
+.. _GitHub: https://github.com/toptal/haste-server
+.. _README: https://github.com/toptal/haste-server/blob/master/README.md
+.. _MIT License: https://github.com/toptal/haste-server/blob/master/README.md#license
 
 ----
 
-Tested on Uberspace 7.5.1. with haste-server and
+Tested on Uberspace 7.15.6. with haste-server and
 
 * File storage
-* :lab:`Redis 5.0.8 <guide_redis>`
-* :lab:`PostgreSQL 9.6.17 <guide_postgres>`
+* :lab:`Redis 7.2.3 <guide_redis>`
+* :lab:`PostgreSQL 15.5 <guide_postgres>`
 
 .. author_list::
