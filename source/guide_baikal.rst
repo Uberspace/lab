@@ -73,19 +73,21 @@ Updates
 
 Check Baïkal's `stable releases`_ for the latest versions. You might want to use the `baikal_updates`_ script for doing these checks. If a newer version is available, you should manually update your installation.
 
-Backup your ``Specific`` directory, delete everything else in your ``html`` directory.
+Backup your ``Specific`` directory and the ``baikal.yaml`` config file, delete everything else in your ``html`` directory.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ cp -r Specific ~
+ [isabell@stardust html]$ cp baikal.yaml ~
  [isabell@stardust html]$ rm -rf * .*
 
-Proceed with the installation steps from here and move back your config file.
+Proceed with the installation steps from here and move back your config files.
 
 .. code-block:: console
 
  [isabell@stardust html]$ mv ~/Specific ./
+ [isabell@stardust html]$ mv ~/baikal.yaml ./config/
  [isabell@stardust html]$
 
 Finish the update by open isabell.uber.space in your browser.

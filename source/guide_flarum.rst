@@ -30,12 +30,12 @@ Flarum_ is the next-generation forum software that makes online discussion fun. 
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 8.0:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.2:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -73,6 +73,6 @@ Fill out your forum title, admin user and edit the following database settings:
 
 ----
 
-Tested with Flarum v0.1.0-beta.13 and Uberspace 7.10.0
+Tested with Flarum 1.8.0 and Uberspace 7.15.6
 
 .. author_list::
