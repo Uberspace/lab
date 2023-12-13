@@ -29,7 +29,7 @@ Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON
 License
 =======
 
-Flatboard_ is released under the `MIT License`_.
+Flatboard_ is released under the MIT License_.
 
 Prerequisites
 =============
