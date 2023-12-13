@@ -5,6 +5,8 @@
 .. tag:: fediverse
 .. tag:: npm
 .. tag:: calendar
+.. tag:: lang-php
+.. tag:: lang-nodejs
 
 .. sidebar:: Logo
 
@@ -20,6 +22,7 @@ Gancio
 .. tag_list::
 
 Gancio_ is a shared agenda for local communities connected to the Fediverse.
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -54,7 +57,7 @@ Gancio v1.6.14 is running with node 14=> and 18=<.
   [isabell@stardust ~]$ uberspace tools version use node 18
   Selected Node.js version 18
   The new configuration is adapted immediately. Minor updates will be applied automatically.
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
 Installation
@@ -80,7 +83,7 @@ Configuration
 =============
 
 
-You will be asked for your database credentials at the setup process when you visit your Gancio instance for the first time. 
+You will be asked for your database credentials at the setup process when you visit your Gancio instance for the first time.
 
 
 Setup daemon
@@ -91,7 +94,7 @@ Create ``~/etc/services.d/gancio.ini`` with the following content:
 .. code-block:: ini
 
  [program:gancio]
- command=%(ENV_HOME)s/bin/gancio 
+ command=%(ENV_HOME)s/bin/gancio
  directory=%(ENV_HOME)s
  autostart=yes
  autorestart=yes
@@ -120,5 +123,9 @@ Updates
   [isabell@stardust ~]$ supervisorctl restart gancio
   gancio: stopped
   gancio: started
+
+----
+
+Tested with Gancio 1.6.14 and Uberspace 7.15.4.0
 
 .. author_list::
