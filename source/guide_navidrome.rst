@@ -5,7 +5,7 @@
 .. tag:: mediaplayer
 .. tag:: streaming
 .. tag:: Subsonic
-.. tag:: Go
+.. tag:: golang
 .. tag:: JavaScript
 
 .. sidebar:: Logo

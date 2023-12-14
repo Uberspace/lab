@@ -12,6 +12,9 @@
 .. tag:: web
 .. tag:: docker
 .. tag:: udocker
+.. tag:: lang-cpp
+.. tag:: lang-java
+.. tag:: lang-python
 
 .. sidebar:: About
 

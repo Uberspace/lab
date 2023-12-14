@@ -4,6 +4,7 @@
 
 .. tag:: self-hosting
 .. tag:: database
+.. tag:: Erlang
 
 .. sidebar:: About
 
@@ -144,5 +145,7 @@ Web backend
 .. include:: includes/web-backend.rst
 
 ----
+
+Tested with CouchDB 3.3.3 and Uberspace 7.15.4.0
 
 .. author_list::
