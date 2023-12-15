@@ -26,6 +26,12 @@ This guide will show you how to install Mautic 4 on your Uberspace using the Com
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of PHP, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1692
+
 Prerequisites
 =============
 
