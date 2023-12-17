@@ -53,9 +53,9 @@ To install InvoicePlane we download the current version from the official websit
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://www.invoiceplane.com/download/v1.6.0
- [isabell@stardust html]$ unzip v1.6.0
- [isabell@stardust html]$ rm v1.6.0
+ [isabell@stardust html]$ wget https://www.invoiceplane.com/download/v1.6.1
+ [isabell@stardust html]$ unzip v1.6.1
+ [isabell@stardust html]$ rm v1.6.1
  [isabell@stardust html]$ mv ip/{.,}* .
  [isabell@stardust html]$ rm -rf ip
  [isabell@stardust html]$
