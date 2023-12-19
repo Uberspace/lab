@@ -129,7 +129,7 @@ Please don't use ``admin`` as your username and set yourself a strong password.
  :emphasize-lines: 2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/kimai/
- [isabell@stardust kimai]$ bin/console kimai:create-user <username> <admin@example.com> ROLE_SUPER_ADMIN
+ [isabell@stardust kimai]$ bin/console kimai:user:create <username> <admin@example.com> ROLE_SUPER_ADMIN
  Please enter the password: ****
  […]
  [isabell@stardust ~]$
