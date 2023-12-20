@@ -2,9 +2,9 @@
 
 .. author:: Direnc <direnc99@gmail.com>
 
-.. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: web
 .. tag:: self-hosting
+.. tag:: lang-java
 
 
 .. sidebar:: About

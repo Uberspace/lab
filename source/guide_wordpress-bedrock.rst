@@ -37,12 +37,13 @@ It is maintained by roots.io and released and distributed under MIT Licence.
 Prerequisites
 =============
 
-Wordpress recommends PHP_ in version 8.0:
+We’re using PHP in the stable version 8.3:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.0
- Selected PHP version 8.0
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -68,38 +69,30 @@ Installation
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ composer create-project roots/bedrock
- Installing roots/bedrock (1.17.1)
-   - Downloading roots/bedrock (1.17.1)
-   - Installing roots/bedrock (1.17.1): Extracting archive
- Created project in /var/www/virtual/sbtest1/bedrock
- > php -r "copy('.env.example', '.env');"
+ Creating a "roots/bedrock" project at "./bedrock"
+ Installing roots/bedrock (1.23.1)
+   - Downloading roots/bedrock (1.23.1)
+   - Installing roots/bedrock (1.23.1): Extracting archive
+ Created project in /var/www/virtual/eatest/bedrock
  Installing dependencies from lock file (including require-dev)
  Verifying lock file contents can be installed on current platform.
- Package operations: 16 installs, 0 updates, 0 removals
-   - Installing composer/installers (v1.12.0): Extracting archive
-   - Installing roots/wordpress-core-installer (1.100.0): Extracting archive
-   - Installing oscarotero/env (v2.1.0): Extracting archive
-   - Installing roave/security-advisories (dev-latest bac54e1)
-   - Installing roots/bedrock-autoloader (1.0.4): Extracting archive
-   - Installing roots/bedrock-disallow-indexing (2.0.0): Extracting archive
-   - Installing roots/wordpress (5.8.2): Extracting archive
-   - Installing roots/wp-config (1.0.0): Extracting archive
-   - Installing roots/wp-password-bcrypt (1.1.0): Extracting archive
-   - Installing squizlabs/php_codesniffer (3.6.1): Extracting archive
-   - Installing symfony/polyfill-php80 (v1.23.1): Extracting archive
-   - Installing symfony/polyfill-mbstring (v1.23.1): Extracting archive
-   - Installing symfony/polyfill-ctype (v1.23.0): Extracting archive
-   - Installing phpoption/phpoption (1.8.0): Extracting archive
-   - Installing graham-campbell/result-type (v1.0.3): Extracting archive
-   - Installing vlucas/phpdotenv (v5.3.1): Extracting archive
+ Package operations: 18 installs, 0 updates, 0 removals
+  [...]
  Generating optimized autoload files
+ No security vulnerability advisories found.
  [isabell@stardust isabell]$
 
 
 Configuration
 =============
 
-Wordpress-Configuration is done using .env-Files. Edit ``/var/www/virtual/$USER/bedrock/.env``
+Wordpress-Configuration is done using .env-Files. Copy the example and edit it with your favourite editor.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock
+ [isabell@stardust bedrock]$ cp .env.example .env
+ [isabell@stardust isabell]$
 
 In here you need to enter your :manual_anchor:`MySQL credentials <database-mysql.html#login-credentials>` database connection parameters and the name of your database (e.g. ``isabell_wp``).
 
@@ -165,26 +158,26 @@ Unlike a "normal" Wordpress-Installation, with bedrock, you cannot install Plugi
 
 Instead you can use composer to manage Plugins. Every Plugin (or Theme) listed in on Wordpress.org is present as a Composer-Package in the  `WPackagist-Repository`_.
 
-To install a plugin, find the exact plugin name (e.g. ``simple-page-ordering``) from the `Wordpress Plugin Directory <https://wordpress.org/plugins/>`_ and get it via composer:
+To install a plugin, find the exact plugin name (e.g. ``classic-editor``) from the `Wordpress Plugin Directory <https://wordpress.org/plugins/>`_ and get it via composer:
 
 .. code-block:: console
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
- [isabell@stardust bedrock]$ composer require wpackagist-plugin/simple-page-ordering
- Using version ^2.3 for wpackagist-plugin/simple-page-ordering
+ [isabell@stardust bedrock]$ composer require wpackagist-plugin/classic-editor
  ./composer.json has been updated
- Running composer update wpackagist-plugin/simple-page-ordering
+ Running composer update wpackagist-plugin/classic-editor
  Loading composer repositories with package information
  Updating dependencies
  Lock file operations: 1 install, 0 updates, 0 removals
-   - Locking wpackagist-plugin/simple-page-ordering (2.3.4)
+   - Locking wpackagist-plugin/classic-editor (1.6.3)
  Writing lock file
  Installing dependencies from lock file (including require-dev)
  Package operations: 1 install, 0 updates, 0 removals
-   - Downloading wpackagist-plugin/simple-page-ordering (2.3.4)
-   - Installing wpackagist-plugin/simple-page-ordering (2.3.4): Extracting archive
+   - Downloading wpackagist-plugin/classic-editor (1.6.3)
+   - Installing wpackagist-plugin/classic-editor (1.6.3): Extracting archive
  Generating optimized autoload files
+ Using version ^1.6 for wpackagist-plugin/classic-editor
  [isabell@stardust bedrock]$
 
 You can do the same thing with themes, using ``wpackagist-theme``:
@@ -194,19 +187,19 @@ You can do the same thing with themes, using ``wpackagist-theme``:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
  [isabell@stardust bedrock]$ composer require wpackagist-theme/twentytwenty
- Using version ^1.8 for wpackagist-theme/twentytwenty
  ./composer.json has been updated
  Running composer update wpackagist-theme/twentytwenty
  Loading composer repositories with package information
  Updating dependencies
  Lock file operations: 1 install, 0 updates, 0 removals
-   - Locking wpackagist-theme/twentytwenty (1.8)
+   - Locking wpackagist-theme/twentytwenty (2.4)
  Writing lock file
  Installing dependencies from lock file (including require-dev)
  Package operations: 1 install, 0 updates, 0 removals
-   - Downloading wpackagist-theme/twentytwenty (1.8)
-   - Installing wpackagist-theme/twentytwenty (1.8): Extracting archive
+   - Downloading wpackagist-theme/twentytwenty (2.4)
+   - Installing wpackagist-theme/twentytwenty (2.4): Extracting archive
  Generating optimized autoload files
+ Using version ^2.4 for wpackagist-theme/twentytwenty
  [isabell@stardust bedrock]$
 
 
@@ -240,16 +233,16 @@ Updating Wordpress core
 
 To update Wordpress itself you have several options:
 
- - Requiring the new version with ``composer require``. In this example we want to update to version ``5.3.2``:
+ - Requiring the new version with ``composer require``. In this example we want to update to version ``6.4.2``:
 
   .. code-block:: console
 
    [isabell@stardust ~]$ cd /var/www/virtual/$USER/bedrock/
-   [isabell@stardust bedrock]$ composer require roots/wordpress 5.3.2
+   [isabell@stardust bedrock]$ composer require roots/wordpress 6.4.2
 
  - Editing ``/var/www/virtual/$USER/bedrock/composer.json`` to always update wordpress when running ``composer update``.
 
-  Change the line ``"roots/wordpress": "5.3.2"`` to ``"roots/wordpress": "^5.3.2"`` (your version number might vary) and safe. Then run ``composer update`` as for plugins.
+  Change the line ``"roots/wordpress": "6.4.2"`` to ``"roots/wordpress": "^6.4.2"`` (your version number might vary) and safe. Then run ``composer update`` as for plugins. This will always update wordpress core until the next main version (7).
 
 
 
@@ -257,12 +250,12 @@ To update Wordpress itself you have several options:
 .. _PHP: http://www.php.net/
 .. _automatically updates: https://codex.wordpress.org/Configuring_Automatic_Background_Updates
 .. _Bedrock: https://roots.io/bedrock/
-.. _Bedrock-Documentation: https://roots.io/docs/bedrock/
+.. _Bedrock-Documentation: https://roots.io/bedrock/docs/installation/
 .. _WPackagist-Repository: https://wpackagist.org/
 .. _Wordpress-Blog: https://wordpress.org/news/
 
 ----
 
-Tested with Bedrock 1.21.1, Wordpress 6.1.1, Uberspace 7.13.0, and PHP 8.0
+Tested with Bedrock 1.23.1, Wordpress 6.4.2, Uberspace 7.15.6, and PHP 8.2
 
 .. author_list::

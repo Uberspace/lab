@@ -64,22 +64,22 @@ Check the Hugo_ website or `Github Repository`_ for the latest release and copy 
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.57.2/hugo_0.57.2_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.121.1/hugo_0.121.1_linux-amd64.tar.gz
  […]
- Saving to: ‘hugo_0.57.2_Linux-64bit.tar.gz’
+ Saving to: ‘hugo_0.121.1_linux-amd64.tar.gz ’
 
  100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
 
- 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.57.2_Linux-64bit.tar.gz’ saved [7750708/7750708]
+ 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.121.1_linux-amd64.tar.gz ’ saved [7750708/7750708]
  [isabell@stardust ~]$
 
 Get the hugo binary from the archive, delete the archive and enable hugo to be executed easily. Replace the version in the archive file name with the one you just downloaded.
 
 ::
 
- [isabell@stardust ~]$ tar -xvf hugo_0.57.2_Linux-64bit.tar.gz hugo
+ [isabell@stardust ~]$ tar -xvf hugo_0.121.1_linux-amd64.tar.gz  hugo
  hugo
- [isabell@stardust ~]$ rm hugo_0.57.2_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ rm hugo_0.121.1_linux-amd64.tar.gz
  [isabell@stardust ~]$ mv hugo ~/bin
  [isabell@stardust ~]$
 
@@ -88,7 +88,7 @@ After setting up, test if Hugo works. The output is the version number of Hugo.
 ::
 
  [isabell@stardust ~]$ hugo version
- Hugo Static Site Generator v0.57.2-A849CB2D linux/amd64 BuildDate: 2019-08-17T17:54:13Z
+ hugo v0.121.1-00b46fed8e47f7bb0a85d7cfc2d9f1356379b740 linux/amd64 BuildDate=2023-12-08T08:47:45Z VendorInfo=gohugoio
  [isabell@stardust ~]$
 
 
@@ -136,8 +136,13 @@ Since Hugo is delivered without a theme, this must now be installed. To do so, l
 Deploying your site
 ===================
 
-Hugo is a static site generator. It will build a bunch of HTML and CSS files, which can be served by any web server. In our case, there is a httpd set up to serve files in ``~/html``, so we tell hugo to drop the files there. This step needs to be repeated each time you change something about your site. Using the ``--destination`` parameter, you can also deploy the files to a different directory or domain for testing.
-Before that, the `HUGO_CACHEDIR` environment variable is set to the local `tmp` directory. Otherwise the build will fail, because Hugo is trying to access the global `/tmp` folder, which is not allowed.
+Hugo is a static site generator. It will build a bunch of HTML and CSS files, which can be served by any web server. In our case, there is a httpd set up to serve files in ``~/html``, so we tell hugo to drop the files there. Add the following directives to your configuration file, by default ``~/hugo_websites/hugo_web/config.toml``:
+
+.. code-block:: toml
+
+  hugo_cache = '/home/isabell/tmp'
+  publishDir = '/var/www/virtual/isabell/html'
+
 
 .. warning::
 
@@ -147,7 +152,11 @@ Before that, the `HUGO_CACHEDIR` environment variable is set to the local `tmp` 
 ::
 
   [isabell@stardust ~]$ cd ~/hugo_websites/hugo_web
-  [isabell@stardust hugo_web]$ HUGO_CACHEDIR=$HOME/tmp hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
+  [isabell@stardust hugo_web]$ hugo --cleanDestinationDir
+
+.. note::
+
+  You don't need the ``--cleanDestinationDir`` argument every time. Generally, you only need it to clean up files and folders in the publish directory if you removed, moved or renamed something. Running ``hugo`` without arguments will create new files and folders, but won't remove those that are not needed anymore.
 
 Finishing installation
 ======================
@@ -177,6 +186,6 @@ If there is a new version available, update the ``hugo`` binary in ``~/bin`` (re
 
 ----
 
-Tested with Hugo 0.57.2, Uberspace 7.3.5.1
+Tested with Hugo 0.121.1, Uberspace 7.15.6
 
 .. author_list::
