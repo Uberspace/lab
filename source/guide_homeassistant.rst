@@ -104,18 +104,18 @@ Add the following lines at the bottom of the file. Modify ``external_url`` to re
 .. code-block:: yaml
   
   homeassistant:
-  name: Home
-  unit_system: metric
-  time_zone: Europe/Berlin
-  external_url: "https://isabell.uber.space"
-  internal_url: "http://0.0.0.0:8123"
-  legacy_templates: false
+    name: Home
+    unit_system: metric
+    time_zone: Europe/Berlin
+    external_url: "https://isabell.uber.space"
+    internal_url: "http://0.0.0.0:8123"
+    legacy_templates: false
 
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 100.64.0.0/10
-    - fd00::/8
+  http:
+    use_x_forwarded_for: true
+    trusted_proxies:
+      - 100.64.0.0/10
+      - fd00::/8
 
 Setup a web backend
 -------------------
