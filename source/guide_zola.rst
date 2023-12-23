@@ -45,7 +45,8 @@ First create a working directory in your home and navigate there.
 
   [isabell@stardust ~]$ mkdir ~/git
   [isabell@stardust ~]$ cd ~/git
-
+  [isabell@stardust git]$
+  
 Clone Repository
 ----------------
 
@@ -55,6 +56,7 @@ We need to clone the source code from GitHub, so we may build the binary file.
 
   [isabell@stardust git]$ git clone https://github.com/getzola/zola.git
   [isabell@stardust git]$ cd zola
+  [isabell@stardust zola]$
 
 Modify the configurations
 ------------------------
@@ -62,10 +64,21 @@ Modify the configurations
 We need to change the `Link-time optimization (LTO) <https://nnethercote.github.io/perf-book/build-configuration.html#link-time-optimization>`_ from true to false, else the building process will fail because of a SIGKILL.
 Also, we need to set some cargo configs, which allows allocating more memory for the building process.
 
+Edit the file ``Cargo.toml`` and change the lto value to false:
+
 ::
 
-  [isabell@stardust zola]$ sed -i 's/lto = true/lto = false/g' Cargo.toml
-  [isabell@stardust zola]$ echo -e -n "[target.nightly-x86_64-unknown-linux-gnu]\nrustflags = [\"-C\", \"target-feature=+atomics,+bulk-memory,+mutable-globals\", \"-C\", \"link-arg=--max-memory=8589934592\"]" > ~/.cargo/config
+  [...]
+  [profile.release]
+  lto = false
+  [...]
+
+Also create a new file in ``~/.cargo/config`` (if not already exists) with this content:
+
+::
+
+  [target.nightly-x86_64-unknown-linux-gnu]
+  rustflags = ["-C", "target-feature=+atomics,+bulk-memory,+mutable-globals", "-C", "link-arg=--max-memory=8589934592"]
 
 Build and install Zola
 ----------------------
@@ -75,6 +88,7 @@ To build Zola we need just to run ``cargo install``. The ``--path`` option set t
 ::
 
   [isabell@stardust zola]$ cargo install --path . --root ~/ -j 4
+  [isabell@stardust zola]$
 
 Create website
 ==============
@@ -106,7 +120,7 @@ your website.
 
   Get started by moving into the directory and using the built-in server: `zola serve`
   Visit https://www.getzola.org for the full documentation.
-
+  [isabell@stardust ~]$
 Add theme
 ---------
 
@@ -116,7 +130,8 @@ The easiest way to install a theme is to clone its repository in the ``themes`` 
 
  [isabell@stardust ~]$ cd ~/website_name/themes
  [isabell@stardust themes]$ git clone ``<theme repository URL>``
-
+ [isabell@stardust themes]$
+ 
 A list of themes are on the official `Zola Website <https://www.getzola.org/themes/>`_.
 
 ::
@@ -129,17 +144,17 @@ A list of themes are on the official `Zola Website <https://www.getzola.org/them
   remote: Total 158 (delta 18), reused 17 (delta 17), pack-reused 135
   Receiving objects: 100% (158/158), 1.64 MiB | 21.75 MiB/s, done.
   Resolving deltas: 100% (57/57), done.
-
+  [isabell@stardust themes]$
+  
 Using a theme
 -------------
 
 After you cloned a theme's repository, you need to tell Zola to use the ``theme``, by setting it in the `configuration file <https://www.getzola.org/documentation/getting-started/configuration/>`_.
 The theme name has to be the name of the directory you cloned the theme in.
-Insert above the ``[markdown]`` block the configuration ``theme = "<theme_name>"``.
+Edit ``~/website_name/config.toml`` and insert above the ``[markdown]`` block the configuration ``theme = "<theme_name>"``.
 
 ::
 
-  [isabell@stardust themes]$ $EDITOR ~/website_name/config.toml
   # The URL the site will be built for
   base_url = "https://ulabdev.uber.space/blog"
 
@@ -174,7 +189,8 @@ Zola during our deployment.
 
   [isabell@stardust themes]$ cd ..
   [isabell@stardust website_name]$ $EDITOR content/_index.md
-
+  [isabell@stardust website_name]$
+  
   +++
   +++
   Hello World. This is a single-page theme named hallo and it's deployed on uberspace.
@@ -189,7 +205,8 @@ To create the html files, we use ``zola build`` with the ``-o <PATH>`` option fo
 ::
 
   [isabell@stardust website_name]$ zola build -o ~/html/blog
-
+  [isabell@stardust website_name]$
+  
 Navigate your Browser to your installation URL ``https://isabell.uber.space/blog`` and check your new website.
 
 Updates
@@ -202,7 +219,8 @@ To update Zola, you must pull the repository from GitHub and rebuild the binary.
   [isabell@stardust ~]$ cd git/zola
   [isabell@stardust zola]$ git pull
   [isabell@stardust zola]$ cargo install --path . --root ~/ -j 4
-
+  [isabell@stardust zola]$
+  
 .. _Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
 .. _Zola: https://getzola.org
 .. _feed: https://github.com/getzola/zola/releases.atom
