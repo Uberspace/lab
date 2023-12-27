@@ -6,7 +6,7 @@ default_language_version:
 exclude: '\.svg$'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       # Generall Stuff
       - id: trailing-whitespace
@@ -23,26 +23,26 @@ repos:
       - id: requirements-txt-fixer
   # Prettier (HTML, JS, CSS, Markdown…)
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.0-alpha.4
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         # exclude HTML templates (no Jinja2 support)
         exclude: 'source/_templates/.*\.html'
   # YAML
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0
+    rev: v1.33.0
     hooks:
       - id: yamllint
   # Python: check syntax
   - repo: https://github.com/pycqa/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
       - id: flake8
         args:
           - "--select=F"
   # Python: reorder imports
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.9.0
+    rev: v3.12.0
     hooks:
       - id: reorder-python-imports
         args:
@@ -50,7 +50,7 @@ repos:
           - "--py38-plus"
   # Python: lint with black
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.12.1
     hooks:
       - id: black
         args:
