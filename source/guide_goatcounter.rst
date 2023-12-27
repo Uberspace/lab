@@ -17,7 +17,7 @@ Goatcounter
 
 .. tag_list::
 
-Goatcounter_ is an open source web analytics platform available as a free, donation-supported hosted service or self-hosted app. 
+Goatcounter_ is an open source web analytics platform available as a free, donation-supported hosted service or self-hosted app.
 
 It aims to offer easy to use and meaningful privacy-friendly web analytics as an alternative to Google Analytics or Matomo.
 

@@ -76,7 +76,7 @@ Just run the following command in the created `homeassistant` directory with act
  (homeassistant) [isabell@stardust homeassistant]$ hass
  Unable to find configuration. Creating default one in /home/isabell/.homeassistant
  ^C
- [isabell@stardust homeassistant]$ 
+ [isabell@stardust homeassistant]$
 
 A directory containing config files is created at /home/isabell/.homeassistant.
 You can now terminate the homeassistant using Ctrl-C.
@@ -102,7 +102,7 @@ Use an editor such as ``nano`` to edit Home Assistant's configuration file:
 Add the following lines at the bottom of the file. Modify ``external_url`` to reflect your domain.
 
 .. code-block:: yaml
-  
+
   homeassistant:
   name: Home
   unit_system: metric

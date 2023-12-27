@@ -163,7 +163,7 @@ To update BookStack you can run the following command in the root directory of t
  [isabell@stardust BookStack]$ composer install --no-dev
  […]
  [isabell@stardust BookStack]$
- 
+
 Next, start the actual migration. You will be asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
 
 .. code-block:: console
