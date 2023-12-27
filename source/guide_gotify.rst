@@ -59,7 +59,7 @@ Like a lot of Go software, gotify is distributed as a single binary. Since versi
 .. warning::
 
   The ``yarn build`` command may fail at first with an ``code: 'EPIPE', syscall: 'write'`` error message.
-  Just run it again until you get ``Done in 60.48s.``. 
+  Just run it again until you get ``Done in 60.48s.``.
 
 ::
 
@@ -84,23 +84,23 @@ Like a lot of Go software, gotify is distributed as a single binary. Since versi
     npx browserslist@latest --update-db
     Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
   Compiled successfully.
-  
+
   File sizes after gzip:
-  
+
     252.57 KB  build/static/js/2.62492a59.chunk.js
     15.19 KB   build/static/js/main.d0066ad9.chunk.js
     2.4 KB     build/static/css/2.0f3898ba.chunk.css
     778 B      build/static/js/runtime-main.2e858444.js
-  
+
   The project was built assuming it is hosted at ./.
   You can control this with the homepage field in your package.json.
-  
+
   The build folder is ready to be deployed.
-  
+
   Find out more about deployment here:
-  
+
     https://cra.link/deployment
-  
+
   Done in 59.93s.
   [isabell@stardust ui]$ cd ..
   [isabell@stardust server]$ go run hack/packr/packr.go

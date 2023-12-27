@@ -93,50 +93,50 @@ Example Configuration
 .. code-block:: console
 
   # Example for a user configuration file ~/.msmtprc
-  
+
   # This example focusses on TLS and authentication. Features not used here
   # include logging, timeouts, SOCKS proxies, TLS parameters, Delivery Status
   # Notification (DSN) settings, and more.
-  
+
   # Set default values: use the mail submission port 587, and always use TLS.
   # On this port, TLS is activated via STARTTLS.
   defaults
   port 587
   tls on
   tls_starttls on
-  
+
   # Define a mail account at a mail service
   account uberspace
-  
+
   # Host name of the SMTP server
   host stardust.uberspace.de
-  
+
   # Envelope-from address
   from isabell@isabell.uber.space
-  
+
   # Authentication
   # The following user / password methods are supported:
   # PLAIN, SCRAM-SHA-1, SCRAM-SHA-256, CRAM-MD5, DIGEST-MD5, LOGIN, NTLM
   # see https://marlam.de/msmtp/msmtp.html#Authentication for more informations
   auth on
   user isabell@isabell.uber.space
-  
+
   # Password method 1: Add the password to the system keyring, and let msmtp get
   # it automatically. To set the keyring password using libsecret:
   # $ secret-tool store --label=msmtp \
   #   host smtp.freemail.example \
   #   service smtp \
   #   user joe.smith
-  
+
   # Password method 2: Store the password in an encrypted file, and tell msmtp
   # which command to use to decrypt it. This is usually used with GnuPG, as in
   # this example. Usually gpg-agent will ask once for the decryption password.
   #passwordeval gpg2 --no-tty -q -d ~/.msmtp-password.gpg
-  
+
   # You can also store the password directly in this file or have msmtp ask you
   # for it each time you send a mail, but one of the above methods is preferred.
   password <IsabellsTopSecretPassword>
-  
+
   # Set a default account
   account default : uberspace
 
@@ -159,6 +159,4 @@ Test your configuarion
 
 Tested with msmtp 1.8.12, Uberspace 7.15
 
-.. author_list:: 
-
-
+.. author_list::

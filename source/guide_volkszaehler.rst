@@ -172,41 +172,41 @@ If something fails please try these steps in the following order:
 3. To check the database access you can call (e.g. https://isabell.uber.space/middleware.php/capabilities/database.json?)
 
 If you get
-       
+
 .. code-block:: json
 
  {"version":"0.3","capabilities":{"database":{"data":{"rows":0,"size":49152},"aggregation":{"rows":0,"size":49152,"ratio":0}}}}
-            
+
 then youre fine.
-       
+
 If you get
-       
+
 .. code-block:: json
-            
+
  {"version":"0.3","exception":{"message":"Class \"Doctrine\Common\Annotations\AnnotationRegistry\" not found","type":"Error","code":0}}
- 
+
 then you have an mistake in your developer system e.g. composer.
-       
+
 If you get
-        
+
 .. code-block:: json
-            
+
  {"version":"0.3","exception":{"message":"An exception occurred in driver: SQLSTATE[HY000] [2002] Connection refused","type":"ConnectionException","code":0}}
- 
+
 you have a wrong port/server combination.
-       
+
 If you get
-       
+
 .. code-block:: json
 
  {"version":"0.3","exception":{"message":"An exception occurred in driver: SQLSTATE[HY000] [1045] Access denied for user 'xxxx'@'xxxx' (using password: YES)","type":"ConnectionException","code":0}}
- 
+
 you have the wrong database credentials.
 
 For deeper insights on database access errors use the following script
 
 .. code-block:: php
- 
+
     <?php
         $servername = "localhost";
         $username = "isabell";
@@ -220,7 +220,7 @@ For deeper insights on database access errors use the following script
         echo $row['uuid']."<br />";
     }
     ?>
-    
+
 Backup
 ======
 

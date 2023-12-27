@@ -175,17 +175,17 @@ Choose a username that should have write access and provide it to the ``htpasswd
  Re-type new password:
  Adding password for user sample_user
  [isabell@stardust html]$
- 
+
 Further users can be added by omitting the ``-c`` flag:
 
 .. code-block:: console
- 
+
  [isabell@stardust html]$ htpasswd .htpasswd another-user
  New password:
  Re-type new password:
  Adding password for user another-user
  [isabell@stardust html]$
- 
+
 Edit the ``.htaccess`` file and add the following lines (exchange ``isabell`` by your uberspace username):
 
 .. code-block:: text
@@ -207,7 +207,7 @@ The ``.htaccess`` file should look similar to this example:
  RewriteCond !%{HTTP_USER_AGENT} "Let's Encrypt validation server" [NC]
  RewriteCond %{HTTP_USER_AGENT} ^.*(bot|spider|crawl|https?://|WhatsApp|SkypeUriPreview|facebookexternalhit) [NC]
  RewriteRule .* - [R=403,L]
- 
+
  AuthType Basic
  AuthName "Login to PrivateBin"
  AuthUserFile /var/www/virtual/isabell/html/.htpasswd
@@ -215,7 +215,7 @@ The ``.htaccess`` file should look similar to this example:
     Require valid-user
  </LimitExcept>
 
-The PrivateBin site is still visible to the public. 
+The PrivateBin site is still visible to the public.
 When a user tries to publish content in your pastebin, a Basic-Auth popup will ask for username and password.
 The generated links are accessible to everyone.
 
@@ -233,7 +233,7 @@ Backup your config:
  [isabell@stardust html]$ cp -p .htaccess .htaccess.backup
  [isabell@stardust html]$ cp -p .htpasswd .htpasswd.backup
  [isabell@stardust html]$ cp -rp ~/privatebin/ ~/privatebin-backup
- [isabell@stardust html]$ 
+ [isabell@stardust html]$
 
 Then repeat the steps of the :lab_anchor:`Installation chapter <guide_privatebin.html#installation>`.
 Your configuration file won't get overwritten.

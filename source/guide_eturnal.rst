@@ -111,7 +111,7 @@ Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in b
     relay_min_port: <port-3>
     relay_max_port: <port-5>
 
-    blacklist: 
+    blacklist:
       - "127.0.0.0/8"
       - "::1"
 
@@ -119,7 +119,7 @@ Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in b
     log_rotate_size: 10485760
     log_rotate_count: 10
     log_dir: stdout
-  
+
 Find other configuration options in the `reference documentation`_. You can now `first start`_ eturnal as daemon and check it's startup by invoking:
 
 .. code-block:: console

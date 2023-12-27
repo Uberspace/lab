@@ -459,7 +459,7 @@ This requires a dedicated extra port, that we need to open first as described in
 
   [isabell@stardust ~]$ uberspace port add
   Port 12345 will be open for TCP and UDP traffic in a few minutes.
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Add this port number along with the following lines to your ``~/gitea/custom/conf/app.ini`` in the ``[server]`` section at the beginning:
 

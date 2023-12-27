@@ -155,9 +155,9 @@ Initialize the pretix_ database tables and generate the static files:
     Applying auth.0004_alter_user_username_opts... OK
     Applying auth.0005_alter_user_last_login_null... OK
  [...]
- 
-:: 
- 
+
+::
+
  [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [...]
  File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/be/LC_MESSAGES/django.po” is already compiled and up to date.
@@ -195,7 +195,7 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
  autostart=true
  autorestart=true
  stopsignal=INT
- 
+
  [program:pretix_worker]
  command=celery -A pretix.celery_app worker -l info --concurrency 1
  directory=%(ENV_HOME)s/pretix_data

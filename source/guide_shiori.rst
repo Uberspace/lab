@@ -49,7 +49,7 @@ Like a lot of Go software, Shiori is distributed as a single binary. Download Sh
  100%[======================================>] 19,735,216  12.2MB/s
 
   [...]
-  [isabell@stardust ~]$ tar xf shiori_Linux_x86_64.tar.gz 
+  [isabell@stardust ~]$ tar xf shiori_Linux_x86_64.tar.gz
   [isabell@stardust ~]$ mv ~/shiori ~/bin/shiori
   [isabell@stardust ~]$ chmod u+x ~/bin/shiori
   [isabell@stardust ~]$

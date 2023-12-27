@@ -95,7 +95,7 @@ You can setup your FreshRSS installation using FreshRSS's command line interface
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ cd FreshRSS-latest
- [isabell@stardust FreshRSS-latest]$ ./cli/do-install.php --default_user <yourfreshrssusername>  --base_url https://isabell.uber.space --title FreshRSS --api_enabled --db-type mysql --db-host localhost:3306 --db-user ${USER} --db-password '<yourmysqlpassword>' --db-base  ${USER}_freshrss 
+ [isabell@stardust FreshRSS-latest]$ ./cli/do-install.php --default_user <yourfreshrssusername>  --base_url https://isabell.uber.space --title FreshRSS --api_enabled --db-type mysql --db-host localhost:3306 --db-user ${USER} --db-password '<yourmysqlpassword>' --db-base  ${USER}_freshrss
  FreshRSS install…
  ℹ️ Remember to create the default user: isabell     ./cli/create-user.php --user isabell --password 'password' --more-options
  ℹ️ Remember to re-apply the appropriate access rights, such as:  sudo chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
