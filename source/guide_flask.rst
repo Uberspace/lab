@@ -203,7 +203,7 @@ Now let's start the service:
 
 
 Uberspace web backend
------------
+---------------------
 
 .. note::
 
