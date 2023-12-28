@@ -1,4 +1,4 @@
-.. author:: Marc Redwerkz <https://zkrew.red>
+.. author:: Marc Redwerkz <https://rdwz.one>
 
 .. tag:: lang-go
 .. tag:: audience-developers
@@ -62,13 +62,13 @@ Check current version of Forgejo at releases_ page:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.19.3-0 https://codeberg.org/forgejo/forgejo/releases/download/v1.19.3-0/forgejo-1.19.3-0-linux-amd64
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.21.3-0 https://codeberg.org/forgejo/forgejo/releases/download/v1.21.3-0/forgejo-1.21.3-0-linux-amd64
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo-1.19.3-0’
+  Saving to: ‘/home/isabell/forgejo/forgejo-1.21.3-0’
 
-  100%[=======================================================>] 127,741,704 77.5MB/s   in 1.6s
+  100%[=======================================================>] 105,054,768 27.9MB/s   in 3.9s
 
-  2023-05-15 08:29:40 (77.5 MB/s) - ‘forgejo-1.19.3-0-linux-amd64’ saved [127741704/127741704]
+  2023-12-28 22:22:22 (26.0 MB/s) - ‘forgej0-1.21.3-0’ saved [105054768/105054768]
 
   [isabell@stardust ~]$
 
@@ -80,8 +80,8 @@ Make the downloaded binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.19.3-0
-  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.19.3-0 ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.21.3-0
+  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.21.3-0 ~/forgejo/forgejo
   [isabell@stardust ~]$
 
 
@@ -143,7 +143,7 @@ Create a config file ``~/forgejo/custom/conf/app.ini`` with the content of the f
 
   [mailer]
   ENABLED     = true
-  MAILER_TYPE = sendmail
+  PROTOCOL    = sendmail ; [smtp, smtps, smtp+starttls, smtp+unix, sendmail, dummy]
   FROM        = isabell@uber.space
 
 .. note::
@@ -161,8 +161,8 @@ Migrate the database configurations:
 
   [isabell@stardust ~]$ ~/forgejo/forgejo migrate
   [...]
-  2023/02/17 19:43:28 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_created_unix` ON `package_version` (`created_unix`) [] - 25.0114ms
-  2023/02/17 19:43:28 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_is_internal` ON `package_version` (`is_internal`) [] - 29.933338ms
+  2023/12/28 22:23:23 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_created_unix` ON `package_version` (`created_unix`) [] - 25.0114ms
+  2023/12/28 22:23:23 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_is_internal` ON `package_version` (`is_internal`) [] - 29.933338ms
   [isabell@stardust ~]$
 
 Forgejo admin user
@@ -175,8 +175,6 @@ Set your admin login credentials:
   [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
   [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
   [isabell@stardust ~]$ ~/forgejo/forgejo admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
-  [...]
-  2023/02/17 19:50:04 ...@v1.22.10/command.go:173:Run() [I] [SQL] COMMIT [] - 46.568973ms
   New user 'AdminUsername' has been successfully created!
   [isabell@stardust ~]$
 
@@ -230,12 +228,12 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/05/15 08:42:18 ...dules/setting/log.go:331:initLogFrom() [I] Forgejo Log Mode: Console(Console:info)
+  2023/12/28 22:23:23 ...les/setting/cache.go:75:loadCacheFrom() [I] Cache Service Enabled
   [...]
-  2023/05/15 08:42:18 cmd/dump.go:246:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
-  2023/05/15 08:42:46 cmd/dump.go:287:runDump() [I] Dumping database...
+  2023/12/28 23:23:23 cmd/dump.go:265:runDump() [I] Dumping local repositories... /home/kyber/forgejo/data/forgejo-repositories
+  2023/12/28 23:23:23 cmd/dump.go:306:runDump() [I] Dumping database...
   [...]
-  2023/05/15 08:42:51 cmd/dump.go:411:runDump() [I] Finish dumping in file forgejo-dump-0123456789.zip
+  2023/12/28 23:23:24 cmd/dump.go:430:runDump() [I] Finish dumping in file forgejo-dump-0123456789.zip
   [isabell@stardust ~]$
 
 Updates
@@ -300,15 +298,15 @@ Forgejo using external renderer (optional)
 
 | Forgejo supports custom file renderings (i.e. Jupyter notebooks, asciidoc, etc.) through external binaries to provide a preview.
 | In this case we install an `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension for AsciiDoc.
-| AsciiDoctors location will be here: ``~/.gem/ruby/2.7.0/*/asciidoctor*``
+| AsciiDoctors location will be here: ``~/.gem/ruby/3.2.0/*/asciidoctor*``
 
 .. code-block:: console
 
   [isabell@stardust ~]$ gem install asciidoctor
-  Fetching asciidoctor-2.0.10.gem
-  WARNING:  You don't have /home/isabell/.gem/ruby/2.7.0/bin in your PATH,
+  Fetching asciidoctor-2.0.20.gem
+  WARNING:  You don't have /home/isabell/.gem/ruby/3.2.0/bin in your PATH,
   	  gem executables will not run.
-  Successfully installed asciidoctor-2.0.10
+  Successfully installed asciidoctor-2.0.20
   1 gem installed
   [isabell@stardust ~]$
 
@@ -337,6 +335,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 1.19.3-0, Uberspace 7.15.1
+Tested with Forgejo 1.21.3-0, Uberspace 7.15.8
 
 .. author_list::

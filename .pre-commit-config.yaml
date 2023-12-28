@@ -2,7 +2,7 @@
 # INSTALL .: `pre-commit install --overwrite --install-hooks`
 # UPDATE ..: `pre-commit autoupdate`
 default_language_version:
-  python: python3.8
+  python: python3.10
 exclude: '\.svg$'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
