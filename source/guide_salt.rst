@@ -1,6 +1,7 @@
 .. author:: ctr49 <https://github.com/ctr49>
 
 .. tag:: automation
+.. tag:: lang-python
 
 .. highlight:: console
 

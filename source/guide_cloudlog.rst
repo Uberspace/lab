@@ -31,12 +31,12 @@ Cloudlog_ is an open source amateur radio logbook tool written in PHP and distri
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 8.0:
+We're using PHP_ in the stable version 8.2:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  [isabell@stardust ~]$
 
 Your log domain needs to be setup:
@@ -154,6 +154,6 @@ The Cloudlog documentation suggests a daily Cronjob to perform the ``git pull`` 
 
 ----
 
-Tested with Cloudlog 2.1, Uberspace 7.13.0, and PHP 8.0
+Tested with Cloudlog 2.5.2, Uberspace 7.15.6, and PHP 8.2
 
 .. author_list::

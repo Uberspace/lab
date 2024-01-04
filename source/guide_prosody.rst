@@ -7,6 +7,7 @@
 .. tag:: Instant Messaging
 .. tag:: Jabber
 .. tag:: XMPP
+.. tag:: lang-lua
 
 .. sidebar:: Logo
 

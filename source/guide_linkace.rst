@@ -29,13 +29,13 @@ LinkAce
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 8.0:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.2:
 
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -53,13 +53,11 @@ Installation
  :emphasize-lines: 1,2,3,6,7
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/Kovah/LinkAce/releases/download/v1.9.1/linkace-v1.9.1.zip
- [isabell@stardust isabell]$ unzip linkace-v1.9.1.zip
- Archive:  linkace-v1.9.1.zip
-  inflating: linkace.zip
- [isabell@stardust isabell]$ unzip -d linkace/ linkace.zip
- [isabell@stardust isabell]$ rm linkace-v1.9.1.zip linkace.zip
+ [isabell@stardust isabell]$ wget https://github.com/Kovah/LinkAce/releases/download/v1.13.0/linkace-v1.13.0.zip
+ [isabell@stardust isabell]$ unzip -d linkace/ linkace-v1.13.0.zip
+ Archive:  linkace-v1.13.0.zip
  [...]
+ [isabell@stardust isabell]$ rm linkace-v1.13.0.zip
  [isabell@stardust isabell]$
 
 After the installation has finished, remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``linkace/public`` directory.
@@ -127,10 +125,7 @@ Check LinkAce's `release page`_ for the latest version. If a newer version is av
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ wget https://github.com/Kovah/LinkAce/releases/download/vx.x.x/linkace-vx.x.x.zip
- [isabell@stardust isabell]$ unzip linkace-vx.x.x.zip
- Archive:  linkace-vx.x.x.zip
-  inflating: linkace.zip
- [isabell@stardust isabell]$ unzip -d linkace/ -o linkace.zip
+ [isabell@stardust isabell]$ unzip -d linkace/ -o linkace-vx.x.x.zip
  [isabell@stardust isabell]$ rm "*".zip
  [...]
  [isabell@stardust isabell]$
@@ -157,6 +152,6 @@ This guide is based on the official `LinkAce setup guide`_.
 
 ----
 
-Tested with LinkAce v1.9.1 and Uberspace 7.12.0
+Tested with LinkAce v1.13.0 and Uberspace 7.15.8
 
 .. author_list::

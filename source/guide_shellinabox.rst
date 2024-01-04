@@ -5,6 +5,7 @@
 .. tag:: web
 .. tag:: console
 .. tag:: ssh
+.. tag:: lang-c
 
 .. sidebar:: About
 

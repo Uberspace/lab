@@ -33,13 +33,13 @@ It provides a browser-based editor that makes it easy to wire together flows usi
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 12:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 20:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 12
- Using 'Node.js' version: '12'
- Selected node version 12
+ [isabell@stardust ~]$ uberspace tools version use node 20
+ Using 'Node.js' version: '20'
+ Selected node version 20
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [eliza@dolittle ~]$
 
@@ -139,6 +139,6 @@ Then restart the service:
 
 ----
 
-Tested with Node-RED 1.3.4, Uberspace 7.11.0.0
+Tested with Node-RED 3.1.0, Uberspace 7.15.6
 
 .. author_list::

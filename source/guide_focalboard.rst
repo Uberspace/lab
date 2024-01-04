@@ -7,6 +7,7 @@
 
 .. tag:: web
 .. tag:: project-management
+.. tag:: golang
 
 .. sidebar:: Logo
 

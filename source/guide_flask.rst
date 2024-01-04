@@ -202,8 +202,8 @@ Now let's start the service:
 
 
 
-Setup nginx
------------
+Uberspace web backend
+---------------------
 
 .. note::
 

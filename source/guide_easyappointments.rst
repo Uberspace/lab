@@ -49,6 +49,14 @@ We suggest using an :manual_anchor:`additional <database-mysql.html#additional-d
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_ea"
 
+We’re using :manual:`PHP <lang-php>` in version 8.1:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.1'
+ [isabell@stardust ~]$
+
 Your domain needs to be setup:
 
 .. include:: includes/web-domain-list.rst
@@ -57,14 +65,16 @@ Your domain needs to be setup:
 Installation
 ============
 
-``cd`` into your :manual:`document root <web-documentroot>`, download the latest build, unzip and remove the zip file:
+``cd`` into your :manual:`document root <web-documentroot>`, download the latest build, unzip and remove the zip file. Make sure to replace ``x.y.z`` with the latest version number.
 
 .. code-block:: console
 
+ [isabell@stardust ~]$ version=x.y.z
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/alextselegidis/easyappointments/releases/download/1.3.2/easyappointments_1.3.2.zip
- [isabell@stardust html]$ unzip easyappointments_1.3.2.zip
- [isabell@stardust html]$ rm easyappointments_1.3.2.zip
+ [isabell@stardust html]$ wget https://github.com/alextselegidis/easyappointments/releases/download/$version/easyappointments-$version.zip
+ [isabell@stardust html]$ unzip easyappointments-$version.zip
+ [isabell@stardust html]$ rm easyappointments-$version.zip
+ [isabell@stardust html]$ rm nocontent.html
  [isabell@stardust ~]$
 
 Configuration
@@ -86,7 +96,7 @@ Then, edit ``config.php``. In here you need to enter your base-URL, :manual_anch
  // GENERAL SETTINGS
  // ------------------------------------------------------------------------
 
- const BASE_URL      = 'isabell.uber.space';
+ const BASE_URL      = 'https://isabell.uber.space';
  const LANGUAGE      = 'english';
  const DEBUG_MODE    = FALSE;
 
@@ -102,10 +112,13 @@ Then, edit ``config.php``. In here you need to enter your base-URL, :manual_anch
 Finishing installation
 ======================
 
-Point your browser to your domain, ``https://isabell.uber.space/`` in this example, to finish up the installation process. Here you will
+.. code-block:: console
 
- * Set a administrative account and password
- * Set basic settings for your business / usage
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ php index.php console install
+ [isabell@stardust ~]$
+
+Alternatively, point your browser to your domain, ``https://isabell.uber.space/`` in this example, where you can set up admin credentials and basic settings for your intended usage.
 
 Easy Appointments is now ready to use.
 
@@ -147,9 +160,34 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-* Backup all your files and the database before updating!
-* Download the new version, unzip it and overwrite all the files in your :manual:`document root <web-documentroot>` except ``config.php``.
-* Navigate your browser to ``https://isabell.uber.space/index.php/backend/update`` to run the database update.
+.. warning:: Backup all your files and the database before updating!
+
+Download the new version, unzip it and overwrite all the files in your :manual:`document root <web-documentroot>` except ``config.php``.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ version=x.y.z
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ wget https://github.com/alextselegidis/easyappointments/releases/download/$version/easyappointments-$version.zip
+ [isabell@stardust html]$ unzip easyappointments-$version.zip
+ [isabell@stardust html]$ rm easyappointments-$version.zip
+ [isabell@stardust ~]$
+
+If updating from version ``1.3.x`` also remove ``/system`` and ``/autoload.php``
+
+.. code-block:: console
+
+ [isabell@stardust html]$ rm -r system/
+ [isabell@stardust html]$ rm autoload.php
+
+Run a database update
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
+ [isabell@stardust html]$ php index.php console migrate
+ [isabell@stardust ~]$
+
 
 
 
@@ -157,11 +195,11 @@ Updates
 .. _`Easy Appointments`: https://easyappointments.org/
 .. _PHP: http://www.php.net/
 .. _feed: https://github.com/alextselegidis/easyappointments/releases/
-.. _`official documentation`: https://easyappointments.org/docs.html#1.3.2/readme.md
+.. _`official documentation`: https://easyappointments.org/docs.html#1.4.3/readme.md
 
 
 ----
 
-Tested with Easy Appointments 1.4.3, Uberspace 7.13, PHP 8.1
+Tested with Easy Appointments 1.4.3, Uberspace 7.15.6, PHP 8.1
 
 .. author_list::
