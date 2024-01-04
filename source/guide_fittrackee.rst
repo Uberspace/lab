@@ -173,12 +173,6 @@ Initialize database schema:
 
  (fittrackee_venv) [isabell@stardust fittrackee]$ ftcli db upgrade
 
-Start the application
-
-::
-
- (fittrackee_venv) [isabell@stardust fittrackee]$ fittrackee
-
 
 Note that you must link port 5000 via :manual:`Web Backends <web-backends>`.
 
