@@ -50,7 +50,7 @@ Clone 2FAuth code from GitHub, switch to the latest release and install necessar
 .. code-block:: console
 
   [isabell@stardust ~]$ cd /var/www/virtual/$USER/
-  [isabell@stardust isabell]$ git clone git clone https://github.com/bubka/2fauth.git
+  [isabell@stardust isabell]$ git clone https://github.com/bubka/2fauth.git
   [isabell@stardust isabell]$ cd 2fauth/
   [isabell@stardust 2fauth]$ curl https://api.github.com/repos/Bubka/2FAuth/releases/latest | grep "\"name\"" | grep -Eo 'v[^\"]*' | xargs git checkout
   [isabell@stardust 2fauth]$ composer install --prefer-dist --no-scripts --no-dev
