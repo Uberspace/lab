@@ -33,7 +33,13 @@ Textpattern is maintained by `Team Textpattern <https://textpattern.com/about/co
 Prerequisites
 =============
 
-We use :manual:`PHP <lang-php>`, stable version 8.1:
+We're using PHP in the stable version 8.1:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.1'
+ [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
@@ -44,15 +50,29 @@ If you want to use Textpattern with your own domain, you will need to set up you
 Installation
 ============
 
-``cd`` to your :manual:`document root <web-documentroot>`, then download the latest release of Textpattern and extract it:
+``cd`` to your :manual:`document root <web-documentroot>` and remove ``html/nocontent.html`` and the now empty html folder:
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ rm html/nocontent.html
+ [isabell@stardust isabell]$ rm -r html/
+ [isabell@stardust isabell]$
+
+Then download the latest release of Textpattern, extract it, and then rename the extracted folder to ``html``:
 
 .. note:: The link to the latest version can be found at `Textpattern's download page <https://textpattern.com/download>`_.
 
 ::
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://textpattern.com/file_download/118/textpattern-4.8.8.zip
- [isabell@stardust html]$ unzip textpattern-4.8.8.zip
+ [isabell@stardust isabell]$ wget https://textpattern.com/file_download/118/textpattern-4.8.8.zip
+ [isabell@stardust isabell]$ unzip textpattern-4.8.8.zip
+ […]
+    creating: textpattern-4.8.8/themes/
+   inflating: textpattern-4.8.8/themes/.htaccess
+   inflating: textpattern-4.8.8/.htaccess
+ [isabell@stardust isabell]$ mv textpattern-4.8.8 html
+ [isabell@stardust isabell]$ 
 
 Now point your browser to your uberspace URL or domain and `follow the instructions <https://docs.textpattern.com/setup/installing-the-software>`_.
 
