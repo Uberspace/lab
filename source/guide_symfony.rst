@@ -35,12 +35,12 @@ Symfony Source Code is published under the terms of the MIT License
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 8:
+We're using :manual:`PHP <lang-php>` in the stable version 8.2:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.0'
+ Using 'PHP' version: '8.2'
  [isabell@stardust ~]$
 
 Your symfony URL needs to be setup:
