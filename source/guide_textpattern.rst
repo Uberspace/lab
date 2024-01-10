@@ -50,7 +50,7 @@ If you want to use Textpattern with your own domain, you will need to set up you
 Installation
 ============
 
-``cd`` to your :manual:`document root <web-documentroot>` and remove ``html/nocontent.html`` and the now empty html folder:
+``cd`` to your :manual:`document root <web-documentroot>` and remove ``html/nocontent.html`` and the now empty ``html`` folder:
 
 ::
 
@@ -84,14 +84,14 @@ Database details
   * MySQL user name: ``isabell``
   * MySQL password: ``yourMySQLPassword`` (you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now)
   * MySQL server: ``localhost``
-  * MySQL database: your Textpattern database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>`database. For example: ``isabell_txp``
-  * Create database?: Textpattern can use an existing database which you have already created, or create its own new database.
-  * Table prefix (optional): If you are running multiple Textpattern sites on the same database, you will need a different table prefix for each site to avoid tables colliding with other instances. If this is the only Textpattern site in this database, you can leave this field blank.
+  * MySQL database: your Textpattern database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: ``isabell_textpattern``
+  * Create database?: Let Textpattern create your database for you.
+  * Table prefix (optional): Leave this field blank.
 
 Create config.php file
 ----------------------
 
-  * Create a new file named config.php within the directory /var/www/virtual/$USER/html/textpattern/. Copy and paste the information provided in the current setup step into the file.
+  * Create a new file named config.php within the directory ``/var/www/virtual/$USER/html/textpattern/``. Copy and paste the information provided in the current setup step into the file.
 
 Create and populate database tables
 -----------------------------------
