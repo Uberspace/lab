@@ -60,8 +60,10 @@ Download tor
 -------------------
 
 Go to the tor download page
-https://www.torproject.org/download/tor/ and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
-wget https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz
+``https://www.torproject.org/download/tor/`` and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
+::
+ [isabell@stardust ~]$ wget https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz
+
 optional: download and verify the signature https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz.asc
 TODO: describe how to verify signature https://support.torproject.org/little-t-tor/verify-little-t-tor/
 
@@ -83,8 +85,8 @@ Configuration
 Configure tor as onion service
 ------------------------
 
-vim ~/tor/torrc
-
+Create the file ``~/tor/torrc`` and add the following lines:
+::
   HiddenServiceDir ~/tor/onionservice
   HiddenServicePort 80 127.0.0.1:80
 
@@ -94,7 +96,8 @@ This directory contains the cryptographic keys of the onion service and should n
 Set up the daemon
 -----------------
 
-vim ~/etc/services.d/tor-onion-service.ini
+
+Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following content:
   [program:tor-onion-service]
   command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
   directory=%(ENV_HOME)s
@@ -109,7 +112,8 @@ Finishing installation
 
 
 To view your automatically generated .onion hostname
-cat ~/tor/onionservice/hostname
+::
+ [isabell@stardust ~]$ cat ~/tor/onionservice/hostname
 
 To test if all is working download and install tor browser and enter your .onion domain in the url bar
 https://www.torproject.org/download/
@@ -118,10 +122,18 @@ https://www.torproject.org/download/
 Best practices
 ==============
 
+
 Security
 --------
 
-Change all default passwords. Look at folder permissions. Don't get hacked!
+Users connecting to the onion service will look to the service that listens on the destination port like they would connect to it from localhost. If the application that is reachable via the .onion domains grants special permissions to connections from localhost, these permissions now apply to everyone who connects via the .onion service.
+
+
+Read about tor to understand the security it can provide, the limitations and how to use it correctly:
+``https://support.torproject.org/faq/``
+``https://tb-manual.torproject.org/``
+
+The folder ``~/tor/onionservice`` contains the cryptographic keys of the onion service, which are critical for the security. Make sure to set restrictive permissions.
 
 Tuning
 ======
@@ -145,7 +157,7 @@ If something fails with this specific error, you should have a look at this spec
 Backup
 ======
 
-All generated data you should backup regularly is saved to the database and there is this specific folder with uploaded pictures.
+The folder ``~/tor/onionservice`` should be backed up. It contains the long-term identity keys for the onion service, which are randomly generated when starting tor for the first time. When the keys are lost, the .onion domain is lost.
 
 ----
 
