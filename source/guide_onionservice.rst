@@ -62,7 +62,7 @@ Download tor
 Go to the tor download page
 ``https://www.torproject.org/download/tor/`` and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
 ::
- [isabell@stardust ~]$ wget https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz
+ [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
 
 optional: download and verify the signature https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz.asc
 TODO: describe how to verify signature https://support.torproject.org/little-t-tor/verify-little-t-tor/
@@ -76,8 +76,8 @@ gpg --output ./tor.keyring --export 0x2133BC600AB133E1D826D173FE43009C4607B1FB
 gpgv --keyring ./tor.keyring ~/Downloads/tor-0.4.6.10.tar.gz.sha256sum.asc ~/Downloads/tor-0.4.6.10.tar.gz.sha256sum
 
 sha256sum -c tor-0.4.6.10.tar.gz.sha256sum
-
-tar xvzf tor-expert-bundle-linux-x86_64-13.0.8.tar.gz
+::
+ tar xvzf tor.tar.gz
 
 Configuration
 =============
