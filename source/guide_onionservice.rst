@@ -98,13 +98,12 @@ Set up the daemon
 
 
 Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following content:
+::
   [program:tor-onion-service]
   command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
   directory=%(ENV_HOME)s
-  autostart=yes
   autorestart=yes
   environment=LD_LIBRARY_PATH=%(ENV_LD_LIBRARY_PATH)s:/%(ENV_HOME)s/tor/torrc
-
 
 
 Finishing installation
