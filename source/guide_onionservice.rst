@@ -87,7 +87,7 @@ Configure tor as onion service
 
 Create the file ``~/tor/torrc`` and add the following lines:
 ::
-  HiddenServiceDir ~/tor/onionservice
+  HiddenServiceDir onionservice
   HiddenServicePort 80 127.0.0.1:80
 
 The first line determines where the configuration and keys for the onion service will be stored.
@@ -99,11 +99,11 @@ Set up the daemon
 
 Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following content:
 ::
-  [program:tor-onion-service]
-  command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
-  directory=%(ENV_HOME)s
-  autorestart=yes
-  environment=LD_LIBRARY_PATH=%(ENV_LD_LIBRARY_PATH)s:/%(ENV_HOME)s/tor/torrc
+ [program:tor-onion-service]
+ command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
+ directory=%(ENV_HOME)s
+ autorestart=yes
+ environment=LD_LIBRARY_PATH=%(ENV_HOME)s/tor/
 
 
 Finishing installation
