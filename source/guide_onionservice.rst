@@ -109,13 +109,18 @@ Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following co
 Finishing installation
 ======================
 
+Start the service using:
+::
+ [isabell@stardust ~]$ supervisorctl reread
+ [isabell@stardust ~]$ supervisorctl start tor-onion-service
 
 To view your automatically generated .onion hostname
 ::
- [isabell@stardust ~]$ cat ~/tor/onionservice/hostname
+ [isabell@stardust ~]$ cat ~/onionservice/hostname
 
 To test if all is working download and install tor browser and enter your .onion domain in the url bar
 https://www.torproject.org/download/
+Note that it may take a few minutes after starting the service until the onion service is reachable.
 
 
 Best practices
@@ -128,25 +133,19 @@ Security
 Users connecting to the onion service will look to the service that listens on the destination port like they would connect to it from localhost. If the application that is reachable via the .onion domains grants special permissions to connections from localhost, these permissions now apply to everyone who connects via the .onion service.
 
 
-Read about tor to understand the security it can provide, the limitations and how to use it correctly:
-``https://support.torproject.org/faq/``
-``https://tb-manual.torproject.org/``
+Read the tor FAQ_ and the tor browser manual_ to understand the security it can provide, the limitations and how to use it correctly:
 
-The folder ``~/tor/onionservice`` contains the cryptographic keys of the onion service, which are critical for the security. Make sure to set restrictive permissions.
+_FAQ: https://support.torproject.org/faq/
+_manual: https://tb-manual.torproject.org/
 
-Tuning
-======
-
-Disable all plugins you don't need. Configure caching.
+The folder ``~/onionservice`` contains the cryptographic keys of the onion service, which are critical for the security. Make sure to set restrictive permissions.
 
 Updates
 =======
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
+.. note:: In this setup there are no automatic updates. To get informed about new tor releases you can subscribe to the Tor mailinglist_
 
-
-.. _Loremipsum: https://en.wikipedia.org/wiki/Lorem_ipsum
-.. _feed: https://github.com/lorem/ipsum/releases.atom
+.. _mailinglist: https://lists.torproject.org/cgi-bin/mailman/listinfo/tor-announce
 
 Debugging
 =========
@@ -156,10 +155,8 @@ If something fails with this specific error, you should have a look at this spec
 Backup
 ======
 
-The folder ``~/tor/onionservice`` should be backed up. It contains the long-term identity keys for the onion service, which are randomly generated when starting tor for the first time. When the keys are lost, the .onion domain is lost.
+The folder ``~/onionservice`` should be backed up. It contains the long-term identity keys for the onion service, which are randomly generated when starting tor for the first time. When the keys are lost, the .onion domain is lost.
 
 ----
-
-Tested with Loremipsum 1.22.1, Uberspace 7.1.1
 
 .. author_list::
