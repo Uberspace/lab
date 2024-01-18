@@ -63,21 +63,17 @@ Go to the tor download page
 ``https://www.torproject.org/download/tor/`` and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
 ::
  [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
+ [isabell@stardust ~]$ tar xvzf tor.tar.gz
 
-optional: download and verify the signature https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz.asc
-TODO: describe how to verify signature https://support.torproject.org/little-t-tor/verify-little-t-tor/
+Verify the signature (optional)
+-------------------------------
 
-$ gpg --auto-key-locate nodefault,wkd --locate-keys ahf@torproject.org
-$ gpg --auto-key-locate nodefault,wkd --locate-keys dgoulet@torproject.org
-$ gpg --auto-key-locate nodefault,wkd --locate-keys nickm@torproject.org
+To verify the integrity and authenticity of the download check the signatures as described in the docs_.
 
-gpg --output ./tor.keyring --export 0x2133BC600AB133E1D826D173FE43009C4607B1FB
+.. _docs: https://support.torproject.org/little-t-tor/verify-little-t-tor/
 
-gpgv --keyring ./tor.keyring ~/Downloads/tor-0.4.6.10.tar.gz.sha256sum.asc ~/Downloads/tor-0.4.6.10.tar.gz.sha256sum
 
-sha256sum -c tor-0.4.6.10.tar.gz.sha256sum
-::
- tar xvzf tor.tar.gz
+
 
 Configuration
 =============
