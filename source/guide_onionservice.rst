@@ -7,8 +7,7 @@
 
 .. sidebar:: About
 
-  .. image:: _static/images/loremipsum.png
-      :align: center
+
 
 ##########
 Tor onion service
