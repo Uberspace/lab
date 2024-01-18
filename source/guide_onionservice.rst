@@ -3,7 +3,6 @@
 .. author:: YourName <YourURL/YourMail>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
-.. tag:: lang-php
 .. tag:: web
 
 .. sidebar:: About
@@ -12,21 +11,19 @@
       :align: center
 
 ##########
-Loremipsum
+Tor onion service
 ##########
 
 .. tag_list::
 
-Loremipsum_ dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+This guide describes how to make your services available via a tor onion service that runs in the users uberspace. Note that uberspace also offers a onion service, depending on what you want to achieve you might not need to follow this guide to get what you want. Therefore read the about the :manual:`Tor Service <web-tor>` first.
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+.. manual: :manual_anchor:`tor-onion-service`
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :manual:`Node.js <lang-nodejs>` and its package manager :manual_anchor:`npm <lang-nodejs.html#npm>`
-  * :manual:`MySQL <database-mysql>`
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
 
@@ -34,24 +31,7 @@ At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergr
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
-
-::
-
- [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
- [isabell@stardust ~]$
-
-
-
-
-
-
-.. include:: includes/my-print-defaults.rst
-
-Your blog URL needs to be setup:
-
-.. include:: includes/web-domain-list.rst
+Some service you want to connect to via the onion service should be setup and running. In this guide we will use port 80, on which the a webserver should be running by default.
 
 Installation
 ============
