@@ -42,6 +42,7 @@ Go to the tor download_ page and copy the download link for the latest stable ve
 ::
  [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
  [isabell@stardust ~]$ tar xvzf tor.tar.gz
+ [isabell@stardust ~]$.
 
 .. _download: https://www.torproject.org/download/tor/
 
@@ -90,10 +91,13 @@ Start the service using:
 ::
  [isabell@stardust ~]$ supervisorctl reread
  [isabell@stardust ~]$ supervisorctl start tor-onion-service
+ [isabell@stardust ~]$.
 
 To view your automatically generated .onion hostname
 ::
  [isabell@stardust ~]$ cat ~/onionservice/hostname
+ jv2h7lm5tir5dsr6ihqmut6elusip3ylef46lhaq6q3gsv5pi7ddrwqd.onion
+ [isabell@stardust ~]$.
 
 To test if everything is working, download and install torbrowser_ and visit your .onion domain.
 
@@ -134,6 +138,8 @@ If something fails with this specific error, you should have a look at this spec
 If the service fails to start you can start the tor binary directly to see the thr error messages:
 ::
  [isabell@stardust ~]$ LD_LIBRARY_PATH=~/tor ~/tor/tor --torrc-file tor/torrc
+ [isabell@stardust ~]$.
+
 
 Backup
 ======
