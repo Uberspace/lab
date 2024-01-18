@@ -79,6 +79,7 @@ Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following co
  command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
  directory=%(ENV_HOME)s
  autorestart=yes
+ startsecs=60
  environment=LD_LIBRARY_PATH=%(ENV_HOME)s/tor/
 
 
