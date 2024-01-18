@@ -39,11 +39,12 @@ Installation
 Download tor
 -------------------
 
-Go to the tor download page
-``https://www.torproject.org/download/tor/`` and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
+Go to the tor download_ page and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
 ::
  [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
  [isabell@stardust ~]$ tar xvzf tor.tar.gz
+
+.. _download: https://www.torproject.org/download/tor/
 
 Verify the signature (optional)
 -------------------------------
@@ -94,8 +95,10 @@ To view your automatically generated .onion hostname
 ::
  [isabell@stardust ~]$ cat ~/onionservice/hostname
 
-To test if all is working download and install tor browser and enter your .onion domain in the url bar
-https://www.torproject.org/download/
+To test if everything is working, download and install torbrowser_ and visit your .onion domain.
+
+.. _torbrowser: https://www.torproject.org/download/
+
 Note that it may take a few minutes after starting the service until the onion service is reachable.
 
 
