@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: YourName <YourURL/YourMail>
+.. author:: @expiringplatform <vrhx4va7h145o5z9ptdq38vv@systemli.org>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: web
