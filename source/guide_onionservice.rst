@@ -135,8 +135,8 @@ Users connecting to the onion service will look to the service that listens on t
 
 Read the tor FAQ_ and the tor browser manual_ to understand the security it can provide, the limitations and how to use it correctly:
 
-_FAQ: https://support.torproject.org/faq/
-_manual: https://tb-manual.torproject.org/
+.. _FAQ: https://support.torproject.org/faq/
+.. _manual: https://tb-manual.torproject.org/
 
 The folder ``~/onionservice`` contains the cryptographic keys of the onion service, which are critical for the security. Make sure to set restrictive permissions.
 
@@ -151,6 +151,10 @@ Debugging
 =========
 
 If something fails with this specific error, you should have a look at this specific config, or just reload that service. Try to look into the log at this path.
+
+If the service fails to start you can start the tor binary directly to see the thr error messages:
+::
+ [isabell@stardust ~]$ LD_LIBRARY_PATH=~/tor ~/tor/tor --torrc-file tor/torrc
 
 Backup
 ======
