@@ -49,6 +49,8 @@ The host domain and a subdomain for goatcounter need to be setup:
  [isabell@stardust ~]$ uberspace web backend set goatcounter.isabell.uber.space/ --http --port 1235
  [isabell@stardust ~]$
 
+If you don't have a ``goatcounter.*`` subdomain, add it via ``uberspace web domain add goatcounter.isabell.uber.space``.
+
 Installation
 ============
 
@@ -62,9 +64,9 @@ Create a folder and download goatcounter:
 
  [isabell@stardust ~]$ mkdir ~/goatcounter
  [isabell@stardust ~]$ cd ~/goatcounter
- [isabell@stardust ~]$ wget https://github.com/arp242/goatcounter/releases/download/v2.4.1/goatcounter-v2.4.1-linux-amd64.gz
- [isabell@stardust ~]$ gzip -d goatcounter-v2.4.1-linux-amd64.gz
- [isabell@stardust ~]$ mv goatcounter-v2.4.1-linux-amd64 goatcounter
+ [isabell@stardust ~]$ wget https://github.com/arp242/goatcounter/releases/download/v2.5.0/goatcounter-v2.5.0-linux-amd64.gz
+ [isabell@stardust ~]$ gzip -d goatcounter-v2.5.0-linux-amd64.gz
+ [isabell@stardust ~]$ mv goatcounter-v2.5.0-linux-amd64 goatcounter
  [isabell@stardust ~]$ chmod +x goatcounter
  [isabell@stardust ~]$
 
@@ -113,7 +115,7 @@ Updates
 
 .. note:: Check for updates_ regularly to stay informed about the newest version.
 
-When an update is available download a new release from the release page and follow the update instraction on the goatcounter-github_.
+When an update is available download a new release from the release page and follow the update instructions on the goatcounter-github_.
 
 ::
 
@@ -125,6 +127,6 @@ When an update is available download a new release from the release page and fol
 
 ----
 
-Tested with Goatcounter 2.4.1 and Uberspace 7.15.4
+Tested with Goatcounter 2.5.0 and Uberspace 7.15.4
 
 .. author_list::
