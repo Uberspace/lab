@@ -203,7 +203,7 @@ To ensure MongoDB uses the latest certificates, restart the service monthly, e.g
  @monthly cat /readonly/$USER/certificates/$USER.uber.space.key /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem && supervisorctl restart mongodb > /dev/null
 
 
-Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true``
+Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@<username>.uber.space:<port>/admin?tls=true``
 
 
 Updates
