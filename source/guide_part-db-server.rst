@@ -293,7 +293,7 @@ To update Part-DB create a backup of the current installation and follow this gu
 .. _Part-DB: https://github.com/Part-DB/Part-DB
 .. _Part-DB Upgrade Guide: https://docs.part-db.de/upgrade_legacy.html
 .. _composer: https://getcomposer.org
-.. _release page: https://github.com/Part-DB/Part-DB/releases
+.. _release page: https://github.com/Part-DB/Part-DB-server/releases
 .. _`AGPL-3.0`: https://www.gnu.org/licenses/agpl-3.0.html
 
 ----
