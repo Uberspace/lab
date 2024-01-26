@@ -108,7 +108,9 @@ To make Dendrite available via HTTPS, create a :manual:`web backend
 
 .. code-block:: console
 
-  uberspace web backend set /_matrix --http --port 8008
+  [isabell@stardust dendrite]$ uberspace web backend set /_matrix --http --port 8008
+  Set backend for /_matrix to port 8008; please make sure something is listening!
+  You can always check the status of your backend using "uberspace web backend list".
 
 Please adjust the port ``8008`` if you want to run Dendrite on a different port.
 
@@ -165,7 +167,7 @@ utility that comes with Dendrite:
 
 .. code-block:: console
 
-  ./bin/generate-keys --private-key matrix_key.pem
+  [isabell@stardust dendrite]$ ./bin/generate-keys --private-key matrix_key.pem
 
 Add the filename to the configuration using the ``private_key`` property:
 
@@ -239,8 +241,8 @@ commandline:
 
 .. code-block:: console
 
-  cd ~/dendrite/
-  ./bin/create-account -config dendrite.yaml -username myuser
+  [isabell@stardust dendrite]$ cd ~/dendrite/
+  [isabell@stardust dendrite]$ ./bin/create-account -config dendrite.yaml -username myuser
 
 
 Maintenance
@@ -253,7 +255,7 @@ To back up the Dendrite database use PostgreSQL’s ``pg_dumpall`` command:
 
 .. code-block:: console
 
-  pg_dumpall -f ~/pg_backup.sql
+  [isabell@stardust dendrite]$ pg_dumpall -f ~/pg_backup.sql
 
 Updates
 -------
@@ -263,15 +265,15 @@ To update the code, fetch all git updates and checkout the latest version
 
 .. code-block:: console
 
-  cd ~/dendrite/
-  git fetch -p
-  git checkout v0.13.5
+  [isabell@stardust ~]$ cd ~/dendrite/
+  [isabell@stardust dendrite]$ git fetch -p
+  [isabell@stardust dendrite]$ git checkout v0.13.5
 
 Then, stop the Dendrite service, build the new version and start the service
 again:
 
 .. code-block:: console
 
-  supervisorctl stop dendrite
-  go build -o bin ./cmd/...
-  supervisorctl start dendrite
+  [isabell@stardust ~]$ supervisorctl stop dendrite
+  [isabell@stardust ~]$ go build -o bin ./cmd/...
+  [isabell@stardust ~]$ supervisorctl start dendrite
