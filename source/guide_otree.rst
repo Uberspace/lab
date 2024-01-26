@@ -52,13 +52,9 @@ Create a separate user and database for oTree:
 
    [isabell@stardust ~]$ createuser otree -P
    [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=otree --template=template0 otree
+   [isabell@stardust ~]$
 
-Take note of the passphrase for the ``otree`` user:
-
-.. code-block:: console
-
-   [isabell@stardust ~]$ POSTGRESQL_PW=YOUR-POSTGRESQL_PW
-
+Take note of the passphrase for the ``otree`` user. We will refer to it below as ``POSTGRESQL_PW``.
 
 Web domain
 ----------
@@ -68,6 +64,7 @@ Setup a domain to access your oTree apps:
 .. code-block:: console
 
    [isabell@stardust ~]$ uberspace web domain add otree.example.org
+   [isabell@stardust ~]$
 
 
 Web backend
@@ -81,15 +78,13 @@ For this guide, we will be using the oTree default port ``8000`` and the domain 
 Installation
 ============
 
-Setup oTree
-----------
-
 Create and enter a new directory for the oTree app:
 
 .. code-block:: console
 
    [isabell@stardust ~]$ mkdir otree
    [isabell@stardust ~]$ cd otree
+   [isabell@stardust otree]$
 
 oTree is installed via the Python package manager ``pip``.
 First, you should create and activate a virtual environment to separate the installation
@@ -99,12 +94,20 @@ from any other Python packages that may be installed in your home directory:
 
    [isabell@stardust otree]$ python3.10 -m venv venv
    [isabell@stardust otree]$ source venv/bin/activate
+   (venv) [isabell@stardust otree]$
 
 Second, install otree and its dependencies:
 
 .. code-block:: console
 
    (venv) [isabell@stardust otree]$ pip3.10 install otree
+   (venv) [isabell@stardust otree]$
+
+Configuration
+============
+
+oTree
+----------
 
 If you already have an oTree project, you should copy it into the ``otree`` directory.
 If you don't have an oTree project yet, you can create one with:
@@ -112,9 +115,10 @@ If you don't have an oTree project yet, you can create one with:
 .. code-block:: console
 
    (venv) [isabell@stardust otree]$ otree startproject myproject
-   Include sample games? (y or n): y
-   Created project folder.
-   Enter "cd myproject" to move inside the project folder, then start the server with "otree devserver".
+   ? Include sample games? (y or n): y
+   ✔ Created project folder.
+   ℹ Enter "cd myproject" to move inside the project folder, then start the server with "otree devserver".
+   (venv) [isabell@stardust otree]$
 
 Next, install additional packages required by the project.
 By default, oTree lists these packages in ``myproject/requirements.txt``:
@@ -122,6 +126,7 @@ By default, oTree lists these packages in ``myproject/requirements.txt``:
 .. code-block:: console
 
    (venv) [isabell@stardust otree]$ pip3.10 install -r myproject/requirements.txt
+   (venv) [isabell@stardust otree]$
 
 The ``psycopg2`` library is used to connect to the PostgreSQL database.
 If you were to start oTree in production mode now, you may get the following error:
@@ -135,15 +140,17 @@ Though not recommended by the developers of Psycopg2_, a workaround is to instal
 .. code-block:: console
 
    (venv) [isabell@stardust otree]$ pip3.10 install psycopg2-binary
+   (venv) [isabell@stardust otree]$
 
 You can now exit the virtual environment with:
 
 .. code-block:: console
 
    (venv) [isabell@stardust otree]$ deactivate
+   [isabell@stardust otree]$
 
 
-Run Service
+Set up the daemon
 ----------
 
 Before running oTree in production, generate up to three additional secret keys,
@@ -151,33 +158,32 @@ depending on your needs:
 
 .. code-block:: console
 
-   [isabell@stardust]$ OTREE_ADMIN_PASSWORD=$(openssl rand -hex 16) # admin login
-   [isabell@stardust]$ OTREE_SECRET_KEY=$(openssl rand -hex 8) # participant URL secret
-   [isabell@stardust]$ OTREE_REST_KEY=$(openssl rand -hex 32) # REST API
+   [isabell@stardust]$ openssl rand -hex 16 # OTREE_ADMIN_PASSWORD: admin login
+   [isabell@stardust]$ openssl rand -hex 8 # OTREE_SECRET_KEY: (optional) participant URL secret
+   [isabell@stardust]$ openssl rand -hex 32 # OTREE_REST_KEY: (optional) key for the REST API
+   [isabell@stardust]$
 
 Which secret keys are required depends on your app, check the oTree_ documentation for details.
 
 To run oTree in production mode with ``supervisord``, create a new file at ``/home/etc/services.d/otree.ini``
-by running:
+with the following contents: 
 
-.. code-block:: console
+.. code-block:: ini
 
-   [isabell@stardust]$ cat <<EOF >> /home/isabell/etc/services.d/otree.ini
    [program:otree]
    directory=%(ENV_HOME)s/otree/myproject
    environment=
-      DATABASE_URL="postgres://otree:$(echo $POSTGRESQL_PW)@localhost:5432/otree",
-      OTREE_SECRET_KEY=$OTREE_SECRET_KEY,
-      OTREE_ADMIN_PASSWORD=$OTREE_ADMIN_PASSWORD,
-      OTREE_REST_KEY=$OTREE_REST_KEY,
-      OTREE_PRODUCTION=1,
-      OTREE_AUTH_LEVEL=DEMO
+      DATABASE_URL="postgres://otree:POSTGRESQL_PW@localhost:5432/otree",
+      OTREE_SECRET_KEY="OTREE_SECRET_KEY",
+      OTREE_ADMIN_PASSWORD="OTREE_ADMIN_PASSWORD",
+      OTREE_REST_KEY="OTREE_REST_KEY",
+      OTREE_PRODUCTION="1",
+      OTREE_AUTH_LEVEL="DEMO"
    command=%(ENV_HOME)s/otree/venv/bin/otree prodserver 8000
    startsecs=30
-   EOF
 
-Note:
-   * ``environment``: change variables as per your needs, and make sure your passphrases are correct. You may also want to set ``AUTH_LEVEL="STUDY"`` for production usage.
+Modify the file as follows:
+   * ``environment``: add your passphrases as indicated, or remove variabes you don't need. You may also want to set ``AUTH_LEVEL="STUDY"`` for production usage.
    * ``directory``: path to the oTree app that you wish to run.
    * ``command``: path to oTree, as installed via ``pip`` in your virtual environment.
 
