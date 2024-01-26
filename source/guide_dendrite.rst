@@ -41,21 +41,34 @@ Clone Dendrite’s git repository into your home directory:
 
 .. code-block:: console
 
-  cd ~/
-  git clone https://github.com/matrix-org/dendrite.git
+  [isabell@stardust ~]$ git clone https://github.com/matrix-org/dendrite.git
+  Cloning into 'dendrite'...
+  […]
+  Resolving deltas: 100% (30826/30826), done.
+  [isabell@stardust ~]$
 
 Check out a stable version (replace ``v0.13.5`` with the latest version):
 
 .. code-block:: console
 
-  cd ~/dendrite/
-  git checkout v0.13.5
+  [isabell@stardust ~]$ cd ~/dendrite/
+  [isabell@stardust dendrite]$ git checkout v0.13.5
+  Note: switching to 'v0.13.5'.
+  […]
+  HEAD is now at b7054f42 Version 0.13.5 (#3285)
+  [isabell@stardust dendrite]$
 
 Build the application including utility commands with ``go``:
 
 .. code-block:: console
 
-  go build -o bin/ ./cmd/...
+  [isabell@stardust dendrite]$ go build -o bin/ ./cmd/...
+  go: downloading github.com/getsentry/sentry-go v0.14.0
+  […]
+  go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
+  go: downloading github.com/modern-go/reflect2 v1.0.2
+  [isabell@stardust dendrite]$
+  
 
 Database
 --------
@@ -64,8 +77,11 @@ Make sure you run PostgreSQL in the required version. Create both a user (role) 
 
 .. code-block:: console
 
-  createuser -P dendrite
-  createdb -O dendrite -E UTF-8 dendrite
+  [isabell@stardust dendrite]$ createuser -P dendrite
+  Enter password for new role:
+  Enter it again:
+  [isabell@stardust dendrite]$ createdb -O dendrite -E UTF-8 dendrite
+  [isabell@stardust dendrite]$
 
 Write down the key, you will need it later.
 
