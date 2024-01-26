@@ -81,7 +81,7 @@ For this guide, we will be using the oTree default port ``8000`` and the domain 
 Installation
 ============
 
-oTree
+Setup oTree
 ----------
 
 Create and enter a new directory for the oTree app:
@@ -110,6 +110,7 @@ If you already have an oTree project, you should copy it into the ``otree`` dire
 If you don't have an oTree project yet, you can create one with:
 
 .. code-block:: console
+
    (venv) [isabell@stardust otree]$ otree startproject myproject
    Include sample games? (y or n): y
    Created project folder.
@@ -119,22 +120,26 @@ Next, install additional packages required by the project.
 By default, oTree lists these packages in ``myproject/requirements.txt``:
 
 .. code-block:: console
+
    (venv) [isabell@stardust otree]$ pip3.10 install -r myproject/requirements.txt
 
 The ``psycopg2`` library is used to connect to the PostgreSQL database.
 If you were to start oTree in production mode now, you may get the following error:
 
-.. code-block:: bash
-    ImportError: /home/mirko/otree/venv/lib64/python3.10/site-packages/psycopg2/_psycopg.cpython-310-x86_64-linux-gnu.so: undefined symbol: PQconninfo
+.. code-block:: python
 
-Though not the recommended by the developers of Psycopg2_, a workaround is to install the ``psycopg2-binary`` package:
+    ImportError: /home/isabell/otree/venv/lib64/python3.10/site-packages/psycopg2/_psycopg.cpython-310-x86_64-linux-gnu.so: undefined symbol: PQconninfo
+
+Though not recommended by the developers of Psycopg2_, a workaround is to install the ``psycopg2-binary`` package:
 
 .. code-block:: console
+
    (venv) [isabell@stardust otree]$ pip3.10 install psycopg2-binary
 
 You can now exit the virtual environment with:
 
 .. code-block:: console
+
    (venv) [isabell@stardust otree]$ deactivate
 
 
@@ -145,6 +150,7 @@ Before running oTree in production, generate up to three additional secret keys,
 depending on your needs:
 
 .. code-block:: console
+
    [isabell@stardust]$ OTREE_ADMIN_PASSWORD=$(openssl rand -hex 16) # admin login
    [isabell@stardust]$ OTREE_SECRET_KEY=$(openssl rand -hex 8) # participant URL secret
    [isabell@stardust]$ OTREE_REST_KEY=$(openssl rand -hex 32) # REST API
@@ -155,6 +161,7 @@ To run oTree in production mode with ``supervisord``, create a new file at ``/ho
 by running:
 
 .. code-block:: console
+
    [isabell@stardust]$ cat <<EOF >> /home/isabell/etc/services.d/otree.ini
    [program:otree]
    directory=%(ENV_HOME)s/otree/myproject
@@ -164,7 +171,7 @@ by running:
       OTREE_ADMIN_PASSWORD=$OTREE_ADMIN_PASSWORD,
       OTREE_REST_KEY=$OTREE_REST_KEY,
       OTREE_PRODUCTION=1,
-      OTREE_AUTH_LEVEL=STUDY
+      OTREE_AUTH_LEVEL=DEMO
    command=%(ENV_HOME)s/otree/venv/bin/otree prodserver 8000
    startsecs=30
    EOF
@@ -172,9 +179,11 @@ by running:
 Note:
    * ``environment``: change variables as per your needs, and make sure your passphrases are correct. You may also want to set ``AUTH_LEVEL="STUDY"`` for production usage.
    * ``directory``: path to the oTree app that you wish to run.
-   * ``command``: path to oTree, as installed via ``pip`` in your user directory.
+   * ``command``: path to oTree, as installed via ``pip`` in your virtual environment.
 
 .. include:: includes/supervisord.rst
+
+You should now be able to access your oTree app by navigating to ``https://otree.example.org``.
 
 Tested with Uberspace v7.15.9, oTree v5.10.4.
 
