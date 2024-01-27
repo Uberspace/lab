@@ -212,7 +212,7 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
               ^\[(?P<timestamp>.*)\] \[(?P<type>\w*)\] \[pid (?P<pid>\d*)\] (?P<module>.*): \[client (?P<client>.*)\] (?P<errorid>\w*): (?P<message>.*)$
         - timestamp:
             source: timestamp
-            format: "Mon Jan 06 15:04:05 2006"
+            format: "Mon Jan 02 15:04:05 2006"
 
 .. note::
 
