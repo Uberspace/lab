@@ -270,7 +270,7 @@ Part-DB offers to create a backup:
 
  [isabell@stardust partdb]$ php bin/console partdb:backup --full /home/${USER}/partdb-backup.zip
                                                                                                                         
- [INFO] Backup Part-DB to /home/removeme/partdb-backup.zip                                                              
+ [INFO] Backup Part-DB to /home/isabell/partdb-backup.zip                                                              
                                                                                                                         
  ! [NOTE] Starting backup...                                                                                            
  ! [NOTE] Backing up config files...                                                                                    
@@ -278,7 +278,7 @@ Part-DB offers to create a backup:
  ! [NOTE] Backup database...                                                                                            
  ! [NOTE] MySQL database detected. Dump DB to SQL using mysqldump...                                                    
                                                                                                                         
- [OK] Backup finished! You can find the backup file at /home/removeme/partdb-backup.zip                                 
+ [OK] Backup finished! You can find the backup file at /home/isabell/partdb-backup.zip                                 
                                                                                                                         
  [isabell@stardust partdb]$
 
