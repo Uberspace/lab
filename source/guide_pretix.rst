@@ -40,9 +40,9 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-Since `release 2023.6.0 <https://pretix.eu/about/en/blog/20230627-release-2023-6/>`_ pretix no longer supports MySQL or MariaDB, instead PostgreSQL is required. For setting up PostgreSQL follow this :lab:`UberLab guide <guide_postgresql>`.
+.. note:: Since `release 2023.6.0 <https://pretix.eu/about/en/blog/20230627-release-2023-6/>`_ pretix no longer supports MySQL or MariaDB, instead PostgreSQL is required.
 
-As recommended in the Section `Database and user management <https://lab.uberspace.de/guide_postgresql/#database-and-user-management>`_ please set up a user ``isabell_pretix`` and database ``isabell_pretix_db`` for this project.
+For setting up PostgreSQL follow this :lab:`UberLab guide <guide_postgresql>`. As recommended in the Section `Database and User Management <https://lab.uberspace.de/guide_postgresql/#database-and-user-management>`_ please set up a user ``isabell_pretix`` and database ``isabell_pretix_db`` for this project.
 
 Your URL needs to be setup:
 
@@ -60,11 +60,11 @@ Installation
 Download & Install
 ------------------
 
-Install pretix using the python package manager. Be sure to replace the pseudo branch number ``release/6.6.x`` here with the latest release branch from the Github repository at https://github.com/pretix/pretix/branches/active:
+Install pretix using the python package manager:
 
 ::
 
- [isabell@stardust ~]$ pip3.11 install pretix==4.20.0 gunicorn --user
+ [isabell@stardust ~]$ pip3.11 install pretix gunicorn --user
  [...]
   Running setup.py install for static3 ... done
   Running setup.py install for slimit ... done
@@ -94,7 +94,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,5,9,10,11,15,16,17,18
+  :emphasize-lines: 2,3,5,10,11,12,17,18,21,22,23,24,25
 
     [pretix]
     instance_name=Isabells pretix
