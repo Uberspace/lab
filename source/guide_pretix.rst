@@ -2,6 +2,7 @@
 
 .. author:: ezra <ezra@posteo.de>
 .. author:: luto <m@luto.at>
+.. author:: chriskbach <https://github.com/chriskbach/>
 
 .. tag:: lang-python
 .. tag:: django
@@ -39,7 +40,9 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-.. include:: includes/my-print-defaults.rst
+Since `release 2023.6.0 <https://pretix.eu/about/en/blog/20230627-release-2023-6/>`_ pretix no longer supports MySQL or MariaDB, instead PostgreSQL is required. For setting up PostgreSQL follow this :lab:`UberLab guide <guide_postgresql>`.
+
+As recommended in the Section `Database and user management <https://lab.uberspace.de/guide_postgresql/#database-and-user-management>`_ please set up a user ``isabell_pretix`` and database ``isabell_pretix_db`` for this project.
 
 Your URL needs to be setup:
 
@@ -49,7 +52,7 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-.. note:: pretix uses :lab:`Redis <guide_redis>` to manage background tasks, so it install it using the default configuration.
+.. note:: pretix uses :lab:`Redis <guide_redis>` to manage background tasks, so it installs it using the default configuration.
 
 Installation
 ============
@@ -101,11 +104,12 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     trust_x_forwarded_proto=on
 
     [database]
-    backend=mysql
-    name=isabell_pretix
-    user=isabell
+    backend=postgresql
+    name=isabell_pretix_db
+    user=isabell_pretix
     password=MySuperSecretPassword
     host=localhost
+    port=5432
 
     [celery]
     broker=redis+socket:///home/isabell/.redis/sock
@@ -119,23 +123,6 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     port=587
     tls=on
 
-Create database
----------------
-Run this code to create the database ``<username>_pretix`` in MySQL:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_pretix DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
- [isabell@stardust ~]$
-
-You will also need to install a mysqlclient package:
-
-::
-
- [isabell@stardust ~]$ pip3.11 install mysqlclient --user
- [...]
- Successfully installed mysqlclient-2.1.1
- [isabell@stardust ~]$
 
 Initialize database
 -------------------
