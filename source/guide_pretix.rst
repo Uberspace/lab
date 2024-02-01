@@ -242,7 +242,7 @@ Then re-run the Initialize database steps and restart the service like so:
 
 ----
 
-Tested with pretix 4.20.0 and Uberspace 7.15.1
+Tested with pretix 2023.10.0 and Uberspace 7.15.9
 
 .. author_list::
 
