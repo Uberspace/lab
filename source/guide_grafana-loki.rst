@@ -213,6 +213,7 @@ Create the file ``~/etc/promtail/promtail.yaml`` with the following content:
         - timestamp:
             source: timestamp
             format: "Mon Jan 02 15:04:05 2006"
+            location: "Europe/Berlin"
 
 .. note::
 
