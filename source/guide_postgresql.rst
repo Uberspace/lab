@@ -181,7 +181,7 @@ Edit ``~/opt/postgresql/data/postgresql.conf`` and set the ``unix_socket_directo
 
 Consider using only unix sockets if possible.
 
-.. warning:: Please replace ``<username>`` with your username!
+.. warning:: Please replace ``<username>`` with your username and remove the comment mark ``#`` at the start of the line! 
 
 .. code-block:: postgres
  :emphasize-lines: 6
