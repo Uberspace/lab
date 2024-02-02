@@ -221,7 +221,7 @@ If there is a new version available, install the new version like so:
 
 ::
 
- [isabell@stardust ~]$ pip3.11 install pretix==4.16.0
+ [isabell@stardust ~]$ pip3.11 install pretix==2024.1.0 --user
  [isabell@stardust ~]$
 
 Then re-run the Initialize database steps and restart the service like so:
