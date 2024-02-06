@@ -1,4 +1,6 @@
 .. author:: this.ven <https://this.ven.uber.space>
+.. author:: Jan Klomp <https://jan.klomp.de>
+
 
 .. tag:: blog
 .. tag:: lang-go
@@ -191,12 +193,17 @@ Updates
   [isabell@stardust ~]$ tar xzf writefreely_0.13.0_linux_amd64.tar.gz
   [isabell@stardust ~]$ cp ~/writefreely-backup/config.ini ~/writefreely/config.ini
   [isabell@stardust ~]$ cp -r ~/writefreely-backup/keys ~/writefreely/keys
+  [isabell@stardust ~]$ cd ~/writefreely/
+  [isabell@stardust ~]$ writefreely db migrate
+  [...]
+  2024/02/06 14:09:10 Closing database connection...
+  [isabell@stardust ~]$
 
 Restart Writefreely by ``supervisorctl restart writefreely`` command. If it's not starting, repeat `config mode procedure`_.
 
 ----
 
-Tested on Uberspace v7.7.0 with Go 1.15.1 and Writefreely v0.12.0.
+Tested on Uberspace v7.15.9 with Go 1.21.6 and Writefreely v0.15.0.
 
 .. author_list::
 
