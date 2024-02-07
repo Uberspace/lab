@@ -173,6 +173,7 @@ with the following contents:
    [program:otree]
    directory=%(ENV_HOME)s/otree/myproject
    environment=
+      PATH="%(ENV_HOME)s/otree/venv/bin:%(ENV_PATH)s",
       DATABASE_URL="postgres://otree:POSTGRESQL_PW@localhost:5432/otree",
       OTREE_SECRET_KEY="OTREE_SECRET_KEY",
       OTREE_ADMIN_PASSWORD="OTREE_ADMIN_PASSWORD",
