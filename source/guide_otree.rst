@@ -165,7 +165,7 @@ depending on your needs:
 
 Which secret keys are required depends on your app, check the oTree_ documentation for details.
 
-To run oTree in production mode with ``supervisord``, create a new file at ``/home/etc/services.d/otree.ini``
+To run oTree in production mode with ``supervisord``, create a new file at ``/home/$USER/etc/services.d/otree.ini``
 with the following contents: 
 
 .. code-block:: ini
