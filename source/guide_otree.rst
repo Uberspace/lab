@@ -169,7 +169,7 @@ To run oTree in production mode with ``supervisord``, create a new file at ``/ho
 with the following contents: 
 
 .. code-block:: ini
- :emphasize-lines: 3-6
+ :emphasize-lines: 4-7
 
    [program:otree]
    directory=%(ENV_HOME)s/otree/myproject
