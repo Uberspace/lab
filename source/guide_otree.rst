@@ -16,8 +16,7 @@ oTree
 .. tag_list::
 
 oTree_ is an open-source platform for web-based interactive tasks, such as lab experiments and multiplayer games, written in Python.
-The oTree documentation recommends deployment via Heroku for simplicity, however this may no longer be the best option
-for some users since the removal of free plans from the platform.
+
 
 ----
 
