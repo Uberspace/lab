@@ -99,7 +99,7 @@ Create a copy of the default configuration file:
  [isabell@stardust partdb]$
 
 Now modify the ``.env.local`` configuration file.
-Therefore you need your MySQL credentials, the MySQL version, your :manual:`Mail <mail-access>` credentials (optional) and the secret you've created before:
+For this, you need your MySQL credentials, the MySQL version, your :manual:`Mail <mail-access>` credentials (optional) and the secret you've created before:
 
 .. code-block:: ini
 
