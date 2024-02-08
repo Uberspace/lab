@@ -154,7 +154,7 @@ Run ``yarn``:
  Done in 114.55s.
  [isabell@stardust partdb]$
 
-Build the assets with ``node`` and terminate the analyzer by pressing ``Strg+C``:
+Build the assets with ``node`` and terminate the analyzer by pressing ``Ctrl+C``:
 
 .. note::
  Normally you will just run ``yarn build``, but we circumvent the memory limit on your uberspace.
