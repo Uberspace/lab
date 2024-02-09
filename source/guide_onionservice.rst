@@ -15,7 +15,7 @@ Tor onion service
 
 .. tag_list::
 
-This guide describes how to make your services available via a tor onion service that runs in the users uberspace. Note that uberspace also offers a onion service, depending on what you want to achieve you might not need to follow this guide to get what you want. Therefore read the about the :manual:`Tor Service <web-tor>` first.
+This guide describes how to make your services available via a tor onion service that runs in the users uberspace. Note that uberspace also offers an onion service, depending on what you want to achieve you might not need to follow this guide to get what you want. Check out :manual:`Tor Service <web-tor>` first.
 
 .. manual: :manual_anchor:`tor-onion-service`
 
@@ -30,7 +30,7 @@ This guide describes how to make your services available via a tor onion service
 Prerequisites
 =============
 
-Some service you want to connect to via the onion service should be setup and running. In this guide we will use port 80, on which the a webserver should be running by default.
+Some service you want to connect to via the onion service should be setup and running. In this guide we will use port 80, on which the Uberspace webserver is running.
 
 Installation
 ============
@@ -66,9 +66,13 @@ Create the file ``~/tor/torrc`` and add the following lines:
 ::
   HiddenServiceDir onionservice
   HiddenServicePort 80 127.0.0.1:80
+  ExitPolicy reject *:*
 
 The first line determines where the configuration and keys for the onion service will be stored.
 This directory contains the cryptographic keys of the onion service and should not be publily accessible.
+
+.. warning::
+  Do not remove or modify the ``ExitPolicy``. Uberspace does not allow Tor exit nodes.
 
 Set up the daemon
 -----------------
@@ -87,11 +91,7 @@ Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following co
 Finishing installation
 ======================
 
-Start the service using:
-::
- [isabell@stardust ~]$ supervisorctl reread
- [isabell@stardust ~]$ supervisorctl start tor-onion-service
- [isabell@stardust ~]$.
+.. include:: includes/supervisord.rst
 
 To view your automatically generated .onion hostname
 ::
