@@ -57,14 +57,6 @@ We're using :manual:`Node.js <lang-nodejs>` in the stable version 20:
 
  .. include:: includes/my-print-defaults.rst
 
-You’ll need your MySQL version number. Get it with :
-
-.. code-block:: console
-
- [isabell@stardust ~]$ mysql --version
- mysql  Ver 15.1 Distrib 10.6.16-MariaDB, for Linux (x86_64) using readline 5.1
- [isabell@stardust ~]$
-
 Download and Configuration
 ==========================
 
@@ -99,11 +91,11 @@ Create a copy of the default configuration file:
  [isabell@stardust partdb]$
 
 Now modify the ``.env.local`` configuration file.
-For this, you need your MySQL credentials, the MySQL version, your :manual:`Mail <mail-access>` credentials (optional) and the secret you've created before:
+For this, you need your MySQL credentials, your :manual:`Mail <mail-access>` credentials (optional) and the secret you've created before:
 
 .. code-block:: ini
 
- DATABASE_URL=mysql://isabell:password@127.0.0.1:3306/isabell_partdb?serverVersion=10.6.16
+ DATABASE_URL=mysql://isabell:password@127.0.0.1:3306/isabell_partdb
  APP_SECRET=5192a149b12c2baccc74f16d2590c882
  DEFAULT_URI=https://isabell.uber.space/
  MAILER_DSN=smtp://isabell:password@host.uberspace.de:587
