@@ -74,6 +74,12 @@ This directory contains the cryptographic keys of the onion service and should n
 .. warning::
   Do not remove or modify the ``ExitPolicy``. Uberspace does not allow Tor exit nodes.
 
+Optionally you can test if everything works by starting the tor daemon directly from the shell using
+::
+ [isabell@stardust ~]$ LD_LIBRARY_PATH=~/tor ~/tor/tor --torrc-file tor/torrc
+ [isabell@stardust ~]$.
+
+
 Set up the daemon
 -----------------
 
