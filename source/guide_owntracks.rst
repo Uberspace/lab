@@ -38,7 +38,6 @@ The OwnTracks components are distributed under different licenses, including `GN
 Prerequisites
 =============
 
-* Either a CentOS 7 environment or a working Docker installation to compile the binaries
 * Node version 18, the compilation process for the frontend is not compatible with Node 20 yet
 
 Installation
@@ -63,82 +62,67 @@ Make a note of the port you opened in your firewall, you will need it later for 
 
 .. note:: Make sure that you use the `-c` argument **only** on the first user. Otherwise a new password file will be created.
 
-Compiling the binaries
+Installing ot-recorder
 ----------------------
 
-Sadly, there are no precompiled binaries or packages available that could be used on Uberspace, we need to compile it ourselves. Another hurdle are missing header files on the Uberspace hosts, so we can't compile it there.
+Compiling ot-recorder
+^^^^^^^^^^^^^^^^^^^^^
 
-If you have a CentOS 7 environment available you can compile it directly by following the `Building from source`_ instructions, if you have a Docker installation available you can use the environment in this `Docker image`_
+OwnTracks does not provide binary packages for CentOS, we need to build it ourself.
 
-Build the Docker image
-^^^^^^^^^^^^^^^^^^^^^^
+Check the `recorder release page`_ for the latest version and download and extract it:
 
 .. code-block:: console
 
- [isabell@localmachine ~]$ mkdir ~/tmp
- [isabell@localmachine ~]$ cd ~/tmp
- [isabell@localmachine tmp]$ git clone https://github.com/schneidr/owntracks-recorder-centos-build owntracks
- [isabell@localmachine tmp]$ cd owntracks
- [isabell@localmachine owntracks]$ docker build -t owntracks-recorder-centos .
- [isabell@localmachine owntracks]$ cp config.mk.in config.mk
- [isabell@localmachine owntracks]$
+  [isabell@stardust ~]$ wget https://github.com/owntracks/recorder/archive/refs/tags/0.9.7.tar.gz
+  [isabell@stardust ~]$ tar xfz 0.9.7.tar.gz
+  [isabell@stardust ~]$ cd recorder-0.9.7/
+  [isabell@stardust recorder-0.9.7]$ cp config.mk.in config.mk
 
 You need to change some values to change in ``config.mk``, some can be overriden later in the configuration, but not all of them:
 
 .. code-block:: ini
 
-  INSTALLDIR = /usr/local
   STORAGEDEFAULT = /home/isabell/lib/ot-recorder/
   DOCROOT = /home/isabell/lib/ot-recorder/htdocs
   CONFIGFILE = /home/isabell/etc/default/ot-recorder
 
 .. note:: You might want to keep your ``config.mk`` file for later updates, but you can get the values from the compiled binaries using the ``--version`` argument.
 
-Compiling ot-recorder
-^^^^^^^^^^^^^^^^^^^^^
-
-Check the `recorder release page`_ for the latest version and use it for the ``RECORDER_VERSION`` variable:
 
 .. code-block:: console
 
- [isabell@localmachine owntracks]$ docker run -it --rm -v $PWD:/work -e RECORDER_VERSION=0.9.6 owntracks-recorder-centos:latest
- [isabell@localmachine owntracks]$
+  [isabell@stardust recorder-0.9.7]$ make
+  [...]
+  [isabell@stardust recorder-0.9.7]$
 
-The container will download and compile the requested version. Afterwards you will find three new files in the directory:
-
-* libconfig.so.9
-* ocat
-* ot-recorder
-
-These files need to be copied to your Uberspace server. First, create the necessary directories an change your environment variables:
+Now create the bin and the config directory and copy the binaries there.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir -p ~/bin/lib ~/etc/default/
- [isabell@stardust ~]$ echo 'export LD_LIBRARY_PATH="/home/isabell/bin/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
- [isabell@stardust ~]$ echo 'export PATH="/home/isabell/bin:$PATH"' >> ~/.bashrc
- [isabell@stardust ~]$ source ~/.bashrc
- [isabell@stardust ~]$
-
-Now upload the file ``libconfig.so.9`` into the directory ``/home/isabell/bin/lib``, both ``ocat`` and ``ot-recorder`` need to be placed into ``/home/isabell/bin/``. Make sure they keep their executable permissions. Afterwards you should be able to call the binaries.
+ [isabell@stardust recorder-0.9.7]$ mkdir -p ~/bin ~/etc/default/ ~/lib/ot-recorder/htdocs
+ [isabell@stardust recorder-0.9.7]$ install --target-directory=/home/isabell/bin/ --mode=0755 ocat ot-recorder
+ [isabell@stardust recorder-0.9.7]$ echo 'export PATH="/home/isabell/bin:$PATH"' >> ~/.bashrc
+ [isabell@stardust recorder-0.9.7]$ source ~/.bashrc
+ [isabell@stardust recorder-0.9.7]$
 
 .. code-block:: console
 
- [isabell@stardust ~]$ ocat --version
- This is OwnTracks Recorder, version 0.9.6
- built with:
-         WITH_MQTT = yes
-         WITH_HTTP = yes
-         WITH_TOURS = yes
-         WITH_PING = yes
-         CONFIGFILE = "/home/isabell/etc/default/ot-recorder"
-         DOCROOT = "/home/isabell/lib/ot-recorder/htdocs"
-         DEFAULT_HISTORY_HOURS = 6
-         JSON_INDENT = "NULL"
-         LIBMOSQUITTO_VERSION = 1.6.10
-         MDB VERSION = LMDB 0.9.22: (March 21, 2018)
-         GIT VERSION = tarball
- [isabell@stardust ~]$
+  [isabell@stardust ~]$ ocat --version
+  This is OwnTracks Recorder, version 0.9.7
+  built with:
+          WITH_MQTT = yes
+          WITH_HTTP = yes
+          WITH_TOURS = yes
+          WITH_PING = yes
+          CONFIGFILE = "/home/isabell/etc/default/ot-recorder"
+          DOCROOT = "/home/isabell/lib/ot-recorder/htdocs"
+          DEFAULT_HISTORY_HOURS = 6
+          JSON_INDENT = "NULL"
+          LIBMOSQUITTO_VERSION = 1.6.10
+          MDB VERSION = LMDB 0.9.22: (March 21, 2018)
+          GIT VERSION = tarball
+  [isabell@stardust ~]$
 
 Configuration
 =============
@@ -172,10 +156,7 @@ Create a config file in ``~/etc/services.d/ot-recorder.ini`` with the following 
  command=ot-recorder 'owntracks/#'
  autostart=yes
  autorestart=unexpected
- environment=LD_LIBRARY_PATH="/home/isabell/bin/lib:/lib64"
  startsecs=30
-
-Adding the environment variable ``LD_LIBRARY_PATH`` makes sure the necessary libraries are found (supervisord does not source the ``.bashrc`` file).
 
 .. include:: includes/supervisord.rst
 
@@ -223,10 +204,9 @@ To set up views you need to copy some more files and map a couple more paths to 
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir -p ~/lib/ot-recorder/htdocs
- [isabell@stardust ~]$ cd recorder-0.9.6/
- [isabell@stardust recorder-0.9.6]$ cp docroot/static docroot/utils ~/lib/ot-recorder/htdocs
- [isabell@stardust recorder-0.9.6]$
+ [isabell@stardust ~]$ cd ~/recorder-0.9.7/
+ [isabell@stardust recorder-0.9.7]$ cp -r docroot/static docroot/utils ~/lib/ot-recorder/htdocs/
+ [isabell@stardust recorder-0.9.7]$
 
 For the backend configuration:
 
@@ -238,6 +218,15 @@ For the backend configuration:
  [isabell@stardust ~]$
 
 Now you can place your view definitions in ``~/etc/...`` and the view is instantly reachable from the web.
+
+Cleanup
+^^^^^^^
+
+.. code-block:: console
+
+ [isabell@stardust recorder-0.9.7]$ cd ~
+ [isabell@stardust ~]$ rm -rf 0.9.7.tgz recorder-0.9.7
+ [isabell@stardust ~]$
 
 Client Setup
 ============
@@ -281,7 +270,6 @@ Restart your supervisorctl afterwards. If it's not in state RUNNING, check the l
 .. _GNU Public License: https://github.com/owntracks/recorder/blob/master/LICENSE
 .. _MIT License: https://github.com/owntracks/frontend/blob/main/LICENSE
 .. _Building from source: https://github.com/owntracks/recorder#building-from-source
-.. _Docker image: https://github.com/schneidr/owntracks-recorder-centos-build
 .. _recorder release page: https://github.com/owntracks/recorder/releases
 .. _frontend releases page: https://github.com/owntracks/frontend/releases
 .. _OwnTracks views: https://github.com/owntracks/recorder#views
@@ -290,6 +278,6 @@ Restart your supervisorctl afterwards. If it's not in state RUNNING, check the l
 
 ----
 
-Tested with OwnTracks 0.9.6, Uberspace 7.15.6
+Tested with OwnTracks 0.9.7, Uberspace 7.15.10
 
 .. author_list::
