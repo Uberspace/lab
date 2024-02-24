@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: Jan Klomp <https://jan.klomp.de>
+.. author:: BabyFn0rd <https://github.com/BabyFnord/>
 
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: lang-php
@@ -39,7 +40,7 @@ License
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 8.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1 or above (tested working with PHP 8.3):
 
 ::
 
@@ -79,36 +80,32 @@ Installation
   inflating: README.md
  [isabell@stardust isabell]$
 
-Delete the ``nocontent.html`` file, the empty ``/html`` directory and the downloaded zip file, then rename the ``linkstack`` directory to ``html`` :
+Delete the empty ``/html`` directory and the downloaded zip file, then rename the ``linkstack`` directory to ``html`` :
 
 ::
 
- [isabell@stardust isabell]$ rm html/nocontent.html; rmdir html/
- [isabell@stardust isabell]$ rm linkstack.zip
+ [isabell@stardust isabell]$ rm -rf html && rm linkstack.zip
  [isabell@stardust isabell]$ mv linkstack html
  [isabell@stardust isabell]$
 
+.. note:: If you intend to access *LinkStack* using a subdomain, you need to edit ``linkstack/.htaccess`` and add ``RewriteBase /`` below ``RewriteEngine On``.
 
 Configuration
 =============
 
-Open your webbrowser and go to ``https://isabell.uber.space/``, then click trough the setup process. It's recommend using MySQL as the database backend. Fill in the database credentials:
+Browse to ``https://isabell.uber.space/`` and complete the setup process using MySQL as the database backend. Fill in the database credentials:
 
 ::
 
  Database host:     localhost
- Database port:     3306
+ Database port:     localhost
  Database name:     isabell_linkstack
  Database username: isabell
  Database password: MySuperSecretPassword
 
-During the setup process you have to create the default login ``admin@admin.com`` with password ``12345678``. Don't forget to fill in the ``Handle`` and ``Name`` fields also.
+Create the default login ``your@domain.com`` with password ``YourPassword``, subsequently enter a ``Handle`` and ``Name``.
 
-.. warning:: Change the default password of the default administrator account now!
-
-On the Admin Panel, click on the ``Account Settings`` section located on the sidebar on the left-hand side of your screen. There you can enter a new and secure password.
-
-Maybe you want to edit the ``Terms``, ``Privacy`` and ``Contact`` pages. You'll find them on the Admin Panel in the ``Footer Pages`` section.
+In case you want to edit the ``Terms``, ``Privacy`` and ``Contact`` pages, browse to the ``Footer Pages`` section in the Admin Panel.
 
 If you're going to allow registrations, you may want to edit the SMTP settings for outgoing mails. Click on ``Config`` on the Admin Panel and edit the SMTP server settings according to your requirements.
 
@@ -127,6 +124,6 @@ When a new version is released, you will also get an update notification on your
 
 ----
 
-Tested with LinkStack v4.0.3, Uberspace 7.15.1
+Tested with LinkStack v4.7.7, Uberspace 7.15.10
 
 .. author_list::
