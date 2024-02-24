@@ -101,18 +101,19 @@ Hugo is now installed on your Uberspace. This means you're ready to create your 
 
  [isabell@stardust ~]$ cd ~/hugo_websites
  [isabell@stardust hugo_websites]$ hugo new site hugo_web
- Congratulations! Your new Hugo site is created in /home/isabell/hugo_websites/hugo_web.
+ Congratulations! Your new Hugo site was created in /home/isabell/hugo_websites/hugo_web.
 
- Just a few more steps and you're ready to go:
+ Just a few more steps...
 
- 1. Download a theme into the same-named folder.
-    Choose a theme from https://themes.gohugo.io/, or
-    create your own with the "hugo new theme <THEMENAME>" command.
- 2. Perhaps you want to add some content. You can add single files
-    with "hugo new <SECTIONNAME>/<FILENAME>.<FORMAT>".
- 3. Start the built-in live server via "hugo server".
-
- Visit https://gohugo.io/ for quickstart guide and full documentation.
+ 1. Change the current directory to /home/isabell/hugo_websites/hugo_web.
+ 2. Create or install a theme:
+    - Create a new theme with the command "hugo new theme <THEMENAME>"
+    - Install a theme from https://themes.gohugo.io/
+ 3. Edit hugo.toml, setting the "theme" property to the theme name.
+ 4. Create new content with the command "hugo new content <SECTIONNAME>/<FILENAME>.<FORMAT>".
+ 5. Start the embedded web server with the command "hugo server --buildDrafts".
+ 
+ See documentation at https://gohugo.io/.
  [isabell@stardust hugo_websites]$
 
 Add theme
