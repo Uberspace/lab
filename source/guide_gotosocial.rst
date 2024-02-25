@@ -72,7 +72,7 @@ Copy the example configuration file via ``cp ./example/config.yaml .`` and edit 
 
 .. code-block:: yaml
  :emphasize-lines: 1-6
- 
+
  host: "isabell.uber.space"
  protocol: "https"
  port: 8080
@@ -190,4 +190,3 @@ Tested with GoToSocial 0.8.1, Uberspace 7.15.1
 .. _installation: #Installation
 
 .. author_list::
-

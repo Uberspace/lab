@@ -350,7 +350,7 @@ Updating vaultwarden is really easy.
  [isabell@stardust vaultwarden]$ supervisorctl start vaultwarden
  vaultwarden: started
  [isabell@stardust vaultwarden]$
- 
+
 Hint: If the update fails
 -------------------------
 

@@ -44,7 +44,7 @@ We're using :manual:`Node.js <lang-nodejs>` in the latest version listed in `Wik
  [isabell@stardust ~]$ uberspace tools version use node 20
  Selected Node.js version 20
  The new configuration is adapted immediately. Minor updates will be applied automatically.
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 .. note:: If you already use PostgreSQL, you can skip the next two steps and take a look at :ref:`tuning`.
 

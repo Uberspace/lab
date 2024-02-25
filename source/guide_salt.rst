@@ -16,9 +16,11 @@ SaltStack
 
 .. tag_list::
 
-`SaltStack`_ (or simply `Salt`) is Python-based, open-source software for event-driven IT automation, remote task execution, and configuration management. Supporting the "Infrastructure as Code" approach to data center system and network deployment and management, configuration automation, SecOps orchestration, vulnerability remediation, and hybrid cloud control.
+`SaltStack <https://saltstack.com/>`_ (or simply `Salt`) is Python-based, open-source software for event-driven IT automation, remote task execution, and configuration management. Supporting the "Infrastructure as Code" approach to data center system and network deployment and management, configuration automation, SecOps orchestration, vulnerability remediation, and hybrid cloud control.
 
 The ``salt-master`` controls so called ``salt-minions`` through formulae, pillars and grains. The scope of this guide is to install a ``salt-master`` (without a co-located minion) on an Uberspace.
+
+Source code for SaltStack is available for review `on GitHub <https://github.com/saltstack/salt>`_ and `distributed under the Apache License 2.0 <https://github.com/saltstack/salt/blob/master/LICENSE>`_.
 
 ----
 

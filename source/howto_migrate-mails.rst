@@ -82,8 +82,8 @@ you to use for any mail client:
     --user1 info@example.com \
     --ssl1 \
 
-If your old mailserver is located at Gmail, you must activate IMAP-Access in the settings over there 
-and "less secure app access", too and then use the following *instead* (this will provide the correct 
+If your old mailserver is located at Gmail, you must activate IMAP-Access in the settings over there
+and "less secure app access", too and then use the following *instead* (this will provide the correct
 settings for Google Mails):
 
 .. code-block:: ini

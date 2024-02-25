@@ -26,9 +26,9 @@ If your application runs as a service, stop it:
   [isabell@stardust ~]$ supervisorctl stop <app>
   <app>: stopped
   [isabell@stardust ~]$
-  
-  
-  
+
+
+
 Now the application including all packages should be updated to the latest version.
 
 .. code-block:: console
@@ -37,9 +37,9 @@ Now the application including all packages should be updated to the latest versi
  ...
  added 2 packages and updated 9 packages in 10.521s
  [isabell@stardust ~]$
- 
- 
- 
+
+
+
 Perform Upgrades
 --------------------------
 
@@ -51,7 +51,7 @@ Set the new node.js version:
  Selected node version <xy>
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
- 
+
 
 Under the new version all installed packages should be rebuilt once:
 
@@ -60,7 +60,7 @@ Under the new version all installed packages should be rebuilt once:
  [isabell@stardust ~]$ npm rebuild --global
  rebuilt dependencies successfully
  [isabell@stardust ~]$
- 
+
 
 And then be provided with the available updates for the new version:
 
@@ -70,8 +70,8 @@ And then be provided with the available updates for the new version:
  ...
  added 9 packages and updated 22 packages in 33.211s
  [isabell@stardust ~]$
- 
- 
+
+
 Restart Service
 --------------------------
 
@@ -82,5 +82,3 @@ Now you can start the service again:
   [isabell@stardust ~]$ supervisorctl start <app>
   <app>: started
   [isabell@stardust ~]$
-  
-

@@ -2,6 +2,7 @@
 
 .. author:: 927589452
 .. author:: luto <http://luto.at>
+.. author:: Arian Malek <https://fetziverse.de>
 
 .. tag:: lang-python
 .. tag:: chat
@@ -20,13 +21,15 @@ Synapse
 
 Synapse_ is the reference implementation of a matrix server.
 Matrix_ is federated chat protocol aiming to replace xmpp.
-This guide was inspired by `Jan Willhaus's guide for Uberspace 6 <https://janw.xyz/blog/installing-a-matrix-org-synapse-server-on-uberspace/>`_.
+This guide was inspired by Jan Willhaus's guide for Uberspace 6.
 
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
 
-  * :lab:`Postgresql <guide_postgresql>`
+  * :manual:`Domains <web-domains>`
+  * :lab:`PostgreSQL <guide_postgresql>`
+  * :manual:`web backends <web-backends>`
   * :manual:`supervisord <daemons-supervisord>`
 
 License
@@ -35,11 +38,42 @@ License
 All relevant legal information can be found here
 
   * https://github.com/matrix-org/synapse/blob/master/LICENSE
+  * https://github.com/matrix-org/sliding-sync/blob/main/LICENSE
 
 Prerequisites
 =============
 
-If you want to run synapse with postgresql instead of sqlite you need a running :lab:`Postgresql <guide_postgresql>` database server.
+Web domain
+----------
+
+.. note:: Keep in mind that since you can't create DNS records for ``.uber.space`` domains, you'll need your own domain like ``example.org``. `Matrix 2.0`_ will increase the support of federation, video and audio calling which recommend a own domain. To understand and setup the domains easier I use the following (recommended) subdomains:
+
+ * ``matrix.example.org``
+ * ``syncv3.example.org``
+
+Your domain ``example.org`` and subdomains ``matrix.example.org`` and ``syncv3.example.org`` needs to be setup:
+
+::
+
+ [isabell@stardust ~]$ uberspace web domain list
+ example.org
+ matrix.example.org
+ syncv3.example.org
+ [isabell@stardust ~]$
+
+Uberspace creates certificates automatically when a domain is first seen by the webserver. Trigger the generation for each one with the following command:
+
+::
+
+ [isabell@stardust ~]$ curl --silent --head https://example.org | head -n 1
+ [...]
+ [isabell@stardust ~]$ curl --silent --head https://matrix.example.org | head -n 1
+ [...]
+ [isabell@stardust ~]$ curl --silent --head https://syncv3.example.org | head -n 1
+ [...]
+ [isabell@stardust ~]$
+
+This will return ``HTTP/1.1 200 OK`` or something similar accordingly your webserver configuration.
 
 Installation
 ============
@@ -75,7 +109,22 @@ We will install synapse using pip, which makes it quite easy:
 
   [isabell@stardust ~]$
 
+Also we need the latest ``urllib3`` that support OpenSSL 1.0.2 which is provided by Uberspace 7 and cannot be updated due to the base of CentOS 7:
 
+.. code-block:: console
+  :emphasize-lines: 1
+
+  [isabell@stardust ~]$ pip3.9 install --user urllib3==1.26.6
+    Collecting urllib3==1.26.6
+      Downloading urllib3-1.26.6-py2.py3-none-any.whl (138 kB)
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 138.5/138.5 kB 5.2 MB/s eta 0:00:00
+    Installing collected packages: urllib3
+      Attempting uninstall: urllib3
+        Found existing installation: urllib3 2.1.0
+        Uninstalling urllib3-2.1.0:
+          Successfully uninstalled urllib3-2.1.0
+    Successfully installed urllib3-1.26.6
+  [isabell@stardust ~]$
 
 .. note:: If you get a compilation error due to missing rust components in the cryptography library for python it may help to run:
 
@@ -91,24 +140,18 @@ Configuration
 Generate standard config
 ------------------------
 
-Generate a config file ``~/synapse/homeserver.yaml`` and replace my.domain.name with the real domain you want your matrix username to end in.
+Generate a config file ``~/synapse/homeserver.yaml`` and replace ``example.org`` with the real domain you want your matrix username to end in.
 
 .. code-block:: console
   :emphasize-lines: 3,6
 
   [isabell@stardust ~]$ cd ~/synapse
   [isabell@stardust synapse]$  python3.9 -m synapse.app.homeserver \
-    --server-name my.domain.name \
+    --server-name example.org \
     --config-path homeserver.yaml \
     --generate-config \
     --report-stats=[yes|no]
   [isabell@stardust ~]$
-
-Replace the ``public_baseurl`` in the config file ``~/synapse/homeserver.yaml`` with the url of your Synapse_.
-
-.. code-block:: yaml
-
-  public_baseurl: https://my.domain.name/
 
 Set the Synapse_ to listen for federation and clients on the correct localhost without encryption in the config file ``~/synapse/homeserver.yaml``. To do this, locate the ``listeners:`` section and modify the entry with ``port: 8008``:
 
@@ -124,60 +167,36 @@ Set the Synapse_ to listen for federation and clients on the correct localhost w
           - names: [client, federation]
             compress: false
 
-And point the ``uberspace web backend`` on ``/`` to the listener on port 8008.
+And point the ``uberspace web backend`` on ``matrix.example.org`` to the listener on port 8008.
 
 .. include:: includes/web-backend.rst
 
 Announcement
 ------------
 
-To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy), either via DNS or via .well-known.
-
-Option A: DNS announcement
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note:: This is the older method, harder to implement but supporting all servers.
-
-The port can can be announced by setting a DNS record in the following format:
-
-.. code-block:: none
-
-   _matrix._tcp.<yourdomain.com> <ttl> IN SRV <priority> <weight> <port> <synapse.server.name>
-
-For example like this:
-
-.. code-block:: none
-
-  _matrix._tcp.my.domain.name 3600 IN SRV 10 5 443 my.domain.name.
-
-.. note:: this can be checked by running ``dig -t srv _matrix._tcp.my.domain.name``
-
-Option B:.well-known announcement
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. note:: This is the newer method, easier to implement but not supported on older servers.
+To enable federation as described MatrixFederation_ we need to announce, that we are listening on port 443 (the reverse proxy) via .well-known.
 
 Setup the directory for the next step:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir -p ~/html/.well-known/matrix
+  [isabell@stardust ~]$ mkdir -p /var/www/virtual/$USER/example.org/.well-known/matrix
   [isabell@stardust ~]$
 
-The federation port can also be announced via a file ``~/html/.well-known/matrix/server``
+Create the file ``/var/www/virtual/$USER/example.org/.well-known/matrix/server`` with the following content:
 
 .. code-block:: json
   :emphasize-lines: 2
 
   {
-    "m.server": "my.domain.name:443"
+    "m.server": "matrix.example.org:443"
   }
 
-This has to be made available under ``/.well-known/matrix`` via the web backend:
+This has to be made available under ``example.org/.well-known/matrix`` via the web backend:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace web backend set /.well-known/matrix --apache
+  [isabell@stardust ~]$ uberspace web backend set example.org/.well-known/matrix --apache
   Set backend for /.well-known/matrix to apache.
   [isabell@stardust ~]$
 
@@ -305,7 +324,7 @@ Users can be added from the CLI:
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/synapse
-  [isabell@stardust synape]$ register_new_matrix_user -c homeserver.yaml https://my.domain.name:PORT
+  [isabell@stardust synape]$ register_new_matrix_user -c homeserver.yaml https://matrix.example.org
   New user localpart [isabell]: USER
   Password:
   Confirm password:
@@ -337,7 +356,7 @@ Then add it to the USERS table:
   psql (9.6.10)
   Type "help" for help.
 
-  synapse=> UPDATE users SET password_hash='$2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02' WHERE name='@isabell:my.domain.name';
+  synapse=> UPDATE users SET password_hash='$2b$12$yK16TMDMnvj97GFBoxF9QeP2N.U8oadindcjB0Uo9TkSI3CsgwV02' WHERE name='@isabell:example.org';
   UPDATE 1
   synapse=>
   [isabell@stardust ~]$
@@ -349,15 +368,175 @@ Check federation
 
 The Matrix_ project provides a federation checker at MatrixFederationChecker_ .
 
+Sliding-Sync
+============
 
+The `Sliding Sync`_ proxy integrated in `Matrix 2.0`_ improves the performance (login and initial sync, launch and incremental sync) especially for group chats. It is also needed for the new Matrix 2.0 clients like Element X.
 
-Tested on Uberspace 7.3.1.1 via riot.im/app on synapse 1.0.0.
+Prerequisites
+-------------
+
+First we clone the repository to ``~/sliding-sync``:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ git clone https://github.com/matrix-org/sliding-sync
+    Cloning into 'sliding-sync'...
+    remote: Enumerating objects: 12000, done.
+    remote: Counting objects: 100% (3685/3685), done.
+    remote: Compressing objects: 100% (861/861), done.
+    remote: Total 12000 (delta 3029), reused 3321 (delta 2798), pack-reused 8315
+    Receiving objects: 100% (12000/12000), 3.76 MiB | 10.90 MiB/s, done.
+    Resolving deltas: 100% (8573/8573), done.
+  [isabell@stardust ~]$
+
+Generate a secret and compile the proxy:
+
+.. note:: This MUST remain the same throughout the lifetime of the database created above.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~/sliding-sync
+  [isabell@stardust sliding-sync]$ echo -n "$(openssl rand -hex 32)" > .secret
+  [isabell@stardust sliding-sync]$ go build ./cmd/syncv3
+  [...]
+  [isabell@stardust sliding-sync]$
+
+Create the file ``/var/www/virtual/$USER/example.org/.well-known/matrix/client`` with the following content to announce the sliding sync proxy:
+
+.. code-block:: console
+  :emphasize-lines: 3,6
+
+  {
+    "m.homeserver": {
+        "base_url": "https:/matrix.example.org"
+    },
+    "org.matrix.msc3575.proxy": {
+        "url": "https://syncv3.example.org"
+    }
+  }
+
+Setup database
+--------------
+
+Setup one more dedicated postgres user and database for sliding-sync:
+
+.. code-block:: console
+  :emphasize-lines: 2,3
+
+  [isabell@stardust ~]$ createuser syncv3 -P
+  Enter password for new role:
+  Enter it again:
+  [isabell@stardust ~]$ createdb --owner="syncv3" syncv3
+  [isabell@stardust ~]$
+
+You can verify access with:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ psql syncv3 syncv3
+
+Web backend
+-----------
+
+Setup ``uberspace web backend`` on ``syncv3.example.org`` to the listener on port 8009.
+
+.. include:: includes/web-backend.rst
+
+Check functionality
+-------------------
+
+Make sure to check the functionality. This will make it a lot easier to troubleshoot if something didn't work as expected. Make sure to replace the your domain and your PostgreSQL password:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~/sliding-sync
+  [isabell@stardust sliding-sync]$ SYNCV3_SECRET=$(cat .secret) SYNCV3_SERVER="https://example.org" SYNCV3_DB="user=$(syncv3) dbname=syncv3 sslmode=disable password='MySuperSecretPSQLPassword'" SYNCV3_BINDADDR=0.0.0.0:8009 ./syncv3
+    Sync v3 [0.99.13] (a8e9c56)
+    Debug=false LogLevel= MaxConns=0
+    2023/12/10 14:33:36 OK   20230728114555_device_data_drop_id.sql (6.1ms)
+    2023/12/10 14:33:36 OK   20230802121023_device_data_jsonb.go (43.74ms)
+    2023/12/10 14:33:36 OK   20230814183302_cbor_device_data.go (14.14ms)
+    2023/12/10 14:33:36 OK   20230822180807_bogus_snapshot_cleanup.go (7.22ms)
+    2023/12/10 14:33:36 OK   20230913120537_events_missing_previous.sql (6.52ms)
+    2023/12/10 14:33:36 OK   20231019153023_cleanup_dead_invites.sql (10.87ms)
+    14:33:36 INF invalidating users len_invalidate_users=0
+    14:33:36 INF invalidating users invalidate_users=[]
+    14:33:36 INF reset since tokens num_devices=0
+    14:33:36 INF reset invites num_invites=0
+    2023/12/10 14:33:36 OK   20231108122539_clear_stuck_invites.go (10ms)
+    2023/12/10 14:33:36 goose: successfully migrated database to version: 20231108122539
+    14:33:36 INF creating handler
+    14:33:36 INF retrieved global snapshot from database
+    14:33:36 INF listening on 0.0.0.0:8009
+    14:33:36 INF StartV2Pollers num_devices=0 num_fail_decrypt=0
+    14:33:36 INF StartV2Pollers finished
+  [isabell@stardust sliding-sync]$
+
+You should see some more ``INF`` activity as soon as your client like Element X connects to your account. Otherwise check the configuration again.
+
+Setup daemon
+------------
+
+Create ``~/etc/services.d/syncv3.ini`` with the following content. Make sure to replace the secret, your domain and your PostgreSQL password:
+
+.. code-block:: ini
+
+  [program:syncv3]
+  Environment=SYNCV3_SECRET=MySuperSecret,SYNCV3_SERVER="https://matrix.example.org",SYNCV3_DB="user=syncv3 dbname=syncv3 sslmode=disable password=MySuperSecretPSQLPassword",SYNCV3_BINDADDR="0.0.0.0:8009"
+  command=%(ENV_HOME)s/sliding-sync/syncv3
+  autostart=yes
+  autorestart=yes
+  startsecs=10
+
+.. include:: includes/supervisord.rst
+
+Updates
+-------
+
+Stop the service, pull the repo, rebuild it and start the service again.
+
+.. code-block:: console
+
+  [isabell@stardust]$ cd ~/sliding-sync
+  [isabell@stardust sliding-sync]$ supervisorctl stop syncv3
+    syncv3: stopped
+  [isabell@stardust sliding-sync]$ git pull
+    remote: Enumerating objects: 86, done.
+    remote: Counting objects: 100% (86/86), done.
+    remote: Compressing objects: 100% (34/34), done.
+    remote: Total 86 (delta 54), reused 71 (delta 49), pack-reused 0
+    Unpacking objects: 100% (86/86), 41.61 KiB | 513.00 KiB/s, done.
+    From https://github.com/matrix-org/sliding-sync
+      62d3798..a8e9c56  main                       -> origin/main
+    * [new branch]      dmr/avatars-for-dms-only   -> origin/dmr/avatars-for-dms-only
+    * [new branch]      kegan/conn-map-tests       -> origin/kegan/conn-map-tests
+    * [new branch]      kegan/log-state-invalidate -> origin/kegan/log-state-invalidate
+    * [new tag]         v0.99.13                   -> v0.99.13
+    Updating 62d3798..a8e9c56
+    Fast-forward
+    README.md                |   2 ++
+    RELEASING.md             |  11 +++++-----
+    cmd/syncv3/main.go       |   2 +-
+    sync3/connmap.go         |  30 +++++++++++++++++--------
+    sync3/connmap_test.go    | 229 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    sync3/handler/handler.go |  14 ++++++------
+    6 files changed, 266 insertions(+), 22 deletions(-)
+    create mode 100644 sync3/connmap_test.go
+  [isabell@stardust sliding-sync]$ go build ./cmd/syncv3
+  [isabell@stardust sliding-sync]$ supervisorctl start syncv3
+    syncv3: started
+  [isabell@stardust sliding-sync]$
+
+Tested on Uberspace 7.15.6 via riot.im/app on synapse 1.97.0. Sliding Sync tested on version 0.99.13 and Element X 1.4.2.
 
 .. _MatrixFederation: https://github.com/matrix-org/synapse/blob/master/docs/federate.md
 .. _MatrixRSS: https://matrix.org/blog/feed
 .. _Matrix: https://matrix.org/
 .. _Synapse: https://matrix.org/docs/projects/server/synapse
 .. _MatrixFederationChecker: https://federationtester.matrix.org/
+.. _Sliding Sync: https://github.com/matrix-org/sliding-sync
+.. _Matrix 2.0: https://matrix.org/blog/2023/09/matrix-2-0/
 
 ----
 

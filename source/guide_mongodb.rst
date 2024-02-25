@@ -167,9 +167,9 @@ If you want to use your Mongodb instance only from your Uberspace account you ca
 
  [isabell@stardust ~]$ uberspace port add
  Port 43120 will be open for TCP and UDP traffic in a few minutes.
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
-Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with the port that was opened by the previous command. 
+Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with the port that was opened by the previous command.
 
 .. code-block:: ini
  :emphasize-lines: 4,5,8,9
@@ -181,7 +181,7 @@ Modify your ``~/etc/services.d/mongodb.ini`` file. Replace the port number with 
    --bind_ip 0.0.0.0
    --auth
    --unixSocketPrefix %(ENV_HOME)s/mongodb
-   --tlsMode requireTLS 
+   --tlsMode requireTLS
    --sslPEMKeyFile %(ENV_HOME)s/mongodb/%(ENV_USER)s.uber.space.pem
  autostart=yes
  autorestart=yes
@@ -194,7 +194,7 @@ Create the `.pem` file with the certificate chain and restart the service:
 
  [isabell@stardust ~]$ cat /readonly/$USER/certificates/$USER.uber.space.key  /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem
  [isabell@stardust ~]$ supervisorctl restart mongodb
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 To ensure MongoDB uses the latest certificates, restart the service monthly, e.g. by creating a cron job via ``crontab -e``.
 
@@ -203,7 +203,7 @@ To ensure MongoDB uses the latest certificates, restart the service monthly, e.g
  @monthly cat /readonly/$USER/certificates/$USER.uber.space.key /readonly/$USER/certificates/$USER.uber.space.crt > /home/$USER/mongodb/$USER.uber.space.pem && supervisorctl restart mongodb > /dev/null
 
 
-Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@isabell.uber.space:<port>/admin?tls=true``
+Access your instance via the following URI: ``mongodb://<username>_mongoroot:<password>@<username>.uber.space:<port>/admin?tls=true``
 
 
 Updates
