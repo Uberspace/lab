@@ -8,7 +8,7 @@ Automatic Deployment with CI/CD
 When you develop your own web application it is very useful to deploy your code automatically.
 As soon as you push your code to the main branch of your repository or on any other event you can trigger a build pipeline which can run automatic tests, build your code and automatically pushs it to your Uberspace.
 
-In comparison :lab:`manual deployment <guide_gitea>` this can speed up your development process. This process is called CI/CD (Continuous Integration/Continuous Delivery).
+In comparison to :lab:`manual deployment <guide_gitea>` automatic deployment can speed up your development process. This process is called CI/CD (Continuous Integration/Continuous Delivery).
 
 .. mermaid::
 
@@ -29,16 +29,25 @@ There are several solutions available to automatically deploy your code to your 
 - GitLab CI/CD
 - Gitea Actions
 
-.. note:: For this guide you should be familiar with the basic concepts of git_.
+.. note:: For this guide you should be familiar with the basic concepts of git.
 
-Prepare Local Git Repository
+Prerequisites
+============
+Install or make sure the following command line tools are installed
+
+    - Git
+    - Github CLI
+
+Prepare Git Repository
 =============
 Init a new Git repository `isabells-website`.
 
 .. code-block:: console
+
     mkdir isabells-website
     cd isabells-website
     git init --initial-branch=main
+    gh repo create isabells-website --private --source=.
 
 Add an ``src/index.html`` file to your git repository.
 
@@ -60,6 +69,13 @@ Commit your files.
     git commit -m "Init Isabell's Website"
 
 
+Push the code
+
+.. code-block:: console
+
+    git push --set-upstream origin main
+
+Your code should now be visible in your GitHub repository.
 
 
 Deploy with GitHub Actions
@@ -86,14 +102,6 @@ As soon as you push your changes to GitHub the GitHub Action is triggered which 
 
 In the next steps we push code to the GitHub Remote Repository, create the Github Action, set the variables and SSH secrets and test the deployment process.
 
-Push the code
-=============
-
-1. Create a new GitHub Repository `github.com/new <https://github.com/new>`_
-2. Name: isabells-website
-3. Follow the instructions on the section `…or push an existing repository from the command line`
-
-Your code should now be visible in your GitHub repository.
 
 Add Github Action
 =================
@@ -234,7 +242,7 @@ Push your change to the repository.
 
 Check the GitHub Actions again. Wait till it is deployed.
 
-🚀 Congratulations! You should see "Isabell's Website".
+🚀 Congratulations! "Isabell's Website" should now be hosted on your Uberspace.
 
 
 Debugging
@@ -242,7 +250,7 @@ Debugging
 In case of errors, check the job. When the error text is not helpful, retrigger the run and check the checkbox "Enable debug logging"
 
 
-Extend it
+Extend it (optional)
 =======
 
 - Some applications require a build step. You can include those steps into the actions before you sync the code via Rsync.
