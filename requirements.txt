@@ -1,6 +1,6 @@
 -e ./authorship
 feedgen==0.9.0
-pre-commit==3.6.*
+pre-commit==3.5.*
 Sphinx==4.4.0
 sphinx-autobuild==2021.3.*
 sphinx-notfound-page==0.3
