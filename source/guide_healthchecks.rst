@@ -148,7 +148,7 @@ later.
 
  [isabell@stardust ~]$ python3.11 -m venv venv
  [isabell@stardust ~]$ source venv/bin/activate
- [isabell@stardust ~]$ pip3.11 install -r requirements.txt
+ (venv) [isabell@stardust ~]$ pip3.11 install -r requirements.txt
  Collecting aiosmtpd==1.4.4.post2 (from -r requirements.txt (line 1))
    Obtaining dependency information for aiosmtpd==1.4.4.post2 from https://files.pythonhosted.org/packages/ef/b3/f4cce9da53b02aa7d4c0662ca344421023feefc5c8f815b90d1c7514702e/aiosmtpd-1.4.4.post2-py3-none-any.whl.metadata
    Downloading aiosmtpd-1.4.4.post2-py3-none-any.whl.metadata (6.8 kB)
@@ -334,7 +334,7 @@ Once we set the correct settings we can initialize the database:
 
 ::
 
- [isabell@stardust ~]$ python3.11 ./manage.py migrate
+ (venv) [isabell@stardust ~]$ python3.11 ./manage.py migrate
  System check identified some issues:
 
  WARNINGS:
@@ -537,12 +537,12 @@ the email, if you do not plan to use it inside Django. You should pick a decent 
 .. code-block:: console
  :emphasize-lines: 2,3,4
 
- [isabell@stardust ~]$ python3.11 ./manage.py createsuperuser
+ (venv) [isabell@stardust ~]$ python3.11 ./manage.py createsuperuser
  Email address:isabell@uber.space
  Password:
  Password (again):
  Superuser created successfully.
- [isabell@stardust ~]$
+ (venv) [isabell@stardust ~]$
 
 Generate static files
 -----------------
@@ -551,12 +551,12 @@ Healthchecks uses a couple of static files. We need to generate this as follows:
 
 ::
 
- [isabell@stardust ~]$ python3.11 ./manage.py collectstatic
+ (venv) [isabell@stardust ~]$ python3.11 ./manage.py collectstatic
  347 static files copied to '/home/isabell/apps/healthchecks/static-collected'.
- [isabell@stardust ~]$ python3.11 ./manage.py compress
+ (venv) [isabell@stardust ~]$ python3.11 ./manage.py compress
  Compressing... done
  Compressed 26 block(s) from 147 template(s) for 1 context(s).
- [isabell@stardust ~]$
+ (venv) [isabell@stardust ~]$
 
 Set up the daemons
 -----------------
