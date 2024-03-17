@@ -140,7 +140,9 @@ The note of the ``git checkout`` command can be ignored as we do not plan to do 
 Set up the virtual environment
 -----------------
 
-Next we will setup a :manual:`Python <lang-python>` virtual environment where all dependencies are encapsulated:
+Next we will setup a :manual:`Python <lang-python>` virtual environment where all dependencies are encapsulated. Then we
+install the required dependencies and on top of that also `gunicorn <https://gunicorn.org/>`_ which will be our HTTP server
+later.
 
 ::
 
@@ -627,14 +629,16 @@ Configure web backend
     Gunicorn is running Django on port 8000 (as configured in the service file).
     So make sure to replace ``<port>`` in the example below with ``8000``.
 
-.. include:: includes/my-print-defaults.rst
+.. include:: includes/web-backend.rst
 
 Your backend should now point to the service; let's check it:
 
 .. code-block:: console
+    :emphasize-lines: 1
 
     [isabell@stardust ~]$ uberspace web backend list
-    / http:8000 => OK, listening: listening: PID 13332, /home/isabell/apps/healthcheck/venv/bin/python3.11 venv/bin/gunicorn --bind 0.0.0.0:8000 hc.wsgi:application
+    / http:8000 => OK, listening: PID 23161, /usr/bin/python3.11 /home/isabell/.local/bin/gunicorn --error-logfile - --reload --bind 0.0.0.0:8000 mysite.wsgi:application
+
     [isabell@stardust ~]$
 
 Finishing installation
