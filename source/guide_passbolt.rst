@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Johnson <https://johnson.tj/>
+.. author:: Thomas Johnson <https://johnson.tj/>, Andreas Fuchs <https://anfuchs.de/>
 
 .. tag:: lang-php
 .. tag:: web
@@ -37,12 +37,12 @@ Passbolt is released under the `AGPL-3.0 license`_.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 7.2. Since new Uberspaces are currently setup with PHP 7.1 by default you need to set this version manually:
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1. 
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.2
- Selected PHP version 7.2
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -87,17 +87,38 @@ To install Passbolt we clone the current version using Git. ``cd`` to your :manu
 Configuration
 =============
 
-Generate an OpenPGP key:
+Generate your OpenPGP key using headless mode. Add a gpg_batch.conf.
 
-.. warning:: Do not set a passphrase or an expiration date.
+::
 
-Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email.
+ [isabell@stardust ~]$ nano gpg_batch.conf
 
-.. code-block:: console
- :emphasize-lines: 4,5
+Copy following content to ``gpg_batch.conf`` and replace ``YOUR_NAME``, ``YOUR_COMMENT`` and ``SERVER_KEY@EMAIL.TEST`` with your mail:
+
+::
+
+ %echo Generating a GPG key
+ Key-Type: RSA
+ Key-Length: 3072
+ Key-Usage: sign
+ Subkey-Type: RSA
+ Subkey-Length: 3072
+ Subkey-Usage: encrypt
+ Name-Real: YOUR_NAME
+ Name-Comment: YOUR_COMMENT
+ Name-Email: SERVER_KEY@EMAIL.TEST
+ Expire-Date: 0
+ %commit
+ %echo done
+
+::
+
+Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email. ``gpg --batch --gen-key gpg_batch.conf`` will run for multiple minutes. Just wait until it's finished!
+
+::
 
  [isabell@stardust ~]$ mkdir -p ~/passbolt/config
- [isabell@stardust ~]$ gpg --gen-key
+ [isabell@stardust ~]$ gpg --batch --gen-key gpg_batch.conf
  [isabell@stardust ~]$ gpg --list-keys --fingerprint
  [isabell@stardust ~]$ gpg --armor --export-secret-keys SERVER_KEY@EMAIL.TEST > ~/passbolt/config/serverkey_private.asc
  [isabell@stardust ~]$ gpg --armor --export SERVER_KEY@EMAIL.TEST > ~/passbolt/config/serverkey.asc
@@ -115,12 +136,15 @@ Install the dependencies:
  [isabell@stardust html]$
 
 Edit following settings in ``config/passbolt.php``:
- * ``fullBaseUrl`` in ``App``: ``https://isabell.uber.space``
- * ``username``, ``password`` and ``database`` in ``Datasources``: :manual_anchor:`credentials <database-mysql.html#login-credentials>`
- * ``port`` in ``EmailTransport``: ``587``
- * ``username`` and ``password`` in ``EmailTransport``: ``passbolt@isabell.uber.space`` and the password
- * ``fingerprint`` in ``passbolt - gpg - serverKey``: Insert your gpg fingerprint without spaces (!)
- * ``public`` and ``private`` under fingerprint: ``/home/isabell/passbolt/config/``
+ * ``fullBaseUrl`` : ``https://isabell.uber.space`` in ``App``
+ * ``username``, ``password`` and ``database`` in ``Datasources.default``: :manual_anchor:`credentials <database-mysql.html#login-credentials>`
+ * ``host`` : ``stardust.uberspace.de``, ``port`` : ``587``, ``tls`` : ``true``, ``username`` : ``isabell`` and ``password`` in ``EmailTransport.default``
+ * ``from`` : ``['passbolt@isabell.uber.space' => 'Passbolt']`` in ``Email.default``
+ * ``fingerprint`` in ``passbolt.gpg.serverKey``: Insert your gpg fingerprint without spaces (!)
+ * ``public`` : ``/home/isabell/passbolt/config/serverkey.asc`` in ``passbolt.gpg.serverKey``
+ * ``private`` : ``/home/isabell/passbolt/config/serverkey_private.asc`` in ``passbolt.gpg.serverKey``
+ * optional add ``ssl.force`` : ``true`` in ``passbolt``
+
 
 Finish the installation and fill in your email and name when asked for:
 
@@ -155,6 +179,6 @@ Check Passbolt's `stable releases`_ for the latest versions. If a newer version 
 
 ----
 
-Tested with Passbolt 2.12.0 and Uberspace 7.4
+Tested with Passbolt 4.5.2 and Uberspace 7.15.10
 
 .. author_list::
