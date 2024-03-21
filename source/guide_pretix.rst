@@ -2,6 +2,7 @@
 
 .. author:: ezra <ezra@posteo.de>
 .. author:: luto <m@luto.at>
+.. author:: chriskbach <https://github.com/chriskbach/>
 
 .. tag:: lang-python
 .. tag:: django
@@ -39,7 +40,9 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-.. include:: includes/my-print-defaults.rst
+.. note:: Since `release 2023.6.0 <https://pretix.eu/about/en/blog/20230627-release-2023-6/>`_ pretix no longer supports MySQL or MariaDB, instead PostgreSQL is required.
+
+For setting up PostgreSQL follow this :lab:`UberLab guide <guide_postgresql>`. As recommended in the Section `Database and User Management <https://lab.uberspace.de/guide_postgresql/#database-and-user-management>`_ please set up a user ``isabell_pretix`` and database ``isabell_pretix_db`` for this project.
 
 Your URL needs to be setup:
 
@@ -49,7 +52,7 @@ Your URL needs to be setup:
  isabell.uber.space
  [isabell@stardust ~]$
 
-.. note:: pretix uses :lab:`Redis <guide_redis>` to manage background tasks, so it install it using the default configuration.
+.. note:: pretix uses :lab:`Redis <guide_redis>` to manage background tasks, so it installs it using the default configuration.
 
 Installation
 ============
@@ -57,11 +60,11 @@ Installation
 Download & Install
 ------------------
 
-Install pretix using the python package manager. Be sure to replace the pseudo branch number ``release/6.6.x`` here with the latest release branch from the Github repository at https://github.com/pretix/pretix/branches/active:
+Install pretix using the python package manager:
 
 ::
 
- [isabell@stardust ~]$ pip3.11 install pretix==4.20.0 gunicorn --user
+ [isabell@stardust ~]$ pip3.11 install pretix gunicorn --user
  [...]
   Running setup.py install for static3 ... done
   Running setup.py install for slimit ... done
@@ -91,7 +94,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,5,9,10,11,15,16,17,18
+  :emphasize-lines: 2,3,5,10,11,12,17,18,21,22,23,24,25
 
     [pretix]
     instance_name=Isabells pretix
@@ -101,11 +104,12 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     trust_x_forwarded_proto=on
 
     [database]
-    backend=mysql
-    name=isabell_pretix
-    user=isabell
+    backend=postgresql
+    name=isabell_pretix_db
+    user=isabell_pretix
     password=MySuperSecretPassword
     host=localhost
+    port=5432
 
     [celery]
     broker=redis+socket:///home/isabell/.redis/sock
@@ -119,23 +123,6 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     port=587
     tls=on
 
-Create database
----------------
-Run this code to create the database ``<username>_pretix`` in MySQL:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_pretix DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;"
- [isabell@stardust ~]$
-
-You will also need to install a mysqlclient package:
-
-::
-
- [isabell@stardust ~]$ pip3.11 install mysqlclient --user
- [...]
- Successfully installed mysqlclient-2.1.1
- [isabell@stardust ~]$
 
 Initialize database
 -------------------
@@ -234,7 +221,7 @@ If there is a new version available, install the new version like so:
 
 ::
 
- [isabell@stardust ~]$ pip3.11 install pretix==4.16.0
+ [isabell@stardust ~]$ pip3.11 install pretix==2024.1.0 --user
  [isabell@stardust ~]$
 
 Then re-run the Initialize database steps and restart the service like so:
@@ -255,7 +242,7 @@ Then re-run the Initialize database steps and restart the service like so:
 
 ----
 
-Tested with pretix 4.20.0 and Uberspace 7.15.1
+Tested with pretix 2023.10.0 and Uberspace 7.15.9
 
 .. author_list::
 
