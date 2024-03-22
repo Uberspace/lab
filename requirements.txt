@@ -6,3 +6,4 @@ sphinx-autobuild==2021.3.*
 sphinx-notfound-page==0.3
 sphinx-rtd-theme==1.0.*
 sphinxcontrib-spelling==7.1.0
+sphinxcontrib-mermaid==0.9.2

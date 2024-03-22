@@ -46,7 +46,7 @@ As a hands-on exercise, you can create a simple HTML file with the following con
     <head>
     </head>
     <body>
-     <h1>Hello World<h1>
+     <h1>Hello World</h1>
     </body>
    </html>
 
