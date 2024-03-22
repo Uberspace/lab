@@ -9,6 +9,13 @@ by users like you! So, if you'd like to change or add something here, you're
 more than welcome to do so. Have a look at our [contributing guidelines][] to
 learn how. Also, have a look at the [list of guides][] people are looking for!
 
+## Prerequisites
+
+You need to have installed:
+
+-   Python (<= 3.11)
+-   [Enchant library](https://abiword.github.io/enchant/)
+
 ## Development
 
 Pushing for each and every change is fun, but can take some time. To speed up
