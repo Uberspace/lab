@@ -18,7 +18,7 @@ RustDesk
 
 .. tag_list::
 
-RustDesk is an open-source remote desktop software that allows remote access to and control of other computers. In addition to a client, which is available for various operating systems, a server compound is also required for `hole punching`_ (see: `How does RustDesk work?`_). Although there are public servers, it is possible to host a RustDesk server yourself, as there is a free version (`RustDesk Server`_) in addition to a paid version (RustDesk Server Pro).
+RustDesk_ is an open-source remote desktop software that allows remote access to and control of other computers. In addition to a client, which is available for various operating systems, a server compound is also required for `hole punching`_ (see: `How does RustDesk work?`_). Although there are public servers, it is possible to host a RustDesk server yourself, as there is a free version (`RustDesk Server`_) in addition to a paid version (RustDesk Server Pro).
 
 ----
 
@@ -164,6 +164,7 @@ Updates
 
 To update the software, download the latest version and replace the files ``hbbs``, ``hbbr`` and ``rustdesk-utils``.
 
+.. _RustDesk: https://rustdesk.com
 .. _hole punching: https://en.wikipedia.org/wiki/Hole_punching_(networking)
 .. _How does RustDesk work?: https://github.com/rustdesk/rustdesk/wiki/How-does-RustDesk-work%3F
 .. _RustDesk Server: https://github.com/rustdesk/rustdesk-server
