@@ -33,7 +33,7 @@ There are several solutions available to automatically deploy your code to your 
 
 Prerequisites
 ============
-Install or make sure the following command line tools are installed
+Install or make sure the following command line tools are installed on your local machine
 
     - Git
     - Github CLI
