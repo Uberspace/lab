@@ -33,7 +33,7 @@ There are several solutions available to automatically deploy your code to your 
 
 Prerequisites
 ============
-Install or make sure the following command line tools are installed
+Install or make sure the following command line tools are installed on your local machine
 
     - Git
     - Github CLI
@@ -44,10 +44,10 @@ Init a new Git repository `isabells-website`.
 
 .. code-block:: console
 
-    mkdir isabells-website
-    cd isabells-website
-    git init --initial-branch=main
-    gh repo create isabells-website --private --source=.
+    localuser@localhost ~ $ mkdir isabells-website
+    localuser@localhost ~ $ cd isabells-website
+    localuser@localhost ~ $ git init --initial-branch=main
+    localuser@localhost ~ $ gh repo create isabells-website --private --source=.
 
 Add an ``src/index.html`` file to your git repository.
 
@@ -65,15 +65,15 @@ Commit your files.
 
 .. code-block:: console
 
-    git add --all
-    git commit -m "Init Isabell's Website"
+    localuser@localhost ~ $ git add --all
+    localuser@localhost ~ $ git commit -m "Init Isabell's Website"
 
 
 Push the code
 
 .. code-block:: console
 
-    git push --set-upstream origin main
+    localuser@localhost ~ $ git push --set-upstream origin main
 
 Your code should now be visible in your GitHub repository.
 
@@ -148,9 +148,9 @@ Push your code changes.
 
 .. code-block:: console
 
-    git add --all
-    git commit -m "Add Github Actions"
-    git push
+    localuser@localhost ~ $ git add --all
+    localuser@localhost ~ $ git commit -m "Add Github Actions"
+    localuser@localhost ~ $ git push
 
 You can now see your GitHub Action to run and fail. This is because the variables and secrets are not yet set. This we will do in the next step.
 
@@ -236,9 +236,9 @@ Push your change to the repository.
 
 .. code-block:: console
 
-    git add --all
-    git commit -m "Isabell's Website"
-    git push
+    localuser@localhost ~ $ git add --all
+    localuser@localhost ~ $ git commit -m "Isabell's Website"
+    localuser@localhost ~ $ git push
 
 Check the GitHub Actions again. Wait till it is deployed.
 
