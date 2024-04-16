@@ -33,6 +33,7 @@ Thank you and have fun experimenting!
    howto_ssh-keys
    howto_migrate-mails
    howto_website
+   howto_automatic-deployment
 
 .. toctree::
    :caption: Guides
