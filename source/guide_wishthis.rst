@@ -65,14 +65,28 @@ After cloning the repository, you need to create an additional folder:
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
- [isabell@stardust ~]$ cd ~/html/src/
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/src/
  [isabell@stardust src]$ mkdir cache
  [isabell@stardust src]$
+
+Create database
+---------------
+
+While not technically necessary, it is recommended to create a single-purpose MySQL database for whishthis:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ mysql --verbose --execute="CREATE DATABASE ${USER}_wishthis"
+ --------------
+ CREATE DATABASE isabell_wishthis
+ --------------
+
+ [isabell@stardust ~]$
 
 Finishing installation
 ======================
 
-Point your browser to ``https://isabell.uber.space/`` The built-in setup should start. Follow the instructions, enter your database credentials and register your user account.
+Point your browser to ``https://isabell.uber.space/`` The built-in setup should start. Follow the instructions, enter your database credentials and the name of the database you just created, and register your user account.
 
 Updates
 =======
