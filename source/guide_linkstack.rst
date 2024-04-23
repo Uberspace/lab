@@ -88,8 +88,6 @@ Delete the empty ``/html`` directory and the downloaded zip file, then rename th
  [isabell@stardust isabell]$ mv linkstack html
  [isabell@stardust isabell]$
 
-.. note:: If you intend to access *LinkStack* using a subdomain, you need to edit ``linkstack/.htaccess`` and add ``RewriteBase /`` below ``RewriteEngine On``.
-
 Configuration
 =============
 
