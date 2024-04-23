@@ -42,7 +42,7 @@ Go to the tor download_ page and copy the download link for the latest stable ve
 ::
  [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
  [isabell@stardust ~]$ tar xvzf tor.tar.gz
- [isabell@stardust ~]$.
+ [isabell@stardust ~]$
 
 .. _download: https://www.torproject.org/download/tor/
 
@@ -52,8 +52,6 @@ Verify the signature (optional)
 To verify the integrity and authenticity of the download check the signatures as described in the docs_.
 
 .. _docs: https://support.torproject.org/little-t-tor/verify-little-t-tor/
-
-
 
 
 Configuration
@@ -91,6 +89,7 @@ Optionally you can test if everything works by starting the tor daemon directly 
  [notice] Bootstrapped 100% (done): Done
  [isabell@stardust ~]$.
 
+.. note:: ``LD_LIBRARY_PATH`` tells the dynamic link loader where to search for the dynamic shared libraries. Tor won't run without the addition of its shared libraries.
 
 Set up the daemon
 -----------------
