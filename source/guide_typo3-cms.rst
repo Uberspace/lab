@@ -1,4 +1,4 @@
-.. author:: Tobias Stahn <info@tstahn.io>
+.. author:: Tobias Stahn <hello@tstahn.io>
 
 .. tag:: lang-php
 .. tag:: web
@@ -36,12 +36,12 @@ development of the platform.
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.2:
+We're using PHP_ in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.2'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -53,7 +53,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-TYPO3 9.5 provides the directory ``public`` as web root, so we will install it next to the default :manual:`document root <web-documentroot>` and
+TYPO3 provides the directory ``public`` as web root since version 9.5, so we will install it next to the default :manual:`document root <web-documentroot>` and
 use a symlink to make it accessible.
 
 ``cd`` into the directory above your document root ``/var/www/virtual/$USER/`` and set up a new project using :manual_anchor:`composer <lang-php.html#package-manager>`.
@@ -61,34 +61,29 @@ use a symlink to make it accessible.
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project typo3/cms-base-distribution typo3-cms
- Installing typo3/cms-base-distribution (v9.5.0)
-   - Installing typo3/cms-base-distribution (v9.5.0)
- Created project in typo3-cms
+ [isabell@stardust isabell]$ composer create-project "typo3/cms-base-distribution:^11.5" typo3-cms
+ Creating a "typo3/cms-base-distribution:^11.5" project at "./typo3-cms"
+ Installing typo3/cms-base-distribution (v11.5.1)
+   - Downloading typo3/cms-base-distribution (v11.5.1)
+   - Installing typo3/cms-base-distribution (v11.5.1): Extracting archive
+ Created project in /var/www/virtual/tstahn/typo3-cms
  Loading composer repositories with package information
- Updating dependencies (including require-dev)
- Package operations: 76 installs, 0 updates, 0 removals
-   - Installing typo3/cms-composer-installers (v2.2.1)
-   - Installing typo3/class-alias-loader (1.0.1)
+ Updating dependencies
+ Lock file operations: 100 installs, 0 updates, 0 removals
  [...]
  [isabell@stardust isabell]$
-
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files.
 
 Now remove the :manual:`document root <web-documentroot>` and create a symlink to the ``public`` directory.
 
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/typo3-cms/public html
  [isabell@stardust isabell]$
 
 Configuration
 =============
-
-Step 1
-------
 
 Point your browser to your website URL and append ``/typo3`` (e.g. isabell.uber.space/typo3). You will be greeted with a
 "Thank you for choosing TYPO3" message.
@@ -105,30 +100,22 @@ in your browser. You will be redirected to the TYPO3 Install Tool which will gui
 
 For the purpose of this guide we assume there are none, so we can proceed with the next step.
 
-Step 2
-------
+Create database
+---------------
 
-Enter your database :manual_anchor:`credentials <database-mysql.html#login-credentials>`, keep the other settings unchanged, they are correct as they are.
+Enter your database :manual_anchor:`credentials <database-mysql.html#login-credentials>`, keep the other settings unchanged, they are correct as they are. Use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database, for example: ``isabell_typo3``.
 
-Step 3
-------
-
-Create an :manual_anchor:`additional <database-mysql.html#additional-databases>` database - for example: ``isabell_typo3``.
-
-Step 4
-------
+Create user
+-----------
 
 Enter a username and password for your first TYPO3 admin user (the password will also be configured for the Install Tool).
 
 .. note:: For security reasons it's best to **not** use the name ``admin``.
 
+Enter your email address. This is used in case you forget your password and need to reset it. Additionally it can be used
+to notify you by email when somebody logs in from your account.
+
 Choose a "site name" which will identify this installation (in the page tree and browser title).
-
-Step 5
-------
-
-Choose whether you want to start with an empty TYPO3 installation (no pages, templates, configuration) or if you want
-to have a preconfigured basis to start from.
 
 Next Steps
 ==========
@@ -151,7 +138,7 @@ To update TYPO3 ``cd`` into the directory you installed it in earlier and update
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/typo3-cms
- [isabell@stardust typo3-cms]$ composer update typo3/minimal
+ [isabell@stardust typo3-cms]$ composer update "typo3/cms-*" --with-all-dependencies
 
 To update 3rd party packages, find the corresponding composer package name (e.g. from the official `TYPO3 extension repository`_),
 and update the package.
@@ -183,6 +170,6 @@ You may also refer to the official Twitter account `@typo3_security`_ to stay up
 
 ----
 
-Tested with TYPO3 9.5 LTS and Uberspace 7.2.2
+Tested with TYPO3 11.5 LTS and Uberspace 7.12.2
 
 .. author_list::

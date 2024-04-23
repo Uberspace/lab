@@ -13,7 +13,7 @@
       :align: center
 
 #############
-Gitlab Runner
+GitLab Runner
 #############
 
 .. tag_list::
@@ -29,17 +29,17 @@ GitLab Runner is the open source project that is used to run your jobs and send 
 Prerequisites
 =============
 
-gitlab project
+GitLab project
 --------------
 
-You need to have a project in gitlab that you want to deploy using Gitlab Runner.
+You need to have a project in GitLab that you want to deploy using GitLab Runner.
 
-For further information please refer to the official `Gitlab Runner docs`_
+For further information please refer to the official `GitLab Runner docs`_
 
 Obtain registration token
 --------------------------
 
-To create a specific Runner without having admin rights to the GitLab instance, visit the project you want to make the Runner work for in GitLab:
+To create a specific Runner without having admin rights to the GitLab instance, visit the project or group you want to make the Runner work for in GitLab:
 
  Go to Settings > **CI/CD** to obtain the token
 
@@ -49,7 +49,7 @@ Installation
 Download latest version
 -----------------------
 
-Use ``wget`` to download the latest version of Gitlab Runner:
+Use ``wget`` to download the latest version of GitLab Runner:
 
 ::
 
@@ -81,7 +81,7 @@ Register the runner
 
 .. note:: You need your registration token you copied above.
 
-  This basic setup uses the **shell executor**. See: `Gitlab Runner Executors`_
+  This basic setup uses the **shell executor**. See: `GitLab Runner Executors`_
 
 ::
 
@@ -95,7 +95,7 @@ Create a shell script (e.g. ``/home/$USER/bin/gitlab-runner.sh``) that keeps the
 ::
 
   #!/bin/bash
-  /home/$USER/bin/gitlab-runner-11.1.0 run --working-directory=/home/$USER/gitlab-runner/
+  /home/$USER/bin/gitlab-runner run --working-directory=/home/$USER/gitlab-runner/
 
 Make it executable:
 
@@ -108,30 +108,43 @@ Create supervisord ini (e.g. ``/home/$USER/etc/services.d/gitlab-runner.ini``:
 ::
 
   [program:gitlab-runner]
-  command=/home/$USER/bin/gitlab-runner.sh
+  command=%(ENV_HOME)s/bin/gitlab-runner.sh
 
-
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- gitlab-runner: available
- [isabell@stardust ~]$ supervisorctl update
- gitlab-runner: added process group
- [isabell@stardust ~]$ supervisorctl status
- gitlab-runner                   RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
-
+.. include:: includes/supervisord.rst
 
 If it’s not in state RUNNING, check your configuration.
 
-.. _Gitlab: https://gitlab.com
-.. _Gitlab Runner docs: https://docs.gitlab.com/runner/
-.. _Gitlab Runner executors: https://docs.gitlab.com/runner/executors/README.html
+
+Updates
+=======
+To update the GitLab Runner the service needs to be stopped. Then you should backup your old executable. Afterwards its common to the installation:
+You download the current release and make it executable. Afterwards see if it prints the current version and then (re)start your service.
+
+::
+
+  [isabell@stardust ~]$ supervisorctl stop gitlab-runner
+  gitlab-runner: stopped
+  [isabell@stardust ~]$ mv /home/$USER/bin/gitlab-runner /home/$USER/bin/gitlab-runner-old
+  [isabell@stardust ~]$ wget -O /home/$USER/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+  [isabell@stardust ~]$ chmod +x /home/$USER/bin/gitlab-runner
+  [isabell@stardust ~]$ /home/$USER/bin/gitlab-runner -v
+  Version:      13.6.0
+  Git revision: ...
+  (...)
+  [isabell@stardust ~]$ supervisorctl start gitlab-runner
+  gitlab-runner: started
+
+
+Now check in your GitLab instance if the runner runs normally by triggering a job or pipeline.
+If you encounter problems, you can return to your old runner by stopping the service, renaming the old executable back to gitlab-runner and (re)start the service.
+
+
+.. _GitLab: https://gitlab.com
+.. _GitLab Runner docs: https://docs.gitlab.com/runner/
+.. _GitLab Runner executors: https://docs.gitlab.com/runner/executors/README.html
 
 ----
 
-Tested with Gitlab Runner 11.1.0, Uberspace 7.1.7.0
+Tested with GitLab Runner 13.6.0, Uberspace 7.8.0.0
 
 .. author_list::

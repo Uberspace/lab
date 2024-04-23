@@ -28,12 +28,12 @@ SimpleID is a simple, personal OpenID provider written in PHP.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.0:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.0'
  [isabell@stardust ~]$
 
 Your URL needs to be setup for web:
@@ -47,12 +47,12 @@ Your URL needs to be setup for web:
 Installation
 ============
 
-Step 1 - Download & Extract
-------------------------------
+Download & Extract
+------------------
 
-``cd`` to your :manual:`document root <web-documentroot>`, respectively the folder above, because not all files must/should be accessable via web, then download the latest release of *SimpleID* and extract it:
+``cd`` to your :manual:`document root <web-documentroot>`, respectively the folder above, because not all files must/should be accessible via web, then download the latest release of *SimpleID* and extract it:
 
-.. note:: The link to the lastest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases/>`_.
+.. note:: The link to the latest version can be found at SimpleID's `download page <http://simpleid.koinic.net/releases/>`_.
 
 ::
 
@@ -61,8 +61,8 @@ Step 1 - Download & Extract
  [isabell@stardust isabell]$ tar -xzf simpleid-42.23.1.tar.gz
  [isabell@stardust ~]$
 
-Step 2 - Symlink
-----------------
+Symlink
+-------
 
 The folder containing the frontend needs to be accessible via web. To achieve this, a symlink is created linking to the www folder.
 
@@ -71,16 +71,16 @@ The folder containing the frontend needs to be accessible via web. To achieve th
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/simpleid/www/ ~/html/simpleid
  [isabell@stardust ~]$
 
-Step 3 - Copy empty configuration
----------------------------------
+Copy empty configuration
+------------------------
 
 ::
 
  [isabell@stardust isabell]$ cp /var/www/virtual/$USER/simpleid/www/config.php.dist /var/www/virtual/$USER/simpleid/www/config.php
  [isabell@stardust ~]$
 
-Step 4 - Cleanup
-----------------
+Cleanup
+-------
 ::
 
  [isabell@stardust isabell]$ rm simpleid-42.23.1.tar.gz
@@ -127,7 +127,7 @@ First we'll generate a random salt to make this secure as possible. You are free
 
 ::
 
- [isabell@stardust ~]$ head -c32 /dev/urandom | base64 | head -c 16 ; echo
+ [isabell@stardust ~]$ pwgen 32 1
  MySuperSecretSalt
  [isabell@stardust ~]$
 
@@ -154,13 +154,13 @@ Search for the pass line and edit it as described.
 
 .. code-block:: php
 
- pass="<hash>:pbkdf2:sha256:<salt>"
+ pass="<hash>:pbkdf2:sha256:100000:<salt>"
 
 In our example we would use this passline:
 
 .. code-block:: php
 
- pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:MySuperSecretSalt"
+ pass="5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8:pbkdf2:sha256:100000:MySuperSecretSalt"
 
 Since this is our first user, it should be set as administrator by changing
 
@@ -226,6 +226,6 @@ Follow the steps described in the UPGRADE.txt shipped with the newest version. T
 
 ----
 
-Tested with SimpleID 1.0.2, Uberspace 7.1.13.0
+Tested with SimpleID 1.0.3, Uberspace 7.13.0, and PHP 8.0
 
 .. author_list::

@@ -9,7 +9,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/mailman.jpg
+  .. image:: _static/images/mailman.png
       :align: center
 
 #########
@@ -27,8 +27,6 @@ Mailman 3
   * **HyperKitty**; the web-based archiver
   * **Mailman client**; the official Python bindings for talking to the Core’s REST administrative API.
 
-.. note:: This guide only focuses on mail distribution and is missing information on how to archive emails. Please see the `hyperkitty documentation <https://hyperkitty.readthedocs.io/en/latest/install.html#connecting-to-mailman>`_ for this and create a PR 🎉.
-
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -37,12 +35,16 @@ Mailman 3
   * :manual:`supervisord <daemons-supervisord>`
   * Folder/File Permissions
 
+----
+
+
 License
 =======
 
 Mailman is released under the GNU General Public License
 
   * https://www.gnu.org/copyleft/gpl.html
+
 
 Prerequisites
 =============
@@ -68,7 +70,17 @@ Install Mailman 3 and its dependencies via pip.
 
 ::
 
- [isabell@stardust ~]$ pip3.6 install --user mailman postorius hyperkitty mailman-hyperkitty whoosh
+ [isabell@stardust ~]$ pip3.9 install --user mailman hyperkitty postorius mailman-hyperkitty whoosh
+ [...]
+ [isabell@stardust ~]$
+
+Because of some package dependency issues
+(see `this comment <https://github.com/Uberspace/lab/issues/1553#issuecomment-1691626761>`_ for more information)
+we have to pin some package versions:
+
+::
+
+ [isabell@stardust ~]$ pip3.9 install --user "urllib3<2" "flufl.lock<8" "flufl.i18n<5" "importlib_resources<6.0"
  [...]
  [isabell@stardust ~]$
 
@@ -78,10 +90,10 @@ Postorius and HyperKitty are build using SASS_ stylesheets which have to be comp
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/9.99.9/dart-sass-9.99.9-linux-x64.tar.gz
- [isabell@stardust ~]$ tar xzvf dart-sass-9.99.9-linux-x64.tar.gz dart-sass
+ [isabell@stardust ~]$ wget https://github.com/sass/dart-sass/releases/download/1.17.2/dart-sass-1.17.2-linux-x64.tar.gz
+ [isabell@stardust ~]$ tar xzvf dart-sass-1.17.2-linux-x64.tar.gz dart-sass
  [isabell@stardust ~]$ mv dart-sass ./bin/
- [isabell@stardust ~]$ rm dart-sass-9.99.9-linux-x64.tar.gz
+ [isabell@stardust ~]$ rm dart-sass-1.17.2-linux-x64.tar.gz
  [isabell@stardust ~]$
 
 
@@ -100,7 +112,40 @@ To have a starting point for configuration, we use the mailman-suite_ example pr
 
 Get and enable uwsgi
 ---------------------
-.. include:: includes/install-uwsgi.rst
+Install the required uwsgi package with pip.
+
+::
+
+ [isabell@stardust ~]$ pip3.9 install uwsgi --user
+ [isabell@stardust ~]$
+
+After that, continue with setting it up as a service.
+
+Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
+
+.. code-block:: ini
+
+  [program:uwsgi]
+  command=uwsgi --master --emperor %(ENV_HOME)s/uwsgi/apps-enabled
+  autostart=true
+  autorestart=true
+  stderr_logfile = ~/uwsgi/err.log
+  stdout_logfile = ~/uwsgi/out.log
+  stopsignal=INT
+  startsecs=30
+
+Create needed folders and files for uwsgi:
+
+::
+
+ [isabell@stardust ~]$ mkdir -p ~/uwsgi/apps-enabled
+ [isabell@stardust ~]$ touch ~/uwsgi/err.log
+ [isabell@stardust ~]$ touch ~/uwsgi/out.log
+ [isabell@stardust ~]$
+
+.. include:: includes/supervisord.rst
+
+If it's not in state ``RUNNING``, check the logs.
 
 Get .qmail helper scripts
 -------------------------
@@ -130,8 +175,10 @@ At first, we need to configure the REST interface of the core component. Create 
  smtp_host: stardust.uberspace.de
  lmtp_port: 8024
  smtp_port: 587
+ smtp_secure_mode: starttls
  smtp_user: forwarder@isabell.uber.space
  smtp_pass: mailpassword
+ max_recipients: 100
 
  [webservice]
  hostname: 0.0.0.0
@@ -161,15 +208,34 @@ At first, we need to configure the REST interface of the core component. Create 
  [mailman]
  layout: custom
 
+ [archiver.hyperkitty]
+ class: mailman_hyperkitty.Archiver
+ enable: yes
+ configuration: /home/isabell/var/etc/mailman-hyperkitty.cfg
+
+
+
+Configure HyperKitty
+--------------------
+
+HyperKitty is the part of mailman that takes care of archiving mail. It is configured independently and invoked by mailman core. ``~/var/etc/mailman.cfg`` points to the hyperkitty configuration file which needs to be created at the respective location ``~/var/etc/mailman-hyperkitty.cfg``. The following file can be adapted to your usage, make sure to generate a secret API key for your instance.
+
+.. code :: cfg
+
+ [general]
+
+ base_url: http://localhost:8000/hyperkitty/
+ api_key: SecretArchiverAPIKey
+
+
 Daemonizing Mailman Core
 ------------------------
 
-As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
+As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
 
 .. code :: ini
 
  [program:mailman3]
- enviroment=MAILMAN_VAR_DIR="%(ENV_HOME)s/var"
  directory=%(ENV_HOME)s
  command=%(ENV_HOME)s/.local/bin/master -C %(ENV_HOME)s/var/etc/mailman.cfg
  autostart=true
@@ -177,6 +243,7 @@ As we want to make sure that Mailman is started automatically, we need to set it
  stderr_logfile = ~/var/logs/daemon_err.log
  stdout_logfile = ~/var/logs/daemon_out.log
  stopsignal=TERM
+ startsecs=30
 
 Afterwards, create necessary folders and files:
 
@@ -187,17 +254,7 @@ Afterwards, create necessary folders and files:
  [isabell@stardust ~]$ touch ~/var/logs/daemon_out.log
  [isabell@stardust ~]$
 
-Now we can tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- mailman3: available
- [isabell@stardust ~]$ supervisorctl update
- mailman3: added process group
- [isabell@stardust ~]$ supervisorctl status
- mailman3                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Adjusting Django configuration
 ------------------------------
@@ -227,10 +284,10 @@ After the REST backend has been configured, we need to configure the Django fron
  ]
 
  MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001'
- MAILMAN_REST_API_USER = 'see_above'
- MAILMAN_REST_API_PASS = 'see_above'
- MAILMAN_ARCHIVER_KEY = '<SecretArchiverAPIKey>'
- MAILMAN_ARCHIVER_FROM = ('0.0.0.0', '::')
+ MAILMAN_REST_API_USER = 'restadmin'
+ MAILMAN_REST_API_PASS = 'restpass'
+ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
+ MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
  [...]
 
@@ -263,6 +320,16 @@ After the REST backend has been configured, we need to configure the Django fron
     ('text/x-sass', '/home/isabell/bin/dart-sass/sass {infile} {outfile}'),
  )
 
+ [...]
+
+ Q_CLUSTER = {
+     'timeout': 100,
+     'retry': 200,
+     'save_limit': 100,
+     'orm': 'default',
+     'workers': 4,
+ }
+
  # Comment the following lines out to test sending mail
  #if DEBUG == True:
  #   EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -273,14 +340,30 @@ Setting up Django
 
 After we have adjusted our configuration file, we need to compile and configure the Django project and create a super user to be used as web admin:
 
+.. note:: In case you get an error message when like ``django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).``, when running those `manage.py` commands, then you need a newer version of the sqlite library. Install ``pysqlite3-binary`` and create a symlink in order to override ``sqlite3``:
+
+ .. code :: bash
+
+  [isabell@stardust ~]$ pip3.9 install --user pysqlite3-binary
+  [...]
+  [isabell@stardust ~]$ ln -s pysqlite3 ~/.local/lib/python3.9/site-packages/sqlite3
+  [isabell@stardust ~]$
+
+ Now add this ``~/mailman-suite/settings.py`` in order to have use that version of the ``sqlite3`` instead of the built-in one.
+
+ .. code :: python
+
+  import sys
+  sys.path = ['/home/isabell/.local/lib/python3.9/site-packages'] + sys.path
+
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py migrate
+ [isabell@stardust mailman-suite]$ python3.9 manage.py migrate
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py collectstatic
+ [isabell@stardust mailman-suite]$ python3.9 manage.py collectstatic
  [...]
- [isabell@stardust mailman-suite]$ python3.6 manage.py createsuperuser
+ [isabell@stardust mailman-suite]$ python3.9 manage.py createsuperuser
  ? Username (leave blank to use 'isabell'): isabell
  ? Email address: isabell@uber.space
  ? Password:
@@ -293,7 +376,7 @@ When Django is configured, we need to rename the example site to match our needs
 ::
 
  [isabell@stardust ~]$ cd mailman-suite
- [isabell@stardust mailman-suite]$ python3.6 manage.py shell
+ [isabell@stardust mailman-suite]$ python3.9 manage.py shell
 
  >>> from django.contrib.sites.models import Site
  >>> site = Site.objects.get(name='example.com')
@@ -321,7 +404,7 @@ To be able to call and execute our Django app, we need to create ``~/uwsgi/apps-
  uid = isabell
  gid = isabell
 
- attach-daemon = python3.6 ./manage.py qcluster
+ attach-daemon = python3.9 ./manage.py qcluster
 
 Generally, it might be necessary to reload *uwsgi* after changing the config change:
 
@@ -343,7 +426,7 @@ Additionally, serve static files using apache:
 ::
 
   [isabell@stardust ~]$ uberspace web backend set /static --apache
-  Set backend for / to apache.
+  Set backend for /static to apache.
   [isabell@stardust ~]$
 
 Setting up .qmail
@@ -369,19 +452,24 @@ If you want to use an :manual:`IMAP mailbox<mail-mailboxes>` on your uberspace, 
 
  |/usr/bin/vdeliver
 
-.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` and ``~/.qmail-listname-dafault`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` and the related email commands (e.g. ``listname-subscribe@isabell.uber.space``) to mailman. **This needs to be done manually for every list created in the web interface!**
+.. note:: In case you want to keep the default configuration, do not change ``~/.qmail-default`` and create additional .qmail-files such as ``~/.qmail-listname`` and ``~/.qmail-listname-default`` containing ``|/home/isabell/bin/qmail-lmtp 8024 1 isabell.local.uberspace.de`` to forward only ``listname@isabell.uber.space`` and the related email commands (e.g. ``listname-subscribe@isabell.uber.space``) to mailman. **This needs to be done manually for every list created in the web interface!**
 
 Install cronjobs
 ----------------
 
-`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the line ``@daily /home/isabell/.local/bin/mailman digests --send`` at the end of the file.
+`Mailman 3`_ offers a :manual_anchor:`cronjobs <daemons-cron.html#cron>` to perform some maintenance actions at regular intervals. To install them for your user, run ``crontab -e`` and add the following line at the end of the file.
+
+.. code-block:: bash
+
+ @daily /home/$USER/.local/bin/mailman digests --send
+
 
 Using Mailman
 =============
 
 Now we are ready to use Mailman. Simply go to ``https://isabell.uber.space`` and log in with the superuser account we created earlier. You now will get an email to confirm the account to the address you initially specified. If you do not get one, check the ``~/var/email/`` dir - you might have forgotten to disable the debug setting in ``~/mailman-suite/settings.py`` (see above). Otherwise check the logs in ``~/mailman-suite/`` and ``~/var/logs/`` for clues.
 
-Now you can create a new list using the Postorious web UI.
+Now you can create a new list using the Postorius web UI.
 
 .. warning:: Don't forget to create the .qmail-aliases if you chose not to use ``.qmail-default``!
 
@@ -391,14 +479,14 @@ As Mailman 3 consists of multiple independent projects, there is no single RSS f
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 list --outdated --user
+ [isabell@stardust ~]$ pip3.9 list --outdated --user
  [isabell@stardust ~]$
 
 If there are outdated packages, update the mailman packages and their dependencies using:
 
 .. code :: bash
 
- [isabell@stardust ~]$ pip3.6 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
+ [isabell@stardust ~]$ pip3.9 install --user --upgrade mailman postorius hyperkitty mailman-hyperkitty whoosh uwsgi
  [isabell@stardust ~]$
 
 .. note:: Even after ``pip --upgrade``, there might be outdated packages. This is the case if mailman's dependencies demand a specific version, e.g. `Django<2.2,>=1.11`, and is nothing to worry about.
@@ -407,7 +495,7 @@ Acknowledgements
 ================
 This guide is based on the `official Mailman 3 installation instructions <http://docs.mailman3.org/en/latest/index.html>`_, the `official Mailman 3 documentation <https://mailman.readthedocs.io/en/latest/README.html>`_ as well as the great guides here at uberlab for :lab:`Django <guide_django.html>` and, of course, :lab:`Mailman 2 <guide_mailman.html>`. Without their previous work, this guide would have not been possible. A special thanks to `luto <https://github.com/luto>`_ for being challenging yet very helpful in overcoming some obstacles!
 
-Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and uWSGI 2.0.18 on Uberspace 7.2.8.2.
+Tested with Django 4.2.7, HyperKitty 1.2.1, Mailman 3.3.9, Postorius 1.3.10 and uWSGI 2.0.23 on Uberspace 7.2.8.2.
 
 .. _Mailman 3: http://www.mailman3.org/en/latest/
 .. _Mailman: http://www.list.org/
@@ -418,3 +506,8 @@ Tested with Django 2.1.8, HyperKitty 1.2.2, Mailman 3.2.2, Postorius 1.2.4 and u
 
 
 .. author_list::
+
+Automated deployment (experimental)
+===================================
+
+As of November 2021 there is an attempt to automate this guide, see `this repo <https://codeberg.org/cknoll/uberspace-autodeploy-mailman3>`_. The goal is to get a mailman3 instance deployed in less than 10min on a fresh uberspace account. All issues and questions regarding this automation approach should be directed to that repo or its maintainer.

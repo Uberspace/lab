@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
 
 .. tag:: lang-php
 .. tag:: web
@@ -39,12 +39,13 @@ Neos is free and open source software licensed under `GPL v3`_.
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+Neos (version 5.0 and newer) requires at least PHP_ 8.1. Since new Uberspaces are currently setup with PHP 8.1 by default you need to set this version manually:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -60,7 +61,7 @@ Since Neos uses the subdirectory Web/ as web root you should not install Neos in
 
 ``cd`` to one level above your :manual:`DocumentRoot <web-documentroot>`, then use the dependency manager Composer to create a new project based on the Neos base distribution:
 
-.. note:: Composer will install all neccessary dependencies Neos needs to run. This can take some time.
+.. note:: Composer will install all necessary dependencies Neos needs to run. This can take some time.
 
 ::
 
@@ -78,12 +79,10 @@ Since Neos uses the subdirectory Web/ as web root you should not install Neos in
 
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the Neos/Web directory:
 
-.. warning:: Please make sure your DocumentRoot is empty before removing it. This step will delete all contained files if any.
-
 ::
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ rm -rf html
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/Neos/Web html
  [isabell@stardust isabell]$
 
@@ -131,10 +130,9 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check Neos' `releases <https://github.com/neos/neos/releases>`_ for the latest versions. If a newer
-version is available, you should manually update your installation.
+Check Neos' `releases <https://github.com/neos/neos/releases>`_ for the latest versions. If a newer version is available, you should manually update your installation.
 
-By using composer, you can update an existing installation to a specific version, without having to create a new project. But you have to follow version specific update instructions which you can find at the end of the official download_ page on the Neos website.
+By using composer, you can update an existing installation to a specific version, without having to create a new project. But you have to follow version specific upgrade instructions which you can find in the Neos `docs <https://docs.neos.io/cms/references/upgrade-instructions>`_.
 
 .. warning:: Neos, Flow and especially **additional packages** are **not** updated automatically, so make sure to regularly check any update options.
 
@@ -142,11 +140,10 @@ By using composer, you can update an existing installation to a specific version
 .. _Neos: https://www.neos.io/
 .. _PHP: http://www.php.net/
 .. _feed: https://github.com/neos/neos/releases.atom
-.. _download: https://www.neos.io/download-and-extend.html
 .. _GPL v3: https://opensource.org/licenses/GPL-3.0
 
 ----
 
-Tested with Neos 4.1.7 and Uberspace 7.1.15
+Tested with Neos 8.1.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

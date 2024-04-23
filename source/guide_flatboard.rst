@@ -17,7 +17,7 @@ Flatboard
 
 .. tag_list::
 
-Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json and Markdown [1]_ or BBcode.
+Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using JSON and Markdown or BBcode.
 
 ----
 
@@ -29,21 +29,17 @@ Flatboard_ is a simple, lightweight, modern and fast flat-file forum, using Json
 License
 =======
 
-Flatboard_ are released under the MIT License.
-
-All relevant legal information can be found here
-
-  * https://tldrlegal.com/license/mit-license
+Flatboard_ is released under the MIT License_.
 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.2:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ [isabell@stardust ~]$ uberspace tools version use php 8.2
+ Selected PHP version 8.2
  [isabell@stardust ~]$
 
 Your blog domain needs to be setup:
@@ -60,11 +56,8 @@ Installation
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wget http://flatboard.free.fr/uploads/plugins/flatboard_latest.zip
- […]
+ [...]
  Saving to: ‘flatboard_latest.zip’
-
- 100%[============================================================================================>] 1,280,825   --.-K/s   in 0.06s
-
  2019-03-03 16:47:53 (19.0 MB/s) - ‘flatboard_latest.zip’ saved [1280825/1280825]
  [isabell@stardust html]$
 
@@ -93,20 +86,16 @@ You will need to enter the following information:
 
 Then push the Unzip-Button.
 
-  * titel: titel of your forum
+  * title: title of your forum
   * description: what is your forum about
-  * E-Mail: your admin e-mail adress
+  * E-Mail: your admin e-mail address
   * administrator: set up your admin password
-  * language: the language you prefer (English, French, German, Russian, Italiano) « Yes, the question is double.
-
-At least you have to delete the ``install.php``.
+  * language: the language you prefer (English, French, German, Russian, Italian) « Yes, the question is double.
 
 Updates
 =======
 
 .. note:: Check the update feed_ or twitter_ regularly to stay informed about the newest version.
-
-
 
 1. First make a backup from ``/data`` folder and move it to your ``/home`` folder.
 
@@ -116,9 +105,9 @@ Updates
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ tar cfvz flatforum-data_backup.tar.gz *
  data/
- […]
+ [...]
  data/key.php
- [isabell@stardust html]$ mv flatforum-data_backup.tar.gz /home/isabell/
+ [isabell@stardust html]$ mv flatforum-data_backup.tar.gz $HOME
  [isabell@stardust html]$
 
 2. Download the latest version from Flatboard_.
@@ -127,8 +116,8 @@ Updates
  :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget http://flatboard.free.fr/uploads/plugins/flatboard_latest.zip
- […]
+ [isabell@stardust html]$ wget https://flatboard.org/download.php?file=flatboard_latest.zip
+ [...]
  Saving to: ‘flatboard_latest.zip’
 
  100%[============================================================================================>] 1,280,825   --.-K/s   in 0.06s
@@ -153,11 +142,11 @@ Unzip the archive, copy new files and folders and then delete it.
  Archive:  flatboard.zip
    creating: flatboard/
   inflating: flatboard/README.md
-  […]
+  [...]
   inflating: flatboard/view.php
  [isabell@stardust UPDATE]$ cd flatboard
  [isabell@stardust UPDATE]$ cp -r * /var/www/virtual/$USER/html/
- [isabell@stardust UPDATE]$ cd cd /var/www/virtual/$USER/html
+ [isabell@stardust UPDATE]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ rm -rf UPDATE
  [isabell@stardust html]$ rm install.php
  [isabell@stardust html]$
@@ -168,7 +157,7 @@ Delete all files stocked in ``data/plugin`` folder and go to your plugins page t
 
 ::
 
- [isabell@stardust html]$ cd /data/plugin
+ [isabell@stardust html]$ cd data/plugin
  [isabell@stardust plugin]$ rm -rf *
  [isabell@stardust plugin]$ cd /var/www/virtual/$USER/html/
 
@@ -176,7 +165,7 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 ::
 
- [isabell@stardust html]$ cd /theme/bootstrap/
+ [isabell@stardust html]$ cd theme/bootstrap/
  [isabell@stardust bootstrap]$ rm -rf cache
  [isabell@stardust bootstrap]$
 
@@ -184,14 +173,13 @@ Delete the ``theme/YourTheme/cache/`` folder. In this example ``bootstrap`` them
 
 
 
-.. _feed: https://github.com/Fred89/flatboard/commits/master.atom
+.. _feed: https://github.com/Fred89/flatboard/commits
 .. _twitter: https://twitter.com/flatboardoffic1
-.. _Flatboard: http://flatboard.free.fr
-
-.. [1] For the moment Markdown is not available, but should be fixed with one of the next updates.
+.. _Flatboard: https://flatboard.org/
+.. _License: https://github.com/Fred89/flatboard/blob/master/LICENSE
 
 ----
 
-Tested with Flatboard 2.1 "PIÉMONT", Uberspace 7.2.2.2
+Tested with Flatboard 3.1, Uberspace 7.15.6
 
 .. author_list::

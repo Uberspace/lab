@@ -19,7 +19,7 @@ minim
 
 minim_ offers a super simple PHP Content Management System. The code is Open Source and you're free to modify, distribute and use it for private and commercial projects.
 
-It'is ideal for simple travel blogs or publishing news. It has an easy administration interface and an automatic generated RSS feed. Themes and other modifications are fully customisable.
+It is ideal for simple travel blogs or publishing news. It has an easy administration interface and an automatic generated RSS feed. Themes and other modifications are fully customisable.
 
 ----
 
@@ -31,15 +31,15 @@ It'is ideal for simple travel blogs or publishing news. It has an easy administr
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.3:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 7.3
- Selected PHP version 7.3
+ [isabell@stardust ~]$ uberspace tools version use php 8.1
+ Selected PHP version 8.1
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.3'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -114,6 +114,6 @@ If everything works alright you can delete the ``config-new`` directory.
 
 ----
 
-Tested with minim 0.9.4, Uberspace 7.2.4
+Tested with minim 0.9.6, Uberspace 7.13, PHP 8.1
 
 .. author_list::

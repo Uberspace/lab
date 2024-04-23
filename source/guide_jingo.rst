@@ -12,7 +12,7 @@ Jingo
 
 .. tag_list::
 
-Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too much functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
+Jingo_ is a simple Wiki software that is based on :manual:`Node.js <lang-nodejs>` and Git. The content is stored in markdown files which are managed by a Git repository. In contrast to other Wiki software (like Mediawiki or Dokuwiki), Jingo does not provide too many functions and uses a very decent design. But because the management and versioning of the content is based on Git, it can be used in multiple ways.
 
 At this time, Jingo is no longer actively developed but still supported for security issues.
 
@@ -27,12 +27,12 @@ At this time, Jingo is no longer actively developed but still supported for secu
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 8:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 16:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '8'
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 Your blog URL needs to be setup:
@@ -62,7 +62,7 @@ Then you need to install the dependencies using the node packet manager:
   [isabell@stardust ~]$ cd ~/jingo
   [isabell@stardust jingo]$ npm install
   [...]
-  added 626 packages in 17.17s
+  added 436 packages in 17.17s
   [isabell@stardust jingo]$
 
 
@@ -91,7 +91,7 @@ You then have to configure the Git repository with name and email, if you haven'
   [isabell@stardust jingo_data]$ git config user.email "$USER@uber.space"
   [isabell@stardust jingo_data]$
 
-.. note:: You can of course set arbitrary informations here. If you want to share your data using Github for example, you might want to set the appropriate data.
+.. note:: You can of course set arbitrary information here. If you want to share your data using Github for example, you might want to set the appropriate data.
 
 Change the configuration
 ------------------------
@@ -162,18 +162,9 @@ Create ``~/etc/services.d/jingo.ini`` with the following content:
 
   [program:jingo]
   command=%(ENV_HOME)s/jingo/jingo -c %(ENV_HOME)s/jingo/config.yaml
+  startsecs=60
 
-Tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ supervisorctl reread
- jingo: available
- [isabell@stardust ~]$ supervisorctl update
- jingo: added process group
- [isabell@stardust ~]$ supervisorctl status
- jingo                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
@@ -238,6 +229,6 @@ In the end you need to restart the service daemon, so the new code is used by th
 
 ----
 
-Tested with Jingo 1.8.5, Uberspace 7.1.1
+Tested with Jingo 1.9.7, Uberspace 7.15.4
 
 .. author_list::

@@ -1,0 +1,4 @@
+Node.js is a server-side javascript interpreter. It is commonly used to develop
+server-based applications which are then exposed on the web. Note that despite
+being written in javascript, these applications do not belong in your document
+root, but in your home directory.

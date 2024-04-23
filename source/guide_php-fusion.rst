@@ -14,7 +14,9 @@
 PHP-Fusion
 ##########
 
-PHP-Fusion <https://php-fusion.co.uk/>_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
+.. tag_list::
+
+PHP-Fusion_ is a CMS written in PHP and distributed under the GNU AGPL v3 licence.
 
 ----
 
@@ -27,17 +29,17 @@ PHP-Fusion <https://php-fusion.co.uk/>_ is a CMS written in PHP and distributed 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 MySQL
 -----
- 
+
 .. include:: includes/my-print-defaults.rst
 
 We advise you set up an additional database for PHP Fusion:
@@ -45,7 +47,7 @@ We advise you set up an additional database for PHP Fusion:
 ::
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_phpfusion"
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 Domain
@@ -58,17 +60,18 @@ Your URL needs to be setup:
 Installation
 ============
 
-First get the PHP-Fusion source code from Sourceforge <https://sourceforge.net/projects/php-fusion/files/latest/download>_:
+First get the PHP-Fusion source code from Sourceforge_:
 
 ::
 
   [isabell@stardust ~]$ wget -O phpf9.zip https://sourceforge.net/projects/php-fusion/files/latest/download
   [isabell@stardust ~]$ unzip phpf9.zip
-  [isabell@stardust ~]$ mv PHP-Fusion\ 9.03.00/files/* /var/www/virtual/$USER/html
-  [isabell@stardust ~]$ rm -rf "PHP-Fusion 9.03.00" phpf9.zip
+  [isabell@stardust ~]$ mv files/* /var/www/virtual/$USER/html
+  [isabell@stardust ~]$ rm -rf files/
+  [isabell@stardust ~]$ rm phpf9.zip
 
 
-  
+
 Finishing installation
 ======================
 
@@ -82,9 +85,11 @@ To remove the file install.php enter
 
  [isabell@stardust ~]$ rm /var/www/virtual/$USER/html/install.php
  [isabell@stardust ~]$
- 
+
 ----
 
-Tested with PHP-Fusion v9.03.00 and Uberspace 7.2.8.2
+Tested with PHP-Fusion v9.10.30, PHP 8.1 and Uberspace 7.13.0
 
+.. _PHP-Fusion: https://php-fusion.co.uk
+.. _Sourceforge: https://sourceforge.net/projects/php-fusion/files/latest/download
 .. author_list::

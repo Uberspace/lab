@@ -1,10 +1,11 @@
 .. highlight:: console
 
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
 
-.. tag:: lang-nodejs
+.. tag:: lang-php
 .. tag:: web
 .. tag:: cms
+.. tag:: blog
 
 .. sidebar:: Logo
 
@@ -36,12 +37,12 @@ Grav is released under the `MIT License`_. All relevant information can be found
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using PHP_ in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -67,7 +68,7 @@ To install Grav we use Composer_ to create a new project in our :manual:`documen
  [...]
  [isabell@stardust isabell]$
 
-Visit your previously set up domain isabell.uber.space and you will see a page confirming that the installation was successfull.
+Visit your previously set up domain isabell.uber.space and you will see a page confirming that the installation was successful.
 
 Install admin panel
 -------------------
@@ -90,6 +91,21 @@ Navigate to your installation directory and install the admin plugin. The packag
  [isabell@stardust isabell]$
 
 After the installation you need to open isabell.uber.space/admin in your browser to create an admin account (please don't use ``admin`` as your username).
+
+
+Setup domain
+-------------------
+If you setup Grav not in the :manual:`document root <web-documentroot>`, ``html``, you have to adapt the `.htaccess` file from:
+
+```
+# RewriteBase /
+```
+
+to this:
+
+```
+RewriteBase /
+```
 
 Tuning
 ======
@@ -133,6 +149,6 @@ After updating the Grav core use the ``update`` command to update all plugins an
 
 ----
 
-Tested with Grav 1.5.2, Uberspace 7.1.13
+Tested with Grav 1.7.37.1, Uberspace 7.13, PHP 8.1
 
 .. author_list::

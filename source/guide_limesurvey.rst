@@ -2,7 +2,7 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
-.. tag:: lang-python
+.. tag:: lang-php
 .. tag:: web
 .. tag:: survey
 
@@ -35,12 +35,12 @@ LimeSurvey software is licenced under the GPLv2_.
 Prerequisites
 =============
 
-We're using PHP in the stable version 7.1:
+We're using PHP in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`. Get them with ``my_print_defaults``:
@@ -67,15 +67,15 @@ Installation
 Download archive
 ----------------
 
-Visit LimeSurvey's `stable release`_ page and copy the ``.tar.gz`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
+Visit LimeSurvey's `community downloads`_ page and copy the ``.zip`` download link. Then, ``cd`` to your DocumentRoot and use ``wget`` to download the file. Make sure to replace the dummy URL with the one you just copied.
 
 .. code-block:: console
  :emphasize-lines: 2
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust html]$ wget -O limesurvey.zip https://download.limesurvey.org/latest-stable-release/limesurvey5.4.10+221107.zip
  [...]
- 2018-10-02 16:01:50 (10.0 MB/s) - ‘stable-release?download=4711:limesurvey4711%20180926targz’ saved [72359513/72359513]
+ 2022-11-09 12:39:03 (16,1 MB/s) - »limesurvey.zip« saved [84075454/84075454]
  [isabell@stardust html]$
 
 
@@ -84,8 +84,20 @@ Extract archive
 
 ::
 
- [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1
- [isabell@stardust html]$
+ [isabell@stardust isabell]$ unzip limesurvey.zip
+ […]
+  inflating: limesurvey/upload/twig/extensions/HelloWorld_Twig_Extension/README.md
+  inflating: limesurvey/upload/twig/extensions/README.md
+ [isabell@stardust isabell]$
+
+Remove old html directory and rename the extracted directory
+------------------------------------------------------------
+
+::
+
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ mv limesurvey html
+ [isabell@stardust isabell]$
 
 Configuration
 =============
@@ -152,11 +164,10 @@ When a new version is released, copy the download link and download it as above,
 .. _LimeSurvey: https://www.limesurvey.org/
 .. _feed: https://github.com/LimeSurvey/LimeSurvey/releases.atom
 .. _GPLv2: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
-.. _stable release: https://www.limesurvey.org/en/downloads/category/25-latest-stable-release
+.. _community downloads: https://community.limesurvey.org/downloads/
 
 ----
 
-Tested with LimeSurvey 3.14.11+180926, Uberspace 7.1.13.0
+Tested with LimeSurvey 5.4.10, Uberspace 7.13.0, and PHP 8.1
 
 .. author_list::
-

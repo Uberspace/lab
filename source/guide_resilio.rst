@@ -5,6 +5,7 @@
 .. tag:: web
 .. tag:: file-storage
 .. tag:: sync
+.. tag:: proprietary
 
 .. sidebar:: About
 
@@ -25,6 +26,7 @@ Resilio_ (formerly BitTorrent Sync) is a proprietary file syncing service simila
 
   * :manual:`supervisord <daemons-supervisord>`
   * :manual:`domains <web-domains>`
+  * :manual:`ports <basics-ports>`
 
 License
 =======
@@ -57,6 +59,34 @@ Configure web server
 
 .. include:: includes/web-backend.rst
 
+Configure firewall port
+=======================
+
+Resilio Sync will work without this step, however, all connections will be routed through a relay server, since direct connections are blocked by the firewall.
+
+.. include:: includes/open-port.rst
+
+Configure Resilio Sync
+======================
+
+Create a config file ``~/.sync/resilio-sync.conf`` with the following contents:
+
+.. warning:: Replace ``<username>`` with your username and ``<port>`` with the appropriate port number, which was opened in the previous step (would be 40132 in our example).
+
+.. code-block:: text
+
+ {
+   "device_name": "Uberspace",
+   "listening_port" : <port>, // 0 - randomize port
+
+    "storage_path" : "/home/<username>/.sync",
+
+    "webui" :
+  	{
+    	"listen" : "0.0.0.0:9000" // remove field to disable WebUI
+	}
+ }
+
 Configure ``supervisord``
 =========================
 
@@ -65,18 +95,12 @@ Create ``~/etc/services.d/resilio-sync.ini`` with the following content:
 .. code-block:: ini
 
  [program:resilio-sync]
- command=rslsync --webui.listen 0.0.0.0:9000 --nodaemon --storage /home/isabell/.sync
+ command=rslsync --nodaemon --config /home/isabell/.sync/resilio-sync.conf
 
 Start Service
 =============
 
-Now you need to load the changes and start your service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- [isabell@stardust ~]$ supervisorctl update
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.space`` in our example) and see if it works. Enjoy!
 

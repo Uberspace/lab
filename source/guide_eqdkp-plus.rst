@@ -16,7 +16,7 @@ EQdkp Plus
 
 .. tag_list::
 
-EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP and distributed unter the AGPLv3 licence.
+EQdkp-Plus_ is an open source Content Management System (CMS) and Guild Management System in PHP.
 It is focused on supporting guilds and clans playing online games, especially MMORPGs. Therefore it brings tools for planning raids or distributing loot or points like DKP (Dragon Kill Points).
 
 ----
@@ -27,15 +27,20 @@ It is focused on supporting guilds and clans playing online games, especially MM
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
+License
+=======
+
+EQdkp-Plus_ is released under the `AGPLv3 License`_.
+
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 7.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '7.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -43,6 +48,17 @@ We're using :manual:`PHP <lang-php>` in the stable version 7.1:
 If you want to use your EQdkp Plus with your own domain you need to setup your domain first:
 
 .. include:: includes/web-domain-list.rst
+
+Create Database
+===============
+
+EQdkp-Plus_ saves your data in a :manual:`MySQL <database-mysql>` database. It is recommended to use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` (e.g. ``isabell_eqdkp``) instead of the default database.
+
+.. code-block:: console
+ :emphasize-lines: 1
+
+ [isabell@stardust ~]$ mysql -e "CREATE  DATABASE ${USER}_eqdkp"
+ [isabell@stardust ~]$
 
 Installation
 ============
@@ -60,16 +76,17 @@ Installation
  [isabell@stardust html]$ unzip eqdkp-plus.zip && rm eqdkp-plus.zip
  [isabell@stardust html]$
 
-Now point your browser to your uberspace URL and follow the instructions of the Installer Assistent.
+Now point your browser to your uberspace URL and follow the instructions of the Installer Assistant.
 
 You will need to enter the following information:
+
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
-  * your EQdkp Plus database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_eqdkp
-  * an encryption key: choose a strong encryption key, as sensitive data is encrypted using this key. You can generate a strong key using ``openssl``:
+  * your MySQL database name: insert the name of the created additional MySQL database
+  * an encryption key: choose a strong encryption key, as sensitive data is encrypted using this key. You can generate a strong key:
 
   ::
 
-   [isabell@stardust html]$ openssl rand -base64 32
+   [isabell@stardust html]$ pwgen 32 1
    SuperSecretPassword
    [isabell@stardust html]$
 
@@ -84,10 +101,24 @@ The easiest way to update EQdkp Plus is to use the web updater provided in the a
 
 .. note:: Check the `news <https://eqdkp-plus.eu/>`_ regularly to stay informed about new updates and releases.
 
+Backup
+======
+
+Backup the following directories:
+
+  * ``~/html/``
+
+Additionally, backup the MySQL database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysqldump isabell_eqdkp | xz - > ~/isabell_eqdkp.sql.xz
+
 .. _EQdkp-Plus: https://eqdkp-plus.eu
+.. _AGPLv3 License: https://github.com/EQdkpPlus/core/blob/master/LICENSE.md
 
 ----
 
-Tested with EQdkp Plus 2.3.0.26, Uberspace 7.1.3
+Tested with EQdkp Plus 2.3.39.0, Uberspace 7.13, PHP 8.1
 
 .. author_list::

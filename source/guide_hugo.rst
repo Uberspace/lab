@@ -2,6 +2,7 @@
 
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
 .. author:: luto <http://luto.at>
+.. author:: Julian Oster <https://jlnostr.de>
 
 .. tag:: lang-go
 .. tag:: blog
@@ -26,7 +27,6 @@ Hugo is a fast and modern static site generator written in Go, and designed to m
 
   * Git_
   * :manual:`Domains <web-domains>`
-  * :manual:`supervisord <daemons-supervisord>`
 
 License
 =======
@@ -47,8 +47,8 @@ Your URL needs to be setup:
 Installation
 ============
 
-Step 1
-------
+Create website root
+-------------------
 
 Create a new directory containing the sources for your website.
 
@@ -57,29 +57,29 @@ Create a new directory containing the sources for your website.
  [isabell@stardust ~]$ mkdir hugo_websites
  [isabell@stardust ~]$
 
-Step 2
-------
+Download
+--------
 
 Check the Hugo_ website or `Github Repository`_ for the latest release and copy the download link to the Linux-64bit.tar.gz file. Then use ``wget`` to download it. Replace the URL with the one you just got from GitHub.
 
 ::
 
- [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ wget https://github.com/gohugoio/hugo/releases/download/v0.121.1/hugo_0.121.1_linux-amd64.tar.gz
  […]
- Saving to: ‘hugo_0.54.0_Linux-64bit.tar.gz’
+ Saving to: ‘hugo_0.121.1_linux-amd64.tar.gz ’
 
  100%[======================================>] 7,750,708   6.64MB/s   in 1.1s
 
- 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.54.0_Linux-64bit.tar.gz’ saved [7750708/7750708]
- [isabell@stardust hugo_render]$
+ 2019-01-14 16:56:27 (6.64 MB/s) - ‘hugo_0.121.1_linux-amd64.tar.gz ’ saved [7750708/7750708]
+ [isabell@stardust ~]$
 
 Get the hugo binary from the archive, delete the archive and enable hugo to be executed easily. Replace the version in the archive file name with the one you just downloaded.
 
 ::
 
- [isabell@stardust ~]$ tar -xvf hugo_0.54.0_Linux-64bit.tar.gz hugo
+ [isabell@stardust ~]$ tar -xvf hugo_0.121.1_linux-amd64.tar.gz  hugo
  hugo
- [isabell@stardust ~]$ rm hugo_0.54.0_Linux-64bit.tar.gz
+ [isabell@stardust ~]$ rm hugo_0.121.1_linux-amd64.tar.gz
  [isabell@stardust ~]$ mv hugo ~/bin
  [isabell@stardust ~]$
 
@@ -88,12 +88,12 @@ After setting up, test if Hugo works. The output is the version number of Hugo.
 ::
 
  [isabell@stardust ~]$ hugo version
- Hugo Static Site Generator v0.54.0-B1A82C61 linux/amd64 BuildDate: 2019-02-01T09:40:34Z
+ hugo v0.121.1-00b46fed8e47f7bb0a85d7cfc2d9f1356379b740 linux/amd64 BuildDate=2023-12-08T08:47:45Z VendorInfo=gohugoio
  [isabell@stardust ~]$
 
 
-Step 3
-------
+Create first website
+--------------------
 
 Hugo is now installed on your Uberspace. This means you're ready to create your first Hugo site! To do this, switch to the corresponding directory and create the Hugo page there.
 
@@ -101,22 +101,23 @@ Hugo is now installed on your Uberspace. This means you're ready to create your 
 
  [isabell@stardust ~]$ cd ~/hugo_websites
  [isabell@stardust hugo_websites]$ hugo new site hugo_web
- Congratulations! Your new Hugo site is created in /home/isabell/hugo_websites/hugo_web.
+ Congratulations! Your new Hugo site was created in /home/isabell/hugo_websites/hugo_web.
 
- Just a few more steps and you're ready to go:
+ Just a few more steps...
 
- 1. Download a theme into the same-named folder.
-    Choose a theme from https://themes.gohugo.io/, or
-    create your own with the "hugo new theme <THEMENAME>" command.
- 2. Perhaps you want to add some content. You can add single files
-    with "hugo new <SECTIONNAME>/<FILENAME>.<FORMAT>".
- 3. Start the built-in live server via "hugo server".
-
- Visit https://gohugo.io/ for quickstart guide and full documentation.
+ 1. Change the current directory to /home/isabell/hugo_websites/hugo_web.
+ 2. Create or install a theme:
+    - Create a new theme with the command "hugo new theme <THEMENAME>"
+    - Install a theme from https://themes.gohugo.io/
+ 3. Edit hugo.toml, setting the "theme" property to the theme name.
+ 4. Create new content with the command "hugo new content <SECTIONNAME>/<FILENAME>.<FORMAT>".
+ 5. Start the embedded web server with the command "hugo server --buildDrafts".
+ 
+ See documentation at https://gohugo.io/.
  [isabell@stardust hugo_websites]$
 
-Step 5
-------
+Add theme
+---------
 
 Since Hugo is delivered without a theme, this must now be installed. To do so, look for a theme you like at https://themes.gohugo.io/ and install it into the ``themes`` directory of your site. This example uses the theme FutureImperfect_, but you are free to use any other theme. Then copy the sample files into the project root, to quickly bootstrap you new site.
 
@@ -136,7 +137,13 @@ Since Hugo is delivered without a theme, this must now be installed. To do so, l
 Deploying your site
 ===================
 
-Hugo is a static site generator. It will build a bunch of HTML and CSS files, which can be served by any web server. In our case, there is a httpd set up to serve files in ``~/html``, so we tell hugo to drop the files there. This step needs to be repeated each time you change something about your site. Using the ``--destination`` parameter, you can also deploy the files to a different directory or domain for testing.
+Hugo is a static site generator. It will build a bunch of HTML and CSS files, which can be served by any web server. In our case, there is a httpd set up to serve files in ``~/html``, so we tell hugo to drop the files there. Add the following directives to your configuration file, by default ``~/hugo_websites/hugo_web/config.toml``:
+
+.. code-block:: toml
+
+  hugo_cache = '/home/isabell/tmp'
+  publishDir = '/var/www/virtual/isabell/html'
+
 
 .. warning::
 
@@ -146,7 +153,11 @@ Hugo is a static site generator. It will build a bunch of HTML and CSS files, wh
 ::
 
   [isabell@stardust ~]$ cd ~/hugo_websites/hugo_web
-  [isabell@stardust hugo_web]$ hugo --cleanDestinationDir --destination /var/www/virtual/$USER/html
+  [isabell@stardust hugo_web]$ hugo --cleanDestinationDir
+
+.. note::
+
+  You don't need the ``--cleanDestinationDir`` argument every time. Generally, you only need it to clean up files and folders in the publish directory if you removed, moved or renamed something. Running ``hugo`` without arguments will create new files and folders, but won't remove those that are not needed anymore.
 
 Finishing installation
 ======================
@@ -164,7 +175,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-If there is a new version available, update the ``hugo`` binary in ``~/bin`` (repeat Step 2). It might be a good idea to rebuild your site, too, but that's not strictly neccessary.
+If there is a new version available, update the ``hugo`` binary in ``~/bin`` (repeat "Download"). It might be a good idea to rebuild your site, too, but that's not strictly necessary.
 
 
 .. _Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/
@@ -176,6 +187,6 @@ If there is a new version available, update the ``hugo`` binary in ``~/bin`` (re
 
 ----
 
-Tested with Hugo 0.54, Uberspace 7.2.1.0
+Tested with Hugo 0.121.1, Uberspace 7.15.6
 
 .. author_list::

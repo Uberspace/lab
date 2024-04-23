@@ -11,9 +11,16 @@
   .. image:: _static/images/xbrowsersync.svg
       :align: center
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of 1.1.13. xbrowsersync don't work withNode.js in version 18 or newer, we would be happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1640
+
 ################
 xBrowserSync API
 ################
+
+.. tag_list::
 
 xBrowserSync is a free and open-source browser bookmark syncing tool with support for Chrome, Firefox and Android (via app).
 
@@ -96,7 +103,7 @@ Afterwards leave the shell with the ``exit`` command.
 Installation
 ------------
 
-Now you can install all the depenencies needed for xBrowserSync by using npm.
+Now you can install all the dependencies needed for xBrowserSync by using npm.
 Additionally you can let npm run a so called `security audit`_, which detects and updates insecure dependencies.
 
 ::
@@ -188,17 +195,12 @@ Create a service file under ``~/etc/services.d/xbrowsersync.ini`` and replace ``
 
   [program:xbrowsersync]
   command=node /home/<username>/xbrowsersync/api/dist/api.js
+  startsecs=60
   autostart=yes
   autorestart=yes
 
 
-Then start your daemon:
-
-::
-
-  [isabell@stardust ~]$ supervisorctl reread
-  [isabell@stardust ~]$ supervisorctl update
-  [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 Using xBrowserSync
 ==================

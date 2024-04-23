@@ -25,13 +25,26 @@ Embetty_ is a :manual:`Node.js <lang-nodejs>` proxy service that allows you to e
   * :manual:`Node.js <lang-nodejs>`
   * :manual:`supervisord <daemons-supervisord>`
 
+License
+=======
+
+Embetty_ is released under the `MIT License`_.
+
 Prerequisites
 =============
 
-embetty.js
-----------
+We're using :manual:`Node.js <lang-nodejs>` version 20, but others should work too:
 
-Download a copy of embetty.js and place it in your :manual:`DocumentRoot <web-documentroot>`. Please refer to Embetty's `quick start guide`_ for details.
+::
+
+  [isabell@stardust ~]$ uberspace tools version use node 20
+  Selected Node.js version 20
+  The new configuration is adapted immediately. Minor updates will be applied automatically.
+  [isabell@stardust ~]$
+
+Setup your URL:
+
+.. include:: includes/web-domain-list.rst
 
 Twitter credentials (optional)
 ------------------------------
@@ -59,15 +72,14 @@ Use ``npm`` to install the latest version of Embetty server:
   [isabell@stardust ~]$ npm install -g @heise/embetty-server
   /home/isabell/bin/embetty-start -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty-start
   /home/isabell/bin/embetty -> /home/isabell/lib/node_modules/@heise/embetty-server/bin/embetty
-  + @heise/embetty-server@1.0.0-beta.6
-  added 182 packages in 10.878s
+  [...]
+  added 192 packages in 20s
   [isabell@stardust ~]$
+
+
 
 Configuration
 =============
-
-Change the configuration
-------------------------
 
 Setup daemon
 ------------
@@ -81,6 +93,7 @@ Create ``~/etc/services.d/embetty.ini`` with the following content:
 
  [program:embetty]
  command=embetty start
+ startsecs=60
  environment=TWITTER_ACCESS_TOKEN_KEY="<accesstoken>",TWITTER_ACCESS_TOKEN_SECRET="<accesstokensecret>",TWITTER_CONSUMER_KEY="<consumerkey>",TWITTER_CONSUMER_SECRET="<consumersecret>"
 
 .. note:: If you don't need Twitter support, you can leave out the ``TWITTER_`` variables.
@@ -91,19 +104,11 @@ In our example this would be:
 
  [program:embetty]
  command=embetty start
+ startsecs=60
  environment=TWITTER_ACCESS_TOKEN_KEY="47114223-BZC77d4304f0EE547630e56f2d84c4fedf6a41QU3",TWITTER_ACCESS_TOKEN_SECRET="biQ1a114dabFBB10022291691e499c4b3a39402c8dZAH",TWITTER_CONSUMER_KEY="E4a38941Jb4efbac38GE854a62",TWITTER_CONSUMER_SECRET="d775b93f776dc6577B3f2C212aE080c24f308e28803d0877a2"
 
-Tell ``supervisord`` to refresh its configuration and start the service:
 
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- embetty: available
- [isabell@stardust ~]$ supervisorctl update
- embetty: added process group
- [isabell@stardust ~]$ supervisorctl status
- embetty                            RUNNING   pid 26020, uptime 0:03:14
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
@@ -119,7 +124,25 @@ Configure web server
 Usage
 =====
 
-Please refer to Embetty's `quick start guide`_.
+To make use of embetty, you'll have to add two html elements to your website. A `meta` tag pointing to your embetty-server and a `script` tag pointing to the embetty.js file which is distributed by your embetty-server.
+
+This allows you to make use of the embetty-html-elements to embed tweets, toots and videos.
+
+.. code-block:: html
+ :emphasize-lines: 4,5
+
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta data-embetty-server="/path/to/embetty-server" />
+     <script async src="/path/to/embetty-server/embetty.js"></script>
+   </head>
+   <body>
+     <embetty-tweet status="1166685910030790662"></embetty-tweet>
+   </body>
+ </html>
+
+Please refer to Embetty's `quick start guide`_ for further details.
 
 Updates
 =======
@@ -139,9 +162,10 @@ Use ``npm`` to update Embetty:
 .. _quick start guide: https://github.com/heiseonline/embetty#quick-start
 .. _Twitter application: https://apps.twitter.com/
 .. _feed: https://github.com/heiseonline/embetty-server/releases
+.. _MIT License: https://github.com/heiseonline/embetty-server/blob/develop/LICENSE
 
 ----
 
-Tested with Embetty 1.0.0-beta.6, Uberspace 7.1.7.0
+Tested with Embetty-Server 2.0.3, Uberspace 7.15.6
 
 .. author_list::

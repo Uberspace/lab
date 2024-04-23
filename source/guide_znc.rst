@@ -2,6 +2,7 @@
 
 .. author:: no-one <https://github.com/no-one>
 
+.. tag:: lang-cpp
 .. tag:: irc
 .. tag:: bouncer
 
@@ -18,7 +19,7 @@ ZNC_ is an advanced IRC bouncer that stays connected to the server, so an IRC cl
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Firewall Ports <basics-ports>`
-  * :manual:`HTTPS <web-https>` 
+  * :manual:`HTTPS <web-https>`
   * :manual:`supervisord <daemons-supervisord>`
 
 License
@@ -36,9 +37,7 @@ Prerequisites
 Installation
 ============
 
-Step 1
-------
-Create a new directory, download the lastest version and enter the directory you just created:
+Create a new directory, download the latest version and enter the directory you just created:
 
 ::
 
@@ -46,9 +45,6 @@ Create a new directory, download the lastest version and enter the directory you
  [isabell@stardust ~]$ curl https://znc.in/releases/znc-latest.tar.gz | tar -xzvC ~/znc --strip-components=1
  [isabell@stardust ~]$ cd ~/znc
  [isabell@stardust znc]$
-
-Step 2
-------
 
 Compile and install ZNC to your home directory:
 
@@ -76,7 +72,7 @@ Run the following command to create a config file:
  [ ** ]
  [ ** ] -- Global settings --
  [ ** ]
- [ ?? ] Listen on port (1025 to 65534): 47680
+ [ ?? ] Listen on port (1025 to 65534): 40132
  [ ?? ] Listen using SSL (yes/no) [no]: yes
  [ ?? ] Listen using both IPv4 and IPv6 (yes/no) [yes]:
  [ .. ] Verifying the listener...
@@ -103,10 +99,10 @@ Run the following command to create a config file:
  [ ** ] as the IRC server password like this: user/network:pass.
  [ ** ]
  [ ** ] Try something like this in your IRC client...
- [ ** ] /server <znc_server_ip> +47680 myUsername:<pass>
+ [ ** ] /server <znc_server_ip> +40132 myUsername:<pass>
  [ ** ]
  [ ** ] To manage settings, users and networks, point your web browser to
- [ ** ] https://<znc_server_ip>:47680/
+ [ ** ] https://<znc_server_ip>:40132/
  [ ** ]
  [ ?? ] Launch ZNC now? (yes/no) [no]:
  [isabell@stardust ~]$
@@ -121,7 +117,7 @@ ZNC ships with a self generated certificate which will cause a warning in all mo
   [isabell@stardust configs]$ openssl dhparam -out dhparam.pem 2048
   [...]
   [isabell@stardust configs]$
-  
+
 .. warning:: Replace ``isabell`` with your username!
 
 Add the following lines to ``~/.znc/configs/znc.conf`` above the line ``Version = 1.7.3`` (your version number may differ):
@@ -143,27 +139,17 @@ Create ``~/etc/services.d/znc.ini`` with the following content:
  autostart=yes
  autorestart=yes
 
-Tell ``supervisord`` to refresh its configuration and start the service:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- znc: available
- [isabell@stardust ~]$ supervisorctl update
- znc: added process group
- [isabell@stardust ~]$ supervisorctl status
- znc                              RUNNING   pid 20669, uptime 0:00:18
- [isabell@stardust ~]$
+.. include:: includes/supervisord.rst
 
 If it's not in state RUNNING, check your configuration.
 
 Open webadmin
 -------------
-.. note:: Replace ``isabell`` with your username and ``47680`` with your port!
+.. warning:: Replace ``isabell`` with your username and ``40132`` with your port!
 
 If ZNC is running, you can find the web interface for further configuration here:
 
-  * https://isabell.uber.space:47680/
+  * https://isabell.uber.space:40132/
 
 Connect your client
 -------------------

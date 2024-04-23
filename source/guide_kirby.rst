@@ -1,4 +1,7 @@
-.. author:: Daniel Kratz <uberlab@danielkratz.com>
+.. author:: Daniel Kratz <https://danielkratz.com>
+
+.. spelling::
+    Allgeier
 
 .. tag:: lang-php
 .. tag:: web
@@ -10,6 +13,12 @@
 
   .. image:: _static/images/kirby.svg
       :align: center
+
+.. error::
+
+  This guide seems to be **broken** for the current versions of XYZ, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1431
 
 #########
 Kirby
@@ -40,12 +49,12 @@ Kirby is licensed under the `Kirby End User License Agreement`_ which you can fi
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 7.1:
+We're using PHP_ in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -61,12 +70,14 @@ To install Kirby we create a new Kirby Starterkit project using Composer (which 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust ~]$ composer create-project getkirby/starterkit html
-  Installing getkirby/starterkit (3.0.0)
-   - Installing getkirby/starterkit (3.0.0): Downloading (100%)
-  Created project in html
-  Loading composer repositories with package information
-  Updating dependencies (including require-dev)
-  [...]
+ Creating a "getkirby/starterkit" project at "./html"
+ Installing getkirby/starterkit (3.5.5)
+   - Downloading getkirby/starterkit (3.5.5)
+   - Installing getkirby/starterkit (3.5.5): Extracting archive
+ Created project in /var/www/virtual/sbtest/html
+ Loading composer repositories with package information
+ Updating dependencies
+ [...]
  [isabell@stardust ~]$
 
 That's all the magic. If you visit your previously set up domain you should see a working website with demo contents from the Starterkit.
@@ -76,7 +87,7 @@ Configuration
 
 Visit your domain followed by ``/panel`` (e.g. ``isabell.uber.space/panel``) to visit the admin panel and create your admin account. Please use a strong password for this.
 
-When you're ready to launch your website with Kirby you need to purchase a license_. To register your license login to the admin panel, click register in the upper right corner and enter the neccessary information.
+When you're ready to launch your website with Kirby you need to purchase a license_. To register your license login to the admin panel, click register in the upper right corner and enter the necessary information.
 
 Please make sure to deactivate the debug mode for your site when going live. Edit the ``site/config/config.php`` file and set the ``debug`` option to ``false`` to achieve that.
 
@@ -145,6 +156,6 @@ If you've enabled the cache, you might need to empty the page cache directory to
 
 ----
 
-Tested with Kirby 3.0.0 and Uberspace 7.2.1
+Tested with Kirby 3.8.2, Uberspace 7.13, PHP 8.1
 
 .. author_list::

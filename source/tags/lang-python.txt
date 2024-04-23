@@ -1,0 +1,2 @@
+Python is an interpreted programming language. It is used for a wide range of
+tasks from basic scripting to full-fledged web applications.

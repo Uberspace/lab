@@ -34,30 +34,24 @@ autossh_ was written by `Carson Harding <http://www.harding.motd.ca/>`_ and rele
 Installation
 ============
 
-Step 1
-------
-
 Download the latest version of autossh_ from the website http://www.harding.motd.ca/autossh/index.html, extract it and enter the directory:
 
 ::
 
- [isabell@stardust ~] wget http://www.harding.motd.ca/autossh/autossh-99.9f.tgz
- [isabell@stardust ~] tar zxf autossh-99.9f.tgz
- [isabell@stardust ~] cd autossh-99.9f
- [isabell@stardust autossh-99.9f]
-
-Step 2
-------
+ [isabell@stardust ~] wget https://www.harding.motd.ca/autossh/autossh-1.4g.tgz
+ [isabell@stardust ~] tar zxf autossh-1.4g.tgz
+ [isabell@stardust ~] cd autossh-1.4g
+ [isabell@stardust autossh-1.4g]
 
 Run ``configure``, ``make`` and ``make install`` (the ``--prefix`` options tells make to install to your home directory):
 
 ::
 
- [isabell@stardust autossh-99.9f] ./configure --prefix=$HOME
+ [isabell@stardust autossh-1.4g] ./configure --prefix=$HOME
  [...]
- [isabell@stardust autossh-99.9f] make
+ [isabell@stardust autossh-1.4g] make
  [...]
- [isabell@stardust autossh-99.9f] make install
+ [isabell@stardust autossh-1.4g] make install
  [...]
 
 After running ``make install``, ``which autossh`` should return ``~/bin/autossh``. If not, check the output of the respective commands for errors.
@@ -66,8 +60,8 @@ After running ``make install``, ``which autossh`` should return ``~/bin/autossh`
 Configuration and Usage
 =======================
 
-Step 1
-------
+SSH Tunnel
+----------
 
 In order to use autossh_ comfortably, you need to define a connection in your ``~/.ssh/config`` - for the sake of the example, let's assume the following connection in ``~/.ssh/config``:
 
@@ -95,10 +89,10 @@ To ensure that the remote host and it's key fingerprint are trusted, either add 
 
 .. note:: This guide assumes that you have set up public key authentication (see ``IdentityFile`` parameter in ``~/.ssh/config``). This is required as otherwise you will always be prompted for your password when trying to open the tunnel. See :manual_anchor:`the Uberspace manual <basics-ssh.html#working-with-keys>` for setting up public key authentication if you don't know how.
 
-Step 2
-------
+Daemon Setup
+------------
 
-With the information from step 1, it is time to configure :manual:`supervisord <daemons-supervisord>` to handle our autossh process. Create the file ``~/etc/services.d/autossh.ini`` with the following content:
+With the information from the earlier step, it is time to configure :manual:`supervisord <daemons-supervisord>` to handle our autossh process. Create the file ``~/etc/services.d/autossh.ini`` with the following content:
 
 ::
 
@@ -107,18 +101,11 @@ With the information from step 1, it is time to configure :manual:`supervisord <
  autostart=true
  autorestart=false
 
-This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh not to send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection. After you have created the file, update the control daemon:
+This will make sure that autossh_ is automatically started if the host reboots but ignore termination of autossh (which will only happen if there are repeated errors with the connection). ``-M 0`` will cause autossh not to send dummy data through the connection, ``-T -N`` will launch a non-interactive ssh connection.
 
-::
+.. include:: includes/supervisord.rst
 
- [isabell@stardust ~] supervisorctl reread
- autossh: available
- [isabell@stardust ~] supervisorctl update
- autossh: added process group
- [isabell@stardust ~] supervisorctl status
- autossh                         RUNNING   pid 16184, uptime 0:00:02
-
-Check the output of ``supervisorctl status``. If it's not in state ``RUNNING``, something went wrong.
+If it's not in state ``RUNNING``, something went wrong.
 
 That's it, you have successfully configured an automatically launching port forwarding tunnel between to hosts!
 

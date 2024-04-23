@@ -7,7 +7,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/matomo.png
+  .. image:: _static/images/matomo.svg
       :align: center
 
 #########
@@ -16,7 +16,7 @@ Matomo
 
 .. tag_list::
 
-Matomo_ (former known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP and distributed under the GNU General Public License v3.0 licence. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
+Matomo_ (formerly known as Piwik) is an open source website tracking tool (like Google Analytics) written in PHP. Hosting a website tracker by yourself gives you full data ownership and privacy protection of any data collected and stored, especially with regard to data laws like the EU's General Data Protection Regulation (GDPR).
 
 ----
 
@@ -26,59 +26,43 @@ Matomo_ (former known as Piwik) is an open source website tracking tool (like Go
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
+License
+=============
+
+Matomo_ is released under the `GPLv3 License`_.
+
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 7.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.1:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '7.1'
+ Using 'PHP' version: '8.1'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
 
-If you want to use Matomo with your own domain you need to setup your domain first:
+If you want to use Matomo with your own domain you need to add it first:
 
 .. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-If you want to install Matomo into a subfolder of your domain, create a new folder and navigate to it:
+If you want to install Matomo into a subfolder of your domain, download and unzip it in your :manual:`document root <web-documentroot>`:
 ::
 
- [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ mkdir matomo
- [isabell@stardust html]$ cd matomo/
- [isabell@stardust matomo]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ wget https://builds.matomo.org/matomo.zip
+ [isabell@stardust html]$ unzip matomo.zip
+ [isabell@stardust html]$ rm matomo.zip
 
-If you want to install matomo into your :manual:`document root <web-documentroot>`, just navigate with ``cd`` to your :manual:`document root <web-documentroot>`.
-
-Now download the latest version and extract it:
-
-::
-
- [isabell@stardust matomo]$ curl https://builds.matomo.org/piwik.zip -o matomo.zip && unzip matomo.zip && rm matomo.zip
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-  100 18.0M  100 18.0M    0     0  26.1M      0 --:--:-- --:--:-- --:--:-- 26.1M
-
- [...]
-
- [isabell@stardust matomo]$
-
-This will create a ``piwik`` folder containing the files and directories. Now we will move the files from the ``piwik`` folder to the parent folder.
-
-::
-
- [isabell@stardust matomo]$ cd piwik/ && mv * .. && cd .. && rm piwik -rf
- [isabell@stardust matomo]$
-
-Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. After that, follow the instructions of the Installer.
+Now point your browser to your Matomo URL. In this example, it is ``https://isabell.uber.space/matomo``. Follow the instructions in your browser.
 
 You will need to enter the following information:
+
   * your MySQL hostname, username and password: the hostname is ``localhost`` and you should know your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` by now. If you don't, start reading again at the top.
   * your Matomo database name: we suggest you use an :manual_anchor:`additional <database-mysql.html#additional-databases>` database. For example: isabell_matomo
   * Administrator (*Super User*) username and password: choose a username (maybe not *admin*) and a strong password for the super user
@@ -99,11 +83,12 @@ enter crontab with
 
   [isabell@stardust ~]$ crontab -e
 
-and enter: (more configuration-details about :manual:`cron <daemons-cron>`)
+and enter with your url (more configuration-details about :manual:`cron <daemons-cron>`):
 
-.. code-block:: guess
+.. code-block::
 
-  5 * * * * /usr/bin/php /home/isabell/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
+  # run matomo archiving outside of mysql backup hours
+  5 6-23,0-2 * * * /usr/bin/php /home/$USER/html/matomo/console core:archive --url=https://isabell.uber.space/ > /dev/null
 
 
 Tracking
@@ -162,10 +147,25 @@ The easiest way to update Matomo is to use the web updater provided in the admin
 
 .. note:: Check the `changelog <https://matomo.org/changelog/>`_ regularly to stay informed about new updates and releases.
 
+Backup
+======
+
+Backup the following directories:
+
+  * ``~/html/matomo/``
+
+Additionally, backup the MySQL database:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mysqldump isabell_matomo | xz - > ~/isabell_matomo.sql.xz
+
+
 .. _Matomo: https://matomo.org/
+.. _GPLv3 License: https://github.com/matomo-org/matomo/blob/4.x-dev/LICENSE
 
 ----
 
-Tested with Matomo 3.5.0, Uberspace 7.1.3
+Tested with Matomo 4.12.3, Uberspace 7.13, PHP 8.1
 
 .. author_list::

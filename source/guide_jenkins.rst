@@ -1,5 +1,8 @@
 .. highlight:: console
 
+.. spelling::
+    sbt
+
 .. author:: Raphael Höser <raphael@hoeser.info>
 
 .. tag:: lang-java
@@ -28,11 +31,6 @@ Builds can be triggered by various means, for example by commit in a version con
   * :manual_anchor:`supervisord <daemons-supervisord>`
   * :manual_anchor:`web backends <web-backends>`
 
-.. note:: Recommended reading to follow along and go beyond this guide:
-
-  * `Official Jenkins Manual <https://jenkins.io/doc/>`_
-  * `Official Jenkins WAR guide <https://jenkins.io/doc/book/installing/#war-file>`_
-
 License
 =======
 
@@ -41,14 +39,14 @@ Jenkins is released under the `MIT License <https://github.com/jenkinsci/jenkins
 Prerequisites
 =============
 
-We're using java version 8 or 11 `(9, 10 and 12 are currently not supported) <https://jenkins.io/doc/administration/requirements/java/>`_.
+We're using Java version 17, check the version to confirm:
 
 ::
 
- [isabell@stardust ~]$ java -version
- openjdk version "1.8.0_212"
- OpenJDK Runtime Environment (build 1.8.0_212-b04)
- OpenJDK 64-Bit Server VM (build 25.212-b04, mixed mode)
+ [isabell@stardust ~]$ $ java -version
+ openjdk version "17.0.2" 2022-01-18
+ OpenJDK Runtime Environment 21.9 (build 17.0.2+8)
+ OpenJDK 64-Bit Server VM 21.9 (build 17.0.2+8, mixed mode, sharing)
  [isabell@stardust ~]$
 
 Your URL needs to be setup:
@@ -90,9 +88,9 @@ Next we download the current version of Jenkins:
  HTTP request sent, awaiting response... 200 OK
  Length: 77273755 (74M) [application/x-java-archive]
  Saving to: ‘Jenkins/jenkins.war’
- 
+
  100%[====================================================>]  77,273,755  21.4MB/s   in 3.7s
- 
+
  2019-05-24 15:33:36 (20.1 MB/s) - ‘Jenkins/jenkins.war’ saved [77273755/77273755]
  [isabell@stardust ~]$
 
@@ -107,26 +105,16 @@ Install service
 
 We create the service file ``~/etc/services.d/jenkins.ini`` and fill it with:
 
-::
+.. code-block:: ini
 
  [program:jenkins]
  directory=%(ENV_HOME)s/Jenkins/Jenkins_home
- command=java -jar ../jenkins.war
+ environment=JENKINS_HOME="%(ENV_HOME)s/Jenkins/Jenkins_home"
+ command=java -jar %(ENV_HOME)s/Jenkins/jenkins.war --httpPort=8080 --enable-future-java
 
+.. include:: includes/supervisord.rst
 
-After that refresh and update the daemons and check if everything worked out:
-
-::
-
- [isabell@stardust ~]$ supervisorctl reread
- jenkins: available
- [isabell@stardust ~]$ supervisorctl update
- jenkins: added process group
- [isabell@stardust ~]$ supervisorctl status
- jenkins                          RUNNING   pid 4711, uptime 0:47:11
- [isabell@stardust ~]$
-
-Your Jenkins is now up and running as a service. 
+Your Jenkins is now up and running as a service.
 
 Finally we'll setup our connection to the rest of the world.
 
@@ -135,7 +123,7 @@ Setup Web backend
 
 .. note::
 
-    Jenkins is running on port 8080. 
+    Jenkins is running on port 8080.
 
 .. include:: includes/web-backend.rst
 
@@ -145,20 +133,25 @@ Finishing Installation
 First connect and initial password
 ----------------------------------
 
-Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It is stored in ``~/.jenkins/secrets/initialAdminPassword``.
+Now you can go to ``https://isabell.uber.space`` and see the Jenkins asking for your initial password. It will tell you the path where it is stored, most probably it should be in a file in ``~/Jenkins/Jenkins_home/secrets/initialAdminPassword``:
 
 ::
 
- [isabell@stardust ~]$ cat ~/.jenkins/secrets/initialAdminPassword
+ [isabell@stardust ~]$ cat ~/Jenkins/Jenkins_home/secrets/initialAdminPassword
  SOMEHEXTHATIWONTTELLYOU
  [isabell@stardust ~]$
 
-Just copy and paste that and you'll be good to go. Just follow the setup and everything should work out.
+Copy and paste that and you'll be good to go. Just follow the setup and everything should work out.
 
 Updates
 =======
 
-Do jump to a new version just replace the old war with the new version.
+To jump to a new version just replace the old war with the new version.
+
+.. note:: Recommended reading to follow along and go beyond this guide:
+
+  * `Official Jenkins Manual <https://jenkins.io/doc/>`_
+  * `Official Jenkins WAR guide <https://jenkins.io/doc/book/installing/#war-file>`_
 
 .. _Jenkins: https://jenkins.io
 .. author_list::
