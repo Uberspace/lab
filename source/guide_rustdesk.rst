@@ -57,7 +57,7 @@ Installation
 
 Create a new directory, enter the directory you just created, download the latest version, unpack the archive and delete it afterwards:
 
-.. warning:: Replace ``1.1.10-3`` with the version of the latest release!
+.. note:: Replace ``1.1.10-3`` with the version of the `latest release`_.
 
 .. code-block:: console
 
@@ -76,8 +76,8 @@ Configure Webserver
 
 .. _setup-daemon:
              
-Setup daemon
-------------
+Setup daemons
+-------------
 
 .. warning:: Replace ``isabell`` with your username and ``40131``/``40132`` with your ports!
 
@@ -90,6 +90,7 @@ Create ``~/etc/services.d/rustdesk_hbbs.ini`` with the following content:
  command=%(ENV_HOME)s/rustdesk/hbbs -r isabell.uber.space:40132 -p 40131 -k _
  autostart=yes
  autorestart=yes
+ startsecs=30
 
 Create ``~/etc/services.d/rustdesk_hbbr.ini`` with the following content:
 
@@ -100,6 +101,7 @@ Create ``~/etc/services.d/rustdesk_hbbr.ini`` with the following content:
  command=%(ENV_HOME)s/rustdesk/hbbr -p 40132 -k _
  autostart=yes
  autorestart=yes
+ startsecs=30
 
 ::
 
@@ -160,7 +162,7 @@ Keep the software up to date. If you do not want third parties to be able to con
 Updates
 =======
 
-.. note:: Check the `GitHub release page`_ regularly to stay informed about the newest version.
+.. note:: Check the `GitHub release page <latest release_>`_ regularly to stay informed about the newest version.
 
 To update the software, download the latest version and replace the files ``hbbs``, ``hbbr`` and ``rustdesk-utils``.
 
@@ -169,7 +171,7 @@ To update the software, download the latest version and replace the files ``hbbs
 .. _How does RustDesk work?: https://github.com/rustdesk/rustdesk/wiki/How-does-RustDesk-work%3F
 .. _RustDesk Server: https://github.com/rustdesk/rustdesk-server
 .. _firewall: https://manual.uberspace.de/basics-ports.html
-.. _GitHub release page: https://github.com/rustdesk/rustdesk-server/releases
+.. _latest release: https://github.com/rustdesk/rustdesk-server/releases
 
 ----
 
