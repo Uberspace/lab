@@ -81,7 +81,7 @@ First create a folder where all data is stored:
 
 .. code-block:: console
 
-    [isabell@stardus ~]$ mkdir /home/isabell/pocketbase
+    [isabell@stardus ~]$ mkdir ~/pocketbase
     [isabell@stardus ~]$
 
 
@@ -90,18 +90,21 @@ First create a folder where all data is stored:
     all ``pocketbase`` commands must be executed in the folder you just created!
 
 
-Now, create a configuration file ``/home/isabell/etc/services.d/pocketbase.ini``:
+Now, create a configuration file ``~/etc/services.d/pocketbase.ini``:
 
 .. code-block:: ini
 
     [program:pocketbase]
     directory=%(ENV_HOME)s/pocketbase
-    command=pocketbase serve --http :<port>
+    command=pocketbase serve --http :8090
     autostart=yes
     autorestart=yes
     startsecs=60
 
 .. include:: includes/supervisord.rst
+
+.. note::
+    Pocketbase is running on port 8090.
 
 .. include:: includes/web-backend.rst
 
@@ -126,7 +129,7 @@ Updates
 To update the current executable you have two choices:
 
 * Repeat the steps in the *Installation* section above.
-* Run the built-in updater using ``pocketbase update`` inside ``/home/isabell/pocketbase``
+* Run the built-in updater using ``pocketbase update`` inside ``~/pocketbase``
 
 After updating, tell :manual:`supervisord <daemons-supervisord>` to restart the service:
 
