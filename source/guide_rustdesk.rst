@@ -40,6 +40,7 @@ Prerequisites
 To make the application accessible from the outside, open three `ports in the firewall <firewall_>`_:
 
 .. code-block:: console
+ :emphasize-lines: 1,3,5
 
   [isabell@stardust ~]$ uberspace port add
   Port 40130 will be open for TCP and UDP traffic in a few minutes.
@@ -71,9 +72,6 @@ Create a new directory, enter the directory you just created, download the lates
 Configuration
 =============
 
-Configure Webserver
--------------------
-
 .. _setup-daemon:
              
 Setup daemons
@@ -103,13 +101,13 @@ Create ``~/etc/services.d/rustdesk_hbbr.ini`` with the following content:
  autorestart=yes
  startsecs=30
 
-::
+Explanation of used parameters:
 
-  Explanation of used parameters:
+::
 
   -r: Specifies a relay server so that the client doesn't have to.
   -p: Specifies a custom port.
-  -k: ``-k _`` prevents users from establishing unencrypted connections by requiring a key (see :ref:`setup-client`).
+  -k: "-k _" prevents users from establishing unencrypted connections by requiring a key.
              
 After creating the configuration, tell supervisord to refresh its configuration and start the services:
 
@@ -128,8 +126,6 @@ After creating the configuration, tell supervisord to refresh its configuration 
  [isabell@stardust ~]$      
 
 If they are not in the RUNNING state, check your configuration.
-
-.. _setup-client:
 
 Setup client
 ------------
