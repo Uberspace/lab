@@ -31,12 +31,12 @@ Etherpad Lite
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 18:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 20:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 18
- Using 'Node.js' version: '18'
+ [isabell@stardust ~]$ uberspace tools version use node 20
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -48,11 +48,11 @@ Your URL needs to be set up:
 Installation
 ============
 
-First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.18`` here with the latest version number from the release feed_:
+First get the Etherpad Lite source code from Github_, be sure to replace the version number ``2.0.3`` here with the latest version number from the release feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 1.8.18 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 2.0.3 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
   remote: Enumerating objects: 504, done.
   remote: Counting objects: 100% (504/504), done.
@@ -145,12 +145,12 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
 .. code-block:: ini
 
- [program:etherpad]
- directory=%(ENV_HOME)s/etherpad
- command=node %(ENV_HOME)s/etherpad/node_modules/ep_etherpad-lite/node/server.js
- environment=NODE_ENV="production"
- autorestart=true
- startsecs=60
+[program:etherpad]
+directory=%(ENV_HOME)s/etherpad2
+environment=NODE_ENV="production"
+command=pnpm run prod
+autorestart=true
+startsecs=60
 
 
 .. include:: includes/supervisord.rst
@@ -173,15 +173,15 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the pseudo version number ``1.8.3`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the pseudo version number ``2.0.3`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
   [isabell@stardust etherpad]$ git checkout  -- src/package.json
-  [isabell@stardust etherpad]$ git pull origin 1.8.3
+  [isabell@stardust etherpad]$ git pull origin 2.0.3
   From https://github.com/ether/etherpad-lite
-   * tag                 1.8.3      -> FETCH_HEAD
+   * tag                 2.0.3      -> FETCH_HEAD
   Updating b8b2e4bc..96ac381a
   Fast-forward
   […]
@@ -209,10 +209,10 @@ Then you need to restart the service daemon, so the new code is used by the web 
 .. _`Etherpad Lite`: http://etherpad.org/
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
-.. _`Skins`: http://etherpad.org/doc/v1.8.3/#skins
+.. _`Skins`: https://etherpad.org/doc/v2.0.3/#skins
 
 ----
 
-Tested with Etherpad Lite 1.8.3 and Uberspace 7.6.0.0
+Tested with Etherpad Lite 2.0.3 and Uberspace 7.15.14
 
 .. author_list::
