@@ -60,7 +60,7 @@ Download the latest release and extract it to your binary folder:
     100%[====================================================================================================================================================>] 14,321,393  23.1MB/s   in 0.6s
 
     2024-04-11 11:22:32 (23.1 MB/s) - ‘pocketbase.zip’ saved [14321393/14321393]
-    [isabell@stardust ~]$ unzip pocketbase.zip pocketbase -d /home/isabell/bin/
+    [isabell@stardust ~]$ unzip pocketbase.zip pocketbase -d ~/bin/
     Archive:  pocketbase.zip
       inflating: /home/isabell/bin/pocketbase
     [isabell@stardust ~]$
