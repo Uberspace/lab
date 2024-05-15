@@ -61,6 +61,7 @@ Use your favourite editor to create ``~/etc/services.d/redis.ini`` with the foll
  directory=%(ENV_HOME)s/.redis
  autostart=yes
  autorestart=yes
+ startsecs=30
 
 .. include:: includes/supervisord.rst
 
