@@ -71,13 +71,12 @@ Create a ``wiki`` directory in your home.
   [isabell@stardust ~]$ mkdir ~/wiki
   [isabell@stardust ~]$
 
-Download the latest `release <https://github.com/Requarks/wiki/releases/latest>`_ from GitHub,
-apparently there is no direct URL to the latest archive file. For this matter, you can use `gitreleases.dev <https://gitreleases.dev>`_
-which resolves to the latest archive file, which also comes in handy later for :ref:`updates`
+Download the latest `release <https://github.com/Requarks/wiki/releases/latest>`_ from GitHub.
+Making use of GitHubs ``latest``-feature works well and also comes in handy later for :ref:`updates`
 
 ::
 
-  [isabell@stardust ~]$ wget https://github.com/requarks/wiki/releases/download/v2.5.300/wiki-js.tar.gz
+  [isabell@stardust ~]$ wget https://github.com/requarks/wiki/releases/latest/download/wiki-js.tar.gz
   [...]
   Saving to: ‘wiki-js.tar.gz’
   [isabell@stardust ~]$
