@@ -187,9 +187,11 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
  # created by peleke.de (Ghost Guide), customized by logazer
 
  WIKIDIR=~/wiki
- PACKAGE_VERSION_OLD=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
+ WIKISERVICENAME=wiki
+ # Online version number comes with leading 'v' so we add a 'v' to our version
+ PACKAGE_VERSION_OLD=v$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
  CURRENT_WIKI=$(curl -s https://api.github.com/repos/Requarks/wiki/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4)
- CURRENT_WIKI_DOWNLOAD="https://github.com/Requarks/wiki/releases/download/$CURRENT_WIKI/wiki-js.tar.gz"
+ CURRENT_WIKI_DOWNLOAD="https://github.com/Requarks/wiki/releases/latest/download/wiki-js.tar.gz"
 
  if [[ $1 == "--rollback" ]]
  then
@@ -197,12 +199,12 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
   then
    PACKAGE_VERSION_BACKUP=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' ~/tmp/wiki.bak/package.json)
    echo "Stopping Wiki.js ..."
-   supervisorctl stop wiki
+   supervisorctl stop $WIKISERVICENAME
    echo "Rolling back to $PACKAGE_VERSION_BACKUP ..."
    rm -rf $WIKIDIR/* && cp -r ~/tmp/wiki.bak/* $WIKIDIR
    echo "Rollback complete ..."
    echo "Starting Wiki.js. This may take a few seconds ..."
-   supervisorctl start wiki
+   supervisorctl start $WIKISERVICENAME
    exit 0
   else
    echo "No Backup found :("
@@ -219,7 +221,7 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
    echo "Downloading version $CURRENT_WIKI ..."
    (cd ~/tmp/ && curl --progress-bar -LO $CURRENT_WIKI_DOWNLOAD)
    echo "Stopping Wiki.js ..."
-   supervisorctl stop wiki
+   supervisorctl stop $WIKISERVICENAME
    echo "Removing version $PACKAGE_VERSION_OLD ..."
    cp $WIKIDIR/config.yml ~/tmp/config.yml.bak
    rm -rf ~/tmp/wiki.bak
@@ -232,7 +234,7 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
    PACKAGE_VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
    echo "Wiki.js $PACKAGE_VERSION_OLD has been updated to version $PACKAGE_VERSION"
    echo "Starting Wiki.js. This may take a few seconds ..."
-   supervisorctl start wiki
+   supervisorctl start $WIKISERVICENAME
    supervisorctl status
    echo "If something seems wrong, please check the logs: 'supervisorctl tail wiki'"
    echo "To rollback the update to the last version, use the option '--rollback'"
