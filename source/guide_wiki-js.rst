@@ -187,7 +187,7 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
 
  WIKIDIR=~/wiki
  WIKISERVICENAME=wiki
- PACKAGE_VERSION_OLD=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
+ PACKAGE_VERSION_OLD=v$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
  CURRENT_WIKI=$(curl -s https://api.github.com/repos/Requarks/wiki/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4)
  CURRENT_WIKI_DOWNLOAD="https://github.com/Requarks/wiki/releases/download/$CURRENT_WIKI/wiki-js.tar.gz"
 
