@@ -193,7 +193,7 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
 .. code-block:: ini
 
     [program:etherpad]
-    directory=%(ENV_HOME)s/etherpad2
+    directory=%(ENV_HOME)s/etherpad
     environment=NODE_ENV="production"
     command=pnpm run prod
     autorestart=true
