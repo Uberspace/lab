@@ -138,6 +138,53 @@ Configure the web server
 
 .. include:: includes/web-backend.rst
 
+Create the Admin UI
+--------------------------------
+
+If you run Etherpad 2.x for the first time, you need to create the admin UI. To do this, simply run the shell script for it manually once and stop it afterwards:
+
+.. code-block:: console
+
+    [isabell@stardust ~]$ ~/etherpad/bin/run.sh
+    Installing dependencies...
+    Installing dev dependencies with pnpm
+    Scope: all 6 workspace projects
+    Lockfile is up to date, resolution step is skipped
+    Done in 3.8s
+    Clearing minified cache...
+    Creating the admin UI...
+
+    > admin@2.0.3 build /home/isabell/etherpad/admin
+    > tsc && vite build
+
+    vite v5.2.9 building for production...
+    ✓ 1641 modules transformed.
+    computing gzip size (2)...[vite-plugin-static-copy] Copied 1 items.
+    ../src/templates/admin/index.html                   0.49 kB │ gzip:   0.30 kB
+    ../src/templates/admin/assets/index-E-lmtrZj.css   10.20 kB │ gzip:   3.02 kB
+    ../src/templates/admin/assets/index-DIlmNsYJ.js   407.69 kB │ gzip: 131.14 kB
+    ✓ built in 9.37s
+
+    > ui@0.0.0 build /home/isabell/etherpad/ui
+    > tsc && vite build
+
+    vite v5.2.9 building for production...
+    ✓ 6 modules transformed.
+    ../src/static/oidc/consent.html               1.01 kB │ gzip: 0.49 kB
+    ../src/static/oidc/login.html                 2.60 kB │ gzip: 1.02 kB
+    ../src/static/oidc/assets/style-Bg-wvjxN.css  1.58 kB │ gzip: 0.75 kB
+    ../src/static/oidc/assets/main-DnmqwYeI.js    0.15 kB │ gzip: 0.15 kB
+    ../src/static/oidc/assets/style-Dnfg2NQt.js   0.71 kB │ gzip: 0.40 kB
+    ../src/static/oidc/assets/nested-BvZBmoGC.js  1.06 kB │ gzip: 0.53 kB
+    ✓ built in 286ms
+    Starting Etherpad...
+
+    > etherpad@2.0.3 dev /home/isabell/etherpad
+    [...]
+    ^C[isabell@stardust ~]$ 
+
+
+
 Set up the daemon
 -----------------
 
@@ -145,12 +192,12 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
 .. code-block:: ini
 
-[program:etherpad]
-directory=%(ENV_HOME)s/etherpad2
-environment=NODE_ENV="production"
-command=pnpm run prod
-autorestart=true
-startsecs=60
+    [program:etherpad]
+    directory=%(ENV_HOME)s/etherpad2
+    environment=NODE_ENV="production"
+    command=pnpm run prod
+    autorestart=true
+    startsecs=60
 
 
 .. include:: includes/supervisord.rst
