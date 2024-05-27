@@ -36,6 +36,7 @@ Set up a subdomain and associate the web backend with it
 First add a new subdomain and then associate the homebox default port with that subdomain:
 
 .. code-block:: console
+
  [isabell@stardust ~]$ uberspace web domain add homebox.example.com
  The webserver's configuration has been adapted.
  Now you can use the following records for your DNS:
@@ -63,6 +64,7 @@ Download latest release and extract
 Download the latest release from the GitHub releases_ page:
 
 .. code-block:: console
+
  [isabell@stardust ~]$ wget https://github.com/hay-kot/homebox/releases/download/v0.10.3/homebox_Linux_x86_64.tar.gz
  [isabell@stardust ~]$ mkdir -p ~/homebox/data
  [isabell@stardust ~]$ tar -xf homebox_Linux_x86_64.tar.gz -C ~/homebox
@@ -74,6 +76,7 @@ Create supervisord service and start the app
 Create the supervisord entry at ``~/etc/services.d/homebox.ini``:
 
 .. code-block:: ini
+
  [program:homebox]
  directory=%(ENV_HOME)s/homebox
  command=%(ENV_HOME)s/homebox/homebox
@@ -87,6 +90,7 @@ Create the supervisord entry at ``~/etc/services.d/homebox.ini``:
 After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
 
 .. code-block:: console
+
  [isabell@stardust ~]$ supervisorctl reread
  homebox: available
  [isabell@stardust ~]$ supervisorctl update
@@ -118,7 +122,8 @@ Create the accounts you want, then close registration by setting ``HBOX_OPTIONS_
 
 Then restart the service
 
-.. code-block:: ini
+.. code-block:: console
+
  [isabell@stardust ~]$ supervisorctl update
  homebox: stopped
  homebox: updated process group
