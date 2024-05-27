@@ -45,11 +45,9 @@ First add a new subdomain and then associate the homebox default port with that 
  [isabell@stardust ~]$ uberspace web backend set homebox.example.com --http --port 7745
  [isabell@stardust ~]$
 
-
-
- The ``uberspace web domain add`` command will return different instructions / ip addresses
- on your system. Be sure to use the output from your command executions and not
- from this tutorial.
+The ``uberspace web domain add`` command will return different instructions / ip addresses
+on your system. Be sure to use the output from your command executions and not
+from this tutorial.
 
 .. note:: Don't forget to add the subdomain into the DNS record of your DNS provider.
 
