@@ -48,7 +48,7 @@ First add a new subdomain and then associate the homebox default port with that 
  on your system. Be sure to use the output from your command executions and not
  from this tutorial.
 
-.. note: Don't forget to add the subdomain into the DNS record of your DNS provider.
+.. note:: Don't forget to add the subdomain into the DNS record of your DNS provider.
 
 Installation
 ============
