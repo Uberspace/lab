@@ -67,7 +67,7 @@ Create ``~/etc/services.d/shiori.ini`` with the following content.
 .. code-block:: ini
 
   [program:shiori]
-  command=shiori serve
+  command=shiori server
   autostart=yes
   autorestart=yes
 
@@ -98,6 +98,6 @@ version is available, stop daemon by ``supervisorctl stop shiori`` and repeat th
 
 ----
 
-Tested with Shiori 1.5.0, Uberspace 7.7.9.0
+Tested with Shiori 1.6.0, Uberspace 7.15.15
 
 .. author_list::
