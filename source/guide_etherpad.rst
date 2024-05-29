@@ -31,12 +31,12 @@ Etherpad Lite
 Prerequisites
 =============
 
-We're using :manual:`Node.js <lang-nodejs>` in the stable version 18:
+We're using :manual:`Node.js <lang-nodejs>` in the stable version 20:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 18
- Using 'Node.js' version: '18'
+ [isabell@stardust ~]$ uberspace tools version use node 20
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -48,11 +48,11 @@ Your URL needs to be set up:
 Installation
 ============
 
-First get the Etherpad Lite source code from Github_, be sure to replace the version number ``1.8.18`` here with the latest version number from the release feed_:
+First get the Etherpad Lite source code from Github_, be sure to replace the version number ``2.0.3`` here with the latest version number from the release feed_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ git clone --branch 1.8.18 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
+  [isabell@stardust ~]$ git clone --branch 2.0.3 --depth=1 https://github.com/ether/etherpad-lite ~/etherpad
   Cloning into '/home/isabell/etherpad'...
   remote: Enumerating objects: 504, done.
   remote: Counting objects: 100% (504/504), done.
@@ -134,9 +134,56 @@ Configure the web server
 
 .. note::
 
-    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/pad`` instead of the root URI ``/``.
+    etherpad-lite is running on port 9001. 
 
 .. include:: includes/web-backend.rst
+
+Create the Admin UI
+--------------------------------
+
+If you run Etherpad 2.x for the first time, you need to create the admin UI. To do this, simply run the shell script for it manually once and stop it afterwards:
+
+.. code-block:: console
+
+    [isabell@stardust ~]$ ~/etherpad/bin/run.sh
+    Installing dependencies...
+    Installing dev dependencies with pnpm
+    Scope: all 6 workspace projects
+    Lockfile is up to date, resolution step is skipped
+    Done in 3.8s
+    Clearing minified cache...
+    Creating the admin UI...
+
+    > admin@2.0.3 build /home/isabell/etherpad/admin
+    > tsc && vite build
+
+    vite v5.2.9 building for production...
+    ✓ 1641 modules transformed.
+    computing gzip size (2)...[vite-plugin-static-copy] Copied 1 items.
+    ../src/templates/admin/index.html                   0.49 kB │ gzip:   0.30 kB
+    ../src/templates/admin/assets/index-E-lmtrZj.css   10.20 kB │ gzip:   3.02 kB
+    ../src/templates/admin/assets/index-DIlmNsYJ.js   407.69 kB │ gzip: 131.14 kB
+    ✓ built in 9.37s
+
+    > ui@0.0.0 build /home/isabell/etherpad/ui
+    > tsc && vite build
+
+    vite v5.2.9 building for production...
+    ✓ 6 modules transformed.
+    ../src/static/oidc/consent.html               1.01 kB │ gzip: 0.49 kB
+    ../src/static/oidc/login.html                 2.60 kB │ gzip: 1.02 kB
+    ../src/static/oidc/assets/style-Bg-wvjxN.css  1.58 kB │ gzip: 0.75 kB
+    ../src/static/oidc/assets/main-DnmqwYeI.js    0.15 kB │ gzip: 0.15 kB
+    ../src/static/oidc/assets/style-Dnfg2NQt.js   0.71 kB │ gzip: 0.40 kB
+    ../src/static/oidc/assets/nested-BvZBmoGC.js  1.06 kB │ gzip: 0.53 kB
+    ✓ built in 286ms
+    Starting Etherpad...
+
+    > etherpad@2.0.3 dev /home/isabell/etherpad
+    [...]
+    ^C[isabell@stardust ~]$ 
+
+
 
 Set up the daemon
 -----------------
@@ -145,12 +192,12 @@ Create ``~/etc/services.d/etherpad.ini`` with the following content:
 
 .. code-block:: ini
 
- [program:etherpad]
- directory=%(ENV_HOME)s/etherpad
- command=node %(ENV_HOME)s/etherpad/node_modules/ep_etherpad-lite/node/server.js
- environment=NODE_ENV="production"
- autorestart=true
- startsecs=60
+    [program:etherpad]
+    directory=%(ENV_HOME)s/etherpad
+    environment=NODE_ENV="production"
+    command=pnpm run prod
+    autorestart=true
+    startsecs=60
 
 
 .. include:: includes/supervisord.rst
@@ -173,15 +220,15 @@ Updates
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
 
-If there is a new version available, you can get the code using git. Replace the pseudo version number ``1.8.3`` with the latest version number you got from the release feed_:
+If there is a new version available, you can get the code using git. Replace the pseudo version number ``2.0.3`` with the latest version number you got from the release feed_:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/etherpad
   [isabell@stardust etherpad]$ git checkout  -- src/package.json
-  [isabell@stardust etherpad]$ git pull origin 1.8.3
+  [isabell@stardust etherpad]$ git pull origin 2.0.3
   From https://github.com/ether/etherpad-lite
-   * tag                 1.8.3      -> FETCH_HEAD
+   * tag                 2.0.3      -> FETCH_HEAD
   Updating b8b2e4bc..96ac381a
   Fast-forward
   […]
@@ -209,10 +256,10 @@ Then you need to restart the service daemon, so the new code is used by the web 
 .. _`Etherpad Lite`: http://etherpad.org/
 .. _Github: https://github.com/ether/etherpad-lite
 .. _feed: https://github.com/ether/etherpad-lite/releases.atom
-.. _`Skins`: http://etherpad.org/doc/v1.8.3/#skins
+.. _`Skins`: https://etherpad.org/doc/v2.0.3/#skins
 
 ----
 
-Tested with Etherpad Lite 1.8.3 and Uberspace 7.6.0.0
+Tested with Etherpad Lite 2.0.3 and Uberspace 7.15.14
 
 .. author_list::
