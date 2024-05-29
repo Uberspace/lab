@@ -134,7 +134,7 @@ Configure the web server
 
 .. note::
 
-    etherpad-lite is running on port 9001. Additionally, the ``--remove-prefix`` parameter is needed if you want to run Etherpad Lite under a sub URI like ``/pad`` instead of the root URI ``/``.
+    etherpad-lite is running on port 9001. 
 
 .. include:: includes/web-backend.rst
 
