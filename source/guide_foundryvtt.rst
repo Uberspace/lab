@@ -131,6 +131,6 @@ Security
 
 ----
 
-Tested with Foundry 0.8.7, Uberspace 7.1.1
+Tested with Foundry 12.325, Uberspace 7.15.15
 
 .. author_list::
