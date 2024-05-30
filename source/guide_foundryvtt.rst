@@ -39,13 +39,13 @@ Prerequisites
 
 You need to purchase a `license key <https://foundryvtt.com/purchase/>`_ to run your own version of Foundry Virtual Tabletop.
 
-Foundry requires the use of :manual:`Node.js <lang-nodejs>` 14.
+Foundry requires the use of :manual:`Node.js <lang-nodejs>` 16, though 18 is reccomended.
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use node 14
- Using 'Node.js' version: '14'
- Selected node version 14
+ [isabell@stardust ~]$ uberspace tools version use node 18
+ Using 'Node.js' version: '18'
+ Selected node version 18
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
