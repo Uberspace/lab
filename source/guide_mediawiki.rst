@@ -64,7 +64,7 @@ Installation
 
 Official, generalist installation manual for Mediawiki: `https://www.mediawiki.org/wiki/Manual:Installing_MediaWiki <https://www.mediawiki.org/wiki/Manual:Installing_MediaWiki>`_
 
-Change into your :manual:`document root <web-documentroot>`_, download the latest MediaWiki release found at `https://www.mediawiki.org/wiki/Download <https://www.mediawiki.org/wiki/Download>`_ (here 1.41.1) and extract.
+Change into your :manual:`document root <web-documentroot>`, download the latest MediaWiki release found at `https://www.mediawiki.org/wiki/Download <https://www.mediawiki.org/wiki/Download>`_ (here 1.41.1) and extract.
 
 .. code-block:: console
 
@@ -73,7 +73,7 @@ Change into your :manual:`document root <web-documentroot>`_, download the lates
   [isabell@stardust html]$ tar -xzvf mediawiki-*.tar.gz
   [isabell@stardust html]$ rm mediawiki-*.tar.gz
 
-At this point, the wiki installer should be available at ``https://<UberspaceUsername>.uber.space/mediawiki-1.41.1/``, click _"complete the installation"_ to start the graphical `configuration <https://www.mediawiki.org/wiki/Manual:Config_script>`_. Leave default values or change as desired. On the "Connect to database" page:
+At this point, the wiki installer should be available at ``https://<UberspaceUsername>.uber.space/mediawiki-1.41.1/``, click *"complete the installation"* to start the graphical `configuration <https://www.mediawiki.org/wiki/Manual:Config_script>`_. Leave default values or change as desired. On the "Connect to database" page:
 
 * Database name: ``<UberspaceUsername>_mediawiki``
 * Database username: ``<UberspaceUsername>``
