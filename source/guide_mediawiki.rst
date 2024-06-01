@@ -85,6 +85,6 @@ After this, the installed wiki should be available under ``https://<UberspaceUse
 
 ----
 
-Tested with MediaWiki 1.14.1, PHP 8.3.6 and Uberspace 7.15.14.1
+Tested with MediaWiki 1.41.1, PHP 8.3.6 and Uberspace 7.15.14.1
 
 .. author_list::
