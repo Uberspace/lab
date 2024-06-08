@@ -107,7 +107,9 @@ Now go to ``https://<username>.uber.space`` (would be ``https://isabell.uber.spa
 Update Resilio Sync
 ===================
 
-The webinterface will notify you when a new version of Resilio Sync is available. To install the update, download the latest binaries, extract them, and restart the service:
+The webinterface will notify you when a new version of Resilio Sync is available. You can also periodically check the Changelog_.
+
+To install the update, download the latest binaries, extract them, and restart the service:
 
 ::
 
@@ -120,6 +122,7 @@ The webinterface will notify you when a new version of Resilio Sync is available
  [isabell@stardust bin]$
 
 .. _Resilio: https://www.resilio.com
+.. _Changelog: https://help.resilio.com/hc/en-us/articles/206216855-Resilio-Sync-change-log
 
 ----
 
