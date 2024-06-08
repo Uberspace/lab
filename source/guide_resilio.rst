@@ -45,7 +45,7 @@ Change into the ``~/bin`` directory, download and extract the latest version of 
 ::
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
+ [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux/x64/0/resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ tar --gzip --extract --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
  [isabell@stardust bin]$
@@ -112,7 +112,7 @@ The webinterface will notify you when a new version of Resilio Sync is available
 ::
 
  [isabell@stardust ~]$ cd ~/bin
- [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux-x64/resilio-sync_x64.tar.gz
+ [isabell@stardust bin]$ wget https://download-cdn.resilio.com/stable/linux/x64/0/resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ supervisorctl stop resilio-sync
  [isabell@stardust bin]$ tar --gzip --extract --overwrite --file resilio-sync_x64.tar.gz
  [isabell@stardust bin]$ rm resilio-sync_x64.tar.gz
@@ -123,6 +123,6 @@ The webinterface will notify you when a new version of Resilio Sync is available
 
 ----
 
-Tested with Resilio Sync 2.5.12, Uberspace 7.1.4.0
+Tested with Resilio Sync 2.8.0, Uberspace 7.15.15
 
 .. author_list::
