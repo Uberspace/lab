@@ -123,6 +123,6 @@ The webinterface will notify you when a new version of Resilio Sync is available
 
 ----
 
-Tested with Resilio Sync 2.8.0, Uberspace 7.15.15
+Tested with Resilio Sync 2.8.1, Uberspace 7.15.15
 
 .. author_list::
