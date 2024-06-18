@@ -19,7 +19,7 @@ PrivateBin
 
 .. tag_list::
 
-PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
+PrivateBin_ is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
 
 Data is encrypted and decrypted in the browser using 256bit AES in Galois Counter mode.
 
@@ -241,7 +241,7 @@ Your configuration file won't get overwritten.
 Check the Release-Notes if the configuration changed between ``cfg/conf.sample.php`` and your ``conf.php``.
 Also check ``.htaccess.disabled`` if further adjustments needed to be made.
 
-
+.. _PrivateBin: https://privatebin.info/
 .. _PHP: http://www.php.net/
 .. _latest release: https://github.com/PrivateBin/PrivateBin/releases/latest
 .. _Github: https://github.com/PrivateBin/PrivateBin
