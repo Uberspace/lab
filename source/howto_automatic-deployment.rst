@@ -8,7 +8,7 @@ Automatic Deployment with CI/CD
 When you develop your own web application it is very useful to deploy your code automatically.
 As soon as you push your code to the main branch of your repository or on any other event you can trigger a build pipeline which can run automatic tests, build your code and automatically pushs it to your Uberspace.
 
-In comparison to :lab:`manual deployment <guide_gitea>` automatic deployment can speed up your development process. This process is called CI/CD (Continuous Integration/Continuous Delivery).
+In comparison to :lab:`manual deployment <howto_website>` automatic deployment can speed up your development process. This process is called CI/CD (Continuous Integration/Continuous Delivery).
 
 .. mermaid::
 
