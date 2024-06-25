@@ -451,7 +451,7 @@ Make sure to check the functionality. This will make it a lot easier to troubles
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/sliding-sync
-  [isabell@stardust sliding-sync]$ SYNCV3_SECRET=$(cat .secret) SYNCV3_SERVER="https://example.org" SYNCV3_DB="user=$(syncv3) dbname=syncv3 sslmode=disable password='MySuperSecretPSQLPassword'" SYNCV3_BINDADDR=0.0.0.0:8009 ./syncv3
+  [isabell@stardust sliding-sync]$ SYNCV3_SECRET=$(cat .secret) SYNCV3_SERVER="https://example.org" SYNCV3_DB="user=syncv3 dbname=syncv3 sslmode=disable password='MySuperSecretPSQLPassword'" SYNCV3_BINDADDR=0.0.0.0:8009 ./syncv3
     Sync v3 [0.99.13] (a8e9c56)
     Debug=false LogLevel= MaxConns=0
     2023/12/10 14:33:36 OK   20230728114555_device_data_drop_id.sql (6.1ms)
