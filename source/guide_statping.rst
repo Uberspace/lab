@@ -26,7 +26,7 @@ It is published under the GNU General Public License v3.0.
 
 ----
 
-.. note:: For this guide you need some tools:
+.. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`web backends <web-backends>`
   * :manual:`supervisord <daemons-supervisord>`
