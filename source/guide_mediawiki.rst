@@ -70,18 +70,18 @@ Change into your :manual:`document root <web-documentroot>`, download the latest
 
   [isabell@stardust ~]$ cd html
   [isabell@stardust html]$ wget https://releases.wikimedia.org/mediawiki/1.41/mediawiki-1.41.1.tar.gz
-  [isabell@stardust html]$ tar -xzvf mediawiki-*.tar.gz
+  [isabell@stardust html]$ tar -xzvf --strip-components=1 mediawiki-*.tar.gz
   [isabell@stardust html]$ rm mediawiki-*.tar.gz
 
-At this point, the wiki installer should be available at ``https://<UberspaceUsername>.uber.space/mediawiki-1.41.1/``, click *"complete the installation"* to start the graphical `configuration <https://www.mediawiki.org/wiki/Manual:Config_script>`_. Leave default values or change as desired. On the "Connect to database" page:
+At this point, the wiki installer should be available at ``https://<UberspaceUsername>.uber.space/``, click *"complete the installation"* to start the graphical `configuration <https://www.mediawiki.org/wiki/Manual:Config_script>`_. Leave default values or change as desired. On the "Connect to database" page:
 
 * Database name: ``<UberspaceUsername>_mediawiki``
 * Database username: ``<UberspaceUsername>``
 * Database password: find out using ``my_print_defaults client``
 
-When the graphical installation completes, locally download the ``LocalSettings.php`` that should have been automatically generated and transfer it to ``~/html/mediawiki-1.41.1`` on your Uberspace. This can be achieved using one of the tools suggested on :manual:`SFTP <basics-SFTP>` with host ``sftp://<UberspaceUsername>.uber.space`` and your Uberspace credentials.
+When the graphical installation completes, locally download the ``LocalSettings.php`` that should have been automatically generated and transfer it to ``~/html`` on your Uberspace. This can be achieved using one of the tools suggested on :manual:`SFTP <basics-SFTP>` with host ``sftp://<UberspaceUsername>.uber.space`` and your Uberspace credentials.
 
-After this, the installed wiki should be available under ``https://<UberspaceUsername>.uber.space/mediawiki-1.41.1``
+After this, the installed wiki should be available under ``https://<UberspaceUsername>.uber.space``
 
 ----
 
