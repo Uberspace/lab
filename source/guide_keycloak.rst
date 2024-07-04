@@ -193,5 +193,11 @@ Tuning
 
 For further information on configuration and usage read the `Keycloak Documentation`_.
 
+.. _Keycloak: https://www.keycloak.org/downloads
+.. _feed: https://github.com/keycloak/keycloak/releases.atom
+.. _Apache 2.0 License: https://github.com/gohugoio/hugo/blob/master/LICENSE
+.. _Github Repository: https://github.com/keycloak/keycloak/releases
+.. _Keycloak Documentation: https://www.keycloak.org/documentation
+.. _Migration Guide: https://www.keycloak.org/docs/latest/upgrading/index.html#migration-changes
 
 .. author_list::
