@@ -1,3 +1,9 @@
+.. error::
+
+  This guide seems to be **broken** for the current versions Moodle 4.0.5, Uberspace 7.13, PHP 8.0, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1779
+
 .. highlight:: console
 
 .. spelling::
