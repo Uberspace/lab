@@ -1,6 +1,7 @@
 .. highlight:: console
 
 .. author:: FM <git.fm@mmw9.de>
+.. author:: Nico Graf <https://uberspace.de>
 
 .. tag:: web
 .. tag:: lang-python
@@ -8,16 +9,16 @@
 .. sidebar:: Logo
 
 
-  .. image:: _static/images/searx.png
+  .. image:: _static/images/searxng.svg
       :align: center
 
-#####
-Searx
-#####
+#######
+SearxNG
+#######
 
 .. tag_list::
 
-Searx_ (Wikipedia_) is a free and open-source metasearch engine which aggregate results from more than 70 search services (e.g. Google, Bing etc.) and to avoid user tracking and profiling by these ones.
+SearxNG_ (Wikipedia_) is a free and open-source metasearch engine which aggregate results from more than 70 search services (e.g. Google, Bing etc.) and to avoid user tracking and profiling by these ones.
 
 There are public instances_ of searx available, to get a personal practice before you install your own.
 
@@ -35,6 +36,10 @@ Searx is released under the `GNU Affero General Public License`_.
   * domains_
   * `web backends`_
 
+Prerequisites
+=============
+
+`Redis` needs to be set up.
 
 Installation
 ============
@@ -52,7 +57,16 @@ And clone the repository from GitHub:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ git clone https://github.com/searx/searx.git ~/opt/searx/
+ [isabell@stardust ~]$ git clone https://github.com/searx/searx.git ~/opt/searx/searxng-src
+
+Setup virtualenv
+----------------
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ python3.8 -m venv ~/opt/searx/searx-pyenv
+ [isabell@stardust ~]$ source ~/opt/searx/searx-pyenv/bin/activate
+
 
 Python Module Installation
 --------------------------
@@ -63,7 +77,12 @@ Some required Python modules are necessary and will be installed in your uberspa
 
 .. code-block:: console
 
- [isabell@stardust ~]$ pip3.8 install --user --upgrade --requirement ~/opt/searx/requirements.txt
+ [isabell@stardust ~]$ pip install -U pip
+ [isabell@stardust ~]$ pip install -U setuptools
+ [isabell@stardust ~]$ pip install -U wheel
+ [isabell@stardust ~]$ pip install -U pyyaml
+ [isabell@stardust ~]$ cd ~/opt/searx/searxng-src/
+ [isabell@stardust searxng-src]$ pip install -e .
 
 Configuration
 -------------
@@ -78,7 +97,8 @@ And copy the example file with basic default settings to the new directory:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cp ~/opt/searx/utils/templates/etc/searx/use_default_settings.yml ~/etc/searx/settings.yml
+ [isabell@stardust ~]$ cp ~/opt/searx/searxng-src/utils/templates/etc/searxng/settings.yml ~/etc/searx/settings.yml
+   
 
 Now it's time to change some entries in the configuration file ``~/etc/searx/settings.yml`` with your favourite editor. But here are the aspects to consider:
 
@@ -86,7 +106,7 @@ Now it's time to change some entries in the configuration file ``~/etc/searx/set
 
 2. The port with ``8888`` will not be touched, but keep this number in your mind for later configurtations.
 
-3. The bind address must be changed to ``0.0.0.0``, to work with `web backends`_ in a common way.
+3. The bind address ``0.0.0.0`` must be added in the ``server`` section, to work with `web backends`_ in a common way.
 
 4. Searx requires for the own instance a secret key. This random number will be created with openssl (16 digits) and please save it temporarily:
 
@@ -125,10 +145,12 @@ At first we must create the service file ``~/etc/services.d/searx.ini`` with the
 .. code-block::
 
   [program:searx]
-  environment=SEARX_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
+  environment=SEARXNG_SETTINGS_PATH="%(ENV_HOME)s/etc/searx/settings.yml"
   autostart=yes
   autorestart=yes
-  command=python3.8 %(ENV_HOME)s/opt/searx/searx/webapp.py
+  command=%(ENV_HOME)s/opt/searx/searx-pyenv/bin/python %(ENV_HOME)s/opt/searx/searxng-src/searx/webapp.py
+  directory=%(ENV_HOME)s/opt/searx/searxng-src
+  startsecs=10
 
 .. include:: includes/supervisord.rst
 
@@ -160,17 +182,17 @@ The basic configuration is quiet well. Nearly all aspects to change are possible
 
 If you want to reduce the search services for example by default, than you have to change the standard configuration.
 
-The official documentation_ is a good address. A bigger configuration file example is available at ``~/opt/searx/searx/setting.yml``.
+The official documentation_ is a good address.
 
 
-.. _Searx: https://github.com/searx/searx
+.. _SearxNG: https://github.com/searxng/searxng
 .. _Wikipedia: https://en.wikipedia.org/wiki/Searx
-.. _GNU Affero General Public License: https://github.com/searx/searx/blob/master/LICENSE
+.. _GNU Affero General Public License: https://github.com/searxng/searxng/blob/master/LICENSE
 .. _instances: https://searx.space/
 .. _supervisord: https://manual.uberspace.de/daemons-supervisord/
 .. _domains: https://manual.uberspace.de/web-domains/
 .. _web backends: https://manual.uberspace.de/web-backends/
-.. _documentation: https://searx.github.io/searx/
+.. _documentation: https://docs.searxng.org
 .. _web backend: https://manual.uberspace.de/web-backends/
 
 ----
