@@ -112,6 +112,16 @@ Moodle requires `max_input_vars` to be set to 5000 or higher. To configure this,
 
  max_input_vars=5000
 
+You can do this by making the following commands:
+
+.. code-block:: console
+
+ [isabell@stardust html]$ cd ~/etc/php.d
+ [isabell@stardust html]$ cat > max_input_vars.ini
+ max_input_vars=5000
+ exit
+
+You can exit, and save, with ctrl + D on Linux, or ctrl + Z on Windows
 
 .. note:: After setting this PHP parameter, restart PHP to activate the changes
 
