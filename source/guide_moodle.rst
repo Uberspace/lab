@@ -31,7 +31,7 @@ Moodle_ Moodle is an acronym for "Modular Object-Oriented Dynamic Learning Envir
 
   * :manual:`MySQL <database-mysql>`
   * :manual:`cron <daemons-cron>`
-  * :manual:`php <php-lang>`
+  * :manual:`php <lang-php>`
   * :manual:`domains <web-domains>`
 
 License
