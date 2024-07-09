@@ -62,6 +62,8 @@ And clone the repository from GitHub:
 Setup virtualenv
 ----------------
 
+.. note:: We are using Python 3.8 instead of the default Python 2 (or the ``python3`` alias, which links to Python 3.6), as some depencencies of searx require this. Once the ``virtualenv`` has been activated using the ``source`` command below, you can use the usual Python commands without a version postfix.
+
 .. code-block:: console
 
  [isabell@stardust ~]$ python3.8 -m venv ~/opt/searx/searx-pyenv
@@ -70,8 +72,6 @@ Setup virtualenv
 
 Python Module Installation
 --------------------------
-
-.. note:: We are using Python 3.8 instead of the default Python 2 (or the ``python3`` alias, which links to Python 3.6), as some depencencies of searx require this. For this reason, all ``pip`` and ``python`` commands need a version postfix ``3.8`` like below. (``3.9`` should work as well.)
 
 Some required Python modules are necessary and will be installed in your uberspace with ``pip3.8`` and the options ``--user``, ``--upgrade`` and ``--requirement``:
 
