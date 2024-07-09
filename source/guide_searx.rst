@@ -39,7 +39,7 @@ Searx is released under the `GNU Affero General Public License`_.
 Prerequisites
 =============
 
-`Redis` needs to be set up.
+`Redis <guide_redis>_` needs to be set up.
 
 Installation
 ============
