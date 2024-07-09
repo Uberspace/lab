@@ -182,14 +182,13 @@ After saving the ``.env`` file, you need to create the database tables. When pro
 Storage Symlink
 ---------------
 
-Create a symlink for storage and set permissions as stated in  the `manual installation guide`_:
+Create a symlink for storage as stated in  the `manual installation guide`_:
 
 .. code-block:: console
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/benotes
  [isabell@stardust benotes]$ ln -sfn ../storage/app/public/ public/storage
- [isabell@stardust benotes]$ chmod -R 774 storage
  [isabell@stardust benotes]$
 
 Updates
