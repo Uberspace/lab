@@ -37,12 +37,12 @@ BookStack is released under the `MIT License`_. All relevant information can be 
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 8.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -54,9 +54,10 @@ Your domain needs to be set up:
 Installation
 ============
 
-To install BookStack clone the release branch of the official repository one level above your :manual:`DocumentRoot <web-documentroot>` using Git.
+To install BookStack, clone the release branch of the official repository one level above your :manual:`DocumentRoot <web-documentroot>` using Git.
 
 .. code-block:: console
+ :emphasize-lines: 1-2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch
@@ -68,6 +69,7 @@ To install BookStack clone the release branch of the official repository one lev
 ``cd`` into your BookStack directory and install the necessary dependencies using Composer_.
 
 .. code-block:: console
+ :emphasize-lines: 1-2
 
  [isabell@stardust isabell]$ cd BookStack
  [isabell@stardust isabell]$ composer install --no-dev
@@ -88,20 +90,41 @@ We suggest you use an :manual_anchor:`additional database <database-mysql.html#a
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_bookstack"
  [isabell@stardust ~]$
 
-Copy the sample configuration file ``.env.example``. Then edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and ``APP_URL`` to reflect your domain, then save the file.
-
+Copy the sample configuration file ``.env.example``.
 
 .. code-block:: console
+ :emphasize-lines: 1
 
  [isabell@stardust BookStack]$ cp .env.example .env
  [isabell@stardust ~]$
 
-.. note:: You can optionally configure BookStack to send emails in the same place.
+Use an editor of your choice to edit the ``.env`` file and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` and ``APP_URL`` to reflect your domain, then save the file.
 
-To make your BookStack installation safe you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
+.. code-block:: none
+ :emphasize-lines: 1, 3-6, 11, 13, 15-17
+
+APP_URL=https://isabell.uber.space
+
+DB_HOST=localhost
+DB_DATABASE=isabell_bookstack
+DB_USERNAME=isabell
+DB_PASSWORD=MySuperSecretPassword
+
+MAIL_DRIVER=smtp
+
+MAIL_FROM_NAME="BookStack"
+MAIL_FROM=isabell@uber.space
+
+MAIL_HOST=stardust.uberspace.de
+MAIL_PORT=587
+MAIL_USERNAME=isabell
+MAIL_PASSWORD=MySuperSecretPassword
+MAIL_ENCRYPTION=tls
+
+To make your BookStack installation safe, you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
 
 .. code-block:: console
- :emphasize-lines: 7
+ :emphasize-lines: 1
 
  [isabell@stardust BookStack]$ php artisan key:generate
  **************************************
@@ -117,7 +140,8 @@ To make your BookStack installation safe you need to create a unique application
 Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``BookStack/public`` directory.
 
 .. code-block:: console
-
+ :emphasize-lines: 1-3
+ 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/BookStack/public html
@@ -126,7 +150,7 @@ Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new sy
 Now use the following command to create and populate the tables in your database. Confirm the command with ``yes``.
 
 .. code-block:: console
- :emphasize-lines: 7
+ :emphasize-lines: 1-2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ php artisan migrate
@@ -151,9 +175,10 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version. Detailed information on releases is posted on the `BookStack blog`_.
 
-To update BookStack you can run the following command in the root directory of the application. This will update your installation via Git, install new dependencies via Composer and migrate your database. It's possible that you need to confirm the steps while updating.
+To update BookStack, you can run the following command in the root directory of the application. This will update your installation via Git, install new dependencies via Composer and migrate your database. It's possible that you need to confirm the steps while updating.
 
 .. code-block:: console
+ :emphasize-lines: 1-2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ git pull origin release
@@ -167,6 +192,7 @@ To update BookStack you can run the following command in the root directory of t
 Next, start the actual migration. You will be asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
 
 .. code-block:: console
+ :emphasize-lines: 1
 
  [isabell@stardust BookStack]$ php artisan migrate
  […]
@@ -175,6 +201,7 @@ Next, start the actual migration. You will be asked to migrate files after insta
 After updating your installation you should clean the cache to prevent errors.
 
 .. code-block:: console
+ :emphasize-lines: 1-2, 4
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/BookStack
  [isabell@stardust BookStack]$ php artisan cache:clear
@@ -192,6 +219,6 @@ After updating your installation you should clean the cache to prevent errors.
 
 ----
 
-Tested with BookStack v22.11.1 , Uberspace 7.1.15
+Tested with BookStack v24.05.2 , Uberspace 7.15.15
 
 .. author_list::
