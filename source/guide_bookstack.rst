@@ -103,23 +103,23 @@ Use an editor of your choice to edit the ``.env`` file and change the values of 
 .. code-block:: none
  :emphasize-lines: 1, 3-6, 11, 13, 15-17
 
-APP_URL=https://isabell.uber.space
+ APP_URL=https://isabell.uber.space
 
-DB_HOST=localhost
-DB_DATABASE=isabell_bookstack
-DB_USERNAME=isabell
-DB_PASSWORD=MySuperSecretPassword
+ DB_HOST=localhost
+ DB_DATABASE=isabell_bookstack
+ DB_USERNAME=isabell
+ DB_PASSWORD=MySuperSecretPassword
 
-MAIL_DRIVER=smtp
+ MAIL_DRIVER=smtp
 
-MAIL_FROM_NAME="BookStack"
-MAIL_FROM=isabell@uber.space
+ MAIL_FROM_NAME="BookStack"
+ MAIL_FROM=isabell@uber.space
 
-MAIL_HOST=stardust.uberspace.de
-MAIL_PORT=587
-MAIL_USERNAME=isabell
-MAIL_PASSWORD=MySuperSecretPassword
-MAIL_ENCRYPTION=tls
+ MAIL_HOST=stardust.uberspace.de
+ MAIL_PORT=587
+ MAIL_USERNAME=isabell
+ MAIL_PASSWORD=MySuperSecretPassword
+ MAIL_ENCRYPTION=tls
 
 To make your BookStack installation safe, you need to create a unique application key (a random, 32-character string used e.g. to encrypt cookies). Make sure to confirm the command with ``yes``.
 
