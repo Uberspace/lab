@@ -41,7 +41,7 @@ verify the checksum specified in the respective ``.sha256`` file and finally ext
 ::
 
   [isabell@stardust ~]$ mkdir ~/ntfy
-  [isabell@stardust ~]$ wget -O ntfy.tar.gz https://github.com/binwiederhier/ntfy/releases/download/v2.8.0/ntfy_2.8.0_linux_arm64.tar.gz
+  [isabell@stardust ~]$ wget -O ntfy.tar.gz https://github.com/binwiederhier/ntfy/releases/download/v2.11.0/ntfy_2.11.0_linux_amd64.tar.gz
   [...]
   [isabell@stardust ~]$ tar --strip-components=1 -xzf ntfy.tar.gz -C ~/ntfy/
   [isabell@stardust ~]$ rm ntfy.tar.gz
