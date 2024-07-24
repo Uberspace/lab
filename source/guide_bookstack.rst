@@ -63,7 +63,7 @@ To install BookStack, clone the release branch of the official repository one le
  [isabell@stardust isabell]$ git clone https://github.com/BookStackApp/BookStack.git --branch release --single-branch
  Cloning into 'BookStack'...
  remote: Enumerating objects: 53, done.
- [â€¦]
+ [...]
  [isabell@stardust ~]$
 
 ``cd`` into your BookStack directory and install the necessary dependencies using Composer_.
@@ -76,7 +76,7 @@ To install BookStack, clone the release branch of the official repository one le
  Loading composer repositories with package information
  Installing dependencies (including require-dev) from lock file
  Package operations: 103 installs, 0 updates, 0 removals
- [â€¦]
+ [...]
  [isabell@stardust ~]$
 
 Configuration
@@ -184,9 +184,9 @@ To update BookStack, you can run the following command in the root directory of 
  [isabell@stardust BookStack]$ git pull origin release
  From https://github.com/BookStackApp/BookStack
  * branch            release    -> FETCH_HEAD
- [â€¦]
+ [...]
  [isabell@stardust BookStack]$ composer install --no-dev
- [â€¦]
+ [...]
  [isabell@stardust BookStack]$
 
 Next, start the actual migration. You will be asked to migrate files after installation in a production environment, default option is "no". However, some updates need to migrate files (i.E. v22.10.2), so you have to answer with "yes" at the end.
@@ -195,7 +195,7 @@ Next, start the actual migration. You will be asked to migrate files after insta
  :emphasize-lines: 1
 
  [isabell@stardust BookStack]$ php artisan migrate
- [â€¦]
+ [...]
  [isabell@stardust BookStack]$
 
 After updating your installation you should clean the cache to prevent errors.
