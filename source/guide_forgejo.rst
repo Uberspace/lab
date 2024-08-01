@@ -1,4 +1,5 @@
 .. author:: Marc Redwerkz <https://rdwz.one>
+.. author:: Stev Leibelt <https://stev.leibelt.de>
 
 .. tag:: lang-go
 .. tag:: audience-developers
