@@ -22,7 +22,7 @@ Forgejo
 .. tag_list::
 
 Forgejo_ is a self-hosted Git service with a functionality similar to GitHub, GitLab and BitBucket.
-It's a soft-fork of Gitea_ and uses the same MIT licence_. As most applications written in Go it's easy to install.
+It's a [hard-fork](https://forgejo.org/2024-02-forking-forward/) of Gitea_ since 02.2024 and uses the same MIT licence_. As most applications written in Go it's easy to install.
 
 ----
 
@@ -321,6 +321,59 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
   FILE_EXTENSIONS = .adoc,.asciidoc
   RENDER_COMMAND = "asciidoctor -e -a leveloffset=-1 --out-file=- -"
   IS_INPUT_FILE = false
+
+Migrate from gitea 1.22 to forgejo 8.0.0
+========================
+
+It is assumed that you have followed `this <https://lab.uberspace.de/guide_gitea/>`_ gitea guide.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ supervisorctl stop gitea
+  [isabell@stardust ~]$ ./gitea dump
+  [isabell@stardust ~]$ cp -r gitea forgejo
+  [isabell@stardust ~]$ cp ~/etc/services.d/gitea.ini ~/etc/services.d/forgejo.ini
+  [isabell@stardust ~]$ mv forgejo/data/gitea-repositories forgejo/data/forgejo-repositories
+  [isabell@stardust ~]$ rm forgejo/gitea
+
+  # Download and verify forgejo - **HINT**, check for newer release
+  [isabell@stardust ~]$ wget -O forgejo/forgejo https://codeberg.org/forgejo/forgejo/releases/download/v8.0.0/forgejo-8.0.0-linux-amd64
+  [isabell@stardust ~]$ chmod +x forgejo/forgejo
+  [isabell@stardust ~]$ gpg --keyserver keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
+  [isabell@stardust ~]$ wget -O forgejo/forgejo.asc https://codeberg.org/forgejo/forgejo/releases/download/v8.0.0/forgejo-8.0.0-linux-amd64.asc
+  [isabell@stardust ~]$ gpg --verify forgejo/forgejo.asc forgejo/forgejo
+
+  # Adapt app.ini
+  # Change `WORK_PATH` to `/home/isabell/forgejo`
+  # Change `MAILER_TYPE` to `PROTOCOL`
+  [isabell@stardust ~]$ vim forgejo/custom/conf/app.ini
+
+  # Disable gitea from autostarting
+  # Change `autostart=yes` to `autostart=no`
+  [isabell@stardust ~]$ vim ~/etc/services.d/gitea.ini
+
+  # Create forgejo configuration
+  # Replace `gitea` with `forgejo`
+  [isabell@stardust ~]$ vim ~/etc/services.d/forgejo.ini
+
+  # Migrate database
+  [isabell@stardust ~]$ ./forgejo/forgejo migrate
+
+  # Check installation, fix all listed issues
+  [isabell@stardust ~]$ ./forgejo/forgejo doctor check
+
+  # Add forgejo to supervisorctl and start it
+  [isabell@stardust ~]$ supervisorctl reread
+  [isabell@stardust ~]$ supervisorctl update
+  [isabell@stardust ~]$ supervisorctl start forgejo
+  [isabell@stardust ~]$ supervisorctl status
+
+  # Remove gitea from system and supervisorctl
+  [isabell@stardust ~]$ rm -fr ~/etc/services.d/gitea.ini
+  [isabell@stardust ~]$ rm -fr gitea
+  [isabell@stardust ~]$ supervisorctl reread
+  [isabell@stardust ~]$ supervisorctl update
+  [isabell@stardust ~]$ supervisorctl status
 
 ..
   ##### Link section #####
