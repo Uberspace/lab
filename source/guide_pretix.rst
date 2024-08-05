@@ -230,6 +230,7 @@ Then re-run the Initialize database steps and restart the service like so:
 
  [isabell@stardust ~]$ python3.11 -m pretix migrate
  [isabell@stardust ~]$ python3.11 -m pretix rebuild
+ [isabell@stardust ~]$ python3.11 -m pretix updateassets
  [isabell@stardust ~]$ supervisorctl restart pretix
  [isabell@stardust ~]$
 
