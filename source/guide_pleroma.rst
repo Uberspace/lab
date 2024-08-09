@@ -1,5 +1,6 @@
 .. highlight:: console
 .. author:: Arian Malek <https://fetziverse.de>
+.. author:: custompyramidfellow
 
 .. spelling::
     pleroma
@@ -63,6 +64,34 @@ In PostgreSQL you need a database with your username as name. Otherwise there is
  [isabell@stardust ~]$ createdb --encoding=UTF8 --owner=<username> <username>
  [isabell@stardust ~]$
 
+Install libvips
+---------------
+
+.. note:: As of `version 2.7.0`_ Pleroma needs libvips to be installed in order to be compiled successfully. As Uberspace 7 does not officially support the current recommended libvips installation approach with meson, fellow Uberspace users with the help of the Pleroma community have been compiled a workaround_ with libvips v8.13.3 which is the last version to support installation via make.
+
+Download libvips v8.13.3 (this exact version!), extract it and enter the directory:
+
+::
+
+ [isabell@stardust ~]$ cd ~/tmp
+ [isabell@stardust tmp]$ wget https://github.com/libvips/libvips/releases/download/v8.13.3/vips-8.13.3.tar.gz
+ [isabell@stardust tmp]$ tar -zxvf vips-8.13.3.tar.gz
+ [isabell@stardust tmp]$ cd vips-8.13.3
+ [isabell@stardust vips-8.13.3]$
+
+Run ``configure``, ``make`` and ``make install`` (the ``--prefix`` options tells make to install to your home directory):
+
+::
+
+ [isabell@stardust vips-8.13.3]$ ./configure --prefix=$HOME
+ [...]
+ [isabell@stardust vips-8.13.3]$ make
+ [...]
+ [isabell@stardust vips-8.13.3]$ make install
+ [...]
+
+After running ``make install``, ``which vips`` should return ``~/bin/vips`` and ``vips --version`` should return ``vips-8.13.3-Tue Nov  1 09:09:54 UTC 2022``. If not, check the output of the respective commands for errors.
+
 Set Erlang version
 ------------------
 
@@ -108,6 +137,17 @@ Download the latest stable release from source into ``~/pleroma``
 
 Configuration
 =============
+
+Set Pleroma environment variables
+---------------------------------
+Before generating the configuration file you have to set Pleroma environment variables temporarly to make compiling with libvips work:
+
+::
+
+ [isabell@stardust ~]$ export PKG_CONFIG_PATH=$HOME/lib/pkgconfig
+ [isabell@stardust ~]$ export VIX_COMPILATION_MODE="PLATFORM_PROVIDED_LIBVIPS"
+ [isabell@stardust ~]$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/lib:$HOME/lib64
+
 
 Generate configuration file
 ---------------------------
@@ -290,7 +330,8 @@ Create ``~/etc/services.d/pleroma.ini`` with the following content and make sure
  autorestart=true
  startsecs=60
  environment =
-   MIX_ENV=prod
+   MIX_ENV=prod,
+   LD_LIBRARY_PATH="$LD_LIBRARY_PATH:%(ENV_HOME)s/lib:%(ENV_HOME)s/lib64"
 
 .. include:: includes/supervisord.rst
 
@@ -357,7 +398,7 @@ Run ``git pull`` in the pleroma directory to pull the latest changes from upstre
 
 ----
 
-Tested with Pleroma 2.5, Uberspace 7.14.1
+Tested with Pleroma 2.7.0, Uberspace 7.16.0
 
 .. _Pleroma: https://pleroma.social
 .. _GNU Social: https://gnu.io/social/
@@ -365,5 +406,7 @@ Tested with Pleroma 2.5, Uberspace 7.14.1
 .. _Configuration Cheat Sheet: https://docs-develop.pleroma.social/backend/configuration/cheatsheet/
 .. _ExifTool: https://exiftool.org
 .. _notes: https://git.pleroma.social/pleroma/pleroma/-/releases
+.. _version 2.7.0: https://pleroma.social/announcements/2024/07/17/pleroma-major-release-2.7.0/
+.. _workaround: https://git.pleroma.social/pleroma/pleroma/-/issues/3297#note_108005
 
 .. author_list::
