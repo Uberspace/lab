@@ -48,6 +48,21 @@ Your The Lounge URL needs to be setup:
 Installation
 ============
 
+Install SQLite (optional)
+-------------------------
+
+The Lounge supports logging to an SQLite database, but this is not a hard requirement. If you skip this step you will not have access to the search and chat backlog features, however you'll still be able to manually go through your text logs if they are enabled.
+
+The ``sqlite3`` NPM package tries to use one of the pre-built SQLite binaries by default but unfortunately they are not compatible with Uberspace since it uses an older standard library. To fix this issue you will have to compile from source like this:
+
+::
+
+  [isabell@stardusts ~]$ scl enable devtoolset-9 bash # [Required] Use the newer GCC compiler since the system's GCC compiler is too old
+  [isabell@stardusts ~]$ npm install --global --build-from-source sqlite3
+  [...]
+  added 1 package, and audited 331 packages in 3m
+  [isabell@stardusts ~]$
+
 Install thelounge
 -----------------
 
