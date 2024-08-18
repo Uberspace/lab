@@ -266,7 +266,7 @@ Securing your deployment process (optional, advanced)
 When you use the automatic deployment process, you have to be aware that your SSH key is stored on the CI/CD provider's infrastructure.
 
 Anyone with your SSH key can run any command on your Uberspace.
-If you use the recommended way to safe your SSH Key, your key should be safe from being abused.
+If you use the recommended way to save your SSH Key, your key should be safe from being abused.
 This assumes, that your CI/CD provider (e.g. Github/Gitlab) does behave correctly and their infrastructure is secure.
 
 For adding an additional layer of security, you can lock down the SSH key to only allow the rsync command and writing only to a specific directory on your Uberspace.
