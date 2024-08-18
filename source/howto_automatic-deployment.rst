@@ -2,9 +2,9 @@
 .. author:: Sebastian Weiss <https://sebastianweiss.io>
 .. author:: Marlena Müller <https://marlena.app>
 
-#######################
+###############################
 Automatic Deployment with CI/CD
-#######################
+###############################
 
 When you develop your own web application it is very useful to deploy your code automatically.
 As soon as you push your code to the main branch of your repository or on any other event you can trigger a build pipeline which can run automatic tests, build your code and automatically pushs it to your Uberspace.
@@ -33,14 +33,16 @@ There are several solutions available to automatically deploy your code to your 
 .. note:: For this guide you should be familiar with the basic concepts of git.
 
 Prerequisites
-============
+=============
+
 Install or make sure the following command line tools are installed on your local machine
 
     - Git
     - Github CLI
 
 Prepare Git Repository
-=============
+======================
+
 Init a new Git repository `isabells-website`.
 
 .. code-block:: console
@@ -198,7 +200,7 @@ Add the variables and secrets. Make sure you store the secrets in the ``Secrets`
 
 
 Re-run job
-=======================
+==========
 
 After you set the variables you can manually retrigger the process.
 
@@ -217,7 +219,7 @@ When you now check website you should see the "Hello World" Page.
 
 
 Run automatically by code push to GitHub
-=================
+========================================
 
 Now it is time to trigger the deployment by a code change.
 
@@ -247,12 +249,13 @@ Check the GitHub Actions again. Wait till it is deployed.
 
 
 Debugging
-========
+=========
+
 In case of errors, check the job. When the error text is not helpful, retrigger the run and check the checkbox "Enable debug logging"
 
 
 Extend it (optional)
-=======
+====================
 
 - Some applications require a build step. You can include those steps into the actions before you sync the code via Rsync.
 - Use different triggers. Sometimes it is required to trigger your deployment on different triggers. In our guide we are using push to the main branch. You can also modify that behaviour so that you have separate deployments for every branch to a different folder on your Uberspace, or even for every created tag or feature branch.
