@@ -79,7 +79,7 @@ To start the Fossil server automatically and run it in the background, create ``
 .. code-block:: ini
 
   [program:fossil]
-  command=%(ENV_HOME)s/fossil/fossil server /home/$USER/repos --repolist --port 0.0.0.0:8008 --remove-prefix
+  command=%(ENV_HOME)s/fossil/fossil server %(ENV_HOME)s/repos --repolist --port 0.0.0.0:8008 --remove-prefix
 
 .. include:: includes/supervisord.rst
 
