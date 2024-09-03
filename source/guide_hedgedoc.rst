@@ -285,76 +285,91 @@ Create ``~/bin/hedgedoc-update`` with the following content:
 .. code-block:: bash
 
   #!/usr/bin/env bash
-  APP_NAME=hedgedoc
-  ORG=$APP_NAME # Organisation or GitHub user
-  REPO=$APP_NAME
+  APP_NAME=HedgeDoc
+  ORG=hedgedoc # Organisation or GitHub user
+  REPO=hedgedoc
   LOCAL_VERSION=$(jq --raw-output .version ~/hedgedoc/package.json)
-  ## ask the GitHub REST API for the git tag of the release that is marked as latest
   LATEST_VERSION=$(curl --silent https://api.github.com/repos/$ORG/$REPO/releases/latest |
     jq --raw-output .tag_name)
 
-  function do_upgrade() {
+  function do_upgrade
+  {
     supervisorctl stop hedgedoc
     echo "waiting 1 minute until all processes are stopped"
     sleep 1m
-    mv --verbose ~/hedgedoc ~/hedgedoc_$LOCAL_VERSION
+    mv --verbose ~/hedgedoc ~/hedgedoc_"$LOCAL_VERSION"
     VERSION=$LATEST_VERSION
-    cd
-    wget https://github.com/hedgedoc/hedgedoc/releases/download/$VERSION/hedgedoc-$VERSION.tar.gz
-    tar --extract --gzip --file=hedgedoc-$VERSION.tar.gz
-    rm --verbose hedgedoc-$VERSION.tar.gz
-    cp --verbose hedgedoc_$LOCAL_VERSION/config.json hedgedoc/config.json
-    cd hedgedoc
+    cd || exit
+    wget https://github.com/hedgedoc/hedgedoc/releases/download/"$VERSION"/hedgedoc-"$VERSION".tar.gz
+    tar --extract --gzip --file=hedgedoc-"$VERSION".tar.gz
+    rm --verbose hedgedoc-"$VERSION".tar.gz
+    cp --verbose hedgedoc_"$LOCAL_VERSION"/config.json hedgedoc/config.json
+    cd ~/hedgedoc || exit
     bin/setup
     echo "You may need to wait a minute until HedgeDoc is up and running."
     supervisorctl start hedgedoc
     echo "If everything works fine you can delete ~/hedgedoc_$LOCAL_VERSION"
     echo "Please consider that there might be uploaded files in ~/hedgedoc_$LOCAL_VERSION/public/uploads which were not migrated to the new version if you are using the default setting."
-    #rm --recursive ~/hedgedoc_$LOCAL_VERSION
+    #rm --recursive ~/hedgedoc_"$LOCAL_VERSION"
   }
 
-  function ask_for_update() {
-    echo "The latest version is $LATEST_VERSION"
-    echo "Your currently used version is $LOCAL_VERSION"
-    echo "Upgrades to next major releases are not tested, especially to version 2.x."
-    echo "Please read the release notes."
-    echo "Also check if the upgrade instructions have changed."
-    echo "Your instance might break."
-    while true; do
-      read -p "Do you wish to proceed with the upgrade? (Y/n) " ANSWER
-      if [ "$ANSWER" = "" ]; then
-        ANSWER='Y'
+  function yes_no_question
+  {
+    local question=$1
+    while true
+    do
+      read -r -p "$question (Y/n) " ANSWER
+      if [ "$ANSWER" = "" ]
+      then ANSWER='Y'
       fi
       case $ANSWER in
         [Yy]* | [Jj]* )
-          do_upgrade
-          do_unsets
-          break;;
+          return 0 ;;
         [Nn]* )
-          do_unsets
-          exit;;
-        * ) echo "Please answer yes or no. ";;
+          return 1 ;;
+        * ) echo "Please answer yes or no." ;;
       esac
     done
   }
 
-  function do_unsets() {
-    unset APP_NAME
-    unset ORG
-    unset REPO
-    unset LOCAL_VERSION
-    unset LATEST_VERSION
+  # is_version_lower_than A B
+  # returns whether A < B
+  function is_version_lower_than
+  {
+    test "$(echo "$@" |
+      tr " " "\n" |
+      sort --version-sort --reverse |
+      head --lines=1)" != "$1"
   }
 
-  if [ "$LOCAL_VERSION" = "$LATEST_VERSION" ]; then
-    echo "Your $APP_NAME is already up to date."
-  elif [[ "$LOCAL_VERSION" < "$LATEST_VERSION" ]]; then
-    echo "There is a new version available of $APP_NAME"
-    ask_for_update
-  else
-    echo "Something went wrong with the check, it looks like you are using a beta or rc version"
-    ask_for_update
-  fi
+  function is_update_available
+  {
+    if is_version_lower_than "$LOCAL_VERSION" "$LATEST_VERSION"
+    then return 0
+    else return 1
+    fi
+  }
+
+  function main
+  {
+    if is_update_available
+    then
+      echo "There is a new Version available of $APP_NAME"
+      echo "The latest Version is $LATEST_VERSION"
+      echo "Your local Version is $LOCAL_VERSION"
+      echo "Upgrades to next major releases are not tested."
+      echo "Please read the release notes."
+      echo "Also check if the upgrade instructions have changed."
+      echo "Your instance might break."
+      if yes_no_question "Do you wish to proceed with the upgrade?"
+      then do_upgrade
+      fi
+    else echo "Your HedgeDoc is already up to date."
+    fi
+  }
+
+  main "$@"
+  exit $?
 
 To make this script executable you have to run this once:
 
@@ -382,6 +397,6 @@ You can run this script with:
 
 ----
 
-Tested with HedgeDoc 1.9.8, Node.js 20, Uberspace 7.15.2
+Tested with HedgeDoc 1.10.0, Node.js 20, Uberspace 7.16.0
 
 .. author_list::
