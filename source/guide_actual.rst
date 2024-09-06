@@ -17,6 +17,13 @@ Actual
 
 .. tag_list::
 
+.. error::
+
+  This guide seems to be **broken** for the Actual versions v24.7.0 and higher, we would be
+  happy if you want to work on a solution and create a Pull Request. The most recent working version is v24.6.0.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1802
+
+
 `Actual Budget`_ is a super fast and privacy-focused app for managing your finances. At its heart is the well proven and much loved Envelope Budgeting methodology. It features multi-device sync, and optional end-to-end encryption.
 
 You can find the source code on `Git Hub`_.
