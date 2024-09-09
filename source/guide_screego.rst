@@ -127,7 +127,7 @@ Security
 
 Keep the software up to date.
 
-If you do not want third parties to be able to create new rooms on your server, then set ``SCREEGO_AUTH_MODE=auto`` in the ``screego.config`` file so that a login with username and password is mandatory (the command ``./screego hash -h`` can help you to create a user file required for this). If you want to prevent someone from entering an existing room via the direct link that exists for each room, select a more complex room ID.
+If you do not want third parties to be able to create new rooms on your server, then set ``SCREEGO_AUTH_MODE=auto`` in the ``screego.config`` file so that a login with username and password is mandatory (the command ``./screego hash -h`` can help you to create a user file required for this). If you want to prevent someone from entering an existing room via the direct link that exists for each room, choose a more complex room ID.
 
 Updates
 =======
