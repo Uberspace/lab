@@ -86,11 +86,14 @@ Using a text editor of your choice create the file :code:`~/webhook/hooks.yaml` 
 
 The :code:`id` will be the endpoint at which the webhook will be listening, while :code:`execute-command` specifies which command will be run when the hook is triggered, for testing this can just be a simple print-statement, e.g. you could have your :code:`hook-triggered.sh` be as simple as the below to get started.
 
+Using a text editor of your choice, create the file :code:`~/hook-triggered.sh` and enter the following to get started:
+
 .. code-block::
 
   #!/bin/env bash
   echo "This command was triggered by the webhook"
 
+After saving it, make it executable using :code:`chmod 755 ~/hook-triggered.sh`
 
 Configuration
 =============
@@ -100,16 +103,16 @@ With webhook installed and a first hook written, we now need to setup a service 
 Creating a service
 ------------------
 
-We can create a file ``~/etc/services.webhook.ini`` with the following content (adapt the values to your own directories if you have adapted them!):
+We can create a file ``~/etc/services.d/webhook.ini`` with the following content (adapt the values to your own directories if you have adapted them!):
 
 .. code-block:: ini
 
     [program:webhook]
     directory=%(ENV_HOME)s/webhook
-    command=/home/isabell/webhook/webhook -hooks hooks.yaml -logfile webhook.log -hotreload
+    command=/home/isabell/webhook/webhook -hooks hooks.yaml -logfile %(ENV_HOME)s/logs/webhook.log -hotreload
     startsecs=15
 
-The :code:`-hotreload` parameter will automatically reload your hook-definitions whenever you edit them. This config will also write a logfile with the outputs in :code:`~/webhook/webhook.log`.
+The :code:`-hotreload` parameter will automatically reload your hook-definitions whenever you edit them. This config will also write a logfile with the outputs in :code:`~/logs/webhook.log`.
 
 .. include:: includes/supervisord.rst
 
@@ -142,7 +145,7 @@ By now, webhook is running and waiting to be triggered. In this example, your te
 
 ::
 
- [your@host ~]$ curl https://webhook.isabell.uber.space/hooks/deploy-api
+ [your@host ~]$ curl https://webhook.isabell.uber.space/hooks/test-hook
 
 
 On your uberspace you should then see the following in your :code:`~/webhook/webhook.log`:
