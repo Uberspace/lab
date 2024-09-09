@@ -148,11 +148,11 @@ By now, webhook is running and waiting to be triggered. In this example, your te
  [your@host ~]$ curl https://webhook.isabell.uber.space/hooks/test-hook
 
 
-On your uberspace you should then see the following in your :code:`~/webhook/webhook.log`:
+On your uberspace you should then see the following in your :code:`~/logs/webhook.log`:
 
 ::
 
-  [isabell@stardust ~]$ cat ~/webhook/webhook.log
+  [isabell@stardust ~]$ cat ~/logs/webhook.log
   [webhook] 2024/09/06 18:26:31 [1e48aa] incoming HTTP GET request from [ip]:xxxx
   [webhook] 2024/09/06 18:26:31 [1e48aa] test-hook got matched
   [webhook] 2024/09/06 18:36:50 [9fbc68] test-hook hook triggered successfully
@@ -200,7 +200,7 @@ If you provide the correct secret, the hook will normally, as seen in the logs:
 
 ::
 
-  [isabell@stardust ~]$ cat ~/webhook/webhook.log
+  [isabell@stardust ~]$ cat ~/logs/webhook.log
   [webhook] 2024/09/06 18:36:50 [9fbc68] incoming HTTP POST request from [IP]:xxxx
   [webhook] 2024/09/06 18:36:50 [9fbc68] test-hook got matched
   [webhook] 2024/09/06 18:36:50 [9fbc68] test-hook hook triggered successfully
@@ -209,7 +209,7 @@ Otherwise, you will see an error message in the logs:
 
 ::
 
-  [isabell@stardust ~]$ cat ~/webhook/webhook.log
+  [isabell@stardust ~]$ cat ~/logs/webhook.log
   [webhook] 2024/09/06 18:36:14 [7f70d8] incoming HTTP POST request from [IP]:xxxx
   [webhook] 2024/09/06 18:36:14 [7f70d8] test-hook got matched
   [webhook] 2024/09/06 18:36:14 [7f70d8] test-hook got matched, but didn't get triggered because the trigger rules were not satisfied
