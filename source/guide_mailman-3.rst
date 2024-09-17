@@ -131,7 +131,7 @@ Create the directories required for config, run time and logs:
 
 ::
 
- [isabell@stardust ~]$ mkdir -p ~/{etc,logs,tmp,var}/mailan
+ [isabell@stardust ~]$ mkdir -p ~/{etc,logs,tmp,var}/mailman
  [isabell@stardust ~]$
 
 
@@ -202,14 +202,12 @@ Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
 If it's not in state ``RUNNING``, check the logs.
 
 
-## GET MAILS ##
-###############
-
 
 Configuration
 =============
 
 ##### TBD #####
+
 Configure Mailman Core
 ----------------------
 
@@ -257,7 +255,6 @@ At first, we need to configure the REST interface of the core component. Create 
  [mailman]
  layout: custom
 
- [archiver.hyperkitty]
  class: mailman_hyperkitty.Archiver
  enable: yes
  configuration: /home/isabell/etc/mailman/mailman-hyperkitty.cfg
