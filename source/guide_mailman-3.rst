@@ -306,6 +306,15 @@ As we want to make sure that Mailman is started automatically, we need to set it
 Adjusting Django configuration
 ------------------------------
 
+First create your own random SECRET_KEY to replace the default one:
+
+::
+
+ [isabell@stardust ~]$ pwgen --secure --symbols --capitalize --numerals 32 1
+ i~Bzl3K!,9u0?.TETt51RmOLGK3/1jd,
+ [isabell@stardust ~]$
+
+
 After the REST backend has been configured, we need to configure the Django frontends for Postorius and HyperKitty. The configuration is stored in ``~/mailman-suite/settings.py``. As the default configuration contains a lot of pre-defined options, only changed or important settings are mentioned below (in order of appearance in the configuration file). To reduce the amount of lines, comments have been left out but can be found in the original file for reference.
 
 .. code :: python
@@ -329,6 +338,8 @@ After the REST backend has been configured, we need to configure the Django fron
      "isabell.uber.space",
      # And more...
  ]
+
+[...]
 
  DATABASES = {
     'default': {
