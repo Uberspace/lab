@@ -95,6 +95,22 @@ And another one as :manual_anchor:`catch-all <mail-mailboxes.html#catch-all-mail
  [isabell@stardust ~]$ 
 
 
+You may want to add a Sieve rule and an IMAP folder ``Mailman``. To do this use your preferred mail client or login via https://webmail.uberspace.de/ using ``catchallbox@isabell.uber.space``. Under ``Settings`` > ``Filters`` you can add a custom sieve filter like this:
+
+.. code-block:: sieve
+
+  require["fileinto","regex","envelope"];
+
+  if anyof(
+    address :domain :regex ["to","delivered-to"] "isabell.uber.space",
+    envelope :domain :regex "to" "isabell.uber.space"
+  )
+  { 
+      fileinto "Mailman";
+      stop;
+  }
+
+
 Update pip - the package installer for python - to the latest version to get the latest packages. Possible warnings about skipped site packages can be ignored:
 
 ::
@@ -206,7 +222,6 @@ If it's not in state ``RUNNING``, check the logs.
 Configuration
 =============
 
-##### TBD #####
 
 Configure Mailman Core
 ----------------------
@@ -517,8 +532,85 @@ Install cronjobs
  @daily /home/$USER/.local/bin/mailman digests --send
 
 
+Setup fetchmail
+=============
 
-##### TBD #####
+Next, we add a ``fetchmailrc`` to, e.g., ``/home/isabell/etc/fetchmailrc`` This file may look like this:
+
+.. code:: ini
+
+  #actually we use the idle option, but this has still effects in case of an error
+  set daemon 60
+  set no syslog
+  #has no effect with --nodetach, but ensures that we log to the same file, when we debug manually
+  set logfile /home/isabell/logs/mailman/fetchmail_out.log
+  #fetchmail tries to send bounce mails via the lmtp connection (i.e., to mailman3)
+  #this will definitely fail, so we provide a global alternative:
+  set no bouncemail
+  set postmaster isabell@uber.space
+
+  #BEGIN/END are only for readability and not part of fetchmails free form syntax
+  #but this synatx is very prone to subtile errors, so a littly structure might help
+
+  poll stardust.uberspace.de
+    #BEGIN server options
+    port 993
+    protocol imap
+    #these are specific to qmail, need to be changed, when the MDA changes
+    #alternatively both might be "emulatable" with sieve later
+    qvirtual isabell-
+    envelope Delivered-To
+    #your mailing list's domain must have one
+    #of the domains in the next line as suffix:
+    localdomains isabell.uber.space
+    #END of server options
+    #
+    #BEGIN user options
+    username isabell-catchallbox
+    #for whatever reason 'ssl' is a user option and must come *after* username
+    ssl
+    idle
+    password "<password_for_catchallbox>"
+    no fetchall
+    folder Mailman
+    #this specifies mailmans *L*MTP server with port 8024:
+    smtphost isabell.local.uberspace.de/8024
+    #but now we tell fetchmail, that this is actually LMTP:
+    lmtp
+    #deduce the receiver from the envelope
+    to *
+    #END user options
+
+This file still contains two options that are qmail specific. The option ``qvirtual isabell-`` tells fetchmail to strip all prefixes added by qmail and only use the remaining part as the recipient address. The ``envelope`` options tells fetchmail where to get the original envelope headers that where processed by the MDA. Eech MDA has different headers where they store this information and ``Delivered-To`` is qmail's way of passing the information. When Uberspace finally switches to some other MDA, you can drop the ``qvirtual`` option and alter ``Delivered-To``. Note that sieve filters can set addtionial headers based on the envelope, so you might also be able to emulate qmails behavior with sieve later.
+
+Finally, we also need an supervisord unit file for fetchmail, which we will place at ``/home/isabell/etc/services.d/fetchmail.ini``:
+
+.. code:: ini
+
+  [program:fetchmail]
+  directory=%(ENV_HOME)s
+  command=/usr/bin/fetchmail --nodetach -vvv -f %(ENV_HOME)s/etc/fetchmailrc
+  autostart=true
+  autorestart=true
+  stderr_logfile=%(ENV_HOME)s/logs/mailman/fetchmail_err.log
+  stdout_logfile=%(ENV_HOME)s/logs/mailman/fetchmail_out.log
+  stopsignal=TERM
+  # `startsecs` is set by Uberspace monitoring team, to prevent a broken service from looping
+  startsecs=30
+
+Most of this is pretty much standard, but note the ``--nodetach`` option. This stops fetchmail from forking and exiting. As ``--nodetach`` disables fetchmail's logfile option, we let supervisord forward its output to the same file (except for errors). You can omit the ``-vvv`` verbosity option later, but it is very helpful for debugging fetchmail's deduction rules for adresses which can be quite surprising. Finally we start fetchmail:
+
+.. code-block:: bash
+
+  supervisorctl reread
+  supervisorctl update
+  supervisorctl start fetchmail
+
+
+The error log will contain unsuccessful tries to connect to `isabell.local.uberspace.de:8024` via (its) IPv6 (address).
+This error is *not* ciritcal, as a IPv4 connection will be established direcly after this failure.
+
+
 Using Mailman
 =============
 
