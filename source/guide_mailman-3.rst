@@ -479,6 +479,7 @@ When Django is configured, we need to rename the example site to match our needs
 
  [isabell@stardust mailman-suite]$
 
+
 To be able to call and execute our Django app, we need to create ``~/etc/uwsgi/apps-enabled/mailman-suite.ini`` and add the following content.
 
 .. code :: ini
@@ -583,6 +584,22 @@ Next, we add a ``fetchmailrc`` to, e.g., ``/home/isabell/etc/fetchmailrc`` This 
 
 This file still contains two options that are qmail specific. The option ``qvirtual isabell-`` tells fetchmail to strip all prefixes added by qmail and only use the remaining part as the recipient address. The ``envelope`` options tells fetchmail where to get the original envelope headers that where processed by the MDA. Eech MDA has different headers where they store this information and ``Delivered-To`` is qmail's way of passing the information. When Uberspace finally switches to some other MDA, you can drop the ``qvirtual`` option and alter ``Delivered-To``. Note that sieve filters can set addtionial headers based on the envelope, so you might also be able to emulate qmails behavior with sieve later.
 
+Fechmail requires the fetchmailrc must have no more than -rwx------ (0700) permissions. 
+
+::
+
+ [isabell@stardust ~]$ chmod 0700 ~/etc/fetchmailrc
+ [isabell@stardust ~]$
+
+
+Prepair necessary log files:
+
+::
+
+ [isabell@stardust ~]$ touch ~/logs/mailman/fetchmail_err.log
+ [isabell@stardust ~]$ touch ~/logs/mailman/fetchmail_out.log
+ [isabell@stardust ~]$
+ 
 Finally, we also need an supervisord unit file for fetchmail, which we will place at ``/home/isabell/etc/services.d/fetchmail.ini``:
 
 .. code:: ini
