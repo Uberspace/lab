@@ -339,7 +339,7 @@ After the REST backend has been configured, we need to configure the Django fron
      # And more...
  ]
 
-[...]
+ [...]
 
  DATABASES = {
     'default': {
