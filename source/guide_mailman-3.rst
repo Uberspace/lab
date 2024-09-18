@@ -156,7 +156,7 @@ Create the mysql database:
 
 ::
 
- [isabell@stardust ~]$ mysql --execute "CREATE DATABASE isabell_mailman;"
+ [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_mailman;"
  [isabell@stardust ~]$
 
 
@@ -354,6 +354,13 @@ After the REST backend has been configured, we need to configure the Django fron
      # And more...
  ]
 
+
+ MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001'
+ MAILMAN_REST_API_USER = 'restadmin'
+ MAILMAN_REST_API_PASS = 'restpass'
+ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
+ MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
+
  [...]
 
  DATABASES = {
@@ -367,12 +374,6 @@ After the REST backend has been configured, we need to configure the Django fron
         'OPTIONS': {'charset': 'utf8mb4'}  # Enable utf8 4-byte encodings.
     }
  }
-
- MAILMAN_REST_API_URL = 'http://isabell.local.uberspace.de:8001'
- MAILMAN_REST_API_USER = 'restadmin'
- MAILMAN_REST_API_PASS = 'restpass'
- MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
- MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
  [...]
 
