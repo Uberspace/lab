@@ -536,7 +536,7 @@ Install cronjobs
 Setup fetchmail
 =============
 
-Next, we add a ``fetchmailrc`` to, e.g., ``/home/isabell/etc/fetchmailrc`` This file may look like this:
+Next, we add a ``fetchmailrc`` to, e.g., ``~/etc/fetchmailrc`` This file may look like this:
 
 .. code:: ini
 
@@ -600,7 +600,7 @@ Prepair necessary log files:
  [isabell@stardust ~]$ touch ~/logs/mailman/fetchmail_out.log
  [isabell@stardust ~]$
  
-Finally, we also need an supervisord unit file for fetchmail, which we will place at ``/home/isabell/etc/services.d/fetchmail.ini``:
+Finally, we also need an supervisord unit file for fetchmail, which we will place at ``~/etc/services.d/fetchmail.ini``:
 
 .. code:: ini
 
