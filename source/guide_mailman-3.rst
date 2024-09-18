@@ -415,26 +415,26 @@ After the REST backend has been configured, we need to configure the Django fron
      'workers': 4,
  }
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
-       	'file':{
-            'level': 'INFO',
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/home/isabell/logs/mailman/mailmansuite.log',  # Adapt
-	    'formatter': 'verbose',
-        },
+ LOGGING = {
+     'version': 1,
+     'disable_existing_loggers': False,
+     'filters': {
+         'require_debug_false': {
+             '()': 'django.utils.log.RequireDebugFalse'
+         }
+     },
+     'handlers': {
+         'mail_admins': {
+             'level': 'ERROR',
+             'filters': ['require_debug_false'],
+             'class': 'django.utils.log.AdminEmailHandler'
+         },
+        	'file':{
+             'level': 'INFO',
+             'class': 'logging.handlers.WatchedFileHandler',
+             'filename': '/home/isabell/logs/mailman/mailmansuite.log',  # Adapt
+	     'formatter': 'verbose',
+         },
   [...]
 
  # Comment the following lines out to test sending mail
