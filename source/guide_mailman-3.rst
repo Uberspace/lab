@@ -192,8 +192,8 @@ Create  ``~/etc/services.d/uwsgi.ini`` with the following content:
   command=uwsgi --master --emperor %(ENV_HOME)s/etc/uwsgi/apps-enabled
   autostart=true
   autorestart=true
-  stderr_logfile = ~/logs/uwsgi/err.log
-  stdout_logfile = ~/logs/uwsgi/out.log
+  stderr_logfile = %(ENV_HOME)s/logs/uwsgi/err.log
+  stdout_logfile = %(ENV_HOME)s/logs/uwsgi/out.log
   stopsignal=INT
   startsecs=30
 
