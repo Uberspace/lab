@@ -343,19 +343,12 @@ After the REST backend has been configured, we need to configure the Django fron
 
  DATABASES = {
     'default': {
-        # Use 'sqlite3', 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'ENGINE': 'django.db.backends.mysql',
-        # DB name or path to database file if using sqlite3.
         'NAME': 'isabell_mailman',
-        # The following settings are not used with sqlite3:
         'USER': 'isabell',
         'PASSWORD': '<your mysql password>',
-        # HOST: empty for localhost through domain sockets or '127.0.0.1' for
-        # localhost through TCP.
         'HOST': 'localhost',
-        # PORT: set to empty string for default.
         'PORT': '3306',
-        # OPTIONS: for mysql engine only, do not use with other engines.
         'OPTIONS': {'charset': 'utf8mb4'}  # Enable utf8 4-byte encodings.
     }
  }
@@ -406,6 +399,28 @@ After the REST backend has been configured, we need to configure the Django fron
      'orm': 'default',
      'workers': 4,
  }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+       	'file':{
+            'level': 'INFO',
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': '/home/isabell/logs/mailman/mailmansuite.log',  # Adapt
+	    'formatter': 'verbose',
+        },
+  [...]
 
  # Comment the following lines out to test sending mail
  #if DEBUG == True:
