@@ -127,13 +127,13 @@ Install all required python modules for mailman3 with mysql and uwsgi via pip.
  [isabell@stardust ~]$
 
 
+
 Create the directories required for config, run time and logs:
 
 ::
 
  [isabell@stardust ~]$ mkdir -p ~/{etc,logs,tmp,var}/mailman
  [isabell@stardust ~]$
-
 
 
 Create the mysql database:
@@ -211,7 +211,7 @@ Configuration
 Configure Mailman Core
 ----------------------
 
-At first, we need to configure the REST interface of the core component. Create the file ``~/var/etc/mailman.cfg``, paste and adjust the following config. The ``mta`` section contains the configuration related to sending and receiving mails. In ``webservice`` section we configure the REST API server. As our mailman installation is user-based, we need to tell mailman where to look for it's binaries and configuration using ``paths.custom``. Change ``var_dir`` and ``bin_dir``. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
+At first, we need to configure the REST interface of the core component. Create the file ``~/etc/mailman/mailman.cfg``, paste and adjust the following config. The ``mta`` section contains the configuration related to sending and receiving mails. In ``webservice`` section we configure the REST API server. As our mailman installation is user-based, we need to tell mailman where to look for it's binaries and configuration using ``paths.custom``. Adapt ``var_dir``, ``bin_dir``, ``tmp_dir``, ``etc_dir`` and ``log_dir`` to the conditions on your account. A full overview of possible settings can be found in the `mailman docs schema.cfg`_.
 
 .. code :: cfg
 
@@ -277,27 +277,29 @@ HyperKitty is the part of mailman that takes care of archiving mail. It is confi
 Daemonizing Mailman Core
 ------------------------
 
-As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
-
-.. code :: ini
-
- [program:mailman3]
- directory=%(ENV_HOME)s
- command=%(ENV_HOME)s/.local/bin/master -C %(ENV_HOME)s/etc/mailman.cfg
- autostart=true
- autorestart=true
- stderr_logfile = ~/logs/mailman/daemon_err.log
- stdout_logfile = ~/logs/mailman/daemon_out.log
- stopsignal=TERM
- startsecs=30
-
-Afterwards, create necessary folders and files:
+Prepair necessary log files:
 
 ::
 
  [isabell@stardust ~]$ touch ~/logs/mailman/daemon_err.log
  [isabell@stardust ~]$ touch ~/logs/mailman/daemon_out.log
  [isabell@stardust ~]$
+
+
+As we want to make sure that Mailman is started automatically, we need to set it up as a service. Due to mailman executable not having the option to always run in foreground, we need some other means of controlling it. The process controlling all forked processes is located at ``~/.local/bin/master``. We therefore need to create the supervisord config file for mailman in ``~/etc/services.d/mailman3.ini`` as follows:
+
+.. code :: ini
+
+ [program:mailman3]
+ directory=%(ENV_HOME)s
+ command=%(ENV_HOME)s/.local/bin/master -C %(ENV_HOME)s/etc/mailman/mailman.cfg
+ autostart=true
+ autorestart=true
+ stderr_logfile = %(ENV_HOME)s/logs/mailman/daemon_err.log
+ stdout_logfile = %(ENV_HOME)s/logs/mailman/daemon_out.log
+ stopsignal=TERM
+ startsecs=30
+
 
 .. include:: includes/supervisord.rst
 
