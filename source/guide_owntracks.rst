@@ -102,8 +102,6 @@ Now create the bin and the config directory and copy the binaries there.
 
  [isabell@stardust recorder-0.9.7]$ mkdir -p ~/bin ~/etc/default/ ~/lib/ot-recorder/htdocs
  [isabell@stardust recorder-0.9.7]$ install --target-directory=/home/isabell/bin/ --mode=0755 ocat ot-recorder
- [isabell@stardust recorder-0.9.7]$ echo 'export PATH="/home/isabell/bin:$PATH"' >> ~/.bashrc
- [isabell@stardust recorder-0.9.7]$ source ~/.bashrc
  [isabell@stardust recorder-0.9.7]$
 
 .. code-block:: console
