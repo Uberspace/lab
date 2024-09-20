@@ -2,6 +2,8 @@
 
 .. author:: Nico Graf <hallo@uberspace.de>
 
+.. author:: Bastian Greshake Tzovaras <bgreshake@googlemail.com>
+
 .. tag:: lang-php
 .. tag:: web
 .. tag:: rss
@@ -160,11 +162,18 @@ Keep an eye on the FreshRSS releases feed, which has automatically been added as
 
 This will overwrite any changed files while keeping your current configuration.
 
+Update via web interface
+------------------------
+
+Alternatively, you can use your admin account to update from the web interface. Do do this select the "update" option under the "Administration" option in the "Settings" dropdown menu of your FreshRSS web interface (it's in the top-right). Alternatively, you can also find the page at :code:`your.url/i/?c=update`.
+
+After pressing the button “check for new updates”, the "install" button will appear if an update is available. 
+
 .. _FreshRSS: https://freshrss.org/
 .. _GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
 
 ----
 
-Tested with FreshRSS 1.20.0, Uberspace 7.13.0, and PHP 8.1
+Tested with FreshRSS 1.24.3, Uberspace 7.15.0, and PHP 8.3.8
 
 .. author_list::
