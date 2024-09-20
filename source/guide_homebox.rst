@@ -153,7 +153,7 @@ Tested with Homebox 0.10.8, Uberspace 7.15.15
   ##### Link section #####
 
 .. _Homebox: https://hay-kot.github.io/homebox/
-.. _releases: https://github.com/pocketbase/pocketbase/releases
+.. _releases: https://github.com/hay-kot/homebox/releases
 .. _documentation: https://hay-kot.github.io/homebox/quick-start/
 
 .. author_list::
