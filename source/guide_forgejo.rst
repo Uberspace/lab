@@ -22,7 +22,7 @@ Forgejo
 .. tag_list::
 
 Forgejo_ is a self-hosted Git service with a functionality similar to GitHub, GitLab and BitBucket.
-It's a soft-fork of Gitea_ and uses the same MIT licence_. As most applications written in Go it's easy to install.
+It's a hard-fork of Gitea_ and uses the same MIT licence_. Like most applications written in Go it's easy to install.
 
 ----
 
@@ -62,13 +62,13 @@ Check current version of Forgejo at releases_ page:
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-1.21.3-0 https://codeberg.org/forgejo/forgejo/releases/download/v1.21.3-0/forgejo-1.21.3-0-linux-amd64
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-7.0.3 https://codeberg.org/forgejo/forgejo/releases/download/v7.0.3/forgejo-7.0.3-linux-amd64
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo-1.21.3-0’
+  Saving to: ‘/home/isabell/forgejo/forgejo-7.0.3’
 
-  100%[=======================================================>] 105,054,768 27.9MB/s   in 3.9s
+  100%[=======================================================>] 107.083.600 57.6MB/s   in 1.8s
 
-  2023-12-28 22:22:22 (26.0 MB/s) - ‘forgej0-1.21.3-0’ saved [105054768/105054768]
+  2024-05-31 15:12:52 (57.6 MB/s) - ‘forgejo-7.0.3’ saved [107083600/107083600]
 
   [isabell@stardust ~]$
 
@@ -80,8 +80,8 @@ Make the downloaded binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-1.21.3-0
-  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-1.21.3-0 ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-7.0.3
+  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-7.0.3 ~/forgejo/forgejo
   [isabell@stardust ~]$
 
 
@@ -160,9 +160,13 @@ Migrate the database configurations:
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/forgejo/forgejo migrate
-  [...]
-  2023/12/28 22:23:23 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_created_unix` ON `package_version` (`created_unix`) [] - 25.0114ms
-  2023/12/28 22:23:23 models/db/engine.go:126:SyncAllTables() [I] [SQL] CREATE INDEX `IDX_package_version_is_internal` ON `package_version` (`is_internal`) [] - 29.933338ms
+  2024/05/31 15:20:20 cmd/migrate.go:33:runMigrate() [I] AppPath: /home/isabell/forgejo/forgejo
+  2024/05/31 15:20:20 cmd/migrate.go:34:runMigrate() [I] AppWorkPath: /home/isabell/forgejo
+  2024/05/31 15:20:20 cmd/migrate.go:35:runMigrate() [I] Custom path: /home/isabell/forgejo/custom
+  2024/05/31 15:20:20 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
+  2024/05/31 15:20:20 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
+  2024/05/31 15:20:20 ...2@v2.27.1/command.go:272:Run() [I] PING DATABASE mysql
+  2024/05/31 15:20:20 ...dels/db/collation.go:178:preprocessDatabaseCollation() [W] Current database has been altered to use collation "utf8mb4_bin"
   [isabell@stardust ~]$
 
 Forgejo admin user
@@ -216,6 +220,39 @@ Installed files and folders are:
 * ``~/forgejo/``
 * ``~/etc/services.d/forgejo.ini``
 
+Forgejo SSH setup
+-----------------
+
+In order for users to be able to push to your Forgejo instance, they need to add their SSH keys via the menu in the upper right corner: ``->`` Settings ``->`` SSH/GPG Keys ``->`` Add Key.
+Forgejo automatically writes an SSH key command for each added SSH key into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
+
+.. code-block:: bash
+
+  command="/home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
+
+.. warning::
+  If you're using the same SSH key for authentication to Uberspace and Forgejo, you need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
+  Otherwise, you'll lock yourself out from accessing your Uberspace via SSH.
+  An alternative approach would be to add another SSH key in the Uberspace dashboard and use that for logging into Uberspace.
+
+  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+  * Ensure that there is no second line propagating the same SSH key.
+
+.. code-block:: bash
+
+  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
+
+.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
+
+To interact with Forgejo at our local machine like ``git clone isabell@isabell.uber.space:forgejouser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
+
+.. code-block::
+
+  Host isabell.uber.space
+      User isabell
+      IdentityFile ~/.ssh/id_your_git_key
+      IdentitiesOnly yes
+
 Backup
 ======
 
@@ -228,12 +265,12 @@ Execute the following command:
 ::
 
   [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2023/12/28 22:23:23 ...les/setting/cache.go:75:loadCacheFrom() [I] Cache Service Enabled
+  2024/05/31 15:39:13 ...s/setting/session.go:77:loadSessionFrom() [I] Session Service Enabled
   [...]
-  2023/12/28 23:23:23 cmd/dump.go:265:runDump() [I] Dumping local repositories... /home/kyber/forgejo/data/forgejo-repositories
-  2023/12/28 23:23:23 cmd/dump.go:306:runDump() [I] Dumping database...
+  2024/05/31 15:39:13 cmd/dump.go:265:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
+  2024/05/31 15:39:13 cmd/dump.go:306:runDump() [I] Dumping database...
   [...]
-  2023/12/28 23:23:24 cmd/dump.go:430:runDump() [I] Finish dumping in file forgejo-dump-0123456789.zip
+  2024/05/31 15:39:13 cmd/dump.go:430:runDump() [I] Finish dumping in file forgejo-dump-1717162753.zip
   [isabell@stardust ~]$
 
 Updates
@@ -255,44 +292,6 @@ Manual updating
 Additional configuration
 ========================
 
-Forgejo ssh setup (optional)
-----------------------------
-
-Forgejo can manage the ssh keys. To use this feature we have to link the ssh folder into the forgejo folder.
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ ln -s ~/.ssh ~/forgejo/.ssh
-  [isabell@stardust ~]$
-
-Now our Forgejo users can add their ssh keys via the menu in the up right corner: ``->`` settings ``->`` tab: SSH/GPG Keys ``->`` Add Key. Forgejo is automatically writing a ssh key command into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
-
-.. code-block:: bash
-
-  command="/home/isabell/forgejo/forgejo --config='/home/isabell/forgejo/custom/conf/app.ini' serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAAC... youruser@yourhost
-
-If we're using the same ssh key for auth to Uberspace and Forgejo, we need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
-
-.. code-block:: bash
-
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/forgejo/forgejo serv key-1 --config='/home/isabell/forgejo/custom/conf/app.ini'; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-...
-
-.. warning::
-  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
-  * Take care that there is no second line propagating the same ssh key.
-
-.. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
-
-To interact with Forgejo at our local machine like ``git clone isabell@isabell.uber.space:forgejouser/somerepo.git`` we configure the ``/home/localuser/.ssh/config`` file for our local machine with the git ssh key.
-
-.. code-block::
-
-  Host isabell.uber.space
-      HostName isabell.uber.space
-      User isabell
-      IdentityFile ~/.ssh/id_your_git_key
-      IdentitiesOnly yes
-
 Forgejo using external renderer (optional)
 ------------------------------------------
 
@@ -310,7 +309,7 @@ Forgejo using external renderer (optional)
   1 gem installed
   [isabell@stardust ~]$
 
-.. note:: Don't be irritated by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
+.. note:: Don't be confused by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
 
 Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
@@ -335,6 +334,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 1.21.3-0, Uberspace 7.15.8
+Tested with Forgejo 7.0.3, Uberspace 7.15.15
 
 .. author_list::
