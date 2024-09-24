@@ -258,6 +258,3 @@ Extend it (optional)
 
 ----
 .. author_list::
-
-
-

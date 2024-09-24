@@ -117,7 +117,7 @@ By default, registration is open to anyone. If you have registered an account fo
 
 .. code-block:: yaml
   :emphasize-lines: 4
-  
+
   /**
    * Miscellaneous
    */

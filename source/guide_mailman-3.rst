@@ -69,7 +69,7 @@ You'll need your MySQL :manual_anchor:`credentials <database-mysql.html#login-cr
  --user=isabell
  --password=MySuperSecretPassword
  [isabell@stardust ~]$
- 
+
 Additionally, create a :manual_anchor:`mailbox <mail-mailboxes.html#setup-a-new-mailbox>` for Mailman to use to send e-mails. In this example, we are going to use ``forwarder@isabell.uber.space``.
 
 ::
@@ -89,10 +89,10 @@ And another one as :manual_anchor:`catch-all <mail-mailboxes.html#catch-all-mail
  Enter a password for the mailbox:
  Please confirm your password:
  New mailbox created for user: 'forwarder', it will be live in a few minutes...
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
  [isabell@stardust ~]$ uberspace mail catchall set catchallbox
  Mails, which cannot be matched to a mailbox, will be sent to catchallbox.
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 
 You may want to add a Sieve rule and an IMAP folder ``Mailman``. To do this use your preferred mail client or login via https://webmail.uberspace.de/ using ``catchallbox@isabell.uber.space``. Under ``Settings`` > ``Filters`` you can add a custom sieve filter like this:
@@ -105,7 +105,7 @@ You may want to add a Sieve rule and an IMAP folder ``Mailman``. To do this use 
     address :domain :regex ["to","delivered-to"] "isabell.uber.space",
     envelope :domain :regex "to" "isabell.uber.space"
   )
-  { 
+  {
       fileinto "Mailman";
       stop;
   }
@@ -134,7 +134,7 @@ Installation
 Get Mailman3
 -------------
 
-Install all required python modules for mailman3 with mysql and uwsgi via pip. 
+Install all required python modules for mailman3 with mysql and uwsgi via pip.
 
 ::
 
@@ -585,7 +585,7 @@ Next, we add a ``fetchmailrc`` to, e.g., ``~/etc/fetchmailrc`` This file may loo
 
 This file still contains two options that are qmail specific. The option ``qvirtual isabell-`` tells fetchmail to strip all prefixes added by qmail and only use the remaining part as the recipient address. The ``envelope`` options tells fetchmail where to get the original envelope headers that where processed by the MDA. Eech MDA has different headers where they store this information and ``Delivered-To`` is qmail's way of passing the information. When Uberspace finally switches to some other MDA, you can drop the ``qvirtual`` option and alter ``Delivered-To``. Note that sieve filters can set addtionial headers based on the envelope, so you might also be able to emulate qmails behavior with sieve later.
 
-Fechmail requires the fetchmailrc must have no more than -rwx------ (0700) permissions. 
+Fechmail requires the fetchmailrc must have no more than -rwx------ (0700) permissions.
 
 ::
 
@@ -600,7 +600,7 @@ Prepair necessary log files:
  [isabell@stardust ~]$ touch ~/logs/mailman/fetchmail_err.log
  [isabell@stardust ~]$ touch ~/logs/mailman/fetchmail_out.log
  [isabell@stardust ~]$
- 
+
 Finally, we also need an supervisord unit file for fetchmail, which we will place at ``~/etc/services.d/fetchmail.ini``:
 
 .. code:: ini
@@ -670,4 +670,3 @@ Tested with Django 4.2.16, HyperKitty 1.3.9, Mailman 3.3.9, Postorius 1.3.10 and
 
 
 .. author_list::
-

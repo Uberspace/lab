@@ -21,6 +21,8 @@ Homebox
 
 Homebox_ is an open source inventory and organization system built for the Home User.
 
+----
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Domains <web-domains>`

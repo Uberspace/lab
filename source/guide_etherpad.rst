@@ -134,7 +134,7 @@ Configure the web server
 
 .. note::
 
-    etherpad-lite is running on port 9001. 
+    etherpad-lite is running on port 9001.
 
 .. include:: includes/web-backend.rst
 
@@ -181,7 +181,7 @@ If you run Etherpad 2.x for the first time, you need to create the admin UI. To 
 
     > etherpad@2.0.3 dev /home/isabell/etherpad
     [...]
-    ^C[isabell@stardust ~]$ 
+    ^C[isabell@stardust ~]$
 
 
 

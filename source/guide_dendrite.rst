@@ -68,7 +68,7 @@ Build the application including utility commands with ``go``:
   go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
   go: downloading github.com/modern-go/reflect2 v1.0.2
   [isabell@stardust dendrite]$
-  
+
 
 Database
 --------
@@ -277,3 +277,5 @@ again:
   [isabell@stardust ~]$ supervisorctl stop dendrite
   [isabell@stardust ~]$ go build -o bin ./cmd/...
   [isabell@stardust ~]$ supervisorctl start dendrite
+
+.. author_list::

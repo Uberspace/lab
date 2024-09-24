@@ -72,7 +72,7 @@ Then download the latest release of Textpattern, extract it, and then rename the
    inflating: textpattern-4.8.8/themes/.htaccess
    inflating: textpattern-4.8.8/.htaccess
  [isabell@stardust isabell]$ mv textpattern-4.8.8 html
- [isabell@stardust isabell]$ 
+ [isabell@stardust isabell]$
 
 Now point your browser to your uberspace URL or domain and `follow the instructions <https://docs.textpattern.com/setup/installing-the-software>`_.
 

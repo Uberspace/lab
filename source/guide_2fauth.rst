@@ -54,7 +54,7 @@ Clone 2FAuth code from GitHub, switch to the latest release and install necessar
   [isabell@stardust isabell]$ cd 2fauth/
   [isabell@stardust 2fauth]$ curl https://api.github.com/repos/Bubka/2FAuth/releases/latest | grep "\"name\"" | grep -Eo 'v[^\"]*' | xargs git checkout
   [isabell@stardust 2fauth]$ composer install --prefer-dist --no-scripts --no-dev
-  [isabell@stardust 2fauth]$  
+  [isabell@stardust 2fauth]$
 
 Remove your empty DocumentRoot and link 2FAuth's public folder instead:
 

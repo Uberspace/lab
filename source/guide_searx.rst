@@ -98,7 +98,7 @@ And copy the example file with basic default settings to the new directory:
 .. code-block:: console
 
  [isabell@stardust ~]$ cp ~/opt/searx/searxng-src/utils/templates/etc/searxng/settings.yml ~/etc/searx/settings.yml
-   
+
 
 Now it's time to change some entries in the configuration file ``~/etc/searx/settings.yml`` with your favourite editor. But here are the aspects to consider:
 

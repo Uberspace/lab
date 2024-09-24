@@ -141,7 +141,7 @@ Remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new sy
 
 .. code-block:: console
  :emphasize-lines: 2-3
- 
+
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
  [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/BookStack/public html

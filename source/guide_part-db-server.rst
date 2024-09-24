@@ -27,7 +27,7 @@ It's the successor of Part-DB_ which is not under active development anymore. Yo
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`PHP <lang-php>`
-  * :manual:`Node.js <lang-nodejs>` 
+  * :manual:`Node.js <lang-nodejs>`
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
   * :manual:`Mail <mail-access>`
@@ -171,10 +171,10 @@ Warm-up cache:
 .. code-block:: console
 
  [isabell@stardust partdb]$ php bin/console cache:warmup
-  // Warming up the cache for the prod environment with debug false                                                      
+  // Warming up the cache for the prod environment with debug false
 
- [OK] Cache for the "prod" environment (debug=false) was successfully warmed.                                           
-                                                                                                                        
+ [OK] Cache for the "prod" environment (debug=false) was successfully warmed.
+
  [isabell@stardust partdb]$
 
 Create a database for Part-DB, like described :manual_anchor:`here <database-mysql.html#additional-databases>`:
@@ -194,15 +194,15 @@ Run migration and confirm with ``yes``:
  > yes
 
  [notice] Migrating up to DoctrineMigrations\Version20231130180903
- [warning] 
+ [warning]
  [warning] The initial password for the "admin" user is: f5f746396a
- [warning] 
+ [warning]
  [warning] Empty database detected. Skip migration.
  [warning] Migration DoctrineMigrations\Version20190902140506 was executed but did not result in any SQL statements.
  [notice] finished in 18890.4ms, used 14M memory, 27 migrations executed, 367 sql queries
-                                                                                                                        
- [OK] Successfully migrated to version: DoctrineMigrations\Version20231130180903                                        
-                                                                                                                        
+
+ [OK] Successfully migrated to version: DoctrineMigrations\Version20231130180903
+
  [isabell@stardust partdb]$
 
 The prompted password is the password for the initial user named ``admin``.
@@ -233,7 +233,7 @@ Upgrade from Part-DB-legacy
 Before starting an upgrade, you should do a backup of your MySQL database and the folder of your existing installation.
 More information can be found in the official `Part-DB Upgrade Guide`_
 
-Use this guide to create a new Part-DB instance. Do not create a new database and perform the following steps before running ``php bin/console doctrine:migrations:migrate``: 
+Use this guide to create a new Part-DB instance. Do not create a new database and perform the following steps before running ``php bin/console doctrine:migrations:migrate``:
 
 Copy the ``data/media`` folder from the old Part-DB instance into ``public/media``:
 
@@ -256,22 +256,22 @@ Afterwards you should be able to login to the Part-DB instance with your old mai
 Backup
 ======
 
-Part-DB offers to create a backup:  
+Part-DB offers to create a backup:
 
 .. code-block:: console
 
  [isabell@stardust partdb]$ php bin/console partdb:backup --full /home/${USER}/partdb-backup.zip
-                                                                                                                        
- [INFO] Backup Part-DB to /home/isabell/partdb-backup.zip                                                              
-                                                                                                                        
- ! [NOTE] Starting backup...                                                                                            
- ! [NOTE] Backing up config files...                                                                                    
- ! [NOTE] Backing up attachments files...                                                                               
- ! [NOTE] Backup database...                                                                                            
- ! [NOTE] MySQL database detected. Dump DB to SQL using mysqldump...                                                    
-                                                                                                                        
- [OK] Backup finished! You can find the backup file at /home/isabell/partdb-backup.zip                                 
-                                                                                                                        
+
+ [INFO] Backup Part-DB to /home/isabell/partdb-backup.zip
+
+ ! [NOTE] Starting backup...
+ ! [NOTE] Backing up config files...
+ ! [NOTE] Backing up attachments files...
+ ! [NOTE] Backup database...
+ ! [NOTE] MySQL database detected. Dump DB to SQL using mysqldump...
+
+ [OK] Backup finished! You can find the backup file at /home/isabell/partdb-backup.zip
+
  [isabell@stardust partdb]$
 
 Updates

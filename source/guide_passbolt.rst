@@ -37,7 +37,7 @@ Passbolt is released under the `AGPL-3.0 license`_.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 8.1. 
+We’re using :manual:`PHP <lang-php>` in the stable version 8.1.
 
 ::
 

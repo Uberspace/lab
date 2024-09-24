@@ -73,7 +73,7 @@ Configuration
 =============
 
 .. _setup-daemon:
-             
+
 Setup daemons
 -------------
 
@@ -108,7 +108,7 @@ Explanation of used parameters:
   -r: Specifies a relay server so that the client doesn't have to.
   -p: Specifies a custom port.
   -k: "-k _" prevents users from establishing unencrypted connections by requiring a key.
-             
+
 After creating the configuration, tell supervisord to refresh its configuration and start the services:
 
 .. code-block:: console
@@ -123,7 +123,7 @@ After creating the configuration, tell supervisord to refresh its configuration 
  [isabell@stardust ~]$ supervisorctl status
  rustdesk_hbbr                            RUNNING   pid 26020, uptime 0:03:14
  rustdesk_hbbs                            RUNNING   pid 26021, uptime 0:03:14
- [isabell@stardust ~]$      
+ [isabell@stardust ~]$
 
 If they are not in the RUNNING state, check your configuration.
 

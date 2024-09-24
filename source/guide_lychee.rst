@@ -90,16 +90,16 @@ After this, the required dependencies need to be installed:
   Package operations: 0 installs, 0 updates, 51 removals
   ...
   [isabell@stardust Lychee]$ npm install
-  
+
   up to date, audited 292 packages in 1s
-  
+
   44 packages are looking for funding
     run `npm fund` for details
-  
+
   found 0 vulnerabilities
-  
+
   [isabell@stardust Lychee]$ npm run build
-  
+
   > build
   > vite build
   […]

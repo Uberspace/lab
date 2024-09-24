@@ -55,14 +55,14 @@ First you need to clone the Actual Server project to your Uberspace account, you
 
   [isabell@stardust ~]$ git clone https://github.com/actualbudget/actual-server.git
   Cloning into 'actual-server'...
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 Now navigate to the directory where you cloned the project.
 
 ::
 
   [isabell@stardust ~]$ cd actual-server
-  [isabell@stardust actual]$ 
+  [isabell@stardust actual]$
 
 Install all the dependencies using `yarn`
 
@@ -128,7 +128,7 @@ When a new Actual release is published, follow these steps to update:
   […]
   [isabell@stardust actual-server]$ supervisorctl start actual
   actual: started
-  [isabell@stardust actual-server]$ 
+  [isabell@stardust actual-server]$
 
 .. _Actual Budget: https://actualbudget.org/
 .. _Git Hub:  https://github.com/actualbudget/actual-server

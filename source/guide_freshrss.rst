@@ -167,7 +167,7 @@ Update via web interface
 
 Alternatively, you can use your admin account to update from the web interface. Do do this select the "update" option under the "Administration" option in the "Settings" dropdown menu of your FreshRSS web interface (it's in the top-right). Alternatively, you can also find the page at :code:`your.url/i/?c=update`.
 
-After pressing the button “check for new updates”, the "install" button will appear if an update is available. 
+After pressing the button “check for new updates”, the "install" button will appear if an update is available.
 
 .. _FreshRSS: https://freshrss.org/
 .. _GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html

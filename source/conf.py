@@ -35,7 +35,7 @@ extensions = [
     "sphinx.ext.extlinks",
     "notfound.extension",
     "sphinxcontrib.spelling",
-    "sphinxcontrib.mermaid"
+    "sphinxcontrib.mermaid",
 ]
 
 # Add spelling settings

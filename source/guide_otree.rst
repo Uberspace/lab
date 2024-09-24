@@ -165,7 +165,7 @@ depending on your needs:
 Which secret keys are required depends on your app, check the oTree_ documentation for details.
 
 To run oTree in production mode with ``supervisord``, create a new file at ``/home/$USER/etc/services.d/otree.ini``
-with the following contents: 
+with the following contents:
 
 .. code-block:: ini
  :emphasize-lines: 4-7
@@ -196,3 +196,5 @@ Tested with Uberspace v7.15.9, oTree v5.10.4.
 
 .. _oTree: https://www.otree.org/
 .. _Psycopg2: https://pypi.org/project/psycopg2/
+
+.. author_list::
