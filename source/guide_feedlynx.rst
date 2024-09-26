@@ -10,7 +10,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/feedlynx.png
+  .. image:: _static/images/feedlynx.svg
       :align: center
 
 ########
