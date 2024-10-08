@@ -13,12 +13,12 @@
       :align: center
 
 #######
-screego
+Screego
 #######
 
 .. tag_list::
 
-screego_ is an open-source software that provides screen sharing via WebRTC. A demo can be found at https://app.screego.net.
+Screego_ is an open-source software that provides screen sharing via WebRTC. A demo can be found at https://app.screego.net.
 
 ----
 
@@ -69,7 +69,7 @@ Create a new directory, enter the directory you just created, download the lates
 Configuration
 =============
 
-Configure screego
+Configure Screego
 -----------------
 
 .. note:: You can use the following command to generate your own ``SCREEGO_SECRET``: ``tr -dc A-Za-z0-9 < /dev/urandom | head -c 40; echo``
@@ -116,7 +116,7 @@ Open website
 ------------
 .. warning:: Replace ``isabell`` with your username and ``40130`` with your port!
 
-If screego is running, you can find the website here:
+If Screego is running, you can find the website here:
 
   * https://isabell.uber.space:40130/
 
@@ -137,12 +137,12 @@ Updates
 
 To update the software, download the latest version and replace all files (``LICENSE``, ``README.md``, ``screego`` and ``screego.config.example``). Also check if there are any changes in the ``screego.config.example`` compared to your currently used ``screego.config``.
 
-.. _screego: https://screego.net
+.. _Screego: https://screego.net
 .. _firewall: https://manual.uberspace.de/basics-ports.html
 .. _latest release: https://github.com/screego/server/releases
 
 ----
 
-Tested with screego 1.10.5, Uberspace 7.16.0
+Tested with Screego 1.10.5, Uberspace 7.16.0
 
 .. author_list::
