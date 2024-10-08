@@ -51,7 +51,7 @@ To make the application accessible from the outside, open two `ports in the fire
 Installation
 ============
 
-Create a new directory, enter the directory you just created, download the latest version, unpack the archive, delete the archive afterwards and make the binary executable:
+Create a new directory, enter the directory you just created, download the latest version, unpack the archive, delete the archive afterwards, make the binary executable and create the file ``screego.config`` as a copy of the file ``screego.config.example``:
 
 .. note:: Replace ``1.10.5`` with the version of the `latest release`_.
 
@@ -63,6 +63,7 @@ Create a new directory, enter the directory you just created, download the lates
  [isabell@stardust screego]$ tar xvf screego_1.10.5_linux_amd64.tar.gz
  [isabell@stardust screego]$ rm screego_1.10.5_linux_amd64.tar.gz
  [isabell@stardust screego]$ chmod +x screego
+ [isabell@stardust screego]$ cp screego.config.example screego.config
  [isabell@stardust screego]$
 
 Configuration
@@ -127,7 +128,7 @@ Security
 
 Keep the software up to date.
 
-If you do not want third parties to be able to create new rooms on your server, then set ``SCREEGO_AUTH_MODE=auto`` in the ``screego.config`` file so that a login with username and password is mandatory (the command ``./screego hash -h`` can help you to create a user file required for this). If you want to prevent someone from entering an existing room via the direct link that exists for each room, choose a more complex room ID.
+If you do not want third parties to be able to create new rooms on your server, then set ``SCREEGO_AUTH_MODE=all`` in the ``screego.config`` file so that a login with username and password is mandatory (the command ``./screego hash -h`` can help you to create a user file required for this). If you want to prevent someone from entering an existing room via the direct link that exists for each room, choose a more complex room ID.
 
 Updates
 =======
