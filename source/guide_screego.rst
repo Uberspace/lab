@@ -77,7 +77,7 @@ Configure Screego
 
 .. note:: You can use the following command to generate your own ``SCREEGO_SECRET``: ``tr -dc A-Za-z0-9 < /dev/urandom | head -c 40; echo``
 
-.. warning:: Replace ``isabell`` with your username, ``X940rRflEAWtVQvtPmCKgsj1WoJ8IoNZ2tEaDSxZ`` with your secret and ``40130``/``40131`` with your ports!
+.. warning:: Replace ``isabell`` with your username, ``<YOUR_SECRET>`` with your secret and ``40130``/``40131`` with your ports!
 
 The following settings must be adjusted in the ``~/screego/screego.config``:
 
@@ -85,7 +85,7 @@ The following settings must be adjusted in the ``~/screego/screego.config``:
 
  SCREEGO_EXTERNAL_IP=dns:isabell.uber.space
 
- SCREEGO_SECRET=X940rRflEAWtVQvtPmCKgsj1WoJ8IoNZ2tEaDSxZ
+ SCREEGO_SECRET=<YOUR_SECRET>
 
  SCREEGO_SERVER_TLS=true
 
