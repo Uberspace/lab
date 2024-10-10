@@ -53,7 +53,6 @@ Find the latest version from the release_ page, then download and extract it int
 
   [isabell@stardust ~]$ VERSION=0.3.0
   [isabell@stardust ~]$ wget -qO- https://releases.wezm.net/feedlynx/$VERSION/feedlynx-$VERSION-x86_64-unknown-linux-musl.tar.gz | tar xvz -C ~/feedlynx
-  feedlynx
   [isabell@stardust ~]$
 
 Make the downloaded binary executable:
