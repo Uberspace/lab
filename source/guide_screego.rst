@@ -8,7 +8,7 @@
 .. tag:: self-hosting
 .. tag:: STUN
 .. tag:: TURN
-.. tag:: webRTC
+.. tag:: WebRTC
 
 .. sidebar:: Logo
 
@@ -56,15 +56,15 @@ Installation
 
 Create a new directory, enter the directory you just created, download the latest version, unpack the archive, delete the archive afterwards, make the binary executable and create the file ``screego.config`` as a copy of the file ``screego.config.example``:
 
-.. note:: Replace ``1.10.5`` with the version of the `latest release`_.
+.. note:: Replace ``1.11.1`` with the version of the `latest release`_.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ mkdir ~/screego
  [isabell@stardust ~]$ cd ~/screego
- [isabell@stardust screego]$ wget "https://github.com/screego/server/releases/download/v1.10.5/screego_1.10.5_linux_amd64.tar.gz"
- [isabell@stardust screego]$ tar xvf screego_1.10.5_linux_amd64.tar.gz
- [isabell@stardust screego]$ rm screego_1.10.5_linux_amd64.tar.gz
+ [isabell@stardust screego]$ wget "https://github.com/screego/server/releases/download/v1.11.1/screego_1.11.1_linux_amd64.tar.gz"
+ [isabell@stardust screego]$ tar xvf screego_1.11.1_linux_amd64.tar.gz
+ [isabell@stardust screego]$ rm screego_1.11.1_linux_amd64.tar.gz
  [isabell@stardust screego]$ chmod +x screego
  [isabell@stardust screego]$ cp screego.config.example screego.config
  [isabell@stardust screego]$
@@ -152,6 +152,6 @@ To update the software, download the latest version and replace all files (``LIC
 
 ----
 
-Tested with Screego 1.10.5, Uberspace 7.16.0
+Tested with Screego 1.11.1, Uberspace 7.16.1
 
 .. author_list::
