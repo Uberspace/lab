@@ -5,6 +5,9 @@
 .. tag:: lang-go
 .. tag:: ports
 .. tag:: screen-sharing
+.. tag:: self-hosting
+.. tag:: STUN
+.. tag:: TURN
 .. tag:: webRTC
 
 .. sidebar:: Logo
