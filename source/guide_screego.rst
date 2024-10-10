@@ -96,7 +96,11 @@ The following settings must be adjusted in the ``~/screego/screego.config``:
  SCREEGO_SERVER_ADDRESS=0.0.0.0:40130
  
  SCREEGO_TURN_ADDRESS=0.0.0.0:40131
-             
+
+.. note::
+  Please have a look at "`NAT Traversal`_" on the official project page. In most cases STUN should be sufficient, but if TURN is used it is necessary to open more ports and specify them under ``SCREEGO_TURN_PORT_RANGE`` in the ``screego.config`` file. For the number of ports to be opened, the following currently applies approximately: ``shared video streams * users in the room * 4``
+  There is also a `bug in the TURN server`_ which results in not all connections being properly cleaned up. This means that even more ports may be required.
+
 Setup daemon
 ------------
 
@@ -143,6 +147,8 @@ To update the software, download the latest version and replace all files (``LIC
 .. _Screego: https://screego.net
 .. _firewall: https://manual.uberspace.de/basics-ports.html
 .. _latest release: https://github.com/screego/server/releases
+.. _NAT Traversal: https://screego.net/#/nat-traversal
+.. _bug in the TURN server: https://github.com/pion/turn/issues/246
 
 ----
 
