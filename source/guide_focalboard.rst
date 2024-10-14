@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     cr
 
 .. author:: Thomas Johnson <https://johnson.tj/>
