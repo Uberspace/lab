@@ -12,9 +12,9 @@
   .. image:: _static/images/textpattern-logo-portrait.png
       :align: center
 
-#########
+###############
 Textpattern CMS
-#########
+###############
 
 .. tag_list::
 

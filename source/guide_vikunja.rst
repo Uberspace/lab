@@ -15,9 +15,9 @@
 .. spelling:word-list::
   repos
 
-#####
+#######
 Vikunja
-#####
+#######
 
 .. tag_list::
 

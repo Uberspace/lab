@@ -5,9 +5,9 @@
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: web
 
-##########
+#################
 Tor onion service
-##########
+#################
 
 .. tag_list::
 
@@ -55,7 +55,7 @@ Configuration
 =============
 
 Configure tor as onion service
-------------------------
+------------------------------
 
 Create the file ``~/tor/torrc`` and add the following lines:
 
