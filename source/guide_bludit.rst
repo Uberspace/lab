@@ -59,7 +59,7 @@ Your blog domain needs to be setup:
 Installation
 ============
 
-``cd`` to your :manual:`document root <web-documentroot>`, then download the latest version of Bludit from Github__.
+``cd`` to your :manual:`document root <web-documentroot>`, then download the latest version of Bludit from Github_.
 
 .. code-block:: console
  :emphasize-lines: 1,2
