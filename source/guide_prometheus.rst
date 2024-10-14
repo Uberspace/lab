@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     prometheus
 
 .. author:: Malte Krupa <http://nafn.de>

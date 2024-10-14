@@ -1,6 +1,6 @@
 .. author:: imntl <max@mntl.de>
 
-.. spelling::
+.. spelling:word-list::
   Uptime
   uptime
   Kuma

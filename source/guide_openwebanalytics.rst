@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     owa
 
 .. author:: Thomas Johnson <https://johnson.tj/>

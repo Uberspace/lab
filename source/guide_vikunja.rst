@@ -12,7 +12,7 @@
   .. image:: _static/images/vikunja.png
       :align: center
 
-.. spelling::
+.. spelling:word-list::
   repos
 
 #####

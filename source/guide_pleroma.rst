@@ -2,7 +2,7 @@
 .. author:: Arian Malek <https://fetziverse.de>
 .. author:: custompyramidfellow
 
-.. spelling::
+.. spelling:word-list::
     pleroma
 
 .. tag:: lang-elixir
