@@ -19,6 +19,12 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+#
+# Running flake reports that sphinx_rtd_theme is imported,
+# but not used. This is a false positive, so ignore that
+# specific error in this file.
+#
+# flake8: noqa F401
 import sphinx_rtd_theme
 
 # -- General configuration ------------------------------------------------
@@ -104,7 +110,6 @@ html_theme_options = {
     "navigation_depth": 2,
     "collapse_navigation": True,
 }
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_last_updated_fmt = "%b %d, %Y"
 html_context = {
     "display_github": True,
