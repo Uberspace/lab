@@ -106,7 +106,6 @@ extlinks = {
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "display_version": False,
     "navigation_depth": 2,
     "collapse_navigation": True,
 }
