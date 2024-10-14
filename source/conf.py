@@ -86,13 +86,13 @@ todo_include_todos = False
 
 # Configure the `extlinks` extension to handle the `manual` and `lab`
 # directives.
-# By setting an empty string as the second tuple element, the display text
-# is the same as the target by default.
+# The second tuple element is the link caption. By using None, the caption
+# is the full URL.
 extlinks = {
-    "manual": ("https://manual.uberspace.de/%s", ""),
-    "manual_anchor": ("https://manual.uberspace.de/%s", ""),
-    "lab": ("/%s", ""),
-    "lab_anchor": ("/%s", ""),
+    "manual": ("https://manual.uberspace.de/%s", None),
+    "manual_anchor": ("https://manual.uberspace.de/%s", None),
+    "lab": ("/%s", None),
+    "lab_anchor": ("/%s", None),
 }
 
 
