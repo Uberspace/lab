@@ -117,7 +117,6 @@ By default, registration is open to anyone. If you have registered an account fo
    * Miscellaneous
    */
   define('DISABLE_USER_REGISTRATION', true);
-::
 
 Acknowledgements
 ================
