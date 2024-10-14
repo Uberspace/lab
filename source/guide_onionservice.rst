@@ -5,10 +5,6 @@
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: web
 
-.. sidebar:: About
-
-
-
 ##########
 Tor onion service
 ##########
