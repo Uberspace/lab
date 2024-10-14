@@ -32,7 +32,6 @@ Prerequisites
 We’re using :manual:`PHP <lang-php>` in the stable version 8.2:
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ uberspace tools version use php 8.2
  Selected PHP version 8.2
@@ -50,7 +49,6 @@ Installation
 ``cd`` to the directory one level above your :manual:`DocumentRoot <web-documentroot>`, then download LinkAce. You can find the latest version on the `release page`_, replace the version below with the version number.
 
 .. code-block:: console
- :emphasize-lines: 1,2,3,6,7
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ wget https://github.com/Kovah/LinkAce/releases/download/v1.13.0/linkace-v1.13.0.zip
@@ -63,7 +61,6 @@ Installation
 After the installation has finished, remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``linkace/public`` directory.
 
 .. code-block:: console
- :emphasize-lines: 1,2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
@@ -79,7 +76,6 @@ Set up a database
 Run the following code to create the database ``<username>_linkace`` in MySQL:
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_linkace COLLATE utf8mb4_bin;"
  [isabell@stardust ~]$
@@ -92,7 +88,6 @@ Create the .env file
 Create a copy of the .env.example file and name it .env
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/linkace
  [isabell@stardust linkace]$ cp .env.example .env
@@ -104,7 +99,6 @@ Generate a secret key
 Run the following command to generate a secret key for your application and prepare LinkAce for the setup:
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/linkace
  [isabell@stardust linkace]$ php artisan key:generate
@@ -121,7 +115,6 @@ Updates
 Check LinkAce's `release page`_ for the latest version. If a newer version is available, download the package. Overwrite all existing files with the new ones.
 
 .. code-block:: console
- :emphasize-lines: 1,2,3,6,7
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ wget https://github.com/Kovah/LinkAce/releases/download/vx.x.x/linkace-vx.x.x.zip
@@ -133,7 +126,6 @@ Check LinkAce's `release page`_ for the latest version. If a newer version is av
 Run the database migrations which are needed after all updates and delete the current cache:
 
 .. code-block:: console
- :emphasize-lines: 1,2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/linkace
  [isabell@stardust linkace]$ php artisan migrate
