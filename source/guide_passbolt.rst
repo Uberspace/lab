@@ -111,8 +111,6 @@ Copy following content to ``gpg_batch.conf`` and replace ``YOUR_NAME``, ``YOUR_C
  %commit
  %echo done
 
-::
-
 Save your fingerprint and replace ``SERVER_KEY@EMAIL.TEST`` with your email. ``gpg --batch --gen-key gpg_batch.conf`` will run for multiple minutes. Just wait until it's finished!
 
 ::
