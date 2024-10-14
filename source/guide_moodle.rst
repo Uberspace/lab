@@ -125,10 +125,12 @@ Visit your Uberspace domain in the browser of our choice – in this case ``isab
 2. For the Data directory, choose the directory you created: ``/home/isabell/moodledata``.
 3. For the Database driver, choose "MariaDB (native/mariadb)".
 4. For the Database Settings, enter your information:
+
   1. Database name: ``isabell_moodle``
   2. Database user: ``isabell``
   3. Database password: ``MySuperSecretPassword``
   4. Database port: ``3306``
+
 5. Read the copyright notice and only accept if you truly do. 🙂
 6. All checks should be OK. At the end of the page, click "Continue".
 7. This could take a while to finish. You should be redirected to the process page. Here you can watch the process while installing missing plugins. After all installations have finished, at the end of the page, click "Continue".
