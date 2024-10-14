@@ -535,7 +535,7 @@ Install cronjobs
 
 
 Setup fetchmail
-=============
+===============
 
 Next, we add a ``fetchmailrc`` to, e.g., ``~/etc/fetchmailrc`` This file may look like this:
 

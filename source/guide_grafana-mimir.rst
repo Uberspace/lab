@@ -84,7 +84,7 @@ Directory for storing the custom configuration files:
 
 
 Mimir installation
-=================
+==================
 
 Find the latest version of `Mimir <mimir_download_>`_ at GitHub and download the latest Linux binary (`mimir-linux-amd64`):
 
@@ -97,7 +97,7 @@ Find the latest version of `Mimir <mimir_download_>`_ at GitHub and download the
 
 
 Mimir Configuration
-------------------
+-------------------
 
 Create the file ``~/etc/mimir/mimir.yaml`` with the following content:
 
@@ -198,7 +198,7 @@ What the arguments for mimir mean:
   * ``-config.file``: The location of the custom configuration file we created.
 
 Connecting Grafana to Mimir
---------------------------
+---------------------------
 
 .. note:: At that point, you already should have installed :lab:`Grafana <guide_grafana>`.
 
@@ -231,7 +231,7 @@ Find the latest version of `Grafana Agent <grafana_agent_download_>`_ at GitHub.
 
 
 Grafana Agent configuration
-----------------------
+---------------------------
 
 Grafana Agent uses the "River" format for configuration files. You can find documentation about this format `here <river_documentation_>`_.
 Create the file ``~/etc/grafana-agent/grafana-agent.river`` with the following basic configuration:
@@ -308,7 +308,7 @@ Finishing installation
 ======================
 
 Start Mimir and Grafana Agent
------------------------
+-----------------------------
 
 .. include:: includes/supervisord.rst
 

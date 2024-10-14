@@ -11,9 +11,9 @@
   .. image:: _static/images/wishthis.svg
       :align: center
 
-#######
+########
 wishthis
-#######
+########
 
 .. tag_list::
 
