@@ -209,13 +209,13 @@ Now fill in the details in the configuration file.
     # SMTP Auth Type. Can be either `plain`, `login` or `cram-md5`.
     authtype: "plain"
     # SMTP username
-    username: "vikunja@isabell.userspace.de"
+    username: "vikunja@isabell.uber.space"
     # SMTP password
     password: "SuperSecretMailPassword"
     # Whether to skip verification of the tls certificate on the server
     skiptlsverify: false
     # The default from address when sending emails
-    fromemail: "vikunja@isabell.userspace.de"
+    fromemail: "vikunja@isabell.uber.space"
   [...]
 
 Lastly, you should think about some sensible default values for your newly created
