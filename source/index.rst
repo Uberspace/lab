@@ -31,6 +31,7 @@ Thank you and have fun experimenting!
 
    howto_ssh
    howto_ssh-keys
+   howto_ssh-agent
    howto_migrate-mails
    howto_website
    howto_automatic-deployment
