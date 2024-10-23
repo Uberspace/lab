@@ -1,8 +1,8 @@
 .. _upgrade_node_apps:
 
-#####
+############################################################
 Dealing with applications when upgrading the node.js version
-#####
+############################################################
 
 .. warning:: First, please check the source of the application to see if there is a separate guide for this case and follow it if so.
 
@@ -14,7 +14,7 @@ Dealing with applications when upgrading the node.js version
   before running the npm commands.
 
 Upgrade Node.js App
-================
+===================
 
 Preparation
 -----------
@@ -41,7 +41,7 @@ Now the application including all packages should be updated to the latest versi
 
 
 Perform Upgrades
---------------------------
+----------------
 
 Set the new node.js version:
 
@@ -73,7 +73,7 @@ And then be provided with the available updates for the new version:
 
 
 Restart Service
---------------------------
+---------------
 
 Now you can start the service again:
 

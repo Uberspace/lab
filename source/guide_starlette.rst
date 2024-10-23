@@ -14,9 +14,9 @@
   .. image:: _static/images/starlette.png
       :align: center
 
-######
+#########
 Starlette
-######
+#########
 
 .. tag_list::
 

@@ -6,9 +6,6 @@
 
 .. highlight:: console
 
-.. sidebar:: Logo
-
-
 ########
 Dendrite
 ########

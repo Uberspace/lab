@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     sbt
 
 .. author:: Raphael Höser <raphael@hoeser.info>

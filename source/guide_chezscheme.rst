@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     Chez
 
 .. author:: luto <http://luto.at>

@@ -11,9 +11,9 @@
   .. image:: _static/images/goatcounter.svg
       :align: center
 
-####
+###########
 Goatcounter
-####
+###########
 
 .. tag_list::
 

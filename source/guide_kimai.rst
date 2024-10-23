@@ -165,7 +165,6 @@ Now clear and warmup your cache.
 And last but not least: upgrade your database (you need to confirm the migration).
 
 .. code-block:: console
- :emphasize-lines: 4
 
  [isabell@stardust kimai]$ bin/console kimai:update -n
  [isabell@stardust ~]$

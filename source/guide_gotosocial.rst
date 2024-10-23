@@ -1,7 +1,7 @@
 .. highlight:: console
 .. author:: this.ven <https://this.ven.uber.space>
 
-.. spelling::
+.. spelling:word-list::
     pleroma
 
 .. tag:: golang

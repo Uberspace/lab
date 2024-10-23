@@ -1,6 +1,6 @@
 .. author:: Lukas Herzog <hallo@lukasherzog.de>
 
-.. spelling::
+.. spelling:word-list::
     Tselegidis
     english
     french

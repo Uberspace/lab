@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     memproportion
 
 .. author:: jorsn <johannes@jorsn.eu>

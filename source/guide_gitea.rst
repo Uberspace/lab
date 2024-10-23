@@ -13,7 +13,7 @@
   .. image:: _static/images/gitea.png
       :align: center
 
-.. spelling::
+.. spelling:word-list::
   repos
 
 #####

@@ -142,7 +142,7 @@ Example Configuration
 
 
 Test your configuarion
--------------------
+----------------------
 
 .. code-block:: console
 

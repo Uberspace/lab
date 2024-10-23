@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     IPofYourServer
 
 .. author:: cblte <https://cbrueggenolte.de>

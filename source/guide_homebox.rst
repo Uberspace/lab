@@ -60,6 +60,8 @@ The official documentation_ recommends using Docker, but since Uberspace
 doesn't support Docker and the Docker container doesn't do that much
 we set up the application as a :manual:`supervisord <daemons-supervisord>` process.
 
+.. _download-latest-release-and-extract:
+
 Download latest release and extract
 -----------------------------------
 
@@ -134,7 +136,7 @@ Then restart the service
 Updates
 =======
 
-To update Homebox repeat the steps described in :ref:`Download latest release and extract`.
+To update Homebox repeat the steps described in :ref:`download-latest-release-and-extract`.
 After updating the binary tell :manual:`supervisord <daemons-supervisord>` to restart the service:
 
 .. code-block:: console

@@ -120,12 +120,14 @@ Once you've done that, your config section for storage should look like:
 
 .. code-block:: json
 
-  storage: {
-    "type": "redis",
-    "host": "localhost",
-    "port": 6379,
-    "db": 0
-  },
+  {
+    "storage": {
+      "type": "redis",
+      "host": "localhost",
+      "port": 6379,
+      "db": 0
+    },
+  }
 
 If your Redis server is configured for password authentication, use the ``password`` field.
 
@@ -176,10 +178,12 @@ Once you've done that, your config section for storage should look like:
 
 .. code-block:: json
 
-  storage: {
-    "type": "postgres",
-    "connectionUrl": "postgres://haste:password@localhost:5432/haste"
-  },
+  {
+    "storage": {
+      "type": "postgres",
+      "connectionUrl": "postgres://haste:password@localhost:5432/haste"
+    },
+  }
 
 Replace ``password`` with the password of user haste.
 

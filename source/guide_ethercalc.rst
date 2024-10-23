@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     Nodemule
 
 .. author:: Achim | pxlfrk <hallo@pxlfrk.de>
