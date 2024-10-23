@@ -28,8 +28,8 @@ Screego_ is an open-source software that provides screen sharing via WebRTC. A d
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * :manual:`Firewall ports <basics-ports>`
-  * :manual:`HTTPS <web-https>`
   * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`web-backends <web-backends>`
 
 License
 =======
@@ -41,15 +41,7 @@ All relevant legal information can be found here:
 Prerequisites
 =============
 
-To make the application accessible from the outside, open two `ports in the firewall <firewall_>`_:
-
-.. code-block:: console
-
-  [isabell@stardust ~]$ uberspace port add
-  Port 40130 will be open for TCP and UDP traffic in a few minutes.
-  [isabell@stardust ~]$ uberspace port add
-  Port 40131 will be open for TCP and UDP traffic in a few minutes.
-  [isabell@stardust ~]$
+.. include:: includes/open-port.rst
 
 Installation
 ============
@@ -77,7 +69,7 @@ Configure Screego
 
 .. note:: You can use the following command to generate your own ``SCREEGO_SECRET``: ``tr -dc A-Za-z0-9 < /dev/urandom | head -c 40; echo``
 
-.. warning:: Replace ``isabell`` with your username, ``<YOUR_SECRET>`` with your secret and ``40130``/``40131`` with your ports!
+.. warning:: Replace ``isabell`` with your username, ``<YOUR_SECRET>`` with your secret and ``40132`` with your port!
 
 The following settings must be adjusted in the ``~/screego/screego.config``:
 
@@ -86,16 +78,8 @@ The following settings must be adjusted in the ``~/screego/screego.config``:
  SCREEGO_EXTERNAL_IP=dns:isabell.uber.space
 
  SCREEGO_SECRET=<YOUR_SECRET>
-
- SCREEGO_SERVER_TLS=true
-
- SCREEGO_TLS_CERT_FILE=/readonly/isabell/certificates/isabell.uber.space.crt
-
- SCREEGO_TLS_KEY_FILE=/readonly/isabell/certificates/isabell.uber.space.key
  
- SCREEGO_SERVER_ADDRESS=0.0.0.0:40130
- 
- SCREEGO_TURN_ADDRESS=0.0.0.0:40131
+ SCREEGO_TURN_ADDRESS=0.0.0.0:40132
 
 .. note::
   Please have a look at "`NAT Traversal`_" on the official project page. In most cases STUN should be sufficient, but if TURN is used it is necessary to open more ports and specify them under ``SCREEGO_TURN_PORT_RANGE`` in the ``screego.config`` file. For the number of ports to be opened, the following currently applies approximately: ``shared video streams * users in the room * 4``
@@ -119,13 +103,16 @@ Create ``~/etc/services.d/screego.ini`` with the following content:
 
 If it's not in state RUNNING, check your configuration.
 
-Open website
-------------
-.. warning:: Replace ``isabell`` with your username and ``40130`` with your port!
+Setup web backend
+-----------------
 
-If Screego is running, you can find the website here:
+.. note:: The default port for Screego is ``5050``.
 
-  * https://isabell.uber.space:40130/
+.. include:: includes/web-backend.rst
+
+.. warning:: Replace ``isabell`` with your username!
+
+If Screego is running, you can now find the website at ``https://isabell.uber.space``.
 
 Best practices
 ==============
