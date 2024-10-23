@@ -99,14 +99,14 @@ values and ``ssh-add`` should now work in this new session.
 
    [isabell@stardust ~]$ echo $SSH_AUTH_SOCK
    /tmp/ssh-KbEnRJzBcFzD/agent.19496
-   [isabell@stardust ~]$ echo $SSH_AUTH_SOCK
+   [isabell@stardust ~]$ echo $SSH_AGENT_PID
    19497
    [isabell@stardust ~]$ ssh-add
    Enter passphrase for /home/isabell/.ssh/id_rsa:
    Identity added: /home/isabell/.ssh/id_rsa (/home/isabell/.ssh/id_rsa)
    [isabell@stardust ~]$
 
-This key will now be unlocked until you exit the shell session.
+This key is now unlocked until you exit the shell session.
 
 Starting a session with a different command
 -------------------------------------------
