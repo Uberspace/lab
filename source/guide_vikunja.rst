@@ -52,10 +52,6 @@ We can use the uberspace or your own domain:
 Installation
 ============
 
-Since version 0.23.0, Vikunja is no longer split into a web backend and frontend.
-Both packages are now combined into a single binary, making the installation
-easier.
-
 Download
 --------
 
