@@ -2,7 +2,7 @@
 
 .. tag:: STUN
 .. tag:: TURN
-.. tag:: webRTC
+.. tag:: WebRTC
 .. tag:: Erlang
 
 .. highlight:: console
@@ -172,7 +172,7 @@ The test should result in a checkmark symbol. If not check your Nextcloud and et
 Synapse
 -------
 
-The :lab:`Synapse<guide_synapse>` homeserver can employ your eturnal server for webRTC calls by editing your ``homeserver.yaml`` config:
+The :lab:`Synapse<guide_synapse>` homeserver can employ your eturnal server for WebRTC calls by editing your ``homeserver.yaml`` config:
 
 .. code-block:: yaml
   :emphasize-lines: 5-8,11
