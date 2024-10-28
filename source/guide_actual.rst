@@ -126,7 +126,7 @@ When a new Actual release is published, follow these steps to update:
 3. Run ``git pull`` from the directory you cloned the project into. This will download the latest server code.
 4. Replace the version of the bcrypt dependency as described above.
 5. Run ``yarn install --refresh-lockfile`` from that same directory.
-This will download the latest web client code, along with any updated dependencies for the server.
+   This will download the latest web client code, along with any updated dependencies for the server.
 6. Restart the server by running ``supervisorctl start actual``.
 
 .. code-block:: bash
