@@ -41,7 +41,7 @@ ClassicPress recommends :manual:`PHP <lang-php>` version 8.1 or 8.2. to be used:
  [isabell@stardust ~]$
 
 
-You will need your :manual_anchor:`MySQL credetials <database-mysql.html#login-credentials>`__ later, get them with ``my_print_defaults``:
+You will need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` later, get them with ``my_print_defaults``:
 
 .. include:: includes/my-print-defaults.rst
 
