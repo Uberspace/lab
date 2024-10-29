@@ -104,10 +104,10 @@ Point your browser at your domains address, probably ``https://isabell.uber.spac
    ClassicPress.
 3. Fill out the form like this:
 
-   1. The name of the database we set up `earlier <#database>`__
+   1. The name of the database we set up earlier
    2. The user name for that database (it's usually the same as your
       username here)
-   3. The password we acquired `above <#database>`__
+   3. The database password we acquired above
    4. The database host is ``localhost``
    5. The table prefix would be ``cp_`` (the default)
 
