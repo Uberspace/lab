@@ -34,7 +34,7 @@ Prerequisites
 
 ClassicPress recommends :manual:`PHP <lang-php>` version 8.1 or 8.2. to be used:
 
-. code-block:: console
+.. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
  Using 'PHP' version: '8.2'
@@ -49,7 +49,7 @@ You will also need a database, where ClassicPress can store data. You
 may use you default database (i.e. named isabell) or add a new
 one to your account like this:
 
-. code-block:: console
+.. code-block:: console
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE classic_press"
  [isabell@stardust ~]$
@@ -69,7 +69,7 @@ Download the source
 Change into the ``/tmp`` directory of your root folder, download the
 lastest ClassicPress version and unzip it.
 
-. code-block:: console
+.. code-block:: console
 
  [isabell@stardust html]$ cd ~/tmp
  [isabell@stardust tmp]$ wget https://www.classicpress.net/latest.zip
@@ -78,14 +78,14 @@ lastest ClassicPress version and unzip it.
 
 There should be a directory ``ClassicPress-release-<release_number>``, i.e. ``ClassicPress-release-2.2.0`` in your ``tmp`` now. Lets copy it's content to your web folder.
 
-. code-block:: console
+.. code-block:: console
 
  [isabell@stardust tmp]$ cp -r ClassicPress-release-2.2.0/* /var/www/virtual/isabell/html/
  [isabell@stardust tmp]$
 
 Clean up your ``/tmp`` folder:
 
-. code-block:: console
+.. code-block:: console
 
  [isabell@stardust tmp]$ rm latest.zip
  [isabell@stardust tmp]$ rm -rf ClassicPress-release-2.2.0
