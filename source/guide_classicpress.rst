@@ -40,9 +40,6 @@ ClassicPress recommends :manual:`PHP <lang-php>` version 8.1 or 8.2. to be used:
  Using 'PHP' version: '8.2'
  [isabell@stardust ~]$
 
-
-You will need your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>` later, get them with ``my_print_defaults``:
-
 .. include:: includes/my-print-defaults.rst
 
 You will also need a database, where ClassicPress can store data. You
