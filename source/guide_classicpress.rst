@@ -44,11 +44,11 @@ ClassicPress recommends :manual:`PHP <lang-php>` version 8.1 or 8.2. to be used:
 
 You will also need a database, where ClassicPress can store data. You
 may use you default database (i.e. named isabell) or add a new
-one to your account like this:
+one to your account like this (the database requires your username as a prefix):
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mysql -e "CREATE DATABASE classic_press"
+ [isabell@stardust ~]$ mysql -e "CREATE DATABASE  ${USER}_classic_press"
  [isabell@stardust ~]$
 
 Note your credentials and the database name for later use.
