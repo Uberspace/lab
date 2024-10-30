@@ -11,9 +11,9 @@
   .. image:: _static/images/wishthis.svg
       :align: center
 
-#######
+########
 wishthis
-#######
+########
 
 .. tag_list::
 
@@ -53,7 +53,6 @@ Installation
 ``cd`` to your :manual:`DocumentRoot <web-documentroot>`, then clone the wishthis repository. You can find the latest stable version on the `release notes`_.
 
 .. code-block:: console
- :emphasize-lines: 1,2,3,6
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
  [isabell@stardust html]$ rm -f nocontent.html
@@ -63,7 +62,6 @@ Installation
 After cloning the repository, you need to create an additional folder:
 
 .. code-block:: console
- :emphasize-lines: 1,2,3
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/src/
  [isabell@stardust src]$ mkdir cache
@@ -96,7 +94,6 @@ Updates
 Run ``git pull`` in the wishthis directory to pull the latest changes from upstream.
 
 .. code-block:: console
- :emphasize-lines: 1,2
 
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ git pull origin stable
@@ -110,19 +107,16 @@ Disabling registration
 By default, registration is open to anyone. If you have registered an account for yourself and want to disable registration, you need to change the value in the config file:
 
 .. code-block:: console
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ nano ~/html/src/config/config.php
  [isabell@stardust config]$
 
 .. code-block:: yaml
-  :emphasize-lines: 4
 
   /**
    * Miscellaneous
    */
   define('DISABLE_USER_REGISTRATION', true);
-::
 
 Acknowledgements
 ================

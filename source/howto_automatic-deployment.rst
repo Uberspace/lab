@@ -376,7 +376,6 @@ If you used the given example, the file should look like this:
               remote_user: ${{ vars.SSH_USERNAME }}
               remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-
-
 ----
+
 .. author_list::

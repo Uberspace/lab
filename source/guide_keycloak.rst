@@ -6,7 +6,7 @@
 .. tag:: sso
 .. tag:: lang-java
 
-.. spelling::
+.. spelling:word-list::
     Keycloak
 
 .. sidebar:: Logo

@@ -67,7 +67,7 @@ Setup a domain to access your oTree apps:
 
 
 Web backend
-----------
+-----------
 
 .. include:: includes/web-backend.rst
 
@@ -103,10 +103,10 @@ Second, install otree and its dependencies:
    (venv) [isabell@stardust otree]$
 
 Configuration
-============
+=============
 
 oTree
-----------
+-----
 
 If you already have an oTree project, you should copy it into the ``otree`` directory.
 If you don't have an oTree project yet, you can create one with:
@@ -150,7 +150,7 @@ You can now exit the virtual environment with:
 
 
 Set up the daemon
-----------
+-----------------
 
 Before running oTree in production, generate up to three additional secret keys,
 depending on your needs:

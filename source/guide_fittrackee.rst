@@ -119,7 +119,7 @@ Optional: Redis
 
 We need Redis for task queue (if email sending is enabled and for data export requests) and API rate limits.
 
-Please follow the :lab:`Redis <guide_redis>` guide to setup redis with one variation: By default, Redis does not run on a port with us, but provides a Unix socket under ``/home/$USER/.redis/sock``. Either one has to adjust the configuration of the Fittrackee application or change the Redis configuration from `port 0' to 6379.
+Please follow the :lab:`Redis <guide_redis>` guide to setup redis with one variation: By default, Redis does not run on a port with us, but provides a Unix socket under ``/home/$USER/.redis/sock``. Either one has to adjust the configuration of the Fittrackee application or change the Redis configuration from 'port 0' to 6379.
 
 Optional: Emails
 ----------------

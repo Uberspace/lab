@@ -5,13 +5,9 @@
 .. categorize your guide! refer to the current list of tags: https://lab.uberspace.de/tags
 .. tag:: web
 
-.. sidebar:: About
-
-
-
-##########
+#################
 Tor onion service
-##########
+#################
 
 .. tag_list::
 
@@ -39,6 +35,7 @@ Download tor
 -------------------
 
 Go to the tor download_ page and copy the download link for the latest stable version of the tor expert bundle for the OS GNU/Linux (x86_64)
+
 ::
  [isabell@stardust ~]$ curl --proto '=https' --tlsv1.2 -sSf https://archive.torproject.org/tor-package-archive/torbrowser/13.0.8/tor-expert-bundle-linux-x86_64-13.0.8.tar.gz -o tor.tar.gz
  [isabell@stardust ~]$ tar xvzf tor.tar.gz
@@ -58,9 +55,10 @@ Configuration
 =============
 
 Configure tor as onion service
-------------------------
+------------------------------
 
 Create the file ``~/tor/torrc`` and add the following lines:
+
 ::
   HiddenServiceDir onionservice
   HiddenServicePort 80 127.0.0.1:80
@@ -73,6 +71,7 @@ This directory contains the cryptographic keys of the onion service and should n
   Do not remove or modify the ``ExitPolicy``. Uberspace does not allow Tor exit nodes.
 
 Optionally you can test if everything works by starting the tor daemon directly from the shell. If tor in configured correctly the output should look like this:
+
 ::
  [isabell@stardust ~]$ LD_LIBRARY_PATH=~/tor ~/tor/tor --torrc-file tor/torrc
  [notice] Opening Socks listener on 127.0.0.1:9050
@@ -96,6 +95,7 @@ Set up the daemon
 
 
 Create the file ``~/etc/services.d/tor-onion-service.ini`` with the following content:
+
 ::
  [program:tor-onion-service]
  command=%(ENV_HOME)s/tor/tor --torrc-file %(ENV_HOME)s/tor/torrc
@@ -111,6 +111,7 @@ Finishing installation
 .. include:: includes/supervisord.rst
 
 To view your automatically generated .onion hostname
+
 ::
  [isabell@stardust ~]$ cat ~/onionservice/hostname
  jv2h7lm5tir5dsr6ihqmut6elusip3ylef46lhaq6q3gsv5pi7ddrwqd.onion
@@ -153,6 +154,7 @@ Debugging
 If something fails with this specific error, you should have a look at this specific config, or just reload that service. Try to look into the log at this path.
 
 If the service fails to start you can start the tor binary directly to see the thr error messages:
+
 ::
  [isabell@stardust ~]$ LD_LIBRARY_PATH=~/tor ~/tor/tor --torrc-file tor/torrc
  [isabell@stardust ~]$.

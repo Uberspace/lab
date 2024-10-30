@@ -1,6 +1,6 @@
 .. author:: Nico Graf <hallo@uberspace.de>
 
-.. spelling::
+.. spelling:word-list::
     xxxx
 
 .. tag:: lang-php

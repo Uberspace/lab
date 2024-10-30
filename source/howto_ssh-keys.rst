@@ -79,7 +79,7 @@ To do this, you need access via ssh (using an :doc:`ssh password <howto_ssh>` or
 
 If you edit the file ``~/.ssh/authorized_keys`` manually, be careful not to delete or modify the first entry
 
-.. code-block:: txt
+.. code-block:: text
 
   ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAzemLn04VCUIZuoGiQ89mU6y5Oq4FBO1oFIusBm0uy/jggZrezl50/ntDFbSdCvd8P4xKr++hFN/ug7SkikEULFwQ2efDw7RU45I4iT74St2v7Oa3L/cFV3RNB1sazkzfNyyogwKoykzrD69oRtJLwLsMY09JIMTS7erzIgWimMq5xo2/jzDcfRXaqsO8SDVuQE40SLe3xZz7cXdVRWmG2h+XCpsc8AbqlU0RtcomaT2Lz44lQHMJpZA7bBU6WkFNB52PvQEiQTIOxByTmKB9kVCZeSCyn/q5Y+E9pykYAsqTmZzT8DD/oa7O3QvVlI+8suA9QLcNFZszGdosi4YtTQ== Uberspace.de (nicht loeschen)
   [..]

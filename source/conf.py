@@ -19,6 +19,12 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+#
+# Running flake reports that sphinx_rtd_theme is imported,
+# but not used. This is a false positive, so ignore that
+# specific error in this file.
+#
+# flake8: noqa F401
 import sphinx_rtd_theme
 
 # -- General configuration ------------------------------------------------
@@ -71,7 +77,7 @@ release = version = "7"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en_GB"
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -86,13 +92,13 @@ todo_include_todos = False
 
 # Configure the `extlinks` extension to handle the `manual` and `lab`
 # directives.
-# By setting an empty string as the second tuple element, the display text
-# is the same as the target by default.
+# The second tuple element is the link caption. By using None, the caption
+# is the full URL.
 extlinks = {
-    "manual": ("https://manual.uberspace.de/%s", ""),
-    "manual_anchor": ("https://manual.uberspace.de/%s", ""),
-    "lab": ("/%s", ""),
-    "lab_anchor": ("/%s", ""),
+    "manual": ("https://manual.uberspace.de/%s", None),
+    "manual_anchor": ("https://manual.uberspace.de/%s", None),
+    "lab": ("/%s", None),
+    "lab_anchor": ("/%s", None),
 }
 
 
@@ -100,11 +106,9 @@ extlinks = {
 
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
-    "display_version": False,
     "navigation_depth": 2,
     "collapse_navigation": True,
 }
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_last_updated_fmt = "%b %d, %Y"
 html_context = {
     "display_github": True,

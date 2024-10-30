@@ -46,7 +46,7 @@ Prerequisites
 Gancio v1.6.14 is running with node 14=> and 18=<.
 
 .. code-block:: console
-  :emphasize-lines:1, 7
+  :emphasize-lines: 1,7
 
   [isabell@stardust ~]$ uberspace tools version list node
   - 12
@@ -66,7 +66,6 @@ Installation
 We will install gancio using yarn:
 
 .. code-block:: console
-  :emphasize-lines: 1
 
   [isabell@stardust ~]$ yarn global add --network-timeout 1000000000 --silent https://gancio.org/latest.tgz
 
@@ -109,7 +108,8 @@ Updates
 =======
 
 .. code-block:: console
-  :emphasize-lines:1, 6, 10, 11
+  :emphasize-lines: 1,6,10,11
+
   [isabell@stardust ~]$ yarn global remove gancio
   [1/2] Removing module gancio...
   [2/2] Regenerating lockfile and installing missing dependencies...

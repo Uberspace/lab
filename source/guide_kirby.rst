@@ -1,6 +1,6 @@
 .. author:: Daniel Kratz <https://danielkratz.com>
 
-.. spelling::
+.. spelling:word-list::
     Allgeier
 
 .. tag:: lang-php

@@ -35,6 +35,7 @@ Thank you and have fun experimenting!
    howto_migrate-mails
    howto_website
    howto_automatic-deployment
+   howto_upgrade_node_apps
 
 .. toctree::
    :caption: Guides

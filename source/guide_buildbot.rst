@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     Pohl
 
 .. author:: Thomas Hoffmann <uberlab@emptyweb.de>

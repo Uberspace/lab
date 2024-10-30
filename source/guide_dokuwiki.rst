@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. spelling::
+.. spelling:word-list::
     superduper
 
 .. author:: Christian Kantelberg <uberlab@mailbox.org>
