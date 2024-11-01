@@ -66,7 +66,7 @@ Now press ``Ctrl+C`` to stop it again:
  INFO[0174] server stopped
  INFO[0174] stopping workers...
  INFO[0174] workers stopped
- [readeck@triangulum readeck]$
+ [isabell@stardust readeck]$
 
 The directory ``data`` (with further content) and the file ``config.toml`` have now been created in the directory ``~/readeck``.
   
