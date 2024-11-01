@@ -30,13 +30,13 @@ pretix_ is an open source ticketing solution. It is written in Django_ and can b
 
   * :manual:`Python <lang-python>` and its package manager pip
   * :manual:`supervisord <daemons-supervisord>`
-  * :manual: `web backends <web-backends>`
+  * :manual:`web backends <web-backends>`
 
 License
 =======
 
 pretix `community edition <https://pretix.eu/about/en/pricing/selfhosted>`_ is licenced under AGPL 3 with additional terms. See `the license FAQ <https://docs.pretix.eu/en/latest/license/faq.html>`_ for details.
-The licence text can be found `here <https://github.com/pretix/pretix/blob/master/LICENSE>`.
+The licence text can be found `here <https://github.com/pretix/pretix/blob/master/LICENSE>`_.
 
 Prerequisites
 =============
@@ -166,6 +166,7 @@ pretix doesn't serve static files by itself. We can use apache to do that for us
 ::
 
  [isabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist /var/www/virtual/isabell/html/static
+ [isabell@stardust ~]$
 
 Service
 -------
@@ -205,7 +206,9 @@ Paths under ``/static/`` need to be served by apache:
 
 ::
 
- [isabell@stardust ~]$ uberspace web backend set /static/ --apache
+ [isabell@stardust ~]$ uberspace web backend set /static --apache
+ Set backend for /static to apache.
+ [isabell@stardust ~]$ 
 
 Cronjob
 -------
