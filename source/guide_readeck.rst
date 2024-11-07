@@ -84,6 +84,12 @@ The following setting must be adjusted in the ``~/readeck/config.toml``:
 
  host = "0.0.0.0"
 
+Just underneath that line, add
+
+::
+
+ use_x_forwarded_proto = true
+
 As a lot of data is written to the log in the standard configuration, it may be sufficient to select a different setting here:
 
 ::
