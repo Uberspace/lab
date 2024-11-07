@@ -3,6 +3,7 @@
 .. author:: ezra <ezra@posteo.de>
 .. author:: luto <m@luto.at>
 .. author:: chriskbach <https://github.com/chriskbach/>
+.. author:: qbit <chaos.social/@qbit>
 
 .. tag:: lang-python
 .. tag:: django
@@ -29,13 +30,13 @@ pretix_ is an open source ticketing solution. It is written in Django_ and can b
 
   * :manual:`Python <lang-python>` and its package manager pip
   * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`web backends <web-backends>`
 
 License
 =======
 
-All relevant legal information can be found here
-
-  * https://pretix.eu/about/en/terms
+pretix `community edition <https://pretix.eu/about/en/pricing/selfhosted>`_ is licenced under AGPL 3 with additional terms. See `the license FAQ <https://docs.pretix.eu/en/latest/license/faq.html>`_ for details.
+The licence text can be found `here <https://github.com/pretix/pretix/blob/master/LICENSE>`_.
 
 Prerequisites
 =============
@@ -147,32 +148,30 @@ Initialize the pretix_ database tables and generate the static files:
 
  [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [...]
- File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/be/LC_MESSAGES/django.po” is already compiled and up to date.
- File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/id/LC_MESSAGES/django.po” is already compiled and up to date.
- File “/home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/it/LC_MESSAGES/django.po” is already compiled and up to date.
- processing file django.po in /home/jupretix/.local/lib/python3.11/site-packages/django/contrib/sites/locale/sl/LC_MESSAGES
+ File “/home/isabell/.local/lib/python3.11/site-packages/django/contrib/sites/locale/be/LC_MESSAGES/django.po” is already compiled and up to date.
+ File “/home/isabell/.local/lib/python3.11/site-packages/django/contrib/sites/locale/id/LC_MESSAGES/django.po” is already compiled and up to date.
+ File “/home/isabell/.local/lib/python3.11/site-packages/django/contrib/sites/locale/it/LC_MESSAGES/django.po” is already compiled and up to date.
+ processing file django.po in /home/isabell/.local/lib/python3.11/site-packages/django/contrib/sites/locale/sl/LC_MESSAGES
  processing language es
  processing language tr
  processing language uk
 
- 954 static files copied to '/home/jupretix/.local/lib/python3.11/site-packages/pretix/static.dist', 970 post-processed.
+ 954 static files copied to '/home/isabell/.local/lib/python3.11/site-packages/pretix/static.dist', 970 post-processed.
  Compressing... done
  Compressed 28 block(s) from 547 template(s) for 1 context(s).
  [isabell@stardust ~]$
 
-Web Backend
------------
+pretix doesn't serve static files by itself. We can use apache to do that for us, but we first need to move the static files into the uberspace document root.
 
-.. note::
+::
 
-    Pretix is running on port 9000.
-
-.. include:: includes/web-backend.rst
+ [isabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist /var/www/virtual/isabell/html/static
+ [isabell@stardust ~]$
 
 Service
 -------
 
-Finally, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
+Next, you should set up a service that keeps pretix_ alive while you are gone. Therefor create the file ``~/etc/services.d/pretix.ini`` with the following content:
 
 .. code-block:: ini
 
@@ -194,6 +193,23 @@ Finally, you should set up a service that keeps pretix_ alive while you are gone
 
 If the two services are not in state RUNNING, check your configuration.
 
+Web Backend
+-----------
+
+.. note::
+
+    pretix should now be running on port 9000.
+
+.. include:: includes/web-backend.rst
+
+Paths under ``/static/`` need to be served by apache:
+
+::
+
+ [isabell@stardust ~]$ uberspace web backend set /static --apache
+ Set backend for /static to apache.
+ [isabell@stardust ~]$ 
+
 Cronjob
 -------
 
@@ -206,7 +222,7 @@ Create a new cronjob using ``crontab -e``:
 Accessing pretix
 ----------------
 
-Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control``.
+Now point your Browser to your installation URL ``https://isabell.uber.space``. You will find the administration panel at ``https://isabell.uber.space/control/``.
 
 Use ``admin@localhost`` as username and ``admin`` as password for your first login. You should change this password immediately after login!
 
@@ -231,6 +247,7 @@ Then re-run the Initialize database steps and restart the service like so:
  [isabell@stardust ~]$ python3.11 -m pretix migrate
  [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [isabell@stardust ~]$ python3.11 -m pretix updateassets
+ [usabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist /var/www/virtual/isabell/html/static
  [isabell@stardust ~]$ supervisorctl restart pretix
  [isabell@stardust ~]$
 
@@ -239,7 +256,6 @@ Then re-run the Initialize database steps and restart the service like so:
 .. _Gunicorn: https://gunicorn.org/
 .. _Github: https://github.com/pretix/pretix
 .. _feed: https://github.com/pretix/pretix/releases.atom
-.. _bullshit: https://bullenscheisse.de/2018/pretix-auf-einem-uberspace/
 
 ----
 
