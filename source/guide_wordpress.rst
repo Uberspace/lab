@@ -87,7 +87,7 @@ WordPress will generate a secure password for the admin user.
 Updates
 =======
 
-By default, WordPress `automatically updates`_ itself to the latest stable minor version. Use ``wp-cli`` to update all plugins:
+By default, WordPress `automatically updates`_ itself to the latest stable minor version. Use ``wp`` (wp-cli) to update all plugins:
 
 ::
 
