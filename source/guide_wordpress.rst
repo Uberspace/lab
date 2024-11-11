@@ -36,12 +36,12 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 Prerequisites
 =============
 
-We're using PHP in the stable version 8.1:
+We're using PHP in the stable version 8.2:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.2'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -100,6 +100,6 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 
 ----
 
-Tested with WordPress 6.1.1, Uberspace 7.13.0, and PHP 8.1
+Tested with WordPress 6.1.1, Uberspace 7.13.0, and PHP 8.2
 
 .. author_list::
