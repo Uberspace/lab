@@ -47,12 +47,14 @@ Set up your URL:
 Installation
 ============
 
-Use ``wget`` to download the `latest release`_:
+.. note:: Version 15.1 and higher require ``GLIBC 2.28`` which is not available for CentOS 7. 
+
+Use ``wget`` to download `version 15.0`_:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/writeas/writefreely/releases/download/v0.12.0/writefreely_0.12.0_linux_amd64.tar.gz
-  [isabell@stardust ~]$ tar xzf writefreely_0.12.0_linux_amd64.tar.gz
+  [isabell@stardust ~]$ wget https://github.com/writefreely/writefreely/releases/download/v0.15.0/writefreely_0.15.0_linux_amd64.tar.gz
+  [isabell@stardust ~]$ tar xzf writefreely_0.15.0_linux_amd64.tar.gz
   [isabell@stardust ~]$
 
 Configuration
