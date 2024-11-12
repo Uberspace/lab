@@ -211,7 +211,7 @@ Tested on Uberspace v7.15.9 with Go 1.21.6 and Writefreely v0.15.0.
 
 .. _Writefreely: https://writefreely.org/
 .. _`AGPL v3.0`: https://www.gnu.org/licenses/agpl-3.0.html
-.. _`latest release`: https://github.com/writeas/writefreely/releases/latest
+.. _`version 15.0`: https://github.com/writefreely/writefreely/tree/v0.15.0
 .. _`admin guide`: https://writefreely.org/docs/latest/admin/config
 .. _documentation: https://writefreely.org/docs/latest/writer/css
 .. _feed: https://github.com/writeas/writefreely/releases/latest
