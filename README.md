@@ -99,4 +99,4 @@ All project logos are property of the respective project.
 
 [cc-by-nc-sa 4.0]: https://creativecommons.org/licenses/by-nc-sa/4.0/
 [contributing guidelines]: CONTRIBUTING.md
-[list of guides]: https://github.com/Uberspace/lab/issues?q=is%3Aopen+is%3Aissue+label%3Aguide
+[list of guides]: https://github.com/Uberspace/lab/issues?q=is%3Aopen+is%3Aissue+label%3Anew-guide
