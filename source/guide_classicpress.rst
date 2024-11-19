@@ -18,7 +18,7 @@ ClassicPress
 
 .. tag_list::
 
-ClassicPress_ is a fork of WordPress, which aims to be a more stable and secure alternative to the popular CMS. It is fully compatible with many WordPress plugins and themes, but uses the the TinyMCE classic editor as the default option and lacks the support of blocks and the block editor (aka. Gutenberg).
+ClassicPress_ is a fork of WordPress, which aims to be a more stable and secure alternative to the popular CMS. It is fully compatible with many WordPress plugins and themes, but uses the TinyMCE classic editor as the default option and lacks the support of blocks and the block editor (a.k.a. Gutenberg).
 
 ----
 
@@ -43,7 +43,7 @@ ClassicPress recommends :manual:`PHP <lang-php>` version 8.1 or 8.2. to be used:
 .. include:: includes/my-print-defaults.rst
 
 You will also need a database, where ClassicPress can store data. You
-may use you default database (i.e. named isabell) or add a new
+may use your default database (i.e. named isabell) or add a new
 one to your account like this (the database requires your username as a prefix):
 
 .. code-block:: console
@@ -64,7 +64,7 @@ Download the source
 -------------------
 
 Change into the ``/tmp`` directory of your root folder, download the
-lastest ClassicPress version and unzip it.
+latest ClassicPress version and unzip it.
 
 .. code-block:: console
 
@@ -73,7 +73,7 @@ lastest ClassicPress version and unzip it.
  [isabell@stardust tmp]$ unzip latest.zip
  [isabell@stardust tmp]$
 
-There should be a directory ``ClassicPress-release-<release_number>``, i.e. ``ClassicPress-release-2.2.0`` in your ``tmp`` now. Lets copy it's content to your web folder.
+There should be a directory ``ClassicPress-release-<release_number>``, i.e. ``ClassicPress-release-2.2.0`` in your ``tmp`` now. Let's copy the content to your web folder.
 
 .. code-block:: console
 
@@ -112,7 +112,7 @@ Point your browser at your domains address, probably ``https://isabell.uber.spac
    with a click.
 5. Next step: Set your blog and admin user:
 
-   1. Enter the title you have chose for your blog (you have chose one,
+   1. Enter the title you have chosen for your blog (you have chosen one,
       haven't you?)
    2. Choose a username for your user
    3. Choose a secure password (and store it in your password manager!)
