@@ -63,11 +63,8 @@ For security reasons, it is a good idea to move the ``data`` directory from the 
 
 .. code-block:: console
 
- [isabell@stardust html]$ mkdir ~/snappymail-data
- [isabell@stardust html]$ mv data/{.*,*} ~/snappymail-data
- mv: cannot move ‘data/.’ to ‘/home/isabell/snappymail-data/.’: Device or resource busy
- mv: cannot move ‘data/..’ to ‘/home/isabell/snappymail-data/..’: Device or resource busy
- [isabell@stardust html]$ rmdir data
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/html
+ [isabell@stardust html]$ mv data ~/snappymail-data
  [isabell@stardust html]$
 
 Configuration
