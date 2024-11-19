@@ -81,7 +81,7 @@ OPcache caches script bytecode in shared memory, so scripts need not to be loade
 
  opcache.enable=1
  opcache.enable_cli=1
- opcache.interned_strings_buffer=16
+ opcache.interned_strings_buffer=32
  opcache.max_accelerated_files=10000
  opcache.memory_consumption=256
  opcache.save_comments=1
