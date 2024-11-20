@@ -73,7 +73,7 @@ latest ClassicPress version and unzip it.
  [isabell@stardust tmp]$ unzip latest.zip
  [isabell@stardust tmp]$
 
-There should be a directory ``ClassicPress-release-<release_number>``, i.e. ``ClassicPress-release-2.2.0`` in your ``tmp`` now. Let's copy the content to your web folder.
+There should be a directory ``ClassicPress-release-<release_number>``, i.e. ``ClassicPress-release-2.2.0`` in your ``tmp`` now. Let's copy its content to your web folder.
 
 .. code-block:: console
 
