@@ -59,7 +59,7 @@ Enter your DocumentRoot directory, download the latest version, unpack the archi
  [isabell@stardust html]$ rm latest.tar.gz nocontent.html
  [isabell@stardust html]$
 
-For security reasons, it is a good idea to move the ``data`` directory from the DocumentRoot to a directory that cannot be accessed by the web server. The home directory is suitable for this purpose. So create a new directory (``snappymail-data``) in your home directory and move the contents of the ``data`` directory there. You can then delete the empty ``data`` directory.
+For security reasons, it is a good idea to move the ``data`` directory from the DocumentRoot to a directory that cannot be accessed by the web server. The home directory is suitable for this purpose. Move the directory ``data`` and rename it ``snappymail-data`` at the same time, so that you know later it is a part of SnappyMail.
 
 .. code-block:: console
 
