@@ -36,12 +36,12 @@ WordPress was released in 2003 by Matt Mullenweg and Mike Little as a fork of b2
 Prerequisites
 =============
 
-We're using PHP in the stable version 8.2:
+We're using PHP in the stable version 8.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.2'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -70,7 +70,7 @@ You will need to enter the following information:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
  [isabell@stardust html]$ wp core download --locale=en_US
- Downloading WordPress 6.1.1 (en_US)...
+ Downloading WordPress 6.7.1 (en_US)...
  md5 hash verified: aac77b8e3674c1e6aa7704b5d35fb2c4
  Success: WordPress downloaded.
  [isabell@stardust html]$ wp config create --dbname=${USER}_wordpress --dbuser=${USER} --dbpass=<password>
@@ -95,11 +95,38 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
  Success: Plugin already updated.
  [isabell@stardust ~]$
 
+
+Tuning
+======
+
+All steps described in the following are optional and serve to optimize runtime as well as automation of maintenance and care of the WordPress instance.
+
+Real cronjob
+------------
+
+By default, regularly occurring tasks are handled by the web server via wp-cron.php, which can result in longer page loading times for users. Using the `system task scheduler` instead frees up additional resources for visitors.
+
+To achieve this, first deactivate the execution via wp-cron.php:
+
+::
+
+  [isabell@stardust ~]$ wp config set DISABLE_WP_CRON true --path=/var/www/virtual/${USER}/html
+  Success: Updated the constant 'DISABLE_WP_CRON' in the 'wp-config.php' file with the value 'true'.
+  [isabell@stardust ~]$ 
+
+
+Add the following cronjob to your :manual:`crontab <daemons-cron>`:
+
+::
+
+  */5 * * * * sleep $(( 1 + RANDOM \% 60 )) ; wp cron event run --due-now --path=/var/www/virtual/${USER}/html/ >> ${HOME}/logs/wp-cron.log 2>&1
+
+
 .. _Wordpress: https://wordpress.org
 .. _automatically updates: https://wordpress.org/support/article/configuring-automatic-background-updates/
-
+.. _system task scheduler: https://developer.wordpress.org/plugins/cron/hooking-wp-cron-into-the-system-task-scheduler/
 ----
 
-Tested with WordPress 6.1.1, Uberspace 7.13.0, and PHP 8.2
+Tested with WordPress 6.7.1, Uberspace 7.16.2, and PHP 8.3
 
 .. author_list::
