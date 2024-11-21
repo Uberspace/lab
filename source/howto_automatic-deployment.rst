@@ -133,6 +133,7 @@ Create ``.github/workflows/deploy-to-uberspace.yml`` within the ``isabells-websi
               remote_host: ${{ vars.SSH_HOST }}
               remote_user: ${{ vars.SSH_USERNAME }}
               remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+              remote_key_pass: ${{ secrets.SSH_PRIVATE_KEY_PASS }} # Only needed if you added a passphrase upon creating the SSH key
 
 
 The `name` is shown in the UI of GitHub Actions to track the process of your deployment.
@@ -172,7 +173,7 @@ In your GitHub repository go to:
 - Secrets and variables
 - Actions
 
-Add the variables and secrets. Make sure you store the secrets in the ``Secrets`` tab and variables in the ``Variables`` tab.
+Add the variables and secrets. Make sure you store the secrets in the ``Secrets`` tab (using the "New repository secret" button) and variables in the ``Variables`` tab (using the "New repository variable" button).
 
 .. list-table::
    :widths: 25 25 50
@@ -184,6 +185,9 @@ Add the variables and secrets. Make sure you store the secrets in the ``Secrets`
    * - Secret
      - SSH_PRIVATE_KEY
      - Your private SSH Key
+   * - Secret
+     - SSH_PRIVATE_KEY_PASS
+     - The private SSH Key's passphrase (if any)
    * - Variable
      - SSH_USERNAME
      - Your username, don't add any whitespace (e.g. isabell)
@@ -375,6 +379,7 @@ If you used the given example, the file should look like this:
               remote_host: ${{ vars.SSH_HOST }}
               remote_user: ${{ vars.SSH_USERNAME }}
               remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+              remote_key_pass: ${{ secrets.SSH_PRIVATE_KEY_PASS }} # Only needed if you added a passphrase upon creating the SSH key
 
 ----
 
