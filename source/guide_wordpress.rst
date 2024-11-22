@@ -109,12 +109,12 @@ As `PHP Optimization`_ describes in detail, there are certain PHP settings that 
 
 .. code-block:: ini
 
-  max_execution_time 180
-  memory_limit 128M
-  post_max_size 64M
-  upload_max_filesize 64M
-  max_input_time 60
-  max_input_vars 3000
+  max_execution_time = 180
+  memory_limit = 128M
+  post_max_size = 64M
+  upload_max_filesize = 64M
+  max_input_time = 60
+  max_input_vars = 3000
 
 
 Then restart your PHP:
