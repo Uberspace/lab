@@ -121,23 +121,23 @@ Then restart your PHP:
 
 ::
 
-  [isabell@stardust ~]$ uberspace tools restart php 
-  Your PHP configuration has been loaded. 
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ uberspace tools restart php
+  Your PHP configuration has been loaded.
+  [isabell@stardust ~]$
 
 
 Real cronjob
 ------------
 
-By default, regularly occurring tasks are handled by the web server via wp-cron.php, which can result in longer page loading times for users. Using the `system task scheduler`_ instead frees up additional resources for visitors.
+By default, regularly occurring tasks are handled by the web server via ``wp-cron.php``, which can result in longer page loading times for users. Using the `system task scheduler`_ instead frees up additional resources for visitors.
 
-To achieve this, first deactivate the execution via wp-cron.php:
+To achieve this, first deactivate the execution via ``wp-cron.php``:
 
 ::
 
   [isabell@stardust ~]$ wp config set DISABLE_WP_CRON true --path=/var/www/virtual/${USER}/html
   Success: Updated the constant 'DISABLE_WP_CRON' in the 'wp-config.php' file with the value 'true'.
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
 Add the following cronjob to your :manual:`crontab <daemons-cron>`:
@@ -151,16 +151,20 @@ Add the following cronjob to your :manual:`crontab <daemons-cron>`:
 Cache
 -----
 In the advanced administration handbook you can read about `caching`_:
-"WordPress caching is the fastest way to improve performance. If your site is getting hit right now install W3 Total Cache, WP Super Cache or Cache Enabler."
 
-In this example, we are using `W3 Total Cache`_, PHP's own OPcache and `Redis`_ as non PHP backend to distribute the load. So at first you may follow the :lab:`redis guide <guide_redis>` on the lab and eanble `OPcache`_, which caches script bytecode in shared memory, so that scripts need not to be loaded, parsed and compiled on every request.
+    "WordPress caching is the fastest way to improve performance. If your site is getting hit right now install W3 Total Cache, WP Super Cache or Cache Enabler."
+
+In this example, we are using `W3 Total Cache`_, PHP's own OPcache and `Redis`_ as non PHP backend to distribute the load. So at first you may follow the
+:lab:`redis guide <guide_redis>` on the lab and eanble `OPcache`_, which caches script bytecode in shared memory, so that scripts need not to be loaded, parsed
+and compiled on every request.
+
 To enable it, determine your user id and create the file ``~/etc/php.d/opcache.ini`` with the following content - replace ``<uid>`` with your own - and restart PHP:
 
 ::
 
   [isabell@stardust ~]$ echo $UID
-  1312
-  [isabell@stardust ~]$ 
+  1337
+  [isabell@stardust ~]$
 
 
 .. code-block:: ini
@@ -180,26 +184,26 @@ To enable it, determine your user id and create the file ``~/etc/php.d/opcache.i
 
 ::
 
-  [isabell@stardust ~]$ uberspace tools restart php 
-  Your PHP configuration has been loaded. 
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$ uberspace tools restart php
+  Your PHP configuration has been loaded.
+  [isabell@stardust ~]$
 
 
 Then install and activate the w3 total plugin:
 
-:: 
+::
 
-  [isabell@stardust ~]$ wp plugin install w3-total-cache --activate --path=/var/www/virtual/${USER}/html 
+  [isabell@stardust ~]$ wp plugin install w3-total-cache --activate --path=/var/www/virtual/${USER}/html
   ...
   Activating 'w3-total-cache'...
   Plugin 'w3-total-cache' activated.
   Success: Installed 1 of 1 plugins.
-  [isabell@stardust ~]$ 
+  [isabell@stardust ~]$
 
 
-Now log in to your Wordpress and configure W3 Total Cache via the web interface that is now available. Opcode and browser cache are already active by default, additionally you can now activate page, database and object cache, save and enter ``/home/<user>/.redis/sock`` as redis host under the advanced settings, uncheck ``Verify TLS Certificates`` - the connection to redis is internal and via a socket that only you can access - and save again. 
+Now log in to your Wordpress and configure W3 Total Cache via the web interface that is now available. Opcode and browser cache are already active by default, additionally you can now activate page, database and object cache, save and enter ``/home/<user>/.redis/sock`` as redis host under the advanced settings, uncheck ``Verify TLS Certificates`` - the connection to redis is internal and via a socket that only you can access - and save again.
 
-It is also recommended to make use of the option to empty the cache via WP-Cron. Daily at a time with as little expected usage as possible should work for most instances.  
+It is also recommended to make use of the option to empty the cache via WP-Cron. Daily at a time with as little expected usage as possible should work for most instances.
 
 .. _Wordpress: https://wordpress.org
 .. _automatically updates: https://wordpress.org/support/article/configuring-automatic-background-updates/
