@@ -36,12 +36,12 @@ phpBB_ is released under the `GPLv2 License`_.
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 8.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -200,6 +200,6 @@ After that, purge the cache at the phpBB ACP. Under the "General" tab, there wil
 
 ----
 
-Tested with phpBB 3.3.14, PHP 8.1 and Uberspace 7.13.0
+Tested with phpBB 3.3.14, PHP 8.3 and Uberspace 7.16.3.
 
 .. author_list::
