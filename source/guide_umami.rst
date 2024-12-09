@@ -35,12 +35,12 @@ Prerequisites
 Node and npm
 ------------
 
-We're using :manual:`Node.js <lang-nodejs>` version 16:
+We're using :manual:`Node.js <lang-nodejs>` version 20:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show node
- Using 'Node.js' version: '16'
+ Using 'Node.js' version: '20'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -56,7 +56,7 @@ We clone the repository to our home directory and install the application.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ git clone https://github.com/mikecao/umami.git
+ [isabell@stardust ~]$ git clone https://github.com/umami-software/umami.git
  [isabell@stardust ~]$ cd umami
  [isabell@stardust umami]$ yarn install
  (...)
@@ -79,19 +79,7 @@ Use your favorite editor to create ``~/umami/.env`` with the following content:
 
   DATABASE_URL=mysql://isabell:mypassword@localhost:3306/isabell_umami
 
-Additionally you can define a HASH_SALT environment variable. That's no longer required, but optional if you still want to use it.
-
-.. code-block:: ini
-
-  HASH_SALT=(any random string)
-
-Create a ``~/umami/.babelrc`` file with the following content:
-
-.. code-block:: ini
-
-  {
-    "presets": ["next/babel"]
-  }
+.. warning:: Currently there seems to be a migration issue that leads to a fatal error. If you encounter an `Error: P3018` on the command `prisma migrate deploy` you need to apply a fix. Run the following command inside your `umami/`-directory: ``npx prisma migrate resolve --applied "05_add_visit_id"``
 
 Now you can create the production build:
 
@@ -102,14 +90,7 @@ Now you can create the production build:
 
 .. warning:: In newer versions, sometimes the build process fails without any errors in the `next build` stage. This is due to Uberspace killing the process for needing to much memory. If this happens, you will not be able to start the app – it will say `Error: Could not find a production build in the '/home/isabell/umami/.next [...]' directory`. Try running the build process via ``NODE_OPTIONS=--max_old_space_size=512 npm run build --debug`` to limit the RAM usage and build the app successfully.
 
-Create database tables
-
-.. code-block:: console
-
- [isabell@stardust umami]$ yarn update-db
- [isabell@stardust umami]$
-
-This will also create a login account with username admin and password umami.
+The first time the build is run successfully, it will create all the required database tables in your database.
 
 
 Setup daemon
@@ -152,11 +133,11 @@ Updates
 
 To update the application, stop the daemon and repeat the installation step.
 
-.. _umami: https://umami.is/
-.. _repository: https://github.com/mikecao/umami/
+.. _umami: https://umami.is/docs/install
+.. _repository: https://github.com/umami-software/umami
 
 ----
 
-Tested with umami 1.33.0 and Uberspace 7.12.2
+Tested with umami 2.13.2 and Uberspace 7.16.2
 
 .. author_list::
