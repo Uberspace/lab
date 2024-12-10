@@ -74,14 +74,9 @@ Create ``~/mysiteproject/.streamlit/config.toml``
   [server]
   headless = true
   port = 8501
-  baseUrlPath = "/mysiteproject"
-
-If running in web server document root "/" you can use the default value:
-
-.. code-block:: python‚
   baseUrlPath = ""
 
-`Streamlit configuration documentation <https://docs.streamlit.io/develop/api-reference/configuration/config.toml>`_ for more information.
+See `Streamlit configuration documentation <https://docs.streamlit.io/develop/api-reference/configuration/config.toml>`_ for more information.
 
 Example App
 ===========
@@ -106,12 +101,10 @@ Add Web Backend
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace web backend set /mysiteproject --http --port 8501
-  Set backend for /mysiteproject to port 8501; please make sure something is listening!
+  [isabell@stardust ~]$ uberspace web backend set / --http --port 8501
+  Set backend for / to port 8501; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
   [isabell@stardust ~]$
-
-.. note:: if deployed to web root, use ``/`` instead of ``/mysiteproject``
 
 Setup Service
 =============
@@ -150,7 +143,7 @@ Your backend should now point to the service; let's check it:
   :emphasize-lines: 1
 
   [isabell@stardust ~]$ uberspace web backend list
-  /mysiteproject http:8501 => OK, listening: PID 11264, /usr/bin/python3.11 /home/isabell/.local/bin/streamlit run app.py
+  / http:8501 => OK, listening: PID 11264, /usr/bin/python3.11 /home/isabell/.local/bin/streamlit run app.py
 
   [isabell@stardust ~]$
 
