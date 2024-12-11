@@ -99,6 +99,12 @@ close via ctrl+c
 Add Web Backend
 ===============
 
+.. note::
+
+    Streamlit is running on port 8501.
+
+.. include:: includes/web-backend.rst
+
 .. code-block:: console
 
   [isabell@stardust ~]$ uberspace web backend set / --http --port 8501
@@ -118,7 +124,8 @@ Create ``~/etc/services.d/mysiteproject.ini`` with the following content (take c
   directory=%(ENV_HOME)s/mysiteproject
   command=streamlit run app.py
 
-After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service:
+After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration and start the service.
+.. include:: includes/supervisord.rst
 
 ::
 
@@ -173,6 +180,6 @@ Documentation
 
 ----
 
-Tested with Streamlit 1.40.2, Python 3.11, Uberspace 7.15
+Tested with Streamlit 1.40.2, Python 3.11, Uberspace 7.16
 
 .. author_list::
