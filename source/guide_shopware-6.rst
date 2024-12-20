@@ -1,6 +1,7 @@
 .. highlight:: console
 
-.. author:: Yannick Ihmels <yannick@ihmels.org>
+.. author:: Dominik Kustermann <hilfe@edvstuttgart.de>  
+   Translated with ChatGPT
 
 .. tag:: lang-php
 .. tag:: web
@@ -18,7 +19,7 @@ Shopware 6
 
 .. tag_list::
 
-Shopware_ is a open source e-commerce software powered by Symfony_ and Vue.js_. The community
+Shopware_ is an open-source e-commerce software powered by Symfony_ and Vue.js_. The community
 edition is distributed under the MIT license. It's the successor of Shopware 5.
 
 ----
@@ -49,44 +50,9 @@ We're using PHP in the stable version 8.1:
 
 .. include:: includes/my-print-defaults.rst
 
-Your shop URL needs to be setup:
+Your shop URL needs to be set up:
 
 .. include:: includes/web-domain-list.rst
-
-Installation
-============
-
-Download
---------
-
-Check the `Shopware website`_ for the latest release and copy the URL to the ZIP file. Replace the
-URL with the one you just copied.
-
-.. code-block:: console
- :emphasize-lines: 2
-
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ curl -o shopware.zip https://releases.shopware.com/sw6/install_v6.4.17.2_4d2c85fb448571fa4f30edce635f33a67dda1d76.zip
- [isabell@stardust isabell]$ unzip -d shopware shopware.zip
- [isabell@stardust isabell]$ rm shopware.zip
- [isabell@stardust isabell]$
-
-Since Shopware uses the sub directory public/ as the :manual:`DocumentRoot <web-documentroot>`,
-you need to remove your DocumentRoot and create a symlink to the shopware/public/ directory:
-
-.. code-block:: console
-
- [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/shopware/public html
- [isabell@stardust isabell]$
-
-Setup
-------
-
-Point your browser to your domain, e.g. ``https://isabell.uber.space`` and follow the instructions
-to set up Shopware. We suggest you use an
-:manual_anchor:`additional database <database-mysql.html#additional-databases>`. For example:
-isabell_shopware.
 
 Configuration
 =============
@@ -100,29 +66,107 @@ To configure PHP according to the `Shopware system requirements`_, go to
  apc.enable_cli = 1
  opcache.memory_consumption = 256
 
-.. note:: After setting these PHP parameters, restart PHP to activate the changes
+After setting these PHP parameters, restart PHP to activate the changes
 
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools restart php
- Your php configuration has been loaded.
+ Your PHP configuration has been loaded.
  [isabell@stardust ~]$
 
-Updates
-=======
+Installation
+============
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
+Setup the Environment
+----------------------
 
+Switch to your user directory and create a folder for Shopware:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust $USER]$ mkdir shopware
+ [isabell@stardust $USER]$ cd shopware
+
+Download the Installer
+----------------------
+
+Download the Shopware installer script:
+
+.. code-block:: console
+ :emphasize-lines: 2
+
+ [isabell@stardust shopware]$ wget https://github.com/shopware/web-recovery/releases/latest/download/shopware-installer.phar.php
+
+Adjust DocumentRoot
+-------------------
+
+Move one level up, remove the default ``html`` symlink, and point it to the Shopware installation:
+
+.. code-block:: console
+
+ [isabell@stardust shopware]$ cd ..
+ [isabell@stardust $USER]$ rm -f html
+ [isabell@stardust $USER]$ ln -s /var/www/virtual/$USER/shopware html
+
+Complete the Installation
+-------------------------
+
+Open your browser and navigate to your domain, e.g., ``https://isabell.uber.space``, and follow the installation steps.
+
+.. warning:: When attempting to install the latest version of Shopware directly, I encountered an issue where Shopware requires MariaDB version 10.11. However, Uberspace currently provides only version 10.6.19 on Uberspace 7. According to Uberspace support, this limitation may be resolved with Uberspace 8. Until then, it is mandatory to install Shopware version 6.6.8, as any newer versions will cause issues.  
+
+    If errors occur during the process, refer to the :ref:`Troubleshooting <troubleshooting>` section below.
+
+Post-Installation Configuration
+===============================
+
+After installation, follow these steps for further configuration:
+
+1. Perform all available updates via `Shopware > Settings > System > Shopware Updates`.
+2. Update the DocumentRoot symlink to the ``public`` directory:
+
+   .. code-block:: console
+
+    [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+    [isabell@stardust $USER]$ rm html
+    [isabell@stardust $USER]$ ln -s /var/www/virtual/$USER/shopware/public html
+
+3. Adjust the API URL:
+
+   .. code-block:: console
+
+    [isabell@stardust $USER]$ cd /var/www/virtual/$USER/shopware
+    [isabell@stardust shopware]$ nano .env.local
+
+    Remove the ``/public`` part from ``APP_URL=[...]``.
+
+4. Upgrade plugins in the Shopware admin.
+5. Update the domain under "Sales Channels".
+
+Domain Adjustment
+=================
+
+If switching to a custom domain, repeat the steps above to update the symlink and API URL.
+
+.. _troubleshooting:
+
+Troubleshooting
+===============
+
+If issues occur during installation, delete the Shopware folder and database to start over:
+
+Follow the steps outlined in the `Download the Installer`_ section to restart the process.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ rm -rf /var/www/virtual/$USER/shopware
+ [isabell@stardust ~]$ mysql -e "DROP DATABASE isabell_shopware"
+
+----
 
 .. _Shopware: https://www.shopware.com
 .. _Shopware website: https://www.shopware.com/en/download/
 .. _Shopware system requirements: https://docs.shopware.com/en/shopware-6-en/first-steps/system-requirements
 .. _Symfony: https://symfony.com
 .. _Vue.js: https://vuejs.org
-.. _feed: https://github.com/shopware/platform/releases.atom
-
-----
-
-Tested with Shopware 6.4.17.2, PHP 8.1 and Uberspace 7.13.0
-
-.. author_list::
