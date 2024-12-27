@@ -1,4 +1,4 @@
-.. author:: Marc Redwerkz <https://rdwz.one>
+.. author:: Marc Redwerkz <https://wzrd.pw>
 
 .. tag:: lang-go
 .. tag:: audience-developers
@@ -57,18 +57,20 @@ Installation
 Download
 --------
 
-Check current version of Forgejo at releases_ page:
+Check current version of Forgejo at releases_ page or scrape it from feed_ with this one liner:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-7.0.3 https://codeberg.org/forgejo/forgejo/releases/download/v7.0.3/forgejo-7.0.3-linux-amd64
+  [isabell@stardust ~]$ feed_url='https://forgejo.org/releases/rss.xml'
+  [isabell@stardust ~]$ latest=$(curl -s "$feed_url" | grep -oP '<title>\Kv[0-9]+\.[0-9]+\.[0-9]+(?=</title>)' | head -n 1 | sed 's/^v//')
+  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-${latest} https://codeberg.org/forgejo/forgejo/releases/download/v${latest}/forgejo-${latest}-linux-amd64
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo-7.0.3’
+  Saving to: ‘/home/isabell/forgejo/forgejo-9.0.3’
 
-  100%[=======================================================>] 107.083.600 57.6MB/s   in 1.8s
+  100%[=======================================================>] 104,630,880 59.7MB/s   in 1.7s
 
-  2024-05-31 15:12:52 (57.6 MB/s) - ‘forgejo-7.0.3’ saved [107083600/107083600]
+  2024-12-27 17:08:07 (59.7 MB/s) - ‘/home/isabell/forgejo/forgejo-9.0.3’ saved [104630880/104630880]
 
   [isabell@stardust ~]$
 
@@ -80,8 +82,8 @@ Make the downloaded binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-7.0.3
-  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-7.0.3 ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-9.0.3
+  [isabell@stardust ~]$ ln --force --symbolic ~/forgejo/forgejo-9.0.3 ~/forgejo/forgejo
   [isabell@stardust ~]$
 
 
@@ -160,13 +162,13 @@ Migrate the database configurations:
 .. code-block:: console
 
   [isabell@stardust ~]$ ~/forgejo/forgejo migrate
-  2024/05/31 15:20:20 cmd/migrate.go:33:runMigrate() [I] AppPath: /home/isabell/forgejo/forgejo
-  2024/05/31 15:20:20 cmd/migrate.go:34:runMigrate() [I] AppWorkPath: /home/isabell/forgejo
-  2024/05/31 15:20:20 cmd/migrate.go:35:runMigrate() [I] Custom path: /home/isabell/forgejo/custom
-  2024/05/31 15:20:20 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
-  2024/05/31 15:20:20 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
-  2024/05/31 15:20:20 ...2@v2.27.1/command.go:272:Run() [I] PING DATABASE mysql
-  2024/05/31 15:20:20 ...dels/db/collation.go:178:preprocessDatabaseCollation() [W] Current database has been altered to use collation "utf8mb4_bin"
+  2024/12/27 17:17:48 cmd/migrate.go:33:runMigrate() [I] AppPath: /home/isabell/forgejo/forgejo
+  2024/12/27 17:17:48 cmd/migrate.go:34:runMigrate() [I] AppWorkPath: /home/isabell/forgejo
+  2024/12/27 17:17:48 cmd/migrate.go:35:runMigrate() [I] Custom path: /home/isabell/forgejo/custom
+  2024/12/27 17:17:48 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
+  2024/12/27 17:17:48 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
+  2024/12/27 17:17:48 ...2@v2.27.4/command.go:269:Run() [I] PING DATABASE mysql
+  2024/12/27 17:17:48 ...dels/db/collation.go:147:preprocessDatabaseCollation() [W] Current database has been altered to use collation "utf8mb4_bin"  
   [isabell@stardust ~]$
 
 Forgejo admin user
@@ -302,10 +304,10 @@ Forgejo using external renderer (optional)
 .. code-block:: console
 
   [isabell@stardust ~]$ gem install asciidoctor
-  Fetching asciidoctor-2.0.20.gem
+  Fetching asciidoctor-2.0.23.gem
   WARNING:  You don't have /home/isabell/.gem/ruby/3.2.0/bin in your PATH,
   	  gem executables will not run.
-  Successfully installed asciidoctor-2.0.20
+  Successfully installed asciidoctor-2.0.23
   1 gem installed
   [isabell@stardust ~]$
 
@@ -334,6 +336,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 7.0.3, Uberspace 7.15.15
+Tested with Forgejo 9.0.3, Uberspace 7.16.03
 
 .. author_list::
