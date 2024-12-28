@@ -83,7 +83,7 @@ Extract the downloaded binary:
 .. code-block:: console
 
   [isabell@stardust ~]$ unxz /tmp/forgejo-${latest}-linux-amd64.xz
-  [isabell@stardust ~]$ mv /tmp/forgejo-${latest}-linux-amd64 $FORGEJO_HOME
+  [isabell@stardust ~]$ mv /tmp/forgejo-${latest}-linux-amd64 $FORGEJO_HOME/forgejo-${latest}
   [isabell@stardust ~]$
 
 Set permissions
@@ -118,7 +118,8 @@ Create a custom directory for your configurations:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir --parents ~/forgejo/custom/conf/
+  [isabell@stardust ~]$ mkdir --parents $FORGEJO_HOME/custom/conf/
+  [isabell@stardust ~]$ touch $FORGEJO_HOME/custom/conf/app.ini
   [isabell@stardust ~]$
 
 Create a config file ``$FORGEJO_HOME/custom/conf/app.ini`` with the content of the following code block:
@@ -188,15 +189,15 @@ Set your admin login credentials:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
-  [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
+  [isabell@stardust ~]$ ADMIN_USERNAME='admin_user'
+  [isabell@stardust ~]$ ADMIN_PASSWORD='change_me!'
   [isabell@stardust ~]$ $FORGEJO_HOME/forgejo admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
   New user 'AdminUsername' has been successfully created!
   [isabell@stardust ~]$
 
 .. note::
 
-  Forgejo does not allow ``admin`` as name, of course you should choose and replace the password.
+  Forgejo does not allow ``admin`` as name, of course you should choose and replace the password!
 
 Finishing installation
 ======================
@@ -204,7 +205,12 @@ Finishing installation
 Service for Forgejo
 -------------------
 
-To keep Forgejo up and running in the background, you need to create a service that takes care for it. Create a config file ``~/etc/services.d/forgejo.ini`` for the service:
+.. code-block:: console
+
+  [isabell@stardust ~]$ touch $HOME/etc/services.d/forgejo.ini
+  [isabell@stardust ~]$
+
+To keep Forgejo up and running in the background, you need to create a service that takes care for it. Create a config file ``$HOME/etc/services.d/forgejo.ini`` for the service:
 
 .. code-block:: ini
 
@@ -216,7 +222,7 @@ To keep Forgejo up and running in the background, you need to create a service t
 
 .. include:: includes/supervisord.rst
 
-.. note:: The status of forgejo must be ``RUNNING``. If its not check the log output at ``~/logs/supervisord.log`` and the configuration file ``$FORGEJO_HOME/custom/conf/app.ini``.
+.. note:: The status of forgejo must be ``RUNNING``. If its not check the log output at ``$HOME/logs/supervisord.log`` and the configuration file ``$FORGEJO_HOME/custom/conf/app.ini``.
 
 Uberspace web backend
 ---------------------
@@ -230,7 +236,7 @@ Done. We can point our browser to https://isabell.uber.space/.
 Installed files and folders are:
 
 * ``$FORGEJO_HOME``
-* ``~/etc/services.d/forgejo.ini``
+* ``$HOME/etc/services.d/forgejo.ini``
 
 Forgejo SSH setup
 -----------------
@@ -262,7 +268,7 @@ To interact with Forgejo at our local machine like ``git clone isabell@isabell.u
 
   Host isabell.uber.space
       User isabell
-      IdentityFile ~/.ssh/id_your_git_key
+      IdentityFile ~/.ssh/id_ed25519
       IdentitiesOnly yes
 
 Backup
@@ -309,7 +315,7 @@ Forgejo using external renderer (optional)
 
 | Forgejo supports custom file renderings (i.e. Jupyter notebooks, asciidoc, etc.) through external binaries to provide a preview.
 | In this case we install an `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension for AsciiDoc.
-| AsciiDoctors location will be here: ``~/.gem/ruby/3.2.0/*/asciidoctor*``
+| AsciiDoctors location will be here: ``$HOME/.gem/ruby/3.2.0/*/asciidoctor*``
 
 .. code-block:: console
 
