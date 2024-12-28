@@ -61,7 +61,7 @@ Check current version of Forgejo at releases_ page or scrape it from feed_ with 
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ FORGEJO_HOME="~/forgejo"
+  [isabell@stardust ~]$ FORGEJO_HOME="$HOME/forgejo"
   [isabell@stardust ~]$ mkdir $FORGEJO_HOME
   [isabell@stardust ~]$ feed_url='https://forgejo.org/releases/rss.xml'
   [isabell@stardust ~]$ latest=$(curl -s "$feed_url" | grep -oP '<title>\Kv[0-9]+\.[0-9]+\.[0-9]+(?=</title>)' | head -n 1 | sed 's/^v//')
