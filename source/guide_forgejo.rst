@@ -42,7 +42,7 @@ We need a database:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo"
+  [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
   [isabell@stardust ~]$
 
 We can use the uberspace or `your own domain <https://manual.uberspace.de/web-domains/#setup>`_:
@@ -168,7 +168,6 @@ Migrate the database configurations:
   2024/12/27 17:17:48 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
   2024/12/27 17:17:48 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
   2024/12/27 17:17:48 ...2@v2.27.4/command.go:269:Run() [I] PING DATABASE mysql
-  2024/12/27 17:17:48 ...dels/db/collation.go:147:preprocessDatabaseCollation() [W] Current database has been altered to use collation "utf8mb4_bin"  
   [isabell@stardust ~]$
 
 Forgejo admin user
