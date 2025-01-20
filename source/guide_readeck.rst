@@ -38,14 +38,14 @@ Installation
 
 Create a new directory, enter the directory you just created, download the latest version, rename the file and make the binary executable:
 
-.. note:: Replace ``0.15.4`` with the version of the `latest release`_.
+.. note:: Replace ``0.17.1`` with the version of the `latest release`_.
 
 .. code-block:: console
 
  [isabell@stardust ~]$ mkdir ~/readeck
  [isabell@stardust ~]$ cd ~/readeck
- [isabell@stardust readeck]$ wget "https://codeberg.org/readeck/readeck/releases/download/0.15.4/readeck-0.15.4-linux-amd64"
- [isabell@stardust readeck]$ mv readeck-0.15.4-linux-amd64 readeck
+ [isabell@stardust readeck]$ wget "https://codeberg.org/readeck/readeck/releases/download/0.17.1/readeck-0.17.1-linux-amd64"
+ [isabell@stardust readeck]$ mv readeck-0.17.1-linux-amd64 readeck
  [isabell@stardust readeck]$ chmod +x readeck
  [isabell@stardust readeck]$
 
@@ -94,7 +94,7 @@ As a lot of data is written to the log in the standard configuration, it may be 
 
 ::
 
- log_level = "warning"
+ log_level = "warn"
 
 Readeck has a "forgot password" function, but this will only appear if the email section has been configured in the ``config.toml`` file. So if you want this, add the following:
 
@@ -153,6 +153,6 @@ To update the software, download the latest version, replace the executable file
 
 ----
 
-Tested with Readeck 0.15.4, Uberspace 7.16.2
+Tested with Readeck 0.17.1, Uberspace 7.16.4
 
 .. author_list::
