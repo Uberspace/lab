@@ -24,6 +24,9 @@ Slack, Signal, ...) if your job didn't execute on time. To track execution HTTP 
 
 It offers a web interface to manage your jobs to be monitored.
 
+.. note::
+  This guide is based upon the `selfhost documentation`_ of the Healthchecks maintainers.
+
 ----
 
 .. note:: For this guide you should be familiar with the basic concepts of
@@ -486,6 +489,8 @@ Backup
 ======
 
 All generated data you should backup regularly is saved to the database and the database is regularly backed up by Uberspace.
+
+.. _Selfhost documentation: https://healthchecks.io/docs/self_hosted/
 
 ----
 
