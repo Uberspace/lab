@@ -17,7 +17,7 @@ Concrete CMS
 
 .. tag_list::
 
-Concrete CMS_  is an open-source content management system for publishing content on the World Wide Web and intranets. Concrete CMS is designed for ease of use, for users with a minimum of technical skills. It enables users to edit site content directly from the page. It provides version management for every page, similar to wiki software, another type of web site development software. Concrete CMS allows users to edit images through an embedded editor on the page.
+`Concrete CMS`_  is an open-source content management system for publishing content on the World Wide Web and intranets. Concrete CMS is designed for ease of use, for users with a minimum of technical skills. It enables users to edit site content directly from the page. It provides version management for every page, similar to wiki software, another type of web site development software. Concrete CMS allows users to edit images through an embedded editor on the page.
 
 ----
 
