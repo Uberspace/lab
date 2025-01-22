@@ -8,7 +8,7 @@
 
 .. sidebar:: Logo
 
-  .. image:: _static/images/concrete_cms.svg
+  .. image:: _static/images/concrete_cms.png
       :align: center
 
 ############
