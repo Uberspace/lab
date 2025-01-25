@@ -54,10 +54,10 @@ We create the Database, download the latest version and unzip the file.
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_concrete_cms"
  [isabell@stardust ~]$ cd ~/html
  [isabell@stardust html]$ wget https://github.com/concretecms/concretecms/releases/download/9.3.9/concrete-cms-9.3.9.zip
- [isabell@stardust html]$ unzip 9.3.8.zip
- [isabell@stardust html]$ mv concrete-cms-9.3.8/* ./
- [isabell@stardust html]$ rmdir concrete-cms-9.3.8
- [isabell@stardust html]$ rm 9.3.8.zip
+ [isabell@stardust html]$ unzip 9.3.9.zip
+ [isabell@stardust html]$ mv concrete-cms-9.3.9/* ./
+ [isabell@stardust html]$ rmdir concrete-cms-9.3.9
+ [isabell@stardust html]$ rm 9.3.9.zip
  [isabell@stardust html]$
 
 Configuration
@@ -93,6 +93,6 @@ Navigate to Dashboard > System and Settings > Update Concrete.
 
 ----
 
-Tested with Concrete CMS 9.3.8, Uberspace 7.16.3, PHP 8.3
+Tested with Concrete CMS 9.3.9, Uberspace 7.16.3, PHP 8.3
 
 .. author_list::
