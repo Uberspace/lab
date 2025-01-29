@@ -7,6 +7,7 @@ You're very welcome to add your own guides to this repository. Also whenever you
 Before you begin writing:
 
 -   To signify intent and prevent duplicate work, please create an issue **before** working on your pull request.
+-   We know that CentOS 7 is old, we are working with full force on a successor for Uberspace 7 on a modern system. Please do not create guides where you compile software yourself. This also applies to compilers like GCC or similar.
 -   Check out our [style guide](STYLE.md).
 
 ## News Feed
