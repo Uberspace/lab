@@ -52,13 +52,13 @@ We create the Database, download the latest version and unzip the file.
 .. code-block:: console
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_concrete_cms"
- [isabell@stardust ~]$ cd ~/html
- [isabell@stardust html]$ wget https://github.com/concretecms/concretecms/releases/download/9.3.9/concrete-cms-9.3.9.zip
- [isabell@stardust html]$ unzip 9.3.9.zip
- [isabell@stardust html]$ mv concrete-cms-9.3.9/* ./
- [isabell@stardust html]$ rmdir concrete-cms-9.3.9
- [isabell@stardust html]$ rm 9.3.9.zip
- [isabell@stardust html]$
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/
+ [isabell@stardust isabell]$ wget https://github.com/concretecms/concretecms/releases/download/9.3.9/concrete-cms-9.3.9.zip
+ [isabell@stardust isabell]$ unzip concrete-cms-9.3.9.zip
+ [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
+ [isabell@stardust isabell]$ mv concrete-cms-9.3.9 html
+ [isabell@stardust isabell]$ rm concrete-cms-9.3.9.zip
+ [isabell@stardust isabell]$
 
 Configuration
 =============
