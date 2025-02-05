@@ -180,7 +180,7 @@ Now we are ready to launch PhantomBot again. You can run the bot with:
   [isabell@stardust phantombot]$ supervisorctl start phantombot
   [isabell@stardust phantombot]$
 
-.. _PhantomBot: https://phantom.bot/
+.. _PhantomBot: https://github.com/PhantomBot/
 .. _GitHub: https://github.com/PhantomBot/PhantomBot/releases/latest
 .. _GNU General Public License v3 (GPL-3): https://www.gnu.org/licenses/gpl-3.0.html
 
