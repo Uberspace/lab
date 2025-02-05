@@ -3,6 +3,8 @@
 .. author:: Arian Malek <https://fetziverse.de>
 .. author:: fapsi
 .. author:: magicfelix
+.. author:: mool
+.. author:: don-philipe
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -180,7 +182,7 @@ Download and extract the latest stable release from source into ``~/var/lib/pros
 
 ::
 
- [isabell@stardust ~]$ VERSION=0.11.5
+ [isabell@stardust ~]$ VERSION=0.12.5
  [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/var/lib/prosody
  [...]
  [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/var/lib/prosody/prosody-$VERSION.tar.gz --directory=$HOME/var/lib/prosody
@@ -192,7 +194,7 @@ Configure, build and install prosody:
 ::
 
  [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-$VERSION
- [isabell@stardust prosody-0.11.5]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
+ [isabell@stardust prosody-0.12.5]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
  Lua version detected: 5.1
  Lua interpreter found: /usr/bin/lua...
  Checking Lua includes... lua.h found in /usr/include/lua.h
@@ -205,11 +207,11 @@ Configure, build and install prosody:
 
  Done. You can now run 'make' to build.
 
- [isabell@stardust prosody-0.11.5]$ make
+ [isabell@stardust prosody-0.12.5]$ make
  [...]
- [isabell@stardust prosody-0.11.5]$ make install
+ [isabell@stardust prosody-0.12.5]$ make install
  [...]
- [isabell@stardust prosody-0.11.5]$
+ [isabell@stardust prosody-0.12.5]$
 
 Configuration
 =============
@@ -263,6 +265,11 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  ssl = {
    dhparam = "/home/isabell/etc/prosody/certs/dhparam-4096.pem";
    cafile = "/etc/pki/tls/certs/ca-bundle.trust.crt";
+   curveslist = {
+    "P-384",
+    "P-256",
+    "P-521",
+   };
  }
  pidfile = "/home/isabell/var/lib/prosody/prosody.pid";
  daemonize = false;
@@ -316,11 +323,12 @@ Create your first user:
 Voice/Video calls
 =================
 
-In order to enable voice/video calls a TURN and STUN server for NAT traversal is required. coturn_ is supported by prosody.
+In order to enable voice/video calls a TURN and STUN server for NAT traversal is required. `eturnal <https://eturnal.net>`_ can be used with prosody.
 
-First install coturn according to `coturn lab guide`_ and note listening port ``<port-1>`` as well as ``static-auth-secret``.
+According to uberspaces best practice you should use one account per application.
+First install eturnal according to the `eturnal lab guide <https://lab.uberspace.de/guide_eturnal/#eturnal>`_ and note the listening port ``<port-1>`` as well as ``<super-long-secret>``.
 
-To enable coturn, it must be configured as `external service`_ in ``prosody.cfg.lua``:
+To enable eturnal, it must be configured as `external service`_ in ``prosody.cfg.lua``:
 
 .. code-block:: lua
  :emphasize-lines: 11,16,17
@@ -334,14 +342,14 @@ To enable coturn, it must be configured as `external service`_ in ``prosody.cfg.
      {
          type = "stun",
          transport = "udp",
-         host = "isabell.uber.space",
+         host = "franziska.uber.space",
          port = <port-1>
      }, {
          type = "turn",
          transport = "udp",
-         host = "isabell.uber.space",
+         host = "franziska.uber.space",
          port = <port-1>,
-         secret = "<YOUR_SUPER_LONG_SUPER_SECRET_STATIC_PASSPHRASE>"
+         secret = "<super-long-secret>"
      }
  }
 

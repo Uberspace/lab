@@ -18,6 +18,12 @@
 Keycloak
 ########
 
+.. error::
+
+  This guide seems to be **broken** for the current versions of Keycloak, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1565
+
 .. tag_list::
 
 Keycloak is an open source identity and access management system which allows single sign-on for web applications and services.

@@ -36,10 +36,10 @@ Version
 At first get an overview which versions are available and will be supported for your project::
 
     [isabell@stardust ~]$ uberspace tools version list postgresql
-    - 10
-    - 11
     - 12
     - 13
+    - 14
+    - 15
     [isabell@stardust ~]$
 
 Select the desired postgresql version using::
