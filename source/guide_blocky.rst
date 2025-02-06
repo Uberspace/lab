@@ -49,20 +49,20 @@ To setup blocky you have to create a ``config.yml`` file with your favorite text
 
 .. code-block:: yaml
 
-upstreams:
-  groups:
-    default:
-      - https://dns.quad9.net/dns-query
-blocking:
-  denylists:
-    ads:
-      - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-  clientGroupsBlock:
-    default:
-      - ads
-ports:
-  dns:
-  http: 4000
+ upstreams:
+   groups:
+     default:
+       - https://dns.quad9.net/dns-query
+ blocking:
+   denylists:
+     ads:
+       - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+   clientGroupsBlock:
+     default:
+       - ads
+ ports:
+   dns:
+   http: 4000
 
 Service
 =======
@@ -71,12 +71,12 @@ Now you should set up a service that keeps blocky alive while you are gone. Crea
 
 .. code-block:: ini
 
-[program:blocky]
-directory=%(ENV_HOME)s/blocky
-command=%(ENV_HOME)s/blocky/blocky --config config.yml
-autostart=yes
-autorestart=yes
-startsecs=30
+ [program:blocky]
+ directory=%(ENV_HOME)s/blocky
+ command=%(ENV_HOME)s/blocky/blocky --config config.yml
+ autostart=yes
+ autorestart=yes
+ startsecs=30
 
 .. include:: includes/supervisord.rst
 
