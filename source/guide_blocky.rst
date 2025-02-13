@@ -91,8 +91,12 @@ Web Backend
 
 ::
 
- [isabell@stardust ~]$ uberspace web backend set / --http --port 4000
+ [isabell@stardust ~]$ uberspace web backend set /dns-query --http --port 4000
  [isabell@stardust ~]$
+
+.. note::
+
+    This configuration will expose Blocky only to DNS queries. If you wish to use the API or debug interface, set the path in the web backend to ``/``.
 
 Updates
 =======
