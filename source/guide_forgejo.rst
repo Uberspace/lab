@@ -240,7 +240,7 @@ Forgejo automatically writes an SSH key command for each added SSH key into the 
 
 .. code-block:: bash
 
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
+  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC... youruser@yourhost
 
 .. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
 
