@@ -1,7 +1,7 @@
 .. highlight:: console
 
+.. author:: Yannick Ihmels <yannick@ihmels.org>
 .. author:: Dominik Kustermann <hilfe@edvstuttgart.de>  
-   Translated with ChatGPT
 
 .. tag:: lang-php
 .. tag:: web
@@ -80,7 +80,7 @@ Installation
 Setup the Environment
 ----------------------
 
-Switch to your user directory and create a folder for Shopware:
+Switch to your DocumentRoot and create a folder for Shopware:
 
 .. code-block:: console
 
@@ -148,6 +148,11 @@ Domain Adjustment
 =================
 
 If switching to a custom domain, repeat the steps above to update the symlink and API URL.
+
+Versions
+=================
+
+Tested with Shopware 6.6.10.0 (initial installation required: 6.6.8), PHP 8.1, and Uberspace 7.16.5.
 
 .. _troubleshooting:
 
