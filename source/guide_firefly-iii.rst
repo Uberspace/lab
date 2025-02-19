@@ -209,7 +209,7 @@ This guide is based on the official `Firefly III setup guide`_ and the official 
 .. _github: https://github.com/firefly_iii/firefly_iii/
 .. _AGPLv3: http://www.gnu.org/licenses/agpl-3.0.en.html
 .. _release tracker: https://version.firefly-iii.org/
-.. _Firefly III setup guide: https://docs.firefly-iii.org/faq/self_hosted
+.. _Firefly III setup guide: https://docs.firefly-iii.org/how-to/firefly-iii/installation/self-managed/
 .. _Firefly III upgrade guide: https://docs.firefly-iii.org/how-to/firefly-iii/upgrade/self-managed/
 
 ----
