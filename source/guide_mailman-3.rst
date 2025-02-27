@@ -270,6 +270,7 @@ At first, we need to configure the REST interface of the core component. Create 
  [mailman]
  layout: custom
 
+ [archiver.hyperkitty]
  class: mailman_hyperkitty.Archiver
  enable: yes
  configuration: /home/isabell/etc/mailman/mailman-hyperkitty.cfg
