@@ -50,8 +50,11 @@ Installation
  :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly_iii 5.7.15
+ [isabell@stardust isabell]$ mkdir firefly_iii
+ [isabell@stardust isabell]$ wget https://github.com/firefly-iii/firefly-iii/releases/download/v6.2.9/FireflyIII-v6.2.9.tar.gz 
+ [isabell@stardust isabell]$ tar xvf FireflyIII-v6.2.9.tar.gz -C /var/www/firefly_iii
  [...]
+ [isabell@stardust isabell]$ rm FireflyIII-v6.2.9.tar.gz
  [isabell@stardust isabell]$
 
 After the installation has finished, remove your unused :manual:`DocumentRoot <web-documentroot>` and create a new symbolic link to the ``firefly_iii/public`` directory.
@@ -74,11 +77,12 @@ We suggest you use an :manual_anchor:`additional database <database-mysql.html#a
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_fireflyiii"
  [isabell@stardust ~]$
 
-``cd`` into your Firefly III directory.
+``cd`` into your Firefly III directory and create ``.env-file`` from example file.
 
 .. code-block:: bash
 
  [isabell@stardust isabell]$ cd firefly_iii
+ [isabell@stardust isabell]$ cp .env.example .env
  [isabell@stardust firefly_iii]$
 
 Edit the ``.env`` file to change the settings. Change ``DB_HOST`` to  ``localhost`` and change the values of ``DB_DATABASE``, ``DB_USERNAME``, ``DB_PASSWORD`` to reflect your MySQL :manual_anchor:`credentials <database-mysql.html#login-credentials>`.
@@ -94,7 +98,9 @@ To finish the installation and setup your database run the following commands:
 
  [isabell@stardust firefly_iii]$ php artisan migrate:refresh --seed
  [isabell@stardust firefly_iii]$ php artisan firefly-iii:upgrade-database
- [isabell@stardust firefly_iii]$ php artisan passport:install
+ [isabell@stardust firefly_iii]$ php artisan firefly-iii:correct-database
+ [isabell@stardust firefly_iii]$ php artisan firefly-iii:report-integrity
+ [isabell@stardust firefly_iii]$ php artisan firefly-iii:laravel-passport-keys
  [isabell@stardust firefly_iii]$
 
 Go to https://isabell.uber.space to access your Firefly III installation.
@@ -214,6 +220,6 @@ This guide is based on the official `Firefly III setup guide`_ and the official 
 
 ----
 
-Tested with Firefly III 6..1.9, Uberspace 7.15.11, and PHP 8.3
+Tested with Firefly III 6.2.9, Uberspace 7.16.5, and PHP 8.4
 
 .. author_list::
