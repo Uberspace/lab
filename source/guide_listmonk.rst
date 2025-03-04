@@ -3,7 +3,8 @@
 .. author:: FM <git.fm@mmw9.de>
 
 .. tag:: lang-go
-.. tag:: database
+.. tag:: mailinglist
+.. tag:: mail
 
 .. sidebar:: Logo
 
