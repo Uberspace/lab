@@ -14,7 +14,7 @@ learn how. Also, have a look at the [list of guides][] people are looking for!
 You need to have installed:
 
 -   Python (<= 3.11)
--   [Enchant library](https://abiword.github.io/enchant/)
+-   [Enchant library](https://rrthomas.github.io/enchant/)
 
 ## Development
 
