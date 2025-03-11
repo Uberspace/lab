@@ -183,7 +183,7 @@ Before keycloak can be updated, it needs to be shutdown first:
 
 ::
 
- [isabell@stardust ~]$ superivisorctl stop keycloak
+ [isabell@stardust ~]$ supervisorctl stop keycloak
  [isabell@stardust ~]$
 
 Next, install the new version as described in the :lab_anchor:`installation <guide_keycloak.html#installation>` chapter.
@@ -196,7 +196,7 @@ After that start Keyclock again:
 
 ::
 
- [isabell@stardust ~]$ superivisorctl start keycloak
+ [isabell@stardust ~]$ supervisorctl start keycloak
  [isabell@stardust ~]$
 
 Keycloak performs database migrations automatically.
