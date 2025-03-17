@@ -145,66 +145,75 @@ For Firefly III to be able to create recurring transactions a cronjob needs to b
 Updates
 =======
 
-.. warning:: Please make sure to backup your data before updating.
+.. warning:: 
+ Please make sure to backup your your database and ``storage`` Folder before updating.
 
-To update your Firefly III installation, ``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then download the new version via composer. Replace <next_version> with the latest version.
+Move the old installation
+#########################
+
+Move the old installation to a temporary directory, ie firefly_iii_old. Example commands:
 
 .. code-block:: bash
- :emphasize-lines: 1,2
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ composer create-project grumpydictator/firefly-iii --no-dev --prefer-dist firefly-iii-updated <next_version>
- [...]
- [isabell@stardust isabell]$
+ [isabell@stardust ~]$ mv /var/www/virtual/isabell/firefly_iii /var/www/virtual/isabell/firefly_iii_old
+ [isabell@stardust ~]$
 
+Download the latest release
+###########################
+
+To update your Firefly III installation, check for the latest version on the Firefly III `release tracker`_, then download the latest release as a tar.gz file from GitHub and unpack that version. Replace the <version> below with the version number.
+
+.. code-block:: bash
+
+ [isabell@stardust ~]$ cd ~/tmp
+ [isabell@stardust tmp]$ wget https://github.com/firefly-iii/firefly-iii/releases/download/<version>/FireflyIII-<version>.tar.gz
+ [isabell@stardust tmp]$ tar -xvf FireflyIII-<version>.tar.gz -C /var/www/virtual/isabell/firefly_iii --exclude='storage'
+ [isabell@stardust tmp]$ rm FireflyIII-<version>.tar.gz
+ [isabell@stardust tmp]$ 
+
+.. note::
+ When unpacking, make sure you do not overwrite the storage directory. That's why the ``--exclude='storage'`` part is important. It prevents the default storage directory from being extracted. You will overwrite it anyway from the old installation directory.
+
+Copy over files from the old version
+####################################
 
 After the installation has finished, we need to copy over our settings located in the ``.env`` file and other data.
 
 .. code-block:: bash
- :emphasize-lines: 1,2,3
 
- [isabell@stardust isabell]$ cp firefly_iii/.env firefly-iii-updated/.env
- [isabell@stardust isabell]$ cp firefly_iii/storage/upload/* firefly-iii-updated/storage/upload/
- [isabell@stardust isabell]$ cp firefly_iii/storage/export/* firefly-iii-updated/storage/export/
- [isabell@stardust isabell]$
+ [isabell@stardust ~]$ cp /var/www/virtual/isabell/firefly_iii_old/.env /var/www/virtual/isabell/firefly_iii/.env
+ [isabell@stardust ~]$ cp /var/www/virtual/isabell/firefly_iii_old/storage /var/www/virtual/isabell/firefly_iii
+ [isabell@stardust ~]$
 
-Navigate into the newly created folder and run the following commands to finish the upgrade:
+Run upgrade commands
+####################
 
-.. code-block:: bash
- :emphasize-lines: 1
-
- [isabell@stardust isabell]$ cd firefly-iii-updated
- [isabell@stardust firefly-iii-updated]$ rm -rf bootstrap/cache/*
- [isabell@stardust firefly-iii-updated]$ php artisan cache:clear
- [isabell@stardust firefly-iii-updated]$ php artisan migrate --seed
- [isabell@stardust firefly-iii-updated]$ php artisan firefly-iii:upgrade-database
- [isabell@stardust firefly-iii-updated]$ php artisan passport:install
- [isabell@stardust firefly-iii-updated]$ php artisan cache:clear
- [isabell@stardust firefly-iii-updated]$
-
-Move one folder up again and rename the updated folder, so our :manual:`document root <web-documentroot>` points to the updated version.
+Navigate into ``/var/www/virtual/isabell/firefly_iii`` directory and run the following commands to upgrade the database and the application:
 
 .. code-block:: bash
- :emphasize-lines: 1,2,3
 
- [isabell@stardust firefly-iii-updated]$ cd ..
- [isabell@stardust isabell]$ mv firefly_iii firefly-iii-old
- [isabell@stardust isabell]$ mv firefly-iii-updated firefly_iii
- [isabell@stardust isabell]$
+ [isabell@stardust ~]$ cd /var/www/virtual/isabell/firefly_iii
+ [isabell@stardust firefly-iii]$ php artisan migrate --seed
+ [isabell@stardust firefly-iii]$ php artisan cache:clear
+ [isabell@stardust firefly-iii]$ php artisan view:clear
+ [isabell@stardust firefly-iii]$ php artisan firefly-iii:upgrade-database
+ [isabell@stardust firefly-iii]$ php artisan firefly-iii:laravel-passport-keys
+ [isabell@stardust firefly-iii]$
 
 You can now go to https://isabell.uber.space to access your updated Firefly III installation.
 
 Acknowledgements
 ================
-This guide is based on the official `Firefly III setup guide`_.
+This guide is based on the official `Firefly III setup guide`_ and the official `Firefly III upgrade guide`_.
 
-.. _github: https://github.com/firefly-iii/firefly-iii/
+.. _github: https://github.com/firefly_iii/firefly_iii/
 .. _AGPLv3: http://www.gnu.org/licenses/agpl-3.0.en.html
 .. _release tracker: https://version.firefly-iii.org/
-.. _Firefly III setup guide: https://docs.firefly-iii.org/faq/self_hosted
+.. _Firefly III setup guide: https://docs.firefly-iii.org/how-to/firefly-iii/installation/self-managed/
+.. _Firefly III upgrade guide: https://docs.firefly-iii.org/how-to/firefly-iii/upgrade/self-managed/
 
 ----
 
-Tested with Firefly III 5.7.15, Uberspace 7.13.0, and PHP 8.1
+Tested with Firefly III 6..1.9, Uberspace 7.15.11, and PHP 8.3
 
 .. author_list::

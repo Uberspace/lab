@@ -70,7 +70,7 @@ Change into your :manual:`document root <web-documentroot>`, download the latest
 
   [isabell@stardust ~]$ cd html
   [isabell@stardust html]$ wget https://releases.wikimedia.org/mediawiki/1.41/mediawiki-1.41.1.tar.gz
-  [isabell@stardust html]$ tar -xzvf --strip-components=1 mediawiki-*.tar.gz
+  [isabell@stardust html]$ tar -xzvf mediawiki-*.tar.gz --strip-components=1
   [isabell@stardust html]$ rm mediawiki-*.tar.gz
 
 At this point, the wiki installer should be available at ``https://<UberspaceUsername>.uber.space/``, click *"complete the installation"* to start the graphical `configuration <https://www.mediawiki.org/wiki/Manual:Config_script>`_. Leave default values or change as desired. On the "Connect to database" page:
