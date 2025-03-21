@@ -70,7 +70,7 @@ Next create a symlink to point to the latest version:
 
 ::
 
-  [isabell@stardust ~]$ ln -sf ~/keycloak-26.1.2 ~/keycloak
+  [isabell@stardust ~]$ ln -sfn ~/keycloak-26.1.2 ~/keycloak
   [isabell@stardust ~]$
 
 Configuration
