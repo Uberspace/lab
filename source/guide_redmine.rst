@@ -24,6 +24,13 @@ This guide explains how to install Redmine on Uberspace.
 
 ----
 
+.. error::
+
+  This guide seems to be **broken** for all current versions of redmine, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1883
+
+
 .. note:: For this guide you should be familiar with the basic concepts of
 
   * Ruby_
