@@ -1,5 +1,6 @@
 .. highlight:: console
 .. author:: Arian Malek <https://fetziverse.de>
+.. author:: Tobias Quathamer <t.quathamer@mailbox.org>
 
 .. tag:: lang-php
 .. tag:: photo-management
@@ -53,12 +54,12 @@ Setup a new MySQL database for Pixelfed:
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_pixelfed"
  [isabell@stardust ~]$
 
-We're using :manual:`PHP <lang-php>` in the stable version 8.1:
+We're using :manual:`PHP <lang-php>` in the stable version 8.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 Redis
@@ -102,7 +103,7 @@ Remove your empty DocumentRoot and create a new symbolic link to the ``pixelfed/
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ ln -s /var/www/virtual/$USER/pixelfed/public html
+ [isabell@stardust isabell]$ ln --symbolic /var/www/virtual/$USER/pixelfed/public html
  [isabell@stardust isabell]$
 
 Configuration
@@ -166,14 +167,16 @@ Run database migrations:
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan migrate
  **************************************
- *     Application In Production!     *
+ *     APPLICATION IN PRODUCTION.     *
  **************************************
 
-  Do you really wish to run this command? (yes/no) [no]:
-  > yes
+ ┌ Are you sure you want to run this command? ──────────────────┐
+ │ o Yes / o No                                                 │
+ └──────────────────────────────────────────────────────────────┘
  [...]
- Migrating: 2020_07_25_230100_create_media_blocklists_table
- Migrated:  2020_07_25_230100_create_media_blocklists_table (0.09 seconds)
+  2025_01_18_061532_fix_local_statuses ........................ 4.28ms DONE
+  2025_01_28_102016_create_app_registers_table ............... 71.08ms DONE
+  2025_03_02_060626_add_count_to_app_registers_table ......... 35.32ms DONE
  [isabell@stardust pixelfed]$
 
 .. note:: If you get a database error when running the migrations, ensure you updated the ``.env`` with proper database variables and then run ``php artisan config:cache``.
@@ -187,14 +190,11 @@ Running the following commands is recommend when running Pixelfed in production:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan config:cache
- Configuration cache cleared!
- Configuration cached successfully!
+   INFO  Configuration cached successfully.
  [isabell@stardust pixelfed]$ php artisan route:cache
- Route cache cleared!
- Routes cached successfully!
+   INFO  Routes cached successfully.
  [isabell@stardust pixelfed]$ php artisan view:cache
- Compiled views cleared!
- Blade templates cached successfully!
+   INFO  Blade templates cached successfully.
  [isabell@stardust pixelfed]$
 
 Storage link
@@ -206,8 +206,7 @@ Link the storage directory:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan storage:link
- The [/var/www/virtual/isabell/pixelfed/public/storage] link has been connected to [/var/www/virtual/isabell/pixelfed/storage/app/public].
- The links have been created.
+    INFO  The [public/storage] link has been connected to [storage/app/public].
  [isabell@stardust pixelfed]$
 
 Import Places Data
@@ -240,13 +239,12 @@ To install Horizon, run the following commands and recache the routes:
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan horizon:install
- Publishing Horizon Service Provider...
- Publishing Horizon Assets...
- Publishing Horizon Configuration...
- Horizon scaffolding installed successfully.
+   INFO  Installing Horizon resources.
+  Service Provider .............................................. 4.18ms DONE
+  Configuration ................................................. 1.33ms DONE
+   INFO  Horizon scaffolding installed successfully.
  [isabell@stardust pixelfed]$ php artisan route:cache
- Route cache cleared!
- Routes cached successfully!
+   INFO  Routes cached successfully.
  [isabell@stardust pixelfed]$
 
 Setup the daemon. Create ``~/etc/services.d/horizon.ini`` with the following content:
@@ -286,7 +284,7 @@ Finishing installation
 Create your first user as admin with ``php artisan user:create``. This is also a good time to check your email configuration with the email verification:
 
 .. code-block:: console
- :emphasize-lines: 2, 6, 9, 12, 15, 18, 21, 24, 27
+ :emphasize-lines: 6, 9, 12, 15, 18, 21, 24, 27
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
  [isabell@stardust pixelfed]$ php artisan user:create
@@ -320,6 +318,34 @@ Create your first user as admin with ``php artisan user:create``. This is also a
 
 Now you can now login by visiting your domain and using the credentials you defined above.
 
+
+ActivityPub
+===========
+
+When you're happy with the configuration of your Pixelfed instance, you might
+want to enable ActivityPub federation.
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
+
+Open the file ``.env`` in an editor and change the following two settings:
+
+.. code-block:: none
+
+ ACTIVITY_PUB="true"
+ AP_REMOTE_FOLLOW="true"
+
+Now update the configuration cache and restart Horizon:
+
+::
+
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/pixelfed
+ [isabell@stardust pixelfed]$ php artisan config:cache
+   INFO  Configuration cached successfully.
+ [isabell@stardust pixelfed]$ supervisorctl restart horizon
+
+
 Updates
 =======
 
@@ -339,11 +365,11 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
  Installing dependencies (including require-dev) from lock file
  [...]
  [isabell@stardust pixelfed]$ php artisan config:cache
- Configuration cache cleared!
- Configuration cached successfully!
+   INFO  Configuration cached successfully.
  [isabell@stardust pixelfed]$ php artisan route:cache
- Route cache cleared!
- Routes cached successfully!
+   INFO  Routes cached successfully.
+ [isabell@stardust pixelfed]$ php artisan view:cache
+   INFO  Blade templates cached successfully.
  [isabell@stardust pixelfed]$ php artisan migrate --force
  [...]
  [isabell@stardust pixelfed]$ supervisorctl restart horizon
@@ -353,7 +379,7 @@ Run ``git pull`` in the pixelfed directory to pull the latest changes from upstr
 
 ----
 
-Tested with Pixelfed 0.11.4, Uberspace 7.13, PHP 8.1
+Tested with Pixelfed 0.12.4, Uberspace 7.16.5, PHP 8.3
 
 .. _Pixelfed: https://pixelfed.org
 .. _Redis: https://redios.io
