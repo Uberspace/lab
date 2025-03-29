@@ -2,6 +2,7 @@
 
 .. author:: Benjamin Wießneth <bwiessneth@gmail.com>
 .. author:: Christian Macht <https://github.com/cmacht/>
+.. author:: Barbara Shaurette <https://github.com/mechanicalgirl/>
 
 .. tag:: lang-python
 .. tag:: web
@@ -212,6 +213,52 @@ Uberspace web backend
 Flask is now running on the server, but because of Uberspace's :manual_anchor:`network infrastructure <background-network>` can not yet be accessed from the web.
 
 .. include:: includes/web-backend.rst
+
+
+Restarting Flask
+---------------------
+
+When you deploy changes to your code, you may need to restart Flask in order to see those changes applied.
+
+If you have deployed using ``rsync`` (see :lab:`Automatic Deployment with CI/CD <howto_automatic-deployment.html>`), the virtual Python environment where ``uwsgi`` was installed will probably have been overwritten. To verify, navigate to your project root and list the directory contents.
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd basic_flask
+  [isabell@stardust basic_flask]$ ls -l
+  -rw-r--r--.  1 isabell isabell  144 Mar 28 16:18 start.py
+  drwxr-xr-x.  1 isabell isabell  169 Mar 28 16:20 static
+  drwxr-xr-x.  1 isabell isabell  169 Mar 28 16:20 templates
+  -rw-r--r--.  1 isabell isabell   52 Mar 28 16:18 uwsgi.ini
+  [isabell@stardust ~]$
+
+If you do not see your ``ENV`` folder, you will need to create it, then reinstall ``uwsgi`` and any other application dependencies.
+
+.. code-block:: console
+
+  [isabell@stardust basic_flask]$ python3.11 -m venv ENV
+  [isabell@stardust basic_flask]$ source ENV/bin/activate
+  (ENV) [isabell@stardust basic_flask]$ pip install flask uwsgi
+  (ENV) [isabell@stardust basic_flask]$
+
+Finally, restart the ``flask`` process with ``supervisorctl``.
+
+.. code-block:: console
+
+  (ENV) [isabell@stardust basic_flask]$ supervisorctl restart flask
+  flask: stopped
+  flask: started
+  (ENV) [isabell@stardust basic_flask]$ supervisorctl status
+  flask   RUNNING   pid 28596, uptime 0:01:08
+  (ENV) [isabell@stardust basic_flask]$
+
+.. note::
+
+    If you are using a deploy process that does not overwrite your virtual Python environment, use the ``touch-reload`` option in your ``~/basic_flask/uwsgi.ini``. This option reloads uWSGI if the specified file is modified/touched (this can be any file in your project root).
+
+.. code-block:: ini
+
+  touch-reload = '/home/isabell/basic_flask/start.py'
 
 
 Best Practices
