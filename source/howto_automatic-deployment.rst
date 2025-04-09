@@ -127,7 +127,7 @@ Create ``.github/workflows/deploy-to-uberspace.yml`` within the ``isabells-websi
           - name: Deploy using Rsync
             uses: burnett01/rsync-deployments@6.0.0
             with:
-              switches: -avrh --delete
+              switches: -avrh --delete --exclude=".git" --exclude=".github"
               path: src/
               remote_path: /var/www/virtual/${{ vars.SSH_USERNAME }}/html
               remote_host: ${{ vars.SSH_HOST }}
@@ -143,6 +143,7 @@ The `job` with the name `build-and-deploy` runs on `ubuntu-latest`
 It automatically checks out the code to the runner and deploys the code to Uberspace using rsync.
 
 We are using an existing GitHub action called `burnett01/rsync-deployments@6.0.0`:
+Use the `--exclude` switch to identify any file or folder that you do not want included in the deploy.
 The `path` is the directory which you want to deploy. In our case it is the folder with the `index.html`, the `src` directory.
 The `remote_path` describes where we want to copy our website on the Uberspace.
 All `remote_...` params use secrets or variables. Those are set on the GitHub UI.
@@ -373,7 +374,7 @@ If you used the given example, the file should look like this:
           - name: Deploy using Rsync
             uses: burnett01/rsync-deployments@6.0.0
             with:
-              switches: -avrh --delete
+              switches: -avrh --delete --exclude=".git" --exclude=".github"
               path: src/
               remote_path: /
               remote_host: ${{ vars.SSH_HOST }}
