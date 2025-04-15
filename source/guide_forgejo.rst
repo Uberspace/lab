@@ -1,4 +1,4 @@
-.. author:: Marc Redwerkz <https://rdwz.one>
+.. author:: Marc Redwerkz <https://wzrd.pw>
 
 .. tag:: lang-go
 .. tag:: audience-developers
@@ -42,7 +42,7 @@ We need a database:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo"
+  [isabell@stardust ~]$ mysql --execute "CREATE DATABASE ${USER}_forgejo CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
   [isabell@stardust ~]$
 
 We can use the uberspace or `your own domain <https://manual.uberspace.de/web-domains/#setup>`_:
@@ -57,31 +57,44 @@ Installation
 Download
 --------
 
-Check current version of Forgejo at releases_ page:
+Check current version of Forgejo at releases_ page or scrape it from feed_ with this one liner:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir ~/forgejo
-  [isabell@stardust ~]$ wget -O ~/forgejo/forgejo-7.0.3 https://codeberg.org/forgejo/forgejo/releases/download/v7.0.3/forgejo-7.0.3-linux-amd64
+  [isabell@stardust ~]$ FORGEJO_HOME="$HOME/forgejo"
+  [isabell@stardust ~]$ mkdir $FORGEJO_HOME
+  [isabell@stardust ~]$ feed_url='https://forgejo.org/releases/rss.xml'
+  [isabell@stardust ~]$ latest=$(curl -s "$feed_url" | grep -oP '<title>\Kv[0-9]+\.[0-9]+\.[0-9]+(?=</title>)' | head -n 1 | sed 's/^v//')
+  [isabell@stardust ~]$ wget -c -P /tmp https://codeberg.org/forgejo/forgejo/releases/download/v${latest}/forgejo-${latest}-linux-amd64.xz
   [...]
-  Saving to: ‘/home/isabell/forgejo/forgejo-7.0.3’
+  Saving to: ‘/tmp/forgejo-9.0.3-linux-amd64.xz’
 
-  100%[=======================================================>] 107.083.600 57.6MB/s   in 1.8s
+  100%[=======================================================>] 33,034,888  62.1MB/s   in 0.5s
 
-  2024-05-31 15:12:52 (57.6 MB/s) - ‘forgejo-7.0.3’ saved [107083600/107083600]
+  2024-12-27 17:08:07 (62.1 MB/s) - ‘/tmp/forgejo-9.0.3-linux-amd64.xz’ saved [33034888/33034888]
 
   [isabell@stardust ~]$
 
+Extract binary
+--------------
+
+Extract the downloaded binary:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ unxz /tmp/forgejo-${latest}-linux-amd64.xz
+  [isabell@stardust ~]$ mv /tmp/forgejo-${latest}-linux-amd64 $FORGEJO_HOME/forgejo-${latest}
+  [isabell@stardust ~]$
 
 Set permissions
 ---------------
 
-Make the downloaded binary executable:
+Make the binary executable:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ chmod u+x ~/forgejo/forgejo-7.0.3
-  [isabell@stardust ~]$ ln -fs ~/forgejo/forgejo-7.0.3 ~/forgejo/forgejo
+  [isabell@stardust ~]$ chmod u+x $FORGEJO_HOME/forgejo-${latest}
+  [isabell@stardust ~]$ ln --force --symbolic $FORGEJO_HOME/forgejo-${latest} $FORGEJO_HOME/forgejo
   [isabell@stardust ~]$
 
 
@@ -92,7 +105,7 @@ We will need to create some random characters as a security key for the configur
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ~/forgejo/forgejo generate secret SECRET_KEY
+  [isabell@stardust ~]$ $FORGEJO_HOME/forgejo generate secret SECRET_KEY
   <RANDOM_64_CHARACTERS_FROM_GENERATOR>
   [isabell@stardust ~]$
 
@@ -105,10 +118,11 @@ Create a custom directory for your configurations:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ mkdir --parents ~/forgejo/custom/conf/
+  [isabell@stardust ~]$ mkdir --parents $FORGEJO_HOME/custom/conf/
+  [isabell@stardust ~]$ touch $FORGEJO_HOME/custom/conf/app.ini
   [isabell@stardust ~]$
 
-Create a config file ``~/forgejo/custom/conf/app.ini`` with the content of the following code block:
+Create a config file ``$FORGEJO_HOME/custom/conf/app.ini`` with the content of the following code block:
 
 .. note:: Replace ``isabell`` with your username, fill the database password ``PASSWD =`` with yours and enter the generated random into ``SECRET_KEY =``.
 
@@ -159,14 +173,13 @@ Migrate the database configurations:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ~/forgejo/forgejo migrate
-  2024/05/31 15:20:20 cmd/migrate.go:33:runMigrate() [I] AppPath: /home/isabell/forgejo/forgejo
-  2024/05/31 15:20:20 cmd/migrate.go:34:runMigrate() [I] AppWorkPath: /home/isabell/forgejo
-  2024/05/31 15:20:20 cmd/migrate.go:35:runMigrate() [I] Custom path: /home/isabell/forgejo/custom
-  2024/05/31 15:20:20 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
-  2024/05/31 15:20:20 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
-  2024/05/31 15:20:20 ...2@v2.27.1/command.go:272:Run() [I] PING DATABASE mysql
-  2024/05/31 15:20:20 ...dels/db/collation.go:178:preprocessDatabaseCollation() [W] Current database has been altered to use collation "utf8mb4_bin"
+  [isabell@stardust ~]$ $FORGEJO_HOME/forgejo migrate
+  2024/12/27 17:17:48 cmd/migrate.go:33:runMigrate() [I] AppPath: /home/isabell/forgejo/forgejo
+  2024/12/27 17:17:48 cmd/migrate.go:34:runMigrate() [I] AppWorkPath: /home/isabell/forgejo
+  2024/12/27 17:17:48 cmd/migrate.go:35:runMigrate() [I] Custom path: /home/isabell/forgejo/custom
+  2024/12/27 17:17:48 cmd/migrate.go:36:runMigrate() [I] Log path: /home/isabell/forgejo/log
+  2024/12/27 17:17:48 cmd/migrate.go:37:runMigrate() [I] Configuration file: /home/isabell/forgejo/custom/conf/app.ini
+  2024/12/27 17:17:48 ...2@v2.27.4/command.go:269:Run() [I] PING DATABASE mysql
   [isabell@stardust ~]$
 
 Forgejo admin user
@@ -176,15 +189,15 @@ Set your admin login credentials:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ ADMIN_USERNAME=AdminUsername
-  [isabell@stardust ~]$ ADMIN_PASSWORD='SuperSecretAdminPassword'
-  [isabell@stardust ~]$ ~/forgejo/forgejo admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
+  [isabell@stardust ~]$ ADMIN_USERNAME='admin_user'
+  [isabell@stardust ~]$ ADMIN_PASSWORD='change_me!'
+  [isabell@stardust ~]$ $FORGEJO_HOME/forgejo admin user create --username ${ADMIN_USERNAME} --password ${ADMIN_PASSWORD} --email ${USER}@uber.space --admin
   New user 'AdminUsername' has been successfully created!
   [isabell@stardust ~]$
 
 .. note::
 
-  Forgejo does not allow ``admin`` as name, of course you should choose and replace the password.
+  Forgejo does not allow ``admin`` as name, of course you should choose and replace the password!
 
 Finishing installation
 ======================
@@ -192,7 +205,12 @@ Finishing installation
 Service for Forgejo
 -------------------
 
-To keep Forgejo up and running in the background, you need to create a service that takes care for it. Create a config file ``~/etc/services.d/forgejo.ini`` for the service:
+.. code-block:: console
+
+  [isabell@stardust ~]$ touch $HOME/etc/services.d/forgejo.ini
+  [isabell@stardust ~]$
+
+To keep Forgejo up and running in the background, you need to create a service that takes care for it. Create a config file ``$HOME/etc/services.d/forgejo.ini`` for the service:
 
 .. code-block:: ini
 
@@ -204,7 +222,7 @@ To keep Forgejo up and running in the background, you need to create a service t
 
 .. include:: includes/supervisord.rst
 
-.. note:: The status of forgejo must be ``RUNNING``. If its not check the log output at ``~/logs/supervisord.log`` and the configuration file ``~/forgejo/custom/conf/app.ini``.
+.. note:: The status of forgejo must be ``RUNNING``. If its not check the log output at ``$HOME/logs/supervisord.log`` and the configuration file ``$FORGEJO_HOME/custom/conf/app.ini``.
 
 Uberspace web backend
 ---------------------
@@ -217,30 +235,30 @@ Done. We can point our browser to https://isabell.uber.space/.
 
 Installed files and folders are:
 
-* ``~/forgejo/``
-* ``~/etc/services.d/forgejo.ini``
+* ``$FORGEJO_HOME``
+* ``$HOME/etc/services.d/forgejo.ini``
 
 Forgejo SSH setup
 -----------------
 
 In order for users to be able to push to your Forgejo instance, they need to add their SSH keys via the menu in the upper right corner: ``->`` Settings ``->`` SSH/GPG Keys ``->`` Add Key.
-Forgejo automatically writes an SSH key command for each added SSH key into the ``/home/isabell/.ssh/authorized_keys`` file. The key line is something similar like:
+Forgejo automatically writes an SSH key command for each added SSH key into the ``$HOME/.ssh/authorized_keys`` file. The key line is something similar like:
 
 .. code-block:: bash
 
-  command="/home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
+  command="$FORGEJO_HOME/forgejo --config=$FORGEJO_HOME/custom/conf/app.ini serv key-1",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... user@host
 
 .. warning::
-  If you're using the same SSH key for authentication to Uberspace and Forgejo, you need to modify the server ``/home/isabell/.ssh/authorized_keys`` file.
+  If you're using the same SSH key for authentication to Uberspace and Forgejo, you need to modify the server ``$HOME/.ssh/authorized_keys`` file.
   Otherwise, you'll lock yourself out from accessing your Uberspace via SSH.
   An alternative approach would be to add another SSH key in the Uberspace dashboard and use that for logging into Uberspace.
 
-  * Be careful to keep the key number ``key-X``, keep your key ``ssh-...`` and change the username ``isabell`` to yours.
+  * Be careful to keep the key number ``key-X`` and keep your key ``ssh-...``.
   * Ensure that there is no second line propagating the same SSH key.
 
 .. code-block:: bash
 
-  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else /home/isabell/forgejo/forgejo --config=/home/isabell/forgejo/custom/conf/app.ini serv key-1; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding ssh-ed25519 AAAAC... youruser@yourhost
+  command="if [ -t 0 ]; then bash; elif [[ ${SSH_ORIGINAL_COMMAND} =~ ^(scp|rsync|mysqldump).* ]]; then eval ${SSH_ORIGINAL_COMMAND}; else $FORGEJO_HOME/forgejo --config=$FORGEJO_HOME/custom/conf/app.ini serv key-1; fi",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty,no-user-rc,restrict ssh-ed25519 AAAAC... youruser@yourhost
 
 .. note:: You can still use the Uberspace dashboard_ to add other ssh keys for running default ssh sessions.
 
@@ -250,7 +268,7 @@ To interact with Forgejo at our local machine like ``git clone isabell@isabell.u
 
   Host isabell.uber.space
       User isabell
-      IdentityFile ~/.ssh/id_your_git_key
+      IdentityFile ~/.ssh/id_ed25519
       IdentitiesOnly yes
 
 Backup
@@ -264,13 +282,13 @@ Execute the following command:
 
 ::
 
-  [isabell@stardust ~]$ ~/forgejo/forgejo dump
-  2024/05/31 15:39:13 ...s/setting/session.go:77:loadSessionFrom() [I] Session Service Enabled
+  [isabell@stardust ~]$ $FORGEJO_HOME/forgejo dump
+  2024/12/27 17:39:13 ...s/setting/session.go:77:loadSessionFrom() [I] Session Service Enabled
   [...]
-  2024/05/31 15:39:13 cmd/dump.go:265:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
-  2024/05/31 15:39:13 cmd/dump.go:306:runDump() [I] Dumping database...
+  2024/12/27 17:39:13 cmd/dump.go:265:runDump() [I] Dumping local repositories... /home/isabell/forgejo/data/forgejo-repositories
+  2024/12/27 17:39:13 cmd/dump.go:306:runDump() [I] Dumping database...
   [...]
-  2024/05/31 15:39:13 cmd/dump.go:430:runDump() [I] Finish dumping in file forgejo-dump-1717162753.zip
+  2024/12/72 17:39:13 cmd/dump.go:430:runDump() [I] Finish dumping in file forgejo-dump-1735313953.zip
   [isabell@stardust ~]$
 
 Updates
@@ -284,7 +302,7 @@ Manual updating
 
 * Do the *Download* and *Set permissions* steps from above.
 * Check if you have to modify the config file. (See documentation_ and the `file sample <https://codeberg.org/forgejo/forgejo/raw/branch/main/custom/conf/app.example.ini>`_.)
-* Do the database migration: ``~/forgejo/forgejo migrate``
+* Do the database migration: ``$FORGEJO_HOME/forgejo migrate``
 * Start the application ``supervisorctl restart forgejo``
 * Check if the application is running ``supervisorctl status forgejo``
 
@@ -297,21 +315,21 @@ Forgejo using external renderer (optional)
 
 | Forgejo supports custom file renderings (i.e. Jupyter notebooks, asciidoc, etc.) through external binaries to provide a preview.
 | In this case we install an `external rendering <https://docs.gitea.io/en-us/external-renderers/>`_ extension for AsciiDoc.
-| AsciiDoctors location will be here: ``~/.gem/ruby/3.2.0/*/asciidoctor*``
+| AsciiDoctors location will be here: ``$HOME/.gem/ruby/3.2.0/*/asciidoctor*``
 
 .. code-block:: console
 
   [isabell@stardust ~]$ gem install asciidoctor
-  Fetching asciidoctor-2.0.20.gem
+  Fetching asciidoctor-2.0.23.gem
   WARNING:  You don't have /home/isabell/.gem/ruby/3.2.0/bin in your PATH,
   	  gem executables will not run.
-  Successfully installed asciidoctor-2.0.20
+  Successfully installed asciidoctor-2.0.23
   1 gem installed
   [isabell@stardust ~]$
 
 .. note:: Don't be confused by the warning that the bin folder isn't in the path. Uberspace is taking care of it. You can check with ``[isabell@stardust ~]$ which asciidoctor``.
 
-Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
+Now we have to append the config file ``$FORGEJO_HOME/custom/conf/app.ini`` with:
 
 .. code-block:: ini
 
@@ -334,6 +352,6 @@ Now we have to append the config file ``~/forgejo/custom/conf/app.ini`` with:
 
 ----
 
-Tested with Forgejo 7.0.3, Uberspace 7.15.15
+Tested with Forgejo 9.0.3, Uberspace 7.16.03
 
 .. author_list::
