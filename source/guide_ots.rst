@@ -68,11 +68,6 @@ Web Backend
 
 .. include:: includes/web-backend.rst
 
-::
-
- [isabell@stardust ~]$ uberspace web backend set / --http --port 3000 --remove-prefix
- [isabell@stardust ~]$
-
 Updates
 =======
 
