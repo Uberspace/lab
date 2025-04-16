@@ -152,7 +152,7 @@ If switching to a custom domain, repeat the steps above to update the symlink an
 Versions
 =================
 
-Tested with Shopware 6.6.10.0 (initial installation required: 6.6.8), PHP 8.1, and Uberspace 7.16.5.
+Tested with Shopware 6.6.10.3 (initial installation required: 6.6.8), PHP 8.1.29, and Uberspace 7.16.7.
 
 .. _troubleshooting:
 
