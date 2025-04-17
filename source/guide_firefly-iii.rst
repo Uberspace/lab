@@ -35,6 +35,14 @@ Firefly III is released under the `AGPLv3`_ license. All relevant information ca
 Prerequisites
 =============
 
+We’re using PHP version 8.1:
+
+.. code-block:: bash
+
+  [isabell@stardust ~]$ uberspace tools version show php
+  Using 'PHP' version: '8.4'
+  [isabell@stardust ~]$
+
 .. include:: includes/my-print-defaults.rst
 
 Your domain needs to be set up:
@@ -47,7 +55,6 @@ Installation
 ``cd`` to the directory one level above your :manual:`document root <web-documentroot>`, then install Firefly III via composer. You can find the latest version on the `release tracker`_, replace the version below with the version number.
 
 .. code-block:: bash
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ mkdir firefly_iii
@@ -72,7 +79,6 @@ Configuration
 We suggest you use an :manual_anchor:`additional database <database-mysql.html#additional-databases>` for Firefly III to save your data. You have to create this database first.
 
 .. code-block:: bash
- :emphasize-lines: 1
 
  [isabell@stardust ~]$ mysql -e "CREATE DATABASE ${USER}_fireflyiii"
  [isabell@stardust ~]$
@@ -94,7 +100,6 @@ Finishing installation
 To finish the installation and setup your database run the following commands:
 
 .. code-block:: bash
- :emphasize-lines: 1,2,3
 
  [isabell@stardust firefly_iii]$ php artisan migrate:refresh --seed
  [isabell@stardust firefly_iii]$ php artisan firefly-iii:upgrade-database
