@@ -52,7 +52,7 @@ Installation
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ mkdir firefly_iii
  [isabell@stardust isabell]$ wget https://github.com/firefly-iii/firefly-iii/releases/download/v6.2.9/FireflyIII-v6.2.9.tar.gz 
- [isabell@stardust isabell]$ tar xvf FireflyIII-v6.2.9.tar.gz -C /var/www/firefly_iii
+ [isabell@stardust isabell]$ tar xvf FireflyIII-v6.2.9.tar.gz -C /var/www/virtual/$USER/firefly_iii
  [...]
  [isabell@stardust isabell]$ rm FireflyIII-v6.2.9.tar.gz
  [isabell@stardust isabell]$
