@@ -74,10 +74,10 @@ Check the `recorder release page`_ for the latest version and download and extra
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://github.com/owntracks/recorder/archive/refs/tags/0.9.7.tar.gz
-  [isabell@stardust ~]$ tar xfz 0.9.7.tar.gz
-  [isabell@stardust ~]$ cd recorder-0.9.7/
-  [isabell@stardust recorder-0.9.7]$ cp config.mk.in config.mk
+  [isabell@stardust ~]$ wget https://github.com/owntracks/recorder/archive/refs/tags/1.0.0.tar.gz
+  [isabell@stardust ~]$ tar xfz 1.0.0.tar.gz
+  [isabell@stardust ~]$ cd recorder-1.0.0/
+  [isabell@stardust recorder-1.0.0]$ cp config.mk.in config.mk
 
 You need to change some values to change in ``config.mk``, some can be overriden later in the configuration, but not all of them:
 
@@ -92,22 +92,22 @@ You need to change some values to change in ``config.mk``, some can be overriden
 
 .. code-block:: console
 
-  [isabell@stardust recorder-0.9.7]$ make
+  [isabell@stardust recorder-1.0.0]$ make
   [...]
-  [isabell@stardust recorder-0.9.7]$
+  [isabell@stardust recorder-1.0.0]$
 
 Now create the bin and the config directory and copy the binaries there.
 
 .. code-block:: console
 
- [isabell@stardust recorder-0.9.7]$ mkdir -p ~/bin ~/etc/default/ ~/lib/ot-recorder/htdocs
- [isabell@stardust recorder-0.9.7]$ install --target-directory=/home/isabell/bin/ --mode=0755 ocat ot-recorder
- [isabell@stardust recorder-0.9.7]$
+ [isabell@stardust recorder-1.0.0]$ mkdir -p ~/bin ~/etc/default/ ~/lib/ot-recorder/htdocs
+ [isabell@stardust recorder-1.0.0]$ install --target-directory=/home/isabell/bin/ --mode=0755 ocat ot-recorder
+ [isabell@stardust recorder-1.0.0]$
 
 .. code-block:: console
 
   [isabell@stardust ~]$ ocat --version
-  This is OwnTracks Recorder, version 0.9.7
+  This is OwnTracks Recorder, version 1.0.0
   built with:
           WITH_MQTT = yes
           WITH_HTTP = yes
@@ -168,14 +168,14 @@ To set up the web frontend you need to download the latest archive from the `fro
 
 .. code-block:: console
 
- [isabell@stardust ~]$ wget https://github.com/owntracks/frontend/archive/refs/tags/v2.12.0.tar.gz
- [isabell@stardust ~]$ tar xfz v2.12.0.tar.gz
- [isabell@stardust ~]$ cd frontend-2.12.0/
- [isabell@stardust frontend-2.12.0]$ yarn install
- [isabell@stardust frontend-2.12.0]$ yarn build
- [isabell@stardust frontend-2.12.0]$ mkdir /var/www/virtual/$USER/isabell.uber.space/
- [isabell@stardust frontend-2.12.0]$ cp -r dist/* /var/www/virtual/$USER/isabell.uber.space/
- [isabell@stardust frontend-2.12.0]$
+ [isabell@stardust ~]$ wget https://github.com/owntracks/frontend/archive/refs/tags/v2.15.3.tar.gz
+ [isabell@stardust ~]$ tar xfz v2.15.3.tar.gz
+ [isabell@stardust ~]$ cd frontend-2.15.3/
+ [isabell@stardust frontend-2.15.3]$ yarn install
+ [isabell@stardust frontend-2.15.3]$ yarn build
+ [isabell@stardust frontend-2.15.3]$ mkdir /var/www/virtual/$USER/isabell.uber.space/
+ [isabell@stardust frontend-2.15.3]$ cp -r dist/* /var/www/virtual/$USER/isabell.uber.space/
+ [isabell@stardust frontend-2.15.3]$
 
 .. warning:: Since recording your movements is a sensitive thing you should protect that web frontend with a ``.htaccess`` file with basic auth.
 
@@ -202,9 +202,9 @@ To set up views you need to copy some more files and map a couple more paths to 
 
 .. code-block:: console
 
- [isabell@stardust ~]$ cd ~/recorder-0.9.7/
- [isabell@stardust recorder-0.9.7]$ cp -r docroot/static docroot/utils ~/lib/ot-recorder/htdocs/
- [isabell@stardust recorder-0.9.7]$
+ [isabell@stardust ~]$ cd ~/recorder-1.0.0/
+ [isabell@stardust recorder-1.0.0]$ cp -r docroot/static docroot/utils ~/lib/ot-recorder/htdocs/
+ [isabell@stardust recorder-1.0.0]$
 
 For the backend configuration:
 
@@ -222,8 +222,8 @@ Cleanup
 
 .. code-block:: console
 
- [isabell@stardust recorder-0.9.7]$ cd ~
- [isabell@stardust ~]$ rm -rf 0.9.7.tgz recorder-0.9.7
+ [isabell@stardust recorder-1.0.0]$ cd ~
+ [isabell@stardust ~]$ rm -rf 1.0.0.tgz recorder-1.0.0
  [isabell@stardust ~]$
 
 Client Setup
@@ -276,6 +276,6 @@ Restart your supervisorctl afterwards. If it's not in state RUNNING, check the l
 
 ----
 
-Tested with OwnTracks 0.9.7, Uberspace 7.15.10
+Tested with OwnTracks 1.0.0, Uberspace 7.16.7
 
 .. author_list::
