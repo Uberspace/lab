@@ -174,7 +174,7 @@ To set up the web frontend you need to download the latest archive from the `fro
  [isabell@stardust frontend-2.12.0]$ yarn install
  [isabell@stardust frontend-2.12.0]$ yarn build
  [isabell@stardust frontend-2.12.0]$ mkdir /var/www/virtual/$USER/isabell.uber.space/
- [isabell@stardust frontend-2.12.0]$ cp dist/* /var/www/virtual/$USER/isabell.uber.space/
+ [isabell@stardust frontend-2.12.0]$ cp -r dist/* /var/www/virtual/$USER/isabell.uber.space/
  [isabell@stardust frontend-2.12.0]$
 
 .. warning:: Since recording your movements is a sensitive thing you should protect that web frontend with a ``.htaccess`` file with basic auth.
