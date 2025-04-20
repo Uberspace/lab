@@ -48,7 +48,7 @@ Create a directory structure in your home path and ``cd`` into the root of it.
   [isabell@stardust ~]$ cd ~/gotosocial
   [isabell@stardust gotosocial]$
 
-Download the latest pre-comppiled binary_ from the releases_ page.
+Download the latest pre-compiled binary_ from the releases_ page.
 
 .. code-block:: console
 
