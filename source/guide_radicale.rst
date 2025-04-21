@@ -195,7 +195,7 @@ Updates
 
 .. _Radicale: https://radicale.org/
 .. _Changelog: https://github.com/Kozea/Radicale/releases/
-.. _Config: https://radicale.org/3.0.html#documentation
+.. _Config: https://radicale.org/v3.html#documentation-1
 
 ----
 
