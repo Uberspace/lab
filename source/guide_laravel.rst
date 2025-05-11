@@ -96,14 +96,14 @@ This information we need to set in the .env file located in the project root fol
 
 Adjust the following lines:
 
-.. code-block:: apacheconf
+.. code-block:: console
  APP_NAME=LARAVEL
  DB_CONNECTION=mysql
- DB_HOST=<YOUR HOST NAME>
+ DB_HOST=127.0.0.1
  DB_PORT=3306
- DB_DATABASE=<UBERSPACE USERNAME>
- DB_USERNAME=<UBERSPACE USERNAME>
- DB_PASSWORD=<SQL TOP SECRED CREDENTIAL>
+ DB_DATABASE=isabell
+ DB_USERNAME=isabell
+ DB_PASSWORD=MySuperSecretPassword
 
 
 Create Database tables
