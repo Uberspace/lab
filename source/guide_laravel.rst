@@ -96,7 +96,8 @@ This information we need to set in the .env file located in the project root fol
 
 Adjust the following lines:
 
-.. code-block:: console
+::
+
  APP_NAME=LARAVEL
  DB_CONNECTION=mysql
  DB_HOST=127.0.0.1
