@@ -34,7 +34,7 @@ All relevant legal information can be found here
 Prerequisites
 =============
 
-DatedMail uses Sieve filters to bounce mails. Therefore the spamfolder needs to be enabled. So first we check that the spamfolder is correctly enabled.
+DatedMail uses Sieve filters to reject mails. Therefore the spamfolder needs to be enabled. So first we check that the spamfolder is correctly enabled.
 
 .. code-block:: console
 
