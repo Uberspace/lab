@@ -168,7 +168,7 @@ pretix doesn't serve static files by itself. We can use apache to do that for us
 
 ::
 
- [isabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist /var/www/virtual/isabell/html/static
+ [isabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist/* /var/www/virtual/isabell/html/static
  [isabell@stardust ~]$
 
 Service
@@ -263,7 +263,7 @@ Then re-run the Initialize database steps and restart the service like so:
  [isabell@stardust ~]$ python3.11 -m pretix migrate
  [isabell@stardust ~]$ python3.11 -m pretix rebuild
  [isabell@stardust ~]$ python3.11 -m pretix updateassets
- [usabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist /var/www/virtual/isabell/html/static
+ [usabell@stardust ~]$ cp -r ~/.local/lib/python3.11/site-packages/pretix/static.dist/* /var/www/virtual/isabell/html/static
  [isabell@stardust ~]$ supervisorctl restart pretix
  [isabell@stardust ~]$
 
