@@ -39,7 +39,7 @@ Your URL needs to be setup:
 Installation
 ============
 
-Download the most recent Linux TAR archive from the `Mattermost website`_:
+Download a recent Linux TAR archive from the `Mattermost website`_; keep in mind that Mattermost stopped supporting MySQL officially at version 10, so you may want to pick a 9.x version or start with `PostgreSQL`_.
 
 .. code-block:: console
 
@@ -171,6 +171,10 @@ When upgrading to Mattermost 6.4 or newer you need to change the collation of th
   [isabell@stardust ~]$ mysql -e "ALTER DATABASE isabell_mattermost COLLATE = utf8mb4_general_ci;"
   [isabell@stardust ~]$
 
+When upgrading to Mattermost 10.0 or newer, you may need to migrate your database to `PostgreSQL`_ first. You can find links to the documentation and uberspace-specific tips in this issue: https://github.com/Uberspace/lab/issues/1500. The upgrade instructions below will work even for Mattermost 10.7, but you will see errors in the logs afterwards, particularly around mobile notifications.
+
+When upgrading to Mattermost 11 or newer, you definitely need to migrate your database to `PostgreSQL`_ first.
+
 Automatic Update
 -----------------
 
@@ -257,10 +261,11 @@ Use the script attached to update Mattermost to the current version. Run the scr
 
 .. _`Mattermost website`: https://mattermost.com/download/
 .. _`Mattermost`: https://mattermost.com/
+.. _`PostgreSQL`: https://lab.uberspace.de/guide_postgresql/
 
 
 ----
 
-Tested with Mattermost 7.7.1 and Uberspace 7.13.0
+Tested with Mattermost 7.7.1 and Uberspace 7.13.0.
 
 .. author_list::
