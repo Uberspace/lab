@@ -39,12 +39,12 @@ FreshRSS is free and open source software licensed under the `GNU AGPLv3`_.
 Prerequisites
 =============
 
-We're using PHP in the stable version 8.1:
+We're using PHP in the stable version 8.4:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.4'
  [isabell@stardust ~]$
 
 .. include:: includes/my-print-defaults.rst
@@ -97,14 +97,14 @@ You can setup your FreshRSS installation using FreshRSS's command line interface
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ cd FreshRSS-latest
- [isabell@stardust FreshRSS-latest]$ ./cli/do-install.php --default_user <yourfreshrssusername>  --base_url https://isabell.uber.space --title FreshRSS --api_enabled --db-type mysql --db-host localhost:3306 --db-user ${USER} --db-password '<yourmysqlpassword>' --db-base  ${USER}_freshrss
+ [isabell@stardust FreshRSS-latest]$ ./cli/do-install.php --default-user <yourfreshrssusername>  --base-url https://isabell.uber.space --title FreshRSS --api-enabled --db-type mysql --db-host localhost:3306 --db-user ${USER} --db-password '<yourmysqlpassword>' --db-base  ${USER}_freshrss
  FreshRSS install…
  ℹ️ Remember to create the default user: isabell     ./cli/create-user.php --user isabell --password 'password' --more-options
- ℹ️ Remember to re-apply the appropriate access rights, such as:  sudo chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
+ ℹ️ Remember to re-apply the appropriate access rights, such as:	sudo cli/access-permissions.sh
  [isabell@stardust FreshRSS-latest]$ ./cli/create-user.php --user <yourfrehrssusername> --password <yourfreshrsspassword>
  FreshRSS creating user “isabell”…
  ℹ️ Remember to refresh the feeds of the user: isabell       ./cli/actualize-user.php --user isabell
- ℹ️ Remember to re-apply the appropriate access rights, such as:  sudo chown -R :www-data . && sudo chmod -R g+r . && sudo chmod -R g+w ./data/
+ ℹ️ Remember to re-apply the appropriate access rights, such as:	sudo cli/access-permissions.sh
  [isabell@stardust FreshRSS-latest]$
 
 Make sure to replace the usernames, passwords, and base URL, so instead of ``<yourfreshrssusername>`` use the user name of your choice, etc.
@@ -174,6 +174,6 @@ After pressing the button “check for new updates”, the "install" button will
 
 ----
 
-Tested with FreshRSS 1.24.3, Uberspace 7.15.0, and PHP 8.3.8
+Tested with FreshRSS 1.26.3, Uberspace 7.16.7, and PHP 8.4.6
 
 .. author_list::
