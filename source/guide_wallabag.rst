@@ -64,6 +64,11 @@ Installation & Configuration
 
 2. Edit the config file ``~/html/app/config/parameters.yml`` and replace the following information:
 
+.. note:: Any characters considered special need to be urlencoded. See `wallabag documentation`_.
+
+    You can find a list of relevant characters and their encoding on `Wikipedia`_ (German version has all characters in one table).
+
+
 * ``database_name:`` <username>_wallabag - *replace <username> with your MySQL username from your credentials above.*
 * ``database_user:`` Again your MySQL username.
 * ``database_password:`` The MySQL password from your credentials above.
@@ -92,7 +97,7 @@ Installation & Configuration
     database_charset: utf8mb4
     domain_name: 'https://isabell.uber.space'
     server_name: 'Your wallabag instance'
-    mailer_dns: smtp://user:password@hostname:port
+    mailer_dsn: 'smtp://user:password@hostname:port'
     locale: en
     secret: CHANGE_ME_TO_SOMETHING_SECRET_AND_RANDOM
     twofactor_auth: true
@@ -240,6 +245,9 @@ Your Wallabag instance should be available again.
 .. _feed: https://github.com/wallabag/wallabag/releases.atom
 .. _Firefox Pocket: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
 .. _upgrade information: https://doc.wallabag.org/en/admin/upgrade.html
+.. _wallabag documentation: https://doc.wallabag.org/admin/mailer/
+.. _Wikipedia: https://de.wikipedia.org/wiki/URL-Encoding#Relevante_ASCII-Zeichen_in_Prozentdarstellung
+
 
 ----
 
