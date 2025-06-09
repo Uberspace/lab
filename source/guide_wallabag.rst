@@ -97,7 +97,7 @@ Installation & Configuration
     database_charset: utf8mb4
     domain_name: 'https://isabell.uber.space'
     server_name: 'Your wallabag instance'
-    mailer_dsn: 'smtp://user:password@hostname:port'
+    mailer_dsn: 'smtp://<user>%%40<domain>:password@hostname:port'
     locale: en
     secret: CHANGE_ME_TO_SOMETHING_SECRET_AND_RANDOM
     twofactor_auth: true
