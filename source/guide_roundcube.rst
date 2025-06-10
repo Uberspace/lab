@@ -70,7 +70,7 @@ Installation
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.6.5/roundcubemail-1.6.5-complete.tar.gz
+ [isabell@stardust html]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz
  [isabell@stardust html]$ tar xf roundcubemail-*.tar.gz --strip-components=1
  [isabell@stardust html]$ rm -r roundcubemail-*.tar.gz
  [isabell@stardust html]$
@@ -236,7 +236,7 @@ Get the latest version
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
- [isabell@stardust isabell]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.6.5/roundcubemail-1.6.5-complete.tar.gz
+ [isabell@stardust isabell]$ wget https://github.com/roundcube/roundcubemail/releases/download/1.6.11/roundcubemail-1.6.11-complete.tar.gz
  [isabell@stardust isabell]$ tar xf roundcubemail-*.tar.gz
  [isabell@stardust isabell]$
 
