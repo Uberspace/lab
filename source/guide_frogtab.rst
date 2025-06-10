@@ -34,7 +34,7 @@ Installation
 
 The installation is complete. To use Frogtab, open ``https://isabell.uber.space`` in your browser.
 
-To create a personal link, see `Registering for a personal link`_ on the help page of Frogtab.
+To create a personal link, see "Registering for a personal link" on the help page of your Frogtab installation.
 
 Best practices
 ==============
@@ -60,14 +60,12 @@ The installer will ask for confirmation before overwriting the files that you or
 Backup data
 ===========
 
-Your data is stored in your browser. You can export a backup at any time. In some browsers, you can also enable automatic backups. See `Backing up your data`_ on the help page of Frogtab.
+Your data is stored in your browser. You can export a backup at any time. In some browsers, you can also enable automatic backups. See "Backing up your data" on the help page of your Frogtab installation.
 
 Frogtab stores information about personal links in ``~/frogtab.db``. If several people have created personal links, you should back up ``frogtab.db`` regularly in case you reinstall Frogtab from scratch. If you're the only person who has created a personal link, it's less important to back up ``frogtab.db``.
 
 .. _Frogtab: https://frogtab.com
 .. _feed: https://frogtab.com/changes.xml
-.. _Registering for a personal link: https://isabell.uber.space/help#registering-for-a-personal-link
-.. _Backing up your data: https://isabell.uber.space/help#backing-up-your-data
 
 ----
 
