@@ -252,8 +252,8 @@ Update your existing Roundcube installation
 .. code-block:: console
  :emphasize-lines: 1,2,3
 
- [isabell@stardust ~]$ cd /var/www/virtual/$USER/roundcubemail-1.6.5/
- [isabell@stardust roundcubemail-1.6.5]$ bin/installto.sh /var/www/virtual/$USER/html
+ [isabell@stardust ~]$ cd /var/www/virtual/$USER/roundcubemail-1.6.11/
+ [isabell@stardust roundcubemail-1.6.11]$ bin/installto.sh /var/www/virtual/$USER/html
  ? Upgrading from 1.4.2. Do you want to continue? (y/N)
  ✔ Copying files to target location..../
  ℹ NOTICE: JavaScript dependencies installation skipped.
@@ -263,7 +263,7 @@ Update your existing Roundcube installation
  ✔ This instance of Roundcube is up-to-date.
  ✔ Have fun!
  ✔ All done.
- [isabell@stardust roundcubemail-1.6.5]$
+ [isabell@stardust roundcubemail-1.6.11]$
 
 Finishing updating
 ^^^^^^^^^^^^^^^^^^
@@ -273,7 +273,7 @@ Remove the temporary folder as well as the archive after finishing the update pr
 .. code-block:: console
  :emphasize-lines: 1
 
- [isabell@stardust roundcubemail-1.6.5 ]$ cd /var/www/virtual/$USER/
+ [isabell@stardust roundcubemail-1.6.11]$ cd /var/www/virtual/$USER/
  [isabell@stardust ]$ rm -r roundcubemail-*
  [isabell@stardust ]$
 
@@ -291,6 +291,6 @@ Via FTP + Installer
 
 ----
 
-Tested with Roundcube 1.6.5, Uberspace 7.15.6
+Tested with Roundcube 1.6.11, Uberspace 7.15.6
 
 .. author_list::
