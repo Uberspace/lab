@@ -38,15 +38,15 @@ Roundcube is released under the GNU General Public License_ version 3 or any lat
 Prerequisites
 =============
 
-We're using :manual:`PHP <lang-php>` in the stable version 8.2:
+We're using :manual:`PHP <lang-php>` in the stable version 8.3:
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.2
- Selected PHP version 8.2
+ [isabell@stardust ~]$ uberspace tools version use php 8.3
+ Selected PHP version 8.3
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.2'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 If you want to use your Roundcube with your own domain you need to setup your domain first:
@@ -291,6 +291,6 @@ Via FTP + Installer
 
 ----
 
-Tested with Roundcube 1.6.11, Uberspace 7.15.6
+Tested with Roundcube 1.6.11, Uberspace 7.16.7.1
 
 .. author_list::
