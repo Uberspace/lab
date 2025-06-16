@@ -97,7 +97,7 @@ By default, WordPress `automatically updates`_ itself to the latest stable minor
 
 
 Performance / Optimization
-======
+==========================
 
 All steps described in the following are optional and serve to optimize runtime as well as automation of maintenance and care of the WordPress instance.
 

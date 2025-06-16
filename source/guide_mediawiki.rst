@@ -32,6 +32,8 @@ Last update: 2024-05-05
   * :manual:`MySQL <database-mysql>`
   * :manual:`domains <web-domains>`
 
+.. warning:: The setup described in this guide has an unresolved issue with the DiscussionTools extension. The issue is tracked on `Uberspace Github <https://github.com/Uberspace/lab/issues/1845>`_ and previously on `MediaWiki Phabricator <https://phabricator.wikimedia.org/T380885>`_.
+
 License
 =======
 
