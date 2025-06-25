@@ -279,4 +279,4 @@ Tested with pretix 2023.10.0 and Uberspace 7.15.9
 
 .. author_list::
 
-This guide was written with the help of a former text on "bullshit_", thanks to Nathan.
+This guide was written with the help of a former text on "bullshit\_", thanks to Nathan.
