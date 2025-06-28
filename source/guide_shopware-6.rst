@@ -37,6 +37,10 @@ All relevant legal information can be found here
 
   * https://github.com/shopware/platform/blob/master/LICENSE
 
+IMPORTANT
+=============
+Shopware v6.6.8.2 and newer require ~8.2.0 and higher. The currently highest Uberspace 7 php version (8.1.29) does not fulfill these system requirements. Installation and updates are possible via detours, but should be considered in productive environments.
+
 Prerequisites
 =============
 
@@ -101,22 +105,23 @@ Download the Shopware installer script:
 Adjust DocumentRoot
 -------------------
 
-Move one level up, remove the default ``html`` symlink, and point it to the Shopware installation:
+Move one level up, and point ``html`` to the Shopware installation:
 
 .. code-block:: console
 
  [isabell@stardust shopware]$ cd ..
- [isabell@stardust $USER]$ rm -f html
+ [isabell@stardust $USER]$ rm -f html/nocontent.html
+ [isabell@stardust $USER]$ rmdir html
  [isabell@stardust $USER]$ ln -s /var/www/virtual/$USER/shopware html
 
 Complete the Installation
 -------------------------
 
-Open your browser and navigate to your domain, e.g., ``https://isabell.uber.space``, and follow the installation steps.
+Open your browser and navigate to your domain, e.g., ``https://isabell.uber.space/shopware-installer.phar.php``, and follow the installation steps.
 
-.. warning:: When attempting to install the latest version of Shopware directly, I encountered an issue where Shopware requires MariaDB version 10.11. However, Uberspace currently provides only version 10.6.19 on Uberspace 7. According to Uberspace support, this limitation may be resolved with Uberspace 8. Until then, it is mandatory to install Shopware version 6.6.8, as any newer versions will cause issues.  
+.. Warning :: When attempting to install the latest version of Shopware directly, I encountered an issue where Shopware requires MariaDB version 10.11. However, Uberspace currently provides only version 10.6.19 on Uberspace 7. According to Uberspace support, this limitation may be resolved with Uberspace 8. Until then, it is mandatory to install Shopware version 6.6.8, as any newer versions will cause issues.  
 
-    If errors occur during the process, refer to the :ref:`Troubleshooting <troubleshooting>` section below.
+If errors occur during the process, refer to the :ref:`Troubleshooting <troubleshooting>` section below.
 
 Post-Installation Configuration
 ===============================
@@ -152,7 +157,7 @@ If switching to a custom domain, repeat the steps above to update the symlink an
 Versions
 =================
 
-Tested with Shopware 6.6.10.3 (initial installation required: 6.6.8), PHP 8.1.29, and Uberspace 7.16.7.
+Tested with Shopware 6.7.0.0 (initial installation required: 6.6.8), PHP 8.1.29, and Uberspace 7.16.7.
 
 .. _troubleshooting:
 
@@ -160,13 +165,12 @@ Troubleshooting
 ===============
 
 If issues occur during installation, delete the Shopware folder and database to start over:
-
-Follow the steps outlined in the `Download the Installer`_ section to restart the process.
-
 .. code-block:: console
 
  [isabell@stardust ~]$ rm -rf /var/www/virtual/$USER/shopware
  [isabell@stardust ~]$ mysql -e "DROP DATABASE isabell_shopware"
+
+Follow the steps outlined in the `Download the Installer`_ section to restart the process.
 
 ----
 
