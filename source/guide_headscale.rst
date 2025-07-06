@@ -32,7 +32,9 @@ Headscale_ is an open source, self-hosted implementation of the Tailscale contro
 License
 =======
 
-Headscale is released under the `BSD-3-Clause License`_.
+Headscale is released under the _[BSD-3-Clause License](https://github.com/juanfont/headscale/blob/main/LICENSE)_.
+
+All relevant legal information can be found here:
 
   * https://github.com/juanfont/headscale/blob/main/LICENSE
 
