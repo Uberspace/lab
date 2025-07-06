@@ -211,4 +211,14 @@ To update headscale, download the new binary and replace the old one. Then resta
 
 Tested with Headscale 0.26.1, Uberspace 7.16.7
 
+Web UI Management with Headplane
+===============================
+
+If you want a modern web UI to manage your Headscale instance, you can deploy Headplane alongside Headscale. Headplane provides a feature-complete dashboard for managing users, nodes, ACLs, and more.
+
+See :lab:`Headplane <guide_headplane>` for detailed setup instructions.
+
+.. note::
+   If you use different domains or subdomains for Headplane and Headscale, you may need to configure CORS headers in Headplane's config. See the Headplane documentation for details.
+
 .. author_list::
