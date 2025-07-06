@@ -50,7 +50,7 @@ Your website domain needs to be set up:
 Installation
 ============
 
-Download the latest headscale binary from the official GitHub releases page. Replace ``<VERSION>`` with the latest version (e.g., ``0.26.0``):
+Download the latest headscale binary from the official GitHub releases page. Replace ``<VERSION>`` with the latest version (e.g., ``0.26.1``):
 
 ::
 
@@ -209,6 +209,6 @@ To update headscale, download the new binary and replace the old one. Then resta
 
 ----
 
-Tested with Headscale 0.22.3, Uberspace 7.16.7
+Tested with Headscale 0.26.1, Uberspace 7.16.7
 
 .. author_list::
