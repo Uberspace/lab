@@ -104,6 +104,40 @@ Point the ``uberspace web backend`` on ``/`` to the listener on port 13120.
 
 .. include:: includes/web-backend.rst
 
+
+Problems after updating to gancio 1.27.0
+----------------------------------------
+
+.. note:: After updating to gancio 1.27.0, in the web-admin-interface, you may encounter the error `Cannot reach myself from the server! Please check that proxy, firewall and network are correctly configured.`
+
+You can solve that adding your ip in the server host `config.json`.
+
+First, get your `Uberspace-IP <https://manual.uberspace.de/background-network/#uberspace-ip-adresses>`_ :
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ ip addr
+
+it's the one starting with 100.65.... then
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ nano config.json
+
+and putting the ip in the server host.
+
+.. code-block:: ini
+
+ {
+  "baseurl": "",  
+  "hostname": "",  
+  "server": {
+    "host": "100.65.34.2",
+    "port": 13120
+  },
+
+
+
 Updates
 =======
 
