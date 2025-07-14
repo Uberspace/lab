@@ -112,7 +112,7 @@ Problems after updating to gancio 1.27.0
 
 You can solve that adding your ip in the server host `config.json`.
 
-First, get your `Uberspace-IP <https://manual.uberspace.de/background-network/#uberspace-ip-adresses>`_ :
+First, get your :manual_anchor:`Uberspace IP <background-network.html#uberspace-ip-addresses>`:
 
 .. code-block:: console
 
