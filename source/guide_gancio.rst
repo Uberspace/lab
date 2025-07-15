@@ -108,31 +108,29 @@ Point the ``uberspace web backend`` on ``/`` to the listener on port 13120.
 Problems after updating to gancio 1.27.0
 ----------------------------------------
 
-.. note:: After updating to gancio 1.27.0, in the web-admin-interface, you may encounter the error `Cannot reach myself from the server! Please check that proxy, firewall and network are correctly configured.`
+.. note:: After updating to gancio 1.27.0, in the web-admin-interface, you may encounter the error ``Cannot reach myself from the server! Please check that proxy, firewall and network are correctly configured.``
 
-You can solve that adding your ip in the server host `config.json`.
+You can solve that by setting your IP address in your ``config.json``.
 
-First, get your :manual_anchor:`Uberspace IP <background-network.html#uberspace-ip-addresses>`:
-
-.. code-block:: console
-
- [isabell@stardust ~]$ ip addr
-
-it's the one starting with 100.65.... then
+First, get your :manual_anchor:`Uberspace IP address <background-network.html#uberspace-ip-addresses>`:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ nano config.json
+ [isabell@stardust ~]$ ip addr | grep $USER
+ 61: veth_isabell@if62: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+     inet 100.64.118.2/30 scope global veth_isabell
+ [isabell@stardust ~]$
 
-and putting the ip in the server host.
+In this case, it's ``100.64.118.2``, but make sure to use your own. Use your favourite editor to edit ``~/config.json`` and set the IP address as ``server`` in the ``host`` block.
 
 .. code-block:: ini
+  :emphasize-lines: 4
 
  {
   "baseurl": "",  
   "hostname": "",  
   "server": {
-    "host": "100.65.34.2",
+    "host": "100.64.118.2",
     "port": 13120
   },
 
