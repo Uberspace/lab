@@ -104,6 +104,45 @@ Point the ``uberspace web backend`` on ``/`` to the listener on port 13120.
 
 .. include:: includes/web-backend.rst
 
+
+Problems after updating to gancio 1.27.0
+----------------------------------------
+
+.. note:: After updating to gancio 1.27.0, in the web-admin-interface, you may encounter the error ``Cannot reach myself from the server! Please check that proxy, firewall and network are correctly configured.``
+
+You can solve that by setting your IP address in your ``config.json``.
+
+First, get your :manual_anchor:`Uberspace IP address <background-network.html#uberspace-ip-addresses>`:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ ip addr | grep $USER
+ 61: veth_isabell@if62: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+     inet 100.64.118.2/30 scope global veth_isabell
+ [isabell@stardust ~]$
+
+In this case, it's ``100.64.118.2``, but make sure to use your own. Use your favourite editor to edit ``~/config.json`` and set the IP address as ``server`` in the ``host`` block.
+
+ .. code-block:: JSON
+   :emphasize-lines: 4
+
+   {
+    "baseurl": "",  
+    "hostname": "",  
+    "server": {
+      "host": "100.64.118.2",
+      "port": 13120
+   },
+
+After that, restart gancio:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart gancio
+ gancio: stopped
+ gancio: started
+
+
 Updates
 =======
 
@@ -126,6 +165,6 @@ Updates
 
 ----
 
-Tested with Gancio 1.6.14 and Uberspace 7.15.4.0
+Tested with Gancio 1.27.0 and Uberspace 7.15.4.0
 
 .. author_list::
