@@ -134,6 +134,12 @@ In this case, it's ``100.64.118.2``, but make sure to use your own. Use your fav
     "port": 13120
   },
 
+After that, simply restart gancio:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart gancio
+
 
 
 Updates
@@ -158,6 +164,6 @@ Updates
 
 ----
 
-Tested with Gancio 1.6.14 and Uberspace 7.15.4.0
+Tested with Gancio 1.27.0 and Uberspace 7.15.4.0
 
 .. author_list::
