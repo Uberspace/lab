@@ -123,7 +123,7 @@ First, get your :manual_anchor:`Uberspace IP address <background-network.html#ub
 
 In this case, it's ``100.64.118.2``, but make sure to use your own. Use your favourite editor to edit ``~/config.json`` and set the IP address as ``server`` in the ``host`` block.
 
-.. code-block:: ini
+.. code-block:: json
   :emphasize-lines: 4
 
  {
