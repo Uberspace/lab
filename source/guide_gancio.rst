@@ -134,12 +134,13 @@ In this case, it's ``100.64.118.2``, but make sure to use your own. Use your fav
     "port": 13120
   },
 
-After that, simply restart gancio:
+After that, restart gancio:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ supervisorctl restart gancio
-
+ gancio: stopped
+ gancio: started
 
 
 Updates
