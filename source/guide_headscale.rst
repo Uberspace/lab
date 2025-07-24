@@ -74,26 +74,31 @@ Download the example configuration file:
 
  [isabell@stardust ~]$ wget -O ~/etc/headscale/config.yaml \
    https://github.com/juanfont/headscale/raw/v<VERSION>/config-example.yaml
- [isabell@stardust ~]$ 
+ [isabell@stardust ~]$
 
 Edit ``~/etc/headscale/config.yaml`` with your favourite editor and make the following adjustments:
 
 .. warning::
-  Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``private_key_path``, and ``db_type``/``db_path``. For a simple SQLite setup, use:
+  Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``private_key_path``, and ``database.sqlite``/``database.postgres``. For a simple SQLite setup, use:
 
   .. code-block:: yaml
 
     server_url: "https://<your-domain>:443"
     private_key_path: "~/etc/headscale/private.key"
-    db_type: "sqlite"
-    db_path: "~/opt/headscale/db.sqlite"
+
+    database:
+      type: "sqlite"
+
+      sqlite:
+        path: "~/opt/headscale/db.sqlite"
+
     unix_socket: "~/opt/headscale/headscale.sock"
 
   Generate a private key if needed:
 
   ::
 
-    [isabell@stardust ~]$ headscale generate private-key > ~/etc/headscale/private.key
+    [isabell@stardust ~]$ headscale generate private-key --config ~/etc/headscale/config.yaml > ~/etc/headscale/private.key
 
 Configuration
 =============
@@ -119,8 +124,14 @@ Edit your ``~/etc/headscale/config.yaml`` as follows:
    tls_key_path: ""
    unix_socket: "~/opt/headscale/headscale.sock"
    private_key_path: "~/etc/headscale/private.key"
-   db_type: "sqlite"
-   db_path: "~/opt/headscale/db.sqlite"
+   database:
+     type: "sqlite"
+     sqlite:
+       path: "~/opt/headscale/db.sqlite"
+
+To validate your configuration, run:
+
+    [isabell@stardust ~]$ headscale configtest --config ~/etc/headscale/config.yaml
 
 .. note::
    TLS is handled by Uberspace's web backend. Do not set ``tls_cert_path`` or ``tls_key_path`` in your headscale config.
