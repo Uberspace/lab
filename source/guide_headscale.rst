@@ -66,7 +66,7 @@ Create a directory for headscale data, configuration and logs:
 
  [isabell@stardust ~]$ mkdir -p ~/opt/headscale
  [isabell@stardust ~]$ mkdir -p ~/etc/headscale
- [isabell@stardust ~]$ mkdir -p ~/logs/services.d/headscale
+ [isabell@stardust ~]$ mkdir -p ~/logs/headscale
 
 Download the example configuration file and adjust it:
 
@@ -141,8 +141,8 @@ Create ``~/etc/services.d/headscale.ini`` with the following content:
   [program:headscale]
   command=%(ENV_HOME)s/bin/headscale serve --config %(ENV_HOME)s/etc/headscale/config.yaml
   directory=%(ENV_HOME)s/headscale
-  stderr_logfile=%(ENV_HOME)s/logs/services.d/headscale/err.log
-  stdout_logfile=%(ENV_HOME)s/logs/services.d/headscale/out.log
+  stderr_logfile=%(ENV_HOME)s/logs/headscale/err.log
+  stdout_logfile=%(ENV_HOME)s/logs/headscale/out.log
   autostart=true
   autorestart=true
   stopsignal=INT
@@ -150,7 +150,7 @@ Create ``~/etc/services.d/headscale.ini`` with the following content:
 
 .. include:: includes/supervisord.rst
 
-If it's not in state RUNNING, check your configuration and the logs using ``supervisorctl maintail`` or ``tail -f ~/logs/services.d/headscale/out.log``.
+If it's not in state RUNNING, check your configuration and the logs using ``supervisorctl maintail`` or ``tail -f ~/logs/headscale/out.log``.
 
 Configure Uberspace web backend
 -------------------------------
