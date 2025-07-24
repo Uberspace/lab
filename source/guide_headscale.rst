@@ -68,13 +68,15 @@ Create a directory for headscale data, configuration and logs:
  [isabell@stardust ~]$ mkdir -p ~/etc/headscale
  [isabell@stardust ~]$ mkdir -p ~/logs/headscale
 
-Download the example configuration file and adjust it:
+Download the example configuration file:
 
 ::
 
  [isabell@stardust ~]$ wget -O ~/etc/headscale/config.yaml \
    https://github.com/juanfont/headscale/raw/v<VERSION>/config-example.yaml
- [isabell@stardust ~]$ nano ~/etc/headscale/config.yaml
+ [isabell@stardust ~]$ 
+
+Edit ``~/etc/headscale/config.yaml`` with your favourite editor and make the following adjustments:
 
 .. warning::
   Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``private_key_path``, and ``db_type``/``db_path``. For a simple SQLite setup, use:
