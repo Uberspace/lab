@@ -117,11 +117,6 @@ Updates
 
 When an update is available download a new release from the release page and follow the update instructions on the goatcounter-github_.
 
-::
-
- [isabell@stardust ~]$ pip3 install --user --upgrade isso
-
-
 .. _goatcounter: https://www.goatcounter.com/
 .. _goatcounter-github: https://github.com/arp242/goatcounter
 
