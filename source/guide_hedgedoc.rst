@@ -2,6 +2,7 @@
 .. author:: Matthias Kolja Miehl <https://makomi.net>
 .. author:: Kevin Jost <https://github.com/systemsemaphore>
 .. author:: EV21 <uberlab@ev21.de>
+.. author:: Johannes Bechberger <https://mostlyerdless.de>
 
 .. tag:: lang-nodejs
 .. tag:: web
@@ -62,10 +63,10 @@ Check whether the marked line is the latest_ release.
 .. code-block:: console
   :emphasize-lines: 1
 
-  [isabell@stardust ~]$ VERSION=1.9.8
+  [isabell@stardust ~]$ VERSION=1.10.1
   [isabell@stardust ~]$ wget https://github.com/hedgedoc/hedgedoc/releases/download/$VERSION/hedgedoc-$VERSION.tar.gz
   [...]
-  100%[======================================================>] 50,784,713  16.8MB/s   in 2.9s
+  100%[===============================================>] 65,997,814  69.4MB/s   in 0.9s   
   [isabell@stardust ~]$ tar --extract --gzip --file=hedgedoc-$VERSION.tar.gz
   [isabell@stardust ~]$ rm --verbose hedgedoc-$VERSION.tar.gz
   removed hedgedoc-1.X.Y.tar.gz
@@ -182,6 +183,7 @@ Create ``~/etc/services.d/hedgedoc.ini`` with the following content:
     CMD_ALLOW_FREEURL="true",
     CMD_REQUIRE_FREEURL_AUTH="true",
     CMD_SESSION_SECRET="somethingSuperRandom"
+    CMD_PROTOCOL_USESSL=true
   directory=%(ENV_HOME)s/hedgedoc
   command=yarn start
   startsecs=60
