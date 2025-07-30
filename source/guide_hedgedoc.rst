@@ -182,8 +182,9 @@ Create ``~/etc/services.d/hedgedoc.ini`` with the following content:
     CMD_ALLOW_ANONYMOUS="false",
     CMD_ALLOW_FREEURL="true",
     CMD_REQUIRE_FREEURL_AUTH="true",
-    CMD_SESSION_SECRET="somethingSuperRandom"
-    CMD_PROTOCOL_USESSL=true
+    CMD_SESSION_SECRET="somethingSuperRandom",
+    CMD_PROTOCOL_USESSL="true",
+    CMD_DOMAIN="your domain"
   directory=%(ENV_HOME)s/hedgedoc
   command=yarn start
   startsecs=60
