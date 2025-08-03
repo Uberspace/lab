@@ -121,6 +121,7 @@ Copy paste the command from the page, it will look like this:
  no crontab for isabell
 
 Refresh the page to see "Installed and Ready"
+You can now, if you wish, enable the default jobs, for example `default-site-backup` or create custom jobs.
 
 Tuning
 ======
