@@ -116,7 +116,7 @@ Open isabell.uber.space/admin/tools/scheduler
 Copy paste the command from the page, it will look like this: 
 
 .. code-block:: console
- :emphasize-lines: 1,2,8
+ :emphasize-lines: 1
  [isabell@stardust ~]$ (crontab -l; echo "* * * * * cd /var/www/virtual/isabell/html;/opt/remi/php83/root/usr/bin/php bin/grav scheduler 1>> /dev/null 2>&1") | crontab -
  no crontab for isabell
 
