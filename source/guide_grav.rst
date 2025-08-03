@@ -37,12 +37,12 @@ Grav is released under the `MIT License`_. All relevant information can be found
 Prerequisites
 =============
 
-We're using PHP_ in the stable version 8.1:
+We're using PHP_ in the stable version 8.3:
 
 ::
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.3'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -59,12 +59,14 @@ To install Grav we use Composer_ to create a new project in our :manual:`documen
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER
  [isabell@stardust isabell]$ composer create-project getgrav/grav html
- Installing getgrav/grav (42.2.1)
-  - Installing getgrav/grav (42.2.1): Downloading (100%)
+ Creating a "getgrav/grav" project at "./html"
+ Installing getgrav/grav (1.7.48)
+  - Downloading getgrav/grav (1.7.48)
+  - Installing getgrav/grav (1.7.48): Extracting archive
  Created project in /var/www/virtual/isabell/html
- Loading composer repositories with package information
- Installing dependencies (including require-dev) from lock file
- Package operations: 67 installs, 0 updates, 0 removals
+ Installing dependencies from lock file (including require-dev)
+ Verifying lock file contents can be installed on current platform.
+ Package operations: 98 installs, 0 updates, 0 removals
  [...]
  [isabell@stardust isabell]$
 
@@ -86,12 +88,12 @@ Navigate to your installation directory and install the admin plugin. The packag
   |- Package form
   |- Package login
   |- Package email
+  |- Package flex-objects
  Install these packages? [Y|n] Y
  [...]
  [isabell@stardust isabell]$
 
 After the installation you need to open isabell.uber.space/admin in your browser to create an admin account (please don't use ``admin`` as your username).
-
 
 Setup domain
 -------------------
@@ -106,6 +108,19 @@ to this:
 ```
 RewriteBase /
 ```
+
+Setup cronjobs
+-------------------
+
+Open isabell.uber.space/admin/tools/scheduler 
+Copy paste the command from the page, it will look like this: 
+
+.. code-block:: console
+ :emphasize-lines: 1,2,8
+ [isabell@stardust ~]$ (crontab -l; echo "* * * * * cd /var/www/virtual/isabell/html;/opt/remi/php83/root/usr/bin/php bin/grav scheduler 1>> /dev/null 2>&1") | crontab -
+ no crontab for isabell
+
+Refresh the page to see "Installed and Ready"
 
 Tuning
 ======
@@ -149,6 +164,6 @@ After updating the Grav core use the ``update`` command to update all plugins an
 
 ----
 
-Tested with Grav 1.7.37.1, Uberspace 7.13, PHP 8.1
+Tested with Grav 1.7.48, Uberspace 7.16.7, PHP 8.3
 
 .. author_list::
