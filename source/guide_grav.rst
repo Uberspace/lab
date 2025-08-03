@@ -75,7 +75,7 @@ Visit your previously set up domain isabell.uber.space and you will see a page c
 Install admin panel
 -------------------
 
-You can optionally install the Grav admin panel. To do so we use the integrated Grav Package Manager (GPM).
+You can optionally install the Grav admin panel_. To do so we use the integrated Grav Package Manager (GPM).
 Navigate to your installation directory and install the admin plugin. The package manager will ask you to confirm the installation.
 
 .. code-block:: console
@@ -160,6 +160,7 @@ After updating the Grav core use the ``update`` command to update all plugins an
 .. _MIT License: https://opensource.org/licenses/MIT
 .. _LICENSE.txt: https://github.com/getgrav/grav/blob/develop/LICENSE.txt
 .. _GitHub: https://github.com/getgrav/grav
+.. _Grav Admin Panel: https://github.com/getgrav/grav-plugin-admin
 .. _Performance & Caching: https://learn.getgrav.org/advanced/performance-and-caching
 
 ----
