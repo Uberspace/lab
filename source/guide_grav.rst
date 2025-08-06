@@ -113,7 +113,7 @@ Setup cronjobs
 -------------------
 
 Open isabell.uber.space/admin/tools/scheduler 
-Copy and paste the command from the page, it will smiliar to this: 
+Copy and paste the command from the page, it will look similar to this: 
 
 .. code-block:: console
  :emphasize-lines: 1
