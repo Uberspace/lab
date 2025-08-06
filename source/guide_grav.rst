@@ -12,9 +12,9 @@
   .. image:: _static/images/grav.svg
       :align: center
 
-##########
+####
 Grav
-##########
+####
 
 .. tag_list::
 
@@ -113,7 +113,7 @@ Setup cronjobs
 -------------------
 
 Open isabell.uber.space/admin/tools/scheduler 
-Copy paste the command from the page, it will look like this: 
+Copy and paste the command from the page, it will smiliar to this: 
 
 .. code-block:: console
  :emphasize-lines: 1
