@@ -22,7 +22,7 @@ Forgejo
 .. tag_list::
 
 Forgejo_ is a self-hosted Git service with a functionality similar to GitHub, GitLab and BitBucket.
-It's a hard-fork of Gitea_, which changed_ it's licensing in August 2024 from MIT to the GNU GPL v2 licence_. Like most applications written in Go it's easy to install.
+It's a hard-fork of Gitea_, created in 2022. Forgejo changed_ it's license in August 2024 from MIT (inherited from Gitea) to the GNU GPL v2 licence_. Like most applications written in Go it's easy to install.
 
 ----
 
