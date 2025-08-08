@@ -22,7 +22,7 @@ Forgejo
 .. tag_list::
 
 Forgejo_ is a self-hosted Git service with a functionality similar to GitHub, GitLab and BitBucket.
-It's a hard-fork of Gitea_ and uses the same MIT licence_. Like most applications written in Go it's easy to install.
+It's a hard-fork of Gitea_, created in 2022. Forgejo changed_ it's license in August 2024 from MIT (inherited from Gitea) to the GNU GPL v2 licence_. Like most applications written in Go it's easy to install.
 
 ----
 
@@ -348,6 +348,7 @@ Now we have to append the config file ``$FORGEJO_HOME/custom/conf/app.ini`` with
 .. _feed: https://forgejo.org/releases/rss.xml
 .. _releases: https://codeberg.org/forgejo/forgejo/releases
 .. _licence: https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/LICENSE
+.. _changed: https://forgejo.org/2024-08-gpl/
 .. _dashboard: https://uberspace.de/dashboard/authentication
 
 ----
