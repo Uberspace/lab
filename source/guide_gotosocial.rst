@@ -52,13 +52,13 @@ Download the latest pre-compiled binary_ from the releases_ page.
 
 .. code-block:: console
 
-  [isabell@stardust gotosocial]$ wget https://github.com/superseriousbusiness/gotosocial/releases/download/v0.8.1/gotosocial_0.8.1_linux_amd64.tar.gz
+  [isabell@stardust gotosocial]$ wget https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v0.19.1/gotosocial_0.19.1_linux_amd64.tar.gz
 
 Extract the archive in place to populate the directory with the binary and static and example files.
 
 .. code-block:: console
 
-  [isabell@stardust gotosocial]$ tar xzf gotosocial_0.8.1_linux_amd64.tar.gz
+  [isabell@stardust gotosocial]$ tar xzf gotosocial_0.19.1_linux_amd64.tar.gz
   [isabell@stardust gotosocial]$
 
 
@@ -170,23 +170,23 @@ Sart GoToSocial using the ``supervisorctl start gotosocial`` command. If it's no
 
 ----
 
-Tested with GoToSocial 0.8.1, Uberspace 7.15.1
+Tested with GoToSocial 0.19.1, Uberspace 7
 
 .. _GoToSocial: https://gotosocial.org
 .. _ActivityPub: https://activitypub.rocks
 .. _Fediverse: https://fediverse.info
-.. _binary: https://docs.gotosocial.org/en/latest/installation_guide/binary
-.. _releases: https://github.com/superseriousbusiness/gotosocial/releases
+.. _binary: https://docs.gotosocial.org/en/v0.19.1/getting_started/installation/metal/#download-release
+.. _releases: https://codeberg.org/superseriousbusiness/gotosocial/releases
 .. _SQlite: https://manual.uberspace.de/database-sqlite
-.. _configuration: https://docs.gotosocial.org/en/latest/configuration
-.. _database: https://docs.gotosocial.org/en/latest/configuration/database
-.. _advanced: https://docs.gotosocial.org/en/latest/installation_guide/advanced
-.. _admin: https://docs.gotosocial.org/en/latest/admin/settings
+.. _configuration: https://docs.gotosocial.org/en/v0.19.1/configuration
+.. _database: https://docs.gotosocial.org/en/v0.19.1/configuration/database
+.. _advanced: https://docs.gotosocial.org/en/v0.19.1/advanced/host-account-domain/
+.. _admin: https://docs.gotosocial.org/en/v0.19.1/admin/settings
 .. _Pinafore: https://pinafore.social
 .. _Tusky: https://tusky.app
-.. _settings: https://docs.gotosocial.org/en/latest/user_guide/settings
-.. _`custom css`: https://docs.gotosocial.org/en/latest/user_guide/custom_css/
-.. _feed: https://github.com/superseriousbusiness/gotosocial/releases/latest
+.. _settings: https://docs.gotosocial.org/en/v0.19.1/user_guide/settings
+.. _`custom css`: https://docs.gotosocial.org/en/v0.19.1/user_guide/custom_css/
+.. _feed: https://codeberg.org/superseriousbusiness/gotosocial.rss
 .. _installation: #Installation
 
 .. author_list::
