@@ -35,17 +35,39 @@ All relevant legal information can be found here:
 Installation
 ============
 
-Create a new directory, enter the directory you just created, download the latest version, unpack the archive, delete the archive afterwards, make the binary executable and create the file ``.env.local`` as a copy of the file ``.env.sample``:
-
-.. note:: Replace ``0.7.1`` with the version of the `latest release`_.
+Create a new directory ``~/traggo`` and enter the directory you just created:
 
 .. code-block:: console
 
  [isabell@stardust ~]$ mkdir ~/traggo
  [isabell@stardust ~]$ cd ~/traggo
- [isabell@stardust traggo]$ wget https://github.com/traggo/server/releases/download/v0.7.1/traggo_0.7.1_linux_amd64.tar.gz
- [isabell@stardust traggo]$ tar xvf traggo_0.7.1_linux_amd64.tar.gz
- [isabell@stardust traggo]$ rm traggo_0.7.1_linux_amd64.tar.gz 
+
+Now download the latest version, unpack the archive, delete the archive afterwards:
+
+.. note:: Replace ``0.7.1`` with the version of the `latest release`_.
+
+.. code-block:: console
+
+ [isabell@stardust traggo]$ traggo]$ wget https://github.com/traggo/server/releases/download/v0.7.1/traggo_0.7.1_linux_amd64.tar.gz --2025-08-13 11:46:25--  https://github.com/traggo/server/releases/download/v0.7.1/traggo_0.7.1_linux_amd64.tar.gz
+ Resolving github.com (github.com)... 140.82.121.3
+ […]
+ Length: 6646788 (6.3M) [application/octet-stream]
+ Saving to: ‘traggo_0.7.1_linux_amd64.tar.gz’
+ 
+ 100%[===============================================>] 6,646,788   --.-K/s   in 0.1s
+ 
+ 2025-08-13 11:46:26 (45.6 MB/s) - ‘traggo_0.7.1_linux_amd64.tar.gz’ saved [6646788/6646788]
+ [isabell@fairydust traggo]$ tar xvf traggo_0.7.1_linux_amd64.tar.gz
+ .env.sample
+ LICENSE
+ README.md
+ traggo
+ [isabell@fairydust traggo]$ rm traggo_0.7.1_linux_amd64.tar.gz
+
+Make the binary executable and create the file ``.env.local`` as a copy of the file ``.env.sample``:
+
+.. code-block:: console
+
  [isabell@stardust traggo]$ chmod +x traggo
  [isabell@stardust traggo]$ cp .env.sample .env.local
  [isabell@stardust traggo]$
