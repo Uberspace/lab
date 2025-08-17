@@ -164,6 +164,30 @@ Publication
  Client mosq-XXXXXXXXXXXXXXXXXX sending DISCONNECT
  [isabell@stardust ~]$
 
+Client configuration
+====================
+
+To make the usage of `mosquitto_sub` and `mosquitto_pub` more comfortable and secure, you can create config files for them with the default arguments you always need to provide.
+
+Create the file ``~/.config/mosquitto_sub`` with the following content:
+
+.. code-block::
+
+  --cafile /etc/ssl/certs/ca-bundle.crt
+  --host isabell.uber.space
+  --port 40132
+  --username isabell
+  --pw yoursecretpassword
+
+Create a symlink to this file for `mosquitto_pub`, so you only need to manage a single file:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cd ~/.config
+  [isabell@stardust ~/.config]$ ln -s mosquitto_sub mosquitto_pub
+  [isabell@stardust ~/.config]$ chmod 600 mosquitto_sub
+
+Now you can ommit these arguments when running the commands, and the authentication arguments will not be exposed.
 
 .. _Mosquitto: https://mosquitto.org/
 
