@@ -195,6 +195,26 @@ Consider using only unix sockets if possible.
                                         # (change requires restart)
  #unix_socket_group = ''                # (change requires restart)
 
+Resource Configuration
+------------------------
+
+With the default settings PostgreSQL can consume quite a lot of resources.
+Especially the number of open file handles can become a problem. To reduce the
+resource consumption, the following settings can be lowered:
+
+.. code-block:: ini
+
+  max_files_per_process = 64
+  max_worker_processes = 4
+  max_parallel_workers = 2
+
+Additionally, the number of connections can be reduced:
+
+.. warning:: If you lower the number of allowed connections, make sure to adjust your client’s connection settings as well. Otherwise, it might fail to start!
+
+.. code-block:: ini
+
+  max_connections = 20
 
 Logging
 -------
