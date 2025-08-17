@@ -196,6 +196,16 @@ your PostgreSQL setup:
 Replace ``key`` with your PostgreSQL database key (see the corresponding
 installation step).
 
+Additionally, it is recommended to lower the amount of database connections to
+reduce the resource consumption of PostgreSQL:
+
+.. code-block:: yaml
+ :emphasize-lines: 3
+
+    database:
+      connection_string: postgresql://dendrite:key@localhost/dendrite?sslmode=disable
+      max_open_conns: 10
+
 Logging
 -------
 
