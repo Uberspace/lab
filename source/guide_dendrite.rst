@@ -12,7 +12,7 @@ Dendrite
 
 .. tag_list::
 
-`Dendrite <https://matrix-org.github.io/dendrite/>`_ is a second-generation
+`Dendrite <https://element-hq.github.io/dendrite/>`_ is a second-generation
 Matrix homeserver written in Go! Following the microservice architecture model,
 Dendrite is designed to be efficient, reliable and scalable. Despite being
 beta, many Matrix features are already supported.
@@ -49,22 +49,22 @@ Check out a stable version (replace ``v0.13.5`` with the latest version):
 .. code-block:: console
 
   [isabell@stardust ~]$ cd ~/dendrite/
-  [isabell@stardust dendrite]$ git checkout v0.13.5
+  [isabell@stardust ~/dendrite]$ git checkout v0.13.5
   Note: switching to 'v0.13.5'.
   […]
   HEAD is now at b7054f42 Version 0.13.5 (#3285)
-  [isabell@stardust dendrite]$
+  [isabell@stardust ~/dendrite]$
 
 Build the application including utility commands with ``go``:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ go build -o bin/ ./cmd/...
+  [isabell@stardust ~/dendrite]$ go build -o bin/ ./cmd/...
   go: downloading github.com/getsentry/sentry-go v0.14.0
   […]
   go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
   go: downloading github.com/modern-go/reflect2 v1.0.2
-  [isabell@stardust dendrite]$
+  [isabell@stardust ~/dendrite]$
 
 
 Database
@@ -74,11 +74,11 @@ Make sure you run PostgreSQL in the required version. Create both a user (role) 
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ createuser -P dendrite
+  [isabell@stardust ~/dendrite]$ createuser -P dendrite
   Enter password for new role:
   Enter it again:
-  [isabell@stardust dendrite]$ createdb -O dendrite -E UTF-8 dendrite
-  [isabell@stardust dendrite]$
+  [isabell@stardust ~/dendrite]$ createdb -O dendrite -E UTF-8 dendrite
+  [isabell@stardust ~/dendrite]$
 
 Write down the key, you will need it later.
 
@@ -105,9 +105,10 @@ To make Dendrite available via HTTPS, create a :manual:`web backend
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ uberspace web backend set /_matrix --http --port 8008
+  [isabell@stardust ~/dendrite]$ uberspace web backend set /_matrix --http --port 8008
   Set backend for /_matrix to port 8008; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust ~/dendrite]$
 
 Please adjust the port ``8008`` if you want to run Dendrite on a different port.
 
@@ -164,7 +165,8 @@ utility that comes with Dendrite:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ ./bin/generate-keys --private-key matrix_key.pem
+  [isabell@stardust ~/dendrite]$ ./bin/generate-keys --private-key matrix_key.pem
+  [isabell@stardust ~/dendrite]$
 
 Add the filename to the configuration using the ``private_key`` property:
 
@@ -192,6 +194,16 @@ your PostgreSQL setup:
 
 Replace ``key`` with your PostgreSQL database key (see the corresponding
 installation step).
+
+Additionally, it is recommended to lower the amount of database connections to
+reduce the resource consumption of PostgreSQL:
+
+.. code-block:: yaml
+ :emphasize-lines: 3
+
+    database:
+      connection_string: postgresql://dendrite:key@localhost/dendrite?sslmode=disable
+      max_open_conns: 10
 
 Logging
 -------
@@ -238,8 +250,8 @@ commandline:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ cd ~/dendrite/
-  [isabell@stardust dendrite]$ ./bin/create-account -config dendrite.yaml -username myuser
+  [isabell@stardust ~/dendrite]$ ./bin/create-account -config dendrite.yaml -username myuser
+  [isabell@stardust ~/dendrite]$
 
 
 Maintenance
@@ -252,7 +264,8 @@ To back up the Dendrite database use PostgreSQL’s ``pg_dumpall`` command:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ pg_dumpall -f ~/pg_backup.sql
+  [isabell@stardust ~/dendrite]$ pg_dumpall -f ~/pg_backup.sql
+  [isabell@stardust ~/dendrite]$
 
 Updates
 -------
@@ -262,17 +275,18 @@ To update the code, fetch all git updates and checkout the latest version
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ cd ~/dendrite/
-  [isabell@stardust dendrite]$ git fetch -p
-  [isabell@stardust dendrite]$ git checkout v0.13.5
+  [isabell@stardust ~/dendrite]$ git fetch -p
+  [isabell@stardust ~/dendrite]$ git checkout v0.13.5
+  [isabell@stardust ~/dendrite]$
 
 Then, stop the Dendrite service, build the new version and start the service
 again:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ supervisorctl stop dendrite
-  [isabell@stardust ~]$ go build -o bin ./cmd/...
-  [isabell@stardust ~]$ supervisorctl start dendrite
+  [isabell@stardust ~/dendrite]$ supervisorctl stop dendrite
+  [isabell@stardust ~/dendrite]$ go build -o bin ./cmd/...
+  [isabell@stardust ~/dendrite]$ supervisorctl start dendrite
+  [isabell@stardust ~/dendrite]$
 
 .. author_list::
