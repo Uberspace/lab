@@ -137,6 +137,7 @@ Create a config file ``$FORGEJO_HOME/custom/conf/app.ini`` with the content of t
 
   [database]
   DB_TYPE  = mysql
+  HOST     = 127.0.0.1:3306
   NAME     = isabell_forgejo
   USER     = isabell
   PASSWD   = <MySQL_PASSWORD>
