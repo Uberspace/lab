@@ -12,7 +12,7 @@ Dendrite
 
 .. tag_list::
 
-`Dendrite <https://matrix-org.github.io/dendrite/>`_ is a second-generation
+`Dendrite <https://element-hq.github.io/dendrite/>`_ is a second-generation
 Matrix homeserver written in Go! Following the microservice architecture model,
 Dendrite is designed to be efficient, reliable and scalable. Despite being
 beta, many Matrix features are already supported.
@@ -108,6 +108,7 @@ To make Dendrite available via HTTPS, create a :manual:`web backend
   [isabell@stardust dendrite]$ uberspace web backend set /_matrix --http --port 8008
   Set backend for /_matrix to port 8008; please make sure something is listening!
   You can always check the status of your backend using "uberspace web backend list".
+  [isabell@stardust dendrite]$
 
 Please adjust the port ``8008`` if you want to run Dendrite on a different port.
 
@@ -164,7 +165,9 @@ utility that comes with Dendrite:
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ cd ~/dendrite/
   [isabell@stardust dendrite]$ ./bin/generate-keys --private-key matrix_key.pem
+  [isabell@stardust dendrite]$
 
 Add the filename to the configuration using the ``private_key`` property:
 
@@ -192,6 +195,16 @@ your PostgreSQL setup:
 
 Replace ``key`` with your PostgreSQL database key (see the corresponding
 installation step).
+
+Additionally, it is recommended to lower the amount of database connections to
+reduce the resource consumption of PostgreSQL:
+
+.. code-block:: yaml
+ :emphasize-lines: 3
+
+    database:
+      connection_string: postgresql://dendrite:key@localhost/dendrite?sslmode=disable
+      max_open_conns: 10
 
 Logging
 -------
@@ -238,8 +251,9 @@ commandline:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ cd ~/dendrite/
+  [isabell@stardust ~]$ cd ~/dendrite/
   [isabell@stardust dendrite]$ ./bin/create-account -config dendrite.yaml -username myuser
+  [isabell@stardust dendrite]$
 
 
 Maintenance
@@ -252,7 +266,8 @@ To back up the Dendrite database use PostgreSQL’s ``pg_dumpall`` command:
 
 .. code-block:: console
 
-  [isabell@stardust dendrite]$ pg_dumpall -f ~/pg_backup.sql
+  [isabell@stardust ~]$ pg_dumpall -f ~/pg_backup.sql
+  [isabell@stardust ~]$
 
 Updates
 -------
@@ -265,14 +280,17 @@ To update the code, fetch all git updates and checkout the latest version
   [isabell@stardust ~]$ cd ~/dendrite/
   [isabell@stardust dendrite]$ git fetch -p
   [isabell@stardust dendrite]$ git checkout v0.13.5
+  [isabell@stardust dendrite]$
 
 Then, stop the Dendrite service, build the new version and start the service
 again:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ supervisorctl stop dendrite
-  [isabell@stardust ~]$ go build -o bin ./cmd/...
-  [isabell@stardust ~]$ supervisorctl start dendrite
+  [isabell@stardust ~]$ cd ~/dendrite/
+  [isabell@stardust dendrite]$ supervisorctl stop dendrite
+  [isabell@stardust dendrite]$ go build -o bin ./cmd/...
+  [isabell@stardust dendrite]$ supervisorctl start dendrite
+  [isabell@stardust dendrite]$
 
 .. author_list::
