@@ -188,20 +188,31 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
+First, backup your current installation by renaming the writefreely directory:
+
 .. code-block:: console
 
   [isabell@stardust ~]$ mv ~/writefreely ~/writefreely-backup
+
+Copy the link to the newest tarball, use ``wget`` and ``tar`` to download and extract it (same procedure as in the installation_ step):
+
+.. code-block:: console
+
   [isabell@stardust ~]$ wget https://github.com/writeas/writefreely/releases/download/v0.13.0/writefreely_0.13.0_linux_amd64.tar.gz
   [isabell@stardust ~]$ tar xzf writefreely_0.13.0_linux_amd64.tar.gz
+
+Copy the config and key files and do a database migration:
+
+.. code-block:: console
+
   [isabell@stardust ~]$ cp ~/writefreely-backup/config.ini ~/writefreely/config.ini
-  [isabell@stardust ~]$ cp -r ~/writefreely-backup/keys ~/writefreely/keys
-  [isabell@stardust ~]$ cd ~/writefreely/
-  [isabell@stardust ~]$ writefreely db migrate
+  [isabell@stardust ~]$ cp ~/writefreely-backup/keys/* ~/writefreely/keys/*
+  [isabell@stardust ~]$ ~/writefreely/writefreely db migrate
   [...]
   2024/02/06 14:09:10 Closing database connection...
   [isabell@stardust ~]$
 
-Restart Writefreely by ``supervisorctl restart writefreely`` command. If it's not starting, repeat `config mode procedure`_.
+Restart Writefreely using the ``supervisorctl restart writefreely`` command. If it's not starting, repeat `config mode procedure`_.
 
 ----
 
@@ -215,4 +226,5 @@ Tested on Uberspace v7.15.9 with Go 1.21.6 and Writefreely v0.15.0.
 .. _`admin guide`: https://writefreely.org/docs/latest/admin/config
 .. _documentation: https://writefreely.org/docs/latest/writer/css
 .. _feed: https://github.com/writeas/writefreely/releases/latest
+.. _installation: #installation
 .. _`config mode procedure`: #writefreely-config
