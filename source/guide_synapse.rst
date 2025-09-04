@@ -126,12 +126,22 @@ Also we need the latest ``urllib3`` that support OpenSSL 1.0.2 which is provided
     Successfully installed urllib3-1.26.6
   [isabell@stardust ~]$
 
+.. Rust compilation errors:
+
 .. note:: If you get a compilation error due to missing rust components in the cryptography library for python it may help to run:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ pip3.9 install --user setuptools_rust
   [isabell@stardust ~]$ python3.9 -m pip install --upgrade  --user pip
+  [isabell@stardust ~]$
+
+.. note:: As of `matrix-synapse 1.137.0`_ you also need to symlink `cargo` and `rustc` to workaround `issue #1932`_:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ ln -s /opt/rust-stable/bin/cargo /home/$USER/bin/cargo
+  [isabell@stardust ~]$ ln -s /opt/rust-stable/bin/rustc /home/$USER/bin/rustc
   [isabell@stardust ~]$
 
 Configuration
@@ -285,6 +295,8 @@ Updates
 =======
 
 Watch MatrixRSS_ to be notified of upgrades and if there is a update, use pip to update the installation:
+
+.. note:: If you installed matrix-synapse prior to version 1.137.0, see :ref:`Rust compilation error`.
 
 .. code-block:: console
 
@@ -537,6 +549,8 @@ Tested on Uberspace 7.15.6 via riot.im/app on synapse 1.97.0. Sliding Sync teste
 .. _MatrixFederationChecker: https://federationtester.matrix.org/
 .. _Sliding Sync: https://github.com/matrix-org/sliding-sync
 .. _Matrix 2.0: https://matrix.org/blog/2023/09/matrix-2-0/
+.. _matrix-synapse 1.137.0: https://pypi.org/project/matrix-synapse/1.137.0/
+.. _issue 1932: https://github.com/Uberspace/lab/issues/1932
 
 ----
 
