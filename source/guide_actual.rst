@@ -11,9 +11,15 @@
 
 .. highlight:: console
 
-###########
+######
 Actual
-###########
+######
+
+.. error::
+
+  This guide seems to be **broken** for the current versions of Actual, we would be
+  happy if you want to work on a solution and create a Pull Request.
+  See also the related issue: https://github.com/Uberspace/lab/issues/1891
 
 .. tag_list::
 
