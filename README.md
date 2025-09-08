@@ -11,7 +11,13 @@ learn how. Also, have a look at the [list of guides][] people are looking for!
 
 ## Prerequisites
 
-You need to have installed:
+**Note:** When using VS Code with the [devcontainer](https://containers.dev/), you only need to have [Docker](https://docs.docker.com/desktop/) installed.
+
+Simply open the repository in VS Code and press `F1` to open the command palette, then select `Remote-Containers: Reopen in Container` to open the repository in a container.
+
+The devcontainer will have all the necessary dependencies installed, and will automatically run the initial setup.
+
+Generally, you need to have installed:
 
 -   Python (<= 3.11)
 -   [Enchant library](https://rrthomas.github.io/enchant/)
