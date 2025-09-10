@@ -15,9 +15,9 @@
       :align: center
 
 
-#########
+######
 Gancio
-#########
+######
 
 .. tag_list::
 
@@ -162,6 +162,8 @@ Updates
   [isabell@stardust ~]$ supervisorctl restart gancio
   gancio: stopped
   gancio: started
+
+.. _Gancio: https://gancio.org
 
 ----
 
