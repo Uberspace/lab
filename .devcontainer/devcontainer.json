@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+    "name": "uberspace-lab",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+    // Features to add to the dev container. More info: https://containers.dev/features.
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.11",
+            "installTools": true
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "upgradePackages": true
+        }
+    },
+
+    // Use 'forwardPorts' to expose the Sphinx Development Server
+    "forwardPorts": [8000],
+    "portsAttributes": {
+        "8000": {
+            "label": "Sphinx Development Server"
+        }
+    },
+
+    // Use 'onCreateCommand' to run commands INSIDE the container IMMEDIATELY after the container is created. Runs only once.
+    "onCreateCommand": "sudo apt update && sudo apt install -y libenchant-2-2 libenchant-2-dev enchant-2 build-essential",
+
+    // Use 'postCreateCommand' to run commands INSIDE the container AFTER the container is created. Runs only once.
+    "postCreateCommand": "make setup"
+}
