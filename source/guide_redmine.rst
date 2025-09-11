@@ -41,19 +41,19 @@ Prerequisites
 =============
 
 Checkout which `version of Ruby <https://redmine.org/projects/redmine/wiki/RedmineInstall>`_
-is supported by your desired version of Redmine. Redmine version 4 for example
-expects Ruby 2.2, 2.3, 2.4, 2.5 or 2.6.
+is supported by your desired version of Redmine. Redmine version 6 for example
+expects Ruby 3.1, 3.2 or 3.3.
 
 Run ``uberspace tools version show ruby`` to show which Ruby version is currently
 active on your Uberspace and ``uberspace tools version list ruby`` to list all
 available ones.
 
-To set Ruby version 2.5 you could run (but there is no need to do so if one of the above is already active):
+To set Ruby version 3.2 you could run (but there is no need to do so if one of the above is already active):
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ uberspace tools version use ruby 2.5
-  Selected Ruby version 2.5
+  [isabell@stardust ~]$ uberspace tools version use ruby 3.2
+  Selected Ruby version 3.2
   [isabell@stardust ~]$
 
 Ruby requires a database, so you should create an empty database now.
@@ -88,9 +88,9 @@ all files in there.
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ wget https://redmine.org/releases/redmine-4.0.5.tar.gz
-  [isabell@stardust ~]$ tar xfv redmine-4.0.5.tar.gz
-  [isabell@stardust ~]$ mv redmine-4.0.5 redmine
+  [isabell@stardust ~]$ wget https://redmine.org/releases/redmine-6.0.6.tar.gz
+  [isabell@stardust ~]$ tar xfv redmine-6.0.6.tar.gz
+  [isabell@stardust ~]$ mv redmine-6.0.6 redmine
   [isabell@stardust ~]$ cd redmine
   [isabell@stardust redmine]$
 
@@ -108,6 +108,15 @@ the new file in order to configure your database settings for the "production" e
     password: "my_secure_mysql_password"
 
 Redmine uses Bundler to manage dependencies. Install Bundler running ``gem install bundler``.
+
+.. note:: Package installation on recent versions of Redmine crashes because the `nokogiri` gem requires GLIBC_2.28 which is not available on U7.
+
+To fix the issue one has to modify the `nokogiri` dependency in the Gemfile as follows:
+
+.. code-block:: ruby
+
+  gem 'nokogiri', '~> 1.18.3', force_ruby_platform: true
+
 
 Install all dependencies running ``bundle install --without development test rmagick --path vendor/bundle``:
 
@@ -227,7 +236,7 @@ the same steps as the installation guide above, plus backup and restore of exist
 
 ----
 
-Tested with Redmine 4.0.5, Ruby 2.6, Uberspace 7.3.9.2
+Tested with Redmine 6.0.6, Ruby 3.2, Uberspace 7.16.7
 
 .. author_list::
 
