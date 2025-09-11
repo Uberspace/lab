@@ -19,7 +19,7 @@ FindMyDevice-Server
 .. tag_list::
 
 
-`FMD-Server`_ is web interface to locate your Android device and send commands to it, take photos, lock or delete it.
+`FMD-Server`_ is a web interface to locate your android device and send commands to it, take photos, lock or delete it.
 A general Installation guide can be found on Gitlab. 
 https://gitlab.com/fmd-foss/fmd-server (Mainpage)
 
@@ -43,7 +43,7 @@ https://gitlab.com/fmd-foss/fmd-server (Mainpage)
 Download Link (11.9.2025)
 https://gitlab.com/fmd-foss/fmd-server/-/archive/v0.11.0/fmd-server-v0.11.0.zip
 
-Rename to fmd-foss, unzip and copy the folder fmd-server to fmd-foss (you have the create this folder) into your /home/isabell/fmd-foss/
+Rename to fmd-server, unzip and copy the new folder fmd-server to fmd-foss (you have the create this folder) into your /home/isabell/fmd-foss/
 
 Use any sftp programm like filezilla or use the shell to copy the servers source code to your webhost.
 
@@ -115,7 +115,7 @@ Next step is to start your daemon:
 Further Information about supervisord:
 https://manual.uberspace.de/daemons-supervisord/
 
-Ready, now you need to prepare your device/smartfon for login:
+Ready, it's the time you might want to prepare a android device/smartfon for login and testing:
 
 https://gitlab.com/fmd-foss/fmd-android or https://f-droid.org/packages/de.nulide.findmydevice/
 
