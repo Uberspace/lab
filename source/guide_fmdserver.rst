@@ -38,11 +38,7 @@ Installation
 
 Download FMD Server:
 
-Gitlab-FMD-Server_ (mainpage)
-
-
-
-Download Link_ (releases): 
+Gitlab-FMD-Server_ (mainpage), download Link_ (releases): 
 
 
 Rename the downloaded .zip to fmd-server.zip, unzip and copy the folder ``fmd-server`` to fmd-foss (you have the create this folder) into your ``/home/isabell/fmd-foss/``
@@ -91,10 +87,12 @@ with the following entries:
     autorestart=yes
     startsecs=30
 
+In General:
+
 .. include:: includes/supervisord.rst
 
-You can user any sftp programm or your shell to copy your supervisord-fmd.ini. 
-Afterwards, ask ``supervisord`` to look for the new ``supervisord-fmd.ini`` file:
+You can use any sftp programm or your shell to copy your supervisord-fmd.ini. 
+Afterwards, ask ``supervisord`` to look for the new ``supervisord-fmd.ini`` file, in your case it will look like this:
 
 .. code-block:: bash
 
@@ -128,7 +126,7 @@ Should be ok. just to replace the code in your fmd-server folder and rebuild, re
 Download Link_ (releases):
 
 
-Rename the downloaded .zip to fmd-server.zip, unzip and copy the folder ``fmd-server`` to fmd-foss into your ``/home/isabell/fmd-foss/``
+Rename the downloaded .zip to fmd-server.zip, unzip and replace the files and folders in  your  `/home/isabell/fmd-foss/``
 
 Use any sftp programm like filezilla or use the shell to copy the servers source code to your webhost.
 
