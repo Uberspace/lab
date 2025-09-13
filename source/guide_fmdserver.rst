@@ -19,9 +19,9 @@ FindMyDevice-Server
 .. tag_list::
 
 
-`FMD-Server`_  is a web interface to locate your Android device and send commands to it, take photos, lock or delete it.
-A general Installation guide can be found on Gitlab. 
-https://gitlab.com/fmd-foss/fmd-server (Mainpage)
+FMD-Server_  is a web interface to locate your android device and send commands to it, take photos, lock or delete it.
+A general Installation guide can be found on Gitlab-FMD-Server_ . (Mainpage)
+
 
 
 ----
@@ -29,7 +29,7 @@ https://gitlab.com/fmd-foss/fmd-server (Mainpage)
 Prerequisites
 =============
 
-A domain or subdomain to connect to your FMD-Server via web backend, The FMD-Server package from GitLab.
+A domain or subdomain, like $USER.uber.space to connect to your FMD-Server via web backend, the FMD-Server package from GitLab.
 
 
 
@@ -38,10 +38,12 @@ Installation
 
 Download FMD Server:
 
-https://gitlab.com/fmd-foss/fmd-server (Mainpage)
+Gitlab-FMD-Server_ (mainpage)
 
-Download Link (11.9.2025)
-https://gitlab.com/fmd-foss/fmd-server/-/archive/v0.11.0/fmd-server-v0.11.0.zip
+
+
+Download Link_ (releases): 
+
 
 Rename the downloaded .zip to fmd-server.zip, unzip and copy the folder ``fmd-server`` to fmd-foss (you have the create this folder) into your ``/home/isabell/fmd-foss/``
 
@@ -71,18 +73,11 @@ should result in:
 
 Bind the server, which shouĺd be running now (message above), to your domain via a web backend:
 
-.. code-block:: bash
-
-   [isabell@stardust ~]$ uberspace web backend set allcolorsarebeautiful.example --http --port 8080
-   Set backend for allcolorsarebeautiful.example/ to port 8080; please make sure something is listening!
-   You can always check the status of your backend using "uberspace web backend list".
-
-Further informations about ubers web-backends: 
-https://manual.uberspace.de/web-backends/
+.. include:: includes/web-backend.rst
 
 Now it should already work. You can try with your webbrowser. Before, you still have to restart your FMD-Server manually again. 
 If your server is not running you will get a 502 Bad Gateway response.
-Final Step will be to let your system know about howto start fmd-server on it's own:
+Final step will be to let your system know about howto start fmd-server on it's own:
 
 We have to create a new service with supervisord and a fmd-server.ini in  ``/home/isabell/etc/services.d/supervisord-fmd.ini``, 
 with the following entries:
@@ -95,6 +90,8 @@ with the following entries:
     autostart=yes
     autorestart=yes
     startsecs=30
+
+.. include:: includes/supervisord.rst
 
 You can user any sftp programm or your shell to copy your supervisord-fmd.ini. 
 Afterwards, ask ``supervisord`` to look for the new ``supervisord-fmd.ini`` file:
@@ -112,12 +109,12 @@ Next step is to start your daemon:
  fmd-foss: added process group
 
 
-Further Information about supervisord:
-https://manual.uberspace.de/daemons-supervisord/
+Further Information about supervisord_ :
+
 
 Ready, now you might want to prepare your android device/smartfon for login and testing:
+On GitLab_ or F-Droid_ you will find the fmd-android packages.
 
-https://gitlab.com/fmd-foss/fmd-android or https://f-droid.org/packages/de.nulide.findmydevice/
 
 Configuration
 =============
@@ -127,6 +124,37 @@ Auto
 Updates
 =======
 Should be ok. just to replace the code in your fmd-server folder and rebuild, read changelog.
+
+Download Link_ (releases):
+
+
+Rename the downloaded .zip to fmd-server.zip, unzip and copy the folder ``fmd-server`` to fmd-foss into your ``/home/isabell/fmd-foss/``
+
+Use any sftp programm like filezilla or use the shell to copy the servers source code to your webhost.
+
+Start the FMD-Server:
+
+.. code-block:: bash
+
+     [isabell@stardust ~]$cd /home/isabell/fmd-foss/fmd-server/
+     [isabell@stardust ~]$go run main.go serve
+     # or
+     [isabell@stardust ~]$go build
+     [isabell@stardust ~]$./fmd-server serve
+   
+should result in:
+   
+.. code-block:: bash   
+
+  atimestamp:  WRN no config found, using defaults
+  atimestamp:  using config configFile=
+  atimestamp:  INF starting FMD Server dbDir=./db/ version=v0.11.0 webDir=./web/
+  atimestamp:  INF loading database
+  atimestamp:  INF no SQLite DB found, creating one
+  atimestamp:  INF listening on insecure port PortInsecure=8080
+
+
+
 
 ----
 
@@ -144,5 +172,11 @@ Remove
    
    Delete the fmd-foss folder and the supervisord-fmd.ini file.
 
+.. _GitLab: https://gitlab.com/fmd-foss/fmd-android/ 
+.. _F-Droid: https://f-droid.org/packages/de.nulide.findmydevice/
+.. _Gitlab-FMD-Server: https://gitlab.com/fmd-foss/fmd-server/
+.. _Link: https://gitlab.com/fmd-foss/fmd-server/-/releases/
+.. _supervisord: https://manual.uberspace.de/daemons-supervisord/
+.. _FMD-Server: https://gitlab.com/fmd-foss/fmd-server/
 
 .. author_list::
