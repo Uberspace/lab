@@ -38,7 +38,7 @@ Installation
 
 Download FMD Server:
 
-Gitlab-FMD-Server_ (mainpage), download Link_ (releases): 
+Gitlab-FMD-Server_ (mainpage), download Link_ (releases). 
 
 
 Rename the downloaded .zip to fmd-server.zip, unzip and copy the folder ``fmd-server`` to fmd-foss (you have the create this folder) into your ``/home/isabell/fmd-foss/``
@@ -73,7 +73,7 @@ Bind the server, which shouĺd be running now (message above), to your domain vi
 
 Now it should already work. You can try with your webbrowser. Before, you still have to restart your FMD-Server manually again. 
 If your server is not running you will get a 502 Bad Gateway response.
-Final step will be to let your system know about howto start fmd-server on it's own:
+Final step will be to let your system know about howto start fmd-server on it's own.
 
 We have to create a new service with supervisord and a fmd-server.ini in  ``/home/isabell/etc/services.d/supervisord-fmd.ini``, 
 with the following entries:
@@ -110,7 +110,7 @@ Next step is to start your daemon:
 Further Information about supervisord_ :
 
 
-Ready, now you might want to prepare your android device/smartfon for login and testing:
+Ready, now you might want to prepare your android device/smartfon for login and testing.
 On GitLab_ or F-Droid_ you will find the fmd-android packages.
 
 
@@ -126,7 +126,7 @@ Should be ok. just to replace the code in your fmd-server folder and rebuild, re
 Download Link_ (releases):
 
 
-Rename the downloaded .zip to fmd-server.zip, unzip and replace the files and folders in  your  `/home/isabell/fmd-foss/``
+Rename the downloaded .zip to fmd-server.zip, unzip and replace the files and folders in  your  ``/home/isabell/fmd-foss/``
 
 Use any sftp programm like filezilla or use the shell to copy the servers source code to your webhost.
 
