@@ -52,13 +52,13 @@ Download the latest pre-compiled binary_ from the releases_ page.
 
 .. code-block:: console
 
-  [isabell@stardust gotosocial]$ wget https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v0.19.1/gotosocial_0.19.1_linux_amd64.tar.gz
+  [isabell@stardust gotosocial]$ wget https://codeberg.org/superseriousbusiness/gotosocial/releases/download/v0.19.2/gotosocial_0.19.2_linux_amd64.tar.gz
 
 Extract the archive in place to populate the directory with the binary and static and example files.
 
 .. code-block:: console
 
-  [isabell@stardust gotosocial]$ tar xzf gotosocial_0.19.1_linux_amd64.tar.gz
+  [isabell@stardust gotosocial]$ tar xzf gotosocial_0.19.2_linux_amd64.tar.gz
   [isabell@stardust gotosocial]$
 
 
@@ -151,7 +151,9 @@ On a single-user instance you might want to disable further account registration
 Updates
 =======
 
-.. note:: Check the update feed_ regularly to stay informed about the newest version.
+.. note:: Check the update feed_ regularly or follow the project in the fediverse_ to stay informed about the newest version.
+
+.. warning:: Check the release notes if there are any additional steps (like config changes) needed for the current update and apply them.
 
 Stop the service using ``supervisorctl stop gotosocial`` and rename your current installation to keep a backup.
 
@@ -159,34 +161,36 @@ Stop the service using ``supervisorctl stop gotosocial`` and rename your current
 
   [isabell@stardust ~]$ mv ~/gotosocial ~/gotosocial-backup
 
-Repeat the installation_ step and copy your ``config.yaml`` and ``storage`` directory back into the new installation.
+Repeat the installation_ step and copy your ``config.yaml``, ``sqlite.db`` and ``storage`` directory back into the new installation.
 
 .. code-block:: console
 
   [isabell@stardust ~]$ cp ~/gotosocial-backup/config.yaml ~/gotosocial/config.yaml
+  [isabell@stardust ~]$ cp -r ~/gotosocial-backup/sqlite.db ~/gotosocial/sqlite.db
   [isabell@stardust ~]$ cp -r ~/gotosocial-backup/storage ~/gotosocial/storage
 
 Sart GoToSocial using the ``supervisorctl start gotosocial`` command. If it's not starting, investigate errors in the supervisord logfile located in ``~/tmp``. Otherwise have fun using the latest version and consider removing your backup after some days.
 
 ----
 
-Tested with GoToSocial 0.19.1, Uberspace 7
+Tested with GoToSocial 0.19.2, Uberspace 7
 
 .. _GoToSocial: https://gotosocial.org
 .. _ActivityPub: https://activitypub.rocks
 .. _Fediverse: https://fediverse.info
-.. _binary: https://docs.gotosocial.org/en/v0.19.1/getting_started/installation/metal/#download-release
+.. _binary: https://docs.gotosocial.org/en/v0.19.2/getting_started/installation/metal/#download-release
 .. _releases: https://codeberg.org/superseriousbusiness/gotosocial/releases
 .. _SQlite: https://manual.uberspace.de/database-sqlite
-.. _configuration: https://docs.gotosocial.org/en/v0.19.1/configuration
-.. _database: https://docs.gotosocial.org/en/v0.19.1/configuration/database
-.. _advanced: https://docs.gotosocial.org/en/v0.19.1/advanced/host-account-domain/
-.. _admin: https://docs.gotosocial.org/en/v0.19.1/admin/settings
+.. _configuration: https://docs.gotosocial.org/en/v0.19.2/configuration
+.. _database: https://docs.gotosocial.org/en/v0.19.2/configuration/database
+.. _advanced: https://docs.gotosocial.org/en/v0.19.2/advanced/host-account-domain/
+.. _admin: https://docs.gotosocial.org/en/v0.19.2/admin/settings
 .. _Pinafore: https://pinafore.social
 .. _Tusky: https://tusky.app
-.. _settings: https://docs.gotosocial.org/en/v0.19.1/user_guide/settings
-.. _`custom css`: https://docs.gotosocial.org/en/v0.19.1/user_guide/custom_css/
+.. _settings: https://docs.gotosocial.org/en/v0.19.2/user_guide/settings
+.. _`custom css`: https://docs.gotosocial.org/en/v0.19.2/user_guide/custom_css/
 .. _feed: https://codeberg.org/superseriousbusiness/gotosocial.rss
+.. _fediverse: https://gts.superseriousbusiness.org/@gotosocial
 .. _installation: #Installation
 
 .. author_list::
