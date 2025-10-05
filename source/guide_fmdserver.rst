@@ -130,15 +130,14 @@ Rename the downloaded .zip to fmd-server.zip, unzip and replace the files and fo
 
 Use any sftp programm like filezilla or use the shell to copy the servers source code to your webhost.
 
-Start the FMD-Server:
+Start the the new Version, it is important to stop the server:
 
 .. code-block:: bash
-
-     [isabell@stardust ~]$cd /home/isabell/fmd-foss/fmd-server/
-     [isabell@stardust ~]$go run main.go serve
-     # or
-     [isabell@stardust ~]$go build
-     [isabell@stardust ~]$./fmd-server serve
+     [isabell@stardust ~]$ supervisorctl stop fmd-foss
+     [isabell@stardust ~]$ cd /home/isabell/fmd-foss/fmd-server/
+     [isabell@stardust ~]$ go run main.go serve
+     [isabell@stardust ~]$ go build
+     [isabell@stardust ~]$ supervisorctl start fmd-foss
    
 should result in:
    
