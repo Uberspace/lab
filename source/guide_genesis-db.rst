@@ -53,7 +53,9 @@ Download the Genesis DB binary to your bin directory:
 .. code-block:: bash
 
  [isabell@stardust ~]$ cd /home/$USER/bin
- [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64
+ [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64 -O genesisdb-linux-amd64.tar.gz
+ [isabell@stardust bin]$ tar -xzf genesisdb-linux-amd64.tar.gz
+ [isabell@stardust bin]$ cd genesisdb-1.0.5-linux-amd64
  [isabell@stardust bin]$ chmod +x genesisdb
  [isabell@stardust bin]$
 
@@ -76,7 +78,7 @@ Create a configuration file for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with you
 
  [isabell@stardust ~]$ cat > ~/etc/services.d/genesisdb.ini << EOF
  [program:genesisdb]
- command=/home/$USER/bin/genesisdb
+ command=/home/$USER/bin/genesisdb-1.0.5-linux-amd64/genesisdb
  directory=/home/$USER
  autostart=true
  autorestart=true
@@ -191,7 +193,7 @@ Common Issues
 -------------
 
 1. **Service fails to start**: Check the error logs in ``/home/$USER/logs/genesisdb.err.log``
-2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb``
+2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.0.5-linux-amd64/genesisdb``
 3. **Port conflicts**: Use ``ss -tlnp | grep :PORT`` to check if a port is already in use
 4. **Domain issues**: Verify domain configuration with ``uberspace web domain list``
 
