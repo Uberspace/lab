@@ -159,13 +159,13 @@ Stop the service using ``supervisorctl stop gotosocial`` and rename your current
 
   [isabell@stardust ~]$ mv ~/gotosocial ~/gotosocial-backup
 
-Repeat the installation_ step and copy your ``config.yaml``, ``storage`` and database directory back into the new installation.
+Repeat the installation_ step and copy your database, ``config.yaml`` and ``storage`` directory back into the new installation.
 
 .. code-block:: console
 
+  [isabell@stardust ~]$ cp ~/gotosocial-backup/sqlite.db ~/gotosocial/sqlite.db
   [isabell@stardust ~]$ cp ~/gotosocial-backup/config.yaml ~/gotosocial/config.yaml
   [isabell@stardust ~]$ cp -r ~/gotosocial-backup/storage/. ~/gotosocial/storage/
-  [isabell@stardust ~]$ cp  ~/gotosocial-backup/sqlite.db ~/gotosocial/sqlite.db
 
 Start GoToSocial using the ``supervisorctl start gotosocial`` command. Wait patiently for any migrations to run, do not interrupt migrations or you could leave your db in a broken state and will have to restore from backup. If it's not starting, investigate errors in the supervisord logfile located in ``~/tmp``. Otherwise have fun using the latest version and consider removing your backup after some days.
 
