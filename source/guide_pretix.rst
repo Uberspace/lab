@@ -124,6 +124,12 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     port=587
     tls=on
 
+    [redis]
+    # use the Redis UNIX socket; pick a DB number you reserve for pretix caches/sessions
+    location=unix:///home/qhc/.redis/sock?db=1
+    # store Django sessions in Redis too (recommended)
+    sessions=true
+
 
 Initialize database
 -------------------
