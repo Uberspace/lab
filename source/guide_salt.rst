@@ -59,6 +59,7 @@ Installing Salt 3007.8 in a ``virtualenv`` using python 3.10. If you want to ins
  [isabell@stardust ~]$ python3.10 -m venv ~/salt_venv
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
  (salt_venv) [isabell@stardust ~]$ pip3.10 install -U setuptools pip wheel
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -U pygit2
  (salt_venv) [isabell@stardust ~]$ pip3.10 install -r https://github.com/saltstack/salt/raw/refs/tags/v3007.8/requirements/base.txt
  (salt_venv) [isabell@stardust ~]$ pip3.10 install salt==3007.8
  (salt_venv) [isabell@stardust ~]$ deactivate
@@ -136,7 +137,7 @@ Update Salt in ``virtualenv``:
 
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
  (salt_venv) [isabell@stardust ~]$ pip3.10 install <any additional dependencies from newer version>
- (salt_venv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.10 install -U --global-option='--salt-root-dir='${HOME}'/salt_venv/' salt
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -U salt
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ supervisorctl restart salt-master
 
