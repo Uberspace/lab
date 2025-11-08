@@ -116,6 +116,10 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
     broker=redis+socket:///home/isabell/.redis/sock
     backend=redis+socket:///home/isabell/.redis/sock
 
+    [redis]
+    location=unix:///home/isabell/.redis/sock?db=0
+    sessions=true
+
     [mail]
     from=isabell@uber.space
     host=stardust.uberspace.de
