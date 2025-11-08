@@ -95,7 +95,7 @@ Now you need to set up the configuration, create the file ``~/.pretix.cfg`` and 
 .. warning:: Be sure, to replace all values with correct data of your own Uberspace account!
 
 .. code-block:: ini
-  :emphasize-lines: 2,3,5,10,11,12,17,18,21,22,23,24,25
+  :emphasize-lines: 2,3,5,10,11,12,17,18,21,25,26,27,28
 
     [pretix]
     instance_name=Isabells pretix
