@@ -153,7 +153,7 @@ Therefore create a ``.htaccess`` file inside the ``~/html`` folder with the foll
 Updates
 =======
 
-The update process is quiet tricky due to the fact there is no update script for shared hosts available. Everthing is to maintain manually.
+The update process is quite tricky due to the fact there is no update script for shared hosts available. Everything is to be maintained manually.
 
 Plus the update steps could be different from version to version. Sometimes some database changes "and" file updates are necessary, or only file and configuration updates.
 
