@@ -156,9 +156,8 @@ When a new version is released, copy the download link and download it as above,
  :emphasize-lines: 2
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/html/
- [isabell@stardust html]$ wget -O limesurvey.tar.gz https://www.limesurvey.org/stable-release?download=4711:limesurvey4711%20180926targz
- [isabell@stardust html]$ tar -xzf limesurvey.tar.gz --strip-components=1 --overwrite  --exclude '/application/config/config.php' --exclude '/upload/*'
- [isabell@stardust html]$
+ [isabell@stardust html]$ wget -O limesurvey.zip https://download.limesurvey.org/latest-master/limesurvey6.15.23+251110.zip
+ [isabell@stardust html]$ unzip -o limesurvey.zip -x "application/config/config.php" -x "upload/*"
 
 
 .. _LimeSurvey: https://www.limesurvey.org/
@@ -168,6 +167,6 @@ When a new version is released, copy the download link and download it as above,
 
 ----
 
-Tested with LimeSurvey 5.4.10, Uberspace 7.13.0, and PHP 8.1
+Tested with LimeSurvey 6.15.23, Uberspace 7.16.9, and PHP 8.3
 
 .. author_list::
