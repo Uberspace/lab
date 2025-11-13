@@ -111,7 +111,7 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Grocy comes with a handy update script, so just run this and copy the public files to html again.
+Grocy comes with a handy update script, so just run this and copy the public files to html again. But the included update script demands wget with version 1.15 or newer, therefore the option ``--show-progress``needs to be removed from the script before running it (otherwise it fails).
 
 ::
 
@@ -128,6 +128,6 @@ Grocy comes with a handy update script, so just run this and copy the public fil
 
 ----
 
-Tested with Grocy 3.3.2, Uberspace 7.13.0, and PHP 8.1
+Tested with Grocy 4.5.0, Uberspace 7.16.9, and PHP 8.4
 
 .. author_list::
