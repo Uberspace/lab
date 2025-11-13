@@ -12,11 +12,11 @@
 .. tag:: event-driven-development
 .. tag:: event-driven-architecture
 
-############
-Genesis DB
-############
+#############
+Genesis DB CE
+#############
 
-Genesis DB is an event sourcing database engine that can be easily deployed on Uberspace. This guide will walk you through the complete setup process for running Genesis DB.
+Genesis DB is an event sourcing database engine that can be easily deployed on Uberspace. This guide will walk you through the complete setup process for running Genesis DB CE (Community Edition).
 
 ----
 
@@ -53,8 +53,8 @@ Download the Genesis DB binary to your bin directory:
 .. code-block:: bash
 
  [isabell@stardust ~]$ cd /home/$USER/bin
- [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64 -O genesisdb-linux-amd64.tar.gz
- [isabell@stardust bin]$ tar -xzf genesisdb-linux-amd64.tar.gz
+ [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64-ce -O genesisdb-ce-linux-amd64.tar.gz
+ [isabell@stardust bin]$ tar -xzf genesisdb-ce-linux-amd64.tar.gz
 
 Configuration
 =============
@@ -62,12 +62,12 @@ Configuration
 Step 3: Create Supervisord Configuration
 -----------------------------------------
 
-Create a configuration file ``~/etc/services.d/genesisdb.ini`` for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with your actual Genesis DB authentication token:
+Create a configuration file ``~/etc/services.d/genesisdb.ini`` for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with your actual Genesis DB authentication token. It is recommended to create a secure, strong password: ``pwgen 64 -1``
 
 .. code-block:: bash
 
  [program:genesisdb]
- command=/home/$USER/bin/genesisdb-1.0.5-linux-amd64/genesisdb
+ command=/home/$USER/bin/genesisdb-ce-1.0.9-linux-amd64/genesisdb
  directory=/home/$USER
  autostart=true
  autorestart=true
@@ -180,7 +180,7 @@ Common Issues
 -------------
 
 1. **Service fails to start**: Check the error logs in ``/home/$USER/logs/genesisdb.err.log``
-2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.0.5-linux-amd64/genesisdb``
+2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.0.9-linux-amd64/genesisdb``
 3. **Port conflicts**: Use ``ss -tlnp | grep :PORT`` to check if a port is already in use
 4. **Domain issues**: Verify domain configuration with ``uberspace web domain list``
 
@@ -195,7 +195,7 @@ If you encounter issues:
 
 ----
 
-Tested with Genesis DB 1.0.0, Uberspace 7.15.0
+Tested with Genesis DB CE 1.0.9, Uberspace 7.15.0
 
 .. _Genesis DB: https://genesisdb.io/
 .. _Genesis DB Docs: https://docs.genesisdb.io/
