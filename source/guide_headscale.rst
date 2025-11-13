@@ -163,7 +163,7 @@ If it's not in state ``RUNNING``, check your configuration and the logs using ``
 Configure Uberspace web backend
 -------------------------------
 
-Now, connect the Uberspace web backend to your running Headscale instance (replace ``/`` with your domain, like ``isabell.uber.space`` and use the port configured in your configuration file, like ``8080``):
+Now, connect the Uberspace web backend to your running Headscale instance (use the port configured in your configuration file, like ``8080``):
 
 .. include:: includes/web-backend.rst
 
