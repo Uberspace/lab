@@ -97,13 +97,12 @@ For a simple and minimal setup, set the following values:
    :emphasize-lines: 1
 
    server_url: "https://isabell.uber.space:443"
-   listen_addr:"0.0.0.0:8080
+   listen_addr: "0.0.0.0:8080"
 
    tls_cert_path: ""
    tls_key_path: ""
 
    unix_socket: "headscale.sock"
-   private_key_path: "private.key"
 
    noise:
      private_key_path: "noise_private.key"
