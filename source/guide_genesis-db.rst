@@ -55,9 +55,6 @@ Download the Genesis DB binary to your bin directory:
  [isabell@stardust ~]$ cd /home/$USER/bin
  [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64 -O genesisdb-linux-amd64.tar.gz
  [isabell@stardust bin]$ tar -xzf genesisdb-linux-amd64.tar.gz
- [isabell@stardust bin]$ cd genesisdb-1.0.5-linux-amd64
- [isabell@stardust bin]$ chmod +x genesisdb
- [isabell@stardust bin]$
 
 Configuration
 =============
@@ -65,18 +62,10 @@ Configuration
 Step 3: Create Supervisord Configuration
 -----------------------------------------
 
-Create the supervisord configuration directory if it doesn't exist:
+Create a configuration file ``~/etc/services.d/genesisdb.ini`` for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with your actual Genesis DB authentication token:
 
 .. code-block:: bash
 
- [isabell@stardust ~]$ mkdir -p ~/etc/services.d
- [isabell@stardust ~]$
-
-Create a configuration file for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with your actual Genesis DB authentication token:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ cat > ~/etc/services.d/genesisdb.ini << EOF
  [program:genesisdb]
  command=/home/$USER/bin/genesisdb-1.0.5-linux-amd64/genesisdb
  directory=/home/$USER
@@ -87,8 +76,6 @@ Create a configuration file for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with you
  environment=GENESISDB_AUTH_TOKEN="YOUR_AUTH_TOKEN",GENESISDB_TZ="Europe/Vienna",GENESISDB_PROMETHEUS_METRICS="false",GENESISDB_DATA_DIR="/home/$USER/data"
  stdout_logfile=/home/$USER/logs/genesisdb.out.log
  stderr_logfile=/home/$USER/logs/genesisdb.err.log
- EOF
- [isabell@stardust ~]$
 
 Step 4: Start Genesis DB Service
 -------------------------------
