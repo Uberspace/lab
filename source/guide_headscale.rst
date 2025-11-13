@@ -83,7 +83,7 @@ To run Headscale behind Uberspace's native web backend (reverse proxy), you need
 - Set the correct ``server_url`` (your public domain, with https) by setting ``server_url`` to ``https://isabell.uber.space:443``.
 - Set a encryption key for the Headscale connection by setting the ``private_key_path`` to ``private.key`` (will be generated after configuration).
 
-Edit ``/home/isabell/.headscale/config.yaml`` with your favourite editor and make the following adjustments:
+Edit ``~.headscale/config.yaml`` with your favourite editor and make the following adjustments:
 
 .. warning::
   Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``private_key_path``, and ``database.sqlite``.
