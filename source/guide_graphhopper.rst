@@ -67,7 +67,7 @@ Next, you should download the default configuration file.
 
 ::
 
- [isabell@stardust graphhopper]$ wget -O config.yml https://raw.githubusercontent.com/graphhopper/graphhopper/4.x/config-example.yml
+ [isabell@stardust graphhopper]$ wget -O config.yml https://raw.githubusercontent.com/graphhopper/graphhopper/11.x/config-example.yml
  [isabell@stardust graphhopper]$
 
 
@@ -79,7 +79,7 @@ Finally, you can download the actual GraphHopper Java archive:
 
 ::
 
- [isabell@stardust graphhopper]$ wget https://graphhopper.com/public/releases/graphhopper-web-4.0.jar
+ [isabell@stardust graphhopper]$ wget https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/11.0/graphhopper-web-11.0.jar
  [isabell@stardust graphhopper]$
 
 
@@ -93,7 +93,7 @@ Create the file ``~/etc/services.d/graphhopper.ini`` with the following content:
 .. code-block:: ini
 
  [program:graphhopper]
- command=java -Ddw.graphhopper.datareader.file=berlin-latest.osm.pbf -jar graphhopper-web-4.0.jar server config.yml
+ command=java -Ddw.graphhopper.datareader.file=berlin-latest.osm.pbf -jar graphhopper-web-11.0.jar server config.yml
  directory=%(ENV_HOME)s/graphhopper
  autostart=true
  autorestart=true
@@ -136,6 +136,6 @@ To update GraphHopper, follow the installation procedure described above.
 
 ----
 
-Tested with GraphHopper 4.0, Uberspace 7.11.5
+Tested with GraphHopper 11.0, Uberspace 7.16.9
 
 .. author_list::
