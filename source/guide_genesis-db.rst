@@ -13,10 +13,10 @@
 .. tag:: event-driven-architecture
 
 #############
-Genesis DB CE
+GenesisDB CE
 #############
 
-Genesis DB is an event sourcing database engine that can be easily deployed on Uberspace. This guide will walk you through the complete setup process for running Genesis DB CE (Community Edition).
+GenesisDB is an event sourcing database engine that can be easily deployed on Uberspace. This guide will walk you through the complete setup process for running GenesisDB CE (Community Edition).
 
 ----
 
@@ -25,7 +25,7 @@ Genesis DB is an event sourcing database engine that can be easily deployed on U
 Prerequisites
 =============
 
-Before setting up Genesis DB, ensure you have the following:
+Before setting up GenesisDB, ensure you have the following:
 
 1. Access to your Uberspace account
 2. Basic knowledge of command line operations
@@ -36,7 +36,7 @@ Installation
 Step 1: Create Required Directories
 -----------------------------------
 
-First, create the necessary directories for Genesis DB:
+First, create the necessary directories for GenesisDB:
 
 .. code-block:: bash
 
@@ -45,10 +45,10 @@ First, create the necessary directories for Genesis DB:
  [isabell@stardust ~]$ mkdir -p /home/$USER/logs
  [isabell@stardust ~]$
 
-Step 2: Download and Install Genesis DB
+Step 2: Download and Install GenesisDB
 ---------------------------------------
 
-Download the Genesis DB binary to your bin directory:
+Download the GenesisDB binary to your bin directory:
 
 .. code-block:: bash
 
@@ -62,7 +62,7 @@ Configuration
 Step 3: Create Supervisord Configuration
 -----------------------------------------
 
-Create a configuration file ``~/etc/services.d/genesisdb.ini`` for Genesis DB. Replace ``YOUR_AUTH_TOKEN`` with your actual Genesis DB authentication token. It is recommended to create a secure, strong password: ``pwgen 64 -1``
+Create a configuration file ``~/etc/services.d/genesisdb.ini`` for GenesisDB. Replace ``YOUR_AUTH_TOKEN`` with your actual GenesisDB authentication token. It is recommended to create a secure, strong password: ``pwgen 64 -1``
 
 .. code-block:: bash
 
@@ -77,10 +77,10 @@ Create a configuration file ``~/etc/services.d/genesisdb.ini`` for Genesis DB. R
  stdout_logfile=/home/$USER/logs/genesisdb.out.log
  stderr_logfile=/home/$USER/logs/genesisdb.err.log
 
-Step 4: Start Genesis DB Service
+Step 4: Start GenesisDB Service
 -------------------------------
 
-Reload supervisord configuration and start the Genesis DB service:
+Reload supervisord configuration and start the GenesisDB service:
 
 .. code-block:: bash
 
@@ -115,7 +115,7 @@ Add your custom domain and configure the web backend:
 Verification
 ============
 
-Check if Genesis DB is running correctly:
+Check if GenesisDB is running correctly:
 
 .. code-block:: bash
 
@@ -131,12 +131,12 @@ Check the logs for any issues:
  [isabell@stardust ~]$ tail -f /home/$USER/logs/genesisdb.err.log
  [isabell@stardust ~]$
 
-Your Genesis DB instance should now be accessible via your configured domain.
+Your GenesisDB instance should now be accessible via your configured domain.
 
 Configuration Options
 =====================
 
-Genesis DB supports various environment variables for configuration:
+GenesisDB supports various environment variables for configuration:
 
 * ``GENESISDB_AUTH_TOKEN``: Your authentication token (required)
 * ``GENESISDB_DATA_DIR``: Data directory path (default: ``/home/$USER/data``)
@@ -149,14 +149,14 @@ Maintenance
 Managing the Service
 --------------------
 
-To stop Genesis DB:
+To stop GenesisDB:
 
 .. code-block:: bash
 
  [isabell@stardust ~]$ supervisorctl stop genesisdb
  [isabell@stardust ~]$
 
-To restart Genesis DB:
+To restart GenesisDB:
 
 .. code-block:: bash
 
@@ -166,7 +166,7 @@ To restart Genesis DB:
 Log Rotation
 ------------
 
-Genesis DB logs are automatically rotated by supervisord. You can manually rotate logs if needed:
+GenesisDB logs are automatically rotated by supervisord. You can manually rotate logs if needed:
 
 .. code-block:: bash
 
@@ -189,13 +189,13 @@ Getting Help
 
 If you encounter issues:
 
-1. Check the Genesis DB documentation
+1. Check the GenesisDB documentation
 2. Review the supervisord logs: ``supervisorctl tail genesisdb``
 3. Contact Uberspace support for platform-specific issues
 
 ----
 
-Tested with Genesis DB CE 1.0.9, Uberspace 7.15.0
+Tested with GenesisDB CE 1.0.9, Uberspace 7.15.0
 
-.. _Genesis DB: https://genesisdb.io/
-.. _Genesis DB Docs: https://docs.genesisdb.io/
+.. _GenesisDB: https://genesisdb.io/
+.. _GenesisDB Docs: https://docs.genesisdb.io/
