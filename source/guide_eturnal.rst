@@ -106,6 +106,10 @@ Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in b
 
     tls_crt_file: /home/isabell/etc/certificates/isabell.uber.space.crt
     tls_key_file: /home/isabell/etc/certificates/isabell.uber.space.key
+    tls_options:
+      - no_tlsv1
+      - no_tlsv1_1
+      - cipher_server_preference
     tls_dh_file: /home/isabell/eturnal/etc/dh-parameters.pem
 
     relay_min_port: <port-3>
