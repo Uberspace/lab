@@ -114,6 +114,7 @@ Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in b
     blacklist:
       - "127.0.0.0/8"
       - "::1"
+      - recommended
 
     log_level: error
     log_rotate_size: 10485760
