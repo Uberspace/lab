@@ -174,6 +174,19 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
   Nextcloud was successfully installed
   [isabell@stardust html]$
 
+Set the adming user email address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the mail address of the admin user in order to prepare sending mails and receive administration notifications later on.
+
+.. code-block:: console
+  :emphasize-lines: 1
+
+  [isabell@stardust html]$ php occ user:setting $NEXTCLOUD_ADMIN_USER settings email "$USER@uber.space"
+  [isabell@stardust html]$
+
+
+
 Set the "trusted" domain
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
