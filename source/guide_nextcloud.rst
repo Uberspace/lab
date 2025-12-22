@@ -374,19 +374,22 @@ Create ``~/bin/nextcloud-update`` with the following content:
  ## Use the Uberspace backup system for files and database if you need to roll back.
  ## The Nextcloud updater creates backups only to safe base and app code data and config files
  ## so it takes ressources you might need for your productive data.
+ ## Nextcloud folder. Standard is 'html'
+ base_folder=html
+
  ## Deactivate NC-updater Backups with --no-backup
- php ~/html/updater/updater.phar -vv --no-backup --no-interaction
+ php ~/$base_folder/updater/updater.phar -vv --no-backup --no-interaction
 
  ## database optimisations
- php ~/html/occ db:add-missing-primary-keys --no-interaction
- php ~/html/occ db:add-missing-columns --no-interaction
- php ~/html/occ db:add-missing-indices --no-interaction
- php ~/html/occ db:convert-filecache-bigint --no-interaction
+ php ~/$base_folder/occ db:add-missing-primary-keys --no-interaction
+ php ~/$base_folder/occ db:add-missing-columns --no-interaction
+ php ~/$base_folder/occ db:add-missing-indices --no-interaction
+ php ~/$base_folder/occ db:convert-filecache-bigint --no-interaction
 
- php ~/html/occ app:update --all
+ php ~/$base_folder/occ app:update --all
  ## App updates may require additional steps to be done by the `upgrade` command
- php ~/html/occ upgrade
- /usr/sbin/restorecon -R ~/html
+ php ~/$base_folder/occ upgrade
+ /usr/sbin/restorecon -R ~/$base_folder
 
  ## FYI: If that file exist...
  if test -f ~/etc/services.d/notify_push.ini
