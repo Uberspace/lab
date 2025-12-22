@@ -3,7 +3,6 @@
 .. author:: EV21 <uberlab@ev21.de>
 .. author:: MrGamy <gamy@mrgamy.space>
 
-
 .. tag:: lang-php
 .. tag:: web
 .. tag:: photo-management
@@ -394,8 +393,6 @@ Create ``~/bin/nextcloud-update`` with the following content:
  if test -f ~/etc/services.d/notify_push.ini
  then supervisorctl restart notify_push
  fi
-
-
 
 Make the script executable:
 
