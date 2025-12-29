@@ -197,7 +197,7 @@ After creating the configuration, tell :manual:`supervisord <daemons-supervisord
 
 ----
 
-Tested with Fittrackee 0.7.25, Uberspace 7.15.6
+Tested with Fittrackee 1.0.5, Uberspace 7.16.9
 
 .. _Fittrackee: https://github.com/SamR1/FitTrackee/
 
