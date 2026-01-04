@@ -48,8 +48,9 @@ Prerequisites
 
 Mandatory `Prerequisites for Fittrackee <https://samr1.github.io/FitTrackee/en/installation.html#prerequisites>`_:
 
-  * :manual:`Python <lang-python>` in the version >3.8.1.
-  * :manual:`PostgreSQL <guide_postgresql>` in the version 11+.
+  * :manual:`Python <lang-python>` in the version >3.10+
+  * :manual:`PostgreSQL <guide_postgresql>` in the version 13+.
+  * :manual:`PostGIS <guide_postgresql>` in the version 3.4+.
 
 Installation
 ============
@@ -57,13 +58,13 @@ Installation
 Install Fittrackee
 ------------------
 
-Set up virtual environment for Python 3.9:
+Set up virtual environment for Python 3.13:
 
 ::
 
  [isabell@stardust ~]$ mkdir -p ~/fittrackee
  [isabell@stardust ~]$ cd ~/fittrackee
- [isabell@stardust fittrackee]$ python3.9 -m venv fittrackee_venv
+ [isabell@stardust fittrackee]$ python3.13 -m venv fittrackee_venv
  [isabell@stardust fittrackee]$ ls
   fittrackee_venv
  [isabell@stardust ~]$
@@ -74,20 +75,13 @@ Activate the virtual environment and install Fittrackee:
 ::
 
  [isabell@stardust fittrackee]$ source fittrackee_venv/bin/activate
-  (fittrackee_venv) [isabell@stardust fittrackee]$ pip3.9 install fittrackee
+  (fittrackee_venv) [isabell@stardust fittrackee]$ pip3.13 install fittrackee
   (fittrackee_venv) [isabell@stardust fittrackee]$
   ...
-  [notice] A new release of pip is available: 23.0.1 -> 23.2.1
+  [notice] A new release of pip is available: 25.0.1 -> 25.3
   [notice] To update, run: pip install --upgrade pip
 
 
-Then install version 1.26.6 of ``urllib3`` because otherwise you will get an error message later when setting up the database.
-
-::
-
- (fittrackee_venv) [isabell@stardust fittrackee]$ pip3.9 install urllib3==1.26.6
- ...
- Successfully installed urllib3-1.26.6
 
 You can deactivate the virtual environment context like this:
 
@@ -187,13 +181,29 @@ Create ``~/etc/services.d/fittrackee.ini`` with the following content so that th
 
 .. code-block:: ini
 
-  program:fittrackee]
-  command=bash -c 'cd %(ENV_HOME)s/fittrackee/fittrackee_venv/ && source bin/activate && source /PathToYourEnvFile/.env && fittrackee'
+  [program:fittrackee]
+  command=bash -c 'source %(ENV_HOME)s/fittrackee/.env && %(ENV_HOME)s/fittrackee/fittrackee_venv/bin/gunicorn -b 0.0.0.0:5000 "fittrackee:create_app()" --error-logfile %(ENV_HOME)s/fittrackee/gunicorn.log'
   autostart=yes
   autorestart=yes
   startsecs=30
+  stopasgroup=true
+  killasgroup=true
 
-After creating the configuration, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration.
+
+Create ``~/etc/services.d/fittrackee_workers.ini`` with the following content so that the workers are automatically activated in the case of a server restart:
+
+.. code-block:: ini
+
+  [program:fittrackee_worker]
+  command=bash -c 'source %(ENV_HOME)s/fittrackee/.env && %(ENV_HOME)s/fittrackee/fittrackee_venv/bin/flask worker --processes 2'
+  autostart=yes
+  autorestart=yes
+  startsecs=30
+  stopasgroup=true
+  killasgroup=true
+
+
+After creating the configuration files, tell :manual:`supervisord <daemons-supervisord>` to refresh its configuration.
 
 ----
 
