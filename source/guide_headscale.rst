@@ -48,12 +48,12 @@ If you want to use Headscale with your own domain you need to add it first:
 Installation
 ============
 
-Download the latest Headscale binary from the official GitHub releases_ page. Replace ``0.26.1`` with the latest version:
+Download the latest Headscale binary from the official GitHub releases_ page. Replace ``0.27.1`` with the latest version:
 
 .. code-block:: console
 
   [isabell@stardust ~]$ wget -O ~/bin/headscale \
-    https://github.com/juanfont/headscale/releases/download/v0.26.1/headscale_0.26.1_linux_amd64
+    https://github.com/juanfont/headscale/releases/download/v0.27.1/headscale_0.27.1_linux_amd64
   [isabell@stardust ~]$ chmod +x ~/bin/headscale
 
 By default, Headscale loads the configuration from ``$HOME/.headscale/config.yaml``, so we continue with creating the directory:
@@ -67,7 +67,7 @@ Then download the example configuration file:
 .. code-block:: console
 
   [isabell@stardust ~]$ wget -O ~/.headscale/config.yaml \
-    https://github.com/juanfont/headscale/raw/v0.26.1/config-example.yaml
+    https://github.com/juanfont/headscale/raw/v0.27.1/config-example.yaml
 
 
 Configuration
@@ -83,18 +83,21 @@ To run Headscale behind Uberspace's native web backend (reverse proxy), you need
 - Set the correct ``server_url`` (your public domain, with https) by setting ``server_url`` to ``https://isabell.uber.space:443``.
 - Set a encryption key for the Headscale connection by setting the ``private_key_path`` to ``private.key`` (will be generated after configuration).
 
-Edit ``~.headscale/config.yaml`` with your favourite editor and make the following adjustments:
+To make management via the CLI possible, you also need to:
+
+- Set ``unix_socket`` to ``/home/isabell/.headscale/headscale.sock``, it is important that you provide the full path here so that the CLI can connect to the socket.
+
+Edit ``~/.headscale/config.yaml`` with your favourite editor and make the following adjustments:
 
 .. warning::
-  Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``private_key_path``, and ``database.sqlite``.
+  Review and adjust the configuration to suit your environment. At minimum, set the ``server_url``, ``listen_addr``, ``private_key_path``, ``unix_socket`` and ``database.sqlite``.
 
 .. note::
-   TLS is handled by Uberspace's web backend, do not set ``tls_cert_path`` or ``tls_key_path`` in your Headscale config. See Headscale's TLS_ documentation for more information.
+  TLS is handled by Uberspace's web backend, do not set ``tls_cert_path`` or ``tls_key_path`` in your Headscale config. See Headscale's TLS_ documentation for more information.
 
-For a simple and minimal setup, set the following values:
+For a simple and minimal setup, adjust the following values in the configuration file which was downloaded before:
 
 .. code-block:: yaml
-   :emphasize-lines: 1
 
    server_url: "https://isabell.uber.space:443"
    listen_addr: "0.0.0.0:8080"
@@ -102,10 +105,10 @@ For a simple and minimal setup, set the following values:
    tls_cert_path: ""
    tls_key_path: ""
 
-   unix_socket: "headscale.sock"
+   unix_socket: "/home/isabell/.headscale/headscale.sock"
 
    noise:
-     private_key_path: "noise_private.key"
+     private_key_path: "private.key"
 
    database:
      type: "sqlite"
@@ -181,11 +184,11 @@ Create a user:
 
  [isabell@stardust ~]$ headscale users create <USER>
 
-Generate a preauth key for device registration:
+Generate a preauth key for device registration (you can get the ``<USER-ID>`` via ``headscale users list``):
 
 .. code-block:: console
 
- [isabell@stardust ~]$ headscale preauthkeys create --user <USER>
+ [isabell@stardust ~]$ headscale preauthkeys create --user <USER-ID>
 
 Use the preauth key with the Tailscale client on your device:
 
@@ -216,6 +219,6 @@ To update Headscale, download the new binary and replace the old one. Then resta
 
 ----
 
-Tested with Headscale 0.26.1, Uberspace 7.16.7
+Tested with Headscale 0.27.1, Uberspace 7.16.9
 
 .. author_list::
