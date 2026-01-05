@@ -51,7 +51,7 @@ Find the latest version from the release_ page, then download and extract it int
 
 ::
 
-  [isabell@stardust ~]$ VERSION=0.3.0
+  [isabell@stardust ~]$ VERSION=0.4.0
   [isabell@stardust ~]$ wget -qO- https://releases.wezm.net/feedlynx/$VERSION/feedlynx-$VERSION-x86_64-unknown-linux-musl.tar.gz | tar xvz -C ~/feedlynx
   [isabell@stardust ~]$
 
@@ -133,7 +133,7 @@ If there is a new version available, you only have to stop the service, exchange
    [isabell@stardust ~]$ supervisorctl stop feedlynx
    feedlynx: stopped
    [isabell@stardust ~]$ rm ~/feedlynx/feedlynx
-   [isabell@stardust ~]$ $VERSION=NEW_VERSION
+   [isabell@stardust ~]$ VERSION=NEW_VERSION
    [isabell@stardust ~]$ wget -qO- https://releases.wezm.net/feedlynx/$VERSION/feedlynx-$VERSION-x86_64-unknown-linux-musl.tar.gz | tar xvz -C ~/feedlynx
    feedlynx
    [isabell@stardust ~]$ chmod u+x ~/feedlynx/feedlynx
@@ -150,6 +150,6 @@ If there is a new version available, you only have to stop the service, exchange
 
 ----
 
-Tested with Feedlynx v0.3.0 and Uberspace 7.16.1
+Tested with Feedlynx v0.4.0 and Uberspace 7.16.9
 
 .. author_list::
