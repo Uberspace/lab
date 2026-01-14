@@ -55,7 +55,7 @@ Configuration
 
 Open Firewall Ports
 -------------------
-eturnal needs 2 listen ports, plus a port range for relaying UDP connections. So lets open 5 ports.
+eturnal needs 2 listen ports, plus a port range for relaying UDP connections. So lets open 18 ports to enable a video call of two local users (8 streams per user).
 
 .. include:: includes/open-port.rst
 
@@ -91,29 +91,31 @@ Then, create a new file at ``~/eturnal/etc/eturnal.yml`` and replace values in b
     secret: "<super-long-secret>"
 
     listen:
-      -
-        ip: "::"
+      - ip: "::"
         port: <port-1>
         transport: udp
-      -
-        ip: "::"
+      - ip: "::"
         port: <port-1>
-        transport: tcp
-      -
-        ip: "::"
+        transport: auto
+      - ip: "::"
         port: <port-2>
         transport: tls
 
     tls_crt_file: /home/isabell/etc/certificates/isabell.uber.space.crt
     tls_key_file: /home/isabell/etc/certificates/isabell.uber.space.key
+    tls_options:
+      - no_tlsv1
+      - no_tlsv1_1
+      - cipher_server_preference
     tls_dh_file: /home/isabell/eturnal/etc/dh-parameters.pem
 
     relay_min_port: <port-3>
-    relay_max_port: <port-5>
+    relay_max_port: <port-18>
 
     blacklist:
       - "127.0.0.0/8"
       - "::1"
+      - recommended
 
     log_level: error
     log_rotate_size: 10485760
@@ -164,7 +166,8 @@ Nextcloud Talk
 If you are using :lab:`Nextcloud<guide_nextcloud>`, the Talk app can use eturnal in in the `Talk`` Tab of ``Settings``:
 
   * Add ``isabell.uber.space:<port-1>`` as STUN Server.
-  * Add ``isabell.uber.space:<port-1>`` with ``<super-long-secret>`` as TURN and TURNS Server for ``UDP and TCP``
+  * Add ``isabell.uber.space:<port-2>`` with ``<super-long-secret>`` as TURNS Server for ``UDP and TCP``
+  * Or add ``isabell.uber.space:<port-1>`` with ``<super-long-secret>`` as TURN Server for ``UDP and TCP``
   * Test your server (the little heart beat symbol next to the fields)
 
 The test should result in a checkmark symbol. If not check your Nextcloud and eturnal logs.
@@ -181,13 +184,13 @@ The :lab:`Synapse<guide_synapse>` homeserver can employ your eturnal server for 
 
   # The public URIs of the TURN server to give to clients
   turn_uris:
-    - "turns:isabell.uber.space:<port-1>?transport=udp"
-    - "turns:isabell.uber.space:<port-1>?transport=tcp"
     - "turn:isabell.uber.space:<port-1>?transport=udp"
     - "turn:isabell.uber.space:<port-1>?transport=tcp"
 
   # The shared secret used to compute passwords for the TURN server
   turn_shared_secret: "<super-long-secret>"
+
+.. note:: Currently, TURNS doesn't work for Synapse with eturnal, though apparently with coturn (see `issue #1533`_).
 
 ----
 
@@ -203,3 +206,4 @@ Tested on Uberspace v7.13 with Erlang v24 and eturnal v1.10.1.
 .. _`first start`: https://eturnal.net/documentation/code/quick-test.html
 .. _configuration: #configuration
 .. _`cron jobs`: https://manual.uberspace.de/daemons-cron
+.. _`issue #1533`: https://github.com/element-hq/element-android/issues/1533#issuecomment-2215544774
