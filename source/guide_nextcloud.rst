@@ -1,7 +1,6 @@
 .. highlight:: console
 .. author:: Andreas Matschl | SpaceCode <andreas@spacecode.it>
 .. author:: EV21 <uberlab@ev21.de>
-.. author:: MrGamy <gamy@mrgamy.space>
 
 .. tag:: lang-php
 .. tag:: web
