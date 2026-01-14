@@ -130,6 +130,13 @@ the ``DB_PASSWORD`` password with yours.
  DB_PASSWORD=<MySQL_PASSWORD>
 
 
+Lychee additionally requires the application base URL for correct URL generation and routing:
+
+::
+
+ APP_URL=https://isabell.uber.space
+
+
 .. hint ::
 
   The file contains a lot more lines with configuration options, but for a working basic setup they can
