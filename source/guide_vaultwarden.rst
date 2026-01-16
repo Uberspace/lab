@@ -237,6 +237,68 @@ When enabled, you can access it by pointing your browser to ``https://isabell.ub
 
 .. note ::  Be careful when editing values via the Admin-Page as they overrule your settings in the  ``~/vaultwarden/.env`` file.
 
+Disabling Admin Page again
+------------------------------
+
+To deactivate the admin page again, edit the file ``~/vaultwarden/data/config.json``
+and clear the value of ``admin_token``
+
+Before
+
+..  code-block:: console
+
+  “admin_token”: “$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU”,
+
+
+After
+
+.. code-block:: console
+
+  “admin_token”: “”,
+
+
+and restart the service for the changes to take effect.
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart vaultwarden
+
+
+Leave the file ``~/vaultwarden/.env`` as it has no effect on the admin page.
+
+The admin page at ``https://isabell.uber.space/admin`` should no longer be accessible in the browser or should display the following message.
+
+.. code-block:: console
+
+  The admin panel is disabled, please configure the 'ADMIN_TOKEN' variable to enable it
+
+Reenable admin page
+------------------------------
+
+Copy the value of ``ADMIN_TOKEN`` from the file ``~/vaultwarden/.env``
+
+.. code-block:: ini
+
+  ADMIN_TOKEN='$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU'
+
+
+back into the file ``~/vaultwarden/data/config.json``
+
+
+.. code-block:: console
+
+  “admin_token”: “$argon2id$v=19$m=65540,t=3,p=4$Ghv9VB ... SDSMvJbhDVlU”,
+
+Restart the service:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ supervisorctl restart vaultwarden
+
+
+The admin page is accessible again under ``https://isabell.uber.space/admin`` in your browser.
+
+
 
 Best practices
 ==============
