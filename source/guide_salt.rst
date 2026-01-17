@@ -52,15 +52,16 @@ Installation
 Install
 -------
 
-Installing Salt in a ``virtualenv`` using python 3.8 (latest available python on Uberspace). Also installing pygit2 (because it is a dependency for any gitfs in Salt which is very common). Packages are installed in multiple steps as updated setuptools, pip and wheel may be needed for others to install. Salt must be installed by itself due to 'global-option' being used. Download latest sample config as last step.
+Installing Salt 3007.8 in a ``virtualenv`` using python 3.10. If you want to install a later version of salt look up the correct python version `here <https://docs.saltproject.io/salt/install-guide/en/latest/topics/salt-python-version-support.html>`)_ and replace the version numbers in the commands. Also installing pygit2 (because it is a dependency for any gitfs in Salt which is very common). Packages are installed in multiple steps as updated setuptools, pip and wheel may be needed for others to install. Download latest sample config as last step.
 
 .. code-block:: console
 
- [isabell@stardust ~]$ virtualenv -p python3.8 ~/salt_venv
+ [isabell@stardust ~]$ python3.10 -m venv ~/salt_venv
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
- (salt_venv) [isabell@stardust ~]$ pip3.8 install -U setuptools pip wheel
- (salt_venv) [isabell@stardust ~]$ pip3.8 install -U pyzmq PyYAML msgpack-python jinja2 psutil futures tornado 'msgpack<1.0.0' chardet idna urllib3 certifi requests pycryptodomex distro pygit2
- (salt_venv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.8 install --global-option='--salt-root-dir='${HOME}'/salt_venv/' salt
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -U setuptools pip wheel
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -U pygit2
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -r https://github.com/saltstack/salt/raw/refs/tags/v3007.8/requirements/base.txt
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install salt==3007.8
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ mkdir -p ~/salt_venv/etc/salt ~/salt_venv/var/log/salt
  [isabell@stardust ~]$ curl https://raw.githubusercontent.com/saltstack/salt/master/conf/master -o ~/salt_venv/etc/salt/master
@@ -135,8 +136,8 @@ Update Salt in ``virtualenv``:
 .. code-block:: console
 
  [isabell@stardust ~]$ source ~/salt_venv/bin/activate
- (salt_venv) [isabell@stardust ~]$ pip3.8 install <any additional dependencies from newer version>
- (salt_venv) [isabell@stardust ~]$ MIMIC_SALT_INSTALL=1 pip3.8 install -U --global-option='--salt-root-dir='${HOME}'/salt_venv/' salt
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install <any additional dependencies from newer version>
+ (salt_venv) [isabell@stardust ~]$ pip3.10 install -U salt
  (salt_venv) [isabell@stardust ~]$ deactivate
  [isabell@stardust ~]$ supervisorctl restart salt-master
 
