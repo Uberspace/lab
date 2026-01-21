@@ -123,6 +123,10 @@ Setup web backend
 
 If you want to use a subdomain refer to the :manual:`web-backend manual <web-backends>`.
 
+.. note::
+    The default nginx config defines `X-Frame-Options: SAMEORIGIN` for all web backends. This may cause compatibility issues with the 2-step login feature and desktop/mobile clients as well as notifications on websockets.
+    If you encounter these issues, you may want to consider suppressing that header for relevant paths i. e. /*connector.html, /notifications/hub, /notifications/anonymous-hub, refer to the :manual:`web-security-headers manual<web-security-headers>`.
+
 Setup web vault
 ---------------
 
