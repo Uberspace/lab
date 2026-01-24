@@ -59,7 +59,7 @@ Find the latest version of Vikunja on the releases_ page and download it:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=0.24.4
+  [isabell@stardust ~]$ VERSION=0.24.6
   [isabell@stardust ~]$ mkdir ~/vikunja
   [isabell@stardust ~]$ wget -O ~/vikunja/vikunja.zip "https://dl.vikunja.io/vikunja/$VERSION/vikunja-v$VERSION-linux-amd64-full.zip"
   [...]
