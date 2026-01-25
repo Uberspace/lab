@@ -41,10 +41,10 @@ Fossil is distributed as a single binary, which in this case is the server and t
 ::
 
   [isabell@stardust ~]$ mkdir ~/fossil
-  [isabell@stardust ~]$ wget https://fossil-scm.org/home/uv/fossil-linux-x64-2.24.tar.gz
+  [isabell@stardust ~]$ wget https://fossil-scm.org/home/uv/fossil-linux-x64-2.27.tar.gz
   [...]
-  [isabell@stardust ~]$ tar -xzf fossil-linux-x64-2.24.tar.gz -C ~/fossil/
-  [isabell@stardust ~]$ rm fossil-linux-x64-2.24.tar.gz
+  [isabell@stardust ~]$ tar -xzf fossil-linux-x64-2.27.tar.gz -C ~/fossil/
+  [isabell@stardust ~]$ rm fossil-linux-x64-2.27.tar.gz
   [isabell@stardust ~]$
 
 Configuration
@@ -79,7 +79,7 @@ To start the Fossil server automatically and run it in the background, create ``
 .. code-block:: ini
 
   [program:fossil]
-  command=%(ENV_HOME)s/fossil/fossil server %(ENV_HOME)s/repos --repolist --port 0.0.0.0:8008 --remove-prefix
+  command=%(ENV_HOME)s/fossil/fossil server %(ENV_HOME)s/repos --repolist --port 0.0.0.0:8008 --https
 
 .. include:: includes/supervisord.rst
 
@@ -111,6 +111,6 @@ Updates
 
 ----
 
-Tested with Fossil 2.24 on Uberspace 7.16.0
+Tested with Fossil 2.27 on Uberspace 7.17.0
 
 .. author_list::
