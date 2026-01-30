@@ -1,5 +1,6 @@
 .. author:: Sascha Mann <https://saschamann.eu/>
 .. author:: Tobias Quathamer <t.quathamer@mailbox.org>
+.. author:: Jan Klomp <https://jan.klomp.de/>
 
 .. tag:: lang-go
 .. tag:: lang-javascript
@@ -59,38 +60,15 @@ Find the latest version of Vikunja on the releases_ page and download it:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=0.24.4
+  [isabell@stardust ~]$ VERSION=1.0.0
   [isabell@stardust ~]$ mkdir ~/vikunja
-  [isabell@stardust ~]$ wget -O ~/vikunja/vikunja.zip "https://dl.vikunja.io/vikunja/$VERSION/vikunja-v$VERSION-linux-amd64-full.zip"
+  [isabell@stardust ~]$ wget -O ~/vikunja/vikunja.zip "https://github.com/go-vikunja/vikunja/releases/tag/v$VERSION-linux-amd64-full.zip"
   [...]
   Saving to: ‘/home/isabell/vikunja/vikunja.zip’
 
   100%[==========================================================>] 30,607,427  70.3MB/s   in 0.4s
 
   2024-10-14 20:24:47 (70.3 MB/s) - '/home/isabell/vikunja/vikunja.zip' saved [30607427/30607427]
-
-
-Verifying (optional)
---------------------
-
-Optionally you can verify the downloaded file using :command:`gpg`. To do so, download the pgp signature file and trust key
-and verify the binary:
-
-.. code-block:: console
-  :emphasize-lines: 7
-
-  [isabell@stardust ~]$ wget --output-document ~/vikunja/vikunja.zip.asc "https://dl.vikunja.io/vikunja/$VERSION/vikunja-v$VERSION-linux-amd64-full.zip.asc"
-  [...]
-  [isabell@stardust ~]$ gpg --keyserver keyserver.ubuntu.com --recv FF054DACD908493A
-  [...]
-  [isabell@stardust ~]$ gpg --verify ~/vikunja/vikunja.zip.asc ~/vikunja/vikunja.zip
-  gpg: Signature made Sun Sep 29 16:24:53 2024 CEST using RSA key ID D908493A
-  gpg: Good signature from "Frederic (Vikunja) (The key to sign vikunja releases.) <  frederic@vikunja.io>"
-  gpg: WARNING: This key is not certified with a trusted signature!
-  gpg:          There is no indication that the signature belongs to the owner.
-  Primary key fingerprint: 7D06 1A4A A614 36B4 0713  D42E FF05 4DAC D908 493A
-
-If the verification is fine, we get a ``Good signature from "Frederic (Vikunja) (The key to sign vikunja releases.) <frederic@vikunja.io>"`` line. You can ignore the ``WARNING`` here.
 
 
 Extract Archive
@@ -110,11 +88,11 @@ Extract the archive containing the Vikunja binary and config file, and rename th
   [isabell@stardust vikunja]$ mv vikunja-v$VERSION-linux-amd64 vikunja
   [isabell@stardust vikunja]$
 
-Clean up the no longer needed archive, signature, and binary hash:
+Clean up the no longer needed archive:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ rm ~/vikunja/vikunja.zip ~/vikunja/vikunja.zip.asc ~/vikunja/vikunja-v$VERSION-linux-amd64.sha256
+  [isabell@stardust ~]$ rm ~/vikunja/vikunja.zip
   [isabell@stardust ~]$
 
 
@@ -306,7 +284,7 @@ Enabling migrations from other services
 
 If you've used other organizers previously, Vikunja comes with a few migration
 services. You can import your data from another Vikunja instance, TickTick,
-Trello, Microsoft To Do, and Todoist. You need to enable the specific
+Trello and Todoist. You need to enable the specific
 migration service in the configuration file and restart Vikinja.
 
 ::
@@ -362,11 +340,11 @@ Manual updating
 .. _Vikunja: https://vikunja.io/
 .. _documentation: https://vikunja.io/docs/
 .. _licence: https://kolaente.dev/vikunja/vikunja/src/branch/main/LICENSE
-.. _releases: https://dl.vikunja.io/vikunja
-.. _changelog: https://kolaente.dev/vikunja/vikunja/src/branch/main/CHANGELOG.md
+.. _releases: https://github.com/go-vikunja/vikunja/releases
+.. _changelog: https://vikunja.io/changelog/
 
 ----
 
-Tested with Vikunja 0.24.4, Uberspace 7.16.1
+Tested with Vikunja 1.0.0, Uberspace 7.17.1
 
 .. author_list::
