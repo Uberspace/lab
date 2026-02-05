@@ -1,5 +1,6 @@
 .. author:: Sascha Mann <https://saschamann.eu/>
 .. author:: Tobias Quathamer <t.quathamer@mailbox.org>
+.. author:: Jan Klomp <https://jan.klomp.de>
 
 .. tag:: lang-go
 .. tag:: lang-javascript
@@ -59,7 +60,7 @@ Find the latest version of Vikunja on the releases_ page and download it:
 
 .. code-block:: console
 
-  [isabell@stardust ~]$ VERSION=0.24.4
+  [isabell@stardust ~]$ VERSION=1.0.0
   [isabell@stardust ~]$ mkdir ~/vikunja
   [isabell@stardust ~]$ wget -O ~/vikunja/vikunja.zip "https://dl.vikunja.io/vikunja/$VERSION/vikunja-v$VERSION-linux-amd64-full.zip"
   [...]
@@ -103,8 +104,8 @@ Extract the archive containing the Vikunja binary and config file, and rename th
   [isabell@stardust ~]$ cd ~/vikunja
   [isabell@stardust vikunja]$ unzip vikunja.zip
   Archive:  vikunja.zip
-    inflating: vikunja-v0.24.4-linux-amd64
-    inflating: vikunja-v0.24.4-linux-amd64.sha256
+    inflating: vikunja-v1.0.0-linux-amd64
+    inflating: vikunja-v1.0.0-linux-amd64.sha256
     inflating: LICENSE
     inflating: config.yml.sample
   [isabell@stardust vikunja]$ mv vikunja-v$VERSION-linux-amd64 vikunja
@@ -306,7 +307,7 @@ Enabling migrations from other services
 
 If you've used other organizers previously, Vikunja comes with a few migration
 services. You can import your data from another Vikunja instance, TickTick,
-Trello, Microsoft To Do, and Todoist. You need to enable the specific
+Trello and Todoist. You need to enable the specific
 migration service in the configuration file and restart Vikinja.
 
 ::
@@ -367,6 +368,6 @@ Manual updating
 
 ----
 
-Tested with Vikunja 0.24.4, Uberspace 7.16.1
+Tested with Vikunja 1.0.0, Uberspace 7.17.1
 
 .. author_list::
