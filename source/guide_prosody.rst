@@ -319,7 +319,7 @@ Setup daemon
 ============
 
 Since we built lua-sec and prosody against a newer openssl library, we have to tell the daemon where it is located when starting.
-We achieve this with the help of a wrapper script, welches wir in ``~/bin/prosody_env`` ablegen:
+We achieve this with the help of a wrapper script, which we then place in ``~/bin/prosody_env``:
 
 .. code-block:: bash
 
