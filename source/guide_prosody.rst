@@ -220,10 +220,10 @@ Configure, build and install prosody:
 ::
 
  [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-$VERSION
- [isabell@stardust prosody-13.0.4]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include/lua-5.3 --add-cflags="-I/opt/ubrspc/openssl35/include" --add-ldflags="-L/opt/ubrspc/openssl35/lib64"
- Lua version detected: 5.1
- Lua interpreter found: /usr/bin/lua...
- Checking Lua includes... lua.h found in /usr/include/lua.h
+ [isabell@stardust prosody-13.0.4]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include/lua-5.3 --add-cflags="-I/opt/ubrspc/openssl35/include" --add-ldflags="-L/opt/ubrspc/openssl35/lib64 -Wl,-rpath,/opt/ubrspc/openssl35/lib64"
+ Lua version detected: 5.3
+ Lua interpreter found: /usr/bin/lua-5.3...
+ Checking Lua includes... lua.h found in /usr/include/lua-5.3/lua.h...found
  Checking if Lua header version matches that of the interpreter... yes
  Writing configuration...
 
@@ -318,32 +318,12 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
 Setup daemon
 ============
 
-Since we built lua-sec and prosody against a newer openssl library, we have to tell the daemon where it is located when starting.
-We achieve this with the help of a wrapper script, which we then place in ``~/bin/prosody_env``:
-
-.. code-block:: bash
-
- #! /usr/bin/env sh
-
- LD_LIBRARY_PATH="/opt/ubrspc/openssl35/lib64"
- export LD_LIBRARY_PATH
-
- PATH=$HOME/.local/bin:$HOME/bin:$PATH
-
- export PATH
-
- PATH=$HOME/.luarocks/bin:$PATH
-
- export PATH
- eval "$(luarocks path)"
-
-
 Place the file ``prosody.ini`` in ``~/etc/services.d/`` and adapt it accordingly:
 
 .. code-block:: ini
 
  [program:prosody]
- command=/bin/bash -c "source %(ENV_HOME)s/bin/prosody_env && prosody"
+ command=/bin/bash -c "source %(ENV_HOME)s/bin/.bash_profile && prosody"
  autostart=yes
  autorestart=yes
  startretries=1
