@@ -5,6 +5,7 @@
 .. author:: magicfelix
 .. author:: mool
 .. author:: don-philipe
+.. author:: mortzu
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -124,7 +125,30 @@ Your DNS needs to be setup with the following values:
 Configure luarocks
 ------------------
 
-Prosody is written in ``lua`` and has some runtime dependencies which we install with the package manager ``luarocks``. In order to run the installed packages we have to adapt the path-variable in ``~/.bash_profile``:
+Prosody is written in ``lua`` and has some runtime dependencies which we install with the package manager ``luarocks``.
+
+Since we want to use ``lua`` in version 5.3, but the system-wide ``luarocks`` only works with ``lua`` in version 5.2, we have to install ``luarocks`` in the home directory.
+To do this, find the latest release at https://luarocks.github.io/luarocks/releases/ (at the time of writing, this was 3.13.0), download and extract it:
+
+::
+
+ [isabell@stardust ~]$ wget https://luarocks.github.io/luarocks/releases/luarocks-3.13.0.tar.gz
+ [isabell@stardust ~]$ tar --extract --gzip --file=luarocks-3.13.0.tar.gz
+
+After changing to the ``luarocks`` source directory follow the usual three steps:
+
+::
+
+ [isabell@stardust ~]$ cd luarocks-3.13.0
+ [isabell@stardust luarocks-3.13.0]$ ./configure --prefix=$HOME --with-lua-include=/usr/include/lua-5.3
+ [...]
+ [isabell@stardust luarocks-3.13.0]$ make
+ [...]
+ [isabell@stardust luarocks-3.13.0]$ make install
+ [...]
+
+
+In order to run the installed packages we have to adapt the ``PATH`` variable in ``~/.bash_profile``:
 
 ::
 
@@ -145,6 +169,9 @@ Install runtime lua-dependencies
 
 .. note:: We are using ``luaexpat`` in the version ``1.3.0-1`` due of an `known issue`_ with the newer versions.
 
+Unfortunately, both ``luasec`` and the current version of Prosody require a newer version of openssl than the one installed on the system.
+Fortunately, the Uberspace administrators have placed a current version in ``/opt/ubrspc/openssl35/`` that works.
+
 The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and ``luasec``) are required:
 
 ::
@@ -155,7 +182,7 @@ The following dependencies_ (``luasocket``, ``luaexpat``, ``luafilesystem`` and 
  luaexpat [...] is now built and installed in [...]
  [isabell@stardust ~]$ luarocks install luafilesystem --local
  luafilesystem [...] is now built and installed in [...]
- [isabell@stardust ~]$ luarocks install luasec --local
+ [isabell@stardust ~]$ luarocks install luasec --local OPENSSL_DIR=/opt/ubrspc/openssl35
  luasec [...] is now built and installed in [...]
  [isabell@stardust ~]$
 
@@ -182,7 +209,7 @@ Download and extract the latest stable release from source into ``~/var/lib/pros
 
 ::
 
- [isabell@stardust ~]$ VERSION=0.12.5
+ [isabell@stardust ~]$ VERSION=13.0.4
  [isabell@stardust ~]$ wget https://prosody.im/downloads/source/prosody-$VERSION.tar.gz --directory-prefix=$HOME/var/lib/prosody
  [...]
  [isabell@stardust ~]$ tar --extract --gzip --file=$HOME/var/lib/prosody/prosody-$VERSION.tar.gz --directory=$HOME/var/lib/prosody
@@ -194,10 +221,10 @@ Configure, build and install prosody:
 ::
 
  [isabell@stardust ~]$ cd ~/var/lib/prosody/prosody-$VERSION
- [isabell@stardust prosody-0.12.5]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include
- Lua version detected: 5.1
- Lua interpreter found: /usr/bin/lua...
- Checking Lua includes... lua.h found in /usr/include/lua.h
+ [isabell@stardust prosody-13.0.4]$ ./configure --ostype=linux --prefix=$HOME --with-lua-include=/usr/include/lua-5.3 --add-cflags="-I/opt/ubrspc/openssl35/include" --add-ldflags="-L/opt/ubrspc/openssl35/lib64 -Wl,-rpath,/opt/ubrspc/openssl35/lib64"
+ Lua version detected: 5.3
+ Lua interpreter found: /usr/bin/lua-5.3...
+ Checking Lua includes... lua.h found in /usr/include/lua-5.3/lua.h...found
  Checking if Lua header version matches that of the interpreter... yes
  Writing configuration...
 
@@ -207,11 +234,11 @@ Configure, build and install prosody:
 
  Done. You can now run 'make' to build.
 
- [isabell@stardust prosody-0.12.5]$ make
+ [isabell@stardust prosody-13.0.4]$ make
  [...]
- [isabell@stardust prosody-0.12.5]$ make install
+ [isabell@stardust prosody-13.0.4]$ make install
  [...]
- [isabell@stardust prosody-0.12.5]$
+ [isabell@stardust prosody-13.0.4]$
 
 Configuration
 =============
