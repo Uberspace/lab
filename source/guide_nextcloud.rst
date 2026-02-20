@@ -40,12 +40,12 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-Use the recommended :manual:`PHP <lang-php>` version as listed in the `system requirements`_:
+Use :manual:`PHP 8.4 or later<lang-php>`. The `system requirements` recommend PHP 8.3, but we need a current version of libcurl, wich is only included in PHP 8.4 and later versions on Uberspace:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ uberspace tools version use php 8.3
- Selected PHP version 8.3
+ [isabell@stardust ~]$ uberspace tools version use php 8.4
+ Selected PHP version 8.4
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -499,6 +499,25 @@ The update to Nextcloud 21.0.1 may fail with the following error message:
   SimpleContainer.php on line 133/
 
 To solve the issue, apply the ``apc.enable_cli=1`` step above to your installation.
+
+Update fails with "Undefined constant CURL_HTTP_VERSION_2TLS"
+------------------------------------------------------------
+
+The update to Nextcloud 33.0.0 may fail with the following error message:
+
+.. code-block:: console
+
+   Error: Undefined constant "CURL_HTTP_VERSION_2TLS" in /var/www/virtual/nsv/html/nextcloud/lib/private/Http/Client/Client.php:62
+
+The reason is most probably an outdated PHP version. You need to use PHP 8.4 for the update to work:
+
+.. code-block:: console
+
+ [isabell@stardust ~]$ uberspace tools version use php 8.4
+ Selected PHP version 8.4
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
+ [isabell@stardust ~]$
+
 
 Contacts app hangs
 ------------------
