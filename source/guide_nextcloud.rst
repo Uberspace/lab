@@ -40,7 +40,7 @@ Nextcloud was initially released in 2016 as a fork of ownCloud_ and is maintaine
 Prerequisites
 =============
 
-Use :manual:`PHP 8.4 <lang-php>`. The `system requirements` recommend PHP 8.3, but we need a current version of libcurl, wich is only included in PHP 8.4 on Uberspace:
+Use :manual:`PHP 8.4 or later<lang-php>`. The `system requirements` recommend PHP 8.3, but we need a current version of libcurl, wich is only included in PHP 8.4 and later versions on Uberspace:
 
 .. code-block:: console
 
