@@ -188,7 +188,7 @@ For example, you can require a secret token to be sent over as part of the trigg
 
 .. warning:: Replace ``<secretkey>`` with a random sequence of characters! You can create one for your own hook by running :code:`pwgen 32 1`.
 
-With this configuration, you will have to send over a JSON payload to your :code:`test-hook` that contains :code:`secret_hook_token` as value and the right :code:`<secretkey>` as value. Using curl you can run it like this:
+With this configuration, you will have to send over a JSON payload to your :code:`test-hook` that contains :code:`secret_hook_token` as key and the right :code:`<secretkey>` as value. Using curl you can run it like this:
 
 ::
 
