@@ -87,6 +87,8 @@ Create ``~/conduit.toml`` with the following content:
 
  server_name = "<username>.uber.space"
 
+ database_backend = "rocksdb"
+
  # This is the only directory where Conduit will save its data
  database_path = "/home/<username>/conduit_data"
 
