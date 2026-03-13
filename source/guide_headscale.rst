@@ -219,6 +219,6 @@ To update Headscale, download the new binary and replace the old one. Then resta
 
 ----
 
-Tested with Headscale 0.27.1, Uberspace 7.16.9
+Tested with Headscale 0.28.0, Uberspace 7.17.2
 
 .. author_list::
