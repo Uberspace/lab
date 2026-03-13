@@ -132,8 +132,6 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
      <ssl-certificate>/home/isabell/share/icecast/isabell.uber.space.pem</ssl-certificate>
   </paths>
 
-Use the port you were assigned by ``uberspace port add`` above.
-
 Create ``~/share/icecast/update-cert.sh`` to consolidate certificate keys into one file.
 
 ::
