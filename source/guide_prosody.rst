@@ -6,6 +6,7 @@
 .. author:: mool
 .. author:: don-philipe
 .. author:: mortzu
+.. author:: corny
 
 .. tag:: Instant Messaging
 .. tag:: Jabber
@@ -89,7 +90,7 @@ Ports
 
  * ``C2S``: client to server
  * ``S2S``: server to server
- * ``FILEUPLOAD``: file upload over the module **http_upload**
+ * ``FILEUPLOAD``: file upload over the module **http_file_share**
 
 .. include:: includes/open-port.rst
 
@@ -259,11 +260,10 @@ To improve the security you can generate a Diffie–Hellman parameter file with 
 Install modules
 ---------------
 
-Create the directory ``~/var/lib/prosody/http_upload``  for the module ``http_upload`` which let clients upload files over HTTP. Additionally download the latest available community plugins:
+Download the latest available community plugins:
 
 .. code-block:: console
 
- [isabell@stardust ~]$ mkdir ~/var/lib/prosody/http_upload
  [isabell@stardust ~]$ hg clone https://hg.prosody.im/prosody-modules/ ~/var/lib/prosody/prosody-modules
  [isabell@stardust ~]$
 
@@ -310,9 +310,7 @@ Uncomment the modules ``mam`` and ``csi_simple``. Also add / adapt the following
  VirtualHost "example.org"
  Component "conference.example.org" "muc"
    modules_enabled = { "muc_mam", "vcard_muc" }
- Component "upload.example.org" "http_upload"
-   http_upload_file_size_limit = 10485760
-   http_upload_expire_after = 2419200
+ Component "upload.example.org" "http_file_share"
 
 .. warning:: Replace the placeholders ``C2S-PORT``, ``S2S-PORT`` and ``FILEUPLOAD-PORT`` with the above obtained ports, adapt the domain-names, and paths! Don't delete, omit or change the ordering of the entries, otherwise some default ports could be spammed. Also don't active modules which including module ``http`` without changing ``http_ports`` and ``https_ports`` . Last but not least be warned that spamming the default ports which could already be in use can lead to fork-spam issues! So be careful and watch your configuration twice and look into the prosody logs afterwards to verify whats going on after starting prosody!
 
