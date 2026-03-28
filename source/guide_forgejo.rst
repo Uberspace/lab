@@ -164,7 +164,7 @@ Create a config file ``$FORGEJO_HOME/custom/conf/app.ini`` with the content of t
 .. note::
 
   This config block contains a secure and convenient basic configuration. You may change it depending on your needs and knowledge.
-  See the Forgejo documentation_ and the Forgejo `configuration sample <https://codeberg.org/forgejo/forgejo/raw/branch/main/custom/conf/app.example.ini>`_
+  See the Forgejo documentation_ and the Forgejo `configuration sample <https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/custom/conf/app.example.ini>`_
   for more configuration possibilities.
 
 Database initialization
