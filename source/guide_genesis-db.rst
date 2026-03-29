@@ -67,13 +67,13 @@ Create a configuration file ``~/etc/services.d/genesisdb.ini`` for GenesisDB. Re
 .. code-block:: bash
 
  [program:genesisdb]
- command=/home/$USER/bin/genesisdb-ce-1.0.9-linux-amd64/genesisdb
+ command=/home/$USER/bin/genesisdb-ce-1.1.4-linux-amd64/genesisdb
  directory=/home/$USER
  autostart=true
  autorestart=true
  startsecs=2
  stopsignal=TERM
- environment=GENESISDB_AUTH_TOKEN="YOUR_AUTH_TOKEN",GENESISDB_TZ="Europe/Vienna",GENESISDB_PROMETHEUS_METRICS="false",GENESISDB_DATA_DIR="/home/$USER/data"
+ environment=GENESISDB_AUTH_TOKEN="YOUR_AUTH_TOKEN",GENESISDB_TZ="Europe/Vienna",GENESISDB_METRICS="false",GENESISDB_DATA_DIR="/home/$USER/data"
  stdout_logfile=/home/$USER/logs/genesisdb.out.log
  stderr_logfile=/home/$USER/logs/genesisdb.err.log
 
@@ -141,7 +141,7 @@ GenesisDB supports various environment variables for configuration:
 * ``GENESISDB_AUTH_TOKEN``: Your authentication token (required)
 * ``GENESISDB_DATA_DIR``: Data directory path (default: ``/home/$USER/data``)
 * ``GENESISDB_TZ``: Timezone setting (default: ``Europe/Vienna``)
-* ``GENESISDB_PROMETHEUS_METRICS``: Enable Prometheus metrics (default: ``false``)
+* ``GENESISDB_METRICS``: Enable Prometheus metrics (default: ``false``)
 
 Maintenance
 ===========
@@ -180,7 +180,7 @@ Common Issues
 -------------
 
 1. **Service fails to start**: Check the error logs in ``/home/$USER/logs/genesisdb.err.log``
-2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.0.9-linux-amd64/genesisdb``
+2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.1.4-linux-amd64/genesisdb``
 3. **Port conflicts**: Use ``ss -tlnp | grep :PORT`` to check if a port is already in use
 4. **Domain issues**: Verify domain configuration with ``uberspace web domain list``
 
@@ -195,7 +195,7 @@ If you encounter issues:
 
 ----
 
-Tested with GenesisDB CE 1.0.9, Uberspace 7.15.0
+Tested with GenesisDB CE 1.1.4, Uberspace 7.15.0
 
 .. _GenesisDB: https://genesisdb.io/
 .. _GenesisDB Docs: https://docs.genesisdb.io/
