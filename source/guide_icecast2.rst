@@ -1,4 +1,5 @@
 .. author:: benks <uberspace@benks.io>
+.. author:: corny <corny@uber.space>
 
 .. tag:: lang-c
 .. tag:: web
@@ -35,6 +36,11 @@ Prerequisites
 Your URL needs to be setup:
 
 .. include:: includes/web-domain-list.rst
+
+.. include:: includes/open-port.rst
+
+Write down your port.
+
 
 Installation
 ============
@@ -119,8 +125,9 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
 ::
 
   <listen-socket>
-     <port>8000</port>
+     <port>$yourlisteningport</port>
      <shoutcast-mount>/stream</shoutcast-mount>
+     <tls>1</tls>
   </listen-socket>
 
 ::
@@ -130,6 +137,7 @@ Edit ``~/etc/icecast.xml`` and change the following entries:
 ::
 
      <ssl-certificate>/home/isabell/share/icecast/isabell.uber.space.pem</ssl-certificate>
+     <tls-certificate>/home/isabell/share/icecast/isabell.uber.space.pem</ssl-certificate>
   </paths>
 
 Create ``~/share/icecast/update-cert.sh`` to consolidate certificate keys into one file.
@@ -192,9 +200,8 @@ If it's not in state ``RUNNING``, check the logs.
 Configure web server
 --------------------
 
-.. note::
-
-    Icecast is running on port 8000.
+.. note:: 
+Use the port you were assigned by ``uberspace port add`` above.
 
 .. include:: includes/web-backend.rst
 
@@ -239,7 +246,7 @@ A more detailed setup for live streaming concerts with JACK audio server can be 
 Updates
 =======
 
-.. note:: Check the latest news_ regularly to stay informed about the newest changes.
+.. note:: Check the latest news_ regularly to stay informed about the newest changes. 
 
 
 .. _here: https://icecast.org/docs/icecast-2.4.1/
@@ -254,6 +261,6 @@ Updates
 
 ----
 
-Tested with icecast-2.4.1 and Uberspace 7.3.10
+Tested with icecast-2.4.4 and Uberspace 7.17.2
 
 .. author_list::
