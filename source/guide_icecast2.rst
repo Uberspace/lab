@@ -234,7 +234,7 @@ Source streaming can be done locally by oggfwd_ in combination with ffmpeg_ to e
   [isabell@localhost ~]$ ffmpeg -i $yourinputfile -vn -acodec libvorbis -b:a 128k -f ogg -y /dev/stdout |
   oggfwd isabell.uber.space $yourlisteningport y0uRS3cR3t_1! /stream.ogg
 
-A more detailed setup for live streaming concerts with JACK audio server can be found at: https://lar.ven.uber.space/streaming_setup
+A more detailed setup for live streaming concerts with JACK audio server can be found at: https://this.ven.uber.space/docs/infrastructure/icecast/streaming_setup/
 
 Updates
 =======
