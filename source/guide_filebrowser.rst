@@ -104,7 +104,7 @@ Create ``~/etc/services.d/filebrowser.ini`` with the following content:
 
  [program:filebrowser]
  directory=%(ENV_HOME)s/filebrowser
- command=filebrowser
+ command=%(ENV_HOME)s/filebrowser/filebrowser
  startsecs=30
  autostart=yes
 
