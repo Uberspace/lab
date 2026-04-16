@@ -120,6 +120,6 @@ Create ``~/etc/services.d/filebrowser.ini`` with the following content:
 
 ----
 
-Tested with File Browser 2.22.4 on Uberspace 7.13.0
+Tested with File Browser 2.63.2 on Uberspace 7.17.2
 
 .. author_list::
