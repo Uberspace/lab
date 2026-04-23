@@ -384,6 +384,44 @@ Use your favourite editor to edit ``~/vaultwarden/.env`` and add the the followi
 
  SHOW_PASSWORD_HINT=false
 
+.. _fix-http-headers:
+
+##### Fix HTTP Response Header Warnings
+
+When checking the Vaultwarden diagnostics page at ``https://isabell.uber.space/admin/diagnostics``,
+you may see the following HTTP Response validation errors:
+
+.. code-block:: none
+
+  API calls:
+    Header: 'referrer-policy' does not contain 'same-origin'
+    Header: 'x-xss-protection' does not contain '0'
+
+These occur because Uberspace's default security headers differ from what Vaultwarden expects.
+Fix them using the :manual:`web header <web-headers>` command, scoped to your domain:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace web header set isabell.uber.space/ Referrer-Policy "same-origin"
+  [isabell@stardust ~]$ uberspace web header set isabell.uber.space/ X-XSS-Protection "0"
+  [isabell@stardust ~]$ uberspace web header suppress isabell.uber.space/ X-Frame-Options
+
+You can verify the result with:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace web header list
+  isabell.uber.space/
+    Referrer-Policy: same-origin
+    X-Frame-Options: (suppressed)
+    X-Xss-Protection: 0
+  Default Headers:
+    ...
+
+.. note::
+  After applying these headers, a ``2FA Connector calls`` warning for ``x-frame-options``
+  may still appear on the diagnostics page. This is caused by a header injected by Vaultwarden
+  itself (not the proxy) and does not affect functionality. It can be safely ignored.
 
 Updates
 =======
