@@ -36,7 +36,7 @@ We’re using :manual:`PHP <lang-php>` in the stable version 8.1:
 .. code-block:: console
 
  [isabell@stardust ~]$ uberspace tools version show php
- Using 'PHP' version: '8.1'
+ Using 'PHP' version: '8.5'
  [isabell@stardust ~]$
 
 Your website domain needs to be set up:
@@ -52,9 +52,9 @@ Remove your ``html`` directory and download the current version of Baïkal from 
 
  [isabell@stardust ~]$ cd /var/www/virtual/$USER/
  [isabell@stardust isabell]$ rm -f html/nocontent.html; rmdir html
- [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.9.2/baikal-0.9.2.zip
- [isabell@stardust isabell]$ unzip baikal-0.9.2.zip
- [isabell@stardust isabell]$ rm baikal-0.9.2.zip
+ [isabell@stardust isabell]$ wget https://github.com/sabre-io/Baikal/releases/download/0.11.1/baikal-0.11.1.zip
+ [isabell@stardust isabell]$ unzip baikal-0.11.1.zip
+ [isabell@stardust isabell]$ rm baikal-0.11.1.zip
  [isabell@stardust isabell]$ ln -s baikal/html html
  [isabell@stardust isabell]$
 
@@ -96,8 +96,12 @@ Finish the update by open isabell.uber.space in your browser.
 .. _stable releases: https://github.com/sabre-io/Baikal/releases
 .. _baikal_updates: https://github.com/fl3a/baikal_updates
 
+Troubleshooting
+===============
+If you get a server error 500 when accessing the dav.php, cal.php or card.php then you possibly need to specify the base uri explicitly. Edit the baikal.yaml file in the config directory and set ``base_uri`` to ``'/'`` if you chosen to replace your ``html`` directory or to the subdirectory you chosen (e.g. ``'/baikal/'``) to instal baikal to. The trailing slash is not optional and needs to present.
+
 ----
 
-Tested with Baïkal_ 0.9.2, PHP 8.1 and Uberspace 7.13.0
+Tested with Baïkal_ 0.11.1, PHP 8.5 and Uberspace 7.17.2
 
 .. author_list::
