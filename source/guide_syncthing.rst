@@ -47,7 +47,7 @@ verify the checksum specified in the respective ``.sha256`` file and finally ext
   100%[===============================================================================>] 8,690,658   8.17MB/s   in 1.0s
   2019-05-30 19:16:12 (8.17 MB/s) - ‘syncthing/syncthing.tar.gz’ saved [8690658/8690658]
   [isabell@stardust ~]$ sha256sum syncthing/syncthing.tar.gz
-  bb27b94d236276aac87088c554ec30fbecf2478a05f54d4ac23f801144583445 gitea/gitea
+  918ef4bf7788f86ea5c5ea70cc27211cf6c5eb9f569ab0cf15cbeb8f2ee6bb75  syncthing.tar.gz
   [isabell@stardust ~]$ tar --strip-components=1 -xzf syncthing/syncthing.tar.gz -C syncthing/
   [isabell@stardust ~]$ rm syncthing/syncthing.tar.gz
   [isabell@stardust ~]$
