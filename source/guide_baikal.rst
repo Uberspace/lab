@@ -98,7 +98,7 @@ Finish the update by open isabell.uber.space in your browser.
 
 Troubleshooting
 ===============
-If you get a server error 500 when accessing the dav.php, cal.php or card.php then you possibly need to specify the base uri explicitly. Edit the baikal.yaml file in the config directory and set ``base_uri`` to ``'/'`` if you chosen to replace your ``html`` directory or to the subdirectory you chosen (e.g. ``'/baikal/'``) to instal baikal to. The trailing slash is not optional and needs to present.
+If you get a server error 500 when accessing the dav.php, cal.php or card.php then you possibly need to specify the base uri explicitly. Edit the baikal.yaml file in the config directory and set ``base_uri`` to ``'/'`` if you chosen to replace your ``html`` directory.
 
 ----
 
