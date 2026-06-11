@@ -175,7 +175,7 @@ Now, execute the Nextcloud maintenance PHP script ``occ`` with the parameters sh
   [isabell@stardust html]$
 
 Set the admin user email address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Set the mail address of the admin user in order to prepare sending mails and receive administration notifications later on.
 
