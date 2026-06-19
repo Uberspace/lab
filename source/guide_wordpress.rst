@@ -167,6 +167,7 @@ Create the directory `~/tmp/opcache` to serve as file cache directory for opcach
 Create `~/.config/php/opcache.ini` and replace `<user>` with your asteroid's user name:
 
 .. code-block:: ini
+
   opcache.enable=1
   opcache.enable_cli=0
   opcache.validate_timestamps=1
