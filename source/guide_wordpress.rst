@@ -155,17 +155,16 @@ In the advanced administration handbook you can read about `caching`_:
     "WordPress caching is the fastest way to improve performance. If your site is getting hit right now install W3 Total Cache, WP Super Cache or Cache Enabler."
 
 In this example, we are using `W3 Total Cache`_ or `Redis Object Cache`_, PHP's own OPcache and `Redis`_ as non PHP backend to distribute the load. So at first you may follow the
-:lab:`redis guide <guide_redis>` on the lab and eanble `OPcache`_, which caches script bytecode in shared memory, so that scripts need not to be loaded, parsed
+:lab:`redis guide <guide_redis>` on the lab and enable `OPcache`_, which caches script bytecode in shared memory, so that scripts need not to be loaded, parsed
 and compiled on every request.
 
-To enable it, determine your user id and create the file ``~/etc/php.d/opcache.ini`` with the following content - replace ``<uid>`` with your own - and restart PHP:
+Create the directory `~/tmp/opcache` to serve as file cache directory for opcache:
 
 ::
 
-  [isabell@stardust ~]$ echo $UID
-  1337
-  [isabell@stardust ~]$
+  [isabell@moondust ~] mkdir ~/tmp/opcache
 
+Create `~/.config/php/opcache.ini` and replace `<user>` with your asteroid's user name:
 
 .. code-block:: ini
 
@@ -179,7 +178,7 @@ To enable it, determine your user id and create the file ``~/etc/php.d/opcache.i
   opcache.memory_consumption=256
   opcache.interned_strings_buffer=64
   opcache.fast_shutdown=1
-  opcache.file_cache=/var/run/user/<uid>/cache
+  opcache.file_cache=/home/<user>/tmp/opcache
   opcache.save_comments=1
 
 ::
