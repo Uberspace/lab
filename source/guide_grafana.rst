@@ -74,20 +74,18 @@ Find the latest version of grafana_ for the platform ``linux`` from the `downloa
 
 ::
 
- [isabell@stardust ~]$ wget https://dl.grafana.com/oss/release/grafana-10.0.5.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf grafana-10.0.5.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd grafana-10.0.5
- [isabell@stardust grafana-10.0.5]$
+ [isabell@stardust ~]$ wget https://dl.grafana.com/grafana/release/13.0.1+security-01/grafana_13.0.1+security-01_25720641773_linux_amd64.tar.gz
+ [isabell@stardust ~]$ tar xvzf grafana_13.0.1+security-01_25720641773_linux_amd64.tar.gz
+ [isabell@stardust ~]$ cd grafana-13.0.1+security-01
+ [isabell@stardust grafana-13.0.1+security-01]$
 
 Move the binary to ``~/bin`` and the default configuration and html files to ``~/usr/share/grafana``.
 
 ::
 
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana-server ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana-cli ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv conf public ~/usr/share/grafana
- [isabell@stardust grafana-10.0.5]$
+ [isabell@stardust grafana-13.0.1+security-01]$ mv bin/grafana ~/bin/
+ [isabell@stardust grafana-13.0.1+security-01]$ mv conf public ~/usr/share/grafana
+ [isabell@stardust grafana-13.0.1+security-01]$
 
 Configuration
 =============
@@ -134,7 +132,7 @@ Create the file ``~/etc/services.d/grafana.ini`` with the following content:
 .. code-block:: ini
 
   [program:grafana]
-  command=grafana-server
+  command=grafana server
     -config %(ENV_HOME)s/etc/grafana/grafana.ini
     -homepath %(ENV_HOME)s/usr/share/grafana
     cfg:default.paths.logs=%(ENV_HOME)s/var/log/grafana
@@ -169,6 +167,6 @@ Change the default password which we configured in the configuration file ``~/et
 
 ----
 
-Tested with grafana_ 10.0.5, Uberspace 7.15.4
+Tested with grafana_ 13.0.1, Uberspace 7.17.3
 
 .. author_list::
