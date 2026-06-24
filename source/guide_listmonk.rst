@@ -55,7 +55,7 @@ Download the archive file:
 
 .. code-block:: console
 
-    [isabell@stardust ~]$ wget https://github.com/knadh/listmonk/releases/download/v2.0.0/listmonk_2.0.0_linux_amd64.tar.gz
+    [isabell@stardust ~]$ wget https://github.com/knadh/listmonk/releases/download/<version>/listmonk_<version>_linux_amd64.tar.gz
     [isabell@stardust ~]$
 
 Untar the archive file:
@@ -77,7 +77,7 @@ Database Setup
 
 .. warning:: Your PostgreSQL database environment has to be setup as described in the Lab-Guide_ before you follow the next steps.
 
-Create a new database user (in this example listmonk):
+Create a new database user (in this example listmonk, the password can't contain spaces or install will break):
 
 .. code-block:: console
 
@@ -124,13 +124,6 @@ Edit the config file ``~/opt/listmonk/config.toml`` and change the predefined va
     # listen on all interfaces use '0.0.0.0'. To listen on the default web address
     # port, use port 80 (this will require running with elevated permissions).
     address = "0.0.0.0:9000"
-
-    # BasicAuth authentication for the admin dashboard. This will eventually
-    # be replaced with a better multi-user, role-based authentication system.
-    # IMPORTANT: Leave both values empty to disable authentication on admin
-    # only where an external authentication is already setup.
-    admin_username = "listmonk"
-    admin_password = "password"
 
     # Database.
     [db]
@@ -257,6 +250,6 @@ In case of no problems you can delete your old version:
 .. _Github: https://github.com/knadh/listmonk/releases
 .. _Lab-Guide: https://lab.uberspace.de/guide_postgresql.html
 
-Tested with listmonk 2.0.0 on Uberspace 7.11.5 with PostgreSQL 13
+Tested with listmonk 5.1.0 on Uberspace 7.16.9 with PostgreSQL 13
 
 .. author_list::
