@@ -336,7 +336,7 @@ You have to prepend the line with
 
 .. code-block:: console
 
-    command="~/bin/rrsync -wo <path>",restrict
+    command="~/bin/rrsync -wo -absolute <path>",restrict
 
 .. note:: Make sure to replace ``<path>`` with the path to the directory you want to write to and add an space between ``restrict`` and the beginning of the key.
 
@@ -344,7 +344,7 @@ The line should now look like this, if you want to restrict the key to only writ
 
 .. code-block:: console
 
-    command="~/bin/rrsync -wo /var/www/virtual/isabell/html",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI[...] deploy_key@github.com
+    command="~/bin/rrsync -wo -absolute /var/www/virtual/isabell/html",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI[...] deploy_key@github.com
 
 After this step, the key is restricted to only write to the specified directory.
 
