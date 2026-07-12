@@ -9,7 +9,7 @@ guides on how to get popular (or even niche) software running on our platform.
 
 We hope that these guides not only enable you to install a certain software in your Uberspace, but that you might also learn something from them, giving you a better understanding of our system and Linux in general.
 
-.. note:: These Guides are made for Uberspace 7, not Uberspace 8. We're working on a Lab for Guides for Uberspace 8.
+.. note:: These Guides are for Uberspace 7, for Uberspace 8 check out our ✨ `U8 Lab`_.
 
 We keep the guides as simple as possible, all articles are tested on a fresh account before publication and will be maintained to ensure compatibility. Keep in mind that we suggest one account per application, therefore these guides assume fresh accounts. Feel free to ask our support_ for help when you're stuck somewhere or have any questions.
 
@@ -20,6 +20,7 @@ Everybody is welcome to contribute new guides, changes to existing ones, or even
 
 Thank you and have fun experimenting!
 
+.. _U8 Lab: https://u8lab.uberspace.de
 .. _Manual: http://manual.uberspace.de
 .. _Edit on Github: https://github.com/Uberspace/lab/blob/main/source/index.rst
 .. _GitHub repository: https://github.com/Uberspace/lab/
