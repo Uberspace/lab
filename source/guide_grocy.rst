@@ -104,7 +104,7 @@ This will take a moment, as grocy will need to create the default database at fi
 
 When prompted for a login, use ``admin`` for both username and password.
 
-.. warning:: Change the default password as soon as possible, as it poses a security risk. If you don't, anyone can access your data and change your password for you.
+.. warning:: Change the default password as soon as possible, as it poses a security risk. If you don't, anyone can access your data and change your password for you. Also, consider renaming the admin user to a less predictable username that can't be easily guessed by attackers.
 
 Updates
 =======
