@@ -180,6 +180,6 @@ And last but not least: upgrade your database (you need to confirm the migration
 
 ----
 
-Tested with Kimai 1.30.11, Uberspace 7.15.0, and PHP 8.1
+Tested with Kimai 2.65.0, Uberspace 7.17.4, and PHP 8.3.8
 
 .. author_list::
