@@ -137,9 +137,10 @@ Find other configuration options in the `reference documentation`_. You can now 
   Total length of run queues: 1
   Total CPU usage (reductions): 1313446
   Allocated memory (MiB): 33
+  [isabell@stardust ~] ~/eturnal/bin/eturnalctl stop
   [isabell@stardust ~]$
 
-If it's shows an error message, check your configuration_.
+If it shows an error message, check your configuration_.
 
 Afterwards you can set up the service by creating a file ``~/etc/services.d/eturnal.ini`` with the following content:
 
