@@ -1,6 +1,6 @@
 .. highlight:: console
 
-.. author:: Thomas Johnson <https://johnson.tj/>, Andreas Fuchs <https://anfuchs.de/>
+.. author:: Thomas Johnson <https://johnson.tj/>, Andreas Fuchs <https://anfuchs.de/>, Amin Zoubaa <https://zoubaa.de>
 
 .. tag:: lang-php
 .. tag:: web
@@ -37,12 +37,12 @@ Passbolt is released under the `AGPL-3.0 license`_.
 Prerequisites
 =============
 
-We’re using :manual:`PHP <lang-php>` in the stable version 8.1.
+We’re using :manual:`PHP <lang-php>` in the stable version 8.3.
 
 ::
 
- [isabell@stardust ~]$ uberspace tools version use php 8.1
- Selected PHP version 8.1
+ [isabell@stardust ~]$ uberspace tools version use php 8.3
+ Selected PHP version 8.3
  The new configuration is adapted immediately. Patch updates will be applied automatically.
  [isabell@stardust ~]$
 
@@ -127,8 +127,8 @@ Install the dependencies:
 ::
 
  [isabell@stardust ~]$ cd ~/html/
- [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/composer-1.phar
- [isabell@stardust html]$ php composer.phar install --no-dev
+ [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/download/latest-2.x/composer.phar
+ [isabell@stardust html]$ php -d allow_url_fopen=on composer.phar install --no-dev -n -o
  [isabell@stardust html]$ rm composer.phar
  [isabell@stardust html]$ cp config/passbolt.default.php config/passbolt.php
  [isabell@stardust html]$
@@ -142,6 +142,33 @@ Edit following settings in ``config/passbolt.php``:
  * ``public`` : ``/home/isabell/passbolt/config/serverkey.asc`` in ``passbolt.gpg.serverKey``
  * ``private`` : ``/home/isabell/passbolt/config/serverkey_private.asc`` in ``passbolt.gpg.serverKey``
  * optional add ``ssl.force`` : ``true`` in ``passbolt``
+
+If you use an additional DocumentRoot for your Passbolt domain, make sure the
+Passbolt rewrite rules contain ``RewriteBase /``. Otherwise Apache may run into
+an internal redirect loop and return HTTP 500 errors.
+
+Add ``RewriteBase /`` after ``RewriteEngine on`` in ``.htaccess``:
+
+::
+
+ <IfModule mod_rewrite.c>
+     RewriteEngine on
+     RewriteBase /
+     RewriteRule    ^(\.well-known/.*)$ $1 [L]
+     RewriteRule    ^$    webroot/    [L]
+     RewriteRule    (.*) webroot/$1    [L]
+ </IfModule>
+
+Also add ``RewriteBase /`` after ``RewriteEngine On`` in ``webroot/.htaccess``:
+
+::
+
+ <IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteBase /
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteRule ^ index.php [L]
+ </IfModule>
 
 
 Finish the installation and fill in your email and name when asked for:
@@ -166,17 +193,100 @@ Updates
 
 .. note:: Check the update feed_ regularly to stay informed about the newest version.
 
-Check Passbolt's `stable releases`_ for the latest versions. If a newer version is available, you should manually update your installation. The update process varies between patch, minor or major update. You can easily follow the instructions in the Passbolt`s `update documentation`_.
+Check Passbolt's `stable releases`_ for the latest versions. If a newer version is available, you should manually update your installation. The update process varies between patch, minor or major update. Read Passbolt's `update from source documentation`_ before updating.
+
+Before updating, check the current requirements. Passbolt 5 requires PHP 8.2 or
+newer and Composer 2. On Uberspace, you can check and switch the selected PHP
+version with:
+
+::
+
+ [isabell@stardust ~]$ uberspace tools version show php
+ Using 'PHP' version: '8.3'
+ [isabell@stardust ~]$ uberspace tools version use php 8.3
+ Selected PHP version 8.3
+ The new configuration is adapted immediately. Patch updates will be applied automatically.
+ [isabell@stardust ~]$
+
+Create backups before changing the installation:
+
+::
+
+ [isabell@stardust ~]$ mkdir -p ~/backups
+ [isabell@stardust ~]$ mysqldump ${USER}_passbolt > ~/backups/passbolt-$(date +%F).sql
+ [isabell@stardust ~]$ tar -czf ~/backups/passbolt-files-$(date +%F).tar.gz ~/html ~/passbolt/config
+ [isabell@stardust ~]$
+
+Run a healthcheck before the update:
+
+::
+
+ [isabell@stardust ~]$ cd ~/html/
+ [isabell@stardust html]$ ./bin/cake passbolt healthcheck
+ [isabell@stardust html]$
+
+Fetch the latest release tags and switch to the release you want to install.
+Replace ``vX.Y.Z`` with the current stable release tag:
+
+::
+
+ [isabell@stardust html]$ git fetch --tags origin
+ [isabell@stardust html]$ git checkout tags/vX.Y.Z
+ [isabell@stardust html]$
+
+Update the PHP dependencies with Composer 2:
+
+::
+
+ [isabell@stardust html]$ wget --output-document=composer.phar https://getcomposer.org/download/latest-2.x/composer.phar
+ [isabell@stardust html]$ php -d allow_url_fopen=on composer.phar install --no-dev -n -o
+ [isabell@stardust html]$ rm composer.phar
+ [isabell@stardust html]$
+
+Run the database migrations and clear the cache:
+
+::
+
+ [isabell@stardust html]$ ./bin/cake passbolt migrate --backup
+ [isabell@stardust html]$ ./bin/cake cache clear_all
+ [isabell@stardust html]$
+
+Compare your configuration with the new default configuration after major
+updates, but do not overwrite your production configuration. It contains your
+database, email and OpenPGP settings.
+
+::
+
+ [isabell@stardust html]$ diff -u config/passbolt.default.php config/passbolt.php | less
+ [isabell@stardust html]$
+
+Run the cleanup dry-run and the healthcheck afterwards:
+
+::
+
+ [isabell@stardust html]$ ./bin/cake passbolt cleanup --dry-run
+ (...)
+ No issue found, data looks squeaky clean!
+ [isabell@stardust html]$ ./bin/cake passbolt healthcheck
+ [isabell@stardust html]$
+
+If the cleanup dry-run reports data integrity issues, make sure your backups are
+available and re-run the cleanup without ``--dry-run`` as described in the
+Passbolt update documentation.
+
+On Uberspace, the healthcheck may report that the system clock is not
+synchronized because users cannot manage the system NTP service themselves. If
+the server time is wrong, contact the Uberspace support.
 
 
 .. _Passbolt: https://www.passbolt.com/
 .. _feed: https://github.com/passbolt/passbolt_api/releases.atom
 .. _AGPL-3.0 license: https://opensource.org/licenses/agpl-3.0
 .. _stable releases: https://github.com/passbolt/passbolt_api/releases
-.. _update documentation: https://help.passbolt.com/hosting/update
+.. _update from source documentation: https://www.passbolt.com/docs/hosting/update/from-source/
 
 ----
 
-Tested with Passbolt 4.5.2 and Uberspace 7.15.10
+Tested with Passbolt 5.11.0 and Uberspace 7.17.3
 
 .. author_list::
