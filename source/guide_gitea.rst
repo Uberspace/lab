@@ -510,7 +510,7 @@ Now we have to append the config file ``~/gitea/custom/conf/app.ini`` with:
 ..
   ##### Link section #####
 
-.. _Gitea: https://gitea.io/en-US/
+.. _Gitea: https://about.gitea.com
 .. _Gogs: https://gogs.io
 .. _documentation: https://docs.gitea.io/en-us/config-cheat-sheet/
 .. _feed: https://github.com/go-gitea/gitea/releases.atom
