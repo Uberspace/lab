@@ -74,20 +74,20 @@ Find the latest version of grafana_ for the platform ``linux`` from the `downloa
 
 ::
 
- [isabell@stardust ~]$ wget https://dl.grafana.com/oss/release/grafana-10.0.5.linux-amd64.tar.gz
- [isabell@stardust ~]$ tar xvzf grafana-10.0.5.linux-amd64.tar.gz
- [isabell@stardust ~]$ cd grafana-10.0.5
- [isabell@stardust grafana-10.0.5]$
+ [isabell@stardust ~]$ wget https://dl.grafana.com/oss/release/grafana_12.3.2_21390657659_linux_amd64.tar.gz
+ [isabell@stardust ~]$ tar -zxvf grafana_12.3.2_21390657659_linux_amd64.tar.gz
+ [isabell@stardust ~]$ cd grafana_12.3.2
+ [isabell@stardust grafana-12.3.2]$
 
 Move the binary to ``~/bin`` and the default configuration and html files to ``~/usr/share/grafana``.
 
 ::
 
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana-server ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv bin/grafana-cli ~/bin/
- [isabell@stardust grafana-10.0.5]$ mv conf public ~/usr/share/grafana
- [isabell@stardust grafana-10.0.5]$
+ [isabell@stardust grafana-12.3.2]$ mv bin/grafana-server ~/bin/
+ [isabell@stardust grafana-12.3.2]$ mv bin/grafana ~/bin/
+ [isabell@stardust grafana-12.3.2]$ mv bin/grafana-cli ~/bin/
+ [isabell@stardust grafana-12.3.2]$ mv conf public ~/usr/share/grafana
+ [isabell@stardust grafana-12.3.2]$
 
 Configuration
 =============
@@ -169,6 +169,6 @@ Change the default password which we configured in the configuration file ``~/et
 
 ----
 
-Tested with grafana_ 10.0.5, Uberspace 7.15.4
+Tested with grafana_ 12.3.2, Uberspace 7.17.1
 
 .. author_list::
