@@ -336,7 +336,7 @@ You have to prepend the line with
 
 .. code-block:: console
 
-    command="~/bin/rrsync -wo <path>",restrict
+    command="~/bin/rrsync -wo -absolute <path>",restrict
 
 .. note:: Make sure to replace ``<path>`` with the path to the directory you want to write to and add an space between ``restrict`` and the beginning of the key.
 
@@ -344,43 +344,9 @@ The line should now look like this, if you want to restrict the key to only writ
 
 .. code-block:: console
 
-    command="~/bin/rrsync -wo /var/www/virtual/isabell/html",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI[...] deploy_key@github.com
+    command="~/bin/rrsync -wo -absolute /var/www/virtual/isabell/html",restrict ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI[...] deploy_key@github.com
 
 After this step, the key is restricted to only write to the specified directory.
-
-.. note:: After this step your deployment should fail, because the key is now restricted and `rrsync` rewrites the remote path to the restricted path. If you previously used `/var/www/virtual/isabell/html` rrsync will rewrite this to `/var/www/virtual/isabell/html/var/www/virtual/isabell/html` which is not a valid path.
-
-To fix this, you have to change the ``remote_path`` to ``/``.
-Below are guides on how to change the ``remote_path`` for different CI/CD providers.
-
-Github
-======
-
-For Github you have to change the file ``.github/workflows/deploy-to-uberspace.yml`` in your Git repository.
-Replace the path in the ``remote_path`` variable with ``/``.
-If you used the given example, the file should look like this:
-
-.. code-block:: yaml
-
-    name: Deploy Isabell's Website to Uberspace
-    on:
-      push:
-        branches: [main]
-    jobs:
-      build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v4
-          - name: Deploy using Rsync
-            uses: burnett01/rsync-deployments@6.0.0
-            with:
-              switches: -avrh --delete --exclude=".git" --exclude=".github"
-              path: src/
-              remote_path: /
-              remote_host: ${{ vars.SSH_HOST }}
-              remote_user: ${{ vars.SSH_USERNAME }}
-              remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
-              remote_key_pass: ${{ secrets.SSH_PRIVATE_KEY_PASS }} # Only needed if you added a passphrase upon creating the SSH key
 
 ----
 
