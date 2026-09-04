@@ -205,7 +205,6 @@ Create the file ``/var/www/virtual/$USER/example.org/.well-known/matrix/server``
 In order to tell Matrix clients where to sign in, you'll need to create another file ``/var/www/virtual/$USER/example.org/.well-known/matrix/client`` with the following content. Please note that the content differs slightly from the previous file.
 
 .. code-block:: json
-  :emphasize-lines: 2
   {
     "m.homeserver": { "base_url": "https://matrix.example.org" }
   }
