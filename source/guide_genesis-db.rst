@@ -10,192 +10,196 @@
 .. tag:: event-driven-architecture
 .. tag:: event-driven-design
 .. tag:: event-driven-development
-.. tag:: event-driven-architecture
 
-#############
-GenesisDB CE
-#############
+#########
+GenesisDB
+#########
 
-GenesisDB is an event sourcing database engine that can be easily deployed on Uberspace. This guide will walk you through the complete setup process for running GenesisDB CE (Community Edition).
+.. tag_list::
+
+GenesisDB_ is an open source event sourcing database engine. It stores events in the CloudEvents format, commits batches atomically with preconditions, chains every event with a SHA-256 hash, and offers live subscriptions and the GDBQL query language over a plain HTTP API. GenesisDB is a single static Go binary without runtime dependencies.
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of :manual:`supervisord <daemons-supervisord>` and :manual:`web backends <web-backends>`.
+.. note:: For this guide you should be familiar with the basic concepts of
+
+  * :manual:`supervisord <daemons-supervisord>`
+  * :manual:`web backends <web-backends>`
+  * :manual:`domains <web-domains>`
+
+License
+=======
+
+GenesisDB is released under the `MIT License`_. Every feature is included, there are no editions, license keys or event limits.
 
 Prerequisites
 =============
 
-Before setting up GenesisDB, ensure you have the following:
+Your GenesisDB URL needs to be set up:
 
-1. Access to your Uberspace account
-2. Basic knowledge of command line operations
+.. include:: includes/web-domain-list.rst
 
 Installation
 ============
 
-Step 1: Create Required Directories
------------------------------------
+Download the binary and its checksums from the `latest release`_, verify the binary and make it executable. Replace ``2.0.0`` with the current version:
 
-First, create the necessary directories for GenesisDB:
+::
 
-.. code-block:: bash
-
- [isabell@stardust ~]$ mkdir -p /home/$USER/bin
- [isabell@stardust ~]$ mkdir -p /home/$USER/data
- [isabell@stardust ~]$ mkdir -p /home/$USER/logs
+ [isabell@stardust ~]$ mkdir --parents ~/bin
+ [isabell@stardust ~]$ wget --output-document ~/bin/genesisdb https://github.com/genesisdb-io/genesisdb/releases/download/v2.0.0/genesisdb-2.0.0-linux-amd64
+ [isabell@stardust ~]$ wget --output-document /tmp/genesisdb.sha256 https://github.com/genesisdb-io/genesisdb/releases/download/v2.0.0/SHA256SUMS
+ [isabell@stardust ~]$ grep linux-amd64 /tmp/genesisdb.sha256 | awk '{print $1 "  " ENVIRON["HOME"] "/bin/genesisdb"}' | sha256sum --check
+ /home/isabell/bin/genesisdb: OK
+ [isabell@stardust ~]$ chmod +x ~/bin/genesisdb
+ [isabell@stardust ~]$ genesisdb version
+ GenesisDB 2.0.0
  [isabell@stardust ~]$
 
-Step 2: Download and Install GenesisDB
----------------------------------------
+Create the data directory:
 
-Download the GenesisDB binary to your bin directory:
+::
 
-.. code-block:: bash
-
- [isabell@stardust ~]$ cd /home/$USER/bin
- [isabell@stardust bin]$ wget https://releases.genesisdb.io/latest/genesisdb-linux-amd64-ce -O genesisdb-ce-linux-amd64.tar.gz
- [isabell@stardust bin]$ tar -xzf genesisdb-ce-linux-amd64.tar.gz
+ [isabell@stardust ~]$ mkdir --parents ~/genesisdb
+ [isabell@stardust ~]$
 
 Configuration
 =============
 
-Step 3: Create Supervisord Configuration
------------------------------------------
+Generate a token
+----------------
 
-Create a configuration file ``~/etc/services.d/genesisdb.ini`` for GenesisDB. Replace ``YOUR_AUTH_TOKEN`` with your actual GenesisDB authentication token. It is recommended to create a secure, strong password: ``pwgen 64 -1``
+Every request except the health check needs a bearer token of at least 32 bytes. Generate one and keep it safe:
 
-.. code-block:: bash
+::
+
+ [isabell@stardust ~]$ openssl rand -hex 32
+ 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+ [isabell@stardust ~]$
+
+Set up the daemon
+-----------------
+
+Create ``~/etc/services.d/genesisdb.ini`` with the following content. Replace ``YOUR_AUTH_TOKEN`` with the token you just generated and set ``GENESISDB_TZ`` to your time zone:
+
+.. code-block:: ini
 
  [program:genesisdb]
- command=/home/$USER/bin/genesisdb-ce-1.1.5-linux-amd64/genesisdb
- directory=/home/$USER
+ command=%(ENV_HOME)s/bin/genesisdb
+ directory=%(ENV_HOME)s
+ environment=GENESISDB_AUTH_TOKEN="YOUR_AUTH_TOKEN",GENESISDB_HOST="0.0.0.0",GENESISDB_PORT="8080",GENESISDB_DATA_DIR="%(ENV_HOME)s/genesisdb",GENESISDB_TZ="Europe/Vienna"
  autostart=true
  autorestart=true
- startsecs=2
+ startsecs=60
  stopsignal=TERM
- environment=GENESISDB_AUTH_TOKEN="YOUR_AUTH_TOKEN",GENESISDB_TZ="Europe/Vienna",GENESISDB_PROMETHEUS_METRICS="false",GENESISDB_DATA_DIR="/home/$USER/data"
- stdout_logfile=/home/$USER/logs/genesisdb.out.log
- stderr_logfile=/home/$USER/logs/genesisdb.err.log
+ stopwaitsecs=30
 
-Step 4: Start GenesisDB Service
--------------------------------
+GenesisDB has to listen on ``0.0.0.0`` so the web backend can reach it. ``GENESISDB_HOST`` defaults to ``127.0.0.1`` otherwise.
 
-Reload supervisord configuration and start the GenesisDB service:
+.. include:: includes/supervisord.rst
 
-.. code-block:: bash
+If it's not in state ``RUNNING``, check the logs with ``supervisorctl tail genesisdb stderr``.
 
- [isabell@stardust ~]$ supervisorctl reread
- genesisdb: available
- [isabell@stardust ~]$ supervisorctl update
- genesisdb: added process group
+Configure the web server
+------------------------
+
+.. note::
+
+    GenesisDB is running on port 8080.
+
+.. include:: includes/web-backend.rst
+
+Finishing installation
+======================
+
+Check that GenesisDB answers. The health check needs no token:
+
+::
+
+ [isabell@stardust ~]$ curl https://isabell.uber.space/api/v2/ping
+ Pong
+ [isabell@stardust ~]$
+
+Commit your first event and fetch it again. Replace ``YOUR_AUTH_TOKEN`` with your token:
+
+::
+
+ [isabell@stardust ~]$ curl https://isabell.uber.space/api/v2/commit --header "Authorization: Bearer YOUR_AUTH_TOKEN" --header "Content-Type: application/json" --data '{"events":[{"source":"io.genesisdb.app","subject":"/customer","type":"io.genesisdb.app.customer-added","data":{"firstName":"Bruce","lastName":"Wayne"}}]}'
+ [isabell@stardust ~]$ curl https://isabell.uber.space/api/v2/fetch --header "Authorization: Bearer YOUR_AUTH_TOKEN" --header "Content-Type: application/json" --data '{"subject":"/customer"}'
+ [isabell@stardust ~]$
+
+Official clients for JavaScript and TypeScript, Python, Go, Java, .NET, PHP, Rust and Swift are listed in the `GenesisDB documentation`_.
+
+Best practices
+==============
+
+Security
+--------
+
+Use a separate token for each purpose. Besides the administrator token, GenesisDB accepts an optional write token (read and commit) and read token (read only). Add them to the ``environment`` line in ``~/etc/services.d/genesisdb.ini``, then run ``supervisorctl update``:
+
+.. code-block:: ini
+
+ GENESISDB_WRITE_TOKEN="ANOTHER_TOKEN",GENESISDB_READ_TOKEN="ONE_MORE_TOKEN"
+
+Give your applications the write or read token and keep the administrator token for administration.
+
+Further settings, such as request limits and Prometheus metrics, are described in the `configuration reference`_.
+
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+.. warning:: Back up the data directory before every update. A new version may migrate it on the first start, and the migration is one-way.
+
+Stop GenesisDB, copy the data directory, replace the binary and start it again. Replace ``2.0.1`` with the new version:
+
+::
+
+ [isabell@stardust ~]$ supervisorctl stop genesisdb
+ genesisdb: stopped
+ [isabell@stardust ~]$ cp --archive ~/genesisdb ~/genesisdb-backup-$(date +%F)
+ [isabell@stardust ~]$ wget --output-document ~/bin/genesisdb https://github.com/genesisdb-io/genesisdb/releases/download/v2.0.1/genesisdb-2.0.1-linux-amd64
+ [isabell@stardust ~]$ chmod +x ~/bin/genesisdb
  [isabell@stardust ~]$ supervisorctl start genesisdb
  genesisdb: started
  [isabell@stardust ~]$
 
-Step 5: Configure Web Access
------------------------------
+Upgrading from GenesisDB CE 1.x
+-------------------------------
 
-Find an available port starting from 8081:
+GenesisDB 2 replaces GenesisDB CE 1.x and opens its data directories: the directory is migrated automatically on the first start, and the 1.x API keeps answering under ``/api/v1``. Before the first start of version 2, stop GenesisDB CE and copy the complete data directory, there is no way back to 1.x without that copy. Then install the binary as described above, point ``GENESISDB_DATA_DIR`` to the existing directory and make sure the token has at least 32 bytes. See the `upgrade guide`_ for details.
 
-.. code-block:: bash
+Debugging
+=========
 
- [isabell@stardust ~]$ ss -tlnp | grep :808
+Read the GenesisDB log with ``supervisorctl tail genesisdb stderr``. Check that the web backend points to port 8080 with ``uberspace web backend list``.
+
+If GenesisDB refuses to start, the most common causes are a token shorter than 32 bytes and a data directory that another process already uses.
+
+Backup
+======
+
+All data lives in ``~/genesisdb``. Copy it while GenesisDB is stopped, or create a consistent backup of the running instance through the API with the administrator token:
+
+::
+
+ [isabell@stardust ~]$ curl --fail https://isabell.uber.space/api/v2/admin/backup --header "Authorization: Bearer YOUR_AUTH_TOKEN" --output ~/genesisdb-backup.json
  [isabell@stardust ~]$
 
-If port 8081 is available, use it. Otherwise, try higher port numbers until you find an available one.
+Commits wait while the backup is collected, so run it in a quiet moment. Restore it into an empty data directory with ``POST /api/v2/admin/restore``.
 
-Add your custom domain and configure the web backend:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ uberspace web domain add genesisdb.domain.tld
- [isabell@stardust ~]$ uberspace web backend set / --http --port 8081 --domain genesisdb.domain.tld
- [isabell@stardust ~]$
-
-Verification
-============
-
-Check if GenesisDB is running correctly:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl status genesisdb
- genesisdb                        RUNNING   pid 1234, uptime 0:01:23
- [isabell@stardust ~]$
-
-Check the logs for any issues:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ tail -f /home/$USER/logs/genesisdb.out.log
- [isabell@stardust ~]$ tail -f /home/$USER/logs/genesisdb.err.log
- [isabell@stardust ~]$
-
-Your GenesisDB instance should now be accessible via your configured domain.
-
-Configuration Options
-=====================
-
-GenesisDB supports various environment variables for configuration:
-
-* ``GENESISDB_AUTH_TOKEN``: Your authentication token (required)
-* ``GENESISDB_DATA_DIR``: Data directory path (default: ``/home/$USER/data``)
-* ``GENESISDB_TZ``: Timezone setting (default: ``Europe/Vienna``)
-* ``GENESISDB_PROMETHEUS_METRICS``: Enable Prometheus metrics (default: ``false``)
-
-Maintenance
-===========
-
-Managing the Service
---------------------
-
-To stop GenesisDB:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl stop genesisdb
- [isabell@stardust ~]$
-
-To restart GenesisDB:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl restart genesisdb
- [isabell@stardust ~]$
-
-Log Rotation
-------------
-
-GenesisDB logs are automatically rotated by supervisord. You can manually rotate logs if needed:
-
-.. code-block:: bash
-
- [isabell@stardust ~]$ supervisorctl signal USR2 genesisdb
- [isabell@stardust ~]$
-
-Troubleshooting
-===============
-
-Common Issues
--------------
-
-1. **Service fails to start**: Check the error logs in ``/home/$USER/logs/genesisdb.err.log``
-2. **Permission denied**: Ensure the binary has execute permissions: ``chmod +x /home/$USER/bin/genesisdb-1.1.5-linux-amd64/genesisdb``
-3. **Port conflicts**: Use ``ss -tlnp | grep :PORT`` to check if a port is already in use
-4. **Domain issues**: Verify domain configuration with ``uberspace web domain list``
-
-Getting Help
-------------
-
-If you encounter issues:
-
-1. Check the GenesisDB documentation
-2. Review the supervisord logs: ``supervisorctl tail genesisdb``
-3. Contact Uberspace support for platform-specific issues
+.. _GenesisDB: https://www.genesisdb.io/
+.. _MIT License: https://github.com/genesisdb-io/genesisdb/blob/main/LICENSE
+.. _GenesisDB documentation: https://docs.genesisdb.io/
+.. _configuration reference: https://docs.genesisdb.io/configuration
+.. _upgrade guide: https://docs.genesisdb.io/upgrade
+.. _feed: https://github.com/genesisdb-io/genesisdb/releases.atom
+.. _latest release: https://github.com/genesisdb-io/genesisdb/releases/latest
 
 ----
 
-Tested with GenesisDB CE 1.1.5, Uberspace 7.15.0
+Tested with GenesisDB 2.0.0, Uberspace 7.16.6
 
-.. _GenesisDB: https://genesisdb.io/
-.. _GenesisDB Docs: https://docs.genesisdb.io/
+.. author_list::
