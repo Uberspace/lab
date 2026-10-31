@@ -119,6 +119,7 @@ then ``imapsync`` should take some time and import the mail and folder structure
 .. tip::
     The command tool ``imapsync`` is very powerful with a lot of configuration options. While the settings explained here
     should suit for the most cases, you might want or need to change some of them. Have a look at the `repo <https://github.com/imapsync/imapsync>`_.
+    If the access to your new astroid fails you can try the login via `curl -v --url "imaps://$(hostname -f).uberspace.de/" --user 'info@$USER.uber.space'`.
 
 
 Set up mail domain
