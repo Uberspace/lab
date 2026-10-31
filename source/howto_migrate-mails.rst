@@ -96,9 +96,9 @@ with the correct mailbox.
 
 .. code-block:: ini
 
-    --host2 localhost \
+    --host2 "$(hostname -f)" \
     --user2 info@$USER.uber.space \
-    --ssl2 \
+    --ssl2
 
 Copy all configured lines at once to the command line like:
 
@@ -109,9 +109,9 @@ Copy all configured lines at once to the command line like:
     --host1 imap.example.com \
     --user1 info@example.com \
     --ssl1 \
-    --host2 localhost \
+    --host2 "$(hostname -f)" \
     --user2 info@$USER.uber.space \
-    --ssl2 \
+    --ssl2
 
 After executing the command, you will be asked for the old and new mail address passwords to enter,
 then ``imapsync`` should take some time and import the mail and folder structure from your old mail account.
