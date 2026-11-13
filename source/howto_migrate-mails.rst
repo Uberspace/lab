@@ -96,9 +96,9 @@ with the correct mailbox.
 
 .. code-block:: ini
 
-    --host2 localhost \
+    --host2 "$(hostname -f)" \
     --user2 info@$USER.uber.space \
-    --ssl2 \
+    --ssl2
 
 Copy all configured lines at once to the command line like:
 
@@ -109,9 +109,9 @@ Copy all configured lines at once to the command line like:
     --host1 imap.example.com \
     --user1 info@example.com \
     --ssl1 \
-    --host2 localhost \
+    --host2 "$(hostname -f)" \
     --user2 info@$USER.uber.space \
-    --ssl2 \
+    --ssl2
 
 After executing the command, you will be asked for the old and new mail address passwords to enter,
 then ``imapsync`` should take some time and import the mail and folder structure from your old mail account.
@@ -119,6 +119,7 @@ then ``imapsync`` should take some time and import the mail and folder structure
 .. tip::
     The command tool ``imapsync`` is very powerful with a lot of configuration options. While the settings explained here
     should suit for the most cases, you might want or need to change some of them. Have a look at the `repo <https://github.com/imapsync/imapsync>`_.
+    If the access to your new astroid fails you can try the login via `curl -v --url "imaps://$(hostname -f).uberspace.de/" --user 'info@$USER.uber.space'`.
 
 
 Set up mail domain
