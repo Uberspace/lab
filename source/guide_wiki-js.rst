@@ -25,7 +25,7 @@ Wiki.js has a WYSIWYG editor as well as support for markdown, html. Migration fr
 
 ----
 
-.. note:: For this guide you should be familiar with the basic concepts of
+.. note:: This guide covers Wiki.js 2.x, the current stable version. For this guide you should be familiar with the basic concepts of
 
   * :manual:`Node.js <lang-nodejs>`
   * :manual:`MySQL <database-mysql>`
@@ -71,11 +71,11 @@ Create a ``wiki`` directory in your home.
   [isabell@stardust ~]$ mkdir ~/wiki
   [isabell@stardust ~]$
 
-Download the latest `release <https://github.com/Requarks/wiki/releases/latest>`_ from GitHub: The direct URL to the `latest Archive <https://github.com/requarks/wiki/releases/latest/download/wiki-js.tar.gz>`_ works well meanwhile.
+Download the latest `release <https://github.com/Requarks/wiki-v2/releases/latest>`_ from GitHub: The direct URL to the `latest Archive <https://github.com/requarks/wiki-v2/releases/latest/download/wiki-js.tar.gz>`_ works well meanwhile.
 
 ::
 
-  [isabell@stardust ~]$ wget https://github.com/requarks/wiki/releases/latest/download/wiki-js.tar.gz
+  [isabell@stardust ~]$ wget https://github.com/requarks/wiki-v2/releases/latest/download/wiki-js.tar.gz
   [...]
   Saving to: ‘wiki-js.tar.gz’
   [isabell@stardust ~]$
@@ -182,12 +182,12 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
  :emphasize-lines: 4
 
  #!/bin/bash
- # created by peleke.de (Ghost Guide), customized by logazer
+ # created by peleke.de (Ghost Guide), customized by logazer, edited by dualbound
 
  WIKIDIR=~/wiki
  PACKAGE_VERSION_OLD=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' $WIKIDIR/package.json)
- CURRENT_WIKI=$(curl -s https://api.github.com/repos/Requarks/wiki/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4)
- CURRENT_WIKI_DOWNLOAD="https://github.com/Requarks/wiki/releases/download/$CURRENT_WIKI/wiki-js.tar.gz"
+ CURRENT_WIKI=$(curl -s https://api.github.com/repos/Requarks/wiki-v2/releases/latest | grep tag_name | head -n 1 | cut -d '"' -f 4)
+ CURRENT_WIKI_DOWNLOAD="https://github.com/Requarks/wiki-v2/releases/download/$CURRENT_WIKI/wiki-js.tar.gz"
 
  if [[ $1 == "--rollback" ]]
  then
@@ -208,14 +208,14 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
   fi
  fi
 
- if [[ $CURRENT_WIKI != $PACKAGE_VERSION_OLD ]]
+ if [[ ${CURRENT_WIKI#v} != $PACKAGE_VERSION_OLD ]]
  then
   read -r -p "Do you want to update Wiki.js $PACKAGE_VERSION_OLD to version $CURRENT_WIKI? [Y/n] " response
   if [[ $response =~ ^([yY]|"")$ ]]
   then
    echo "Updating Wiki.js ..."
    echo "Downloading version $CURRENT_WIKI ..."
-   (cd ~/tmp/ && curl --progress-bar -LO $CURRENT_WIKI_DOWNLOAD)
+   (cd ~/tmp/ && curl -f --progress-bar -LO $CURRENT_WIKI_DOWNLOAD) || exit 1
    echo "Stopping Wiki.js ..."
    supervisorctl stop wiki
    echo "Removing version $PACKAGE_VERSION_OLD ..."
@@ -241,7 +241,7 @@ In order for this to work, a backup must exist in ``~/tmp/wiki.bak`` which is au
 
 
 .. _Wiki.js: https://wiki.js.org
-.. _feed: https://github.com/Requarks/wiki/releases/
+.. _feed: https://github.com/Requarks/wiki-v2/releases/
 
 ----
 
