@@ -137,7 +137,7 @@ Find other configuration options in the `reference documentation`_. You can now 
   Total length of run queues: 1
   Total CPU usage (reductions): 1313446
   Allocated memory (MiB): 33
-  [isabell@stardust ~] ~/eturnal/bin/eturnalctl stop
+  [isabell@stardust ~]$ ~/eturnal/bin/eturnalctl stop
   [isabell@stardust ~]$
 
 If it shows an error message, check your configuration_.
@@ -193,6 +193,44 @@ The :lab:`Synapse<guide_synapse>` homeserver can employ your eturnal server for 
 
 .. note:: Currently, TURNS doesn't work for Synapse with eturnal, though apparently with coturn (see `issue #1533`_).
 
+
+Updates
+=======
+
+.. note:: Check the update feed_ regularly to stay informed about the newest version.
+
+First, backup your current installation by renaming the eturnal directory:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ mv ~/eturnal ~/eturnal-backup
+  [isabell@stardust ~]$ 
+
+Copy the link to the newest tarball, use ``wget`` and ``tar`` to download and extract it (same procedure as in the installation_ step):
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ wget https://eturnal.net/download/linux/eturnal-1.12.3-linux-glibc-x64.tar.gz
+  [isabell@stardust ~]$ tar xzf eturnal-1.12.3-linux-glibc-x64.tar.gz
+  [isabell@stardust ~]$ 
+
+Copy the dh-parameters and config files into the new installation:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ cp ~/eturnal_backup/etc/dh-parameters.pem ~/eturnal/etc/
+  [isabell@stardust ~]$ cp ~/eturnal_backup/etc/eturnal.yml ~/eturnal/etc/
+  [isabell@stardust ~]$ 
+
+You may also need to change to Erlang version 28:
+
+.. code-block:: console
+
+  [isabell@stardust ~]$ uberspace tools version use erlang 28
+  [isabell@stardust ~]$ 
+
+Restart eturnal using the ``supervisorctl restart eturnal`` command. If it's not starting, turn to the _configuration section and use the ``~/eturnal/bin/eturnalctl daemon`` command for debugging.
+
 ----
 
 Tested on Uberspace v7.13 with Erlang v24 and eturnal v1.10.1.
@@ -208,3 +246,4 @@ Tested on Uberspace v7.13 with Erlang v24 and eturnal v1.10.1.
 .. _configuration: #configuration
 .. _`cron jobs`: https://manual.uberspace.de/daemons-cron
 .. _`issue #1533`: https://github.com/element-hq/element-android/issues/1533#issuecomment-2215544774
+.. _feed: https://github.com/processone/eturnal/releases/latest
