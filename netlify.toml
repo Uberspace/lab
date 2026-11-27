@@ -3,5 +3,18 @@
   command = "make dirhtml"
 
 [[redirects]]
+  # Temporary: this domain will serve the Uberspace 8 lab later.
+  from = "https://lab.uberspace.de/*"
+  to = "https://u7lab.uberspace.de/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "http://lab.uberspace.de/*"
+  to = "https://u7lab.uberspace.de/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/en/*"
   to = "/:splat"
